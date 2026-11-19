@@ -1,11 +1,11 @@
 <p class="eyebrow">Mécanique · Chapitre 2</p>
 <h1>Mécanique du solide</h1>
-<p class="subtitle">Centre de masse, moment d’inertie, moment cinétique, roulement sans glissement, chocs, gyroscope</p>
+<p class="subtitle">Centre de masse, moment d’une force, moment d’inertie, énergie de rotation, moment cinétique, roulement sans glissement</p>
 
 <div class="objectifs">
-<p><strong>Ce que demandent les épreuves.</strong> Le syllabus international des IPhO contient le mouvement des solides : translation et rotation, moment d’inertie, théorème des axes parallèles, moment cinétique et sa conservation, énergie cinétique de rotation. La rotation autour d’un axe fixe est au programme de première année de CPGE ; le roulement sans glissement, les chocs sur un solide et le gyroscope vont au-delà, mais ils reviennent sans cesse dans les problèmes longs des olympiades (balance, bille sur un plateau tournant, précession de l’axe de la Terre). Le réflexe à acquérir : <strong>deux équations, une pour le centre de masse, une pour la rotation, reliées par une condition cinématique</strong>.</p>
+<p><strong>Ce que demande le test.</strong> Le syllabus de la préparation française (2026-2027) retient pour le test de présélection : en terminale, la recherche du <strong>centre de masse</strong> et l’équilibre des forces ; en CPGE, en plus, l’<strong>équilibre des couples</strong> (à une ou deux dimensions), le mouvement d’un solide autour d’un <strong>centre instantané de rotation</strong>, la vitesse des points d’un solide en rotation, l’<strong>énergie cinétique de rotation</strong>, le <strong>moment cinétique</strong> et sa conservation, les <strong>moments d’inertie</strong> des objets simples, le théorème de Huygens et le calcul d’un moment d’inertie par intégration. La rotation à trois dimensions (gyroscope, précession) n’est pas au programme du test : ce chapitre ne la traite pas. Le réflexe à acquérir : <strong>deux équations, une pour le centre de masse, une pour la rotation, reliées par une condition cinématique</strong>.</p>
 <ul>
-<li><strong>Terminale (IPhO et Concours général)</strong> : ce chapitre dépasse le programme du lycée. Lisez les parties 1 à 3 hors encadrés « Niveau CPGE » : le centre de masse, le moment d’une force et l’énergie de rotation suffisent pour les QCM.</li>
+<li><strong>Terminale (IPhO et Concours général)</strong> : partie 1 (centre de masse) ; le reste dépasse le programme du test de terminale.</li>
 <li><strong>CPGE (IPhO)</strong> : tout le chapitre.</li>
 </ul>
 </div>
@@ -30,6 +30,7 @@
 <p>Une clé à molette lancée en l’air tourne de façon compliquée, mais son centre de masse décrit une parabole. Pour un système isolé, \(G\) a un mouvement rectiligne uniforme : c’est ce qui permet de traiter un recul, une explosion ou une personne qui marche sur une barque sans rien savoir des forces intérieures.</p>
 <div class="methode" data-m="systeme"><p>Pour trouver \(G\) d’un objet percé ou composé, traitez le trou comme une masse négative superposée à l’objet plein : \(M\,x_G = M_\text{plein}x_\text{plein} - m_\text{trou}x_\text{trou}\).</p></div>
 <div class="exo" data-q="sol-barque"></div>
+<div class="exo" data-q="ipho-2025-C14"></div>
 
 <h3 id="vitesses">Translation, rotation, vitesse d’un point</h3>
 <p>Le mouvement le plus général d’un solide se décompose en une translation (celle de \(G\)) et une rotation autour de \(G\), décrite par le <strong>vecteur rotation</strong> \(\vec\omega\) : sa direction est l’axe de rotation, sa norme la vitesse angulaire, son sens donné par la règle de la main droite. La vitesse d’un point \(P\) du solide est</p>
@@ -39,6 +40,8 @@
 <h2 id="inertie">2. Moment d’une force, moment d’inertie</h2>
 <h3 id="moment">Le moment d’une force</h3>
 <p>Pour faire tourner une porte, on pousse loin des gonds et perpendiculairement au battant. Le <strong>moment</strong> d’une force \(\vec F\) appliquée en \(P\), par rapport à un axe \(\Delta\), mesure cette efficacité : \(\mathcal M_\Delta = \pm F\times d\), où \(d\) est le <strong>bras de levier</strong> (distance de l’axe à la droite d’action de la force), avec le signe + si la force fait tourner dans le sens positif choisi. Vectoriellement, \(\vec{\mathcal M}_O = \overrightarrow{OP}\wedge\vec F\). Le moment du poids se calcule comme si tout le poids s’appliquait en \(G\).</p>
+<p><strong>Équilibre d’un solide.</strong> Un solide reste immobile si deux conditions sont réunies : la somme des forces est nulle (équilibre des forces) <em>et</em> la somme des moments est nulle par rapport à un axe quelconque (équilibre des couples). On choisit l’axe qui passe par le point d’application de la force qu’on ne connaît pas. Deux conséquences utiles : un solide posé sur un appui presque ponctuel tient si son centre de masse est à la verticale de l’appui ; un solide posé sur une base bascule quand la verticale de son centre de masse, ou la droite d’action de la résultante, sort de cette base.</p>
+<div class="exo" data-q="ipho-2023-C15"></div>
 <h3 id="moment-inertie">Le moment d’inertie</h3>
 <p>Dans une rotation à la vitesse angulaire \(\omega\) autour d’un axe fixe, le point \(i\) va à la vitesse \(r_i\omega\) (\(r_i\) : distance à l’axe). L’énergie cinétique totale est</p>
 \[E_c = \sum\tfrac12m_i(r_i\omega)^2 = \tfrac12J\omega^2, \qquad J = \sum m_ir_i^2 .\]
@@ -115,31 +118,17 @@
 <p>La vitesse finale ne dépend pas de \(\mu\). On le comprend sans calculer le régime transitoire : par rapport à un point fixe \(O\) de la table situé sur la ligne de contact, le frottement a un moment nul (sa droite d’action passe par \(O\)) et les moments du poids et de la réaction normale se compensent. Le moment cinétique en \(O\) se conserve : \(Mv_0R = Mv_1R + \tfrac25MR^2\,(v_1/R)\), d’où \(v_1 = \tfrac57v_0\). L’énergie perdue par frottement vaut \(\tfrac12Mv_0^2\,(1 - \tfrac57) = \tfrac17Mv_0^2\).</p>
 </div>
 
-<h2 id="moment-cinetique">5. Moment cinétique : conservation, chocs, gyroscope</h2>
+<h2 id="moment-cinetique">5. Conservation du moment cinétique</h2>
 <h3 id="conservation-l">Conservation du moment cinétique</h3>
 <p>Si la somme des moments extérieurs par rapport à un axe est nulle, \(L = J\omega\) se conserve. Une patineuse qui ramène les bras diminue \(J\) : elle tourne plus vite, \(\omega_2 = \omega_1J_1/J_2\). Son énergie cinétique \(L^2/2J\) augmente : le travail est fourni par ses muscles. De même, une étoile qui s’effondre en étoile à neutrons (rayon divisé par \(10^5\)) voit sa période de rotation divisée par \(10^{10}\) : d’un mois à moins d’une milliseconde.</p>
 <div class="methode" data-m="conservation"><p>Avant d’écrire une conservation, demandez-vous <em>par rapport à quel point</em> les moments extérieurs sont nuls. Pour un système en orbite ou sur un pivot sans frottement, c’est le centre ou le pivot. L’énergie, elle, n’est conservée que s’il n’y a ni frottement ni choc mou.</p></div>
 <div class="exo" data-q="sol-patineur"></div>
 
-<div class="cpge" id="chocs" title="Chocs sur un solide et centre de percussion">
-<p>Pendant un choc bref, la force de contact est très grande et les autres forces (poids) sont négligeables. Le moment cinétique par rapport au <strong>point d’impact</strong> se conserve pour l’objet frappé ; pour l’ensemble projectile et cible, il se conserve par rapport à n’importe quel point, ou par rapport au pivot si la cible est articulée.</p>
-<p>Exemple : une tige de masse \(M\) et de longueur \(L\), suspendue par une extrémité \(O\), reçoit une percussion \(P = \int F\,\mathrm dt\) horizontale à la distance \(x\) de \(O\). Rotation autour de \(O\) : \(\tfrac13ML^2\omega = Px\). Centre de masse : \(Mv_G = M\omega L/2 = P + P_O\), où \(P_O\) est la percussion exercée par le pivot. Donc \(P_O = P\left(\dfrac{3x}{2L} - 1\right)\), nulle pour \(x = \tfrac23L\) : c’est le <strong>centre de percussion</strong>, l’endroit où frapper une balle avec une batte pour ne rien sentir dans les mains.</p>
-</div>
-
-<div class="cpge" id="gyroscope" title="Gyroscope et précession">
-<p>Une toupie de masse \(m\) tourne vite à la vitesse angulaire \(\omega\) autour de son axe, incliné de \(\alpha\) sur la verticale ; son centre de masse est à la distance \(\ell\) de la pointe \(O\). Son moment cinétique \(\vec L \approx J\omega\,\vec u\) est porté par l’axe. Le poids exerce en \(O\) un couple horizontal, perpendiculaire à \(\vec L\), de norme \(mg\ell\sin\alpha\). Or \(\mathrm d\vec L/\mathrm dt = \vec\Gamma\) : le couple ne change pas la norme de \(\vec L\), il le fait tourner autour de la verticale. L’extrémité de \(\vec L\) décrit un cercle de rayon \(L\sin\alpha\) à la vitesse \(\Gamma\), donc la vitesse angulaire de <strong>précession</strong> est</p>
-\[\Omega = \frac{\Gamma}{L\sin\alpha} = \frac{mg\ell}{J\omega},\]
-<p>indépendante de l’inclinaison. La toupie ne tombe pas : elle tourne autour de la verticale, d’autant plus lentement qu’elle tourne vite sur elle-même. L’approximation suppose \(\Omega \ll \omega\).</p>
-<p>Même raisonnement pour la Terre : le Soleil et la Lune exercent un couple sur son renflement équatorial, incliné de 23,4° sur le plan de l’orbite, et son axe décrit un cône en 25 800 ans (précession des équinoxes). Et pour un moment magnétique dans un champ : couple \(\vec m\wedge\vec B\), précession de Larmor (voir <a href="#magnetisme--moment-magnetique">champ magnétique</a>).</p>
-</div>
-<div class="methode" data-m="gyroscope"><p>Analogie à garder en tête : dans un mouvement circulaire uniforme, la force est perpendiculaire à la quantité de mouvement et la fait tourner à \(\Omega = F/p\). Pour un gyroscope, le couple est perpendiculaire au moment cinétique et le fait tourner à \(\Omega = \Gamma/(L\sin\alpha)\).</p></div>
-<div class="exo" data-group="sol-toupie"></div>
-
 <div class="cpge" id="plus-loin" title="Pour aller plus loin : polycopiés olympiques">
 <p>Pour viser l’IPhO internationale, en anglais :</p>
 <ul>
-<li><a href="https://knzhou.github.io/handouts/M5.pdf" target="_blank" rel="noopener">K. Zhou, polycopié M5</a> (rotation à deux dimensions : moments d’inertie, roulement, chocs) · <a href="https://knzhou.github.io/handouts/M5Sol.pdf" target="_blank" rel="noopener">solutions</a> ; <a href="https://knzhou.github.io/handouts/M8.pdf" target="_blank" rel="noopener">polycopié M8</a> (rotation à trois dimensions, gyroscopes) · <a href="https://knzhou.github.io/handouts/M8Sol.pdf" target="_blank" rel="noopener">solutions</a></li>
-<li><a href="https://www.ioc.ee/~kalda/ipho/" target="_blank" rel="noopener">J. Kalda, <em>Mechanics</em></a> (idées sur le centre instantané de rotation, le choix du point pour les moments et les chocs)</li>
-<li>Problèmes longs : APhO 2023 problème 2 (bille sur un plateau tournant), APhO 2025 problème 1 (précession de l’axe de la Terre), APhO 2026 problème 1 (balance), sur <a href="https://olimpicos.net/apho/" target="_blank" rel="noopener">olimpicos.net/apho</a>.</li>
+<li><a href="https://knzhou.github.io/handouts/M5.pdf" target="_blank" rel="noopener">K. Zhou, polycopié M5</a> (rotation à deux dimensions : moments d’inertie, roulement, chocs) · <a href="https://knzhou.github.io/handouts/M5Sol.pdf" target="_blank" rel="noopener">solutions</a></li>
+<li><a href="https://www.ioc.ee/~kalda/ipho/" target="_blank" rel="noopener">J. Kalda, <em>Mechanics</em></a> (idées sur le centre instantané de rotation et le choix du point pour les moments)</li>
 </ul>
+<p>La rotation à trois dimensions (gyroscope, précession), hors programme du test, est traitée dans le polycopié M8 de K. Zhou.</p>
 </div>

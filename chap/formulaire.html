@@ -28,7 +28,7 @@
 <li>Axe fixe : \(J\ddot\theta = \sum\mathcal M\), \(E_c = \tfrac12J\omega^2\) ; pendule pesant \(T = 2\pi\sqrt{J/mgd}\).</li>
 <li>Roulement sans glissement : \(v_G = R\omega\) ; \(E_c = \tfrac12Mv_G^2 + \tfrac12J_G\omega^2\).</li>
 </ul>
-<p class="fmeth">Méthodes clés : <a href="#methodes--m-translation-rotation">Séparer le mouvement du centre de masse et la rotation autour de lui</a> · <a href="#methodes--m-roulement">Écrire le roulement sans glissement</a> · <a href="#methodes--m-point-moment">Choisir le point où calculer les moments</a> · <a href="#methodes--m-energie-parametre">Un seul paramètre : écrire l’énergie, puis la dériver</a> · <a href="#methodes--m-gyroscope">Traiter une précession : le couple fait tourner le moment cinétique</a>.</p>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-translation-rotation">Séparer le mouvement du centre de masse et la rotation autour de lui</a> · <a href="#methodes--m-roulement">Écrire le roulement sans glissement</a> · <a href="#methodes--m-point-moment">Choisir le point où calculer les moments</a> · <a href="#methodes--m-energie-parametre">Un seul paramètre : écrire l’énergie, puis la dériver</a>.</p>
 
 <h2 id="f-statique">Statique des fluides</h2>
 <ul>
@@ -75,25 +75,25 @@
 
 <h2 id="f-electrostatique">Champ électrique</h2>
 <ul>
-<li>Charge ponctuelle : \(E = \dfrac{q}{4\pi\varepsilon_0r^2}\), \(V = \dfrac{q}{4\pi\varepsilon_0r}\) ; \(\vec E = -\overrightarrow{\text{grad}}\,V\) ; \(E_p = qV\).</li>
-<li>Gauss : \(\oint\vec E\cdot\mathrm d\vec S = Q_\text{int}/\varepsilon_0\) ; plan \(\sigma/2\varepsilon_0\), fil \(\lambda/2\pi\varepsilon_0r\).</li>
-<li>Condensateur : \(Q = CU\), plan \(C = \varepsilon_0S/d\), \(E = U/d\), énergie \(\tfrac12CU^2\) ; densité \(\tfrac12\varepsilon_0E^2\).</li>
+<li>Coulomb : \(F = \dfrac{|q_1q_2|}{4\pi\varepsilon_0r^2}\) ; charge ponctuelle : \(E = \dfrac{q}{4\pi\varepsilon_0r^2}\), \(V = \dfrac{q}{4\pi\varepsilon_0r}\).</li>
+<li>\(\vec F = q\vec E\) ; \(E_x = -\dfrac{\mathrm dV}{\mathrm dx}\) ; \(E_p = qV\) ; champ uniforme entre deux plaques : \(E = U/d\).</li>
+<li>Condensateur : \(Q = CU\), plan \(C = \varepsilon_0S/d\), énergie \(\tfrac12CU^2 = Q^2/2C\).</li>
 </ul>
-<p class="fmeth">Méthodes clés : <a href="#methodes--m-symetrie">Exploiter les symétries</a> · <a href="#methodes--m-gauss">Appliquer le théorème de Gauss sur une surface adaptée</a> · <a href="#methodes--m-potentiel">Passer par le potentiel plutôt que par le champ</a> · <a href="#methodes--m-charge-ou-tension">Se demander ce qui est constant : la charge ou la tension</a> · <a href="#methodes--m-images">Remplacer un conducteur par une charge image</a>.</p>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-symetrie">Exploiter les symétries</a> · <a href="#methodes--m-potentiel">Passer par le potentiel plutôt que par le champ</a> · <a href="#methodes--m-charge-ou-tension">Se demander ce qui est constant : la charge ou la tension</a>.</p>
 
-<h2 id="f-magnetisme">Champ magnétique et induction</h2>
+<h2 id="f-magnetisme">Champ magnétique et bobine</h2>
 <ul>
-<li>Fil \(B = \dfrac{\mu_0I}{2\pi r}\) ; spire (centre) \(\dfrac{\mu_0I}{2R}\) ; solénoïde \(\mu_0nI\) ; Ampère : \(\oint\vec B\cdot\mathrm d\vec\ell = \mu_0I_\text{enlacé}\).</li>
-<li>Laplace : \(\vec F = I\vec\ell\wedge\vec B\) ; moment magnétique \(\vec m = IS\vec n\), couple \(\vec m\wedge\vec B\), énergie \(-\vec m\cdot\vec B\).</li>
-<li>Faraday : \(e = -\dfrac{\mathrm d\Phi}{\mathrm dt}\) ; barre mobile \(|e| = B\ell v\) ; bobine \(u = L\dfrac{\mathrm di}{\mathrm dt}\), énergie \(\tfrac12Li^2\), densité \(B^2/2\mu_0\).</li>
+<li>Force magnétique : \(\vec F = q\,\vec v\wedge\vec B\), perpendiculaire à la vitesse (ne travaille pas).</li>
+<li>Bobine idéale (convention récepteur) : \(u = L\,\dfrac{\mathrm di}{\mathrm dt}\) ; énergie \(\tfrac12Li^2\) ; le courant est continu.</li>
+<li>Circuit RL : \(\tau = L/R\), \(i(t) = \dfrac ER\left(1 - \mathrm e^{-t/\tau}\right)\) ; en régime continu la bobine idéale est un fil.</li>
 </ul>
-<p class="fmeth">Méthodes clés : <a href="#methodes--m-ampere">Appliquer le théorème d’Ampère sur un contour adapté</a> · <a href="#methodes--m-flux-lenz">Induction : le flux, sa dérivée, puis le sens par Lenz</a> · <a href="#methodes--m-couplage-electromecanique">Coupler l’équation électrique et l’équation mécanique</a> · <a href="#methodes--m-gyroscope">Traiter une précession : le couple fait tourner le moment cinétique</a>.</p>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-cas-limites">Tester les cas limites</a> (instant initial, régime permanent) · <a href="#methodes--m-equadiff">Écrire et reconnaître une équation différentielle</a>.</p>
 
 <h2 id="f-particules">Particules chargées</h2>
 <ul>
 <li>Lorentz : \(\vec F = q(\vec E + \vec v\wedge\vec B)\) ; seul \(\vec E\) travaille : \(\tfrac12mv^2 = |q|U\).</li>
-<li>Cyclotron : \(R = \dfrac{mv_\perp}{|q|B}\), \(\omega_c = \dfrac{|q|B}{m}\) ; \(p = |q|BR\) même en relativité.</li>
-<li>Champs croisés : vitesse non déviée \(v = E/B\) ; effet Hall \(U_H = IB/nqb\).</li>
+<li>Cyclotron : \(R = \dfrac{mv_\perp}{|q|B}\), \(\omega_c = \dfrac{|q|B}{m}\) ; pas de l’hélice \(v_\parallel T\).</li>
+<li>Champs croisés : vitesse non déviée, et vitesse de dérive, \(v = E/B\).</li>
 </ul>
 <p class="fmeth">Méthodes clés : <a href="#methodes--m-tension-acceleratrice">Relier la vitesse à la tension accélératrice</a> · <a href="#methodes--m-cyclotron">Reconnaître le mouvement cyclotron</a> · <a href="#methodes--m-champs-croises">Champs croisés : chercher la vitesse de dérive</a> · <a href="#methodes--m-seuil">Écrire la condition d’existence : le seuil est le cas d’égalité</a>.</p>
 
