@@ -4,7 +4,7 @@ Préparation au test de présélection des IPhO (Terminale et CPGE) et au Concou
 
 - Site : https://physique-ipho.vercel.app
 - Artefact Claude source : https://claude.ai/artifact/USoqxVAkNMq9ZvTr2Rf5M6
-- Déployé le 19 novembre 2026 depuis la version 1794908559-3d58 de l'artefact (plus le serveur et les comptes).
+- Déployé le 19 novembre 2026 depuis la version 1794908559-3d58 de l'artefact (plus le serveur et les comptes) ; variables configurées.
 
 Généré depuis l'artefact Claude ; ne pas modifier à la main, redemander un déploiement à Claude. Hébergé sur Vercel.
 
