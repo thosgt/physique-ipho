@@ -1,0 +1,106 @@
+<p class="eyebrow">Électromagnétisme · Chapitre 3</p>
+<h1>Particules chargées</h1>
+<p class="subtitle">Force de Lorentz, accélération et déviation, mouvement cyclotron, spectromètre de masse, champs croisés, effet Hall</p>
+
+<div class="objectifs">
+<p><strong>Ce que demandent les épreuves.</strong> Le mouvement d’une particule chargée dans un champ électrique uniforme est au programme de terminale ; le syllabus international des IPhO y ajoute la force de Lorentz complète et le mouvement dans un champ magnétique. Les sujets s’appuient sur des appareils réels : canon à électrons, oscilloscope, spectromètre de masse, cyclotron, chambre à bulles, sonde à effet Hall, et dans les problèmes longs les plasmas et les ceintures de radiations. Le réflexe à acquérir : <strong>le champ électrique change l’énergie, le champ magnétique ne change que la direction</strong>.</p>
+<ul>
+<li><strong>Terminale (IPhO et Concours général)</strong> : parties 1 et 2 ; idées de la partie 3 (rayon de la trajectoire), hors encadrés « Niveau CPGE ».</li>
+<li><strong>CPGE (IPhO)</strong> : tout le chapitre.</li>
+</ul>
+</div>
+
+<div class="retenir">
+<p><strong>L’essentiel à retenir</strong></p>
+<ol>
+<li><strong>Force de Lorentz</strong> : \(\vec F = q(\vec E + \vec v\wedge\vec B)\). Le poids est toujours négligeable pour une particule élémentaire.</li>
+<li>La force magnétique est perpendiculaire à la vitesse : <strong>elle ne travaille pas</strong>. Seul le champ électrique change l’énergie cinétique : \(\Delta E_c = q(V_A - V_B)\).</li>
+<li>Accélération sous une tension \(U\) : \(\tfrac12mv^2 = |q|U\) ; un électron sous 1 kV a une énergie de 1 keV et va à \(1{,}9\times10^7\) m·s⁻¹.</li>
+<li>Champ électrique uniforme : accélération constante \(q\vec E/m\), trajectoire parabolique, comme un projectile dans le champ de pesanteur.</li>
+<li>Champ magnétique uniforme, vitesse perpendiculaire : cercle de rayon \(R = \dfrac{mv}{|q|B}\), parcouru à la pulsation cyclotron \(\omega_c = \dfrac{|q|B}{m}\), indépendante de la vitesse. Avec une composante de vitesse parallèle à \(\vec B\) : hélice.</li>
+<li>Champs croisés : une particule de vitesse \(E/B\), perpendiculaire aux deux champs, n’est pas déviée (filtre de vitesse).</li>
+<li>Effet Hall : tension transverse \(U_H = \dfrac{IB}{nqb}\) dans un ruban d’épaisseur \(b\) (selon \(\vec B\)) contenant \(n\) porteurs par m³.</li>
+</ol>
+</div>
+
+<h2 id="lorentz">1. La force de Lorentz</h2>
+<p>Une particule de charge \(q\) et de vitesse \(\vec v\) subit dans des champs électrique et magnétique la <strong>force de Lorentz</strong></p>
+\[\vec F = q\vec E + q\,\vec v\wedge\vec B .\]
+<p>La partie électrique ne dépend pas de la vitesse et a la direction du champ (sens opposé pour une charge négative). La partie magnétique est perpendiculaire à \(\vec v\) et à \(\vec B\), de norme \(|q|vB\sin\theta\), nulle si la particule est immobile ou se déplace le long du champ ; son sens se trouve par la règle de la main droite pour une charge positive, et s’inverse pour une charge négative.</p>
+<p>Comparons au poids pour un électron dans un champ modeste de 100 V·m⁻¹ : \(eE/m_eg \approx 2\times10^{12}\). On néglige toujours le poids. La puissance de la force de Lorentz est \(q\vec E\cdot\vec v\) : la force magnétique ne travaille pas.</p>
+<div class="methode" data-m="conservation"><p>Dans un champ magnétique seul, même non uniforme, la norme de la vitesse est constante. Dans des champs \(\vec E\) et \(\vec B\) statiques, \(\tfrac12mv^2 + qV\) se conserve : la vitesse en un point se lit sur le potentiel, sans connaître la trajectoire.</p></div>
+<div class="exo" data-q="pc-sens"></div>
+
+<h2 id="champ-e">2. Dans un champ électrique uniforme</h2>
+<h3 id="acceleration">Accélérer : le canon à électrons</h3>
+<p>Des électrons émis sans vitesse par une cathode chauffée sont accélérés vers une anode portée au potentiel \(+U\) par rapport à la cathode. Ils gagnent l’énergie \(eU\) :</p>
+\[\tfrac12m_ev^2 = eU \quad\Longrightarrow\quad v = \sqrt{\frac{2eU}{m_e}} .\]
+<p>Pour \(U = 1\) kV, \(v = 1{,}9\times10^7\) m·s⁻¹, soit 6 % de \(c\). Le résultat ne dépend ni de la distance entre les électrodes ni de leur forme. C’est l’origine de l’<strong>électronvolt</strong> : 1 eV \(= 1{,}60\times10^{-19}\) J est l’énergie gagnée par une charge \(e\) sous 1 V.</p>
+<div class="methode" data-m="tension-acceleratrice"><p>Comparez \(|q|U\) à l’énergie de masse : 511 keV pour l’électron, 938 MeV pour le proton. Sous 10 kV, un électron est encore classique à 1 % près ; sous 1 MV, il faut écrire \((\gamma - 1)m_ec^2 = eU\), ce qui donne \(\gamma = 2{,}96\) et \(v = 0{,}94\,c\), alors que la formule classique donnerait \(2\,c\).</p></div>
+<div class="exo" data-q="pc-canon"></div>
+<h3 id="deviation">Dévier : les plaques de déflexion</h3>
+<p>Un électron entre à la vitesse \(v_0\), parallèlement aux plaques, dans le champ uniforme \(E = U/d\) d’un condensateur plan de longueur \(\ell\). Selon l’axe des plaques, aucune force : \(x = v_0t\). Perpendiculairement, accélération constante \(a = eE/m_e\) : \(y = \tfrac12at^2\). La trajectoire est une parabole,</p>
+\[y = \frac{eE}{2m_ev_0^2}\,x^2 ,\]
+<p>et à la sortie l’électron a été dévié de l’angle \(\theta\) tel que \(\tan\theta = \dfrac{v_y}{v_0} = \dfrac{eE\ell}{m_ev_0^2}\). Si les électrons ont été accélérés sous \(U_0\), alors \(m_ev_0^2 = 2eU_0\) et \(\tan\theta = \dfrac{U\ell}{2U_0d}\) : la déviation ne dépend ni de la charge ni de la masse. Un champ électrique seul ne sépare pas des particules accélérées par la même tension.</p>
+<p>C’est exactement un tir parabolique où \(g\) est remplacé par \(|q|E/m\) : portée, flèche et temps de vol se transposent tels quels. Après les plaques, la particule continue en ligne droite, et sa trajectoire prolongée vers l’arrière passe par le milieu des plaques.</p>
+<div class="exo" data-group="pc-deflexion"></div>
+
+<h2 id="champ-b">3. Dans un champ magnétique uniforme</h2>
+<h3 id="cyclotron">Le mouvement circulaire</h3>
+<p>La force \(q\vec v\wedge\vec B\) est perpendiculaire à la vitesse : la norme \(v\) est constante, seule la direction change. Si \(\vec v\) est perpendiculaire à \(\vec B\), la force, de norme constante \(|q|vB\) et toujours perpendiculaire à la vitesse, impose un mouvement circulaire uniforme : \(mv^2/R = |q|vB\), d’où</p>
+\[R = \frac{mv}{|q|B}, \qquad \omega_c = \frac vR = \frac{|q|B}{m}, \qquad T = \frac{2\pi m}{|q|B}.\]
+<p>La période ne dépend pas de la vitesse : une particule plus rapide décrit un cercle plus grand dans le même temps. Les charges positives et négatives tournent en sens inverses. Ordres de grandeur dans 1 T : \(\omega_c/2\pi = 28\) GHz pour l’électron, 15 MHz pour le proton.</p>
+<div class="sim" data-name="cyclotron"></div>
+<p>Si la vitesse a une composante \(v_\parallel\) le long du champ, celle-ci n’est pas modifiée : la trajectoire est une <strong>hélice</strong> de rayon \(mv_\perp/|q|B\) et de pas \(v_\parallel T\). Les particules chargées s’enroulent autour des lignes de champ : c’est ainsi que le champ terrestre guide les particules du vent solaire vers les pôles, où elles produisent les aurores.</p>
+<div class="methode" data-m="cyclotron"><p>Sur une photo de chambre à bulles ou un schéma de spectromètre, mesurez le rayon : il donne la quantité de mouvement, \(p = |q|BR\). En unités pratiques, pour une charge \(e\) : \(p\,[\text{GeV}/c] = 0{,}30\,B\,[\text{T}]\,R\,[\text{m}]\). Le sens de rotation donne le signe de la charge.</p></div>
+<div class="exo" data-q="pc-rayon"></div>
+<h3 id="spectrometre">Spectromètre de masse et cyclotron</h3>
+<p><strong>Spectromètre de masse.</strong> Des ions de charge \(q\) sont accélérés sous \(U\) puis décrivent un demi-cercle dans un champ \(B\). Avec \(\tfrac12mv^2 = qU\) et \(R = mv/qB\) :</p>
+\[R = \frac1B\sqrt{\frac{2mU}{q}}, \qquad \frac mq = \frac{B^2R^2}{2U}.\]
+<p>Le rayon croît comme \(\sqrt m\) : deux isotopes arrivent en deux points distincts du détecteur.</p>
+<p><strong>Cyclotron.</strong> Deux demi-boîtes métalliques en forme de D, dans un champ \(B\) uniforme, sont séparées par un intervalle où règne une tension alternative. Comme la période de rotation ne dépend pas de la vitesse, une tension de fréquence fixe \(f = qB/2\pi m\) accélère la particule à chaque demi-tour ; elle spirale vers l’extérieur. À la sortie (rayon \(R_\text{max}\)) :</p>
+\[E_c = \frac{q^2B^2R_\text{max}^2}{2m},\]
+<p>indépendante de la tension appliquée, qui ne fixe que le nombre de tours.</p>
+<div class="methode" data-m="seuil"><p>Questions « la particule atteint-elle le détecteur ? », « ressort-elle de la zone de champ ? » : comparez le diamètre \(2R\) de la trajectoire à la largeur de la zone. Une particule qui entre perpendiculairement dans une zone de champ de largeur \(a\) ressort de l’autre côté si \(R > a\), et fait demi-tour sinon.</p></div>
+<div class="exo" data-group="pc-spectro"></div>
+<div class="cpge" id="relativiste" title="Particule relativiste dans un champ magnétique">
+<p>En relativité, \(\mathrm d\vec p/\mathrm dt = q\vec v\wedge\vec B\) avec \(\vec p = \gamma m\vec v\). Comme \(v\), donc \(\gamma\), reste constant, tout se passe comme si la masse valait \(\gamma m\) : \(R = \gamma mv/|q|B = p/|q|B\) et \(\omega = |q|B/\gamma m\). La pulsation dépend maintenant de l’énergie : le cyclotron se désynchronise dès que \(\gamma\) s’écarte de 1 (quelques dizaines de MeV pour des protons). Dans un synchrotron comme le LHC, le rayon est fixe et l’on augmente \(B\) en même temps que \(p\) : pour des protons de 7 TeV dans 8,3 T, \(R = p/eB = 2{,}8\) km.</p>
+</div>
+<div class="cpge" id="miroir" title="Champ non uniforme : miroir magnétique">
+<p>Quand le champ varie lentement à l’échelle du rayon de giration, la particule suit une ligne de champ en s’enroulant, et le flux à travers son orbite se conserve : \(B\,R^2\), donc \(v_\perp^2/B\), reste constant. En avançant vers un champ plus intense, \(v_\perp\) augmente ; comme \(v\) est constant, \(v_\parallel\) diminue et peut s’annuler : la particule rebrousse chemin. C’est le <strong>miroir magnétique</strong>, qui piège les particules des ceintures de Van Allen entre les deux pôles. Une particule dont la vitesse fait l’angle \(\alpha_0\) avec le champ là où il vaut \(B_0\) est réfléchie là où \(B = B_0/\sin^2\alpha_0\).</p>
+</div>
+
+<h2 id="croises">4. Champs croisés et effet Hall</h2>
+<h3 id="filtre">Le filtre de vitesse</h3>
+<p>Dans des champs \(\vec E\) et \(\vec B\) perpendiculaires entre eux, une particule dont la vitesse est perpendiculaire aux deux subit les forces \(qE\) et \(qvB\), de sens opposés si la vitesse est bien orientée. Elles se compensent pour</p>
+\[v = \frac EB ,\]
+<p>quelles que soient la charge et la masse. Seules les particules de cette vitesse traversent le dispositif en ligne droite. C’est ainsi que J. J. Thomson a mesuré \(e/m\) en 1897 : il règle \(B\) pour annuler la déviation due à \(E\) (ce qui donne \(v\)), puis coupe \(B\) et mesure la déviation électrique, qui donne \(e/m = v^2\tan\theta/E\ell\).</p>
+<div class="exo" data-q="pc-filtre"></div>
+<div class="cpge" id="derive" title="Vitesse de dérive : la cycloïde">
+<p>Avec \(\vec E = E\,\vec u_y\) et \(\vec B = B\,\vec u_z\), posons \(\vec v = \vec v_d + \vec v\,'\) où \(\vec v_d = \dfrac{\vec E\wedge\vec B}{B^2} = \dfrac EB\,\vec u_x\). Alors \(q\vec E + q\vec v_d\wedge\vec B = \vec 0\), et il reste \(m\,\mathrm d\vec v\,'/\mathrm dt = q\vec v\,'\wedge\vec B\) : dans le référentiel qui se déplace à \(\vec v_d\), la particule décrit un cercle cyclotron. Dans le laboratoire, la trajectoire est un cercle qui dérive à la vitesse \(E/B\), perpendiculairement aux deux champs et dans le même sens pour toutes les charges. Une particule lâchée sans vitesse a \(v' = E/B\) : elle décrit une cycloïde, s’éloigne au plus de \(2mE/|q|B^2\) dans la direction de \(\vec E\) et atteint la vitesse maximale \(2E/B\).</p>
+</div>
+<div class="methode" data-m="champs-croises"><p>Le même raisonnement vaut pour toute force constante \(\vec F\) perpendiculaire à \(\vec B\) : dérive à \(\vec F\wedge\vec B/qB^2\). Dans le champ de pesanteur, les ions et les électrons d’un plasma dérivent en sens opposés, ce qui crée un courant.</p></div>
+<h3 id="hall">L’effet Hall</h3>
+<p>Un ruban conducteur de largeur \(a\) et d’épaisseur \(b\) est parcouru par un courant \(I\) dans sa longueur et placé dans un champ \(B\) perpendiculaire à sa grande face. Les porteurs (densité \(n\), charge \(q\), vitesse moyenne \(v\)) sont déviés vers un bord, où ils s’accumulent jusqu’à créer un champ électrique transverse qui compense la force magnétique : \(E_H = vB\). Avec \(I = nqv\,ab\), la tension entre les bords est</p>
+\[U_H = E_Ha = \frac{IB}{nqb}.\]
+<p>Elle est proportionnelle à \(B\) (c’est le principe des sondes de champ magnétique), son signe donne celui des porteurs, et sa valeur leur densité. Elle est mesurable dans un semi-conducteur (\(n \sim 10^{22}\) m⁻³), minuscule dans un métal (\(n \sim 10^{29}\) m⁻³).</p>
+<div class="exo" data-q="pc-hall"></div>
+
+<div class="piege">
+<ul>
+<li>Le champ magnétique ne change jamais l’énergie cinétique : si une vitesse augmente, cherchez le champ électrique.</li>
+<li>Pour un électron, la force électrique est opposée à \(\vec E\) et la force magnétique opposée à \(\vec v\wedge\vec B\).</li>
+<li>\(R = mv/|q|B\) suppose \(\vec v\perp\vec B\) ; sinon c’est \(v_\perp\) qui compte.</li>
+<li>La pulsation cyclotron ne dépend pas de la vitesse en mécanique classique seulement.</li>
+<li>Vérifiez la vitesse obtenue : au-delà de \(c/10\), reprenez le calcul en relativité.</li>
+</ul>
+</div>
+
+<div class="cpge" id="plus-loin" title="Pour aller plus loin : polycopiés olympiques">
+<p>Pour viser l’IPhO internationale, en anglais :</p>
+<ul>
+<li><a href="https://knzhou.github.io/handouts/E4.pdf" target="_blank" rel="noopener">K. Zhou, polycopié E4</a> (force de Lorentz : champs croisés, dérives, miroirs magnétiques) · <a href="https://knzhou.github.io/handouts/E4Sol.pdf" target="_blank" rel="noopener">solutions</a></li>
+<li><a href="https://www.ioc.ee/~kalda/ipho/" target="_blank" rel="noopener">J. Kalda, <em>IPhO study guides</em></a> (électromagnétisme)</li>
+<li>Problèmes longs : APhO 2022 problème 1 (expérience de Stern et Gerlach), RMPh 2016 problème 3 (colonne de plasma), sur <a href="https://olimpicos.net/apho/" target="_blank" rel="noopener">olimpicos.net/apho</a> pour le premier.</li>
+</ul>
+</div>

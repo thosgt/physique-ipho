@@ -203,16 +203,16 @@ ready.then(() => {
     let skipped = false; try { skipped = sessionStorage.getItem('olymp-sans-compte') === '1'; } catch(e){}
     if (ME.open){ accountBox(); if (!skipped) gate(); } else gate();
   }
-  // un élève de CPGE arrive en niveau CPGE la première fois
-  if (ME.role === 'eleve'){ let lv = null; try { lv = localStorage.getItem('olymp-niveau'); } catch(e){}
-    if (!lv && ME.me.niveau === 'C'){ const bt = document.querySelector('.level button[data-lvl="C"]'); if (bt) bt.click(); } }
+  // un élève inscrit en CPGE n'a accès qu'au contenu CPGE (sélecteur verrouillé, pas de Concours général) ;
+  // un élève de terminale, le professeur et les visiteurs gardent les deux niveaux
+  if (window.lockLevel) window.lockLevel(ME.role === 'eleve' && ME.me.niveau === 'C' ? 'C' : null);
   const h = mode(); if (h === 'suivi' || h === 'admin') route();
   // questions affichées avant la lecture du suivi
   document.querySelectorAll('#view .q[data-id]').forEach(d => HOOKS.decorate({id: d.dataset.id}, d));
 });
 
 /* ------------------------------------------------------------ calculs communs */
-const inLevel = (it, lv) => lv === 'C' || (it.level || ['T', 'C']).includes('T');
+const inLevel = (it, lv) => lv === 'C' ? !String(it.group || it.id || '').startsWith('cg-') : (it.level || ['T', 'C']).includes('T');
 function lastPerQ(attempts){ const m = {}; attempts.forEach(a => { if (!m[a.qid] || m[a.qid].ts <= a.ts) m[a.qid] = a; }); return m; }
 // incontournables d'un chapitre (progression.json) : liste de {label, qids, href}
 function stars(prog, data, chap, lv){

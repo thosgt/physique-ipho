@@ -21,6 +21,15 @@
 </ul>
 <p class="fmeth">Méthodes clés : <a href="#methodes--m-referentiel">Changer de référentiel</a> · <a href="#methodes--m-g-effectif">Remplacer g par une pesanteur effective</a> · <a href="#methodes--m-minimum-energie">Chercher l’équilibre comme un minimum d’énergie</a>.</p>
 
+<h2 id="f-solide">Mécanique du solide</h2>
+<ul>
+<li>\(M\vec a_G = \sum\vec F_\text{ext}\) ; \(\vec v_P = \vec v_G + \vec\omega\wedge\overrightarrow{GP}\).</li>
+<li>Moments d’inertie : anneau \(MR^2\), disque \(\tfrac12MR^2\), boule \(\tfrac25MR^2\), tige (milieu) \(\tfrac1{12}ML^2\) ; axes parallèles \(J_\Delta = J_G + Md^2\).</li>
+<li>Axe fixe : \(J\ddot\theta = \sum\mathcal M\), \(E_c = \tfrac12J\omega^2\) ; pendule pesant \(T = 2\pi\sqrt{J/mgd}\).</li>
+<li>Roulement sans glissement : \(v_G = R\omega\) ; \(E_c = \tfrac12Mv_G^2 + \tfrac12J_G\omega^2\).</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-translation-rotation">Séparer le mouvement du centre de masse et la rotation autour de lui</a> · <a href="#methodes--m-roulement">Écrire le roulement sans glissement</a> · <a href="#methodes--m-point-moment">Choisir le point où calculer les moments</a> · <a href="#methodes--m-energie-parametre">Un seul paramètre : écrire l’énergie, puis la dériver</a> · <a href="#methodes--m-gyroscope">Traiter une précession : le couple fait tourner le moment cinétique</a>.</p>
+
 <h2 id="f-statique">Statique des fluides</h2>
 <ul>
 <li>\(F = PS\) ; 1 bar = \(10^5\) Pa ≈ 1 atm = 760 mmHg.</li>
@@ -64,6 +73,30 @@
 </ul>
 <p class="fmeth">Méthodes clés : <a href="#methodes--m-dephasage">Raisonner en différence de marche</a> · <a href="#methodes--m-amplitudes-complexes">Additionner des amplitudes complexes (vecteurs de Fresnel)</a> · <a href="#methodes--m-conditions-limites">Imposer les conditions aux limites : modes propres</a> · <a href="#methodes--m-doppler">Traiter un effet Doppler</a>.</p>
 
+<h2 id="f-electrostatique">Champ électrique</h2>
+<ul>
+<li>Charge ponctuelle : \(E = \dfrac{q}{4\pi\varepsilon_0r^2}\), \(V = \dfrac{q}{4\pi\varepsilon_0r}\) ; \(\vec E = -\overrightarrow{\text{grad}}\,V\) ; \(E_p = qV\).</li>
+<li>Gauss : \(\oint\vec E\cdot\mathrm d\vec S = Q_\text{int}/\varepsilon_0\) ; plan \(\sigma/2\varepsilon_0\), fil \(\lambda/2\pi\varepsilon_0r\).</li>
+<li>Condensateur : \(Q = CU\), plan \(C = \varepsilon_0S/d\), \(E = U/d\), énergie \(\tfrac12CU^2\) ; densité \(\tfrac12\varepsilon_0E^2\).</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-symetrie">Exploiter les symétries</a> · <a href="#methodes--m-gauss">Appliquer le théorème de Gauss sur une surface adaptée</a> · <a href="#methodes--m-potentiel">Passer par le potentiel plutôt que par le champ</a> · <a href="#methodes--m-charge-ou-tension">Se demander ce qui est constant : la charge ou la tension</a> · <a href="#methodes--m-images">Remplacer un conducteur par une charge image</a>.</p>
+
+<h2 id="f-magnetisme">Champ magnétique et induction</h2>
+<ul>
+<li>Fil \(B = \dfrac{\mu_0I}{2\pi r}\) ; spire (centre) \(\dfrac{\mu_0I}{2R}\) ; solénoïde \(\mu_0nI\) ; Ampère : \(\oint\vec B\cdot\mathrm d\vec\ell = \mu_0I_\text{enlacé}\).</li>
+<li>Laplace : \(\vec F = I\vec\ell\wedge\vec B\) ; moment magnétique \(\vec m = IS\vec n\), couple \(\vec m\wedge\vec B\), énergie \(-\vec m\cdot\vec B\).</li>
+<li>Faraday : \(e = -\dfrac{\mathrm d\Phi}{\mathrm dt}\) ; barre mobile \(|e| = B\ell v\) ; bobine \(u = L\dfrac{\mathrm di}{\mathrm dt}\), énergie \(\tfrac12Li^2\), densité \(B^2/2\mu_0\).</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-ampere">Appliquer le théorème d’Ampère sur un contour adapté</a> · <a href="#methodes--m-flux-lenz">Induction : le flux, sa dérivée, puis le sens par Lenz</a> · <a href="#methodes--m-couplage-electromecanique">Coupler l’équation électrique et l’équation mécanique</a> · <a href="#methodes--m-gyroscope">Traiter une précession : le couple fait tourner le moment cinétique</a>.</p>
+
+<h2 id="f-particules">Particules chargées</h2>
+<ul>
+<li>Lorentz : \(\vec F = q(\vec E + \vec v\wedge\vec B)\) ; seul \(\vec E\) travaille : \(\tfrac12mv^2 = |q|U\).</li>
+<li>Cyclotron : \(R = \dfrac{mv_\perp}{|q|B}\), \(\omega_c = \dfrac{|q|B}{m}\) ; \(p = |q|BR\) même en relativité.</li>
+<li>Champs croisés : vitesse non déviée \(v = E/B\) ; effet Hall \(U_H = IB/nqb\).</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-tension-acceleratrice">Relier la vitesse à la tension accélératrice</a> · <a href="#methodes--m-cyclotron">Reconnaître le mouvement cyclotron</a> · <a href="#methodes--m-champs-croises">Champs croisés : chercher la vitesse de dérive</a> · <a href="#methodes--m-seuil">Écrire la condition d’existence : le seuil est le cas d’égalité</a>.</p>
+
 <h2 id="f-relativite">Relativité restreinte</h2>
 <ul>
 <li>\(\gamma = \dfrac{1}{\sqrt{1 - v^2/c^2}}\) ; durée propre la plus courte : \(\Delta t = \gamma\Delta t_0\) ; longueur propre la plus grande : \(L = L_0/\gamma\).</li>
@@ -98,6 +131,7 @@
 <tr><td>Intensité de la pesanteur</td><td>\(g = 9{,}81\ \text{m·s}^{-2}\)</td></tr>
 <tr><td>Constante des gaz parfaits</td><td>\(R = 8{,}314\ \text{J·K}^{-1}\text{·mol}^{-1}\)</td></tr>
 <tr><td>Constante de Boltzmann, nombre d’Avogadro</td><td>\(k_B = 1{,}381\times10^{-23}\ \text{J·K}^{-1}\), \(N_A = 6{,}02\times10^{23}\ \text{mol}^{-1}\)</td></tr>
+<tr><td>Permittivité et perméabilité du vide</td><td>\(\varepsilon_0 = 8{,}85\times10^{-12}\ \text{F·m}^{-1}\) (\(1/4\pi\varepsilon_0 = 9{,}0\times10^9\) SI), \(\mu_0 = 4\pi\times10^{-7}\ \text{H·m}^{-1}\) ; \(e^2/4\pi\varepsilon_0 = 1{,}44\) eV·nm</td></tr>
 <tr><td>Pression atmosphérique normale</td><td>\(1\ \text{atm} = 101\,325\ \text{Pa} = 1{,}013\ \text{bar} = 760\ \text{mmHg}\)</td></tr>
 <tr><td>Masse molaire de l’air, de l’hélium</td><td>\(29\) et \(4\ \text{g·mol}^{-1}\)</td></tr>
 <tr><td>Masses volumiques : air (20 °C, 1 bar), eau douce, eau de mer, glace, mercure</td><td>1,2 ; 1 000 ; 1 025 ; 917 ; 13 600 kg·m⁻³</td></tr>

@@ -231,6 +231,12 @@ details.complement[open]{background:var(--bg-2)}
 .q .expected::before{content:"Réponse attendue";display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--accent);margin-bottom:2px}
 .q .expl{margin-top:10px;padding:10px 12px;border-left:3px solid var(--ok);background:var(--ex);font-size:.93rem;overflow-x:auto}
 .q .expl .src{font-weight:600}
+.q .expl ol.steps{margin:.5em 0 0;padding-left:1.5em}
+.q .expl ol.steps li{margin:.7em 0;padding-left:.2em}
+.q .expl ol.steps li::marker{font-weight:600;color:var(--ok)}
+.q .expl ol.steps .sm{display:inline-block;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;font-weight:600;color:var(--ok);text-decoration:none;border-bottom:1px dotted currentColor;margin-bottom:.15em}
+.level .seg.locked button{flex:1;cursor:default}
+.level .seg button[hidden]{display:none}
 .q .expl .review{margin:.6em 0 0;padding-top:.5em;border-top:1px dashed var(--line);color:var(--fg-2)}
 .q .selfeval{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px;font-size:.9rem}
 .q .selfeval button{font:inherit;font-size:.86rem;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:var(--bg-2);color:var(--fg);cursor:pointer}
@@ -301,7 +307,8 @@ a.card:hover{border-color:var(--accent)}
   </div>
   <div class="navgroup"><h4>Mécanique</h4>
     <a href="#nongalileen" data-page="nongalileen"><span class="n">1</span>Référentiels non galiléens</a>
-    <span class="soon"><span class="n">·</span>Mécanique du point et du solide<em>à venir</em></span>
+    <a href="#solide" data-page="solide"><span class="n">2</span>Mécanique du solide</a>
+    <span class="soon"><span class="n">·</span>Mécanique du point<em>à venir</em></span>
   </div>
   <div class="navgroup"><h4>Mécanique des fluides</h4>
     <a href="#statique" data-page="statique"><span class="n">1</span>Statique des fluides</a>
@@ -312,13 +319,18 @@ a.card:hover{border-color:var(--accent)}
     <a href="#geometrique" data-page="geometrique"><span class="n">1</span>Optique géométrique</a>
     <a href="#optique" data-page="optique"><span class="n">2</span>Ondes et optique ondulatoire</a>
   </div>
+  <div class="navgroup"><h4>Électromagnétisme</h4>
+    <a href="#electrostatique" data-page="electrostatique"><span class="n">1</span>Champ électrique</a>
+    <a href="#magnetisme" data-page="magnetisme"><span class="n">2</span>Champ magnétique et induction</a>
+    <a href="#particules" data-page="particules"><span class="n">3</span>Particules chargées</a>
+  </div>
   <div class="navgroup"><h4>Physique moderne</h4>
     <a href="#relativite" data-page="relativite"><span class="n">1</span>Relativité restreinte</a>
     <a href="#nucleaire" data-page="nucleaire"><span class="n">2</span>Physique nucléaire</a>
     <a href="#quantique" data-page="quantique"><span class="n">3</span>Physique quantique</a>
   </div>
   <div class="navgroup"><h4>Autres chapitres</h4>
-    <span class="soon"><span class="n">·</span>Électricité<em>à venir</em></span>
+    <span class="soon"><span class="n">·</span>Circuits électriques<em>à venir</em></span>
     <span class="soon"><span class="n">·</span>Thermodynamique<em>à venir</em></span>
   </div>
   <div class="navgroup"><h4>S’entraîner</h4>
@@ -344,6 +356,10 @@ const CHAPTERS = {
   statique: {title: "Statique des fluides", label: "Mécanique des fluides · 1", topic: "la statique des fluides", cahier: "fiche 21", n: 6},
   dynamique: {title: "Dynamique des fluides", label: "Mécanique des fluides · 2", topic: "la dynamique des fluides", cahier: "", n: 5},
   nongalileen: {title: "Référentiels non galiléens", label: "Mécanique · 1", topic: "les référentiels non galiléens et les forces d’inertie", cahier: "", n: 5},
+  solide: {title: "Mécanique du solide", label: "Mécanique · 2", topic: "la mécanique du solide (moment d’inertie, moment cinétique, roulement)", cahier: "fiche 13", n: 6},
+  electrostatique: {title: "Champ électrique", label: "Électromagnétisme · 1", topic: "le champ et le potentiel électriques, le théorème de Gauss, les conducteurs et les condensateurs", cahier: "fiche 14", n: 5},
+  magnetisme: {title: "Champ magnétique et induction", label: "Électromagnétisme · 2", topic: "le champ magnétique, la force de Laplace et l’induction", cahier: "fiches 16 et 17", n: 5},
+  particules: {title: "Particules chargées", label: "Électromagnétisme · 3", topic: "le mouvement des particules chargées dans les champs électrique et magnétique", cahier: "fiche 15", n: 5},
   tension: {title: "Tension superficielle", label: "Mécanique des fluides · 3", topic: "la tension superficielle et la capillarité", cahier: "", n: 6},
   geometrique: {title: "Optique géométrique", label: "Ondes · 1", topic: "l’optique géométrique (réfraction, lentilles, instruments)", cahier: "fiches 8 et 9", n: 5},
   optique: {title: "Ondes et optique ondulatoire", label: "Ondes · 2", topic: "les ondes, les interférences et la diffraction", cahier: "fiche 2", n: 5},
@@ -352,8 +368,8 @@ const CHAPTERS = {
   quantique: {title: "Physique quantique", label: "Physique moderne · 3", topic: "la physique quantique", cahier: "", n: 6}
 };
 const SRC_LABEL = { officiel: "Corrigé officiel (Sciences à l’École).", cle: "Réponse officielle ; explication rédigée pour ce cours.", jury: "D’après le corrigé du rapport du jury.",
-  louchart: "D’après le corrigé de B. Louchart.", cours: "Corrigé rédigé pour ce cours.", cahier: "D’après le corrigé du cahier d’entraînement.", zhou: "D’après la solution de K. Zhou (Physics Olympiad Handouts).", kalda: "Énoncé des guides de J. Kalda ; corrigé rédigé pour ce cours à partir de ses indications.", lequin: "Énoncé de V. Lequin (préparation olympiades, LLG) ; corrigé rédigé pour ce cours.", physicite: "Énoncé de V. Lequin et M. Rouan (exercices Ondes 2026-27) ; corrigé rédigé pour ce cours." };
-const KIND_LABEL = { "qcm-annale": "QCM d’annales IPhO", pb: "Problèmes d’annales", cde: "Cahier d’entraînement", ext: "Polycopiés olympiques (Zhou, Kalda)" };
+  louchart: "D’après le corrigé de B. Louchart.", cours: "Corrigé rédigé pour ce cours.", cahier: "D’après le corrigé du cahier d’entraînement.", zhou: "D’après la solution de K. Zhou (Physics Olympiad Handouts).", kalda: "Énoncé des guides de J. Kalda ; corrigé rédigé pour ce cours à partir de ses indications.", lequin: "Énoncé de V. Lequin (préparation olympiades, LLG) ; corrigé rédigé pour ce cours.", physicite: "Énoncé de V. Lequin et M. Rouan (exercices Ondes 2026-27) ; corrigé rédigé pour ce cours.", apho: "Adapté d’un problème de l’Asian Physics Olympiad ; énoncé condensé et corrigé rédigés pour ce cours.", rmph: "Adapté d’un problème du Romanian Master of Physics ; énoncé condensé et corrigé rédigés pour ce cours." };
+const KIND_LABEL = { "qcm-annale": "QCM d’annales IPhO", pb: "Problèmes d’annales", cde: "Cahier d’entraînement", ext: "Polycopiés olympiques (Zhou, Kalda)", cours: "Exercices du cours", olymp: "Olympiades étrangères (APhO, RMPh)" };
 const view = document.getElementById('view'), rail = document.getElementById('rail');
 let DATA = null, SIM_META = null, PRIORITY = null, SEARCH = null, METHODS = null, MBYID = {}, PROG = null, pendingMarks = null, CURRENT = null;
 
@@ -408,7 +424,15 @@ function fitMath(root){ (root || view).querySelectorAll('mjx-container:not([disp
 document.addEventListener('toggle', e => { if (e.target.open) requestAnimationFrame(() => fitMath(e.target)); }, true);
 { let t = null; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => fitMath(view), 200); }); }
 function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c])); }
-const forLevel = it => LEVEL === 'C' || (it.level || ['T', 'C']).includes('T');
+/* Les sujets du Concours général (groupes « cg-… ») sont réservés aux terminales : ils ne sont jamais proposés en mode CPGE. */
+const isCG = it => String((it && (it.group || it.id)) || '').startsWith('cg-');
+const forLevel = it => LEVEL === 'C' ? !isCG(it) : (it.level || ['T', 'C']).includes('T');
+/* Verrouille le sélecteur « Je prépare » sur un niveau (compte élève de CPGE) ; lockLevel(null) le libère. */
+window.lockLevel = function(lv){
+  const seg = document.querySelector('.level .seg'); if (!seg) return;
+  seg.querySelectorAll('button').forEach(b => { b.hidden = !!lv && b.dataset.lvl !== lv; }); seg.classList.toggle('locked', !!lv);
+  if (lv && LEVEL !== lv){ LEVEL = lv; store('olymp-niveau', LEVEL); paintLevel(); CURRENT = null; route(); }
+};
 
 /* ---------- réponses numériques ---------- */
 function parseNum(s){
@@ -541,8 +565,8 @@ function renderQuestion(q, opts = {}){
   const showExpl = () => {
     let x = '';
     if (q.type === 'open') x += `<div class="expected">${q.expected}</div>`;
-    x += `<div class="expl"><span class="src">${esc(SRC_LABEL[q.src] || 'Corrigé.')}</span> ${q.explanation || ''}${q.remark ? `<p class="review">${q.remark}</p>` : ''}</div>`;
-    const ms = (q.methods || []).filter(m => MBYID[m]); if (ms.length) x += `<div class="mtags">Méthode${ms.length > 1 ? 's' : ''} : ${ms.map(m => `<a href="#methodes--m-${esc(m)}">${esc(MBYID[m].title)}</a>`).join('')}</div>`;
+    x += `<div class="expl"><span class="src">${esc(SRC_LABEL[q.src] || 'Corrigé.')}</span> ${q.steps ? stepsHTML(q) : (q.explanation || '')}${q.remark ? `<p class="review">${q.remark}</p>` : ''}</div>`;
+    const ms = q.steps ? [] : (q.methods || []).filter(m => MBYID[m]); if (ms.length) x += `<div class="mtags">Méthode${ms.length > 1 ? 's' : ''} : ${ms.map(m => `<a href="#methodes--m-${esc(m)}">${esc(MBYID[m].title)}</a>`).join('')}</div>`;
     if (q.type === 'open') x += '<div class="selfeval"><span>Votre réponse :</span><button type="button" data-v="1">juste</button><button type="button" data-v="0.5">en partie</button><button type="button" data-v="0">à revoir</button></div>';
     after.innerHTML = x; after.hidden = false; typeset(after);
     if (q.type === 'open') after.querySelectorAll('.selfeval button').forEach(b => b.addEventListener('click', () => {
@@ -596,6 +620,10 @@ function renderList(container, qs, opts = {}){
   const onDone = scoreBar(container, qs.length);
   qs.forEach(q => container.appendChild(renderQuestion(q, {...opts, onDone})));
   typeset(container);
+}
+/* Corrigé « barème » : une étape par ligne, précédée de la méthode du cours qu'elle met en œuvre. */
+function stepsHTML(q){
+  return '<ol class="steps">' + q.steps.map(s => `<li>${s.m && MBYID[s.m] ? `<a class="sm" href="#methodes--m-${esc(s.m)}">${esc(MBYID[s.m].title)}</a>` : s.t ? `<span class="sm">${esc(s.t)}</span>` : ''}<div>${s.x}</div></li>`).join('') + '</ol>';
 }
 function renderGroup(g, qs, ex){
   const d = document.createElement('details'); d.className = 'pb' + (g.kind === 'cde' ? ' cde' : ''); d.id = 'g-' + g.id;
@@ -680,9 +708,10 @@ async function showChapter(id, anchor){
     [2, 'classiques', 'Les classiques', 'Les exercices qui font le plus progresser, dans l’ordre conseillé : chaque méthode du chapitre y sert au moins une fois. ★ = incontournable.'],
     [3, 'approfondissement', 'Approfondissement', 'Problèmes plus longs ou plus subtils : Concours général, IPhO internationales, polycopiés olympiques de K. Zhou et J. Kalda.']];
   sec.innerHTML = `<h2 id="entrainement">${meta.n}. S’entraîner</h2>
-  <p>Les exercices sont classés pour progresser le plus vite possible : d’abord les gammes, puis les classiques, enfin l’approfondissement. ${LEVEL === 'C' ? 'Mode <strong>CPGE</strong> : toutes les questions sont affichées.' : 'Mode <strong>Terminale</strong> : les questions de niveau CPGE sont regroupées en fin de chaque étape.'} Cherchez sur papier, servez-vous des indices si vous bloquez, puis seulement du corrigé.</p>
+  <p>Les exercices sont classés pour progresser le plus vite possible : d’abord les gammes, puis les classiques, enfin l’approfondissement. ${LEVEL === 'C' ? 'Mode <strong>CPGE</strong> : toutes les questions des IPhO sont affichées ; les sujets du Concours général, réservés aux terminales, ne le sont pas.' : 'Mode <strong>Terminale</strong> : les questions de niveau CPGE sont regroupées en fin de chaque étape.'} Cherchez sur papier, servez-vous des indices si vous bloquez, puis seulement du corrigé.</p>
   <div class="train-nav">${TIERS.map(([n, a, t]) => `<a href="#${id}--${a}">${n}. ${t}</a>`).join('')}<a href="#qcm">Banque de questions</a></div>`;
   view.appendChild(sec);
+  if (LEVEL === 'C') for (let i = items.length - 1; i >= 0; i--) if (isCG(items[i].q || items[i].g)) items.splice(i, 1);
   const extra = {}; items.forEach(it => { if (it.q) extra[it.q.id] = it.e; });
   const lazy = (det, fill) => det.addEventListener('toggle', () => { if (det.open && !det.dataset.done){ det.dataset.done = 1; fill(); } });
   const fillZone = (zone, its, tier, all) => {
@@ -728,10 +757,10 @@ async function showQcm(anchor){
   const all = data.questions;
   view.innerHTML = `<p class="eyebrow">Entraînement</p><h1>Banque de questions</h1>
   <p class="subtitle">${all.length} questions : QCM des tests IPhO, problèmes d’annales découpés en questions, cahier d’entraînement, polycopiés olympiques.</p>
-  <p class="lvlnote">Niveau affiché : <strong>${LEVEL === 'C' ? 'CPGE (toutes les questions)' : 'Terminale'}</strong> (sélecteur « Je prépare » du menu).</p>
+  <p class="lvlnote">Niveau affiché : <strong>${LEVEL === 'C' ? 'CPGE (IPhO, sans le Concours général)' : 'Terminale'}</strong> (sélecteur « Je prépare » du menu).</p>
   <div class="qcm-head">
     <label for="fChap">Chapitre <select id="fChap"><option value="">tous</option>${Object.entries(CHAPTERS).map(([k, c]) => `<option value="${k}">${esc(c.title)}</option>`).join('')}</select></label>
-    <label for="fSrc">Source <select id="fSrc"><option value="">toutes</option><option value="qcm-annale">QCM d’annales IPhO</option><option value="pb">Problèmes d’annales</option><option value="cde">Cahier d’entraînement</option><option value="ext">Polycopiés olympiques (Zhou, Kalda, Lequin)</option></select></label>
+    <label for="fSrc">Source <select id="fSrc"><option value="">toutes</option><option value="qcm-annale">QCM d’annales IPhO</option><option value="pb">Problèmes d’annales</option><option value="cde">Cahier d’entraînement</option><option value="ext">Polycopiés olympiques (Zhou, Kalda, Lequin)</option><option value="olymp">Olympiades étrangères (APhO, RMPh)</option><option value="cours">Exercices du cours</option></select></label>
     <label for="fM">Méthode <select id="fM"><option value="">toutes</option>${(METHODS || []).map(m => `<option value="${esc(m.id)}">${esc(m.title)}</option>`).join('')}</select></label>
     <label for="fType">Type <select id="fType"><option value="">tous</option><option value="qcm">QCM</option><option value="num">réponse numérique</option><option value="open">réponse à rédiger</option></select></label>
     <label for="fSel">Questions <select id="fSel"><option value="">toutes</option><option value="prio">incontournables</option></select></label>
@@ -800,7 +829,7 @@ async function runSearch(q){
   const res = []; for (const e of idx){ const nt = nrm(e.t), nx = nrm(e.x); if (!ts.every(t => nt.includes(t) || nx.includes(t))) continue; let sc = 0; for (const t of ts) sc += 8 * countHits(nt, t) + countHits(nx, t); if (e.p === 'formulaire') sc *= 0.6; res.push({e, sc}); }
   res.sort((a, b) => b.sc - a.sc);
   const sres = sims.filter(m => ts.every(t => nrm(m.title + ' ' + m.desc).includes(t)));
-  const qres = data.questions.filter(x => { const n = nrm(qText(x)); return ts.every(t => n.includes(t)); });
+  const qres = data.questions.filter(x => { if (LEVEL === 'C' && isCG(x)) return false; const n = nrm(qText(x)); return ts.every(t => n.includes(t)); });
   if (!res.length && !sres.length && !qres.length){ box.innerHTML = `<p class="empty">Aucun résultat pour « ${esc(q)} ». Essayez un mot plus court.</p>`; return; }
   let h = '';
   if (res.length){ h += `<h2>Dans le cours <small style="font-family:var(--body);font-size:.8rem;color:var(--fg-2);font-weight:400">${res.length} section${res.length > 1 ? 's' : ''}</small></h2>`;

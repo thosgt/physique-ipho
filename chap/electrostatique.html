@@ -1,0 +1,122 @@
+<p class="eyebrow">Électromagnétisme · Chapitre 1</p>
+<h1>Champ électrique</h1>
+<p class="subtitle">Loi de Coulomb, champ et potentiel, théorème de Gauss, conducteurs, condensateurs, énergie</p>
+
+<div class="objectifs">
+<p><strong>Ce que demandent les épreuves.</strong> Le syllabus international des IPhO demande la loi de Coulomb, le champ et le potentiel électriques, le théorème de Gauss pour les distributions simples, les conducteurs, les condensateurs et l’énergie du champ. Les questions courtes portent sur des ordres de grandeur, la superposition de deux ou trois charges, le champ uniforme d’un condensateur plan et l’énergie stockée ; les problèmes longs utilisent le théorème de Gauss, le potentiel et les raisonnements à charge ou à tension constante. Le réflexe à acquérir : <strong>symétries d’abord, puis Gauss si la symétrie est forte, potentiel sinon</strong>.</p>
+<ul>
+<li><strong>Terminale (IPhO et Concours général)</strong> : parties 1 et 2, condensateur plan de la partie 4, hors encadrés « Niveau CPGE ».</li>
+<li><strong>CPGE (IPhO)</strong> : tout le chapitre.</li>
+</ul>
+</div>
+
+<div class="retenir">
+<p><strong>L’essentiel à retenir</strong></p>
+<ol>
+<li><strong>Loi de Coulomb</strong> : \(F = \dfrac{1}{4\pi\varepsilon_0}\dfrac{|q_1q_2|}{r^2}\), répulsive entre charges de même signe ; \(\dfrac{1}{4\pi\varepsilon_0} = 9{,}0\times10^9\) SI.</li>
+<li><strong>Champ</strong> : \(\vec F = q\vec E\). Charge ponctuelle : \(E = \dfrac{q}{4\pi\varepsilon_0r^2}\), radial, dirigé vers l’extérieur si \(q > 0\). Les champs s’ajoutent vectoriellement.</li>
+<li><strong>Potentiel</strong> : \(V = \dfrac{q}{4\pi\varepsilon_0r}\) pour une charge ponctuelle ; les potentiels s’ajoutent comme des nombres. \(\vec E = -\overrightarrow{\text{grad}}\,V\) : le champ est perpendiculaire aux équipotentielles et pointe vers les potentiels décroissants.</li>
+<li><strong>Énergie</strong> d’une charge : \(E_p = qV\) ; travail de la force électrique de A à B : \(q(V_A - V_B)\). Champ uniforme entre deux plaques : \(E = U/d\).</li>
+<li><strong>Théorème de Gauss</strong> : le flux de \(\vec E\) sortant d’une surface fermée vaut \(Q_\text{int}/\varepsilon_0\). Plan infini : \(\sigma/2\varepsilon_0\) ; fil infini : \(\lambda/2\pi\varepsilon_0r\) ; hors d’une sphère : comme une charge ponctuelle.</li>
+<li><strong>Conducteur à l’équilibre</strong> : champ nul à l’intérieur, potentiel uniforme, charges en surface, champ \(\sigma/\varepsilon_0\) juste à l’extérieur, perpendiculaire à la surface.</li>
+<li><strong>Condensateur</strong> : \(Q = CU\) ; plan : \(C = \varepsilon_0S/d\) ; énergie \(\tfrac12CU^2 = Q^2/2C\) ; densité d’énergie du champ \(\tfrac12\varepsilon_0E^2\).</li>
+</ol>
+</div>
+
+<h2 id="coulomb">1. Charges, loi de Coulomb, champ électrique</h2>
+<h3 id="loi-coulomb">La loi de Coulomb</h3>
+<p>La charge électrique est quantifiée (\(e = 1{,}60\times10^{-19}\) C) et se conserve. Deux charges ponctuelles \(q_1\) et \(q_2\) distantes de \(r\) exercent l’une sur l’autre une force portée par la droite qui les joint, de norme</p>
+\[F = \frac{1}{4\pi\varepsilon_0}\,\frac{|q_1q_2|}{r^2}, \qquad \varepsilon_0 = 8{,}85\times10^{-12}\ \text{F·m}^{-1},\]
+<p>répulsive si les charges sont de même signe, attractive sinon. Elle a la même forme que la gravitation, mais elle est incomparablement plus intense : entre le proton et l’électron d’un atome d’hydrogène, le rapport des deux forces vaut \(e^2/(4\pi\varepsilon_0Gm_pm_e) \approx 2\times10^{39}\), quelle que soit la distance. Si la gravitation domine à grande échelle, c’est que la matière est neutre.</p>
+<div class="exo" data-q="es-coulomb-gravite"></div>
+<h3 id="champ">Le champ électrique</h3>
+<p>Une charge \(q\) placée en un point subit \(\vec F = q\vec E\), où le <strong>champ électrique</strong> \(\vec E\) (en V·m⁻¹) est créé par toutes les autres charges. Le champ d’une charge ponctuelle \(Q\) est radial, de norme \(Q/4\pi\varepsilon_0r^2\). <strong>Principe de superposition</strong> : le champ de plusieurs charges est la somme vectorielle des champs de chacune. Les lignes de champ partent des charges positives et arrivent sur les charges négatives ; elles ne se coupent pas.</p>
+<p>Ordres de grandeur : 100 V·m⁻¹ dans l’atmosphère par beau temps, \(3\times10^6\) V·m⁻¹ pour le claquage de l’air sec (l’étincelle), \(5\times10^{11}\) V·m⁻¹ sur l’électron dans l’atome d’hydrogène.</p>
+<div class="methode" data-m="symetrie"><p>Avant tout calcul de champ, cherchez les plans de symétrie de la distribution : en un point d’un tel plan, \(\vec E\) est contenu dans le plan. Deux plans de symétrie donnent la direction du champ. Exemple : sur la médiatrice de deux charges égales, le champ est porté par la médiatrice ; pour deux charges opposées, il est parallèle à la droite qui les joint.</p></div>
+<div class="exo" data-q="es-champ-nul"></div>
+
+<div class="cpge" id="dipole" title="Le dipôle électrique">
+<p>Deux charges \(+q\) et \(-q\) distantes de \(a\) forment un dipôle de moment \(\vec p = q\,\vec a\) (de la charge négative vers la positive). Loin du dipôle (\(r \gg a\)), les champs des deux charges se compensent presque : le potentiel vaut \(V = \dfrac{p\cos\theta}{4\pi\varepsilon_0r^2}\) et le champ décroît en \(1/r^3\) (\(\dfrac{2p}{4\pi\varepsilon_0r^3}\) sur l’axe, la moitié dans le plan médiateur). Dans un champ extérieur uniforme, le dipôle subit un couple \(\vec p\wedge\vec E\) qui l’aligne sur le champ et possède l’énergie \(-\vec p\cdot\vec E\) ; dans un champ non uniforme, il est en plus attiré vers les champs forts. C’est ainsi qu’un bâton électrisé attire un filet d’eau ou des morceaux de papier neutres.</p>
+</div>
+
+<h2 id="potentiel">2. Potentiel et énergie</h2>
+<h3 id="potentiel-def">Travail de la force électrique</h3>
+<p>La force électrostatique est conservative. Le travail qu’elle fournit à une charge \(q\) allant de A à B ne dépend pas du chemin : \(W = q(V_A - V_B)\), où \(V\) est le <strong>potentiel</strong> (en volts). L’énergie potentielle de la charge est \(E_p = qV\). Pour une charge ponctuelle \(Q\), avec \(V = 0\) à l’infini :</p>
+\[V(r) = \frac{Q}{4\pi\varepsilon_0r}.\]
+<p>Les potentiels de plusieurs charges s’ajoutent, et ce sont des nombres : pas de projection. Le champ s’en déduit par \(\vec E = -\overrightarrow{\text{grad}}\,V\), soit \(E_x = -\mathrm dV/\mathrm dx\) à une dimension. Entre deux plaques parallèles distantes de \(d\) sous la tension \(U\), le champ est uniforme, \(E = U/d\), dirigé de la plaque au potentiel le plus haut vers l’autre.</p>
+<div class="methode" data-m="potentiel"><p>Question « quelle vitesse », « jusqu’où s’approche », « quelle énergie pour assembler » : n’intégrez pas la force, écrivez la conservation de \(\tfrac12mv^2 + qV\) entre le départ et l’arrivée. Une particule \(\alpha\) d’énergie \(E_c\) lancée vers un noyau de charge \(Ze\) s’arrête à la distance \(r_\text{min} = \dfrac{2Ze^2}{4\pi\varepsilon_0E_c}\).</p></div>
+<div class="exo" data-q="es-approche"></div>
+<h3 id="energie-systeme">Énergie d’un système de charges</h3>
+<p>L’énergie d’interaction de deux charges est \(\dfrac{q_1q_2}{4\pi\varepsilon_0r}\) : positive si elles se repoussent (il a fallu fournir du travail pour les rapprocher). Pour \(N\) charges, on somme sur les paires, ce qui s’écrit aussi \(\tfrac12\sum q_iV_i\) où \(V_i\) est le potentiel créé au point \(i\) par les autres charges. Unité pratique : \(\dfrac{e^2}{4\pi\varepsilon_0} = 1{,}44\) eV·nm \(= 1{,}44\) MeV·fm. Deux protons à 1 fm l’un de l’autre : 1,44 MeV ; l’électron de l’hydrogène à 0,053 nm du proton : \(-27{,}2\) eV.</p>
+
+<h2 id="gauss">3. Le théorème de Gauss</h2>
+<p>Le <strong>flux</strong> du champ à travers une surface est \(\Phi = \iint\vec E\cdot\mathrm d\vec S\) : il compte les lignes de champ qui la traversent. Pour une surface fermée, orientée vers l’extérieur,</p>
+\[\oint\vec E\cdot\mathrm d\vec S = \frac{Q_\text{int}}{\varepsilon_0}.\]
+<p>Ce théorème est toujours vrai, mais il ne permet de calculer le champ que si les symétries donnent sa direction et rendent sa norme constante sur la surface choisie.</p>
+<figure>
+<svg viewBox="0 0 640 210" width="640" role="img" aria-label="Trois surfaces de Gauss : une sphère concentrique à une boule chargée, un cylindre coaxial à un fil chargé, une boîte cylindrique traversant un plan chargé" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="es-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0b5fa5"/></marker></defs>
+<circle cx="105" cy="95" r="34" fill="#f6d9b8" stroke="#b5651d" stroke-width="1.5"/>
+<circle cx="105" cy="95" r="62" fill="none" stroke="#2448a8" stroke-width="1.5" stroke-dasharray="5 4"/>
+<line x1="149" y1="51" x2="170" y2="30" stroke="#0b5fa5" stroke-width="2" marker-end="url(#es-b)"/><line x1="167" y1="95" x2="197" y2="95" stroke="#0b5fa5" stroke-width="2" marker-end="url(#es-b)"/><line x1="43" y1="95" x2="13" y2="95" stroke="#0b5fa5" stroke-width="2" marker-end="url(#es-b)"/><line x1="61" y1="139" x2="40" y2="160" stroke="#0b5fa5" stroke-width="2" marker-end="url(#es-b)"/>
+<text x="105" y="99" text-anchor="middle" fill="#141b33">Q</text>
+<text x="105" y="190" text-anchor="middle" fill="#141b33">Sphère : E · 4πr² = Q/ε₀</text>
+<line x1="320" y1="15" x2="320" y2="170" stroke="#b5651d" stroke-width="4"/>
+<ellipse cx="320" cy="45" rx="48" ry="12" fill="none" stroke="#2448a8" stroke-width="1.5" stroke-dasharray="5 4"/><ellipse cx="320" cy="140" rx="48" ry="12" fill="none" stroke="#2448a8" stroke-width="1.5" stroke-dasharray="5 4"/>
+<line x1="272" y1="45" x2="272" y2="140" stroke="#2448a8" stroke-width="1.5" stroke-dasharray="5 4"/><line x1="368" y1="45" x2="368" y2="140" stroke="#2448a8" stroke-width="1.5" stroke-dasharray="5 4"/>
+<line x1="368" y1="92" x2="400" y2="92" stroke="#0b5fa5" stroke-width="2" marker-end="url(#es-b)"/><line x1="272" y1="92" x2="240" y2="92" stroke="#0b5fa5" stroke-width="2" marker-end="url(#es-b)"/>
+<text x="330" y="28" fill="#b5651d">λ</text><text x="374" y="118" fill="#2448a8">h</text>
+<text x="320" y="190" text-anchor="middle" fill="#141b33">Fil : E · 2πrh = λh/ε₀</text>
+<path d="M455 115 L600 115 L625 75 L480 75 Z" fill="#f6d9b8" stroke="#b5651d" stroke-width="1.5"/>
+<ellipse cx="540" cy="50" rx="26" ry="8" fill="none" stroke="#2448a8" stroke-width="1.5" stroke-dasharray="5 4"/><ellipse cx="540" cy="140" rx="26" ry="8" fill="none" stroke="#2448a8" stroke-width="1.5" stroke-dasharray="5 4"/>
+<line x1="514" y1="50" x2="514" y2="140" stroke="#2448a8" stroke-width="1.5" stroke-dasharray="5 4"/><line x1="566" y1="50" x2="566" y2="140" stroke="#2448a8" stroke-width="1.5" stroke-dasharray="5 4"/>
+<line x1="540" y1="50" x2="540" y2="20" stroke="#0b5fa5" stroke-width="2" marker-end="url(#es-b)"/><line x1="540" y1="140" x2="540" y2="168" stroke="#0b5fa5" stroke-width="2" marker-end="url(#es-b)"/>
+<text x="590" y="92" fill="#b5651d">σ</text>
+<text x="540" y="190" text-anchor="middle" fill="#141b33">Plan : 2 E S = σS/ε₀</text>
+</svg>
+<figcaption>Les trois surfaces de Gauss à connaître (en pointillés) : le champ y est normal et de norme constante, ou tangent.</figcaption>
+</figure>
+<ul>
+<li><strong>Symétrie sphérique</strong> (charge totale \(Q\), rayon \(R\)). Le champ est radial et ne dépend que de \(r\). À l’extérieur, \(E = \dfrac{Q}{4\pi\varepsilon_0r^2}\) : comme si toute la charge était au centre. À l’intérieur d’une boule uniformément chargée, la charge intérieure vaut \(Q\,r^3/R^3\), donc \(E = \dfrac{Q\,r}{4\pi\varepsilon_0R^3}\), proportionnel à \(r\). À l’intérieur d’une coquille creuse, \(E = 0\).</li>
+<li><strong>Fil infini</strong> de charge linéique \(\lambda\) : \(E = \dfrac{\lambda}{2\pi\varepsilon_0r}\), radial.</li>
+<li><strong>Plan infini</strong> de charge surfacique \(\sigma\) : \(E = \dfrac{\sigma}{2\varepsilon_0}\) de chaque côté, uniforme. Deux plans opposés \(\pm\sigma\) : \(\sigma/\varepsilon_0\) entre eux, zéro à l’extérieur.</li>
+</ul>
+<div class="methode" data-m="gauss"><p>Le théorème s’applique tel quel à la gravitation en remplaçant \(Q/\varepsilon_0\) par \(-4\pi GM_\text{int}\). À la profondeur où il reste un rayon \(r\) sous vos pieds, seule la masse intérieure attire : dans une Terre homogène, \(g(r) = g_0\,r/R_T\), d’où le mouvement sinusoïdal dans un tunnel traversant la Terre (période 84 min).</p></div>
+<div class="methode" data-m="superposition"><p>Une cavité dans une boule chargée se traite comme la boule pleine plus une boule de charge opposée à la place de la cavité. Avec \(\vec E = \rho\vec r/3\varepsilon_0\) pour chacune, le champ dans la cavité vaut \(\rho\,\vec a/3\varepsilon_0\) (\(\vec a\) : vecteur du centre de la boule au centre de la cavité) : il est uniforme.</p></div>
+<div class="exo" data-group="es-thomson"></div>
+
+<h2 id="conducteurs">4. Conducteurs et condensateurs</h2>
+<h3 id="equilibre-conducteur">Conducteur à l’équilibre</h3>
+<p>Dans un conducteur, des charges sont libres de se déplacer. À l’équilibre, elles ne bougent plus : le champ est <strong>nul à l’intérieur</strong>, donc le potentiel y est uniforme, et (par Gauss) la charge nette est répartie en surface. Juste à l’extérieur, le champ est perpendiculaire à la surface et vaut \(\sigma/\varepsilon_0\) (théorème de Coulomb). Conséquences : une cavité vide dans un conducteur est à l’abri des champs extérieurs (cage de Faraday) ; le champ est le plus intense là où la surface est la plus courbée (effet de pointe, paratonnerre), car deux sphères reliées au même potentiel \(V\) ont en surface un champ \(V/R\).</p>
+<div class="exo" data-q="es-spheres-reliees"></div>
+<h3 id="condensateur">Le condensateur</h3>
+<p>Deux conducteurs en regard portant les charges \(+Q\) et \(-Q\) sous la tension \(U\) forment un condensateur de <strong>capacité</strong> \(C = Q/U\) (en farads). Pour deux armatures planes d’aire \(S\) distantes de \(d\), le champ est \(\sigma/\varepsilon_0 = Q/\varepsilon_0S\) et \(U = Ed\), donc</p>
+\[C = \frac{\varepsilon_0S}{d}\quad(\text{multipliée par }\varepsilon_r\text{ avec un isolant de permittivité relative }\varepsilon_r).\]
+<p>Sphère isolée de rayon \(R\) : \(C = 4\pi\varepsilon_0R\) (0,7 mF pour la Terre). En parallèle les capacités s’ajoutent ; en série ce sont leurs inverses. Charger un condensateur demande le travail \(\int u\,\mathrm dq\), stocké sous forme d’énergie</p>
+\[E_\text{él} = \tfrac12CU^2 = \frac{Q^2}{2C} = \tfrac12QU .\]
+<p>Pour le condensateur plan, \(E_\text{él} = \tfrac12\varepsilon_0E^2\times Sd\) : l’énergie est localisée dans le champ, avec la densité \(\tfrac12\varepsilon_0E^2\) (en J·m⁻³), résultat général.</p>
+<div class="methode" data-m="charge-ou-tension"><p>On écarte les armatures d’un condensateur plan. Isolé : \(Q\) fixe, le champ \(Q/\varepsilon_0S\) ne change pas, \(U\) et l’énergie \(Q^2d/2\varepsilon_0S\) augmentent ; l’opérateur a fourni le travail de la force \(F = Q^2/2\varepsilon_0S\) (une armature est dans le champ \(\sigma/2\varepsilon_0\) de l’autre seulement, d’où le facteur 2). Relié au générateur : \(U\) fixe, \(C\) et \(Q\) diminuent, l’énergie diminue et de la charge retourne au générateur.</p></div>
+<div class="exo" data-group="es-condensateur"></div>
+
+<div class="piege">
+<ul>
+<li>Le champ s’ajoute vectoriellement, le potentiel comme un nombre : ne projetez pas un potentiel.</li>
+<li>Champ nul ne veut pas dire potentiel nul (centre d’une sphère chargée), et inversement (milieu d’un dipôle).</li>
+<li>Dans le théorème de Gauss, seule la charge intérieure compte, mais le champ sur la surface est créé par <em>toutes</em> les charges.</li>
+<li>La force sur une armature est \(QE/2\), pas \(QE\) : une charge ne subit pas son propre champ.</li>
+<li>En reliant deux condensateurs chargés, la charge se conserve mais pas l’énergie : la différence est dissipée dans les fils ou rayonnée.</li>
+</ul>
+</div>
+
+<div class="cpge" id="images" title="Charge devant un plan conducteur : la méthode des images">
+<p>Une charge \(q\) est placée à la distance \(d\) d’un plan conducteur relié à la terre (\(V = 0\)). Les charges induites sur le plan se répartissent de façon compliquée, mais on sait résoudre un autre problème qui a les mêmes conditions aux limites : celui de \(q\) et d’une charge \(-q\) symétrique par rapport au plan, pour lequel le plan médiateur est bien au potentiel nul. Du côté de la charge, les deux problèmes ont donc le même champ. La charge est attirée par le plan avec la force \(\dfrac{q^2}{4\pi\varepsilon_0(2d)^2}\) ; la densité surfacique induite au pied de la charge vaut \(-q/2\pi d^2\), et la charge induite totale est \(-q\).</p>
+</div>
+<div class="methode" data-m="images"><p>Énergie pour arracher la charge du plan jusqu’à l’infini : intégrez la force, \(\displaystyle\int_d^\infty\frac{q^2}{16\pi\varepsilon_0x^2}\,\mathrm dx = \frac{q^2}{16\pi\varepsilon_0d}\), soit la moitié de l’énergie d’interaction de deux charges réelles distantes de \(2d\).</p></div>
+
+<div class="cpge" id="plus-loin" title="Pour aller plus loin : polycopiés olympiques">
+<p>Pour viser l’IPhO internationale, en anglais :</p>
+<ul>
+<li><a href="https://knzhou.github.io/handouts/E1.pdf" target="_blank" rel="noopener">K. Zhou, polycopié E1</a> (électrostatique : Coulomb, Gauss, potentiel) · <a href="https://knzhou.github.io/handouts/E1Sol.pdf" target="_blank" rel="noopener">solutions</a> ; <a href="https://knzhou.github.io/handouts/E2.pdf" target="_blank" rel="noopener">polycopié E2</a> (conducteurs, images, condensateurs) · <a href="https://knzhou.github.io/handouts/E2Sol.pdf" target="_blank" rel="noopener">solutions</a></li>
+<li><a href="https://www.ioc.ee/~kalda/ipho/" target="_blank" rel="noopener">J. Kalda, <em>IPhO study guides</em></a> (électromagnétisme) (superposition, symétries, analogies avec la gravitation)</li>
+</ul>
+</div>

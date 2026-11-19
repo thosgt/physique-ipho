@@ -1,5 +1,14 @@
 [
 {
+"id": "probleme-long",
+"title": "Aborder un problème long",
+"quand": "Tout problème de 10 à 20 questions enchaînées : problèmes du test, IPhO internationales, APhO, Concours général.",
+"texte": "<strong>1.</strong> Parcourez tout le sujet en cinq minutes : les parties sont souvent indépendantes et la première question de chacune est facile. <strong>2.</strong> Soulignez les hypothèses données (\\(v \\ll c\\), \\(h \\ll R\\), « stationnaire », « sans frottement ») : elles disent quelle approximation faire. <strong>3.</strong> Pour chaque question, repérez le mot déclencheur et la méthode associée (<a href=\"#accueil--probleme-long\">tableau des déclencheurs</a>). <strong>4.</strong> Un résultat fourni par l’énoncé (« montrer que… ») s’utilise dans la suite même si vous ne l’avez pas démontré. <strong>5.</strong> Avant chaque application numérique, vérifiez l’homogénéité et un cas limite ; écrivez toujours l’expression littérale, même si le calcul numérique n’aboutit pas.",
+"chaps": [
+"outils"
+]
+},
+{
 "id": "dimension",
 "title": "Vérifier l’homogénéité, deviner une loi",
 "quand": "À chaque résultat littéral, et quand on ne sait pas par où commencer.",
@@ -12,14 +21,18 @@
 "optique",
 "relativite",
 "nucleaire",
-"quantique"
+"quantique",
+"solide",
+"electrostatique",
+"magnetisme",
+"particules"
 ]
 },
 {
 "id": "sans-dimension",
 "title": "Former les nombres sans dimension",
 "quand": "Quand un problème compare deux effets (inertie et viscosité, vitesse et c, énergie et kT).",
-"texte": "Le comportement d’un système dépend de rapports sans dimension : Reynolds \\(\\rho vL/\\eta\\), \\(\\beta = v/c\\), \\(h\\nu/kT\\), \\(\\Delta x/\\lambda\\). Les calculer d’abord dit quel régime s’applique et quelles approximations sont permises.",
+"texte": "Le comportement d’un système dépend de rapports sans dimension : Reynolds \\(\\rho vL/\\eta\\), \\(\\beta = v/c\\), \\(h\\nu/kT\\), \\(\\Delta x/\\lambda\\). Les calculer d’abord dit quel régime s’applique et quelles approximations sont permises. Avant de résoudre une équation compliquée, <strong>adimensionnez-la</strong> : posez \\(x = X/X_0\\) et \\(\\tau = t/t_0\\) avec les échelles naturelles du problème ; il reste moins de paramètres, et le petit paramètre éventuel apparaît.",
 "chaps": [
 "outils",
 "dynamique",
@@ -41,7 +54,11 @@
 "optique",
 "relativite",
 "nucleaire",
-"quantique"
+"quantique",
+"solide",
+"electrostatique",
+"magnetisme",
+"particules"
 ]
 },
 {
@@ -54,7 +71,9 @@
 "statique",
 "dynamique",
 "tension",
-"quantique"
+"quantique",
+"electrostatique",
+"particules"
 ]
 },
 {
@@ -71,7 +90,11 @@
 "optique",
 "relativite",
 "nucleaire",
-"quantique"
+"quantique",
+"solide",
+"electrostatique",
+"magnetisme",
+"particules"
 ]
 },
 {
@@ -87,7 +110,23 @@
 "optique",
 "relativite",
 "nucleaire",
-"quantique"
+"quantique",
+"electrostatique",
+"solide"
+]
+},
+{
+"id": "terme-dominant",
+"title": "Garder le terme dominant dans chaque régime",
+"quand": "« Juste avant », « près de », « aux temps longs », « loin de », « à haute fréquence » : l’énoncé demande un comportement limite, un exposant ou une vitesse limite.",
+"texte": "Une équation à trois termes ou plus ne se résout presque jamais, mais dans un régime donné deux termes dominent les autres. Évaluez l’ordre de grandeur de chaque terme dans le régime demandé, ne gardez que les deux plus grands, résolvez, puis vérifiez que le terme négligé est bien petit avec la solution trouvée. Pour un exposant, cherchez la solution sous la forme \\(x = A\\,t^{\\alpha}\\) et égalez les puissances de \\(t\\). Vitesse limite : le terme d’accélération s’annule ; temps courts : les termes qui contiennent la vitesse sont encore nuls.",
+"chaps": [
+"outils",
+"dynamique",
+"tension",
+"relativite",
+"solide",
+"particules"
 ]
 },
 {
@@ -113,7 +152,8 @@
 "dynamique",
 "tension",
 "optique",
-"relativite"
+"relativite",
+"solide"
 ]
 },
 {
@@ -124,7 +164,46 @@
 "chaps": [
 "statique",
 "dynamique",
-"tension"
+"tension",
+"solide"
+]
+},
+{
+"id": "translation-rotation",
+"title": "Séparer le mouvement du centre de masse et la rotation autour de lui",
+"quand": "Tout solide qui avance en tournant : roue, bille, cylindre sur un plan incliné, yo-yo, barre lancée.",
+"texte": "Le centre de masse \\(G\\) se déplace comme un point de masse \\(M\\) soumis à la somme des forces extérieures : \\(M\\vec a_G = \\sum\\vec F\\). La rotation autour de \\(G\\) obéit à \\(I_G\\,\\dot\\omega = \\sum\\mathcal M_G\\), <em>même si \\(G\\) accélère</em>. L’énergie cinétique est la somme des deux : \\(E_c = \\tfrac12Mv_G^2 + \\tfrac12I_G\\omega^2\\). Deux équations, auxquelles s’ajoute une relation cinématique (roulement, fil qui se déroule).",
+"chaps": [
+"solide"
+]
+},
+{
+"id": "roulement",
+"title": "Écrire le roulement sans glissement",
+"quand": "Roue, bille ou cylindre qui roule ; fil enroulé sur une poulie ou un yo-yo.",
+"texte": "Le point du solide en contact avec le support a la vitesse du support : sur un sol fixe, \\(v_G = R\\omega\\) et \\(a_G = R\\dot\\omega\\). Le frottement est alors <strong>statique</strong> : sa valeur est une inconnue (ce n’est pas \\(\\mu N\\)), son sens se trouve par le calcul, et il ne travaille pas : l’énergie mécanique se conserve. Vérifiez à la fin que \\(|T| \\le \\mu_sN\\) ; sinon le solide glisse, \\(T = \\mu_dN\\) et \\(v_G \\ne R\\omega\\).",
+"chaps": [
+"solide"
+]
+},
+{
+"id": "point-moment",
+"title": "Choisir le point où calculer les moments",
+"quand": "Théorème du moment cinétique, chocs sur un solide, force inconnue en un point (pivot, contact).",
+"texte": "Calculez les moments au point où s’applique la force inconnue : elle disparaît de l’équation. Le théorème \\(\\mathrm d\\vec L/\\mathrm dt = \\sum\\vec{\\mathcal M}\\) ne s’écrit simplement qu’en un point <strong>fixe</strong> du référentiel galiléen ou au <strong>centre de masse</strong>. Pour un choc bref, le moment cinétique par rapport au point d’impact (ou au pivot) se conserve, car la force de choc y a un moment nul. Rappel : \\(\\vec L_O = \\overrightarrow{OG}\\wedge M\\vec v_G + I_G\\vec\\omega\\).",
+"chaps": [
+"solide",
+"magnetisme"
+]
+},
+{
+"id": "gyroscope",
+"title": "Traiter une précession : le couple fait tourner le moment cinétique",
+"quand": "Toupie, gyroscope, roue de vélo suspendue, précession de l’axe de la Terre, moment magnétique dans un champ.",
+"texte": "Quand un solide tourne vite autour de son axe, \\(\\vec L \\approx I\\omega\\,\\vec u\\) est porté par l’axe. Un couple \\(\\vec\\Gamma\\) perpendiculaire à \\(\\vec L\\) ne change pas sa norme mais le fait tourner : \\(\\mathrm d\\vec L/\\mathrm dt = \\vec\\Gamma = \\vec\\Omega\\wedge\\vec L\\). La vitesse de précession vaut \\(\\Omega = \\Gamma/(L\\sin\\alpha)\\), où \\(\\alpha\\) est l’angle entre l’axe et \\(\\vec\\Omega\\) ; pour une toupie, \\(\\Omega = mg\\ell/(I\\omega)\\). C’est l’analogue du mouvement circulaire uniforme, où la force fait tourner la vitesse sans changer sa norme.",
+"chaps": [
+"solide",
+"magnetisme"
 ]
 },
 {
@@ -136,7 +215,9 @@
 "outils",
 "statique",
 "tension",
-"nucleaire"
+"nucleaire",
+"solide",
+"electrostatique"
 ]
 },
 {
@@ -181,7 +262,10 @@
 "dynamique",
 "tension",
 "nucleaire",
-"quantique"
+"quantique",
+"electrostatique",
+"magnetisme",
+"solide"
 ]
 },
 {
@@ -196,14 +280,18 @@
 "optique",
 "relativite",
 "nucleaire",
-"quantique"
+"quantique",
+"solide",
+"electrostatique",
+"magnetisme",
+"particules"
 ]
 },
 {
 "id": "bilan",
 "title": "Faire un bilan sur un volume de contrôle",
-"quand": "Écoulements, jets, débits, réacteurs.",
-"texte": "Choisissez un volume fixe (ou un système fermé qui se déplace) et écrivez : ce qui entre − ce qui sort = variation de ce qui est stocké, pour la masse, l’énergie ou la quantité de mouvement. En régime stationnaire, ce qui entre égale ce qui sort.",
+"quand": "Écoulements, jets, débits, réacteurs ; front ou discontinuité qui se propage.",
+"texte": "Choisissez un volume fixe (ou un système fermé qui se déplace) et écrivez : ce qui entre − ce qui sort = variation de ce qui est stocké, pour la masse, l’énergie ou la quantité de mouvement. En régime stationnaire, ce qui entre égale ce qui sort. Un <strong>front</strong> qui se propage (onde de choc, coup de bélier, ressaut, onde sonore) se traite dans le référentiel du front : l’écoulement y est stationnaire et les bilans de masse et de quantité de mouvement s’écrivent de part et d’autre.",
 "chaps": [
 "dynamique",
 "tension",
@@ -229,7 +317,9 @@
 "statique",
 "dynamique",
 "optique",
-"relativite"
+"relativite",
+"particules",
+"magnetisme"
 ]
 },
 {
@@ -272,7 +362,105 @@
 "geometrique",
 "optique",
 "relativite",
-"quantique"
+"quantique",
+"electrostatique",
+"magnetisme",
+"solide"
+]
+},
+{
+"id": "gauss",
+"title": "Appliquer le théorème de Gauss sur une surface adaptée",
+"quand": "Champ d’une distribution à haute symétrie : sphère, fil ou cylindre infini, plan infini ; aussi en gravitation.",
+"texte": "1. Par les symétries et invariances, trouvez la direction du champ et la variable dont il dépend. 2. Choisissez une surface fermée sur laquelle le champ est soit normal et de norme constante, soit tangent (sphère, cylindre, « boîte de camembert »). 3. Écrivez \\(E\\times S = Q_\\text{int}/\\varepsilon_0\\). Seule la charge <em>intérieure</em> compte. En gravitation, on remplace \\(1/\\varepsilon_0\\) par \\(-4\\pi G\\) et la charge par la masse.",
+"chaps": [
+"electrostatique"
+]
+},
+{
+"id": "potentiel",
+"title": "Passer par le potentiel plutôt que par le champ",
+"quand": "Vitesse d’une charge entre deux points, énergie d’un ensemble de charges, champ d’une distribution sans symétrie simple.",
+"texte": "Le potentiel est un nombre : il s’ajoute sans projection, \\(V = \\sum q_i/(4\\pi\\varepsilon_0r_i)\\). Le champ s’en déduit par \\(\\vec E = -\\overrightarrow{\\text{grad}}\\,V\\) (il pointe vers les potentiels décroissants), et le mouvement d’une charge par la conservation de \\(\\tfrac12mv^2 + qV\\). L’énergie d’un système de charges est \\(\\tfrac12\\sum q_iV_i\\). Un conducteur à l’équilibre est un volume équipotentiel.",
+"chaps": [
+"electrostatique",
+"particules"
+]
+},
+{
+"id": "charge-ou-tension",
+"title": "Se demander ce qui est constant : la charge ou la tension",
+"quand": "Condensateur dont on change la géométrie ou le diélectrique ; force entre armatures ; conducteurs que l’on relie.",
+"texte": "Condensateur <strong>isolé</strong> : \\(Q\\) est constante, utilisez \\(E_\\text{él} = Q^2/2C\\). Condensateur <strong>relié à un générateur</strong> : \\(U\\) est constante, utilisez \\(\\tfrac12CU^2\\), sans oublier que le générateur fournit \\(U\\,\\Delta Q\\). La force sur une armature s’obtient à charge constante : \\(F = -\\mathrm d(Q^2/2C)/\\mathrm dx\\) (elle vaut \\(Q^2/2\\varepsilon_0S\\) pour un condensateur plan). Deux conducteurs reliés par un fil se mettent au même potentiel et la charge totale se conserve.",
+"chaps": [
+"electrostatique"
+]
+},
+{
+"id": "images",
+"title": "Remplacer un conducteur par une charge image",
+"quand": "Charge ponctuelle devant un plan conducteur relié à la terre (ou une sphère conductrice).",
+"texte": "Du côté de la charge \\(q\\), le champ est le même que celui de \\(q\\) et d’une charge image \\(-q\\) placée symétriquement par rapport au plan : le plan est bien au potentiel nul. La charge est attirée par le plan avec la force \\(q^2/\\big(4\\pi\\varepsilon_0(2d)^2\\big)\\). Attention : l’énergie d’interaction est la <em>moitié</em> de celle de deux charges réelles, car le champ n’existe que dans un demi-espace.",
+"chaps": [
+"electrostatique"
+]
+},
+{
+"id": "ampere",
+"title": "Appliquer le théorème d’Ampère sur un contour adapté",
+"quand": "Champ magnétique d’un fil, d’un câble coaxial, d’un solénoïde long, d’une bobine torique.",
+"texte": "1. Symétries : \\(\\vec B\\) est perpendiculaire à tout plan de symétrie des courants ; pour un fil il tourne autour du fil, pour un solénoïde il est parallèle à l’axe. 2. Choisissez un contour le long duquel \\(B\\) est constant ou perpendiculaire au contour. 3. Écrivez \\(B\\times\\ell = \\mu_0I_\\text{enlacé}\\), le sens de parcours et le sens des courants étant liés par la règle de la main droite. Résultats : fil \\(\\mu_0I/2\\pi r\\), solénoïde \\(\\mu_0nI\\).",
+"chaps": [
+"magnetisme"
+]
+},
+{
+"id": "flux-lenz",
+"title": "Induction : le flux, sa dérivée, puis le sens par Lenz",
+"quand": "Circuit qui bouge ou se déforme dans un champ, champ qui varie dans un circuit fixe.",
+"texte": "1. Orientez le circuit : cela fixe la normale (main droite) et le sens positif du courant. 2. Calculez le flux \\(\\Phi = \\iint\\vec B\\cdot\\mathrm d\\vec S\\) en fonction du temps. 3. \\(e = -\\mathrm d\\Phi/\\mathrm dt\\), comptée dans le sens positif choisi ; \\(i = e/R\\). 4. Contrôlez avec la loi de Lenz : le courant induit crée un champ et des forces qui s’opposent à la <em>variation</em> du flux (un circuit freiné, un aimant repoussé à l’approche et retenu à l’éloignement). Pour une barre de longueur \\(\\ell\\) à la vitesse \\(v\\) perpendiculaire à \\(B\\) : \\(|e| = B\\ell v\\).",
+"chaps": [
+"magnetisme"
+]
+},
+{
+"id": "couplage-electromecanique",
+"title": "Coupler l’équation électrique et l’équation mécanique",
+"quand": "Rail de Laplace, cadre qui tombe dans un champ, moteur, génératrice, freinage par induction.",
+"texte": "Écrivez deux équations : la loi des mailles avec la f.é.m. induite (\\(e = -B\\ell v\\) contient la vitesse) et la loi de Newton avec la force de Laplace (\\(F = i\\ell B\\) contient le courant). Éliminez \\(i\\) : on obtient une force de freinage \\(-\\dfrac{B^2\\ell^2}{R}v\\), donc un temps caractéristique \\(\\tau = mR/B^2\\ell^2\\) et une vitesse limite. Contrôle par l’énergie : la puissance de la force de Laplace est l’opposé de la puissance électrique de la f.é.m. induite (\\(Fv + ei = 0\\)) ; le champ magnétique ne fait que convertir.",
+"chaps": [
+"magnetisme"
+]
+},
+{
+"id": "cyclotron",
+"title": "Reconnaître le mouvement cyclotron",
+"quand": "Particule chargée dans un champ magnétique uniforme : spectromètre de masse, cyclotron, chambre à bulles, aurores.",
+"texte": "La force magnétique \\(q\\vec v\\wedge\\vec B\\) est perpendiculaire à la vitesse : elle ne travaille pas, \\(v\\) est constante. Séparez la vitesse en \\(v_\\parallel\\) (inchangée) et \\(v_\\perp\\) : mouvement circulaire de rayon \\(R = mv_\\perp/|q|B\\) et de pulsation \\(\\omega_c = |q|B/m\\), <em>indépendante de la vitesse</em> ; l’ensemble est une hélice de pas \\(2\\pi v_\\parallel/\\omega_c\\). Retenez \\(p_\\perp = |q|BR\\), encore vrai en relativité (alors \\(\\omega = |q|B/\\gamma m\\)).",
+"chaps": [
+"particules",
+"magnetisme",
+"relativite"
+]
+},
+{
+"id": "tension-acceleratrice",
+"title": "Relier la vitesse à la tension accélératrice",
+"quand": "Canon à électrons, accélérateur, tube cathodique, question « quelle vitesse atteint… ».",
+"texte": "Une charge \\(q\\) qui franchit une différence de potentiel \\(U\\) gagne l’énergie cinétique \\(|q|U\\), quels que soient le trajet et la forme des électrodes : \\(\\tfrac12mv^2 = |q|U\\). En électronvolts, c’est immédiat : un électron accéléré sous 1 kV a 1 keV. Comparez toujours \\(|q|U\\) à \\(mc^2\\) (511 keV pour l’électron, 938 MeV pour le proton) : au-delà de quelques pour cent, utilisez \\((\\gamma - 1)mc^2 = |q|U\\).",
+"chaps": [
+"particules",
+"relativite"
+]
+},
+{
+"id": "champs-croises",
+"title": "Champs croisés : chercher la vitesse de dérive",
+"quand": "Champs \\(\\vec E\\) et \\(\\vec B\\) perpendiculaires : filtre de vitesse, effet Hall, magnétron, expérience de Thomson.",
+"texte": "La particule qui a la vitesse \\(\\vec v_d = \\vec E\\wedge\\vec B/B^2\\) (norme \\(E/B\\)) ne subit aucune force : c’est le principe du filtre de vitesse. Pour une vitesse quelconque, placez-vous dans le référentiel qui se déplace à \\(\\vec v_d\\) : le champ électrique y disparaît (pour \\(E/B \\ll c\\)) et le mouvement y est un simple cercle cyclotron. Dans le laboratoire, la trajectoire est donc un cercle qui dérive à la vitesse \\(E/B\\), perpendiculairement à \\(\\vec E\\) et à \\(\\vec B\\) (cycloïde si la particule part du repos).",
+"chaps": [
+"particules",
+"magnetisme"
 ]
 },
 {
@@ -282,7 +470,23 @@
 "texte": "Si le problème est linéaire, décomposez-le en morceaux simples, résolvez chacun et additionnez. Deux ondes s’ajoutent en amplitude (pas en intensité), une figure complexe se décompose en motifs connus.",
 "chaps": [
 "statique",
-"optique"
+"optique",
+"electrostatique",
+"magnetisme"
+]
+},
+{
+"id": "moyenne",
+"title": "Moyenner sur le mouvement rapide",
+"quand": "« En moyenne », « par révolution », « sur un an », « sur une période », phase aléatoire, mouvement rapide superposé à une évolution lente.",
+"texte": "Quand un mouvement rapide (rotation, oscillation, orbite) se superpose à une évolution lente, remplacez-le par sa moyenne sur une période : \\(\\langle\\cos\\rangle = \\langle\\sin\\rangle = 0\\), \\(\\langle\\cos^2\\rangle = \\langle\\sin^2\\rangle = \\tfrac12\\), \\(\\langle\\sin\\cos\\rangle = 0\\). Une masse en orbite rapide devient un anneau, un courant alternatif devient sa valeur efficace. Une force moyenne non nulle vient souvent du <em>produit</em> de deux grandeurs oscillantes : \\(\\langle a\\cos\\omega t\\cdot b\\cos(\\omega t+\\varphi)\\rangle = \\tfrac12ab\\cos\\varphi\\). Pour des ondes, demandez-vous ce qui se moyenne : les amplitudes si la phase est fixe (interférences), les intensités si elle est aléatoire.",
+"chaps": [
+"outils",
+"optique",
+"nongalileen",
+"magnetisme",
+"particules",
+"solide"
 ]
 },
 {
@@ -371,7 +575,23 @@
 "outils",
 "statique",
 "tension",
-"quantique"
+"quantique",
+"solide",
+"electrostatique"
+]
+},
+{
+"id": "energie-parametre",
+"title": "Un seul paramètre : écrire l’énergie, puis la dériver",
+"quand": "Période des petites oscillations ou équation du mouvement d’un système compliqué (tiges, poulies, roulement, liquide dans un tube) dont la position ne dépend que d’une seule coordonnée.",
+"texte": "Si aucune force ne dissipe, exprimez toute l’énergie avec la seule coordonnée \\(q\\) : \\(E = \\tfrac12\\mu\\,\\dot q^2 + V(q)\\), où \\(\\mu\\) regroupe toutes les inerties (masses, moments d’inertie, fluide entraîné). Dériver \\(E = \\text{cste}\\) par rapport au temps donne l’équation du mouvement sans aucune force de liaison : \\(\\mu\\ddot q = -V'(q)\\) si \\(\\mu\\) est constant. Autour d’un équilibre \\(q_0\\) (\\(V'(q_0) = 0\\)) : \\(\\omega^2 = V''(q_0)/\\mu(q_0)\\), stable si \\(V''(q_0) > 0\\).",
+"chaps": [
+"outils",
+"nongalileen",
+"statique",
+"tension",
+"solide",
+"magnetisme"
 ]
 },
 {
@@ -386,6 +606,23 @@
 ]
 },
 {
+"id": "seuil",
+"title": "Écrire la condition d’existence : le seuil est le cas d’égalité",
+"quand": "« Pour quelles valeurs… », « à partir de quelle… », « combien de… au maximum », « valeur critique », « est-il possible que… ».",
+"texte": "Traduisez « le phénomène existe » par une inégalité : un sinus ou un cosinus inférieur à 1 (réfraction, nombre d’ordres d’un réseau, équilibre sur un cerceau), un discriminant positif (portée, enveloppe de trajectoires), une énergie supérieure à une barrière (libération, seuil de réaction), une réaction normale positive (décollement), un frottement inférieur à \\(\\mu N\\) (glissement). Le <strong>seuil</strong> est le cas d’égalité. Quand il y a plusieurs conditions, cherchez l’intersection des intervalles : elle peut être vide, et « impossible » est alors la bonne réponse.",
+"chaps": [
+"outils",
+"nongalileen",
+"geometrique",
+"optique",
+"relativite",
+"nucleaire",
+"quantique",
+"solide",
+"particules"
+]
+},
+{
 "id": "equadiff",
 "title": "Écrire et reconnaître une équation différentielle",
 "quand": "Une grandeur évolue au cours du temps à un taux qui dépend d’elle-même.",
@@ -397,14 +634,17 @@
 "tension",
 "optique",
 "relativite",
-"nucleaire"
+"nucleaire",
+"magnetisme",
+"particules",
+"solide"
 ]
 },
 {
 "id": "graphe",
 "title": "Exploiter un graphe : pente et ordonnée à l’origine",
-"quand": "Données expérimentales, courbe fournie dans l’énoncé.",
-"texte": "Choisissez des variables qui rendent la loi linéaire (\\(\\ln N\\) en fonction de \\(t\\), \\(U_0\\) en fonction de \\(\\nu\\)…), lisez la pente et l’ordonnée à l’origine sur des points éloignés et donnez-leur une unité. Une courbe en échelle logarithmique se lit en décades.",
+"quand": "Données expérimentales, courbe fournie dans l’énoncé, équation sans solution littérale.",
+"texte": "Choisissez des variables qui rendent la loi linéaire (\\(\\ln N\\) en fonction de \\(t\\), \\(U_0\\) en fonction de \\(\\nu\\)…), lisez la pente et l’ordonnée à l’origine sur des points éloignés et donnez-leur une unité. Une courbe en échelle logarithmique se lit en décades. Une équation sans solution littérale (\\(x = f(x)\\), équation transcendante) se résout à la calculatrice par <strong>itération</strong> \\(x_{n+1} = f(x_n)\\) à partir d’une valeur raisonnable, ou par <strong>intersection</strong> de deux courbes tracées sur le même graphe ; trois itérations suffisent en général pour deux chiffres significatifs.",
 "chaps": [
 "outils",
 "dynamique",
@@ -510,7 +750,8 @@
 "chaps": [
 "relativite",
 "nucleaire",
-"quantique"
+"quantique",
+"particules"
 ]
 },
 {

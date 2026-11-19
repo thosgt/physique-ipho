@@ -1,0 +1,122 @@
+<p class="eyebrow">Électromagnétisme · Chapitre 2</p>
+<h1>Champ magnétique et induction</h1>
+<p class="subtitle">Champ des courants, théorème d’Ampère, force de Laplace, moment magnétique, lois de Faraday et de Lenz, inductance</p>
+
+<div class="objectifs">
+<p><strong>Ce que demandent les épreuves.</strong> Le syllabus international des IPhO demande le champ magnétique des courants simples (fil, spire, solénoïde), le théorème d’Ampère, la force sur un courant, le moment magnétique, la loi de Faraday, la loi de Lenz, l’inductance et l’énergie magnétique. Les questions courtes portent sur des sens (règle de la main droite, loi de Lenz) et des ordres de grandeur ; les problèmes longs couplent presque toujours une équation électrique et une équation mécanique (rail, cadre qui tombe, freinage, lévitation). Le réflexe à acquérir : <strong>orienter le circuit avant tout calcul, puis contrôler le signe par la loi de Lenz</strong>.</p>
+<ul>
+<li><strong>Terminale (IPhO et Concours général)</strong> : ce chapitre dépasse le programme du lycée. Lisez les parties 1 à 3 hors encadrés « Niveau CPGE » : sens et ordres de grandeur du champ, force sur un fil, loi de Lenz.</li>
+<li><strong>CPGE (IPhO)</strong> : tout le chapitre.</li>
+</ul>
+</div>
+
+<div class="retenir">
+<p><strong>L’essentiel à retenir</strong></p>
+<ol>
+<li>Le champ magnétique \(\vec B\) (en teslas) est créé par les courants et les aimants ; ses lignes de champ sont <strong>fermées</strong> : le flux de \(\vec B\) à travers toute surface fermée est nul.</li>
+<li>Fil rectiligne infini : \(B = \dfrac{\mu_0I}{2\pi r}\), lignes circulaires autour du fil (main droite : pouce selon le courant, les doigts donnent \(\vec B\)). Centre d’une spire : \(\dfrac{\mu_0I}{2R}\). Solénoïde long : \(\mu_0nI\) à l’intérieur, uniforme (\(n\) spires par mètre). \(\mu_0 = 4\pi\times10^{-7}\) H·m⁻¹.</li>
+<li><strong>Théorème d’Ampère</strong> : \(\oint\vec B\cdot\mathrm d\vec\ell = \mu_0I_\text{enlacé}\).</li>
+<li><strong>Force de Laplace</strong> sur un fil : \(\vec F = I\,\vec\ell\wedge\vec B\). Deux fils parallèles : \(\dfrac{\mu_0I_1I_2}{2\pi d}\) par mètre, attractive si les courants sont de même sens.</li>
+<li><strong>Moment magnétique</strong> d’une boucle : \(\vec m = IS\,\vec n\) ; couple \(\vec m\wedge\vec B\), énergie \(-\vec m\cdot\vec B\).</li>
+<li><strong>Loi de Faraday</strong> : \(e = -\dfrac{\mathrm d\Phi}{\mathrm dt}\). <strong>Loi de Lenz</strong> : le courant induit s’oppose à la variation de flux qui lui donne naissance. Barre mobile : \(|e| = B\ell v\).</li>
+<li><strong>Inductance</strong> : \(\Phi = Li\), \(u = L\,\dfrac{\mathrm di}{\mathrm dt}\), énergie \(\tfrac12Li^2\) ; densité d’énergie \(\dfrac{B^2}{2\mu_0}\). Circuit RL : temps caractéristique \(L/R\).</li>
+</ol>
+</div>
+
+<h2 id="champ">1. Le champ magnétique des courants</h2>
+<h3 id="sources">Sources et ordres de grandeur</h3>
+<p>Une aiguille aimantée s’oriente près d’un aimant ou d’un fil parcouru par un courant (Ørsted, 1820) : elle indique la direction du <strong>champ magnétique</strong> \(\vec B\). Les lignes de champ sortent du pôle nord d’un aimant et rentrent par son pôle sud ; à l’intérieur elles se referment. Il n’existe pas de « charge magnétique » : toute ligne de champ est fermée.</p>
+<p>Ordres de grandeur : \(5\times10^{-5}\) T pour le champ terrestre en France (dont \(2\times10^{-5}\) T pour sa composante horizontale), \(10^{-2}\) T près d’un petit aimant, 1 T pour un aimant au néodyme ou un électroaimant, 1,5 à 3 T en IRM, 8 T dans les aimants supraconducteurs du LHC.</p>
+<h3 id="fil-spire">Fil, spire, solénoïde</h3>
+<p>Le champ d’un fil rectiligne infini parcouru par \(I\) tourne autour du fil et vaut \(\mu_0I/2\pi r\) à la distance \(r\). Au centre d’une spire circulaire de rayon \(R\), il est porté par l’axe et vaut \(\mu_0I/2R\). Dans un <strong>solénoïde</strong> long (\(n\) spires par mètre), il est uniforme et parallèle à l’axe, \(B = \mu_0nI\), et quasi nul à l’extérieur. Dans tous les cas, le sens se trouve avec la main droite : pouce selon le courant et doigts selon \(\vec B\) pour un fil ; doigts selon le courant et pouce selon \(\vec B\) pour une spire ou un solénoïde.</p>
+<div class="exo" data-q="mg-fil-terre"></div>
+<h3 id="ampere">Le théorème d’Ampère</h3>
+<p>La circulation de \(\vec B\) le long d’un contour fermé vaut \(\mu_0\) fois le courant qui traverse une surface s’appuyant sur ce contour :</p>
+\[\oint\vec B\cdot\mathrm d\vec\ell = \mu_0I_\text{enlacé}.\]
+<p>Comme le théorème de Gauss, il est toujours vrai mais ne donne le champ que si les symétries sont fortes. Pour un fil : contour circulaire de rayon \(r\), \(B\times2\pi r = \mu_0I\). Pour un solénoïde : contour rectangulaire de longueur \(\ell\) à cheval sur la nappe de courant, \(B\ell = \mu_0n\ell I\).</p>
+<div class="methode" data-m="ampere"><p>Symétries de \(\vec B\) : à l’inverse de \(\vec E\), le champ magnétique est <em>perpendiculaire</em> aux plans de symétrie des courants. Pour un fil, tout plan contenant le fil est plan de symétrie : \(\vec B\) est donc orthoradial. À l’intérieur d’un fil plein de rayon \(a\) parcouru par un courant uniforme, le courant enlacé vaut \(Ir^2/a^2\) et \(B = \mu_0Ir/2\pi a^2\).</p></div>
+<div class="exo" data-q="mg-coaxial"></div>
+
+<div class="cpge" id="biot-savart" title="Loi de Biot et Savart">
+<p>Un élément de courant \(I\,\mathrm d\vec\ell\) crée au point situé à \(\vec r\) le champ \(\mathrm d\vec B = \dfrac{\mu_0}{4\pi}\,\dfrac{I\,\mathrm d\vec\ell\wedge\vec r}{r^3}\). Pour une spire de rayon \(R\), en un point de l’axe à la distance \(z\) du centre, les composantes perpendiculaires à l’axe se compensent et</p>
+\[B(z) = \frac{\mu_0I}{2}\,\frac{R^2}{(R^2+z^2)^{3/2}} .\]
+<p>Loin de la spire, \(B \approx \dfrac{\mu_0}{4\pi}\dfrac{2m}{z^3}\) avec \(m = I\pi R^2\) : le champ d’un dipôle magnétique, de même forme que celui d’un dipôle électrique. Deux bobines de rayon \(R\) séparées de \(R\) (bobines de Helmholtz) donnent un champ très uniforme près du centre.</p>
+</div>
+
+<h2 id="forces">2. Forces magnétiques sur les courants</h2>
+<h3 id="laplace">La force de Laplace</h3>
+<p>Un fil rectiligne de longueur \(\ell\), parcouru par un courant \(I\) et placé dans un champ uniforme, subit la force</p>
+\[\vec F = I\,\vec\ell\wedge\vec B, \qquad F = I\ell B\sin\theta,\]
+<p>perpendiculaire au fil et au champ. C’est la somme des forces de Lorentz exercées sur les porteurs de charge (voir <a href="#particules">particules chargées</a>). Deux fils parallèles distants de \(d\) : chacun est dans le champ \(\mu_0I/2\pi d\) de l’autre, d’où une force \(\mu_0I_1I_2/2\pi d\) par unité de longueur, <strong>attractive si les courants sont de même sens</strong>. Sur un circuit fermé dans un champ uniforme, la résultante est nulle, mais pas le couple.</p>
+<div class="exo" data-q="mg-fils"></div>
+<h3 id="moment-magnetique">Moment magnétique</h3>
+<p>Une boucle plane d’aire \(S\) parcourue par \(I\) a un <strong>moment magnétique</strong> \(\vec m = IS\,\vec n\), où la normale \(\vec n\) est liée au sens du courant par la main droite. Dans un champ uniforme, elle subit le couple \(\vec\Gamma = \vec m\wedge\vec B\), qui tend à aligner \(\vec m\) sur \(\vec B\), et possède l’énergie \(E_p = -\vec m\cdot\vec B\). C’est le principe de la boussole et du moteur électrique. Un aimant se décrit de la même façon par son moment magnétique. Dans un champ non uniforme, un moment aligné sur le champ est attiré vers les champs forts.</p>
+<div class="methode" data-m="lineariser"><p>Une aiguille de boussole de moment d’inertie \(J\) écartée de l’angle \(\theta\) : \(J\ddot\theta = -mB\sin\theta \approx -mB\,\theta\). Elle oscille à \(\omega_0 = \sqrt{mB/J}\) : mesurer la période, c’est mesurer \(B\). Méthode classique pour comparer deux champs : \(B_1/B_2 = (T_2/T_1)^2\).</p></div>
+<div class="cpge" id="larmor" title="Précession de Larmor">
+<p>Un moment magnétique porté par un moment cinétique, \(\vec m = \gamma\vec L\) (électron sur son orbite : \(\gamma = -e/2m_e\) ; noyaux en RMN), ne s’aligne pas sur le champ : le couple \(\vec m\wedge\vec B\) est perpendiculaire à \(\vec L\) et le fait tourner. \(\mathrm d\vec L/\mathrm dt = \gamma\vec L\wedge\vec B\) : \(\vec L\) précesse autour de \(\vec B\) à la pulsation de Larmor \(\omega_L = |\gamma|B\), comme une toupie (voir <a href="#solide--gyroscope">gyroscope</a>). Pour le proton, \(\omega_L/2\pi = 42{,}6\) MHz par tesla : c’est la fréquence utilisée en IRM.</p>
+</div>
+
+<h2 id="induction">3. Induction électromagnétique</h2>
+<h3 id="faraday">Lois de Faraday et de Lenz</h3>
+<p>Le <strong>flux</strong> du champ magnétique à travers un circuit est \(\Phi = \iint\vec B\cdot\mathrm d\vec S\) (en webers) ; pour une bobine de \(N\) spires d’aire \(S\) dans un champ uniforme, \(\Phi = NBS\cos\theta\). Dès que ce flux varie, quelle qu’en soit la raison (le champ change, le circuit bouge, tourne ou se déforme), une force électromotrice apparaît dans le circuit :</p>
+\[e = -\frac{\mathrm d\Phi}{\mathrm dt}.\]
+<p>Le signe moins traduit la <strong>loi de Lenz</strong> : le courant induit crée un champ, et des forces, qui s’opposent à la variation du flux. Un aimant qu’on approche d’une spire est repoussé ; qu’on éloigne, il est retenu. C’est la conservation de l’énergie : l’énergie électrique dissipée est prise sur le travail de l’opérateur.</p>
+<div class="methode" data-m="flux-lenz"><p>Bobine de \(N\) spires d’aire \(S\) tournant à \(\omega\) dans un champ uniforme : \(\Phi = NBS\cos\omega t\), donc \(e = NBS\omega\sin\omega t\). C’est l’alternateur ; l’amplitude est proportionnelle à la vitesse de rotation.</p></div>
+<div class="exo" data-q="mg-lenz"></div>
+<div class="exo" data-q="mg-alternateur"></div>
+<h3 id="rail">Le rail de Laplace</h3>
+<figure>
+<svg viewBox="0 0 640 230" width="640" role="img" aria-label="Deux rails horizontaux parallèles distants de l, reliés à gauche par une résistance R ; une barre conductrice glisse vers la droite à la vitesse v ; champ magnétique B perpendiculaire au plan, sortant ; courant induit i dans la barre et force de Laplace F opposée à la vitesse" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:13px">
+<defs><marker id="mg-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0b5fa5"/></marker><marker id="mg-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b5651d"/></marker><marker id="mg-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#141b33"/></marker></defs>
+<line x1="90" y1="50" x2="590" y2="50" stroke="#141b33" stroke-width="3"/><line x1="90" y1="180" x2="590" y2="180" stroke="#141b33" stroke-width="3"/>
+<line x1="90" y1="50" x2="90" y2="95" stroke="#141b33" stroke-width="2"/><line x1="90" y1="135" x2="90" y2="180" stroke="#141b33" stroke-width="2"/>
+<rect x="80" y="95" width="20" height="40" fill="#fff" stroke="#141b33" stroke-width="2"/><text x="52" y="120" fill="#141b33">R</text>
+<rect x="352" y="40" width="10" height="150" fill="#b9c6ea" stroke="#2448a8" stroke-width="1.5"/>
+<g fill="none" stroke="#1f8a4c" stroke-width="1.3"><circle cx="170" cy="85" r="8"/><circle cx="260" cy="85" r="8"/><circle cx="450" cy="85" r="8"/><circle cx="540" cy="85" r="8"/><circle cx="170" cy="150" r="8"/><circle cx="260" cy="150" r="8"/><circle cx="450" cy="150" r="8"/><circle cx="540" cy="150" r="8"/></g>
+<g fill="#1f8a4c"><circle cx="170" cy="85" r="2.2"/><circle cx="260" cy="85" r="2.2"/><circle cx="450" cy="85" r="2.2"/><circle cx="540" cy="85" r="2.2"/><circle cx="170" cy="150" r="2.2"/><circle cx="260" cy="150" r="2.2"/><circle cx="450" cy="150" r="2.2"/><circle cx="540" cy="150" r="2.2"/></g>
+<text x="495" y="122" text-anchor="middle" fill="#1f8a4c">B (sortant)</text>
+<line x1="362" y1="115" x2="425" y2="115" stroke="#0b5fa5" stroke-width="2.5" marker-end="url(#mg-b)"/><text x="408" y="106" fill="#0b5fa5">v</text>
+<line x1="352" y1="135" x2="296" y2="135" stroke="#b5651d" stroke-width="2.5" marker-end="url(#mg-c)"/><text x="296" y="128" fill="#b5651d">F</text>
+<line x1="340" y1="70" x2="340" y2="100" stroke="#141b33" stroke-width="1.5" marker-end="url(#mg-k)"/><text x="322" y="88" fill="#141b33">i</text>
+<line x1="610" y1="52" x2="610" y2="178" stroke="#141b33" stroke-width="1" marker-start="url(#mg-k)" marker-end="url(#mg-k)"/><text x="620" y="120" fill="#141b33">ℓ</text>
+<text x="205" y="212" fill="#141b33">e = Bℓv, i = Bℓv/R, F = B²ℓ²v/R, opposée à v</text>
+</svg>
+<figcaption>La barre s’éloigne : le flux sortant augmente, le courant induit (sens horaire, donc vers le bas dans la barre) crée un champ rentrant et subit une force de Laplace qui freine la barre.</figcaption>
+</figure>
+<p>Une barre de longueur \(\ell\) et de masse \(m\) glisse sans frottement sur deux rails reliés par une résistance \(R\), dans un champ uniforme perpendiculaire au plan des rails. Quand la barre avance de \(v\,\mathrm dt\), l’aire du circuit augmente de \(\ell v\,\mathrm dt\) : \(|e| = B\ell v\), \(i = B\ell v/R\). Ce courant subit la force de Laplace \(F = i\ell B = B^2\ell^2v/R\), opposée à la vitesse :</p>
+\[m\frac{\mathrm dv}{\mathrm dt} = -\frac{B^2\ell^2}{R}\,v \quad\Longrightarrow\quad v(t) = v_0\,\mathrm e^{-t/\tau}, \qquad \tau = \frac{mR}{B^2\ell^2}.\]
+<p>La barre s’arrête après avoir parcouru \(v_0\tau\), et toute son énergie cinétique a été dissipée par effet Joule. Tirée par une force constante \(F_0\) (ou par son poids sur des rails inclinés), elle atteint une vitesse limite \(v_\ell = F_0R/B^2\ell^2\) : la puissance \(F_0v_\ell\) est alors égale à la puissance Joule \(Ri^2\).</p>
+<div class="methode" data-m="couplage-electromecanique"><p>Toujours deux équations : la maille (qui contient \(v\) par la f.é.m.) et Newton (qui contient \(i\) par la force de Laplace). Si le circuit contient un générateur \(E\), c’est un moteur : \(Ri = E - B\ell v\), vitesse limite \(E/B\ell\) à vide. S’il contient un condensateur à la place de la résistance, \(i = C\,\mathrm de/\mathrm dt = CB\ell\,\dot v\) et la force de Laplace \(-CB^2\ell^2\dot v\) agit comme une masse supplémentaire.</p></div>
+<div class="exo" data-group="mg-rail"></div>
+<p>Dans un bloc de métal qui se déplace dans un champ non uniforme, les courants induits circulent dans la masse (<strong>courants de Foucault</strong>) : ils freinent le mouvement (freins des camions et des trains, aimant qui tombe lentement dans un tube de cuivre) et chauffent le métal (plaques à induction).</p>
+
+<h2 id="inductance">4. Inductance et énergie magnétique</h2>
+<h3 id="auto-induction">Auto-induction</h3>
+<p>Un circuit parcouru par \(i\) crée un champ dont le flux à travers lui-même est proportionnel à \(i\) : \(\Phi = Li\), où \(L\) est l’<strong>inductance</strong> (en henrys). Si \(i\) varie, la f.é.m. induite \(-L\,\mathrm di/\mathrm dt\) s’oppose à la variation : en convention récepteur, la tension aux bornes d’une bobine idéale est \(u = L\,\mathrm di/\mathrm dt\). Le courant dans une bobine ne peut pas être discontinu. Pour un solénoïde de \(N\) spires, de longueur \(\ell\) et de section \(S\) : \(\Phi = N\times\mu_0(N/\ell)i\times S\), donc</p>
+\[L = \frac{\mu_0N^2S}{\ell}.\]
+<h3 id="energie-magnetique">Énergie magnétique, circuit RL</h3>
+<p>Établir le courant demande l’énergie \(\int Li\,\mathrm di = \tfrac12Li^2\), stockée dans le champ avec la densité \(B^2/2\mu_0\) (vérification avec le solénoïde : \(\tfrac12Li^2 = \dfrac{B^2}{2\mu_0}\,S\ell\)). Dans un circuit RL série soumis à un échelon de tension \(E\), \(L\,\mathrm di/\mathrm dt + Ri = E\) : le courant s’établit exponentiellement, \(i = \dfrac ER\left(1 - \mathrm e^{-t/\tau}\right)\), avec \(\tau = L/R\).</p>
+<div class="methode" data-m="ordre-grandeur"><p>Comparez les densités d’énergie : \(\tfrac12\varepsilon_0E^2 = 40\) J·m⁻³ pour le champ électrique maximal dans l’air (\(3\times10^6\) V·m⁻¹), contre \(B^2/2\mu_0 = 4\times10^5\) J·m⁻³ pour 1 T. C’est pourquoi les moteurs et les stockages d’énergie de puissance sont magnétiques.</p></div>
+<div class="exo" data-q="mg-energie"></div>
+<div class="cpge" id="mutuelle" title="Inductance mutuelle et transformateur">
+<p>Deux circuits proches : le flux à travers le second du champ créé par le premier est \(\Phi_{1\to2} = Mi_1\), et le même coefficient \(M\) donne \(\Phi_{2\to1} = Mi_2\) (\(|M| \le \sqrt{L_1L_2}\)). Dans un transformateur idéal, tout le flux d’une spire traverse les autres : \(u_1 = N_1\,\mathrm d\varphi/\mathrm dt\) et \(u_2 = N_2\,\mathrm d\varphi/\mathrm dt\), donc \(u_2/u_1 = N_2/N_1\) et, par conservation de la puissance, \(i_2/i_1 = N_1/N_2\). Un transformateur ne fonctionne qu’en régime variable. Transporter l’électricité sous haute tension réduit le courant, donc les pertes Joule \(Ri^2\) en ligne.</p>
+</div>
+
+<div class="piege">
+<ul>
+<li>Deux courants de même sens s’attirent, alors que deux charges de même signe se repoussent.</li>
+<li>La f.é.m. induite dépend de la <em>variation</em> du flux, pas du flux : un cadre en translation dans un champ uniforme n’est parcouru par aucun courant.</li>
+<li>\(e = -\mathrm d\Phi/\mathrm dt\) n’a de sens qu’une fois le circuit orienté. En cas de doute sur le signe, c’est la loi de Lenz qui tranche.</li>
+<li>La force de Laplace sur la barre s’oppose toujours à la cause de l’induction : si vous trouvez une barre qui accélère toute seule, il y a une erreur de signe.</li>
+<li>\(\vec B\) est perpendiculaire aux plans de symétrie des courants, \(\vec E\) leur est parallèle.</li>
+</ul>
+</div>
+
+<div class="cpge" id="plus-loin" title="Pour aller plus loin : polycopiés olympiques">
+<p>Pour viser l’IPhO internationale, en anglais :</p>
+<ul>
+<li><a href="https://knzhou.github.io/handouts/E3.pdf" target="_blank" rel="noopener">K. Zhou, polycopié E3</a> (magnétostatique) · <a href="https://knzhou.github.io/handouts/E3Sol.pdf" target="_blank" rel="noopener">solutions</a> ; <a href="https://knzhou.github.io/handouts/E5.pdf" target="_blank" rel="noopener">polycopié E5</a> (induction) · <a href="https://knzhou.github.io/handouts/E5Sol.pdf" target="_blank" rel="noopener">solutions</a></li>
+<li><a href="https://www.ioc.ee/~kalda/ipho/" target="_blank" rel="noopener">J. Kalda, <em>IPhO study guides</em></a> (électromagnétisme)</li>
+<li>Problèmes longs : APhO 2021 problème 3 (lévitation magnétique), APhO 2023 problème 1 partie E (freinage de la Station spatiale par induction), sur <a href="https://olimpicos.net/apho/" target="_blank" rel="noopener">olimpicos.net/apho</a>.</li>
+</ul>
+</div>

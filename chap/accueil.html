@@ -2,7 +2,7 @@
 <h1>Physique des olympiades</h1>
 <p class="subtitle">Préparer le test de présélection des IPhO (terminale et CPGE) et le Concours général de physique-chimie</p>
 
-<p>Ce site rassemble, chapitre par chapitre, un cours, des simulations et des questions d’entraînement tirées des annales. Dix chapitres sont en ligne : <strong>analyse dimensionnelle et outils</strong>, <strong>référentiels non galiléens</strong>, <strong>statique</strong> et <strong>dynamique des fluides</strong>, <strong>tension superficielle</strong>, <strong>optique géométrique</strong>, <strong>ondes et optique ondulatoire</strong>, <strong>relativité restreinte</strong>, <strong>physique nucléaire</strong> et <strong>physique quantique</strong> ; les autres suivront au fil de la préparation. Commencez par le chapitre 0, qui donne la méthode valable pour tous les autres.</p>
+<p>Ce site rassemble, chapitre par chapitre, un cours, des simulations et des questions d’entraînement tirées des annales. Quatorze chapitres sont en ligne : <strong>analyse dimensionnelle et outils</strong>, <strong>référentiels non galiléens</strong>, <strong>mécanique du solide</strong>, <strong>statique</strong> et <strong>dynamique des fluides</strong>, <strong>tension superficielle</strong>, <strong>optique géométrique</strong>, <strong>ondes et optique ondulatoire</strong>, <strong>champ électrique</strong>, <strong>champ magnétique et induction</strong>, <strong>particules chargées</strong>, <strong>relativité restreinte</strong>, <strong>physique nucléaire</strong> et <strong>physique quantique</strong> ; les autres suivront au fil de la préparation. Commencez par le chapitre 0, qui donne la méthode valable pour tous les autres.</p>
 
 <h2 id="epreuves">Les épreuves</h2>
 <h3 id="ipho">Le test de présélection des IPhO</h3>
@@ -23,7 +23,7 @@
 <p>Choisissez votre niveau avec le sélecteur <strong>Je prépare</strong> en haut du menu :</p>
 <ul>
 <li><strong>Terminale (IPhO et Concours général)</strong> : les passages « Niveau CPGE » du cours sont repliés et les questions de niveau CPGE sont regroupées à part ;</li>
-<li><strong>CPGE (IPhO)</strong> : tout est affiché. Les questions d’annales de terminale restent utiles : le QCM des deux tests est en grande partie commun.</li>
+<li><strong>CPGE (IPhO)</strong> : tout le cours et toutes les questions des IPhO sont affichés. Les questions d’annales de terminale restent utiles : le QCM des deux tests est en grande partie commun. Les sujets du Concours général, réservés aux élèves de terminale, ne sont pas proposés.</li>
 </ul>
 
 <h2 id="methode">Comment travailler</h2>
@@ -42,6 +42,33 @@ Cherchez d’abord sur papier. Si vous bloquez, demandez un <strong>indice</stro
 </ol>
 <p>Pour les questions numériques, tapez un nombre (virgule ou point, et par exemple <span class="kbd">1,9e2</span> ou <span class="kbd">1,9×10^2</span> pour les puissances de dix) dans l’unité indiquée ; une petite marge est tolérée.</p>
 
+<h2 id="probleme-long">Aborder un problème long</h2>
+<p>Les problèmes du test, des IPhO internationales et des olympiades étrangères (APhO, Romanian Master of Physics) comptent 10 à 20 questions enchaînées. Leur difficulté tient rarement à une idée introuvable : elle tient à la longueur, et au fait qu’il faut reconnaître vite quelle méthode chaque question appelle. La démarche est toujours la même.</p>
+<ol>
+<li><strong>Parcourez tout le sujet en cinq minutes.</strong> Les parties A, B, C sont souvent indépendantes, et la première question de chacune est facile : ne restez jamais bloqué vingt minutes sur A.4 alors que B.1 vaut autant.</li>
+<li><strong>Soulignez les hypothèses données</strong> : « \(v \ll c\) », « \(h \ll R\) », « régime stationnaire », « sans frottement », « adiabatique ». Chacune dit quelle approximation faire, donc quelle méthode utiliser.</li>
+<li><strong>Pour chaque question, repérez le mot déclencheur</strong> et la méthode associée (tableau ci-dessous).</li>
+<li><strong>Utilisez les résultats fournis.</strong> Un « montrer que… » donne la réponse : servez-vous-en dans la suite, même si vous ne l’avez pas démontré.</li>
+<li><strong>Contrôlez avant de calculer</strong> : homogénéité, puis un cas limite. Écrivez toujours l’expression littérale ; l’application numérique ne rapporte souvent qu’une fraction du barème, mais elle le rapporte à coup sûr si l’expression est juste.</li>
+</ol>
+<table>
+<thead><tr><th>Ce que dit l’énoncé</th><th>Ce qu’il faut faire</th></tr></thead>
+<tbody>
+<tr><td>« Estimer », « loi d’échelle », « de quoi dépend… »</td><td><a href="#methodes--m-dimension">Analyse dimensionnelle</a>, <a href="#methodes--m-ordre-grandeur">ordre de grandeur</a></td></tr>
+<tr><td>« Petit devant », « au premier ordre », « faible »</td><td><a href="#methodes--m-petit-parametre">Développer au premier ordre</a></td></tr>
+<tr><td>« Juste avant », « près de », « aux temps longs », « loin de »</td><td><a href="#methodes--m-terme-dominant">Garder le terme dominant</a></td></tr>
+<tr><td>« Pour quelles valeurs », « à partir de quand », « combien de », « critique »</td><td><a href="#methodes--m-seuil">Écrire la condition d’existence</a></td></tr>
+<tr><td>« Maximal », « minimal », « optimal »</td><td><a href="#methodes--m-extremum">Chercher un extremum</a></td></tr>
+<tr><td>« En moyenne », « par révolution », « sur une période »</td><td><a href="#methodes--m-moyenne">Moyenner sur le mouvement rapide</a></td></tr>
+<tr><td>« Période des petites oscillations », « stable ? »</td><td><a href="#methodes--m-energie-parametre">Écrire l’énergie avec un seul paramètre</a>, <a href="#methodes--m-lineariser">linéariser</a></td></tr>
+<tr><td>« Profil » de pression, de densité, de section, de tension</td><td><a href="#methodes--m-decouper-integrer">Bilan sur une tranche</a>, puis <a href="#methodes--m-equadiff">équation différentielle</a></td></tr>
+<tr><td>Front, choc, onde, jet, débit</td><td><a href="#methodes--m-bilan">Bilan dans le référentiel du front</a></td></tr>
+<tr><td>État final sans détail du trajet, collision</td><td><a href="#methodes--m-conservation">Loi de conservation</a>, <a href="#methodes--m-referentiel">changement de référentiel</a></td></tr>
+<tr><td>Équation sans solution littérale, « graphiquement »</td><td><a href="#methodes--m-graphe">Itération ou intersection de courbes</a></td></tr>
+</tbody>
+</table>
+<p>Toutes les méthodes sont rassemblées dans les <a href="#methodes">fiches méthode</a>, avec les questions qui les font travailler.</p>
+
 <h2 id="chapitres">Les chapitres</h2>
 <div class="cards">
 <a class="card" href="#outils"><span class="n">MÉTHODES · 0</span><h3>Analyse dimensionnelle et outils</h3><p>Homogénéité, ordres de grandeur, chiffres significatifs et incertitudes, développements limités, équations différentielles, rédaction.</p></a>
@@ -54,8 +81,12 @@ Cherchez d’abord sur papier. Si vous bloquez, demandez un <strong>indice</stro
 <a class="card" href="#nucleaire"><span class="n">PHYSIQUE MODERNE · 2</span><h3>Physique nucléaire</h3><p>Noyau, énergie de liaison, courbe d’Aston, radioactivité et décroissance, datation, fission, fusion.</p></a>
 <a class="card" href="#quantique"><span class="n">PHYSIQUE MODERNE · 3</span><h3>Physique quantique</h3><p>Photon, effet photoélectrique, niveaux d’énergie et spectres, laser, dualité onde-corpuscule, Heisenberg, particule dans une boîte.</p></a>
 <a class="card" href="#nongalileen"><span class="n">MÉCANIQUE · 1</span><h3>Référentiels non galiléens</h3><p>Changement de référentiel, forces d’inertie, ascenseur et pesanteur effective, centrifuge et Coriolis, la Terre comme référentiel, marées.</p></a>
-<div class="card soon"><span class="n">À VENIR</span><h3>Mécanique du point et du solide</h3><p>Cinématique, lois de Newton, frottements, énergie, oscillateurs, gravitation et Kepler.</p></div>
-<div class="card soon"><span class="n">À VENIR</span><h3>Électricité et particules chargées</h3><p>Circuits, condensateurs et bobines, champ électrique, force de Lorentz.</p></div>
+<a class="card" href="#solide"><span class="n">MÉCANIQUE · 2</span><h3>Mécanique du solide</h3><p>Centre de masse, moment d’inertie, moment cinétique, roulement sans glissement, pendule pesant, chocs, gyroscope.</p></a>
+<a class="card" href="#electrostatique"><span class="n">ÉLECTROMAGNÉTISME · 1</span><h3>Champ électrique</h3><p>Loi de Coulomb, champ et potentiel, théorème de Gauss, conducteurs, condensateurs, énergie électrostatique.</p></a>
+<a class="card" href="#magnetisme"><span class="n">ÉLECTROMAGNÉTISME · 2</span><h3>Champ magnétique et induction</h3><p>Champ des courants, théorème d’Ampère, force de Laplace, moment magnétique, loi de Faraday, loi de Lenz, inductance.</p></a>
+<a class="card" href="#particules"><span class="n">ÉLECTROMAGNÉTISME · 3</span><h3>Particules chargées</h3><p>Force de Lorentz, accélération et déviation, mouvement cyclotron, spectromètre de masse, champs croisés, effet Hall.</p></a>
+<div class="card soon"><span class="n">À VENIR</span><h3>Mécanique du point</h3><p>Cinématique, lois de Newton, frottements, énergie, oscillateurs, gravitation et Kepler.</p></div>
+<div class="card soon"><span class="n">À VENIR</span><h3>Circuits électriques</h3><p>Lois de Kirchhoff, régimes transitoires RC, RL et RLC, régime sinusoïdal, résonance.</p></div>
 <div class="card soon"><span class="n">À VENIR</span><h3>Thermodynamique</h3><p>Gaz parfait, premier et second principes, machines thermiques, rayonnement.</p></div>
 </div>
 
@@ -66,5 +97,6 @@ Cherchez d’abord sur papier. Si vous bloquez, demandez un <strong>indice</stro
 <li>Entraînement au calcul : <a href="https://colasbd.github.io/cde/" target="_blank" rel="noopener"><em>Cahier d’entraînement en physique-chimie</em></a>, coordonné par Colas Bardavid et Jimmy Roussel, fiche 21 « Statique des fluides » ; les questions sont adaptées et les corrections rédigées à nouveau.</li>
 <li>Cours en ligne de préparation aux IPhO : <a href="https://physicite.fr/ressources" target="_blank" rel="noopener">PhysiCité</a> (association de jeunes physiciens, ENS-PSL), notamment le cours d’hydrodynamique.</li>
 <li>Problèmes d’entraînement traduits et corrigés, source indiquée sur chaque exercice : les <a href="https://knzhou.github.io/teaching/" target="_blank" rel="noopener"><em>Physics Olympiad Handouts</em> de Kevin Zhou</a> (équipe américaine), les <a href="https://www.ioc.ee/~kalda/ipho/" target="_blank" rel="noopener"><em>IPhO study guides</em> de Jaan Kalda</a> (équipe estonienne ; le guide de relativité est de Siim Ainsaar), et les feuilles d’exercices de mécanique des fluides de Victor Lequin (préparation aux olympiades, lycée Louis-le-Grand). Les fiches méthode s’inspirent de l’organisation par « idées » des guides de Kalda.</li>
+<li>Problèmes longs adaptés d’olympiades étrangères : l’<em>Asian Physics Olympiad</em> (APhO, <a href="https://olimpicos.net/apho/" target="_blank" rel="noopener">énoncés et corrigés</a>) et le <em>Romanian Master of Physics</em> (RMPh). Les énoncés sont condensés et reformulés, les corrigés rédigés pour ce cours ; l’original est indiqué sur chaque problème.</li>
 <li>Syllabus 2026-2027 de la préparation française : <a href="https://www.sciencesalecole.org/syllabus-ipho/" target="_blank" rel="noopener">Sciences à l’École</a>.</li>
 </ul>

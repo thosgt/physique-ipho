@@ -10,7 +10,8 @@ const DAY = 86400000;
 const DEFAULT_SETTINGS = { claude: true, quota: 15, open: true };
 const CHAP_TITLES = { outils: "Outils", statique: "Statique des fluides", dynamique: "Dynamique des fluides", tension: "Tension superficielle",
   nongalileen: "Référentiels non galiléens", geometrique: "Optique géométrique", optique: "Ondes et optique", relativite: "Relativité",
-  nucleaire: "Nucléaire", quantique: "Quantique" };
+  nucleaire: "Nucléaire", quantique: "Quantique", solide: "Mécanique du solide", electrostatique: "Champ électrique",
+  magnetisme: "Champ magnétique et induction", particules: "Particules chargées" };
 
 /* ------------------------------------------------------------------ outils */
 class HttpError extends Error { constructor(status, msg) { super(msg); this.status = status; } }

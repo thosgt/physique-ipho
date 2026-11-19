@@ -239,5 +239,12 @@
   "anchor": "puits",
   "title": "Particule dans une boîte",
   "desc": "Niveaux d’énergie E_n = n²h²/8mL², fonctions d’onde et densités de probabilité ; effet de la largeur du puits et de la masse ; photon émis lors d’une transition."
+ },
+ {
+  "name": "cyclotron",
+  "page": "particules",
+  "anchor": "cyclotron",
+  "title": "Particule chargée dans des champs E et B",
+  "desc": "Proton ou antiproton dans un champ magnétique uniforme, avec ou sans champ électrique croisé : cercle cyclotron de rayon mv/|q|B, période indépendante de la vitesse, dérive à la vitesse E/B, cycloïde, filtre de vitesse."
  }
 ]
