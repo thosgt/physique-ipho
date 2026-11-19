@@ -1,0 +1,867 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Physique des olympiades</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Mise en page : rail de chapitres fixe à gauche + colonne de lecture (~76 caractères) ; simulations et questions
+   dans la colonne. Même famille visuelle que « Physique des IESO », accent cobalt et cuivre (laiton de laboratoire). */
+:root{
+  --bg:#f5f7fb; --bg-2:#ffffff; --bg-3:#e8ecf5; --fg:#141b33; --fg-2:#4a5470; --line:#d2d9e7;
+  --accent:#2448a8; --accent-2:#1b3884; --on-accent:#ffffff; --sun:#b85a0c; --sun-soft:#fff1e2; --ok:#1f8a4c; --bad:#b23a48;
+  --ret:#e7edfb; --ex:#f0f3f8; --piege:#fff0e3; --obj:#ecf6f0; --cpge:#6a3fa3; --cpge-soft:#f4effb; --paper:#ffffff;
+  --display:"Newsreader", Georgia, "Times New Roman", serif;
+  --body:"IBM Plex Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono:"IBM Plex Mono", Consolas, Menlo, monospace;
+  --rail:270px; --radius:8px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0e1322; --bg-2:#151b2e; --bg-3:#1e2640; --fg:#e6eaf5; --fg-2:#a8b1c8; --line:#2b3550;
+  --accent:#93adff; --accent-2:#b9caff; --on-accent:#0d1530; --sun:#f0a35a; --sun-soft:#2c2014; --ok:#4fc77f; --bad:#ff7b88;
+  --ret:#18213b; --ex:#182033; --piege:#2c2116; --obj:#14281e; --cpge:#c8a8f5; --cpge-soft:#221a33; --paper:#ffffff; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0e1322; --bg-2:#151b2e; --bg-3:#1e2640; --fg:#e6eaf5; --fg-2:#a8b1c8; --line:#2b3550;
+  --accent:#93adff; --accent-2:#b9caff; --on-accent:#0d1530; --sun:#f0a35a; --sun-soft:#2c2014; --ok:#4fc77f; --bad:#ff7b88;
+  --ret:#18213b; --ex:#182033; --piege:#2c2116; --obj:#14281e; --cpge:#c8a8f5; --cpge-soft:#221a33; --paper:#ffffff; color-scheme:dark }
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55}
+a{color:var(--accent)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+
+.app{display:grid;grid-template-columns:var(--rail) 1fr;min-height:100%}
+nav.rail{position:sticky;top:env(safe-area-inset-top,0px);height:calc(100vh - env(safe-area-inset-top,0px));overflow-y:auto;background:var(--bg-2);border-right:1px solid var(--line);
+  padding-block:18px 24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:12px}
+.brand{font-family:var(--display);font-size:1.35rem;font-weight:600;line-height:1.1;margin:0 0 2px;text-wrap:balance}
+.brand small{display:block;font-family:var(--body);font-size:.7rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-2);margin-top:6px}
+.navgroup{margin-top:18px}
+.navgroup h4{margin:0 0 6px;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-2);font-weight:600}
+.navgroup a,.navgroup .soon{display:flex;gap:8px;align-items:baseline;padding:6px 8px;border-radius:6px;color:var(--fg);text-decoration:none;font-size:.92rem;line-height:1.3}
+.navgroup .soon{color:var(--fg-2);opacity:.75;cursor:default}
+.navgroup .soon em{font-style:normal;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;margin-left:auto;white-space:nowrap}
+.navgroup a .n,.navgroup .soon .n{font-family:var(--mono);font-size:.75rem;color:var(--fg-2);min-width:1.4em}
+.navgroup a:hover{background:var(--bg-3)}
+.navgroup a.active{background:var(--ret);color:var(--accent-2);font-weight:600}
+.navgroup a.active .n{color:var(--accent)}
+/* choix du niveau */
+.level{margin-top:14px}
+.level .lab{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-2);font-weight:600;margin-bottom:5px}
+.level .seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:7px;overflow:hidden}
+.level button{font:inherit;font-size:.82rem;line-height:1.25;padding:6px 6px;border:0;background:var(--bg);color:var(--fg-2);cursor:pointer}
+.level button+button{border-left:1px solid var(--line)}
+.level button small{display:block;font-size:.68rem;opacity:.85}
+.level button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);font-weight:600}
+.menu-btn,.search-btn{display:none}
+/* recherche */
+.searchbox{margin-top:14px;position:relative}
+.searchbox input{width:100%;font:inherit;font-size:.9rem;padding:7px 10px 7px 30px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}
+.searchbox input:focus{outline:2px solid var(--accent);outline-offset:0;border-color:var(--accent)}
+.searchbox::before{content:"⌕";position:absolute;left:10px;top:50%;transform:translateY(-52%);color:var(--fg-2);font-size:1.05rem;pointer-events:none}
+.search-page .searchbox{margin:6px 0 18px}
+.search-page .searchbox input{font-size:1.05rem;padding:10px 12px 10px 34px}
+.sres{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-2);margin:8px 0;text-decoration:none;color:var(--fg)}
+.sres:hover{border-color:var(--accent)}
+.where{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-2);font-weight:600}
+.sres .ttl{font-weight:600;color:var(--accent-2);margin:2px 0}
+.sres .snip{font-size:.88rem;color:var(--fg-2)}
+.qres{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-2);margin:8px 0}
+.qres>summary{cursor:pointer;padding:10px 12px;list-style:none}
+.qres>summary::-webkit-details-marker{display:none}
+.qres>summary .snip{font-size:.9rem}
+.qres[open]>summary{border-bottom:1px solid var(--line)}
+.qres .q{margin:0;border:0}
+mark.hit-first{outline:2px solid var(--sun)}
+mark{background:color-mix(in srgb,var(--sun) 35%,transparent);color:inherit;border-radius:2px;padding:0 1px}
+
+main{min-width:0;padding-block:28px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.page{max-width:76ch;margin:0 auto}
+.page.wide{max-width:110ch}
+.eyebrow{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sun);font-weight:600;margin:0 0 6px}
+h1{font-family:var(--display);font-weight:500;font-size:2.3rem;line-height:1.1;margin:0 0 6px;text-wrap:balance}
+.subtitle{font-family:var(--display);font-style:italic;font-size:1.2rem;color:var(--fg-2);margin:0 0 28px}
+h2{font-family:var(--display);font-weight:600;font-size:1.55rem;margin:2.2em 0 .6em;line-height:1.2;text-wrap:balance;border-bottom:1px solid var(--line);padding-bottom:.25em}
+h3{font-size:1.08rem;font-weight:600;margin:1.6em 0 .5em;color:var(--accent-2);text-wrap:balance}
+p{margin:.7em 0}
+li{margin:.25em 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem;margin:1em 0;font-variant-numeric:tabular-nums}
+.tablewrap{overflow-x:auto;margin:1em 0}
+.tablewrap table{margin:0}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--bg-3);font-weight:600;font-size:.82rem}
+tr:nth-child(even) td{background:color-mix(in srgb,var(--bg-3) 40%,transparent)}
+figure{margin:1.2em 0;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:10px}
+figure img{display:block;max-width:100%;height:auto;margin:0 auto}
+figcaption{font-size:.85rem;color:#4a5470;margin-top:8px;text-align:center}
+code{font-family:var(--mono);font-size:.9em;background:var(--bg-3);padding:1px 4px;border-radius:4px}
+.kbd{font-family:var(--mono);font-size:.82rem;background:var(--bg-3);padding:1px 6px;border-radius:4px}
+mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;max-width:100%;padding:2px 0}
+mjx-container.wide-inline{display:inline-block;max-width:100%;overflow-x:auto;overflow-y:hidden;vertical-align:middle}
+
+/* encadrés du cours */
+.objectifs,.retenir,.exemple,.piege,.sim{border-radius:var(--radius);padding:12px 16px;margin:1.2em 0;border-left:4px solid var(--accent)}
+.objectifs{background:var(--obj);border-left-color:var(--ok)}
+.retenir{background:var(--ret)}
+.retenir::before,.exemple::before,.piege::before,.sim::before{display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:4px;color:var(--fg-2)}
+.retenir::before{content:"À retenir";color:var(--accent)}
+.exemple{background:var(--ex);border-left-color:var(--fg-2)}
+.exemple::before{content:"Exemple"}
+.piege{background:var(--piege);border-left-color:var(--sun)}
+.piege::before{content:"Pièges";color:var(--sun)}
+.methode{border-radius:var(--radius);padding:12px 16px;margin:1.2em 0;border:1px solid color-mix(in srgb,var(--ok) 35%,var(--line));border-left:4px solid var(--ok);background:var(--obj)}
+.methode .mh{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;margin-bottom:4px}
+.methode .mh .k{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ok)}
+.methode .mh .t{font-weight:600}
+.methode .mg{color:var(--fg-2);font-size:.93rem;margin:0 0 6px}
+.methode p{margin:.4em 0}
+.methode .ml{font-size:.82rem}
+.mcard{border:1px solid var(--line);border-left:4px solid var(--ok);border-radius:var(--radius);padding:12px 16px;margin:14px 0;background:var(--bg)}
+.mcard h3{margin:0 0 4px;color:var(--fg)}
+.mcard .quand{font-size:.9rem;color:var(--ok);font-weight:600;margin:0 0 6px}
+.mcard .ml{font-size:.85rem;display:flex;gap:6px 14px;flex-wrap:wrap}
+.q .hints{margin:8px 0;display:flex;flex-direction:column;gap:6px}
+.q .hint{background:var(--sun-soft);border-left:3px solid var(--sun);border-radius:6px;padding:7px 10px;font-size:.95rem}
+.q .hint b{color:var(--sun);font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;margin-right:6px}
+.q .mtags{font-size:.85rem;margin-top:8px;color:var(--fg-2)}
+.q .mtags a{margin-right:10px}
+.q .meta .tag.star,.pb .star{color:var(--sun)}
+.tierh{display:flex;gap:10px;align-items:baseline;margin-top:1.8em}
+.tierh .step{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--on-accent);background:var(--accent);border-radius:999px;padding:2px 10px;white-space:nowrap}
+.why{font-size:.88rem;color:var(--fg-2);margin:4px 0 0}
+.pb summary .why{display:block;text-transform:none;letter-spacing:0;font-weight:400}
+.fmeth{font-size:.9rem;color:var(--fg-2)}
+.sim{background:var(--bg-2);border:1px solid var(--line);border-left:4px solid var(--sun);padding-bottom:16px}
+.sim::before{content:"Simulation";color:var(--sun)}
+.sim .mount{margin-top:10px}
+.objectifs p:first-child,.retenir p:first-child,.exemple p:first-child,.piege p:first-child,.sim p:first-child{margin-top:0}
+.objectifs p:last-child,.retenir p:last-child,.exemple p:last-child,.piege p:last-child{margin-bottom:0}
+.objectifs ul,.piege ul{padding-left:1.2em}
+
+/* blocs repliables : « Pour aller plus loin » et « Niveau CPGE » */
+details.complement,details.cpge{border:1px dashed var(--line);border-radius:var(--radius);margin:1.1em 0;background:var(--bg)}
+details.cpge{border:1px solid color-mix(in srgb,var(--cpge) 45%,var(--line));border-left:4px solid var(--cpge);background:var(--cpge-soft)}
+details.complement>summary,details.cpge>summary{cursor:pointer;list-style:none;padding:9px 14px;font-size:.9rem;font-weight:600;color:var(--fg-2);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+details.complement>summary::-webkit-details-marker,details.cpge>summary::-webkit-details-marker{display:none}
+details.complement>summary::before,details.cpge>summary::before{content:"+";font-family:var(--mono);color:var(--accent);font-weight:600;width:1em;text-align:center}
+details.cpge>summary::before{color:var(--cpge)}
+details.complement[open]>summary::before,details.cpge[open]>summary::before{content:"−"}
+details>summary .tag{font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-2);font-weight:600;white-space:nowrap}
+details.cpge>summary .tag{color:var(--cpge)}
+details>summary .t{color:var(--fg);flex:1 1 0;min-width:0}
+@media (max-width:600px){details>summary .t{flex-basis:100%}}
+details.complement>.inner,details.cpge>.inner{padding:2px 16px 12px;font-size:.95rem}
+details.complement[open]{background:var(--bg-2)}
+.foldbar{display:flex;justify-content:flex-end;margin:-12px 0 8px}
+.foldbar button{font:inherit;font-size:.8rem;padding:4px 10px;border-radius:6px;border:1px solid var(--line);background:var(--bg-2);color:var(--fg-2);cursor:pointer}
+
+/* simulations */
+.simbox{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:14px;align-items:start}
+.simbox canvas{width:100%;height:auto;display:block;background:var(--paper);border:1px solid var(--line);border-radius:6px;max-width:100%}
+.controls{display:flex;flex-direction:column;gap:10px;font-size:.86rem;min-width:0}
+.controls label{display:flex;flex-direction:column;gap:3px}
+.controls label span.v{font-family:var(--mono);color:var(--accent-2)}
+.controls input[type=range]{width:100%;accent-color:var(--accent)}
+.controls select,.controls button{font:inherit;padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--bg-2);color:var(--fg)}
+.controls button{cursor:pointer;background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.controls button.secondary{background:var(--bg-3);color:var(--fg);border-color:var(--line)}
+.readout{font-family:var(--mono);font-size:.8rem;background:var(--bg-3);border-radius:6px;padding:8px 10px;line-height:1.5;overflow-wrap:anywhere}
+.readout b{color:var(--accent-2)}
+@media (max-width:760px){.simbox{grid-template-columns:1fr}}
+
+/* questions */
+.qcm-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:1em 0}
+.qcm-head label{display:flex;gap:6px;align-items:center;font-size:.9rem;min-width:0;max-width:100%}
+.qcm-head select{min-width:0;max-width:100%;text-overflow:ellipsis}
+.qcm-head select,.qcm-head button{font:inherit;font-size:.9rem;padding:6px 10px;border-radius:6px;border:1px solid var(--line);background:var(--bg-2);color:var(--fg)}
+.qcm-head button{cursor:pointer}
+.q{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin:16px 0;min-width:0}
+.q .meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;color:var(--fg-2);margin-bottom:8px}
+.q .meta .tag{background:var(--bg-3);padding:2px 8px;border-radius:999px;font-weight:600}
+.q .meta .tag.calc{background:var(--sun-soft);color:var(--sun)}
+.q .meta .tag.lvl{background:var(--cpge-soft);color:var(--cpge)}
+.q .ctx{font-size:.93rem;background:var(--bg-3);border-radius:6px;padding:10px 12px;margin:8px 0}
+.q .ctx summary{cursor:pointer;font-weight:600;font-size:.85rem}
+.q figure{margin:10px 0}
+.q .stmt{margin:10px 0}
+.q .opts{display:flex;flex-direction:column;gap:6px;margin:8px 0}
+.q .opts label{display:flex;gap:10px;align-items:flex-start;padding:7px 10px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--bg)}
+.q .opts label:hover{border-color:var(--accent)}
+.q .opts input{margin-top:5px;accent-color:var(--accent)}
+.q .opts .k{font-family:var(--mono);font-weight:500;color:var(--fg-2);min-width:1.4em}
+.q .opts .tx{min-width:0;overflow-x:auto}
+.q.done .opts label{cursor:default}
+.q.done .opts label.correct{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--bg))}
+.q.done .opts label.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--bg))}
+.q .numin{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.q .numin input{font:inherit;font-family:var(--mono);width:11em;max-width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}
+.q .numin input:focus{outline:2px solid var(--accent);outline-offset:0}
+.q .numin .unit{font-family:var(--mono);color:var(--fg-2)}
+.q.done .numin input.ok{border-color:var(--ok)} .q.done .numin input.bad{border-color:var(--bad)}
+.exo{margin:1.2em 0;border:1px solid color-mix(in srgb,var(--sun) 45%,var(--line));border-left:4px solid var(--sun);border-radius:var(--radius);background:var(--bg-2);padding:10px 14px 4px}
+.exo>.exo-t{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--sun);margin-bottom:2px}
+.exo .q{border:0;padding:6px 0 10px;margin:0;background:transparent}
+.exo .intro{font-size:.95rem}
+.exo .q+.q{border-top:1px dashed var(--line)}
+.q .formula{margin:10px 0;padding:10px 12px;border:1px dashed var(--line);border-radius:6px;background:var(--bg)}
+.q .formula .fl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.q .formula .lhs{font-family:var(--mono);color:var(--accent-2);white-space:nowrap}
+.q .formula input{font:inherit;font-family:var(--mono);flex:1 1 14em;min-width:0;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg-2);color:var(--fg)}
+.q .formula input:focus{outline:2px solid var(--accent);outline-offset:0}
+.q .formula input.ok{border-color:var(--ok)} .q .formula input.bad{border-color:var(--bad)}
+.q .formula button{font:inherit;font-size:.88rem;padding:6px 10px;border-radius:6px;border:1px solid var(--line);background:var(--bg-2);color:var(--fg);cursor:pointer}
+.q .formula .vars{font-size:.82rem;color:var(--fg-2);margin-top:6px;line-height:1.9}
+.q .formula .vars code{cursor:pointer;background:var(--bg-3);padding:1px 5px;border-radius:4px}
+.q .formula .vars code:hover{background:var(--ret)}
+.q .formula .fv{font-size:.9rem;margin-top:6px;overflow-x:auto}
+.q .formula .fv.ok{color:var(--ok);font-weight:600} .q .formula .fv.bad{color:var(--bad)}
+.q .redac{margin:10px 0}
+.q .redac textarea{width:100%;min-height:4.5em;font:inherit;font-size:.93rem;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);resize:vertical}
+.q .redac textarea:focus{outline:2px solid var(--accent);outline-offset:0}
+.q .redac .note{font-size:.8rem;color:var(--fg-2);margin:4px 0 0}
+.q .claude{margin-top:10px;padding:10px 12px;border-left:3px solid var(--cpge);background:var(--cpge-soft);font-size:.93rem;border-radius:6px}
+.q .claude::before{content:"Avis de Claude";display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--cpge);margin-bottom:2px}
+.q .claude .v{font-weight:600}
+.q .actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.q .actions button{font:inherit;font-size:.9rem;padding:6px 12px;border-radius:6px;border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);cursor:pointer}
+.q .actions button.secondary{background:var(--bg-2);color:var(--fg);border-color:var(--line)}
+.q .actions button:disabled{opacity:.5;cursor:default}
+.q .verdict{font-weight:600}
+.q .verdict.ok{color:var(--ok)} .q .verdict.bad{color:var(--bad)}
+.q .expected{margin-top:10px;padding:10px 12px;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:6px;background:var(--bg)}
+.q .expected::before{content:"Réponse attendue";display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--accent);margin-bottom:2px}
+.q .expl{margin-top:10px;padding:10px 12px;border-left:3px solid var(--ok);background:var(--ex);font-size:.93rem;overflow-x:auto}
+.q .expl .src{font-weight:600}
+.q .expl .review{margin:.6em 0 0;padding-top:.5em;border-top:1px dashed var(--line);color:var(--fg-2)}
+.q .selfeval{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px;font-size:.9rem}
+.q .selfeval button{font:inherit;font-size:.86rem;padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:var(--bg-2);color:var(--fg);cursor:pointer}
+.q .selfeval button.chosen{border-color:var(--accent);background:var(--ret);font-weight:600}
+.score{font-family:var(--mono);font-size:.88rem;background:var(--bg-3);padding:6px 12px;border-radius:6px}
+.empty{color:var(--fg-2);font-style:italic}
+/* problèmes et entraînements */
+details.pb{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-2);margin:12px 0}
+details.pb>summary{cursor:pointer;list-style:none;padding:12px 16px;display:grid;grid-template-columns:auto 1fr;gap:2px 12px;align-items:baseline}
+details.pb>summary::-webkit-details-marker{display:none}
+details.pb>summary::before{content:"+";grid-row:span 2;font-family:var(--mono);font-weight:600;color:var(--accent)}
+details.pb[open]>summary::before{content:"−"}
+details.pb>summary .pt{font-family:var(--display);font-size:1.15rem;font-weight:600;line-height:1.25}
+details.pb>summary .where{grid-column:2}
+details.pb[open]>summary{border-bottom:1px solid var(--line)}
+details.pb>.inner{padding:4px 16px 12px}
+details.pb .intro{font-size:.95rem}
+details.pb .links{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem;margin:.6em 0}
+details.pb .q{background:var(--bg);margin:12px 0}
+details.pb.cde>summary .pt{font-family:var(--body);font-size:1rem}
+.lvlnote{font-size:.88rem;color:var(--fg-2)}
+.cpgezone{margin-top:1.4em;padding-top:.4em;border-top:2px solid color-mix(in srgb,var(--cpge) 40%,var(--line))}
+.cpgezone>.zt{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;font-weight:600;color:var(--cpge)}
+.qmore>summary{cursor:pointer;font-weight:600;padding:10px 0;color:var(--accent-2)}
+.train-nav{display:flex;flex-wrap:wrap;gap:8px;margin:.8em 0}
+.train-nav a{font-size:.88rem;padding:5px 12px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--fg);background:var(--bg-2)}
+.train-nav a:hover{border-color:var(--accent)}
+
+/* accueil */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:1.2em 0}
+.card{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;text-decoration:none;color:var(--fg);display:flex;flex-direction:column;gap:6px}
+a.card:hover{border-color:var(--accent)}
+.card.soon{background:transparent;border-style:dashed}
+.card.soon h3{color:var(--fg-2)}
+.card .n{font-family:var(--mono);font-size:.72rem;color:var(--sun);letter-spacing:.08em}
+.card.soon .n{color:var(--fg-2)}
+.card h3{margin:0;font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--fg)}
+.card p{margin:0;font-size:.88rem;color:var(--fg-2)}
+.simlist .sim{margin:1.4em 0}
+.loading{color:var(--fg-2);font-style:italic;padding:40px 0}
+:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+@media (prefers-reduced-motion:no-preference){ .q,.card,details.pb{transition:border-color .15s} }
+
+@media (max-width:900px){
+  .app{grid-template-columns:1fr}
+  nav.rail{position:fixed;left:0;top:env(safe-area-inset-top,0px);width:min(300px,85vw);transform:translateX(-100%);transition:transform .2s;z-index:20;box-shadow:0 0 0 100vmax rgba(0,0,0,0);height:calc(100vh - env(safe-area-inset-top,0px))}
+  nav.rail.open{transform:none;box-shadow:0 0 0 100vmax rgba(0,0,0,.35)}
+  .menu-btn,.search-btn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:.85rem;padding:7px 12px;border-radius:6px;border:1px solid var(--line);background:var(--bg-2);color:var(--fg);margin:0 6px 16px 0;cursor:pointer}
+  h1{font-size:1.8rem}
+}
+</style>
+
+<div class="app">
+<nav class="rail" id="rail" aria-label="Sommaire">
+  <p class="brand">Physique des olympiades<small>IPhO · Concours général</small></p>
+  <div class="level" role="group" aria-label="Je prépare">
+    <div class="lab">Je prépare</div>
+    <div class="seg"><button type="button" id="lvlT" data-lvl="T">Terminale<small>IPhO + CG</small></button><button type="button" id="lvlC" data-lvl="C">CPGE<small>IPhO</small></button></div>
+  </div>
+  <form class="searchbox" id="railSearch" role="search"><input type="search" id="railQ" placeholder="Rechercher (ex. ludion)" aria-label="Rechercher dans le cours et les questions" autocomplete="off"></form>
+  <div class="navgroup"><h4>Départ</h4>
+    <a href="#accueil" data-page="accueil"><span class="n">⌂</span>Présentation et méthode</a>
+    <a href="#formulaire" data-page="formulaire"><span class="n">∑</span>Formulaire et constantes</a>
+    <a href="#methodes" data-page="methodes"><span class="n">✓</span>Fiches méthode</a>
+  </div>
+  <div class="navgroup"><h4>Outils</h4>
+    <a href="#outils" data-page="outils"><span class="n">0</span>Analyse dimensionnelle et outils</a>
+  </div>
+  <div class="navgroup"><h4>Mécanique</h4>
+    <a href="#nongalileen" data-page="nongalileen"><span class="n">1</span>Référentiels non galiléens</a>
+    <span class="soon"><span class="n">·</span>Mécanique du point et du solide<em>à venir</em></span>
+  </div>
+  <div class="navgroup"><h4>Mécanique des fluides</h4>
+    <a href="#statique" data-page="statique"><span class="n">1</span>Statique des fluides</a>
+    <a href="#dynamique" data-page="dynamique"><span class="n">2</span>Dynamique des fluides</a>
+    <a href="#tension" data-page="tension"><span class="n">3</span>Tension superficielle</a>
+  </div>
+  <div class="navgroup"><h4>Ondes</h4>
+    <a href="#geometrique" data-page="geometrique"><span class="n">1</span>Optique géométrique</a>
+    <a href="#optique" data-page="optique"><span class="n">2</span>Ondes et optique ondulatoire</a>
+  </div>
+  <div class="navgroup"><h4>Physique moderne</h4>
+    <a href="#relativite" data-page="relativite"><span class="n">1</span>Relativité restreinte</a>
+    <a href="#nucleaire" data-page="nucleaire"><span class="n">2</span>Physique nucléaire</a>
+    <a href="#quantique" data-page="quantique"><span class="n">3</span>Physique quantique</a>
+  </div>
+  <div class="navgroup"><h4>Autres chapitres</h4>
+    <span class="soon"><span class="n">·</span>Électricité<em>à venir</em></span>
+    <span class="soon"><span class="n">·</span>Thermodynamique<em>à venir</em></span>
+  </div>
+  <div class="navgroup"><h4>S’entraîner</h4>
+    <a href="#sims" data-page="sims"><span class="n">▶</span>Toutes les simulations</a>
+    <a href="#qcm" data-page="qcm"><span class="n">?</span>Banque de questions</a>
+  </div>
+</nav>
+<main>
+  <button class="menu-btn" id="menuBtn" type="button">☰ Sommaire</button><button class="search-btn" id="searchBtn" type="button">⌕ Rechercher</button>
+  <div id="view" class="page"><p class="loading">Chargement…</p></div>
+</main>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' }, startup: { typeset: false } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<script src="simkit.js"></script>
+<script src="compte.js"></script>
+<script>
+const CHAPTERS = {
+  outils: {title: "Analyse dimensionnelle et outils", label: "Méthodes · 0", topic: "l’analyse dimensionnelle, les ordres de grandeur, les incertitudes et les outils de calcul", cahier: "fiches 1 et 26", n: 7},
+  statique: {title: "Statique des fluides", label: "Mécanique des fluides · 1", topic: "la statique des fluides", cahier: "fiche 21", n: 6},
+  dynamique: {title: "Dynamique des fluides", label: "Mécanique des fluides · 2", topic: "la dynamique des fluides", cahier: "", n: 5},
+  nongalileen: {title: "Référentiels non galiléens", label: "Mécanique · 1", topic: "les référentiels non galiléens et les forces d’inertie", cahier: "", n: 5},
+  tension: {title: "Tension superficielle", label: "Mécanique des fluides · 3", topic: "la tension superficielle et la capillarité", cahier: "", n: 6},
+  geometrique: {title: "Optique géométrique", label: "Ondes · 1", topic: "l’optique géométrique (réfraction, lentilles, instruments)", cahier: "fiches 8 et 9", n: 5},
+  optique: {title: "Ondes et optique ondulatoire", label: "Ondes · 2", topic: "les ondes, les interférences et la diffraction", cahier: "fiche 2", n: 5},
+  relativite: {title: "Relativité restreinte", label: "Physique moderne · 1", topic: "la relativité restreinte et l’énergie de masse", cahier: "", n: 7},
+  nucleaire: {title: "Physique nucléaire", label: "Physique moderne · 2", topic: "la physique nucléaire et la radioactivité", cahier: "", n: 5},
+  quantique: {title: "Physique quantique", label: "Physique moderne · 3", topic: "la physique quantique", cahier: "", n: 6}
+};
+const SRC_LABEL = { officiel: "Corrigé officiel (Sciences à l’École).", cle: "Réponse officielle ; explication rédigée pour ce cours.", jury: "D’après le corrigé du rapport du jury.",
+  louchart: "D’après le corrigé de B. Louchart.", cours: "Corrigé rédigé pour ce cours.", cahier: "D’après le corrigé du cahier d’entraînement.", zhou: "D’après la solution de K. Zhou (Physics Olympiad Handouts).", kalda: "Énoncé des guides de J. Kalda ; corrigé rédigé pour ce cours à partir de ses indications.", lequin: "Énoncé de V. Lequin (préparation olympiades, LLG) ; corrigé rédigé pour ce cours.", physicite: "Énoncé de V. Lequin et M. Rouan (exercices Ondes 2026-27) ; corrigé rédigé pour ce cours." };
+const KIND_LABEL = { "qcm-annale": "QCM d’annales IPhO", pb: "Problèmes d’annales", cde: "Cahier d’entraînement", ext: "Polycopiés olympiques (Zhou, Kalda)" };
+const view = document.getElementById('view'), rail = document.getElementById('rail');
+let DATA = null, SIM_META = null, PRIORITY = null, SEARCH = null, METHODS = null, MBYID = {}, PROG = null, pendingMarks = null, CURRENT = null;
+
+function store(k, v){ try { if (v === undefined) return JSON.parse(localStorage.getItem(k)); localStorage.setItem(k, JSON.stringify(v)); } catch(e){ return null; } }
+let LEVEL = store('olymp-niveau') === 'C' ? 'C' : 'T';
+function paintLevel(){ document.querySelectorAll('.level button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lvl === LEVEL))); }
+document.querySelectorAll('.level button').forEach(b => b.addEventListener('click', () => { if (LEVEL === b.dataset.lvl) return; LEVEL = b.dataset.lvl; store('olymp-niveau', LEVEL); paintLevel(); CURRENT = null; route(); }));
+paintLevel();
+
+document.getElementById('menuBtn').addEventListener('click', () => rail.classList.toggle('open'));
+rail.addEventListener('click', e => { if (e.target.closest('a')) rail.classList.remove('open'); });
+document.getElementById('searchBtn').addEventListener('click', () => { location.hash = '#recherche'; });
+{ let t = null; document.getElementById('railQ').addEventListener('input', e => { clearTimeout(t); const q = e.target.value.trim(); if (q.length < 2) return;
+  t = setTimeout(() => { if (location.hash.startsWith('#recherche')){ const pq = document.getElementById('pageQ'); if (pq){ pq.value = q; history.replaceState(null, '', '#recherche/' + encodeURIComponent(q)); runSearch(q); return; } } location.hash = '#recherche/' + encodeURIComponent(q); }, 350); }); }
+document.getElementById('railSearch').addEventListener('submit', e => { e.preventDefault(); const q = document.getElementById('railQ').value.trim(); rail.classList.remove('open'); location.hash = '#recherche/' + encodeURIComponent(q); });
+
+async function getJSON(u, fb){ try { const r = await fetch(u); if (!r.ok) throw 0; return await r.json(); } catch(e){ return fb; } }
+async function loadMethods(){ if (!METHODS){ METHODS = await getJSON('data/methods.json', []); METHODS.forEach(m => MBYID[m.id] = m); } return METHODS; }
+async function loadProg(){ if (!PROG) PROG = await getJSON('data/progression.json', {}); return PROG; }
+async function loadData(){
+  if (DATA) return DATA; await loadMethods();
+  const d = await getJSON('data/questions.json', {groups: [], questions: []});
+  const F = await getJSON('data/formulas.json', {});
+  d.questions.forEach(q => { if (F[q.id]) q.formula = F[q.id]; });
+  d.byGroup = {}; d.gById = {}; d.groups.forEach(g => { d.gById[g.id] = g; d.byGroup[g.id] = []; });
+  d.groups.forEach(g => { if (!g.chap) g.chap = 'statique'; });
+  d.questions.forEach(q => { if (!q.chap) q.chap = q.group && d.gById[q.group] ? d.gById[q.group].chap : 'statique'; if (q.group && d.byGroup[q.group]) d.byGroup[q.group].push(q); });
+  d.qById = {}; d.questions.forEach(q => d.qById[q.id] = q);
+  DATA = d; return d;
+}
+async function loadSimMeta(){ if (!SIM_META) SIM_META = await getJSON('data/sims.json', []); return SIM_META; }
+async function loadPriority(){ if (!PRIORITY) PRIORITY = await getJSON('data/priority.json', {}); return PRIORITY; }
+const simLoaded = {};
+window.SIMS = window.SIMS || {};
+function loadSim(name){
+  if (window.SIMS[name]) return Promise.resolve();
+  if (!simLoaded[name]) simLoaded[name] = new Promise((res, rej) => { const s = document.createElement('script'); s.src = 'sim/' + name + '.js'; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
+  return simLoaded[name];
+}
+async function mountSims(root){
+  for (const box of root.querySelectorAll('.sim[data-name]')){
+    if (box.querySelector('.mount')) continue;
+    const name = box.dataset.name, mount = document.createElement('div'); mount.className = 'mount'; box.appendChild(mount);
+    try { await loadSim(name); window.SIMS[name](mount); } catch(e){ mount.innerHTML = '<p class="empty">Simulation indisponible.</p>'; }
+  }
+}
+function typeset(el){ if (window.MathJax && MathJax.typesetPromise) return MathJax.typesetPromise([el]).then(() => fitMath(el)).catch(() => {}); return Promise.resolve(); }
+/* une formule en ligne plus large que sa colonne (téléphone) défile dans sa propre boîte au lieu d'élargir la page */
+function fitMath(root){ (root || view).querySelectorAll('mjx-container:not([display="true"])').forEach(m => {
+  m.classList.remove('wide-inline'); const p = m.parentElement; if (!p) return;
+  if (m.getBoundingClientRect().width > p.getBoundingClientRect().width - 2) m.classList.add('wide-inline'); }); }
+document.addEventListener('toggle', e => { if (e.target.open) requestAnimationFrame(() => fitMath(e.target)); }, true);
+{ let t = null; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => fitMath(view), 200); }); }
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c])); }
+const forLevel = it => LEVEL === 'C' || (it.level || ['T', 'C']).includes('T');
+
+/* ---------- réponses numériques ---------- */
+function parseNum(s){
+  const sup = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-','⁺':'+'};
+  let t = String(s).trim().replace(/[\s  ]/g, '').replace(/−/g, '-').replace(/,/g, '.').replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]+/g, m => '^' + [...m].map(c => sup[c]).join(''));
+  t = t.replace(/^(?=10\^)/, '1×');
+  t = t.replace(/[×x*·]10\^?\(?([-+]?\d+)\)?$/i, 'e$1');
+  if (!/^[-+]?(\d+\.?\d*|\.\d+)(e[-+]?\d+)?$/i.test(t)) return NaN;
+  return parseFloat(t);
+}
+function fmtNum(v){ const a = Math.abs(v); if (a !== 0 && (a < 1e-2 || a >= 1e5)){ const e = Math.floor(Math.log10(a)); return (v / 10 ** e).toLocaleString('fr-FR', {maximumFractionDigits: 2}) + ' × 10' + String(e).replace(/./g, c => '⁻⁰¹²³⁴⁵⁶⁷⁸⁹'['-0123456789'.indexOf(c)]); }
+  return v.toLocaleString('fr-FR', {maximumFractionDigits: 3}); }
+
+/* ---------- vérification des expressions littérales (math.js, comparaison numérique en points aléatoires) ---------- */
+let mathLoading = null;
+function loadMath(){ if (window.math) return Promise.resolve(); if (!mathLoading) mathLoading = new Promise((res, rej) => { const s = document.createElement('script'); s.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.2/math.min.js'; s.onload = res; s.onerror = rej; document.head.appendChild(s); }); return mathLoading; }
+const RESERVED = new Set(['pi', 'e', 'i', 'E', 'PI', 'Infinity', 'NaN', 'true', 'false', 'null', 'undefined']);
+const FUNCS = new Set(['sqrt', 'exp', 'log', 'log10', 'sin', 'cos', 'tan', 'asin', 'acos', 'atan', 'abs', 'cbrt', 'nthRoot', 'sinh', 'cosh', 'tanh', 'pow']);
+function cleanExpr(src){
+  return String(src).replace(/[×·]/g, '*').replace(/÷/g, '/').replace(/[−–]/g, '-').replace(/[²]/g, '^2').replace(/[³]/g, '^3').replace(/√/g, 'sqrt').replace(/(\d),(\d)/g, '$1.$2')
+    .replace(/\bln\s*\(/g, 'log(').replace(/\bexp\s*\(/g, 'exp(').replace(/\{/g, '(').replace(/\}/g, ')').replace(/\[/g, '(').replace(/\]/g, ')').replace(/\s*=\s*$/, '').trim()
+    .replace(/([A-Za-z_][A-Za-z0-9_']*|\d|\))\s+(?=[A-Za-z_(\d])/g, (m, left) => FUNCS.has(left) ? m : left + '*');   // « rho g z » : produit implicite
+}
+function checkFormula(f, src){
+  const txt = cleanExpr(src); if (!txt) return {ok: false, msg: 'Tapez une expression.'};
+  let node; try { node = math.parse(txt); } catch(e){ return {ok: false, msg: 'Expression mal formée : ' + e.message.replace(/\(char \d+\)/, '').trim() + '.'}; }
+  const vars = Object.keys(f.vars), unknown = new Set(), funcs = new Set();
+  node.traverse(n => { if (n.isSymbolNode && !RESERVED.has(n.name) && !vars.includes(n.name) && !(n.name in math && typeof math[n.name] === 'function')) unknown.add(n.name); if (n.isFunctionNode){ if (!FUNCS.has(n.fn.name)) unknown.add(n.fn.name + '(…)'); } });
+  if (unknown.size) return {ok: false, msg: 'Symbole inconnu : ' + [...unknown].map(esc).join(', ') + '. Utilisez les noms proposés.'};
+  let ref; try { ref = math.compile(f.expr); } catch(e){ return {ok: false, msg: 'Référence indisponible.'}; }
+  const code = node.compile(); let agree = 0, tries = 0, lastDiff = 0;
+  for (let k = 0; k < 40 && tries < 12; k++){
+    const scope = {}; for (const v of vars){ const r = (f.ranges || {})[v] || [0.5, 2]; scope[v] = r[0] + Math.random() * (r[1] - r[0]); }
+    let a, b; try { a = ref.evaluate(scope); b = code.evaluate(scope); } catch(e){ continue; }
+    if (typeof b !== 'number' || typeof a !== 'number' || !isFinite(a) || !isFinite(b)) { if (typeof b === 'object' || typeof b === 'function') return {ok: false, msg: 'Le résultat n’est pas un nombre : vérifiez les parenthèses et les opérateurs.'}; continue; }
+    tries++; const diff = Math.abs(a - b) / Math.max(1e-12, Math.abs(a), Math.abs(b)); lastDiff = diff; if (diff < 1e-6) agree++;
+  }
+  if (tries < 6) return {ok: false, msg: 'Impossible d’évaluer l’expression (division par zéro, racine d’un négatif…).'};
+  if (agree === tries) return {ok: true, msg: 'Expression correcte : elle coïncide avec la référence pour toutes les valeurs testées.'};
+  if (agree > 0) return {ok: false, msg: 'Expression fausse pour certaines valeurs des variables (probablement un cas particulier, une racine ou une valeur absolue oubliée).'};
+  return {ok: false, msg: 'Expression différente de la réponse attendue.'};
+}
+function formulaBlock(q){
+  const f = q.formula, d = document.createElement('div'); d.className = 'formula';
+  const chips = Object.entries(f.vars).map(([k, tex]) => `<code data-v="${esc(k)}" title="Insérer">${esc(k)}</code> = \\(${tex}\\)`).join(' · ');
+  d.innerHTML = `<div class="fl"><span class="lhs">${esc(f.lhs)} =</span><input type="text" spellcheck="false" autocomplete="off" aria-label="Expression littérale" placeholder="ex. rho*g*(z_M - z_N)"><button type="button" class="fchk">Vérifier la formule</button></div>
+  <div class="vars">Variables : ${chips}. Opérateurs <code>+ - * / ^</code>, fonctions <code>sqrt</code>, <code>exp</code>, <code>ln</code>, <code>sin</code>…${f.note ? ' ' + f.note : ''}</div><div class="fv" aria-live="polite"></div>`;
+  const inp = d.querySelector('input'), fv = d.querySelector('.fv');
+  d.querySelectorAll('.vars code[data-v]').forEach(c => c.addEventListener('click', () => { const a = inp.selectionStart || inp.value.length; inp.value = inp.value.slice(0, a) + c.dataset.v + inp.value.slice(a); inp.focus(); inp.setSelectionRange(a + c.dataset.v.length, a + c.dataset.v.length); }));
+  const run = async () => { fv.textContent = 'Vérification…'; fv.className = 'fv'; try { await loadMath(); } catch(e){ fv.textContent = 'Vérificateur indisponible (hors ligne ?).'; return; }
+    const r = checkFormula(f, inp.value); fv.textContent = r.msg; fv.className = 'fv ' + (r.ok ? 'ok' : 'bad'); inp.classList.remove('ok', 'bad'); inp.classList.add(r.ok ? 'ok' : 'bad'); d.dataset.ok = r.ok ? 1 : 0; };
+  d.querySelector('.fchk').addEventListener('click', run); inp.addEventListener('keydown', e => { if (e.key === 'Enter'){ e.preventDefault(); run(); } });
+  return d;
+}
+/* ---------- correction d'une réponse rédigée par Claude (capacité « sample », si le lecteur y a accès) ---------- */
+let SAMPLE = null, sampleReady = null;
+const HOOKS = window.HOOKS = window.HOOKS || {};
+function getSample(){ if (!sampleReady) sampleReady = (HOOKS.corrector ? Promise.resolve(HOOKS.corrector()) : window.claude && claude.use ? claude.use('sample') : Promise.resolve(null)).then(s => { SAMPLE = s || null; return SAMPLE; }).catch(() => null); return sampleReady; }
+function redacBlock(q, d, after, mark){
+  const r = document.createElement('div'); r.className = 'redac';
+  r.innerHTML = `<textarea aria-label="Votre réponse" placeholder="Rédigez ici votre réponse (résultat, étapes, formules en texte ou en LaTeX)…"></textarea><p class="note"></p>`;
+  const ta = r.querySelector('textarea'), note = r.querySelector('.note');
+  getSample().then(s => { if (!s){ note.textContent = 'Comparez ensuite avec le corrigé et notez-vous.'; return; }
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'secondary'; b.textContent = 'Faire corriger par Claude'; note.textContent = 'Claude lit votre réponse, la compare au corrigé et vous donne un avis (il peut se tromper : le corrigé fait foi).';
+    d.querySelector('.actions').prepend(b);
+    b.addEventListener('click', async () => {
+      const ans = ta.value.trim(); if (ans.length < 3){ note.textContent = 'Écrivez d’abord votre réponse dans le cadre.'; ta.focus(); return; }
+      b.disabled = true; b.textContent = 'Correction en cours…';
+      const g = q.group && DATA ? DATA.gById[q.group] : null;
+      const prompt = `Tu es un professeur de physique qui corrige la copie d'un élève préparant les Olympiades de physique. Compare la réponse de l'élève au corrigé de référence. Juge le fond, pas la forme : ce qui compte est le résultat final (expression littérale ou valeur numérique, à quelques pour cent près) et la justesse physique de la démarche. N'exige pas le détail des calculs intermédiaires ni une rédaction complète : une réponse courte qui donne le bon résultat avec l'idée clé est juste ; une expression équivalente algébriquement est juste ; le LaTeX et le texte brut sont acceptés. Réserve « faux » à un résultat ou un raisonnement erroné.
+${g ? 'CONTEXTE DU PROBLÈME (HTML/LaTeX) : ' + plain(g.intro).slice(0, 2500) + '\n' : ''}QUESTION : ${plain(q.statement)}
+CORRIGÉ DE RÉFÉRENCE : ${plain(q.expected || '')} ${plain(q.explanation || '')}
+RÉPONSE DE L'ÉLÈVE : ${ans.slice(0, 3000)}
+Réponds uniquement par un objet JSON {"verdict": "juste" | "partiel" | "faux", "commentaire": "..."} ; le commentaire (3 phrases maximum, en français, tutoiement) dit ce qui est juste, ce qui manque ou l'erreur, sans réécrire tout le corrigé.`;
+      try {
+        const v = s.correct ? await s.correct(q, ans) : await s.json(prompt, {modelTier: 'default'});
+        const verdict = ['juste', 'partiel', 'faux'].includes(v && v.verdict) ? v.verdict : 'partiel';
+        const c = document.createElement('div'); c.className = 'claude'; c.innerHTML = `<span class="v">${verdict === 'juste' ? 'Juste.' : verdict === 'partiel' ? 'En partie.' : 'À revoir.'}</span> ${esc(String(v && v.commentaire || ''))}`;
+        if (!d.classList.contains('done')) d.querySelector('.reveal').click();
+        after.before(c); typeset(c);
+        const sel = after.querySelector(`.selfeval button[data-v="${verdict === 'juste' ? 1 : verdict === 'partiel' ? 0.5 : 0}"]`); if (sel) sel.click();
+        b.textContent = 'Corrigé par Claude';
+      } catch(e){ b.disabled = false; b.textContent = 'Faire corriger par Claude'; note.textContent = e && e.code === 'rate_limited' ? 'Trop de demandes : réessayez dans un instant.' : e && e.code === 'not_granted' ? 'Correction par Claude non autorisée pour ce lecteur.' : e && e.userMessage ? e.userMessage : 'La correction n’a pas abouti ; comparez avec le corrigé.'; }
+    }); });
+  return r;
+}
+
+/* ---------- rendu d'une question ---------- */
+function renderQuestion(q, opts = {}){
+  { const own = opts.onDone; opts = {...opts, onDone: (dd, first) => { if (own) own(dd, first); if (HOOKS.done) try { HOOKS.done(q, dd, first); } catch(e){} }}; }
+  const d = document.createElement('div'); d.className = 'q'; d.dataset.id = q.id;
+  const multi = q.type === 'qcm' && (q.multi || (q.correct && q.correct.length > 1));
+  const g = q.group && DATA ? DATA.gById[q.group] : null;
+  let h = '<div class="meta">';
+  if (opts.showGroup && q.chap && CHAPTERS[q.chap]) h += `<span class="tag" style="background:var(--sun-soft);color:var(--sun)">${esc(CHAPTERS[q.chap].title)}</span>`;
+  if (q.origin) h += `<span class="tag">${esc(q.origin)}</span>`;
+  else if (opts.showGroup && g) h += `<span class="tag">${esc(g.origin || g.title)}</span>`;
+  if (q.num) h += `<span class="tag">${esc(q.num)}</span>`;
+  if (!(q.level || ['T', 'C']).includes('T')) h += '<span class="tag lvl">CPGE</span>';
+  if (q.calc) h += '<span class="tag calc">calcul</span>';
+  const ex = opts.extra && opts.extra[q.id];
+  if (ex && ex.star) h += '<span class="tag star">★ incontournable</span>';
+  h += `<span>${q.type === 'num' ? 'réponse numérique' : q.type === 'open' ? 'réponse à rédiger' : multi ? 'une ou plusieurs réponses' : 'une seule réponse'}</span></div>`;
+  if (ex && ex.why) h += `<p class="why">${esc(ex.why)}</p>`;
+  if (q.sub && opts.showSub) h += `<div class="where" style="text-transform:none;letter-spacing:0;font-weight:500">${esc(q.sub)}</div>`;
+  if (opts.showGroup && g){ h += `<details class="ctx"><summary>Contexte : ${esc(g.title)}</summary><div>${g.intro}</div>${(g.figures || []).map(f => figHTML(f)).join('')}</details>`; }
+  for (const f of (q.figures || [])) h += figHTML(f);
+  h += `<div class="stmt">${q.statement}</div>`;
+  if (q.type === 'qcm'){
+    h += '<div class="opts">' + q.options.map(o => `<label><input type="${multi ? 'checkbox' : 'radio'}" name="${esc(q.id)}" value="${esc(o.key)}"><span class="k">${esc(o.key)}.</span><span class="tx">${o.text}</span></label>`).join('') + '</div>';
+    h += '<div class="actions"><button type="button" class="check">Vérifier</button><button type="button" class="secondary reveal">Voir la réponse</button><span class="verdict" aria-live="polite"></span></div>';
+  } else if (q.type === 'num'){
+    h += `<div class="numin"><input type="text" inputmode="decimal" id="in-${esc(q.id)}" aria-label="Votre réponse" placeholder="ex. 1,9e2"><span class="unit">${esc(q.answer.unit || '')}</span></div>`;
+    h += '<div class="actions"><button type="button" class="check">Vérifier</button><button type="button" class="secondary reveal">Voir la réponse</button><span class="verdict" aria-live="polite"></span></div>';
+  } else {
+    h += '<div class="actions"><button type="button" class="reveal">Afficher le corrigé</button><span class="verdict" aria-live="polite"></span></div>';
+  }
+  if ((q.hints || []).length) h += '<div class="hints"></div>';
+  h += '<div class="after" hidden></div>';
+  d.innerHTML = h;
+  if ((q.hints || []).length){
+    const hb = document.createElement('button'); hb.type = 'button'; hb.className = 'secondary hintbtn'; let k = 0;
+    const lab = () => hb.textContent = q.hints.length > 1 ? `Indice ${k + 1}/${q.hints.length}` : 'Indice';
+    lab(); hb.addEventListener('click', () => { const box = d.querySelector('.hints'); const x = document.createElement('div'); x.className = 'hint'; x.innerHTML = `<b>Indice${q.hints.length > 1 ? ' ' + (k + 1) : ''}</b>${q.hints[k]}`; box.appendChild(x); typeset(x); k++; d.dataset.hints = k; if (k >= q.hints.length) hb.remove(); else lab(); });
+    const acts = d.querySelector('.actions'); const rv = acts.querySelector('.reveal'); acts.insertBefore(hb, rv);
+  }
+  const after = d.querySelector('.after'), verdict = d.querySelector('.verdict');
+  if (q.formula){ const fb = formulaBlock(q); (d.querySelector('.numin') || d.querySelector('.actions')).before(fb); }
+  if (q.type === 'open') d.querySelector('.actions').before(redacBlock(q, d, after));
+  const showExpl = () => {
+    let x = '';
+    if (q.type === 'open') x += `<div class="expected">${q.expected}</div>`;
+    x += `<div class="expl"><span class="src">${esc(SRC_LABEL[q.src] || 'Corrigé.')}</span> ${q.explanation || ''}${q.remark ? `<p class="review">${q.remark}</p>` : ''}</div>`;
+    const ms = (q.methods || []).filter(m => MBYID[m]); if (ms.length) x += `<div class="mtags">Méthode${ms.length > 1 ? 's' : ''} : ${ms.map(m => `<a href="#methodes--m-${esc(m)}">${esc(MBYID[m].title)}</a>`).join('')}</div>`;
+    if (q.type === 'open') x += '<div class="selfeval"><span>Votre réponse :</span><button type="button" data-v="1">juste</button><button type="button" data-v="0.5">en partie</button><button type="button" data-v="0">à revoir</button></div>';
+    after.innerHTML = x; after.hidden = false; typeset(after);
+    if (q.type === 'open') after.querySelectorAll('.selfeval button').forEach(b => b.addEventListener('click', () => {
+      after.querySelectorAll('.selfeval button').forEach(x2 => x2.classList.toggle('chosen', x2 === b));
+      const first = d.dataset.score === undefined; d.dataset.score = b.dataset.v; if (opts.onDone) opts.onDone(d, first);
+    }));
+  };
+  const finish = checked => {
+    d.classList.add('done');
+    d.querySelectorAll('.actions button').forEach(b => b.disabled = true);
+    if (q.type === 'qcm'){
+      const correct = new Set(q.correct);
+      d.querySelectorAll('.opts label').forEach(l => { const inp = l.querySelector('input'); inp.disabled = true; if (correct.has(inp.value)) l.classList.add('correct'); else if (inp.checked) l.classList.add('wrong'); });
+      if (checked){
+        const chosen = [...d.querySelectorAll('input:checked')].map(i => i.value); let sc;
+        if (multi){ let s = 0; chosen.forEach(c => s += correct.has(c) ? 1 : -0.5); sc = Math.max(0, s) / correct.size; }
+        else sc = chosen.length === 1 && correct.has(chosen[0]) ? 1 : 0;
+        verdict.textContent = sc === 1 ? 'Exact' : sc > 0 ? 'En partie' : 'Faux'; verdict.className = 'verdict ' + (sc === 1 ? 'ok' : 'bad'); d.dataset.score = sc;
+      } else { verdict.textContent = 'Réponse : ' + q.correct.join(', '); d.dataset.score = 0; }
+    } else if (q.type === 'num'){
+      const inp = d.querySelector('.numin input'); inp.readOnly = true;
+      const a = q.answer, disp = a.display || (fmtNum(a.value) + (a.unit ? ' ' + a.unit : ''));
+      if (checked){
+        const x = parseNum(inp.value), ok = isFinite(x) && Math.abs(x - a.value) <= (a.tol || 0.05) * Math.abs(a.value);
+        inp.classList.add(ok ? 'ok' : 'bad'); verdict.innerHTML = (ok ? 'Exact. ' : 'Faux. ') + 'Réponse : ' + disp; verdict.className = 'verdict ' + (ok ? 'ok' : 'bad'); d.dataset.score = ok ? 1 : 0;
+      } else { verdict.innerHTML = 'Réponse : ' + disp; d.dataset.score = 0; }
+      if (/\\\(/.test(disp)) typeset(verdict);
+    }
+    showExpl();
+    if (q.type !== 'open' && opts.onDone) opts.onDone(d, true);
+  };
+  const chk = d.querySelector('.check'); if (chk) chk.addEventListener('click', () => {
+    if (q.type === 'num' && !isFinite(parseNum(d.querySelector('.numin input').value))){ verdict.textContent = 'Tapez un nombre (ex. 0,21 ou 1,9e2).'; verdict.className = 'verdict bad'; return; }
+    if (q.type === 'qcm' && !d.querySelector('input:checked')){ verdict.textContent = 'Cochez au moins une réponse.'; verdict.className = 'verdict bad'; return; }
+    finish(true); });
+  const rev = d.querySelector('.reveal'); rev.addEventListener('click', () => { if (q.type === 'open'){ rev.disabled = true; d.classList.add('done'); showExpl(); } else finish(false); });
+  const ni = d.querySelector('.numin input'); if (ni) ni.addEventListener('keydown', e => { if (e.key === 'Enter') chk.click(); });
+  if (HOOKS.decorate) try { HOOKS.decorate(q, d); } catch(e){}
+  return d;
+}
+function figHTML(f){ return `<figure><img loading="lazy" src="img/q/${esc(f.file)}" alt="${esc(f.caption || 'Figure de l’énoncé')}">${f.caption ? `<figcaption>${esc(f.caption)}</figcaption>` : ''}</figure>`; }
+function scoreBar(container, total){
+  const s = document.createElement('div'); s.className = 'qcm-head'; const sc = document.createElement('span'); sc.className = 'score'; s.appendChild(sc); container.appendChild(s);
+  let n = 0; const seen = new Map();
+  const upd = () => { let pts = 0; seen.forEach(v => pts += v); sc.textContent = `${seen.size} / ${total} traitée${seen.size > 1 ? 's' : ''} · ${Math.round(pts * 10) / 10} point${pts >= 2 ? 's' : ''}`; };
+  upd(); return (d) => { seen.set(d.dataset.id, parseFloat(d.dataset.score || 0)); upd(); };
+}
+function renderList(container, qs, opts = {}){
+  container.innerHTML = '';
+  if (!qs.length){ container.innerHTML = '<p class="empty">Aucune question pour cette sélection.</p>'; return; }
+  const onDone = scoreBar(container, qs.length);
+  qs.forEach(q => container.appendChild(renderQuestion(q, {...opts, onDone})));
+  typeset(container);
+}
+function renderGroup(g, qs, ex){
+  const d = document.createElement('details'); d.className = 'pb' + (g.kind === 'cde' ? ' cde' : ''); d.id = 'g-' + g.id;
+  const lv = (g.level || []).includes('T') ? '' : ' · niveau CPGE';
+  const nq = qs.length + ' question' + (qs.length > 1 ? 's' : '');
+  d.innerHTML = `<summary><span class="pt">${ex && ex.star ? '<span class="star">★</span> ' : ''}${g.kind === 'cde' ? 'Entraînement ' + esc(g.num) + ' · ' : ''}${esc(g.title)}</span><span class="where">${esc(g.kind === 'cde' ? 'Cahier d’entraînement · ' + nq + lv : (g.origin || '') + ' · ' + nq + lv)}${ex && ex.why ? `<span class="why">${esc(ex.why)}</span>` : ''}</span></summary><div class="inner"></div>`;
+  const inner = d.querySelector('.inner'); let built = false;
+  d.addEventListener('toggle', () => { if (!d.open || built) return; built = true;
+    let h = `<div class="intro">${g.kind === 'cde' ? '<p>' + g.intro + '</p>' : g.intro}</div>` + (g.figures || []).map(figHTML).join('');
+    if ((g.links || []).length) h += '<div class="links">' + g.links.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join('') + '</div>';
+    inner.innerHTML = h; const list = document.createElement('div'); inner.appendChild(list); renderList(list, qs); typeset(inner); });
+  return d;
+}
+
+/* ---------- mise en forme des pages de cours ---------- */
+function methodBox(div){
+  const m = MBYID[div.dataset.m]; if (!m){ div.remove(); return; }
+  const ctx = div.innerHTML;
+  div.innerHTML = `<div class="mh"><span class="k">Méthode</span><span class="t">${esc(m.title)}</span></div><p class="mg">${m.texte}</p>${ctx}<div class="ml"><a href="#methodes--m-${esc(m.id)}">Fiche méthode et exercices</a></div>`;
+}
+function preparePage(root){
+  root.querySelectorAll('div.methode[data-m]').forEach(methodBox);
+  root.querySelectorAll('table').forEach(t => { if (t.parentNode.classList.contains('tablewrap')) return; const w = document.createElement('div'); w.className = 'tablewrap'; t.parentNode.insertBefore(w, t); w.appendChild(t); });
+  const fold = (div, cls, tag, open) => { const d = document.createElement('details'); d.className = cls; if (div.id) d.id = div.id; if (open) d.open = true;
+    d.innerHTML = `<summary><span class="tag">${tag}</span><span class="t">${esc(div.getAttribute('title') || '')}</span></summary>`;
+    const inner = document.createElement('div'); inner.className = 'inner'; while (div.firstChild) inner.appendChild(div.firstChild); d.appendChild(inner); div.replaceWith(d); };
+  const comps = [...root.querySelectorAll('div.complement')]; comps.forEach(div => fold(div, 'complement', 'Pour aller plus loin', false));
+  root.querySelectorAll('div.cpge').forEach(div => fold(div, 'cpge', LEVEL === 'C' ? 'Niveau CPGE' : 'Niveau CPGE · facultatif en terminale', LEVEL === 'C'));
+  if (comps.length > 1){
+    const bar = document.createElement('div'); bar.className = 'foldbar'; const b = document.createElement('button'); b.type = 'button'; b.textContent = 'Tout déplier';
+    b.addEventListener('click', () => { const open = b.textContent === 'Tout déplier'; root.querySelectorAll('details.complement,details.cpge').forEach(x => x.open = open); b.textContent = open ? 'Tout replier' : 'Tout déplier'; });
+    bar.appendChild(b); const sub = root.querySelector('.subtitle') || root.querySelector('h1'); if (sub) sub.after(bar);
+  }
+}
+function unfold(el){ for (let d = el && el.closest('details'); d; d = d.parentElement && d.parentElement.closest('details')) d.open = true; }
+function settled(ms = 2500){
+  const imgs = [...view.querySelectorAll('img')].filter(i => !i.complete); imgs.forEach(i => i.loading = 'eager');
+  return Promise.race([Promise.all(imgs.map(i => new Promise(r => { i.addEventListener('load', r, {once: true}); i.addEventListener('error', r, {once: true}); }))), new Promise(r => setTimeout(r, ms))]);
+}
+async function goAnchor(anchor){
+  const jump = () => { if (!anchor){ if (!view.querySelector('mark.hit-first')) window.scrollTo(0, 0); } else { const el = document.getElementById(anchor); if (el) el.scrollIntoView({block: 'start'}); else window.scrollTo(0, 0); }
+    const f = view.querySelector('mark.hit-first'); if (f) f.scrollIntoView({block: 'center'}); };
+  applyPendingMarks(anchor);
+  if (anchor){ const el = document.getElementById(anchor); unfold(el); if (el && el.tagName === 'DETAILS') el.open = true; }
+  unfold(view.querySelector('mark.hit-first'));
+  jump();
+  if (anchor || view.querySelector('mark.hit-first')){ await settled(); await new Promise(r => setTimeout(r, 150)); jump(); }
+}
+
+/* ---------- pages ---------- */
+async function fetchText(u, fb){ try { const r = await fetch(u); if (!r.ok) throw 0; return await r.text(); } catch(e){ return fb; } }
+async function showChapter(id, anchor){
+  const meta = CHAPTERS[id];
+  if (CURRENT === id && view.dataset.page === id){ goAnchor(anchor); return; }
+  CURRENT = id; view.dataset.page = id; view.className = 'page';
+  view.innerHTML = '<p class="loading">Chargement du chapitre…</p>';
+  view.innerHTML = await fetchText('chap/' + id + '.html', `<h1>${esc(meta.title)}</h1><p class="empty">Chapitre en cours de rédaction.</p>`);
+  await loadMethods(); preparePage(view);
+  const data = await loadData(), prio = (await loadPriority())[id] || [];
+  // exercices d'application intégrés au fil du cours
+  const inline = new Set();
+  view.querySelectorAll('.exo[data-q], .exo[data-group]').forEach(box => {
+    const qs = box.dataset.q ? [data.questions.find(q => q.id === box.dataset.q)].filter(Boolean) : (data.byGroup[box.dataset.group] || []);
+    const g = box.dataset.group ? data.gById[box.dataset.group] : (qs[0] && qs[0].group ? data.gById[qs[0].group] : null);
+    if (!qs.length){ box.remove(); return; }
+    qs.forEach(q => inline.add(q.id));
+    const vis = qs.filter(forLevel); if (!vis.length){ box.remove(); return; }
+    box.innerHTML = `<div class="exo-t">Exercice d’application · ${esc(g && box.dataset.group ? g.origin + (g.num ? ' ' + g.num : '') + ' · ' + g.title : (qs[0].origin || (g ? g.origin : '')))}</div>` + (box.dataset.group && g ? `<div class="intro">${g.intro}</div>` + (g.figures || []).map(figHTML).join('') : '');
+    vis.forEach(q => box.appendChild(renderQuestion(q, {showSub: !box.dataset.group})));
+  });
+  const sec = document.createElement('section');
+  const ofChap = x => x.chap === id;
+  const prog = (await loadProg())[id] || [];
+  const items = [], seen = new Set();
+  const addQ = (q, e) => { if (!q || !ofChap(q) || inline.has(q.id) || seen.has('q:' + q.id)) return; seen.add('q:' + q.id); items.push({q, e}); };
+  const addG = (g, e) => { if (!g || !ofChap(g) || seen.has('g:' + g.id)) return; const qs = (data.byGroup[g.id] || []).filter(q => !inline.has(q.id)); if (!qs.length) return; seen.add('g:' + g.id); items.push({g, qs, e}); };
+  prog.forEach(e => { const t = e.ref.slice(0, 1), rid = e.ref.slice(2); if (t === 'q') addQ(data.qById[rid], e); else addG(data.gById[rid], e); });
+  data.groups.filter(g => ofChap(g) && g.kind === 'cde').forEach(g => addG(g, {tier: 1}));
+  data.questions.filter(q => ofChap(q) && !q.group).sort((a, b) => (b.year || 0) - (a.year || 0)).forEach(q => addQ(q, {tier: prio.includes(q.id) ? 2 : 3, star: prio.includes(q.id)}));
+  data.groups.filter(ofChap).forEach(g => addG(g, {tier: 3}));
+  const TIERS = [[1, 'gammes', 'Gammes', 'Application directe : calculs courts et questions en une étape, à enchaîner vite pour automatiser les réflexes.'],
+    [2, 'classiques', 'Les classiques', 'Les exercices qui font le plus progresser, dans l’ordre conseillé : chaque méthode du chapitre y sert au moins une fois. ★ = incontournable.'],
+    [3, 'approfondissement', 'Approfondissement', 'Problèmes plus longs ou plus subtils : Concours général, IPhO internationales, polycopiés olympiques de K. Zhou et J. Kalda.']];
+  sec.innerHTML = `<h2 id="entrainement">${meta.n}. S’entraîner</h2>
+  <p>Les exercices sont classés pour progresser le plus vite possible : d’abord les gammes, puis les classiques, enfin l’approfondissement. ${LEVEL === 'C' ? 'Mode <strong>CPGE</strong> : toutes les questions sont affichées.' : 'Mode <strong>Terminale</strong> : les questions de niveau CPGE sont regroupées en fin de chaque étape.'} Cherchez sur papier, servez-vous des indices si vous bloquez, puis seulement du corrigé.</p>
+  <div class="train-nav">${TIERS.map(([n, a, t]) => `<a href="#${id}--${a}">${n}. ${t}</a>`).join('')}<a href="#qcm">Banque de questions</a></div>`;
+  view.appendChild(sec);
+  const extra = {}; items.forEach(it => { if (it.q) extra[it.q.id] = it.e; });
+  const lazy = (det, fill) => det.addEventListener('toggle', () => { if (det.open && !det.dataset.done){ det.dataset.done = 1; fill(); } });
+  const fillZone = (zone, its, tier, all) => {
+    let batch = [];
+    const flush = () => { if (!batch.length) return; const qs = batch; batch = [];
+      if (tier === 3 && qs.length > 4){ const det = document.createElement('details'); det.className = 'qmore'; det.innerHTML = `<summary>${qs.length} QCM d’annales</summary><div></div>`; zone.appendChild(det); lazy(det, () => renderList(det.querySelector('div'), qs, {showSub: true, extra})); }
+      else { const box = document.createElement('div'); zone.appendChild(box); renderList(box, qs, {showSub: true, extra}); } };
+    its.forEach(it => { if (it.q) batch.push(it.q); else { flush(); zone.appendChild(renderGroup(it.g, LEVEL === 'C' || all ? it.qs : it.qs.filter(forLevel), it.e)); } });
+    flush(); };
+  for (const [n, a, t, desc] of TIERS){
+    const its = items.filter(it => (it.e.tier || 3) === n); if (!its.length) continue;
+    const vis = its.filter(it => it.q ? forLevel(it.q) : forLevel(it.g) && (LEVEL === 'C' || it.qs.some(forLevel))), hid = its.filter(it => !vis.includes(it));
+    const h = document.createElement('h3'); h.id = a; h.className = 'tierh'; h.innerHTML = `<span class="step">Étape ${n}</span><span>${t}</span>`; sec.appendChild(h);
+    const p = document.createElement('p'); p.className = 'lvlnote'; p.textContent = desc; sec.appendChild(p);
+    const zone = document.createElement('div'); sec.appendChild(zone); fillZone(zone, vis, n);
+    if (hid.length){ const z = document.createElement('div'); z.className = 'cpgezone'; z.innerHTML = '<div class="zt">Niveau CPGE</div>'; sec.appendChild(z); fillZone(z, hid, 3, true); }
+  }
+  await typeset(view);
+  mountSims(view);
+  goAnchor(anchor);
+}
+async function showPage(file, fb, anchor){
+  view.className = 'page'; CURRENT = null; view.dataset.page = '';
+  view.innerHTML = await fetchText(file, fb); await loadMethods(); preparePage(view); await typeset(view); goAnchor(anchor);
+}
+async function showSims(){
+  view.className = 'page wide';
+  const sims = await loadSimMeta();
+  let h = '<p class="eyebrow">Simulations</p><h1>Toutes les simulations</h1><p class="subtitle">Chacune est aussi intégrée dans son chapitre, à l’endroit du cours qu’elle illustre.</p><div class="simlist">';
+  for (const s of sims) h += `<div class="sim" data-name="${esc(s.name)}"><p><b>${esc(s.title)}</b>${s.level === 'C' ? ' <span class="tag lvl" style="font-size:.7rem;color:var(--cpge)">CPGE</span>' : ''} : ${esc(s.desc)} <a href="#sim-${esc(s.name)}">Ouvrir seule</a> · <a href="#${esc(s.page)}--${esc(s.anchor)}">Le cours</a></p></div>`;
+  view.innerHTML = h + '</div>'; mountSims(view); window.scrollTo(0, 0);
+}
+async function showOneSim(name){
+  view.className = 'page wide';
+  const m = (await loadSimMeta()).find(x => x.name === name);
+  if (!m){ view.innerHTML = '<h1>Simulation introuvable</h1><p><a href="#sims">Toutes les simulations</a></p>'; return; }
+  view.innerHTML = `<p class="eyebrow">Simulation · ${esc(CHAPTERS[m.page] ? CHAPTERS[m.page].title : '')}</p><h1>${esc(m.title)}</h1><p class="subtitle">${esc(m.desc)}</p><div class="sim" data-name="${esc(name)}"></div><p><a href="#${esc(m.page)}--${esc(m.anchor)}">← Le cours correspondant</a> · <a href="#sims">Toutes les simulations</a></p>`;
+  mountSims(view); window.scrollTo(0, 0);
+}
+async function showQcm(anchor){
+  view.className = 'page'; const data = await loadData(), prio = new Set(Object.values(await loadPriority()).flat());
+  Object.values(await loadProg()).flat().filter(e => e.star).forEach(e => { const rid = e.ref.slice(2); if (e.ref[0] === 'q') prio.add(rid); else (data.byGroup[rid] || []).forEach(q => prio.add(q.id)); });
+  const all = data.questions;
+  view.innerHTML = `<p class="eyebrow">Entraînement</p><h1>Banque de questions</h1>
+  <p class="subtitle">${all.length} questions : QCM des tests IPhO, problèmes d’annales découpés en questions, cahier d’entraînement, polycopiés olympiques.</p>
+  <p class="lvlnote">Niveau affiché : <strong>${LEVEL === 'C' ? 'CPGE (toutes les questions)' : 'Terminale'}</strong> (sélecteur « Je prépare » du menu).</p>
+  <div class="qcm-head">
+    <label for="fChap">Chapitre <select id="fChap"><option value="">tous</option>${Object.entries(CHAPTERS).map(([k, c]) => `<option value="${k}">${esc(c.title)}</option>`).join('')}</select></label>
+    <label for="fSrc">Source <select id="fSrc"><option value="">toutes</option><option value="qcm-annale">QCM d’annales IPhO</option><option value="pb">Problèmes d’annales</option><option value="cde">Cahier d’entraînement</option><option value="ext">Polycopiés olympiques (Zhou, Kalda, Lequin)</option></select></label>
+    <label for="fM">Méthode <select id="fM"><option value="">toutes</option>${(METHODS || []).map(m => `<option value="${esc(m.id)}">${esc(m.title)}</option>`).join('')}</select></label>
+    <label for="fType">Type <select id="fType"><option value="">tous</option><option value="qcm">QCM</option><option value="num">réponse numérique</option><option value="open">réponse à rédiger</option></select></label>
+    <label for="fSel">Questions <select id="fSel"><option value="">toutes</option><option value="prio">incontournables</option></select></label>
+    <label for="fN">Nombre <select id="fN"><option>10</option><option>20</option><option value="999">toutes</option></select></label>
+    <label for="fO">Ordre <select id="fO"><option value="random">aléatoire</option><option value="recent">plus récentes d’abord</option></select></label>
+    <button type="button" id="go">Nouvelle série</button>
+  </div><div class="qlist"></div>`;
+  const ids = ['fChap', 'fSrc', 'fType', 'fM', 'fSel', 'fN', 'fO'], el = i => document.getElementById(i);
+  const last = store('olymp-filtres'); if (last) ids.forEach(i => { if (last[i] !== undefined) try { el(i).value = last[i]; } catch(e){} });
+  if (anchor && anchor.startsWith('m-') && MBYID[anchor.slice(2)]){ ['fChap', 'fSrc', 'fType', 'fSel'].forEach(i => el(i).value = ''); el('fM').value = anchor.slice(2); el('fN').value = '999'; el('fO').value = 'recent'; }
+  const run = () => {
+    let qs = all.filter(forLevel); const v = Object.fromEntries(ids.map(i => [i, el(i).value]));
+    if (v.fChap) qs = qs.filter(q => q.chap === v.fChap); if (v.fSrc) qs = qs.filter(q => q.kind === v.fSrc); if (v.fType) qs = qs.filter(q => q.type === v.fType); if (v.fSel === 'prio') qs = qs.filter(q => prio.has(q.id)); if (v.fM) qs = qs.filter(q => (q.methods || []).includes(v.fM));
+    const yr = q => q.year || (q.group && data.gById[q.group] ? data.gById[q.group].year || 0 : 0);
+    if (v.fO === 'random') for (let i = qs.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [qs[i], qs[j]] = [qs[j], qs[i]]; } else qs.sort((a, b) => yr(b) - yr(a));
+    renderList(view.querySelector('.qlist'), qs.slice(0, +v.fN), {showGroup: true, showSub: true});
+  };
+  el('go').addEventListener('click', run);
+  ids.forEach(i => el(i).addEventListener('change', () => { store('olymp-filtres', Object.fromEntries(ids.map(k => [k, el(k).value]))); run(); }));
+  run(); window.scrollTo(0, 0);
+}
+
+async function showMethods(anchor){
+  view.className = 'page'; CURRENT = null; const data = await loadData(); await loadMethods();
+  const cnt = {}; data.questions.forEach(q => (q.methods || []).forEach(m => { cnt[m] = (cnt[m] || 0) + 1; }));
+  let h = `<p class="eyebrow">Départ</p><h1>Fiches méthode</h1><p class="subtitle">Les réflexes qui reviennent d’un chapitre à l’autre</p>
+  <p>Aux olympiades, ce qui fait la différence n’est pas de connaître plus de formules, mais de reconnaître vite <strong>quelle idée</strong> débloque un problème. Chaque fiche dit quand y penser, rappelle la méthode et renvoie aux chapitres où elle sert, puis aux exercices qui la mobilisent. Dans le cours, un encadré vert « Méthode » la signale là où elle est utilisée.</p>
+  <p class="lvlnote">Cette organisation par idées s’inspire des guides de Jaan Kalda (IPhO study guides).</p>`;
+  for (const m of METHODS){
+    const ch = (m.chaps || []).filter(c => CHAPTERS[c]);
+    h += `<div class="mcard" id="m-${esc(m.id)}"><h3>${esc(m.title)}</h3><p class="quand">Quand ? ${esc(m.quand)}</p><p>${m.texte}</p><div class="ml">${ch.map(c => `<a href="#${c}">${esc(CHAPTERS[c].title)}</a>`).join('')}${cnt[m.id] ? `<a href="#qcm/m-${esc(m.id)}"><strong>S’entraîner : ${cnt[m.id]} question${cnt[m.id] > 1 ? 's' : ''} →</strong></a>` : ''}</div></div>`;
+  }
+  view.innerHTML = h; await typeset(view); goAnchor(anchor);
+}
+
+/* ---------- recherche plein texte ---------- */
+async function loadSearch(){ if (!SEARCH) SEARCH = await getJSON('data/search.json', []); return SEARCH; }
+function norm(str){ let out = '', map = []; for (let i = 0; i < str.length; i++){ let c = str[i].toLowerCase(); if (c === 'œ') c = 'oe'; else if (c === 'æ') c = 'ae'; else if (c === '’' || c === 'ʼ') c = "'"; else c = c.normalize('NFD').replace(/[̀-ͯ]/g, ''); for (const ch of c){ out += ch; map.push(i); } } return {s: out, map}; }
+const nrm = s => norm(String(s || '')).s;
+function terms(q){ return [...new Set(nrm(q).split(/[^a-z0-9°'²³-]+/).map(t => t.replace(/^'+|'+$/g, '')).filter(t => t.length >= 2 || /\d/.test(t)))]; }
+function plain(h){ const d = document.createElement('div'); d.innerHTML = String(h || ''); return (d.textContent || '').replace(/\\\(|\\\)|\\\[|\\\]/g, ' ').replace(/\\(dfrac|tfrac|frac|text|mathrm|left|right|displaystyle|quad|qquad)/g, ' ').replace(/[{}\\^_]/g, ' ').replace(/\s+/g, ' ').trim(); }
+function highlightStr(text, ts){ const n = norm(text), marks = new Array(text.length).fill(false);
+  for (const t of ts){ let k = n.s.indexOf(t); while (k >= 0){ for (let j = k; j < k + t.length; j++) marks[n.map[j]] = true; k = n.s.indexOf(t, k + t.length); } }
+  let h = '', open = false; for (let i = 0; i < text.length; i++){ if (marks[i] && !open){ h += '<mark>'; open = true; } if (!marks[i] && open){ h += '</mark>'; open = false; } h += esc(text[i]); } return h + (open ? '</mark>' : ''); }
+function snippet(text, ts, len = 200){ const n = norm(text); let pos = -1; for (const t of ts){ const k = n.s.indexOf(t); if (k >= 0 && (pos < 0 || k < pos)) pos = k; }
+  let a = pos >= 0 ? Math.max(0, n.map[pos] - 60) : 0; if (a > 0){ const sp = text.indexOf(' ', a); if (sp > 0 && sp < a + 20) a = sp + 1; }
+  let piece = text.slice(a, a + len); if (a + len < text.length) piece += '…'; if (a > 0) piece = '…' + piece; return highlightStr(piece, ts); }
+const countHits = (ns, t) => { let c = 0, k = ns.indexOf(t); while (k >= 0 && c < 50){ c++; k = ns.indexOf(t, k + t.length); } return c; };
+function pageLabel(p){ return CHAPTERS[p] ? CHAPTERS[p].label + ' · ' + CHAPTERS[p].title : p === 'formulaire' ? 'Formulaire' : p === 'methodes' ? 'Fiches méthode' : p === 'accueil' ? 'Présentation' : p; }
+function qText(q){ const g = q.group && DATA ? DATA.gById[q.group] : null; return plain([q.statement, q.sub, q.origin, g ? g.title + ' ' + g.intro : '', (q.options || []).map(o => o.text).join(' '), q.expected, q.explanation].join(' ')); }
+async function showSearch(query){
+  view.className = 'page search-page'; CURRENT = null; view.dataset.page = '';
+  view.innerHTML = `<p class="eyebrow">Recherche</p><h1>Rechercher</h1><p class="subtitle">Dans le cours, le formulaire, les simulations et toutes les questions.</p>
+  <form class="searchbox" id="pageSearch" role="search"><input type="search" id="pageQ" placeholder="Un mot, une notion : Archimède, ludion, tube en U…" aria-label="Rechercher" autocomplete="off"></form><div id="sresults"></div>`;
+  const inp = document.getElementById('pageQ'); inp.value = query || ''; document.getElementById('railQ').value = query || '';
+  let timer = null; const go = () => { const q = inp.value.trim(); history.replaceState(null, '', '#recherche/' + encodeURIComponent(q)); document.getElementById('railQ').value = q; runSearch(q); };
+  inp.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(go, 250); });
+  document.getElementById('pageSearch').addEventListener('submit', e => { e.preventDefault(); go(); });
+  if (!query) inp.focus(); await runSearch(query || ''); window.scrollTo(0, 0);
+}
+async function runSearch(q){
+  const box = document.getElementById('sresults'); if (!box) return;
+  const ts = terms(q);
+  if (!ts.length){ box.innerHTML = '<p class="empty">Tapez un ou plusieurs mots (tous doivent apparaître). Les accents et les majuscules sont ignorés.</p>'; return; }
+  const [idx, data, sims] = await Promise.all([loadSearch(), loadData(), loadSimMeta()]);
+  const res = []; for (const e of idx){ const nt = nrm(e.t), nx = nrm(e.x); if (!ts.every(t => nt.includes(t) || nx.includes(t))) continue; let sc = 0; for (const t of ts) sc += 8 * countHits(nt, t) + countHits(nx, t); if (e.p === 'formulaire') sc *= 0.6; res.push({e, sc}); }
+  res.sort((a, b) => b.sc - a.sc);
+  const sres = sims.filter(m => ts.every(t => nrm(m.title + ' ' + m.desc).includes(t)));
+  const qres = data.questions.filter(x => { const n = nrm(qText(x)); return ts.every(t => n.includes(t)); });
+  if (!res.length && !sres.length && !qres.length){ box.innerHTML = `<p class="empty">Aucun résultat pour « ${esc(q)} ». Essayez un mot plus court.</p>`; return; }
+  let h = '';
+  if (res.length){ h += `<h2>Dans le cours <small style="font-family:var(--body);font-size:.8rem;color:var(--fg-2);font-weight:400">${res.length} section${res.length > 1 ? 's' : ''}</small></h2>`;
+    for (const {e} of res.slice(0, 40)) h += `<a class="sres" href="#${esc(e.p + (e.a ? '--' + e.a : ''))}" data-terms="${esc(ts.join(' '))}"><div class="where">${esc(pageLabel(e.p))}</div><div class="ttl">${highlightStr(e.t, ts)}</div><div class="snip">${snippet(e.x, ts)}</div></a>`; }
+  if (sres.length){ h += '<h2>Simulations</h2>'; for (const m of sres) h += `<a class="sres" href="#sim-${esc(m.name)}"><div class="where">Simulation</div><div class="ttl">${highlightStr(m.title, ts)}</div><div class="snip">${highlightStr(m.desc, ts)}</div></a>`; }
+  if (qres.length) h += `<h2>Questions <small style="font-family:var(--body);font-size:.8rem;color:var(--fg-2);font-weight:400">${qres.length} · cliquez pour ouvrir</small></h2><div id="qres"></div>`;
+  box.innerHTML = h;
+  box.querySelectorAll('a.sres[data-terms]').forEach(a => a.addEventListener('click', () => { pendingMarks = a.dataset.terms.split(' '); }));
+  if (qres.length){ const qbox = document.getElementById('qres');
+    for (const x of qres.slice(0, 60)){ const g = x.group ? data.gById[x.group] : null; const d = document.createElement('details'); d.className = 'qres';
+      d.innerHTML = `<summary><div class="where">${esc(KIND_LABEL[x.kind] || '')} · ${esc(x.origin || (g ? g.title + (x.num ? ' · ' + x.num : '') : ''))}</div><div class="snip">${snippet(plain(x.statement), ts, 220)}</div></summary>`;
+      d.addEventListener('toggle', () => { if (d.open && !d.dataset.r){ d.dataset.r = 1; const qd = renderQuestion(x, {showGroup: true}); d.appendChild(qd); typeset(qd); } }); qbox.appendChild(d); }
+    if (qres.length > 60) qbox.insertAdjacentHTML('beforeend', `<p class="empty">… et ${qres.length - 60} autres : précisez la recherche.</p>`); }
+}
+function markIn(root, ts){
+  if (!ts || !ts.length) return [];
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {acceptNode: n => { const p = n.parentElement; if (!p || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT; if (p.closest('svg,script,style,mark,.mount,mjx-container,input,textarea')) return NodeFilter.FILTER_REJECT; return NodeFilter.FILTER_ACCEPT; }});
+  const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode); const made = [];
+  for (const node of nodes){ const text = node.nodeValue, n = norm(text), hits = [];
+    for (const t of ts){ let k = n.s.indexOf(t); while (k >= 0){ hits.push([n.map[k], n.map[k + t.length - 1] + 1]); k = n.s.indexOf(t, k + t.length); } }
+    if (!hits.length) continue; hits.sort((a, b) => a[0] - b[0]); const frag = document.createDocumentFragment(); let last = 0;
+    for (const [a, b] of hits){ if (a < last) continue; frag.appendChild(document.createTextNode(text.slice(last, a))); const m = document.createElement('mark'); m.textContent = text.slice(a, b); frag.appendChild(m); made.push(m); last = b; }
+    frag.appendChild(document.createTextNode(text.slice(last))); node.parentNode.replaceChild(frag, node); }
+  return made;
+}
+function applyPendingMarks(anchor){
+  if (!pendingMarks) return; const ts = pendingMarks; pendingMarks = null;
+  view.querySelectorAll('mark').forEach(m => m.replaceWith(document.createTextNode(m.textContent)));
+  const marks = markIn(view, ts); if (!marks.length) return;
+  const start = anchor ? document.getElementById(anchor) : null;
+  const first = start ? marks.find(m => start.compareDocumentPosition(m) & Node.DOCUMENT_POSITION_FOLLOWING) : marks[0];
+  if (first) first.classList.add('hit-first');
+}
+
+async function showOneQuestion(id){
+  view.className = 'page'; CURRENT = null; view.dataset.page = '';
+  const data = await loadData(); const q = data.qById[id];
+  if (!q){ view.innerHTML = '<h1>Question introuvable</h1><p class="empty">Cette question n’existe plus.</p>'; return; }
+  const ch = CHAPTERS[q.chap];
+  view.innerHTML = `<p class="eyebrow">${esc(ch ? ch.title : 'Question')}</p><h1>${esc(q.sub || q.origin || 'Question')}</h1><p class="lede">${ch ? `<a href="#${esc(q.chap)}">Revenir au chapitre</a> · ` : ''}<a href="#qcm">Banque de questions</a></p><div class="one-q"></div>`;
+  view.querySelector('.one-q').appendChild(renderQuestion(q, {showGroup: true, showSub: false}));
+  typeset(view); window.scrollTo(0, 0);
+}
+function route(){
+  const full = decodeURIComponent((location.hash || '#accueil').slice(1));
+  let cut = full.indexOf('/'), sep = 1; if (cut < 0){ cut = full.indexOf('--'); sep = 2; }
+  const h = cut > 0 ? full.slice(0, cut) : full, anchor = cut > 0 ? full.slice(cut + sep) : '';
+  if (!CHAPTERS[h]){ CURRENT = null; view.dataset.page = ''; }
+  document.querySelectorAll('nav a[data-page]').forEach(a => a.classList.toggle('active', a.dataset.page === h || (h.startsWith('sim-') && a.dataset.page === 'sims')));
+  if (h !== 'recherche'){ const rq = document.getElementById('railQ'); if (rq && document.activeElement !== rq) rq.value = ''; }
+  if (CHAPTERS[h]) return showChapter(h, anchor);
+  if (h.startsWith('sim-')) return showOneSim(h.slice(4));
+  if (h === 'sims') return showSims();
+  if (h === 'qcm') return showQcm(anchor);
+  if (h === 'methodes') return showMethods(anchor);
+  if (h === 'recherche') return showSearch(anchor);
+  if (h === 'question') return showOneQuestion(anchor);
+  if (HOOKS.routes && HOOKS.routes[h]) return HOOKS.routes[h](anchor);
+  if (h === 'formulaire') return showPage('chap/formulaire.html', '<h1>Formulaire</h1>', anchor);
+  return showPage('chap/accueil.html', '<h1>Physique des olympiades</h1>', h === 'accueil' ? anchor : '');
+}
+window.addEventListener('hashchange', route);
+route();
+</script>

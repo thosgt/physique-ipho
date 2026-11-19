@@ -1,0 +1,243 @@
+[
+ {
+  "name": "tube-u",
+  "page": "statique",
+  "anchor": "tube-en-u",
+  "title": "Deux liquides dans un tube en U",
+  "desc": "Tube en U arrondi, deux liquides séparés par une fine paroi mobile qui se place là où les pressions sont égales : hauteurs au-dessus de la paroi, ρ₁h₁ = ρ₂h₂, profil de pression dans chaque branche, niveaux des surfaces libres."
+ },
+ {
+  "name": "molecules",
+  "page": "statique",
+  "anchor": "force-pressante",
+  "title": "Les molécules frappent la paroi",
+  "desc": "Origine microscopique de la pression d’un gaz : des molécules rebondissent dans une boîte, chaque choc transfère de la quantité de mouvement à la paroi ; la force moyenne est proportionnelle au nombre de molécules et à la température."
+ },
+ {
+  "name": "archimede",
+  "page": "statique",
+  "anchor": "origine-archimede",
+  "title": "La poussée d’Archimède",
+  "desc": "Un bloc de glace, de bois, de roche ou de fer lâché dans l’eau douce, l’eau de mer, l’huile ou le mercure : poids, poussée Π = ρ_fluide·V_immergé·g, fraction immergée ρ_corps/ρ_fluide, iceberg, et niveau de l’eau quand la glace fond."
+ },
+ {
+  "name": "plongeur",
+  "page": "statique",
+  "anchor": "plongeur",
+  "title": "Le plongeur et son gilet",
+  "desc": "D’après le Concours général 2026 : réglez le lest et l’air du gilet, trouvez la profondeur d’équilibre où la poussée compense le poids, puis lâchez le plongeur un peu plus haut ou plus bas : l’équilibre est instable (comme celui d’un ludion)."
+ },
+ {
+  "name": "ballon-sonde",
+  "page": "statique",
+  "anchor": "ballons",
+  "title": "L’ascension d’un ballon-sonde",
+  "desc": "D’après le Concours général 2023 : volume de l’enveloppe, poussée et poids selon l’altitude, jusqu’au plafond où l’hélium s’échappe. Au-dessus de 20 km, la simulation prolonge le modèle par l’atmosphère standard (réchauffement de la stratosphère), d’où un plafond un peu plus haut que les 34,5 km du sujet."
+ },
+ {
+  "name": "barrage",
+  "page": "statique",
+  "anchor": "paroi",
+  "level": "C",
+  "title": "Forces pressantes sur un barrage",
+  "desc": "Profil triangulaire de la surpression ρgd sur une paroi verticale ou inclinée, résultante ρgh²L/2 sin α, composantes horizontale et verticale, centre de poussée aux deux tiers de la profondeur."
+ },
+ {
+  "name": "venturi",
+  "page": "dynamique",
+  "anchor": "venturi",
+  "title": "Effet Venturi",
+  "desc": "Tube horizontal qui se rétrécit : conservation du débit, chute de pression dans la gorge lue sur les tubes piézométriques, cavitation si la pression tombe trop bas, perte de charge pour un fluide réel."
+ },
+ {
+  "name": "torricelli",
+  "page": "dynamique",
+  "anchor": "torricelli",
+  "title": "Vidange de Torricelli",
+  "desc": "Réservoir percé : vitesse √(2gh) et portée du jet, hauteur h(t) pendant la vidange, temps de vidange, hauteur du trou qui donne la portée maximale."
+ },
+ {
+  "name": "bulles",
+  "page": "tension",
+  "anchor": "laplace",
+  "title": "Deux bulles de savon reliées",
+  "desc": "Pression de Laplace 4γ/R : la petite bulle se vide dans la grande."
+ },
+ {
+  "name": "jurin",
+  "page": "tension",
+  "anchor": "jurin",
+  "title": "Ascension capillaire (loi de Jurin)",
+  "desc": "Hauteur h = 2γ cos θ/(ρgr) selon le rayon du tube et le liquide ; descente du mercure."
+ },
+ {
+  "name": "regression",
+  "page": "outils",
+  "anchor": "regression",
+  "title": "Loi de puissance et régression log-log",
+  "desc": "Mesures bruitées d’une loi y = k xⁿ : représentation linéaire et log-log, régression par moindres carrés, incertitude sur la pente selon le nombre de points et le bruit."
+ },
+ {
+  "name": "dl",
+  "page": "outils",
+  "anchor": "approximations",
+  "title": "Développements limités",
+  "desc": "Une fonction et ses approximations d’ordre 1, 2, 3 ; zone où l’erreur reste inférieure à 1 % (sin x ≈ x jusqu’à 14°)."
+ },
+ {
+  "name": "wagon",
+  "page": "nongalileen",
+  "anchor": "ascenseur",
+  "title": "Pendule et aquarium dans un wagon qui accélère",
+  "desc": "Force d’inertie −ma et pesanteur effective : équilibre incliné, surface de l’eau, période."
+ },
+ {
+  "name": "manege",
+  "page": "nongalileen",
+  "anchor": "coriolis",
+  "title": "Un palet lancé sur un manège",
+  "desc": "Trajectoire droite vue du sol, courbée vue du manège : la force de Coriolis."
+ },
+ {
+  "name": "onde",
+  "page": "optique",
+  "anchor": "progressive",
+  "title": "Onde progressive",
+  "desc": "Onde sinusoïdale : fréquence, célérité, longueur d’onde ; deux points du milieu et leur déphasage 2πd/λ, en phase ou en opposition."
+ },
+ {
+  "name": "doppler",
+  "page": "optique",
+  "anchor": "doppler",
+  "title": "Effet Doppler et cône de Mach",
+  "desc": "Fronts d’onde émis par une source mobile, fréquences perçues devant et derrière, cône de Mach au-delà de la vitesse du son."
+ },
+ {
+  "name": "young",
+  "page": "optique",
+  "anchor": "interferences",
+  "title": "Fentes d’Young",
+  "desc": "Figure d’interférences selon λ, a, D et la largeur b des fentes : interfrange λD/a modulé par l’enveloppe de diffraction 2λD/b."
+ },
+ {
+  "name": "refraction",
+  "page": "geometrique",
+  "anchor": "snell",
+  "title": "Réfraction et réflexion totale",
+  "desc": "Lois de Snell-Descartes à un dioptre plan : rayons réfléchi et réfracté, angle limite, réflexion totale (eau → air, verre → air)."
+ },
+ {
+  "name": "lentille",
+  "page": "geometrique",
+  "anchor": "lentilles",
+  "title": "Lentille mince",
+  "desc": "Construction de l’image par les trois rayons particuliers, relation de conjugaison, grandissement, image réelle ou virtuelle, lentille convergente ou divergente."
+ },
+ {
+  "name": "interferences",
+  "page": "optique",
+  "anchor": "interferences",
+  "title": "Interférences de deux sources",
+  "desc": "Carte du champ de deux sources cohérentes dans un plan : hyperboles sombres, franges d’intensité, profil sur un écran selon λ, la distance des sources et leur déphasage."
+ },
+ {
+  "name": "battements",
+  "page": "optique",
+  "anchor": "battements",
+  "title": "Battements",
+  "desc": "Somme de deux sinusoïdes de fréquences voisines : enveloppe lente à |f₁ − f₂|, et écoute des deux sons."
+ },
+ {
+  "name": "stationnaire",
+  "page": "optique",
+  "anchor": "stationnaires",
+  "title": "Ondes stationnaires sur une corde",
+  "desc": "Modes propres d’une corde fixée aux deux bouts (nœuds, ventres, f_n = n v/2L selon tension et masse linéique) et superposition d’une onde incidente et de son onde réfléchie."
+ },
+ {
+  "name": "diffraction2d",
+  "page": "optique",
+  "anchor": "obstacle-inconnu",
+  "title": "Figure de diffraction d’une ouverture quelconque",
+  "desc": "Fente, rectangle, disque, triangle, hexagone, étoile, deux trous, réseau : la figure à l’infini calculée en direct, à faire tourner."
+ },
+ {
+  "name": "horloge",
+  "page": "relativite",
+  "anchor": "horloge",
+  "title": "Horloge de lumière",
+  "desc": "Une horloge de lumière au repos et la même en mouvement : trajet en zigzag, tic allongé d’un facteur γ, compteurs de tics comparés selon la vitesse."
+ },
+ {
+  "name": "muons",
+  "page": "relativite",
+  "anchor": "muons",
+  "title": "Muons cosmiques",
+  "desc": "Mille muons créés à 15 km d’altitude : fraction qui atteint le sol avec et sans dilatation du temps, et la même scène vue par le muon (atmosphère contractée)."
+ },
+ {
+  "name": "minkowski",
+  "page": "relativite",
+  "anchor": "lorentz",
+  "level": "C",
+  "title": "Diagramme d’espace-temps",
+  "desc": "Deux événements dans un diagramme de Minkowski : coordonnées dans un référentiel en mouvement (axes inclinés), invariance de l’intervalle, relativité de la simultanéité, genre temps ou espace."
+ },
+ {
+  "name": "energie",
+  "page": "relativite",
+  "anchor": "p-E",
+  "title": "Énergie et quantité de mouvement relativistes",
+  "desc": "E_c = (γ − 1)mc², p = γmv et γ en fonction de β pour un électron, un proton ou 1 kg, comparés aux formules classiques ; divergence à l’approche de c."
+ },
+ {
+  "name": "aston",
+  "page": "nucleaire",
+  "anchor": "liaison",
+  "title": "Courbe d’Aston et énergie libérée",
+  "desc": "Fissions et fusions placées sur la courbe d’Aston : énergie libérée comme différence des énergies de liaison, par réaction, par nucléon et par kilogramme."
+ },
+ {
+  "name": "decroissance",
+  "page": "nucleaire",
+  "anchor": "decroissance",
+  "title": "Décroissance radioactive aléatoire",
+  "desc": "Une population de 25 à 10 000 noyaux se désintègre au hasard : comparaison avec la loi exponentielle et fluctuations statistiques."
+ },
+ {
+  "name": "filiation",
+  "page": "nucleaire",
+  "anchor": "filiation",
+  "level": "C",
+  "title": "Filiation radioactive",
+  "desc": "Père → fils → descendant stable : nombres de noyaux et activités selon les deux demi-vies ; équilibre séculaire quand le fils vit peu."
+ },
+ {
+  "name": "photoelectrique",
+  "page": "quantique",
+  "anchor": "photoelectrique",
+  "title": "Effet photoélectrique",
+  "desc": "Métal, longueur d’onde, intensité et tension : électrons émis ou non, énergie cinétique maximale, caractéristique courant-tension et tension d’arrêt."
+ },
+ {
+  "name": "niveaux",
+  "page": "quantique",
+  "anchor": "bohr",
+  "title": "Niveaux d’énergie et spectre de l’hydrogène",
+  "desc": "Cascades de désexcitation d’un atome hydrogénoïde et raies d’émission correspondantes : séries de Lyman, Balmer, Paschen."
+ },
+ {
+  "name": "unparun",
+  "page": "quantique",
+  "anchor": "photon-par-photon",
+  "title": "Interférences particule par particule",
+  "desc": "Les impacts arrivent un par un, au hasard, et dessinent peu à peu les franges ; une seule fente, ou un détecteur « par quelle fente », les font disparaître."
+ },
+ {
+  "name": "puits",
+  "page": "quantique",
+  "anchor": "puits",
+  "title": "Particule dans une boîte",
+  "desc": "Niveaux d’énergie E_n = n²h²/8mL², fonctions d’onde et densités de probabilité ; effet de la largeur du puits et de la masse ; photon émis lors d’une transition."
+ }
+]

@@ -1,0 +1,218 @@
+<p class="eyebrow">Physique moderne · Chapitre 3</p>
+<h1>Physique quantique</h1>
+<p class="subtitle">Le photon, l’effet photoélectrique, les niveaux d’énergie de l’atome, la dualité onde-corpuscule, Heisenberg, le laser</p>
+
+<div class="objectifs">
+<p><strong>Ce que demandent les épreuves.</strong> Le syllabus IPhO (partie 5.2) met au programme des deux tests l’énergie et la quantité de mouvement du photon, l’effet photoélectrique, les niveaux d’énergie et les spectres atomiques (modèle de Bohr), la longueur d’onde de de Broglie, l’inégalité de Heisenberg et ses ordres de grandeur ; le test de CPGE ajoute la fonction d’onde, le puits infini et l’effet tunnel. Le programme de terminale en traite une bonne part (photon, effet photoélectrique, dualité, de Broglie, interférences photon par photon) ; le Concours général les rencontre dans des sujets d’astrophysique, de spectroscopie, de laser ou de cellules photovoltaïques.</p>
+<ul>
+<li><strong>Terminale (IPhO et Concours général)</strong> : parties 1 à 5, hors encadrés « Niveau CPGE ».</li>
+<li><strong>CPGE (IPhO)</strong> : tout le chapitre, y compris fonction d’onde, puits infini et effet tunnel.</li>
+</ul>
+</div>
+
+<div class="retenir">
+<p><strong>L’essentiel à retenir</strong></p>
+<ol>
+<li><strong>Photon</strong> : \(E = h\nu = \dfrac{hc}{\lambda}\), \(p = \dfrac{E}{c} = \dfrac{h}{\lambda}\), masse nulle. \(hc = 1\,240\ \text{eV·nm}\) : un photon de 620 nm (rouge) porte 2,0 eV.</li>
+<li><strong>Effet photoélectrique</strong> : un photon arrache un électron si \(h\nu \ge W\) (travail d’extraction) ; \(E_{c,\max} = h\nu - W = eU_\text{arrêt}\). L’énergie des électrons dépend de la fréquence, leur nombre de l’intensité.</li>
+<li><strong>Niveaux d’énergie</strong> : un atome n’existe que dans des états d’énergie discrets ; il émet ou absorbe un photon tel que \(h\nu = |E_n - E_p|\). Hydrogène : \(E_n = -\dfrac{13{,}6\ \text{eV}}{n^2}\).</li>
+<li>Séries de l’hydrogène : Lyman (vers \(n = 1\), UV), Balmer (vers \(n = 2\), visible : 656, 486, 434, 410 nm), Paschen (vers \(n = 3\), IR) ; \(\dfrac{1}{\lambda} = R_H\left(\dfrac{1}{p^2} - \dfrac{1}{n^2}\right)\), \(R_H = 1{,}097\times10^7\ \text{m}^{-1}\).</li>
+<li><strong>Dualité onde-corpuscule</strong> : toute particule de quantité de mouvement \(p\) a une longueur d’onde \(\lambda = h/p\) (de Broglie). Électron de 100 eV : 0,12 nm.</li>
+<li>Les interférences photon par photon (ou électron par électron) montrent que chaque impact est aléatoire mais que leur <strong>probabilité</strong> suit la figure d’interférences.</li>
+<li><strong>Heisenberg</strong> : \(\Delta x\,\Delta p_x \ge \dfrac{\hbar}{2}\), \(\hbar = h/2\pi = 1{,}055\times10^{-34}\) J·s. Confiner une particule dans \(L\) lui donne une énergie cinétique minimale \(\sim \hbar^2/(mL^2)\).</li>
+<li><strong>Laser</strong> : émission stimulée (photon identique au photon incident), inversion de population, cavité résonnante : lumière cohérente, monochromatique, directive.</li>
+<li>Ordres de grandeur : visible 1,6 à 3,1 eV ; liaison chimique quelques eV ; agitation thermique \(k_BT = 0{,}025\) eV à 300 K ; rayons X keV ; gamma MeV.</li>
+<li>Puits infini de largeur \(L\) (CPGE) : \(E_n = \dfrac{n^2h^2}{8mL^2}\) ; fonctions d’onde stationnaires \(\psi_n \propto \sin(n\pi x/L)\) ; \(|\psi|^2\) densité de probabilité.</li>
+</ol>
+</div>
+
+<h2 id="photon">1. Le photon</h2>
+
+<h3 id="quantum">Le quantum de lumière</h3>
+<p>Pour expliquer le spectre du rayonnement thermique (corps noir), Planck suppose en 1900 que la matière n’échange l’énergie lumineuse que par paquets \(h\nu\), avec \(h = 6{,}626\times10^{-34}\) J·s. Einstein va plus loin en 1905 : la lumière elle-même est faite de grains, les <strong>photons</strong>, chacun d’énergie et de quantité de mouvement</p>
+\[E = h\nu = \frac{hc}{\lambda}, \qquad p = \frac{h}{\lambda} = \frac{E}{c}.\]
+<p>Le photon a une masse nulle et va toujours à \(c\) (c’est le cas \(m = 0\) de \(E^2 = p^2c^2 + m^2c^4\), voir le chapitre « Relativité »). Pour les calculs, retenez \(hc = 1\,240\ \text{eV·nm}\) : un photon vert de 550 nm porte \(1240/550 = 2{,}25\) eV. Un laser de 1 mW à 633 nm émet \(P\lambda/(hc) = 3{,}2\times10^{15}\) photons par seconde : à l’échelle humaine, la lumière paraît continue ; dans le noir complet, l’œil (bâtonnets) détecte quelques photons seulement.</p>
+<div class="methode" data-m="quanta"><p>Pour le laser de 1 mW à 633 nm : un photon porte \(1240/633 \approx 1{,}96\) eV, soit \(3{,}1\times10^{-19}\) J, et le débit est \(10^{-3}/(3{,}1\times10^{-19}) \approx 3\times10^{15}\) photons par seconde.</p></div>
+<div class="tablewrap"><table>
+<thead><tr><th>Domaine</th><th>\(\lambda\)</th><th>Énergie du photon</th><th>Ce qu’il peut faire</th></tr></thead>
+<tbody>
+<tr><td>Ondes radio, micro-ondes</td><td>m, cm</td><td>\(10^{-6}\) à \(10^{-4}\) eV</td><td>rotation des molécules (four à micro-ondes)</td></tr>
+<tr><td>Infrarouge</td><td>1 à 100 µm</td><td>0,01 à 1 eV</td><td>vibration des molécules (rayonnement thermique, \(k_BT\))</td></tr>
+<tr><td>Visible</td><td>400 à 750 nm</td><td>1,6 à 3,1 eV</td><td>transitions électroniques, vision, photosynthèse</td></tr>
+<tr><td>Ultraviolet</td><td>10 à 400 nm</td><td>3 à 100 eV</td><td>casse les liaisons chimiques (coups de soleil), ionise</td></tr>
+<tr><td>Rayons X</td><td>0,01 à 10 nm</td><td>100 eV à 100 keV</td><td>arrache les électrons de cœur (radiographie)</td></tr>
+<tr><td>Gamma</td><td>&lt; 0,01 nm</td><td>&gt; 100 keV</td><td>transitions nucléaires, création de paires</td></tr>
+</tbody></table></div>
+<p>Le photon transporte une quantité de mouvement : la lumière exerce une <strong>pression de radiation</strong> \(P/c\) par unité de surface absorbante (le double si elle est réfléchie). Au niveau de la Terre (1 360 W/m²), \(4{,}5\ \mu\text{Pa}\) : faible, mais suffisant pour pousser une voile solaire, orienter la queue des comètes, ou piéger des atomes refroidis par laser.</p>
+
+<div class="exo" data-group="cde-q2"></div>
+<div class="exo" data-q="ipho-2005-7"></div>
+
+<h3 id="photoelectrique">L’effet photoélectrique</h3>
+<p>Éclairée par de la lumière, une plaque de métal émet des électrons (Hertz, 1887). Les faits expérimentaux, inexplicables avec une onde continue, sont les suivants :</p>
+<ul>
+<li>il existe une <strong>fréquence seuil</strong> \(\nu_0\) en dessous de laquelle aucun électron n’est émis, <em>quelle que soit l’intensité</em> ;</li>
+<li>au-dessus du seuil, l’émission est instantanée, même à très faible intensité ;</li>
+<li>l’<strong>énergie cinétique maximale</strong> des électrons croît linéairement avec \(\nu\) et ne dépend pas de l’intensité ; c’est le <strong>nombre</strong> d’électrons (le courant) qui est proportionnel à l’intensité.</li>
+</ul>
+<p>Explication d’Einstein (prix Nobel 1921) : chaque électron est arraché par un seul photon. Il faut au moins le <strong>travail d’extraction</strong> \(W\) du métal (2,3 eV pour le sodium, 4,3 eV pour le zinc, 4,7 eV pour le cuivre) ; le surplus devient énergie cinétique :</p>
+\[E_{c,\max} = h\nu - W, \qquad \nu_0 = \frac{W}{h}, \qquad \lambda_0 = \frac{hc}{W}.\]
+<p>On mesure \(E_{c,\max}\) par la <strong>tension d’arrêt</strong> : en portant la cathode à un potentiel supérieur à celui de l’anode, on freine les électrons ; le courant s’annule pour \(eU_0 = E_{c,\max}\). Le graphe \(U_0(\nu)\) est une droite de pente \(h/e\), quel que soit le métal : c’est ainsi que Millikan a mesuré \(h\) (1916).</p>
+<figure>
+<svg viewBox="0 0 640 272" width="640" role="img" aria-label="Montage de l'effet photoélectrique : cellule à vide, cathode éclairée, anode, générateur de tension réglable, ampèremètre ; graphe tension d'arrêt en fonction de la fréquence, droite de pente h/e coupant l'axe au seuil nu0" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="pe-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker><marker id="pe-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2b6cb0"/></marker></defs>
+<ellipse cx="150" cy="100" rx="110" ry="60" fill="#f3f6fa" stroke="#15213a" stroke-width="1.5"/>
+<rect x="70" y="70" width="10" height="60" fill="#8a94a6"/><text x="84" y="146" fill="#15213a" font-size="11">cathode</text>
+<rect x="220" y="70" width="6" height="60" fill="#8a94a6"/><text x="184" y="146" fill="#15213a" font-size="11">anode</text>
+<g stroke="#d9900b" stroke-width="2"><path d="M20 30 l8 6 l-8 6 l8 6 l-8 6 l8 6 l-8 6" fill="none" transform="rotate(-35 40 60)"/></g><text x="10" y="24" fill="#d9900b" font-weight="600">lumière hν</text>
+<g stroke="#2b6cb0" stroke-width="1.5" marker-end="url(#pe-b)"><line x1="84" y1="85" x2="200" y2="85"/><line x1="84" y1="100" x2="180" y2="100"/><line x1="84" y1="115" x2="205" y2="115"/></g><text x="120" y="80" fill="#2b6cb0" font-size="11">électrons</text>
+<path d="M75 130 L75 210 L130 210" fill="none" stroke="#15213a"/><circle cx="150" cy="210" r="16" fill="#fff" stroke="#15213a"/><text x="145" y="215" fill="#15213a" font-weight="600">A</text>
+<path d="M166 210 L200 210" stroke="#15213a"/><rect x="200" y="196" width="30" height="28" fill="#fff" stroke="#15213a"/><text x="204" y="214" fill="#15213a" font-size="11">U</text><path d="M230 210 L240 210 L240 130 L223 130" fill="none" stroke="#15213a"/>
+<text x="196" y="246" fill="#15213a" font-size="11">tension réglable</text>
+<line x1="330" y1="230" x2="620" y2="230" stroke="#15213a" stroke-width="1.5" marker-end="url(#pe-k)"/><text x="612" y="250" fill="#15213a" font-weight="600">ν</text>
+<line x1="350" y1="240" x2="350" y2="30" stroke="#15213a" stroke-width="1.5" marker-end="url(#pe-k)"/><text x="358" y="34" fill="#15213a" font-weight="600">U₀ (tension d’arrêt)</text>
+<line x1="420" y1="230" x2="600" y2="70" stroke="#2b6cb0" stroke-width="3"/><line x1="460" y1="230" x2="600" y2="106" stroke="#b23a48" stroke-width="3"/>
+<line x1="350" y1="230" x2="420" y2="230" stroke="#2b6cb0" stroke-width="3" stroke-dasharray="4 3"/>
+<text x="405" y="248" fill="#2b6cb0" font-weight="600">ν₀ (Na)</text><text x="452" y="262" fill="#b23a48" font-weight="600">ν₀ (Zn)</text>
+<text x="500" y="120" fill="#2b6cb0" font-size="11" transform="rotate(-41 500 120)">pente h/e</text>
+<text x="560" y="150" fill="#b23a48" font-size="11">même pente</text>
+</svg>
+<figcaption>À gauche, la cellule photoélectrique ; à droite, la tension d’arrêt en fonction de la fréquence pour deux métaux : deux droites parallèles de pente \(h/e\), décalées par le travail d’extraction.</figcaption>
+</figure>
+<div class="methode" data-m="graphe"><p>On trace la tension d’arrêt \(U_0\) en fonction de la fréquence \(\nu = c/\lambda\), et non de \(\lambda\), pour obtenir une droite : sa pente donne \(h/e\) (en V·s), son intersection avec l’axe des fréquences le seuil \(\nu_0\), et son ordonnée à l’origine \(-W/e\).</p></div>
+<div class="sim" data-name="photoelectrique"><p>Choisissez le métal, la longueur d’onde et l’intensité : électrons émis ou non, énergie cinétique maximale, courant en fonction de la tension appliquée et tension d’arrêt. Vérifiez qu’augmenter l’intensité ne fait jamais franchir le seuil.</p></div>
+<p>Applications : cellules photovoltaïques (effet photoélectrique <em>interne</em> : un photon fait passer un électron de la bande de valence à la bande de conduction d’un semi-conducteur si \(h\nu \ge E_g\), le <strong>gap</strong> ; silicium : 1,12 eV, donc \(\lambda < 1{,}1\ \mu\)m), photodiodes, capteurs CCD et CMOS des appareils photo, photomultiplicateurs. À l’inverse, une <strong>LED</strong> émet des photons d’énergie \(\approx E_g\) : rouge (GaAsP, 1,9 eV), bleue (InGaN, 2,7 eV, prix Nobel 2014). Le seuil de la LED (\(eU \approx E_g\)) permet même de mesurer \(h\) en TP.</p>
+
+<div class="exo" data-q="ipho-2005-22"></div>
+<div class="exo" data-q="ipho-2008-17"></div>
+<div class="exo" data-q="ipho-2010-19"></div>
+
+<h2 id="atome">2. Les niveaux d’énergie de l’atome</h2>
+
+<h3 id="spectres">Spectres de raies et quantification</h3>
+<p>Un gaz chaud (lampe à vapeur de sodium, tube à hydrogène) émet un spectre de <strong>raies</strong> fines, caractéristiques de l’élément ; éclairé en lumière blanche, le même gaz <strong>absorbe</strong> exactement les mêmes longueurs d’onde (raies sombres de Fraunhofer dans le spectre du Soleil, qui ont permis de découvrir l’hélium). Explication de Bohr (1913) : l’énergie d’un atome ne peut prendre que des valeurs discrètes \(E_1 < E_2 < \ldots\) (<strong>niveaux d’énergie</strong>) ; l’atome passe d’un niveau à l’autre en émettant ou en absorbant un photon d’énergie égale à l’écart :</p>
+\[h\nu = \frac{hc}{\lambda} = |E_n - E_p|.\]
+<p>Le niveau le plus bas est l’<strong>état fondamental</strong>, les autres sont des <strong>états excités</strong> ; au-delà de l’énergie d’ionisation (\(E = 0\) par convention), l’électron est libre et son énergie n’est plus quantifiée. Un atome peut aussi être excité par une collision avec un électron (expérience de Franck et Hertz, 1914 : les électrons qui traversent de la vapeur de mercure perdent leur énergie par paquets de 4,9 eV).</p>
+
+<h3 id="bohr">L’atome d’hydrogène</h3>
+<p>Pour l’hydrogène, les niveaux sont</p>
+\[E_n = -\frac{13{,}6\ \text{eV}}{n^2}, \qquad n = 1, 2, 3\ldots\]
+<p>Bohr les obtient en supposant que l’électron décrit des orbites circulaires autour du proton (force de Coulomb = masse × accélération centripète) et que le moment cinétique est quantifié, \(m_evr = n\hbar\) ; le rayon de l’orbite fondamentale est le rayon de Bohr \(a_0 = 0{,}053\) nm et \(r_n = n^2a_0\). Ce modèle est faux dans le détail (l’électron n’a pas de trajectoire), mais il donne les bons niveaux, et l’idée centrale est juste : une onde de de Broglie stationnaire sur l’orbite exige \(2\pi r = n\lambda = nh/(m_ev)\), c’est-à-dire la quantification de Bohr. L’énergie d’ionisation depuis le fondamental vaut 13,6 eV ; les transitions vers \(n = 2\) (série de <strong>Balmer</strong>) tombent dans le visible :</p>
+\[\frac{1}{\lambda} = R_H\left(\frac{1}{4} - \frac{1}{n^2}\right) : \quad \text{H}_\alpha = 656\ \text{nm (rouge)},\ \text{H}_\beta = 486,\ \text{H}_\gamma = 434,\ \text{H}_\delta = 410\ \text{nm}.\]
+<figure>
+<svg viewBox="0 0 640 300" width="640" role="img" aria-label="Diagramme des niveaux d'énergie de l'hydrogène : n = 1 à -13,6 eV, n = 2 à -3,4 eV, n = 3 à -1,51 eV ; flèches des séries de Lyman, Balmer, Paschen" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="hb-v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6a3fa3"/></marker><marker id="hb-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23a48"/></marker><marker id="hb-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5f6b80"/></marker></defs>
+<g stroke="#15213a" stroke-width="2"><line x1="120" y1="270" x2="500" y2="270"/><line x1="120" y1="91" x2="500" y2="91"/><line x1="120" y1="58" x2="500" y2="58"/><line x1="120" y1="46" x2="500" y2="46"/><line x1="120" y1="41" x2="500" y2="41"/></g>
+<line x1="120" y1="30" x2="500" y2="30" stroke="#8a94a6" stroke-dasharray="4 3"/>
+<g fill="#15213a" font-size="11"><text x="30" y="274">n = 1 : −13,6 eV</text><text x="30" y="95">n = 2 : −3,40 eV</text><text x="30" y="62">n = 3 : −1,51 eV</text><text x="30" y="47">n = 4 : −0,85</text><text x="30" y="27">E = 0 : ionisation</text></g>
+<g stroke="#6a3fa3" stroke-width="2" marker-end="url(#hb-v)"><line x1="150" y1="91" x2="150" y2="266"/><line x1="170" y1="58" x2="170" y2="266"/><line x1="190" y1="46" x2="190" y2="266"/></g>
+<text x="140" y="200" fill="#6a3fa3" font-weight="600" transform="rotate(-90 140 200)">Lyman (UV)</text>
+<g stroke-width="2.5"><line x1="280" y1="58" x2="280" y2="88" stroke="#d62728" marker-end="url(#hb-r)"/><line x1="310" y1="46" x2="310" y2="88" stroke="#1fa3b3"/><line x1="340" y1="41" x2="340" y2="88" stroke="#3b5bdb"/><line x1="370" y1="38" x2="370" y2="88" stroke="#7b3fd6"/></g>
+<g font-size="10" font-weight="600"><text x="262" y="112" fill="#d62728">656 nm</text><text x="296" y="126" fill="#1fa3b3">486</text><text x="328" y="112" fill="#3b5bdb">434</text><text x="360" y="126" fill="#7b3fd6">410</text></g>
+<text x="270" y="150" fill="#15213a" font-weight="600">Balmer (visible)</text>
+<g stroke="#5f6b80" stroke-width="2" marker-end="url(#hb-g)"><line x1="440" y1="46" x2="440" y2="56"/><line x1="460" y1="41" x2="460" y2="56"/></g><text x="430" y="80" fill="#5f6b80" font-weight="600" font-size="11">Paschen (IR)</text>
+<text x="520" y="160" fill="#15213a" font-size="11">Émission :</text><text x="520" y="176" fill="#15213a" font-size="11">hν = Eₙ − Eₚ</text><text x="520" y="200" fill="#15213a" font-size="11">Absorption :</text><text x="520" y="216" fill="#15213a" font-size="11">flèches inversées,</text><text x="520" y="232" fill="#15213a" font-size="11">mêmes longueurs</text><text x="520" y="248" fill="#15213a" font-size="11">d’onde</text>
+</svg>
+<figcaption>Niveaux d’énergie de l’hydrogène (échelle verticale réelle) et séries de raies d’émission. Les raies de Balmer sont dessinées dans leur couleur.</figcaption>
+</figure>
+<div class="sim" data-name="niveaux"><p>Excitez un atome d’hydrogène (ou un ion hydrogénoïde de charge \(Z\)) et observez les cascades de désexcitation : chaque transition donne une raie dans le spectre, que vous pouvez reconnaître (Lyman, Balmer, Paschen).</p></div>
+<p>Pour un ion à un seul électron de charge nucléaire \(Ze\) (He⁺, Li²⁺), \(E_n = -13{,}6\,Z^2/n^2\) eV. Pour les atomes à plusieurs électrons, les niveaux sont plus compliqués, mais le principe est le même : chaque élément a sa signature spectrale. C’est le fondement de la spectroscopie, qui permet de connaître la composition et la vitesse (effet Doppler) des étoiles, de doser des éléments en traces, de faire des horloges atomiques (césium : 9 192 631 770 Hz définit la seconde).</p>
+<div class="piege">
+<ul>
+<li>Les énergies \(E_n\) sont négatives ; l’énergie du photon est la <em>différence</em>, toujours positive. \(E_3 - E_2 = -1{,}51 - (-3{,}40) = 1{,}89\) eV, soit 656 nm.</li>
+<li>Conversion : \(\lambda(\text{nm}) = 1240/E(\text{eV})\). Ne pas oublier de convertir les eV en joules (\(\times 1{,}602\times10^{-19}\)) si on utilise \(h\) en J·s.</li>
+<li>Un atome dans son état fondamental n’absorbe que des photons d’énergie <em>exactement</em> égale à un écart \(E_n - E_1\) (ou supérieure à l’énergie d’ionisation) ; un photon de 11 eV traverse l’hydrogène sans être absorbé.</li>
+<li>Le nombre de raies possibles depuis le niveau \(n\) est \(n(n-1)/2\) (toutes les cascades).</li>
+</ul>
+</div>
+<div class="methode" data-m="unites-adaptees"><p>Pour la raie H-β, tout se calcule en eV et en nm : \(E_4 - E_2 = 13{,}6\left(\tfrac14 - \tfrac1{16}\right) = 2{,}55\) eV, puis \(\lambda = 1240/2{,}55 = 486\) nm, sans passer par les joules.</p></div>
+
+<div class="exo" data-q="ipho-2012-20"></div>
+<div class="exo" data-q="ipho-2025-T2"></div>
+
+<h3 id="laser">Le laser</h3>
+<p>Un atome dans un état excité \(E_2\) peut se désexciter spontanément (direction et instant aléatoires) ou être <strong>stimulé</strong> par un photon d’énergie \(E_2 - E_1\) : il émet alors un second photon <em>identique</em> au premier (même fréquence, même direction, même phase, même polarisation). C’est l’amplification de lumière par émission stimulée (Light Amplification by Stimulated Emission of Radiation). Pour qu’elle l’emporte sur l’absorption, il faut plus d’atomes dans l’état excité que dans l’état bas : une <strong>inversion de population</strong>, impossible à l’équilibre thermique, qu’on obtient par <strong>pompage</strong> (décharge électrique, lampe flash, autre laser) avec un système à trois ou quatre niveaux. Une <strong>cavité</strong> formée de deux miroirs (dont un partiellement transparent) fait passer la lumière de nombreuses fois dans le milieu amplificateur et sélectionne les fréquences \(f = kc/2L\) qui forment une onde stationnaire. Résultat : une lumière très <strong>monochromatique</strong>, <strong>cohérente</strong> (elle interfère sur des distances de mètres à kilomètres), très <strong>directive</strong> (divergence \(\sim \lambda/D\), limitée par la diffraction), et donc très <strong>concentrable</strong> (puissance surfacique énorme).</p>
+<figure>
+<svg viewBox="0 0 640 220" width="640" role="img" aria-label="Absorption, émission spontanée et émission stimulée entre deux niveaux ; cavité laser avec deux miroirs, milieu amplificateur et pompage" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="la-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker><marker id="la-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#d9900b"/></marker></defs>
+<g stroke="#15213a" stroke-width="2"><line x1="20" y1="40" x2="110" y2="40"/><line x1="20" y1="110" x2="110" y2="110"/><line x1="150" y1="40" x2="240" y2="40"/><line x1="150" y1="110" x2="240" y2="110"/><line x1="280" y1="40" x2="370" y2="40"/><line x1="280" y1="110" x2="370" y2="110"/></g>
+<g font-size="11" fill="#15213a"><text x="112" y="44">E₂</text><text x="112" y="114">E₁</text></g>
+<line x1="65" y1="106" x2="65" y2="46" stroke="#15213a" stroke-width="2" marker-end="url(#la-k)"/><path d="M10 80 l6 -5 l6 5 l6 -5 l6 5 l6 -5" stroke="#d9900b" fill="none" stroke-width="2"/>
+<text x="20" y="140" fill="#15213a" font-weight="600">absorption</text>
+<line x1="195" y1="44" x2="195" y2="104" stroke="#15213a" stroke-width="2" marker-end="url(#la-k)"/><path d="M205 70 l6 -5 l6 5 l6 -5 l6 5" stroke="#d9900b" fill="none" stroke-width="2" transform="rotate(-30 215 70)"/>
+<text x="150" y="140" fill="#15213a" font-weight="600">émission spontanée</text><text x="150" y="156" fill="#15213a" font-size="11">direction aléatoire</text>
+<line x1="325" y1="44" x2="325" y2="104" stroke="#15213a" stroke-width="2" marker-end="url(#la-k)"/><path d="M270 70 l6 -5 l6 5 l6 -5 l6 5 l6 -5" stroke="#d9900b" fill="none" stroke-width="2"/>
+<g stroke="#d9900b" fill="none" stroke-width="2"><path d="M335 64 l6 -5 l6 5 l6 -5 l6 5 l6 -5"/><path d="M335 80 l6 -5 l6 5 l6 -5 l6 5 l6 -5"/></g>
+<text x="280" y="140" fill="#15213a" font-weight="600">émission stimulée</text><text x="280" y="156" fill="#15213a" font-size="11">2 photons identiques</text>
+<rect x="420" y="60" width="10" height="70" fill="#8a94a6"/><rect x="600" y="60" width="6" height="70" fill="#8a94a6" opacity=".6"/>
+<rect x="450" y="75" width="130" height="40" fill="#f3e3c3" stroke="#15213a"/><text x="462" y="99" fill="#15213a" font-size="11">milieu amplificateur</text>
+<line x1="515" y1="160" x2="515" y2="120" stroke="#1f8a4c" stroke-width="2.5" marker-end="url(#la-k)"/><text x="490" y="176" fill="#1f8a4c" font-weight="600">pompage</text>
+<line x1="610" y1="95" x2="636" y2="95" stroke="#d9900b" stroke-width="3" marker-end="url(#la-o)"/>
+<text x="410" y="50" fill="#15213a" font-size="11">miroir</text><text x="540" y="38" fill="#15213a" font-size="11">semi-</text><text x="540" y="52" fill="#15213a" font-size="11">réfléchissant</text>
+<text x="20" y="200" fill="#15213a" font-size="12">Inversion de population (plus d’atomes en E₂ qu’en E₁) + cavité :</text><text x="20" y="216" fill="#15213a" font-size="12">l’émission stimulée l’emporte, la lumière est amplifiée.</text>
+</svg>
+<figcaption>Les trois processus d’interaction lumière-matière, et le principe d’un laser.</figcaption>
+</figure>
+
+<h2 id="dualite">3. La dualité onde-corpuscule</h2>
+
+<h3 id="debroglie">La longueur d’onde de de Broglie</h3>
+<p>Si la lumière, onde, se comporte aussi comme des particules, les particules se comportent-elles comme des ondes ? De Broglie (1924) associe à toute particule de quantité de mouvement \(p\) la longueur d’onde</p>
+\[\lambda = \frac{h}{p} = \frac{h}{mv}\quad(v \ll c).\]
+<p>Davisson et Germer (1927) l’ont confirmé en observant la diffraction d’un faisceau d’électrons par un cristal de nickel, exactement comme celle des rayons X. Pour un électron accéléré sous la tension \(U\) : \(p = \sqrt{2m_eeU}\), \(\lambda = \dfrac{h}{\sqrt{2m_eeU}} \approx \dfrac{1{,}23\ \text{nm}}{\sqrt{U\ (\text{V})}}\) : 0,12 nm sous 100 V, de l’ordre des distances interatomiques. C’est le principe du <strong>microscope électronique</strong> : sous 100 kV (\(\lambda = 3{,}7\) pm, avec correction relativiste), sa résolution est mille fois meilleure que celle d’un microscope optique. Pour un objet macroscopique, \(\lambda\) est ridicule : une balle de tennis de 60 g à 30 m/s a \(\lambda = 3{,}7\times10^{-34}\) m, les effets ondulatoires sont imperceptibles. On a pourtant fait interférer des neutrons, des atomes, et des molécules de fullerène \(\mathrm C_{60}\) (720 u).</p>
+
+<div class="exo" data-q="ipho-2011-8"></div>
+<div class="exo" data-q="ipho-2012-3"></div>
+
+<h3 id="photon-par-photon">Interférences particule par particule</h3>
+<p>Envoyons dans des fentes d’Young des photons (ou des électrons) <strong>un par un</strong>, avec un détecteur sensible à chaque impact. Chaque particule arrive en un point précis, apparemment au hasard : on ne peut pas prédire où. Mais, quand les impacts s’accumulent, ils dessinent les franges d’interférences, alors qu’il n’y a jamais deux particules en même temps dans l’appareil. La figure d’interférences est donc une figure de <strong>probabilité</strong> : la probabilité qu’une particule arrive en un point est proportionnelle à l’intensité de l’onde en ce point. Si l’on cherche à savoir par quelle fente passe chaque particule, les franges disparaissent. La particule n’est ni une onde ni un corpuscule classique : c’est un objet quantique, dont l’onde décrit la probabilité de détection.</p>
+<div class="sim" data-name="unparun"><p>Des photons ou des électrons traversent deux fentes un par un : regardez les impacts individuels s’accumuler et la figure d’interférences émerger. Fermez une fente, ou « observez » par quelle fente passe chaque particule.</p></div>
+
+<h3 id="heisenberg">L’inégalité de Heisenberg</h3>
+<p>Une onde ne peut pas être à la fois bien localisée et de longueur d’onde bien définie : un paquet d’onde de largeur \(\Delta x\) contient des longueurs d’onde réparties sur \(\Delta(1/\lambda) \sim 1/\Delta x\). Avec \(p = h/\lambda\), cela donne la relation d’indétermination de Heisenberg (1927) :</p>
+\[\Delta x\,\Delta p_x \ge \frac{\hbar}{2}, \qquad \hbar = \frac{h}{2\pi} = 1{,}055\times10^{-34}\ \text{J·s}.\]
+<p>Ce n’est pas une imperfection des instruments : position et quantité de mouvement ne peuvent pas être simultanément définies avec précision. Exemple : un électron qui passe par une fente de largeur \(a\) a \(\Delta x \sim a\), donc \(\Delta p_x \sim h/a\) : il est dévié d’un angle \(\Delta p_x/p \sim \lambda/a\), c’est la diffraction. Conséquence capitale, l’<strong>énergie de confinement</strong> : une particule enfermée dans une région de taille \(L\) a \(\Delta p \gtrsim \hbar/L\), donc une énergie cinétique minimale \(\sim \dfrac{\hbar^2}{2mL^2}\), d’autant plus grande que la particule est légère et la région petite. Pour un électron dans un atome (\(L \sim 0{,}1\) nm) : quelques eV, c’est l’ordre de grandeur des énergies atomiques, et c’est pourquoi l’électron ne s’effondre pas sur le noyau. Pour un nucléon dans un noyau (\(L \sim 5\) fm) : quelques MeV. Il existe aussi une relation temps-énergie \(\Delta E\,\Delta t \gtrsim \hbar\) : un état excité de durée de vie \(\tau\) a une énergie floue de \(\hbar/\tau\), d’où la largeur naturelle des raies spectrales.</p>
+<div class="methode" data-m="confinement"><p>Avec \(\hbar c = 197\ \text{eV·nm} = 197\ \text{MeV·fm}\) : un électron confiné sur 0,1 nm a \(E \sim \dfrac{(\hbar c)^2}{m_ec^2\,\Delta x^2} = \dfrac{197^2}{0{,}511\times10^6\times0{,}01} \approx 8\) eV ; un nucléon confiné sur 5 fm, \(\dfrac{197^2}{939\times25} \approx 2\) MeV. Les deux ordres de grandeur, atomique et nucléaire, sortent du même calcul.</p></div>
+<div class="piege">
+<ul>
+<li>\(\lambda = h/p\), avec \(p = mv\) seulement si \(v \ll c\) ; pour un électron de plus de 50 keV, utilisez \(p = \sqrt{E_c^2 + 2E_cmc^2}/c\).</li>
+<li>Électron accéléré : \(E_c = eU\), donc \(p = \sqrt{2meU}\) ; ne confondez pas \(U\) (volts) et \(E_c\) (joules ou eV).</li>
+<li>Heisenberg donne des <em>ordres de grandeur</em> : selon les conventions, on écrit \(\hbar/2\), \(\hbar\) ou \(h\) ; un QCM ne vous demandera que la puissance de 10.</li>
+<li>Pour le photon, \(\lambda = h/p\) redonne \(p = E/c\) ; mais un photon n’a pas de « vitesse \(v\) » à mettre dans \(mv\) : sa masse est nulle.</li>
+</ul>
+</div>
+
+<div class="exo" data-q="ipho-2012-5"></div>
+
+<h2 id="puits">4. Particule confinée : niveaux d’énergie quantifiés</h2>
+<p>Pourquoi l’énergie d’un électron lié est-elle quantifiée ? Parce que son onde est confinée. Comme une corde fixée aux deux bouts n’admet que les modes \(L = n\lambda/2\) (voir le chapitre « Optique et ondes »), une particule enfermée entre deux murs infranchissables distants de \(L\) n’admet que des ondes stationnaires de longueurs d’onde \(\lambda_n = 2L/n\), donc des quantités de mouvement \(p_n = h/\lambda_n = nh/2L\) et des énergies</p>
+\[E_n = \frac{p_n^2}{2m} = \frac{n^2h^2}{8mL^2}, \qquad n = 1, 2, 3\ldots\]
+<p>L’énergie la plus basse n’est pas nulle (\(E_1 = h^2/8mL^2\) : c’est l’énergie de confinement de Heisenberg), et les niveaux s’écartent en \(n^2\). Applications : les <strong>boîtes quantiques</strong> (nanocristaux de semi-conducteur de quelques nm) dont la couleur d’émission se règle par la taille (prix Nobel de chimie 2023, écrans QLED : plus le cristal est petit, plus il émet vers le bleu) ; les colorants à liaisons conjuguées (carotène, chlorophylle), dont les électrons délocalisés sur une chaîne de longueur \(L\) absorbent dans le visible.</p>
+<div class="sim" data-name="puits"><p>Une particule dans une boîte : niveaux d’énergie, ondes stationnaires et densité de probabilité de présence pour \(n = 1\) à 6 ; changez la largeur de la boîte et la masse de la particule (électron, proton) et lisez la longueur d’onde du photon émis lors d’une transition.</p></div>
+
+<div class="exo" data-q="ipho-2018-T15"></div>
+<div class="exo" data-q="ipho-2014-17"></div>
+
+<div class="cpge" id="schrodinger" title="Fonction d’onde et équation de Schrödinger">
+<p>En mécanique quantique, l’état d’une particule est décrit par une <strong>fonction d’onde</strong> \(\psi(x, t)\), complexe ; \(|\psi(x, t)|^2\,\mathrm dx\) est la probabilité de la trouver entre \(x\) et \(x + \mathrm dx\) (interprétation de Born), d’où la normalisation \(\int|\psi|^2\,\mathrm dx = 1\). Elle obéit à l’équation de Schrödinger ; pour un état stationnaire d’énergie \(E\), \(\psi(x, t) = \varphi(x)\,\mathrm e^{-iEt/\hbar}\) avec</p>
+\[-\frac{\hbar^2}{2m}\frac{\mathrm d^2\varphi}{\mathrm dx^2} + V(x)\,\varphi = E\,\varphi.\]
+<p><strong>Puits infini</strong> (\(V = 0\) entre 0 et \(L\), infini ailleurs) : \(\varphi\) s’annule aux bords, d’où \(\varphi_n(x) = \sqrt{2/L}\,\sin(n\pi x/L)\) et \(E_n = \dfrac{n^2\pi^2\hbar^2}{2mL^2} = \dfrac{n^2h^2}{8mL^2}\). <strong>Oscillateur harmonique</strong> (\(V = \tfrac12 m\omega^2x^2\)) : \(E_n = \left(n + \tfrac12\right)\hbar\omega\), niveaux équidistants ; l’énergie de « point zéro » \(\tfrac12\hbar\omega\) explique que l’hélium reste liquide jusqu’à 0 K sous pression ordinaire. <strong>Effet tunnel</strong> : devant une barrière de hauteur \(V_0 > E\) et d’épaisseur \(a\), la fonction d’onde décroît exponentiellement dans la barrière, \(\varphi \propto \mathrm e^{-\kappa x}\) avec \(\kappa = \sqrt{2m(V_0 - E)}/\hbar\) ; la probabilité de transmission vaut environ \(\mathrm e^{-2\kappa a}\), non nulle. D’où la radioactivité α (voir « Physique nucléaire »), la fusion dans le Soleil, le microscope à effet tunnel (le courant varie d’un facteur 10 quand la pointe s’éloigne de 0,1 nm), les mémoires flash.</p>
+</div>
+<div class="cpge" id="tunnel" title="Ordres de grandeur de l’effet tunnel">
+<p>Électron de 1 eV devant une barrière de 5 eV : \(\kappa = \sqrt{2m_e\times4\ \text{eV}}/\hbar = 1{,}0\times10^{10}\ \text{m}^{-1}\). Pour \(a = 0{,}5\) nm, \(\mathrm e^{-2\kappa a} = \mathrm e^{-10} = 4{,}5\times10^{-5}\) ; pour \(a = 1\) nm, \(2\times10^{-9}\). Pour un proton (1 836 fois plus lourd), \(\kappa\) est 43 fois plus grand : la transmission devient négligeable. L’effet tunnel est sensible à la masse, à la largeur et à la hauteur de la barrière, toutes trois dans l’exponentielle : d’où les variations gigantesques des demi-vies α.</p>
+</div>
+
+<h2 id="ordres">5. Où le quantique intervient, et où il n’intervient pas</h2>
+<p>Un critère simple : comparer l’action caractéristique du problème (énergie × temps, ou quantité de mouvement × longueur) à \(h\). Si elle est du même ordre, le comportement est quantique ; si elle est énorme, la physique classique suffit. Autre critère : la longueur d’onde de de Broglie thermique \(\lambda_\text{th} = h/\sqrt{3mk_BT}\) comparée aux distances entre particules. Pour les électrons d’un métal (\(\lambda_\text{th} \approx 6\) nm à 300 K, distance 0,2 nm), le comportement est quantique : d’où la conductivité, la chaleur spécifique des métaux, les semi-conducteurs. Pour l’air (\(\lambda_\text{th} \approx 0{,}03\) nm, distance 3 nm), la physique classique suffit. Refroidis à quelques nK, les atomes d’un gaz ont des ondes qui se recouvrent et forment un <strong>condensat de Bose-Einstein</strong>, une onde de matière macroscopique (prix Nobel 2001).</p>
+<div class="methode" data-m="sans-dimension"><p>Le nombre qui décide est ici \(\lambda_\text{th}/d\), longueur d’onde thermique sur distance entre particules : \(6/0{,}2 = 30\) pour les électrons d’un métal (régime quantique), \(0{,}03/3 = 10^{-2}\) pour l’air (régime classique).</p></div>
+<p>Le quantique est partout dans la vie courante : couleurs (niveaux électroniques), stabilité de la matière (Heisenberg + principe d’exclusion de Pauli), chimie (liaisons), électronique (transistors, LED, lasers, capteurs photo), IRM (spin des protons), horloges atomiques et GPS, et désormais la cryptographie et l’informatique quantiques.</p>
+
+<div class="cpge" id="plus-loin" title="Pour aller plus loin : polycopiés olympiques">
+<p>Pour viser l’IPhO internationale, deux ressources en anglais, gratuites et d’un très bon niveau, reprennent ce chapitre en profondeur avec des centaines de problèmes corrigés :</p>
+<ul>
+<li><a href="https://knzhou.github.io/handouts/X1.pdf" target="_blank" rel="noopener">K. Zhou, polycopié X1</a> (mécanique semi-classique : Bohr, de Broglie, confinement, estimations) · <a href="https://knzhou.github.io/handouts/X1Sol.pdf" target="_blank" rel="noopener">solutions</a></li>
+<li><a href="https://knzhou.github.io/handouts/X2.pdf" target="_blank" rel="noopener">K. Zhou, polycopié X2</a> (atomes, particules et noyaux : spectres, lasers, statistique des photons) · <a href="https://knzhou.github.io/handouts/X2Sol.pdf" target="_blank" rel="noopener">solutions</a></li>
+<li><a href="https://www.ioc.ee/~kalda/ipho/" target="_blank" rel="noopener">J. Kalda, <em>Quantum mechanics</em></a> (fiche courte d’idées et de problèmes)</li>
+</ul>
+<p>Les problèmes de ces polycopiés les plus utiles pour ce chapitre sont traduits et corrigés dans la section « S’entraîner » ci-dessous, source indiquée. Les polycopiés de Kevin Zhou ont été écrits pour l’équipe américaine (2019-2024) ; les guides de Jaan Kalda, pour l’équipe estonienne.</p>
+</div>

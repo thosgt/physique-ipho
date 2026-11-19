@@ -1,0 +1,364 @@
+{
+ "_doc": "Vérification des expressions littérales : lhs (ce que l'élève exprime), expr (référence, syntaxe math.js), vars (nom tapé → affichage TeX), ranges (tirage aléatoire, défaut [0.5, 2]). Deux expressions sont jugées égales si elles coïncident à 1e-6 près en 12 points aléatoires.",
+ "cg26-q9": {
+  "lhs": "m_plomb",
+  "expr": "rho_mer*(V0 + V_air) - m0",
+  "vars": {
+   "rho_mer": "\\rho_\\text{mer}",
+   "V0": "V_0",
+   "V_air": "V_\\text{air}",
+   "m0": "m_0"
+  }
+ },
+ "cg26-q11": {
+  "lhs": "a_z",
+  "expr": "g*(1 - rho_mer/(m0 + m_plomb)*(V0 + n_air*R*T0/(P_atm + rho_mer*g*z)))",
+  "vars": {
+   "g": "g",
+   "rho_mer": "\\rho_\\text{mer}",
+   "m0": "m_0",
+   "m_plomb": "m_\\text{plomb}",
+   "V0": "V_0",
+   "n_air": "n_\\text{air}",
+   "R": "R",
+   "T0": "T_0",
+   "P_atm": "P_\\text{atm}",
+   "z": "z"
+  }
+ },
+ "cg26-q12a": {
+  "lhs": "n_air",
+  "expr": "(P_atm + rho_mer*g*z0)/(R*T0)*((m0 + m_plomb)/rho_mer - V0)",
+  "vars": {
+   "P_atm": "P_\\text{atm}",
+   "rho_mer": "\\rho_\\text{mer}",
+   "g": "g",
+   "z0": "z_0",
+   "R": "R",
+   "T0": "T_0",
+   "m0": "m_0",
+   "m_plomb": "m_\\text{plomb}",
+   "V0": "V_0"
+  },
+  "ranges": {
+   "m0": [
+    2,
+    3
+   ],
+   "m_plomb": [
+    0.5,
+    1
+   ],
+   "rho_mer": [
+    1,
+    1.5
+   ],
+   "V0": [
+    0.5,
+    1
+   ]
+  }
+ },
+ "cg23-q6": {
+  "lhs": "V0min",
+  "expr": "m_b/(rho_0*(1 - M_h/M_a))",
+  "vars": {
+   "m_b": "m_b",
+   "rho_0": "\\rho_0",
+   "M_a": "M_a",
+   "M_h": "M_h"
+  },
+  "ranges": {
+   "M_h": [
+    0.1,
+    0.4
+   ]
+  }
+ },
+ "cg23-q9": {
+  "lhs": "alpha",
+  "expr": "M_a*g/(R*b)",
+  "vars": {
+   "M_a": "M_a",
+   "g": "g",
+   "R": "R",
+   "b": "b"
+  }
+ },
+ "cg23-q10": {
+  "lhs": "rho_a",
+  "expr": "rho_0*(1 - b*z/T0)^(alpha - 1)",
+  "vars": {
+   "rho_0": "\\rho_0",
+   "b": "b",
+   "z": "z",
+   "T0": "T_0",
+   "alpha": "\\alpha"
+  },
+  "ranges": {
+   "b": [
+    0.1,
+    0.3
+   ],
+   "T0": [
+    1,
+    2
+   ],
+   "z": [
+    0,
+    2
+   ],
+   "alpha": [
+    3,
+    7
+   ]
+  }
+ },
+ "cg23-q11": {
+  "lhs": "H",
+  "expr": "R*T1/(M_a*g)",
+  "vars": {
+   "R": "R",
+   "T1": "T_1",
+   "M_a": "M_a",
+   "g": "g"
+  }
+ },
+ "cg23-q12": {
+  "lhs": "P",
+  "expr": "P1*exp(-(z - z1)/H)",
+  "vars": {
+   "P1": "P_1",
+   "z": "z",
+   "z1": "z_1",
+   "H": "H"
+  }
+ },
+ "cg23-q14": {
+  "lhs": "rho_a",
+  "expr": "P1*M_a/(R*T1)*exp(-(z - z1)/H)",
+  "vars": {
+   "P1": "P_1",
+   "M_a": "M_a",
+   "R": "R",
+   "T1": "T_1",
+   "z": "z",
+   "z1": "z_1",
+   "H": "H"
+  }
+ },
+ "cg23-q20": {
+  "lhs": "rho_a(zmax)",
+  "expr": "m_b*M_a/((M_a - M_h)*V_max)",
+  "vars": {
+   "m_b": "m_b",
+   "M_a": "M_a",
+   "M_h": "M_h",
+   "V_max": "V_\\text{max}"
+  },
+  "ranges": {
+   "M_a": [
+    2,
+    3
+   ],
+   "M_h": [
+    0.1,
+    1
+   ]
+  }
+ },
+ "cg13-q6-3": {
+  "lhs": "V_b",
+  "expr": "P0*V0/(P0 + rho_e*g*z)",
+  "vars": {
+   "P0": "P_0",
+   "V0": "V_0",
+   "rho_e": "\\rho_e",
+   "g": "g",
+   "z": "z"
+  }
+ },
+ "cg22-q23": {
+  "lhs": "Pi_l",
+  "expr": "rho_l*V_im*g",
+  "vars": {
+   "rho_l": "\\rho_\\ell",
+   "V_im": "V_\\text{im}",
+   "g": "g"
+  }
+ },
+ "cg22-q24": {
+  "lhs": "Pi_a",
+  "expr": "rho_a*V_em*g",
+  "vars": {
+   "rho_a": "\\rho_a",
+   "V_em": "V_\\text{em}",
+   "g": "g"
+  }
+ },
+ "ipho17h-q1": {
+  "lhs": "P_N",
+  "expr": "P_M + rho*g*(z_M - z_N)",
+  "vars": {
+   "P_M": "P_M",
+   "rho": "\\rho",
+   "g": "g",
+   "z_M": "z_M",
+   "z_N": "z_N"
+  }
+ },
+ "ipho17h-q2": {
+  "lhs": "P_A",
+  "expr": "P0 + rho*g*(z_C - z_A)",
+  "vars": {
+   "P0": "P_0",
+   "rho": "\\rho",
+   "g": "g",
+   "z_A": "z_A",
+   "z_C": "z_C"
+  }
+ },
+ "ipho17h-q3": {
+  "lhs": "P'_A",
+  "expr": "P0 + rho*g*(z_B - z_A)",
+  "vars": {
+   "P0": "P_0",
+   "rho": "\\rho",
+   "g": "g",
+   "z_A": "z_A",
+   "z_B": "z_B"
+  }
+ },
+ "ipho17h-q7": {
+  "lhs": "P_A'",
+  "expr": "P0 + rho*g*(h1 - Z)",
+  "vars": {
+   "P0": "P_0",
+   "rho": "\\rho",
+   "g": "g",
+   "h1": "h_1",
+   "Z": "Z"
+  }
+ },
+ "ipho24c-q2": {
+  "lhs": "V_lim",
+  "expr": "4*pi*R^3*(mu1 - mu2)*g/(3*K)",
+  "vars": {
+   "R": "R",
+   "mu1": "\\mu_1",
+   "mu2": "\\mu_2",
+   "g": "g",
+   "K": "K"
+  },
+  "note": "\\(\\pi\\) se tape <code>pi</code>."
+ },
+ "cde-21-5a": {
+  "lhs": "p(z_1)",
+  "expr": "p0 + rho*g*z1",
+  "vars": {
+   "p0": "p_0",
+   "rho": "\\rho",
+   "g": "g",
+   "z1": "z_1"
+  }
+ },
+ "cde-21-5b": {
+  "lhs": "p(z_2)",
+  "expr": "p0 + rho*g*(H - h - z2)",
+  "vars": {
+   "p0": "p_0",
+   "rho": "\\rho",
+   "g": "g",
+   "z2": "z_2",
+   "H": "H",
+   "h": "h"
+  }
+ },
+ "cde-21-5c": {
+  "lhs": "p(z_3)",
+  "expr": "p0 + rho*g*(H - z3*sin(alpha))",
+  "vars": {
+   "p0": "p_0",
+   "rho": "\\rho",
+   "g": "g",
+   "z3": "z_3",
+   "H": "H",
+   "alpha": "\\alpha"
+  }
+ },
+ "cde-21-7d": {
+  "lhs": "d_2 - d_1",
+  "expr": "rho_h*V_h/(rho_e*s)",
+  "vars": {
+   "rho_h": "\\rho_h",
+   "V_h": "V_h",
+   "rho_e": "\\rho_e",
+   "s": "s"
+  }
+ },
+ "cde-21-13a": {
+  "lhs": "R",
+  "expr": "(rho_s*h - rho_l*(h - x))*S*g",
+  "vars": {
+   "x": "x",
+   "h": "h",
+   "S": "S",
+   "rho_s": "\\rho_s",
+   "rho_l": "\\rho_\\ell",
+   "g": "g"
+  },
+  "note": "Donnez la composante selon \\(\\vec g\\) : \\(\\vec R = R\\,\\vec g/g\\)."
+ },
+ "cde-21-14b": {
+  "lhs": "V_imm",
+  "expr": "S*(h - x)^3/(3*h^2)",
+  "vars": {
+   "S": "S",
+   "h": "h",
+   "x": "x"
+  }
+ },
+ "cde-21-18b": {
+  "lhs": "p(z)",
+  "expr": "p0*exp(-2*z/z_max)",
+  "vars": {
+   "p0": "p_0",
+   "z": "z",
+   "z_max": "z_\\text{max}"
+  }
+ },
+ "cde-21-20a": {
+  "lhs": "p(x,y,z)",
+  "expr": "p0 + rho*(a*y - g*z)",
+  "vars": {
+   "p0": "p_0",
+   "rho": "\\rho",
+   "a": "a",
+   "y": "y",
+   "g": "g",
+   "z": "z"
+  }
+ },
+ "cde-22-15": {
+  "lhs": "F (norme, vers le bas)",
+  "expr": "pi*R^2*(p0 + rho*g*(h - 2*R/3))",
+  "vars": {
+   "R": "R",
+   "h": "h",
+   "rho": "\\rho",
+   "g": "g",
+   "p0": "p_0"
+  },
+  "ranges": {
+   "h": [
+    2,
+    4
+   ],
+   "R": [
+    0.5,
+    1.5
+   ]
+  },
+  "note": "\\(\\pi\\) se tape <code>pi</code>."
+ }
+}

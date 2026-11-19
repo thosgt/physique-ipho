@@ -1,0 +1,536 @@
+[
+{
+"id": "dimension",
+"title": "Vérifier l’homogénéité, deviner une loi",
+"quand": "À chaque résultat littéral, et quand on ne sait pas par où commencer.",
+"texte": "Un résultat non homogène est faux : vérifiez les dimensions avant toute application numérique. À l’inverse, si l’on connaît les grandeurs dont dépend un phénomène, l’analyse dimensionnelle donne souvent la loi à une constante près (période d’un pendule, vitesse des vagues, traînée).",
+"chaps": [
+"outils",
+"statique",
+"dynamique",
+"tension",
+"optique",
+"relativite",
+"nucleaire",
+"quantique"
+]
+},
+{
+"id": "sans-dimension",
+"title": "Former les nombres sans dimension",
+"quand": "Quand un problème compare deux effets (inertie et viscosité, vitesse et c, énergie et kT).",
+"texte": "Le comportement d’un système dépend de rapports sans dimension : Reynolds \\(\\rho vL/\\eta\\), \\(\\beta = v/c\\), \\(h\\nu/kT\\), \\(\\Delta x/\\lambda\\). Les calculer d’abord dit quel régime s’applique et quelles approximations sont permises.",
+"chaps": [
+"outils",
+"dynamique",
+"relativite",
+"quantique"
+]
+},
+{
+"id": "ordre-grandeur",
+"title": "Estimer un ordre de grandeur",
+"quand": "Questions « environ combien ? », données manquantes, vérification d’un résultat.",
+"texte": "Décomposez la grandeur en facteurs que l’on sait estimer (méthode de Fermi), arrondissez à une puissance de 10 et gardez un seul chiffre significatif. Comparez toujours le résultat à une valeur connue : un résultat absurde signale une erreur.",
+"chaps": [
+"outils",
+"statique",
+"dynamique",
+"tension",
+"geometrique",
+"optique",
+"relativite",
+"nucleaire",
+"quantique"
+]
+},
+{
+"id": "rapports",
+"title": "Raisonner en rapports (lois d’échelle)",
+"quand": "Loi de proportionnalité ou de puissance, constantes inconnues, « que devient… si l’on double… ».",
+"texte": "Écrivez la loi pour les deux situations et faites le quotient : les constantes inconnues disparaissent. Si \\(y \\propto x^n\\), doubler \\(x\\) multiplie \\(y\\) par \\(2^n\\) (Stefan \\(P \\propto R^2T^4\\), Kepler \\(T^2 \\propto a^3\\), Wien \\(\\lambda_\\text{max}T = \\text{cte}\\)).",
+"chaps": [
+"outils",
+"statique",
+"dynamique",
+"tension",
+"quantique"
+]
+},
+{
+"id": "cas-limites",
+"title": "Tester les cas limites",
+"quand": "Dès qu’un résultat littéral est obtenu.",
+"texte": "Faites tendre un paramètre vers 0 ou l’infini, ou rendez deux paramètres égaux : le résultat doit redonner un cas connu (\\(v \\ll c\\) redonne Newton, angle nul, densités égales…). C’est la vérification la plus rapide et elle détecte la plupart des erreurs de signe ou de facteur.",
+"chaps": [
+"outils",
+"statique",
+"dynamique",
+"tension",
+"geometrique",
+"optique",
+"relativite",
+"nucleaire",
+"quantique"
+]
+},
+{
+"id": "petit-parametre",
+"title": "Développer au premier ordre en un petit paramètre",
+"quand": "Une grandeur est petite devant une autre (x ≪ 1, v ≪ c, h ≪ R).",
+"texte": "Identifiez le petit paramètre sans dimension \\(\\varepsilon\\), puis utilisez \\((1+\\varepsilon)^n \\approx 1 + n\\varepsilon\\), \\(\\sin\\varepsilon \\approx \\varepsilon\\), \\(\\ln(1+\\varepsilon) \\approx \\varepsilon\\). Ne développez qu’au premier ordre non nul et ne mélangez pas les ordres.",
+"chaps": [
+"outils",
+"statique",
+"tension",
+"geometrique",
+"optique",
+"relativite",
+"nucleaire",
+"quantique"
+]
+},
+{
+"id": "derivee-logarithmique",
+"title": "Différentier le logarithme",
+"quand": "Petites variations d’une loi de puissance, gradients, incertitudes relatives.",
+"texte": "Si \\(a^\\alpha b^\\beta c^\\gamma = \\text{cste}\\), les petites variations vérifient \\(\\alpha\\,\\dfrac{\\Delta a}{a} + \\beta\\,\\dfrac{\\Delta b}{b} + \\gamma\\,\\dfrac{\\Delta c}{c} = 0\\). C’est la voie la plus rapide vers un gradient (atmosphère) ou une incertitude relative.",
+"chaps": [
+"outils",
+"statique",
+"optique",
+"relativite",
+"quantique"
+]
+},
+{
+"id": "systeme",
+"title": "Bien choisir le système",
+"quand": "Avant d’écrire une loi de la mécanique ou un bilan.",
+"texte": "Le choix du système détermine les forces à considérer : un système bien choisi rend inutiles les forces intérieures inconnues (tensions, forces entre deux blocs, pression entre deux couches de fluide). Dites explicitement quel est le système et quel est le référentiel.",
+"chaps": [
+"statique",
+"dynamique",
+"tension",
+"optique",
+"relativite"
+]
+},
+{
+"id": "equilibre",
+"title": "Écrire l’équilibre : forces et moments",
+"quand": "Objet immobile ou à vitesse constante.",
+"texte": "Somme des forces nulle et somme des moments nulle. Pour les moments, choisissez le point où s’appliquent les forces inconnues : elles disparaissent de l’équation. Faites un schéma avec toutes les forces avant d’écrire quoi que ce soit.",
+"chaps": [
+"statique",
+"dynamique",
+"tension"
+]
+},
+{
+"id": "minimum-energie",
+"title": "Chercher l’équilibre comme un minimum d’énergie",
+"quand": "Équilibre et stabilité d’un système soumis à des forces conservatives.",
+"texte": "Un équilibre stable minimise l’énergie potentielle totale (pesanteur, ressorts, surfaces…). Écrivez-la en fonction d’un seul paramètre en tenant compte des contraintes (volume fixé…), annulez sa dérivée ; le signe de la dérivée seconde donne la stabilité.",
+"chaps": [
+"outils",
+"statique",
+"tension",
+"nucleaire"
+]
+},
+{
+"id": "fluide-fictif",
+"title": "Remplacer un objet par le fluide qu’il déplace",
+"quand": "Poussée d’Archimède, objets partiellement immergés, niveau d’un liquide.",
+"texte": "La résultante des forces de pression ne dépend que de la surface : remplacez l’objet par du fluide en équilibre, la résultante est l’opposé du poids de ce fluide. Quand une partie de la surface n’est pas mouillée (objet posé au fond), ajoutez et retirez du fluide fictif pour se ramener à ce cas.",
+"chaps": [
+"statique",
+"tension"
+]
+},
+{
+"id": "coupe-fictive",
+"title": "Isoler une partie et écrire son équilibre",
+"quand": "Bulles, gouttes, ménisques, films, parois de réservoir sous pression.",
+"texte": "Découpez par la pensée un morceau du système (demi-bulle, colonne de liquide, demi-réservoir) et faites le bilan des forces qui s’exercent sur lui : pression, tension superficielle le long de la coupe, poids. Une pression uniforme sur une surface courbe équivaut à la pression multipliée par l’aire projetée.",
+"chaps": [
+"statique",
+"tension"
+]
+},
+{
+"id": "chemin-pression",
+"title": "Suivre la pression le long d’un chemin",
+"quand": "Tubes en U, manomètres, vases communicants, siphons.",
+"texte": "Partez d’un point de pression connue et parcourez le fluide : la pression augmente de \\(\\rho g\\,\\Delta h\\) quand on descend dans chaque fluide, et deux points d’un même fluide au repos à la même hauteur sont à la même pression (isobares horizontales, si le fluide est continu).",
+"chaps": [
+"statique",
+"dynamique",
+"tension"
+]
+},
+{
+"id": "decouper-integrer",
+"title": "Découper en éléments et intégrer",
+"quand": "Une grandeur varie d’un point à l’autre (pression sur une paroi, masse volumique variable).",
+"texte": "Découpez en tranches où la grandeur est uniforme, écrivez la contribution d’une tranche (\\(\\mathrm dF = P(z)\\,L\\,\\mathrm dz\\)), puis sommez. Vérifiez que le résultat a la bonne dimension et redonne le cas uniforme.",
+"chaps": [
+"outils",
+"statique",
+"dynamique",
+"tension",
+"nucleaire",
+"quantique"
+]
+},
+{
+"id": "conservation",
+"title": "Utiliser une loi de conservation",
+"quand": "On ne connaît pas les forces en détail, ou on cherche un état final.",
+"texte": "Énergie, quantité de mouvement, masse, charge, nombre de nucléons : une loi de conservation relie l’état initial et l’état final sans avoir à décrire ce qui se passe entre les deux. Vérifiez ses conditions (système isolé, pas de frottement, choc élastique ou non).",
+"chaps": [
+"statique",
+"dynamique",
+"tension",
+"optique",
+"relativite",
+"nucleaire",
+"quantique"
+]
+},
+{
+"id": "bilan",
+"title": "Faire un bilan sur un volume de contrôle",
+"quand": "Écoulements, jets, débits, réacteurs.",
+"texte": "Choisissez un volume fixe (ou un système fermé qui se déplace) et écrivez : ce qui entre − ce qui sort = variation de ce qui est stocké, pour la masse, l’énergie ou la quantité de mouvement. En régime stationnaire, ce qui entre égale ce qui sort.",
+"chaps": [
+"dynamique",
+"tension",
+"nucleaire"
+]
+},
+{
+"id": "bernoulli-points",
+"title": "Appliquer Bernoulli entre deux points bien choisis",
+"quand": "Écoulement d’un fluide parfait : vidange, jet, Venturi, Pitot, siphon.",
+"texte": "Choisissez deux points d’une même ligne de courant où l’on connaît le plus de grandeurs : surface libre (\\(P_0\\), \\(v \\approx 0\\)), jet à l’air libre (\\(P_0\\)), point d’arrêt (\\(v = 0\\)). Vérifiez les hypothèses (fluide parfait, incompressible, stationnaire) et qu’aucune pompe ni turbine ne sépare les deux points ; complétez par la conservation du débit.",
+"chaps": [
+"statique",
+"dynamique"
+]
+},
+{
+"id": "referentiel",
+"title": "Changer de référentiel",
+"quand": "Un objet en mouvement uniforme, une source mobile, une collision.",
+"texte": "Placez-vous dans le référentiel où le problème est le plus simple (celui de la source, du centre de masse, de la particule), résolvez-y, puis revenez au référentiel du laboratoire par la loi de composition adaptée (Galilée ou Lorentz).",
+"chaps": [
+"statique",
+"dynamique",
+"optique",
+"relativite"
+]
+},
+{
+"id": "g-effectif",
+"title": "Remplacer g par une pesanteur effective",
+"quand": "Ascenseur, véhicule qui accélère, récipient tournant, satellite : tout référentiel accéléré.",
+"texte": "Dans un référentiel en translation d’accélération \\(\\vec a_e\\), la force d’inertie \\(-m\\vec a_e\\) s’ajoute au poids : tout se passe comme si la pesanteur valait \\(\\vec g_\\text{eff} = \\vec g - \\vec a_e\\). Équilibres, surfaces libres (perpendiculaires à \\(\\vec g_\\text{eff}\\)), poussée d’Archimède et périodes d’oscillation s’obtiennent en remplaçant \\(g\\) par \\(g_\\text{eff}\\). En rotation, on ajoute de même le terme centrifuge \\(\\omega^2 r\\).",
+"chaps": [
+"nongalileen",
+"statique"
+]
+},
+{
+"id": "coriolis",
+"title": "Prendre en compte la force de Coriolis",
+"quand": "Objet en mouvement dans un référentiel tournant : manège, station spatiale, Terre (vents, projectiles, pendule de Foucault).",
+"texte": "Elle n’existe que si l’objet bouge dans le référentiel tournant : \\(-2m\\,\\vec\\omega\\wedge\\vec v\\,'\\). Perpendiculaire à la vitesse, elle ne travaille pas ; un guide (tube, rail) la compense. Ses effets sont des déviations d’ordre \\(\\omega v t^2\\) : comparez \\(2\\omega v\\) aux autres accélérations avant de la garder.",
+"chaps": [
+"nongalileen"
+]
+},
+{
+"id": "effet-maree",
+"title": "Garder la différence de champ : terme de marée",
+"quand": "Corps en chute libre dans un champ non uniforme : marées, limite de Roche, satellite allongé, station spatiale.",
+"texte": "Dans le référentiel en chute libre d’un corps, la gravité extérieure est compensée en son centre ; il ne reste que la différence \\(\\vec{\\mathcal G}(M) - \\vec{\\mathcal G}(O)\\), d’environ \\(2GMx/D^3\\) le long de l’axe vers l’astre attracteur et \\(-GMy/D^3\\) en travers : elle étire le corps selon l’axe.",
+"chaps": [
+"nongalileen"
+]
+},
+{
+"id": "symetrie",
+"title": "Exploiter les symétries",
+"quand": "Géométrie régulière, situation invariante par translation, rotation ou réflexion.",
+"texte": "Une symétrie annule des composantes (une force sur un objet symétrique n’a pas de composante horizontale), réduit le nombre d’inconnues et donne souvent la réponse sans calcul. Vérifiez qu’aucune donnée ne brise la symétrie.",
+"chaps": [
+"statique",
+"dynamique",
+"tension",
+"geometrique",
+"optique",
+"relativite",
+"quantique"
+]
+},
+{
+"id": "superposition",
+"title": "Superposer des solutions simples",
+"quand": "Équations linéaires : ondes, petites amplitudes, forces de pression.",
+"texte": "Si le problème est linéaire, décomposez-le en morceaux simples, résolvez chacun et additionnez. Deux ondes s’ajoutent en amplitude (pas en intensité), une figure complexe se décompose en motifs connus.",
+"chaps": [
+"statique",
+"optique"
+]
+},
+{
+"id": "dephasage",
+"title": "Raisonner en différence de marche",
+"quand": "Interférences, réseaux, couches minces, battements.",
+"texte": "Calculez la différence de chemin optique \\(\\delta\\) entre les deux ondes, ajoutez \\(\\lambda/2\\) pour chaque réflexion sur un milieu plus réfringent, puis \\(\\Delta\\varphi = 2\\pi\\delta/\\lambda\\). Interférence constructive si \\(\\delta = p\\lambda\\), destructive si \\(\\delta = (p + \\tfrac12)\\lambda\\).",
+"chaps": [
+"optique",
+"quantique"
+]
+},
+{
+"id": "amplitudes-complexes",
+"title": "Additionner des amplitudes complexes (vecteurs de Fresnel)",
+"quand": "Plus de deux ondes qui interfèrent : réseaux, fentes multiples, Fabry-Pérot.",
+"texte": "Représentez chaque onde par \\(a\\,\\mathrm e^{i\\varphi}\\) (ou par un vecteur tournant) et sommez : l’intensité est le carré du module de la somme. \\(N\\) ondes de même amplitude s’annulent quand leurs vecteurs forment un polygone fermé.",
+"chaps": [
+"optique",
+"quantique"
+]
+},
+{
+"id": "figure-diffraction",
+"title": "Lire une figure de diffraction (obstacle inconnu)",
+"quand": "QCM « quelle est la forme de l’objet ? », mesure d’une taille à partir d’une figure de diffraction, réseaux, deux trous.",
+"texte": "La figure à l’infini est « à l’envers » de l’objet : une petite dimension donne un grand étalement (\\(\\theta \\approx \\lambda/a\\)), dans la même direction. Elle est toujours symétrique par rapport à son centre ; chaque bord rectiligne de l’ouverture donne une traînée perpendiculaire à ce bord ; une rotation de l’objet tourne la figure du même angle ; deux objets identiques ajoutent des franges d’Young perpendiculaires à la droite qui les joint ; un objet et son complémentaire donnent la même figure (Babinet).",
+"chaps": [
+"optique"
+]
+},
+{
+"id": "doppler",
+"title": "Traiter un effet Doppler",
+"quand": "Source, observateur ou miroir en mouvement ; décalage spectral.",
+"texte": "Décidez d’abord si la distance augmente ou diminue (la fréquence reçue diminue ou augmente), puis appliquez la formule adaptée : classique \\(f' = f\\,(v \\pm v_o)/(v \\mp v_s)\\), relativiste \\(f' = f\\sqrt{(1-\\beta)/(1+\\beta)}\\) en éloignement. Un miroir mobile se traite en deux temps (réception puis réémission) ; pour \\(\\beta \\ll 1\\), \\(\\Delta\\lambda/\\lambda \\approx \\beta\\).",
+"chaps": [
+"optique",
+"relativite"
+]
+},
+{
+"id": "rayons",
+"title": "Tracer les rayons particuliers",
+"quand": "Lentilles, miroirs, instruments d’optique.",
+"texte": "Un rayon passant par le centre n’est pas dévié, un rayon parallèle à l’axe ressort par le foyer image, un rayon passant par le foyer objet ressort parallèle. Deux de ces rayons suffisent pour placer l’image ; le tracé vérifie le signe donné par la relation de conjugaison.",
+"chaps": [
+"geometrique"
+]
+},
+{
+"id": "conjugaison",
+"title": "Enchaîner les images avec la relation de conjugaison",
+"quand": "Lentilles, systèmes à plusieurs lentilles, œil et instruments.",
+"texte": "Fixez l’origine et le sens positif, puis les signes : \\(\\overline{OA} < 0\\) pour un objet réel. Traduisez l’énoncé en grandissement (signe et valeur). Pour plusieurs lentilles, l’image donnée par l’une est l’objet de la suivante et \\(\\gamma = \\gamma_1\\gamma_2\\).",
+"chaps": [
+"geometrique"
+]
+},
+{
+"id": "chasse-angles",
+"title": "Suivre un rayon par une chasse aux angles",
+"quand": "Prismes, fibres, lames, miroirs inclinés.",
+"texte": "À chaque dioptre ou miroir, écrivez la loi locale (Snell-Descartes, réflexion), puis reliez les angles successifs par la géométrie : somme des angles d’un triangle, normales perpendiculaires aux faces. Un schéma soigné avec tous les angles nommés fait la moitié du travail.",
+"chaps": [
+"geometrique"
+]
+},
+{
+"id": "conditions-limites",
+"title": "Imposer les conditions aux limites : modes propres",
+"quand": "Cordes, tuyaux sonores, cavités, ondes stationnaires.",
+"texte": "Extrémité fixe ou fermée : nœud de déplacement ; extrémité ouverte : ventre de déplacement (nœud de pression). Ces conditions imposent \\(L = n\\lambda/2\\) ou \\(L = (2n+1)\\lambda/4\\), d’où les fréquences propres \\(f_n = v/\\lambda_n\\).",
+"chaps": [
+"tension",
+"optique",
+"quantique"
+]
+},
+{
+"id": "lineariser",
+"title": "Linéariser autour d’un équilibre",
+"quand": "Petits mouvements, stabilité, oscillations.",
+"texte": "Écrivez la force ou l’énergie près de l’équilibre au premier ordre en l’écart \\(x\\) : on obtient \\(\\ddot x + \\omega_0^2 x = 0\\) (équilibre stable, oscillations à \\(\\omega_0\\)) ou \\(\\ddot x - \\omega_0^2 x = 0\\) (instable).",
+"chaps": [
+"outils",
+"statique",
+"tension",
+"quantique"
+]
+},
+{
+"id": "extremum",
+"title": "Chercher un extremum",
+"quand": "Questions « maximal », « minimal », « optimal », « le plus stable ».",
+"texte": "Exprimez la grandeur en fonction d’une seule variable (en éliminant les autres par les contraintes), annulez la dérivée, puis vérifiez qu’il s’agit bien d’un maximum ou d’un minimum (signe de la dérivée seconde, ou comportement aux bornes). Pensez aussi aux extrema situés aux bornes du domaine.",
+"chaps": [
+"outils",
+"nucleaire",
+"quantique"
+]
+},
+{
+"id": "equadiff",
+"title": "Écrire et reconnaître une équation différentielle",
+"quand": "Une grandeur évolue au cours du temps à un taux qui dépend d’elle-même.",
+"texte": "Faites un bilan sur une durée \\(\\mathrm dt\\) : \\(\\mathrm dN = -\\lambda N\\,\\mathrm dt\\), \\(S\\,\\mathrm dh = -Q\\,\\mathrm dt\\)… Reconnaissez ensuite la forme : exponentielle (premier ordre), sinusoïde (oscillateur), séparation des variables sinon.",
+"chaps": [
+"outils",
+"statique",
+"dynamique",
+"tension",
+"optique",
+"relativite",
+"nucleaire"
+]
+},
+{
+"id": "graphe",
+"title": "Exploiter un graphe : pente et ordonnée à l’origine",
+"quand": "Données expérimentales, courbe fournie dans l’énoncé.",
+"texte": "Choisissez des variables qui rendent la loi linéaire (\\(\\ln N\\) en fonction de \\(t\\), \\(U_0\\) en fonction de \\(\\nu\\)…), lisez la pente et l’ordonnée à l’origine sur des points éloignés et donnez-leur une unité. Une courbe en échelle logarithmique se lit en décades.",
+"chaps": [
+"outils",
+"dynamique",
+"tension",
+"optique",
+"relativite",
+"nucleaire",
+"quantique"
+]
+},
+{
+"id": "incertitude",
+"title": "Évaluer et propager une incertitude",
+"quand": "Comparer une mesure à une valeur de référence, ou deux mesures entre elles.",
+"texte": "Les incertitudes absolues s’ajoutent en quadrature pour une somme, les incertitudes relatives pour un produit. Deux valeurs sont compatibles si leur écart est inférieur à environ deux fois l’incertitude combinée.",
+"chaps": [
+"outils"
+]
+},
+{
+"id": "temps-propre",
+"title": "Identifier la durée propre et la longueur propre",
+"quand": "Dilatation des durées, contraction des longueurs.",
+"texte": "La durée propre est mesurée par une seule horloge présente aux deux événements ; c’est la plus courte. La longueur propre est mesurée dans le référentiel où l’objet est immobile ; c’est la plus grande. Identifiez-les d’abord, le facteur \\(\\gamma\\) vient ensuite.",
+"chaps": [
+"relativite"
+]
+},
+{
+"id": "invariant",
+"title": "Utiliser un invariant relativiste",
+"quand": "Collisions, désintégrations, seuils de réaction, intervalle entre deux événements.",
+"texte": "\\(E^2 - p^2c^2 = m^2c^4\\) a la même valeur dans tous les référentiels, de même que \\(c^2\\Delta t^2 - \\Delta x^2\\). Calculer l’invariant dans le référentiel le plus simple (centre de masse) et l’égaler à sa valeur dans le laboratoire évite les transformations de Lorentz.",
+"chaps": [
+"relativite",
+"nucleaire"
+]
+},
+{
+"id": "rapidite",
+"title": "Voir un changement de référentiel comme une rotation",
+"quand": "Compositions de vitesses colinéaires, accélérations successives, fusées.",
+"texte": "Un changement de référentiel est une « rotation » dans le plan \\((ct, x)\\) : avec la rapidité \\(\\phi\\), \\(\\gamma = \\cosh\\phi\\) et \\(\\beta = \\tanh\\phi\\). Les rapidités de changements colinéaires s’additionnent, ce qui redonne la composition des vitesses.",
+"chaps": [
+"relativite"
+]
+},
+{
+"id": "temps-de-trajet",
+"title": "Distinguer ce qu’on voit de ce qu’on mesure",
+"quand": "Observation d’objets rapides ou lointains, vitesses apparentes, images.",
+"texte": "Une image est faite de lumières émises à des dates différentes : corrigez du temps de trajet de la lumière. Une source qui s’approche paraît plus rapide (vitesses superluminiques apparentes), une barre qui s’approche paraît allongée.",
+"chaps": [
+"relativite"
+]
+},
+{
+"id": "masse-energie",
+"title": "Faire un bilan masse-énergie",
+"quand": "Réactions nucléaires, énergie de liaison, désintégrations.",
+"texte": "L’énergie libérée est la perte de masse multipliée par \\(c^2\\) : \\(Q = (m_\\text{avant} - m_\\text{après})c^2\\). Travaillez en MeV et en u (1 u = 931,5 MeV/\\(c^2\\)) et vérifiez la conservation de \\(A\\) et de \\(Z\\) avant de calculer.",
+"chaps": [
+"relativite",
+"nucleaire"
+]
+},
+{
+"id": "compter-entites",
+"title": "Passer d’une masse à un nombre d’entités",
+"quand": "Activité d’un échantillon, nombre de photons ou de molécules, énergie par réaction rapportée à une masse.",
+"texte": "\\(N = \\dfrac{m}{M}N_A\\) ; l’activité vaut alors \\(A = \\lambda N\\) avec \\(\\lambda\\) en s⁻¹, et l’énergie totale vaut \\(N\\) fois l’énergie par réaction. Attention aux unités : \\(M\\) en g·mol⁻¹ si \\(m\\) est en g, demi-vie convertie en secondes.",
+"chaps": [
+"nucleaire",
+"quantique"
+]
+},
+{
+"id": "demi-vie",
+"title": "Raisonner en demi-vies",
+"quand": "Décroissance radioactive, décharge, toute loi exponentielle.",
+"texte": "Après \\(n\\) demi-vies il reste \\(2^{-n}\\) : 10 demi-vies divisent par environ 1 000. Pour une durée quelconque, \\(N/N_0 = 2^{-t/t_{1/2}}\\) ; passez au logarithme pour trouver une durée. L’activité suit la même loi que le nombre de noyaux.",
+"chaps": [
+"outils",
+"nucleaire"
+]
+},
+{
+"id": "quanta",
+"title": "Compter les quanta",
+"quand": "Puissance lumineuse, nombre de photons, transitions entre niveaux.",
+"texte": "Un faisceau de puissance \\(P\\) transporte \\(P/h\\nu\\) photons par seconde. Un atome n’échange que des quanta : \\(h\\nu = |E_n - E_p|\\). Le seuil photoélectrique se lit sur l’énergie d’un photon, jamais sur l’intensité.",
+"chaps": [
+"optique",
+"nucleaire",
+"quantique"
+]
+},
+{
+"id": "unites-adaptees",
+"title": "Calculer dans des unités adaptées",
+"quand": "Physique atomique et nucléaire, relativité.",
+"texte": "Travaillez en eV et MeV, avec \\(hc = 1\\,240\\) eV·nm, \\(\\hbar c = 197\\) MeV·fm, \\(m_ec^2 = 0{,}511\\) MeV, 1 u = 931,5 MeV/\\(c^2\\) : les calculs tiennent en une ligne et les ordres de grandeur sont parlants. Ne convertissez en SI qu’à la fin, si on le demande.",
+"chaps": [
+"relativite",
+"nucleaire",
+"quantique"
+]
+},
+{
+"id": "confinement",
+"title": "Estimer une énergie par le confinement",
+"quand": "Particule confinée (atome, noyau, puits), taille minimale, énergie fondamentale.",
+"texte": "Une particule confinée sur \\(\\Delta x\\) a une quantité de mouvement d’au moins \\(\\hbar/\\Delta x\\), donc une énergie cinétique d’ordre \\(\\hbar^2/(m\\,\\Delta x^2)\\). Cela donne la taille de l’atome, l’énergie des nucléons et l’ordre de grandeur des niveaux.",
+"chaps": [
+"nucleaire",
+"quantique"
+]
+},
+{
+"id": "quasi-classique",
+"title": "Quantifier par une onde stationnaire",
+"quand": "États liés : puits, atome de Bohr, ordre de grandeur des niveaux.",
+"texte": "Un état lié correspond à un nombre entier de longueurs d’onde \\(h/p\\) sur un aller-retour ou un tour d’orbite. Cela donne en une ligne les niveaux du puits infini, ceux de l’atome de Bohr et l’ordre de grandeur des niveaux dans tout potentiel.",
+"chaps": [
+"nucleaire",
+"quantique"
+]
+}
+]

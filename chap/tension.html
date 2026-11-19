@@ -1,0 +1,200 @@
+<p class="eyebrow">Mécanique des fluides · Chapitre 3</p>
+<h1>Tension superficielle</h1>
+<p class="subtitle">Énergie de surface, pression de Laplace, mouillage, capillarité</p>
+
+<div class="objectifs">
+<p><strong>Ce que demandent les épreuves.</strong> Le syllabus IPhO place la tension de surface et la pression capillaire au niveau du test CPGE (lois de Laplace et de Jurin, annales 2021 CPGE). Elle n’est pas au programme du lycée, mais revient dans les sujets du Concours général et des IPhO internationales (gouttes, jets, films de savon, insectes sur l’eau). Tout se ramène à deux idées : une surface coûte de l’énergie \(\gamma S\), et un bilan de forces sur un morceau bien choisi du système fait apparaître une force \(\gamma\ell\) le long de chaque ligne de coupe.</p>
+<ul>
+<li><strong>Terminale (Concours général, culture olympique)</strong> : parties 1 à 4, hors encadrés « Niveau CPGE » ; rien n’est exigible au test de terminale, mais tout est accessible avec la statique des fluides.</li>
+<li><strong>CPGE (IPhO)</strong> : tout le chapitre, avec la partie 5.</li>
+</ul>
+</div>
+
+<div class="retenir">
+<p><strong>L’essentiel à retenir</strong></p>
+<ol>
+<li>Créer une surface libre d’aire \(S\) coûte l’énergie \(E = \gamma S\). La <strong>tension superficielle</strong> \(\gamma\) s’exprime en J·m⁻² = N·m⁻¹ ; eau à 20 °C : \(\gamma = 72\) mN·m⁻¹ ; eau savonneuse : environ 25 mN·m⁻¹ ; mercure : 485 mN·m⁻¹.</li>
+<li>Une interface exerce sur tout bord de longueur \(\ell\) une force \(F = \gamma\ell\), tangente à la surface et perpendiculaire au bord. Un film de savon a <strong>deux</strong> faces : \(F = 2\gamma\ell\).</li>
+<li><strong>Pression de Laplace</strong> : à l’intérieur d’une goutte ou d’une bulle dans un liquide, \(P_\text{int} - P_\text{ext} = 2\gamma/R\) ; dans une bulle de savon (deux interfaces), \(4\gamma/R\). La pression est plus forte du côté concave, et d’autant plus que le rayon est petit.</li>
+<li><strong>Angle de contact</strong> \(\theta\) (loi de Young) : \(\gamma\cos\theta = \gamma_{SG} - \gamma_{SL}\). Mouillage si \(\theta < 90°\) (hydrophile), non-mouillage si \(\theta > 90°\) (hydrophobe).</li>
+<li><strong>Loi de Jurin</strong> : dans un tube de rayon \(r\), le liquide monte de \(h = \dfrac{2\gamma\cos\theta}{\rho g r}\) (eau dans un tube de 0,5 mm de rayon : 3 cm).</li>
+<li><strong>Longueur capillaire</strong> \(\ell_c = \sqrt{\gamma/\rho g}\) (2,7 mm pour l’eau) : la tension superficielle domine la pesanteur aux échelles plus petites que \(\ell_c\) (gouttes sphériques), la pesanteur aux échelles plus grandes (flaques plates).</li>
+</ol>
+</div>
+
+<h2 id="origine">1. Énergie de surface et tension superficielle</h2>
+<h3 id="energie">Pourquoi une surface coûte de l’énergie</h3>
+<p>Dans un liquide, chaque molécule est attirée par ses voisines : c’est ce qui fait la cohésion du liquide. Une molécule de la surface n’a des voisines que d’un côté ; elle a perdu une partie de ses liaisons, et son énergie est plus élevée que celle d’une molécule de l’intérieur. Amener des molécules en surface, c’est-à-dire augmenter l’aire de la surface, coûte donc de l’énergie, proportionnellement à l’aire créée :</p>
+\[E_\text{surf} = \gamma S.\]
+<figure>
+<svg viewBox="0 0 640 230" width="640" role="img" aria-label="Molécules d'un liquide : une molécule de l'intérieur est attirée de façon symétrique, une molécule de la surface est attirée vers l'intérieur" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="ts-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0b5fa5"/></marker><marker id="ts-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23a48"/></marker></defs>
+<rect x="40" y="80" width="560" height="135" fill="rgba(90,169,255,0.15)"/>
+<line x1="40" y1="80" x2="600" y2="80" stroke="#2b6cb0" stroke-width="2"/>
+<text x="48" y="66" fill="#15213a">air</text><text x="48" y="208" fill="#2b6cb0">liquide</text>
+<g fill="#cfe2fb" stroke="#2b6cb0" stroke-width="1">
+<circle cx="112" cy="93" r="10"/><circle cx="138" cy="93" r="10"/><circle cx="164" cy="93" r="10"/><circle cx="190" cy="93" r="10" fill="#f4c7cd" stroke="#b23a48"/><circle cx="216" cy="93" r="10"/><circle cx="242" cy="93" r="10"/><circle cx="268" cy="93" r="10"/><circle cx="294" cy="93" r="10"/><circle cx="320" cy="93" r="10"/><circle cx="346" cy="93" r="10"/><circle cx="372" cy="93" r="10"/><circle cx="398" cy="93" r="10"/><circle cx="424" cy="93" r="10"/>
+<circle cx="112" cy="119" r="10"/><circle cx="138" cy="119" r="10"/><circle cx="164" cy="119" r="10"/><circle cx="190" cy="119" r="10"/><circle cx="216" cy="119" r="10"/><circle cx="242" cy="119" r="10"/><circle cx="268" cy="119" r="10"/><circle cx="294" cy="119" r="10"/><circle cx="320" cy="119" r="10"/><circle cx="346" cy="119" r="10"/><circle cx="372" cy="119" r="10"/><circle cx="398" cy="119" r="10"/><circle cx="424" cy="119" r="10"/>
+<circle cx="112" cy="145" r="10"/><circle cx="138" cy="145" r="10"/><circle cx="164" cy="145" r="10"/><circle cx="190" cy="145" r="10"/><circle cx="216" cy="145" r="10"/><circle cx="242" cy="145" r="10"/><circle cx="268" cy="145" r="10"/><circle cx="294" cy="145" r="10"/><circle cx="320" cy="145" r="10" fill="#d4ecd9" stroke="#1f8a4c"/><circle cx="346" cy="145" r="10"/><circle cx="372" cy="145" r="10"/><circle cx="398" cy="145" r="10"/><circle cx="424" cy="145" r="10"/>
+<circle cx="112" cy="171" r="10"/><circle cx="138" cy="171" r="10"/><circle cx="164" cy="171" r="10"/><circle cx="190" cy="171" r="10"/><circle cx="216" cy="171" r="10"/><circle cx="242" cy="171" r="10"/><circle cx="268" cy="171" r="10"/><circle cx="294" cy="171" r="10"/><circle cx="320" cy="171" r="10"/><circle cx="346" cy="171" r="10"/><circle cx="372" cy="171" r="10"/><circle cx="398" cy="171" r="10"/><circle cx="424" cy="171" r="10"/>
+<circle cx="112" cy="197" r="10"/><circle cx="138" cy="197" r="10"/><circle cx="164" cy="197" r="10"/><circle cx="190" cy="197" r="10"/><circle cx="216" cy="197" r="10"/><circle cx="242" cy="197" r="10"/><circle cx="268" cy="197" r="10"/><circle cx="294" cy="197" r="10"/><circle cx="320" cy="197" r="10"/><circle cx="346" cy="197" r="10"/><circle cx="372" cy="197" r="10"/><circle cx="398" cy="197" r="10"/><circle cx="424" cy="197" r="10"/>
+</g>
+<g stroke="#0b5fa5" stroke-width="1.6" marker-end="url(#ts-b)"><line x1="320" y1="145" x2="301" y2="145"/><line x1="320" y1="145" x2="339" y2="145"/><line x1="320" y1="145" x2="320" y2="126"/><line x1="320" y1="145" x2="320" y2="164"/><line x1="320" y1="145" x2="306" y2="131"/><line x1="320" y1="145" x2="334" y2="131"/><line x1="320" y1="145" x2="306" y2="159"/><line x1="320" y1="145" x2="334" y2="159"/>
+<line x1="190" y1="93" x2="171" y2="93"/><line x1="190" y1="93" x2="209" y2="93"/><line x1="190" y1="93" x2="190" y2="112"/><line x1="190" y1="93" x2="176" y2="107"/><line x1="190" y1="93" x2="204" y2="107"/></g>
+<line x1="190" y1="104" x2="190" y2="140" stroke="#b23a48" stroke-width="3" marker-end="url(#ts-r)"/>
+<text x="150" y="40" fill="#b23a48" font-weight="600">molécule de surface :</text><text x="150" y="56" fill="#b23a48">attirée vers l’intérieur, énergie plus élevée</text>
+<text x="452" y="140" fill="#1f8a4c" font-weight="600">molécule de l’intérieur :</text><text x="452" y="156" fill="#1f8a4c">attractions qui se compensent</text>
+</svg>
+<figcaption>Une molécule de surface a moins de voisines qu’une molécule de l’intérieur : la résultante des attractions la tire vers le liquide et son énergie est plus élevée. Le liquide tend donc à réduire sa surface.</figcaption>
+</figure>
+<p>Le coefficient \(\gamma\) est la <strong>tension superficielle</strong> (ou énergie de surface) ; il dépend des deux milieux en contact et de la température. Quelques valeurs à 20 °C, contre l’air :</p>
+<table>
+<thead><tr><th>Liquide</th><th>\(\gamma\) (mN·m⁻¹)</th></tr></thead>
+<tbody>
+<tr><td>Eau pure</td><td>72</td></tr>
+<tr><td>Eau savonneuse</td><td>25 à 30</td></tr>
+<tr><td>Éthanol, huiles</td><td>22 ; 30 environ</td></tr>
+<tr><td>Mercure</td><td>485</td></tr>
+</tbody>
+</table>
+<p>Pour minimiser son énergie, un liquide livré à lui-même prend la forme de surface minimale : une petite goutte est sphérique, un film de savon tendu sur un cadre est plan, un jet d’eau se fragmente en gouttes. Les <strong>tensioactifs</strong> (savon, détergents), qui se placent à la surface, abaissent \(\gamma\) : c’est ce qui permet de faire des bulles.</p>
+<div class="methode" data-m="minimum-energie"><p>Une goutte isolée minimise son énergie de surface \(\gamma S\) à volume fixé : la sphère est la forme d’aire minimale pour un volume donné. Dès qu’il y a de la pesanteur, on minimise \(\gamma S + E_\text{pes}\) : c’est l’origine des gouttes aplaties et des flaques (partie 4).</p></div>
+
+<h3 id="force">La tension superficielle comme force</h3>
+<p>Tirons sur la barre mobile d’un cadre où est tendu un film de savon. Si la barre de longueur \(\ell\) avance de \(\Delta x\), l’aire du film augmente de \(\ell\Delta x\) sur <strong>chacune de ses deux faces</strong>. Le travail fourni est stocké en énergie de surface : \(F\Delta x = \gamma\cdot 2\ell\Delta x\), donc le film retient la barre avec la force</p>
+\[F = 2\gamma\ell \qquad\text{(film à deux faces) ;}\qquad F = \gamma\ell \quad\text{pour une seule interface.}\]
+<figure>
+<svg viewBox="0 0 640 220" width="640" role="img" aria-label="Cadre en fil de fer avec une barre mobile retenant un film de savon : la force de l'opérateur équilibre la force 2 gamma l exercée par le film" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="tf-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker><marker id="tf-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23a48"/></marker></defs>
+<rect x="120" y="60" width="300" height="110" fill="rgba(200,140,230,0.18)"/>
+<polyline points="460,60 120,60 120,170 460,170" fill="none" stroke="#15213a" stroke-width="4"/>
+<line x1="420" y1="48" x2="420" y2="182" stroke="#8a5a14" stroke-width="7" stroke-linecap="round"/>
+<line x1="460" y1="56" x2="460" y2="174" stroke="#8a94a6" stroke-width="2" stroke-dasharray="5 4"/>
+<line x1="426" y1="115" x2="520" y2="115" stroke="#15213a" stroke-width="2.5" marker-end="url(#tf-k)"/><text x="528" y="119" fill="#15213a" font-weight="600">F</text>
+<line x1="414" y1="96" x2="350" y2="96" stroke="#b23a48" stroke-width="2.5" marker-end="url(#tf-r)"/><line x1="414" y1="134" x2="350" y2="134" stroke="#b23a48" stroke-width="2.5" marker-end="url(#tf-r)"/>
+<text x="250" y="120" fill="#b23a48" font-weight="600">2γℓ</text>
+<line x1="440" y1="60" x2="440" y2="170" stroke="#15213a" stroke-width="1"/><text x="444" y="40" fill="#15213a">ℓ</text>
+<line x1="420" y1="196" x2="460" y2="196" stroke="#15213a" stroke-width="1" marker-start="url(#tf-k)" marker-end="url(#tf-k)"/><text x="428" y="214" fill="#15213a">Δx</text>
+<text x="140" y="40" fill="#15213a">film de savon (deux faces)</text>
+</svg>
+<figcaption>Le film tire sur la barre avec la force \(2\gamma\ell\) (deux faces). Pour la déplacer de \(\Delta x\), il faut fournir le travail \(2\gamma\ell\Delta x\) : c’est l’énergie de la surface créée.</figcaption>
+</figure>
+<p>Plus généralement, une interface se comporte comme une membrane tendue : le long de toute ligne tracée sur elle, chaque côté tire sur l’autre avec une force \(\gamma\) par unité de longueur, tangente à la surface et perpendiculaire à la ligne. Ces forces sont faibles mais l’emportent aux petites échelles : un trombone ou un gerris (« araignée d’eau ») tient sur l’eau parce que la surface, légèrement déformée, le porte avec une force de l’ordre de \(\gamma\) fois le périmètre de contact (\(0{,}07\ \text{N·m}^{-1} \times 10\ \text{cm} = 7\) mN, de quoi porter près d’un gramme).</p>
+
+<h2 id="laplace">2. Pression de Laplace</h2>
+<p>Une surface courbe tendue presse sur son côté concave, comme un ballon de baudruche : la pression est plus grande à l’intérieur d’une goutte qu’à l’extérieur. Pour calculer l’écart, isolons la moitié d’une goutte sphérique de rayon \(R\) et écrivons l’équilibre des forces selon l’axe perpendiculaire à la coupe :</p>
+<figure>
+<svg viewBox="0 0 640 240" width="640" role="img" aria-label="Demi-goutte isolée : la pression intérieure sur le disque de coupe équilibre la pression extérieure et la tension superficielle exercée le long du cercle de coupe" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="tl-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0b5fa5"/></marker><marker id="tl-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23a48"/></marker><marker id="tl-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4a5670"/></marker></defs>
+<path d="M240 30 A90 90 0 0 1 240 210 Z" fill="rgba(90,169,255,0.3)" stroke="#2b6cb0" stroke-width="2"/>
+<line x1="240" y1="30" x2="240" y2="210" stroke="#2b6cb0" stroke-width="2" stroke-dasharray="6 4"/>
+<g stroke="#0b5fa5" stroke-width="2.2" marker-end="url(#tl-b)"><line x1="200" y1="70" x2="236" y2="70"/><line x1="200" y1="120" x2="236" y2="120"/><line x1="200" y1="170" x2="236" y2="170"/></g>
+<text x="60" y="124" fill="#0b5fa5" font-weight="600">Pᵢₙₜ · πR²</text>
+<g stroke="#4a5670" stroke-width="1.6" marker-end="url(#tl-g)"><line x1="368" y1="120" x2="336" y2="120"/><line x1="350" y1="62" x2="324" y2="80"/><line x1="350" y1="178" x2="324" y2="160"/></g>
+<text x="374" y="124" fill="#4a5670" font-weight="600">Pₑₓₜ (résultante Pₑₓₜ · πR²)</text>
+<g stroke="#b23a48" stroke-width="2.5" marker-end="url(#tl-r)"><line x1="240" y1="30" x2="196" y2="30"/><line x1="240" y1="210" x2="196" y2="210"/></g>
+<text x="96" y="26" fill="#b23a48" font-weight="600">γ × 2πR</text><text x="96" y="214" fill="#b23a48" font-weight="600">γ × 2πR</text>
+<line x1="240" y1="120" x2="300" y2="57" stroke="#15213a" stroke-width="1"/><text x="276" y="100" fill="#15213a">R</text>
+<text x="40" y="234" fill="#15213a" font-size="11">Équilibre de la demi-goutte : Pᵢₙₜ πR² = Pₑₓₜ πR² + 2πRγ, soit Pᵢₙₜ − Pₑₓₜ = 2γ/R.</text>
+</svg>
+<figcaption>La demi-goutte est poussée vers la droite par la pression de l’autre moitié sur le disque de coupe (\(P_\text{int}\pi R^2\)), vers la gauche par l’air extérieur (résultante \(P_\text{ext}\pi R^2\), aire projetée) et par la tension superficielle tout le long du cercle de coupe (\(2\pi R\gamma\)).</figcaption>
+</figure>
+\[P_\text{int} - P_\text{ext} = \frac{2\gamma}{R}\ \text{(goutte, bulle dans un liquide)}, \qquad P_\text{int} - P_\text{ext} = \frac{4\gamma}{R}\ \text{(bulle de savon : deux interfaces).}\]
+<div class="methode" data-m="coupe-fictive"><p>Ici, on coupe la goutte en deux et on écrit l’équilibre d’une moitié : la pression uniforme sur la calotte équivaut à la pression fois l’aire projetée \(\pi R^2\), et la tension agit sur tout le bord de la coupe. La même coupe, pour une bulle de savon, fait apparaître deux interfaces, donc \(4\gamma/R\).</p></div>
+<p>Ordres de grandeur : une bulle de savon de 1 cm de rayon a une surpression de \(4 \times 0{,}025/0{,}01 = 10\) Pa, insignifiante devant \(P_0 = 10^5\) Pa ; une gouttelette de brouillard de 1 µm, \(2\times 0{,}072/10^{-6} \approx 1{,}4\) bar ; une bulle de 1 µm dans l’eau aussi, ce qui explique qu’il soit si difficile de faire naître une bulle (ébullition retardée, cavitation). Conséquence surprenante : si l’on relie deux bulles de savon, la <strong>petite se vide dans la grande</strong>, puisque sa pression intérieure est plus forte.</p>
+<div class="sim" data-name="bulles"><p>Choisissez les rayons des deux bulles, puis ouvrez le robinet : l’air va de la bulle où la surpression \(4\gamma/R\) est la plus forte (la plus petite) vers l’autre.</p></div>
+<div class="exo" data-group="lequin-D-26"></div>
+<div class="exo" data-group="lequin-D-25"></div>
+<div class="exo" data-group="cde-t1"></div>
+<div class="cpge" id="laplace-general" title="Loi de Laplace générale et surfaces minimales">
+<p>Pour une surface quelconque, de rayons de courbure principaux \(R_1\) et \(R_2\) en un point, la loi de Laplace s’écrit \(\Delta P = \gamma\left(\dfrac{1}{R_1} + \dfrac{1}{R_2}\right)\) (rayons comptés positivement du côté où la pression est la plus forte). Une sphère a \(R_1 = R_2 = R\) et redonne \(2\gamma/R\) ; un cylindre de rayon \(R\) (jet, fil d’eau) a \(R_2 = \infty\) : \(\Delta P = \gamma/R\). Un film de savon tendu entre deux cadres, avec la même pression des deux côtés, a une <strong>courbure moyenne nulle</strong> : \(1/R_1 + 1/R_2 = 0\), c’est une surface minimale (caténoïde entre deux anneaux, en forme de selle). Si les deux anneaux sont trop éloignés (distance supérieure à environ 1,33 fois leur rayon), aucune caténoïde n’existe et le film se rompt.</p>
+</div>
+
+<h2 id="mouillage">3. Mouillage et angle de contact</h2>
+<p>Une goutte posée sur un solide fait avec lui un <strong>angle de contact</strong> \(\theta\), mesuré dans le liquide. Trois interfaces se rencontrent sur la ligne de contact : liquide-gaz (\(\gamma\)), solide-gaz (\(\gamma_{SG}\)) et solide-liquide (\(\gamma_{SL}\)). L’équilibre de la ligne, projeté sur le solide, donne la <strong>loi de Young</strong> :</p>
+\[\gamma_{SG} = \gamma_{SL} + \gamma\cos\theta \qquad\Longleftrightarrow\qquad \cos\theta = \frac{\gamma_{SG} - \gamma_{SL}}{\gamma}.\]
+<figure>
+<svg viewBox="0 0 640 230" width="640" role="img" aria-label="Ligne de contact d'une goutte : équilibre des trois tensions, et formes de gouttes pour un solide hydrophile, hydrophobe et superhydrophobe" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="tm-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23a48"/></marker></defs>
+<rect x="20" y="150" width="600" height="22" fill="#d8cfc0"/><line x1="20" y1="150" x2="620" y2="150" stroke="#8a5a14" stroke-width="2"/>
+<path d="M90 150 A112 112 0 0 1 230 150 Z" fill="rgba(90,169,255,0.35)" stroke="#2b6cb0" stroke-width="2"/>
+<g stroke="#b23a48" stroke-width="2.5" marker-end="url(#tm-r)"><line x1="90" y1="150" x2="40" y2="150"/><line x1="90" y1="150" x2="134" y2="150"/><line x1="90" y1="150" x2="125" y2="114"/></g>
+<text x="24" y="140" fill="#b23a48">γ<tspan font-size="9" dy="3">SG</tspan><tspan dy="-3"></tspan></text><text x="134" y="166" fill="#b23a48">γ<tspan font-size="9" dy="3">SL</tspan><tspan dy="-3"></tspan></text><text x="126" y="108" fill="#b23a48">γ</text>
+<path d="M108 150 A18 18 0 0 0 103 137" fill="none" stroke="#15213a" stroke-width="1.2"/><text x="110" y="142" fill="#15213a" font-style="italic">θ</text>
+<text x="70" y="196" fill="#15213a">θ &lt; 90° : hydrophile</text>
+<path d="M330 150 A46 46 0 1 1 410 150 Z" fill="rgba(90,169,255,0.35)" stroke="#2b6cb0" stroke-width="2"/>
+<text x="318" y="196" fill="#15213a">θ &gt; 90° : hydrophobe</text>
+<circle cx="530" cy="112" r="38" fill="rgba(90,169,255,0.35)" stroke="#2b6cb0" stroke-width="2"/>
+<text x="470" y="196" fill="#15213a">θ ≈ 180° : superhydrophobe</text><text x="470" y="212" fill="#15213a" font-size="11">(feuille de lotus)</text>
+<text x="20" y="24" fill="#15213a" font-size="11">Sur la ligne de contact : γ<tspan font-size="9" dy="3">SG</tspan><tspan dy="-3"></tspan> tire vers l’extérieur, γ<tspan font-size="9" dy="3">SL</tspan><tspan dy="-3"></tspan> et γ cos θ vers la goutte.</text>
+</svg>
+<figcaption>À gauche, l’équilibre de la ligne de contact selon le solide donne la loi de Young. Selon le signe de \(\gamma_{SG} - \gamma_{SL}\), la goutte s’étale (verre propre) ou perle (téflon, feuilles cireuses).</figcaption>
+</figure>
+<p>Si \(\gamma_{SG} - \gamma_{SL} \ge \gamma\), aucun angle ne convient : le liquide s’étale complètement (<strong>mouillage total</strong>, cas de l’eau sur un verre très propre, des huiles sur la plupart des solides). Sur une surface rugueuse et hydrophobe, l’eau repose sur les pointes en emprisonnant de l’air : l’angle apparent approche 180° et les gouttes roulent en emportant les poussières (effet lotus). L’angle de contact gouverne la forme du ménisque au bord d’un récipient : l’eau remonte le long d’un verre propre (ménisque concave), le mercure s’en écarte (ménisque convexe, \(\theta \approx 140°\)).</p>
+<div class="exo" data-group="lequin-D-27"></div>
+
+<h2 id="capillarite">4. Capillarité : loi de Jurin, longueur capillaire</h2>
+<h3 id="jurin">Ascension dans un tube fin</h3>
+<p>Dans un tube fin plongé dans un liquide mouillant, le liquide <strong>monte</strong> au-dessus du niveau du bain : c’est l’ascension capillaire, qui fait monter l’eau dans un sucre, un papier ou le sol. Écrivons l’équilibre de la colonne soulevée (rayon \(r\), hauteur \(h\)) : la tension superficielle tire vers le haut tout le long de la ligne de contact (\(2\pi r\) fois \(\gamma\cos\theta\)), le poids tire vers le bas ; les pressions en haut et en bas valent toutes deux \(P_0\) (le bas de la colonne est au niveau du bain). D’où la <strong>loi de Jurin</strong> :</p>
+\[2\pi r\gamma\cos\theta = \rho g\,\pi r^2 h \qquad\Longrightarrow\qquad h = \frac{2\gamma\cos\theta}{\rho g r}.\]
+<figure>
+<svg viewBox="0 0 640 272" width="640" role="img" aria-label="Tube capillaire plongé dans un bain : le liquide monte d'une hauteur h ; la tension superficielle le long de la ligne de contact équilibre le poids de la colonne" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="tj-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23a48"/></marker><marker id="tj-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker></defs>
+<rect x="120" y="190" width="400" height="55" fill="rgba(90,169,255,0.3)"/>
+<polyline points="120,150 120,245 520,245 520,150" fill="none" stroke="#15213a" stroke-width="3"/>
+<rect x="296" y="78" width="48" height="167" fill="rgba(90,169,255,0.3)"/>
+<path d="M296 78 Q320 98 344 78 L344 70 L296 70 Z" fill="#fff"/>
+<line x1="294" y1="30" x2="294" y2="230" stroke="#15213a" stroke-width="2.5"/><line x1="346" y1="30" x2="346" y2="230" stroke="#15213a" stroke-width="2.5"/>
+<g stroke="#b23a48" stroke-width="2.5" marker-end="url(#tj-r)"><line x1="298" y1="79" x2="298" y2="42"/><line x1="342" y1="79" x2="342" y2="42"/></g>
+<text x="284" y="46" fill="#b23a48" font-weight="600" text-anchor="end">γ cos θ par mètre</text><text x="284" y="62" fill="#b23a48" text-anchor="end">sur le périmètre 2πr</text>
+<line x1="320" y1="140" x2="320" y2="182" stroke="#15213a" stroke-width="2.5" marker-end="url(#tj-k)"/><text x="284" y="166" fill="#15213a" font-weight="600" text-anchor="end">poids ρgπr²h</text>
+<line x1="380" y1="190" x2="380" y2="80" stroke="#1f8a4c" stroke-width="1.4" marker-start="url(#tj-k)" marker-end="url(#tj-k)"/><text x="388" y="136" fill="#1f8a4c" font-weight="600">h</text>
+<line x1="120" y1="190" x2="520" y2="190" stroke="#8a94a6" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="404" y="182" fill="#15213a">P₀ au niveau du bain</text><text x="352" y="74" fill="#15213a">P₀ (air)</text>
+<text x="20" y="266" fill="#15213a" font-size="11">Tube dessiné très élargi : en réalité r ≪ ℓc et le ménisque est une calotte sphérique.</text>
+</svg>
+<figcaption>La force de tension superficielle sur la ligne de contact (\(2\pi r\gamma\cos\theta\), vers le haut pour un liquide mouillant) porte le poids de la colonne soulevée.</figcaption>
+</figure>
+<p>Pour l’eau dans un tube de verre propre (\(\theta \approx 0\)) : \(h = 1{,}5\times10^{-5}\ \text{m}^2/r\), soit 3 cm pour \(r = 0{,}5\) mm et 15 cm pour \(r = 0{,}1\) mm. Pour le mercure (\(\theta > 90°\)), \(\cos\theta < 0\) : le niveau <strong>descend</strong> dans le tube. On retrouve le même résultat par la pression de Laplace : juste sous le ménisque, de rayon \(r/\cos\theta\), la pression vaut \(P_0 - 2\gamma\cos\theta/r\), et l’hydrostatique impose \(P_0 - \rho g h\) à la hauteur \(h\).</p>
+<div class="sim" data-name="jurin"><p>Changez le rayon du tube et le liquide : la hauteur d’ascension varie comme \(1/r\), et le mercure, non mouillant, descend dans le tube.</p></div>
+<div class="exo" data-q="ipho-2021-C7"></div>
+<div class="exo" data-group="lequin-D-28"></div>
+
+<h3 id="longueur-capillaire">Longueur capillaire : gouttes et flaques</h3>
+<p>La pesanteur et la tension superficielle s’équilibrent à une échelle qu’on obtient en comparant la pression hydrostatique \(\rho g\ell\) à la pression de Laplace \(\gamma/\ell\) : c’est la <strong>longueur capillaire</strong></p>
+\[\ell_c = \sqrt{\frac{\gamma}{\rho g}} \approx 2{,}7\ \text{mm pour l’eau}.\]
+<p>Une goutte plus petite que \(\ell_c\) reste sphérique ; une goutte plus grande s’aplatit en <strong>flaque</strong>, dont l’épaisseur ne dépend plus de son étendue : \(e = 2\ell_c\sin(\theta/2)\) (environ 5 mm pour l’eau sur une surface hydrophobe). Le rapport \(\text{Bo} = (R/\ell_c)^2 = \rho g R^2/\gamma\) (<strong>nombre de Bond</strong>) dit lequel des deux effets domine : la loi de Jurin, qui néglige la masse du ménisque, n’est valable que pour \(r \ll \ell_c\). Les ménisques le long d’une paroi s’étendent sur quelques \(\ell_c\) ; deux objets flottants proches s’attirent à travers leurs ménisques (agrégation des céréales dans le bol, « effet Cheerios »).</p>
+<div class="methode" data-m="sans-dimension"><p>Le nombre de Bond \(\rho gR^2/\gamma\) compare pesanteur et capillarité. Avant tout calcul, évaluez-le : s’il est petit, la goutte est sphérique et la loi de Laplace suffit ; s’il est grand, la pesanteur domine et l’on raisonne sur une flaque d’épaisseur fixée par \(\ell_c\).</p></div>
+<div class="cpge" id="flaque" title="Épaisseur d’une flaque par un bilan de forces">
+<p>Isolons le bord d’une grande flaque d’épaisseur \(e\) sur une bande de largeur \(L\) : la pression hydrostatique pousse ce bord vers l’extérieur avec la force \(\int_0^e\rho g z\,L\,\mathrm dz = \tfrac12\rho g e^2L\). Vers l’intérieur, la surface libre tire avec \(\gamma L\) et l’interface solide-liquide avec \(\gamma_{SL}L\), tandis que \(\gamma_{SG}L\) tire vers l’extérieur. L’équilibre donne \(\tfrac12\rho g e^2 = \gamma + \gamma_{SL} - \gamma_{SG} = \gamma(1 - \cos\theta)\) par la loi de Young, soit \(e = 2\ell_c\sin(\theta/2)\).</p>
+</div>
+
+<h2 id="dynamique-capillaire">5. Phénomènes dynamiques (CPGE)</h2>
+<div class="cpge" id="ondes-capillaires" title="Ondes capillaires et rides">
+<p>À la surface de l’eau, la tension superficielle s’ajoute à la pesanteur comme force de rappel. En eau profonde, la relation de dispersion devient \(\omega^2 = gk + \dfrac{\gamma}{\rho}k^3\). Les grandes vagues (\(\lambda \gg 2\pi\ell_c\)) sont des ondes de gravité ; les rides de quelques millimètres sont des ondes capillaires. La vitesse de phase \(\omega/k\) passe par un minimum d’environ 23 cm·s⁻¹ pour \(\lambda = 2\pi\ell_c \approx 1{,}7\) cm : un objet qui se déplace plus lentement à la surface (un insecte, un fil de pêche dans le courant) ne crée pas de sillage.</p>
+</div>
+<div class="cpge" id="rayleigh-plateau" title="Instabilité de Rayleigh-Plateau : un jet se brise en gouttes">
+<p>Un cylindre de liquide de rayon \(R\) n’est pas la forme d’aire minimale à volume donné : une ondulation de longueur d’onde \(\lambda > 2\pi R\) diminue son aire. Le jet du robinet se fragmente donc en gouttes, avec une longueur d’onde dominante d’environ \(9R\) ; le temps de croissance est de l’ordre de \(\sqrt{\rho R^3/\gamma}\) (temps capillaire), quelques millisecondes pour un filet d’eau. C’est aussi pourquoi la rosée perle sur un fil d’araignée.</p>
+</div>
+<div class="cpge" id="taylor-culick" title="Éclatement d’un film de savon">
+<p>Quand un film de savon d’épaisseur \(e\) se perce, le bord du trou recule en accumulant le liquide dans un bourrelet. Le bilan de quantité de mouvement sur le bourrelet (force \(2\gamma\) par unité de longueur, masse balayée \(\rho e\) par unité d’aire) donne une vitesse constante \(v = \sqrt{2\gamma/(\rho e)}\) (Taylor-Culick) : pour \(e = 1\) µm, environ 7 m·s⁻¹, si bien qu’une bulle de savon de quelques centimètres disparaît en quelques millisecondes. Le bilan d’énergie, qui donnerait \(\sqrt{2}\) fois plus, est faux ici : l’accumulation du liquide dans le bourrelet est un choc mou qui dissipe de l’énergie.</p>
+</div>
+
+<div class="piege">
+<ul>
+<li>Bulle de <strong>savon</strong> : deux interfaces, donc \(4\gamma/R\) ; goutte ou bulle dans un liquide : une seule, \(2\gamma/R\).</li>
+<li>La force \(\gamma\ell\) s’exerce le long d’une <strong>ligne</strong> (le bord), pas sur une surface ; ne la confondez pas avec une pression.</li>
+<li>Loi de Jurin : \(r\) est le <strong>rayon</strong> du tube (pas le diamètre), et \(h\) se mesure depuis le niveau du bain.</li>
+<li>La pression de Laplace est plus forte du côté <strong>concave</strong> : dans la goutte, mais sous un ménisque concave (eau dans un tube fin), la pression est <em>inférieure</em> à \(P_0\).</li>
+<li>Ordres de grandeur : \(\gamma\) est en mN·m⁻¹ ; avec \(\gamma = 72\) N·m⁻¹ on trouve des résultats mille fois trop grands.</li>
+</ul>
+</div>
+
+<div class="cpge" id="plus-loin" title="Pour aller plus loin : polycopiés olympiques">
+<p>Pour viser l’IPhO internationale, deux ressources en anglais, gratuites et d’un très bon niveau, traitent la tension superficielle avec des problèmes corrigés :</p>
+<ul>
+<li><a href="https://knzhou.github.io/handouts/M7.pdf" target="_blank" rel="noopener">K. Zhou, polycopié M7</a> (fluides ; la fin porte sur la tension superficielle) · <a href="https://knzhou.github.io/handouts/M7Sol.pdf" target="_blank" rel="noopener">solutions</a></li>
+<li><a href="https://www.ioc.ee/~kalda/ipho/" target="_blank" rel="noopener">J. Kalda, <em>Thermodynamics</em></a> (sa partie sur la tension superficielle : bulles, ménisques, flaques, lotus)</li>
+</ul>
+<p>Les problèmes les plus utiles de ces polycopiés sont traduits et corrigés dans la section « S’entraîner » ci-dessous, source indiquée, de même que les exercices sur les interfaces de Victor Lequin (préparation aux olympiades du lycée Louis-le-Grand), qui structurent aussi ce chapitre.</p>
+</div>

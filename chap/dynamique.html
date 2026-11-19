@@ -1,0 +1,282 @@
+<p class="eyebrow">Mécanique des fluides · Chapitre 2</p>
+<h1>Dynamique des fluides</h1>
+<p class="subtitle">Débit, conservation, relation de Bernoulli, Venturi, Torricelli, siphon, fluides réels</p>
+
+<div class="objectifs">
+<p><strong>Ce que demandent les épreuves.</strong> Le syllabus IPhO met « équation de continuité, équation de Bernoulli » au programme des deux tests ; pour la terminale, la relation de Bernoulli est <em>rappelée dans l’énoncé</em>, mais il faut savoir l’utiliser vite et bien (choix des points, ligne de courant, hypothèses). Le Concours général s’en sert dans des sujets à thème (fontaines, plongée, nuages, violon…) et attend qu’on sache l’établir par un bilan d’énergie.</p>
+<ul>
+<li><strong>Terminale (IPhO et Concours général)</strong> : parties 1 à 3 (débit, Bernoulli et ses applications) et le début de la partie 4 (fluides réels : idées qualitatives).</li>
+<li><strong>CPGE (IPhO)</strong> : tout le chapitre, y compris les encadrés « Niveau CPGE » (viscosité, Poiseuille, Reynolds, traînée).</li>
+</ul>
+</div>
+
+<div class="retenir">
+<p><strong>L’essentiel à retenir</strong></p>
+<ol>
+<li><strong>Débit volumique</strong> à travers une section \(S\) où la vitesse \(v\) est uniforme : \(Q = S\,v\) (en \(\text{m}^3\text{·s}^{-1}\)) ; débit massique \(D_m = \rho Q\).</li>
+<li><strong>Conservation du débit</strong> (fluide incompressible, régime stationnaire) : \(S_1 v_1 = S_2 v_2\). Le fluide accélère là où le tube se rétrécit.</li>
+<li><strong>Relation de Bernoulli</strong>, le long d’une ligne de courant, pour un fluide parfait, incompressible, en écoulement stationnaire : \[P + \tfrac12\rho v^2 + \rho g z = \text{constante}.\] Chaque terme est une pression (Pa) ou, divisé par \(\rho g\), une hauteur (m).</li>
+<li><strong>Effet Venturi</strong> : là où la vitesse est grande, la pression est faible (dans un tube horizontal, \(P_2 - P_1 = \tfrac12\rho(v_1^2 - v_2^2)\)).</li>
+<li><strong>Formule de Torricelli</strong> : un liquide s’échappe d’un trou situé à la profondeur \(h\) sous la surface libre à la vitesse \(v = \sqrt{2gh}\), comme en chute libre.</li>
+<li><strong>Siphon</strong> : le débit ne dépend que de la dénivelée entre la surface libre et la sortie ; la pression au sommet est inférieure à \(P_0\), ce qui limite la hauteur du col à environ 10 m.</li>
+<li><strong>Tube de Pitot</strong> : \(P_\text{arrêt} - P = \tfrac12\rho v^2\) donne la vitesse d’un écoulement (ou d’un avion).</li>
+<li>Bernoulli est un <strong>bilan d’énergie par unité de volume</strong> : pression (travail des forces pressantes), énergie cinétique volumique, énergie potentielle volumique. Il ne s’applique ni à travers une pompe ou une hélice, ni quand la viscosité dissipe de l’énergie (pertes de charge).</li>
+<li><strong>Fluides réels</strong> : la viscosité \(\eta\) (Pa·s) freine l’écoulement ; le <strong>nombre de Reynolds</strong> \(Re = \rho v L/\eta\) compare inertie et viscosité : laminaire si \(Re \lesssim 2000\), turbulent au-delà (ordre de grandeur).</li>
+<li>Pour une bille lente dans un fluide visqueux, traînée de <strong>Stokes</strong> \(F = 6\pi\eta R v\) ; à grande vitesse, traînée quadratique \(F = \tfrac12 C_x \rho S v^2\).</li>
+</ol>
+</div>
+
+<h2 id="debit">1. Décrire un écoulement : lignes de courant et débit</h2>
+
+<h3 id="lignes">Vitesse, lignes de courant, régime stationnaire</h3>
+<p>Dans un fluide en mouvement, on attache à chaque point \(M\) et à chaque instant la vitesse \(\vec v(M, t)\) de la particule de fluide qui s’y trouve (description <strong>eulérienne</strong> : on regarde passer le fluide depuis un point fixe). Une <strong>ligne de courant</strong> est une courbe tangente en chacun de ses points à \(\vec v\) ; l’ensemble des lignes de courant qui s’appuient sur un contour fermé forme un <strong>tube de courant</strong>, que le fluide ne traverse pas.</p>
+<p>L’écoulement est <strong>stationnaire</strong> (ou permanent) si \(\vec v\) ne dépend pas du temps en chaque point : les lignes de courant sont alors fixes et coïncident avec les trajectoires. Les vitesses peuvent très bien varier d’un point à l’autre : dans un rétrécissement, chaque particule accélère, mais le champ des vitesses, lui, ne change pas.</p>
+
+<h3 id="conservation">Débit et conservation de la masse</h3>
+<p>Le <strong>débit volumique</strong> \(Q\) est le volume de fluide qui traverse une section par unité de temps. Si la vitesse est uniforme et perpendiculaire à la section d’aire \(S\), le volume passé pendant \(\mathrm dt\) est le cylindre de base \(S\) et de longueur \(v\,\mathrm dt\) :</p>
+\[Q = \frac{S\,v\,\mathrm dt}{\mathrm dt} = S\,v, \qquad D_m = \rho\,Q = \rho S v \ \ (\text{kg·s}^{-1}).\]
+<figure>
+<svg viewBox="0 0 640 230" width="640" role="img" aria-label="Tube de courant qui se rétrécit : le même débit traverse la grande et la petite section, la vitesse augmente" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="dq-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2b6cb0"/></marker><marker id="dq-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker></defs>
+<path d="M40 50 L240 50 Q330 50 380 85 L600 85 L600 145 L380 145 Q330 180 240 180 L40 180 Z" fill="#dbe8f7" stroke="#15213a" stroke-width="2"/>
+<g stroke="#2b6cb0" stroke-width="1.2" fill="none"><path d="M40 75 L240 75 Q330 75 380 100 L600 100"/><path d="M40 115 L600 115"/><path d="M40 155 L240 155 Q330 155 380 130 L600 130"/></g>
+<g stroke="#2b6cb0" stroke-width="2.5" marker-end="url(#dq-b)"><line x1="100" y1="115" x2="140" y2="115"/><line x1="480" y1="115" x2="580" y2="115"/></g>
+<text x="96" y="104" fill="#2b6cb0" font-weight="600">v₁</text><text x="500" y="104" fill="#2b6cb0" font-weight="600">v₂ = v₁ S₁/S₂</text>
+<rect x="150" y="50" width="40" height="130" fill="rgba(31,138,76,0.18)" stroke="#1f8a4c" stroke-dasharray="4 3"/><rect x="430" y="85" width="40" height="60" fill="rgba(31,138,76,0.18)" stroke="#1f8a4c" stroke-dasharray="4 3"/>
+<text x="130" y="205" fill="#1f8a4c" font-weight="600">volume S₁ v₁ dt</text><text x="400" y="165" fill="#1f8a4c" font-weight="600">= volume S₂ v₂ dt</text>
+<line x1="150" y1="30" x2="150" y2="46" stroke="#15213a"/><line x1="190" y1="30" x2="190" y2="46" stroke="#15213a"/><text x="150" y="26" fill="#15213a" font-size="11">v₁ dt</text>
+<text x="48" y="44" fill="#15213a" font-weight="600">section S₁</text><text x="520" y="79" fill="#15213a" font-weight="600">section S₂ &lt; S₁</text>
+<text x="40" y="224" fill="#15213a" font-size="11">Lignes de courant resserrées = vitesse plus grande : ce qui entre par S₁ pendant dt doit ressortir par S₂.</text>
+</svg>
+<figcaption>Conservation du débit dans un tube de courant : \(S_1 v_1 = S_2 v_2\). Les lignes de courant se resserrent là où le fluide va vite.</figcaption>
+</figure>
+<p>Pour un fluide <strong>incompressible</strong> (\(\rho\) constante : liquides, et gaz tant que \(v \ll c_\text{son}\)) en régime stationnaire, la masse contenue dans un tube de courant ne change pas : ce qui entre par \(S_1\) ressort par \(S_2\). C’est l’<strong>équation de continuité</strong> :</p>
+\[S_1 v_1 = S_2 v_2 = Q.\]
+<p>Une rivière qui se resserre coule plus vite ; le jet d’un robinet s’affine en tombant parce qu’il accélère ; dans un tuyau d’arrosage, pincer l’extrémité (section divisée par 4) multiplie la vitesse de sortie par 4 à débit fixé.</p>
+<div class="methode" data-m="bilan"><p>Le volume de contrôle est la portion de tube de courant entre \(S_1\) et \(S_2\) : en régime stationnaire, rien ne s’y accumule, donc le volume qui entre par \(S_1\) pendant \(\mathrm dt\) est celui qui sort par \(S_2\), d’où \(S_1v_1 = S_2v_2\). C’est aussi ce bilan qui donne la loi de vidange \(S\,\mathrm dh = -Q\,\mathrm dt\).</p></div>
+<div class="exo" data-q="ipho-2016-T18"></div>
+<div class="piege">
+<ul>
+<li>\(Q = Sv\) suppose \(v\) uniforme sur la section. Dans un tuyau réel, la vitesse est nulle à la paroi et maximale au centre : \(v\) désigne alors la <em>vitesse moyenne</em> (vitesse débitante).</li>
+<li>Débit volumique en \(\text{m}^3\text{·s}^{-1}\) : 1 L/min = \(1{,}67\times10^{-5}\ \text{m}^3\text{·s}^{-1}\). Les sujets donnent souvent des diamètres : \(S = \pi d^2/4\), pas \(\pi d^2\).</li>
+</ul>
+</div>
+
+<h2 id="bernoulli">2. La relation de Bernoulli</h2>
+
+<h3 id="enonce">Énoncé et hypothèses</h3>
+<div class="retenir">
+<p>Pour un fluide <strong>parfait</strong> (sans viscosité), <strong>incompressible</strong>, en écoulement <strong>stationnaire</strong>, dans le champ de pesanteur uniforme, la quantité</p>
+\[P + \frac12\rho v^2 + \rho g z\]
+<p>est constante <strong>le long d’une ligne de courant</strong> (axe \(z\) vertical ascendant). Si l’écoulement est de plus irrotationnel, la constante est la même pour tout l’écoulement (CPGE).</p>
+</div>
+<p>Les trois termes sont homogènes à une pression : \(P\) est la pression (statique), \(\tfrac12\rho v^2\) la <strong>pression dynamique</strong>, \(\rho g z\) la pression de pesanteur. Divisée par \(\rho g\), la relation s’écrit en hauteurs : \(\dfrac{P}{\rho g} + \dfrac{v^2}{2g} + z = H\), la <strong>charge</strong> (en mètres), conservée dans un fluide parfait. Si \(v = 0\) partout, on retrouve la statique des fluides : \(P + \rho g z = \text{cste}\).</p>
+
+<h3 id="demo">Démonstration par un bilan d’énergie</h3>
+<figure>
+<svg viewBox="0 0 640 250" width="640" role="img" aria-label="Portion de tube de courant entre deux sections : pendant dt, la tranche d'entrée avance de v1 dt et la tranche de sortie de v2 dt ; les forces pressantes travaillent" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="db-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23a48"/></marker><marker id="db-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2b6cb0"/></marker><marker id="db-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker></defs>
+<path d="M60 150 L200 150 Q300 150 380 90 L540 70 L540 110 L380 130 Q300 190 200 210 L60 210 Z" fill="#dbe8f7" stroke="#15213a" stroke-width="2"/>
+<rect x="60" y="150" width="34" height="60" fill="rgba(178,58,72,0.25)" stroke="#b23a48"/><text x="56" y="232" fill="#b23a48" font-weight="600">tranche 1 : S₁ v₁ dt</text>
+<polygon points="506,74 540,70 540,110 506,114" fill="rgba(178,58,72,0.25)" stroke="#b23a48"/><text x="470" y="134" fill="#b23a48" font-weight="600">tranche 2 : S₂ v₂ dt</text>
+<line x1="20" y1="180" x2="56" y2="180" stroke="#b23a48" stroke-width="3" marker-end="url(#db-r)"/><text x="14" y="168" fill="#b23a48" font-weight="600">P₁ S₁</text>
+<line x1="590" y1="90" x2="546" y2="90" stroke="#b23a48" stroke-width="3" marker-end="url(#db-r)"/><text x="556" y="76" fill="#b23a48" font-weight="600">P₂ S₂</text>
+<line x1="120" y1="180" x2="170" y2="180" stroke="#2b6cb0" stroke-width="2.5" marker-end="url(#db-b)"/><text x="126" y="172" fill="#2b6cb0" font-weight="600">v₁</text>
+<line x1="420" y1="104" x2="480" y2="96" stroke="#2b6cb0" stroke-width="2.5" marker-end="url(#db-b)"/><text x="430" y="92" fill="#2b6cb0" font-weight="600">v₂</text>
+<line x1="610" y1="230" x2="610" y2="40" stroke="#15213a" stroke-width="1.5" marker-end="url(#db-k)"/><text x="618" y="48" fill="#15213a" font-weight="600">z</text>
+<line x1="77" y1="180" x2="600" y2="180" stroke="#15213a" stroke-dasharray="3 3"/><text x="560" y="194" fill="#15213a" font-size="11">z₁</text>
+<line x1="523" y1="92" x2="600" y2="92" stroke="#15213a" stroke-dasharray="3 3"/><text x="580" y="106" fill="#15213a" font-size="11">z₂</text>
+<text x="60" y="40" fill="#15213a" font-weight="600">Système : le fluide entre les sections 1 et 2 à l’instant t</text>
+<text x="60" y="58" fill="#15213a" font-size="11">Pendant dt, tout se passe comme si la tranche 1 passait en 2 : dm = ρ S₁ v₁ dt = ρ S₂ v₂ dt.</text>
+</svg>
+<figcaption>Le système fluide avance : la pression amont pousse (travail moteur \(P_1 S_1 v_1\,\mathrm dt\)), la pression aval retient (travail \(-P_2 S_2 v_2\,\mathrm dt\)) ; le reste est inchangé en régime stationnaire.</figcaption>
+</figure>
+<p>Suivons le fluide compris entre les sections 1 et 2 pendant \(\mathrm dt\). En régime stationnaire, la partie centrale du tube est remplacée à l’identique : tout se passe comme si une masse \(\mathrm dm = \rho S_1 v_1\,\mathrm dt = \rho S_2 v_2\,\mathrm dt\) était passée de la tranche 1 (vitesse \(v_1\), altitude \(z_1\)) à la tranche 2 (vitesse \(v_2\), altitude \(z_2\)). Théorème de l’énergie cinétique appliqué au système :</p>
+<ul>
+<li>variation d’énergie cinétique : \(\tfrac12\,\mathrm dm\,(v_2^2 - v_1^2)\) ;</li>
+<li>travail du poids : \(-\mathrm dm\,g\,(z_2 - z_1)\) ;</li>
+<li>travail des forces pressantes : en amont, \(P_1 S_1\) pousse sur \(v_1\,\mathrm dt\) : \(+P_1 S_1 v_1\,\mathrm dt = P_1\,\mathrm dm/\rho\) ; en aval, \(P_2 S_2\) s’oppose au déplacement : \(-P_2\,\mathrm dm/\rho\). Les forces pressantes latérales sont perpendiculaires au mouvement : travail nul. Fluide parfait : pas de frottement intérieur.</li>
+</ul>
+\[\tfrac12\,\mathrm dm\,(v_2^2 - v_1^2) = -\mathrm dm\,g\,(z_2 - z_1) + \frac{P_1 - P_2}{\rho}\,\mathrm dm \quad\Longrightarrow\quad P_1 + \tfrac12\rho v_1^2 + \rho g z_1 = P_2 + \tfrac12\rho v_2^2 + \rho g z_2.\]
+<p>Cette démonstration dit aussi ce que Bernoulli <em>n’est pas</em> : si une pompe ou une turbine se trouve entre 1 et 2, elle fournit ou prélève un travail \(w\) par unité de masse, et la relation devient \(P_2 + \ldots = P_1 + \ldots + \rho w\) ; si le fluide est visqueux, une partie de l’énergie est dissipée : la charge diminue le long de l’écoulement (<strong>perte de charge</strong>).</p>
+
+<div class="piege">
+<ul>
+<li>Choisissez les deux points sur une <strong>même ligne de courant</strong>, là où vous connaissez le maximum de grandeurs : surface libre (\(P = P_0\), souvent \(v \approx 0\)), jet à l’air libre (\(P = P_0\)), point d’arrêt (\(v = 0\)).</li>
+<li>Un jet qui sort à l’air libre est à la pression atmosphérique \(P_0\), pas à la pression du réservoir.</li>
+<li>Bernoulli ne s’applique pas entre deux points séparés par une pompe, une hélice, un ventilateur, ni dans la zone turbulente derrière un obstacle.</li>
+<li>Axe \(z\) vers le haut : le terme \(\rho g z\) <em>augmente</em> avec l’altitude. Avec un axe vers le bas, changez de signe.</li>
+</ul>
+</div>
+
+<h2 id="applications">3. Applications de la relation de Bernoulli</h2>
+
+<h3 id="venturi">Effet Venturi : vite, donc à basse pression</h3>
+<p>Dans un tube horizontal (\(z_1 = z_2\)) qui se rétrécit de \(S_1\) à \(S_2\), la conservation du débit impose \(v_2 = v_1 S_1/S_2 > v_1\), et Bernoulli donne</p>
+\[P_1 - P_2 = \tfrac12\rho\,(v_2^2 - v_1^2) = \tfrac12\rho v_1^2\left[\left(\frac{S_1}{S_2}\right)^2 - 1\right] > 0.\]
+<p>La pression est <strong>plus faible dans le rétrécissement</strong>. Des tubes verticaux ouverts (prises de pression statique) le montrent : le niveau est plus bas au-dessus de la gorge. Mesurer \(\Delta h\) permet de déduire le débit : c’est le <strong>débitmètre Venturi</strong>. Même principe pour la trompe à eau, le carburateur, le vaporisateur, et pour l’aspiration d’une feuille de papier au-dessus de laquelle on souffle.</p>
+<div class="methode" data-m="bernoulli-points"><p>Pour le Venturi, prenez deux points de la même ligne de courant horizontale, l’un dans la section \(S_1\), l’autre dans la gorge : \(z_1 = z_2\) élimine la pesanteur, la conservation du débit donne \(v_2\), et l’hydrostatique dans les tubes verticaux (fluide au repos) relie chaque pression à une hauteur. Pour une vidange ou un siphon, prenez plutôt la surface libre et le jet, tous deux à \(P_0\).</p></div>
+<figure>
+<svg viewBox="0 0 640 250" width="640" role="img" aria-label="Tube de Venturi horizontal avec trois tubes piézométriques : le niveau est plus bas au-dessus de la gorge" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="dv-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2b6cb0"/></marker></defs>
+<path d="M30 150 L170 150 Q250 150 280 170 L360 170 Q390 150 470 150 L610 150 L610 220 L470 220 Q390 220 360 200 L280 200 Q250 220 170 220 L30 220 Z" fill="#dbe8f7" stroke="#15213a" stroke-width="2"/>
+<g fill="#dbe8f7" stroke="#15213a" stroke-width="2"><rect x="90" y="40" width="22" height="112"/><rect x="309" y="60" width="22" height="112"/><rect x="530" y="40" width="22" height="112"/></g>
+<rect x="92" y="60" width="18" height="90" fill="#dbe8f7"/><rect x="311" y="130" width="18" height="40" fill="#dbe8f7"/><rect x="532" y="66" width="18" height="84" fill="#dbe8f7"/>
+<rect x="92" y="40" width="18" height="20" fill="#fff"/><rect x="311" y="60" width="18" height="70" fill="#fff"/><rect x="532" y="40" width="18" height="26" fill="#fff"/>
+<g stroke="#2b6cb0" stroke-width="2"><line x1="92" y1="60" x2="110" y2="60"/><line x1="311" y1="130" x2="329" y2="130"/><line x1="532" y1="66" x2="550" y2="66"/></g>
+<line x1="110" y1="60" x2="311" y2="60" stroke="#15213a" stroke-dasharray="3 3"/><line x1="340" y1="60" x2="340" y2="130" stroke="#b23a48" stroke-width="1.5"/><line x1="335" y1="60" x2="345" y2="60" stroke="#b23a48"/><line x1="335" y1="130" x2="345" y2="130" stroke="#b23a48"/><text x="348" y="100" fill="#b23a48" font-weight="600">Δh = (v₂² − v₁²)/2g</text>
+<g stroke="#2b6cb0" stroke-width="2.5" marker-end="url(#dv-b)"><line x1="40" y1="185" x2="80" y2="185"/><line x1="300" y1="185" x2="360" y2="185"/><line x1="470" y1="185" x2="510" y2="185"/></g>
+<text x="40" y="240" fill="#15213a" font-weight="600">S₁, v₁, P₁</text><text x="286" y="240" fill="#15213a" font-weight="600">S₂ &lt; S₁ : v₂ &gt; v₁, P₂ &lt; P₁</text><text x="480" y="240" fill="#15213a" font-weight="600">S₁ : on retrouve P₁</text>
+<text x="30" y="28" fill="#15213a" font-size="11">Tubes verticaux ouverts : la hauteur de liquide mesure la pression statique (P − P₀ = ρ g h).</text>
+<text x="556" y="100" fill="#15213a" font-size="11">(un peu plus bas</text><text x="556" y="114" fill="#15213a" font-size="11">si pertes)</text>
+</svg>
+<figcaption>Effet Venturi. Le niveau dans le tube central est plus bas de \(\Delta h = (v_2^2 - v_1^2)/2g\). Dans un fluide réel, le troisième niveau est un peu plus bas que le premier : perte de charge.</figcaption>
+</figure>
+<div class="exo" data-q="ipho-2017-T12"></div>
+<div class="exo" data-q="ipho-2025-T10"></div>
+<div class="sim" data-name="venturi"><p>Réglez le débit et la section de la gorge : lisez les vitesses, les pressions et les niveaux dans les tubes piézométriques. Que se passe-t-il quand \(P_2\) tombe sous la pression de vapeur de l’eau ? (cavitation)</p></div>
+
+<div class="exo" data-q="ipho-2026-T11"></div>
+<h3 id="pitot">Tube de Pitot : mesurer une vitesse</h3>
+<p>Face à l’écoulement, un petit tube ouvert vers l’amont arrête le fluide en son embouchure : au <strong>point d’arrêt</strong> \(A\), \(v_A = 0\). Entre un point \(M\) de l’écoulement libre (vitesse \(v\), pression \(P\)) et \(A\) sur la même ligne de courant horizontale :</p>
+\[P_A = P + \tfrac12\rho v^2 \quad\Longrightarrow\quad v = \sqrt{\frac{2\,(P_A - P)}{\rho}}.\]
+<p>\(P_A\) est la <strong>pression d’arrêt</strong> (ou totale). Un second orifice latéral mesure la pression statique \(P\) ; la différence, lue sur un manomètre, donne \(v\). C’est l’anémomètre des avions : à 250 m/s dans l’air (\(\rho = 1{,}2\ \text{kg·m}^{-3}\)), \(P_A - P = \tfrac12\times1{,}2\times250^2 = 3{,}75\times10^4\ \text{Pa}\), soit 0,37 bar.</p>
+<div class="methode" data-m="ordre-grandeur"><p>Comparez toujours la pression dynamique \(\tfrac12\rho v^2\) à la pression statique : 0,37 bar pour un avion à 250 m/s, mais seulement 55 Pa pour de l’eau à 20 m/min, soit une correction négligeable devant \(3\times10^5\ \text{Pa}\) (QCM 2025 ci-dessus).</p></div>
+<figure>
+<svg viewBox="0 0 640 200" width="640" role="img" aria-label="Tube de Pitot : prise de pression d'arrêt face à l'écoulement et prise de pression statique latérale, reliées à un manomètre différentiel" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="dp-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2b6cb0"/></marker></defs>
+<rect x="20" y="30" width="600" height="110" fill="#dbe8f7"/>
+<g stroke="#2b6cb0" stroke-width="2" marker-end="url(#dp-b)"><line x1="40" y1="50" x2="100" y2="50"/><line x1="40" y1="85" x2="100" y2="85"/><line x1="40" y1="120" x2="100" y2="120"/></g>
+<text x="40" y="160" fill="#2b6cb0" font-weight="600">écoulement : v, P</text>
+<path d="M200 70 L380 70 L380 100 L200 100 Z" fill="#9a9ca3" stroke="#15213a" stroke-width="1.5"/><path d="M200 78 L300 78 L300 92 L200 92 Z" fill="#fff" stroke="#15213a"/>
+<circle cx="200" cy="85" r="4" fill="#b23a48"/><text x="150" y="66" fill="#b23a48" font-weight="600">A : v = 0</text>
+<circle cx="330" cy="70" r="3" fill="#1f8a4c"/><text x="320" y="60" fill="#1f8a4c" font-weight="600">prise statique : P</text>
+<rect x="300" y="85" width="80" height="4" fill="#fff"/><rect x="330" y="70" width="4" height="30" fill="#fff"/>
+<path d="M380 80 L480 80 L480 180 L520 180 L520 100 L560 100" fill="none" stroke="#15213a" stroke-width="1.5"/>
+<rect x="470" y="130" width="20" height="50" fill="#9a9ca3"/><rect x="510" y="150" width="20" height="30" fill="#9a9ca3"/>
+<text x="540" y="170" fill="#15213a" font-size="11">manomètre :</text><text x="540" y="184" fill="#15213a" font-size="11">P_A − P = ½ρv²</text>
+<path d="M380 96 L480 96 L480 130" fill="none" stroke="#15213a" stroke-width="1.5"/>
+<text x="20" y="190" fill="#15213a" font-size="11">Point d’arrêt A : P_A = P + ½ρv² (pression totale).</text>
+</svg>
+<figcaption>Le tube de Pitot compare la pression d’arrêt (face au vent) et la pression statique (prise latérale).</figcaption>
+</figure>
+
+<h3 id="torricelli">Vidange d’un réservoir : formule de Torricelli</h3>
+<p>Un réservoir large, ouvert, contient un liquide sur une hauteur \(h\) au-dessus d’un petit orifice de section \(s\). Ligne de courant de la surface libre \(A\) (pression \(P_0\), vitesse \(v_A \approx 0\) car la section \(S \gg s\) : \(v_A = v\,s/S\)) jusqu’au jet \(B\) (pression \(P_0\) dès la sortie, vitesse \(v\)) :</p>
+\[P_0 + 0 + \rho g h = P_0 + \tfrac12\rho v^2 + 0 \quad\Longrightarrow\quad v = \sqrt{2gh}.\]
+<p>C’est la vitesse qu’aurait une goutte tombée en chute libre de la hauteur \(h\) : le liquide « tombe » à travers la colonne. Le débit vaut \(Q = s\sqrt{2gh}\) (en pratique, le jet se contracte : \(Q \approx 0{,}6\,s\sqrt{2gh}\)). Pour un réservoir qui se vide, \(h\) diminue : \(S\,\dfrac{\mathrm dh}{\mathrm dt} = -s\sqrt{2gh}\), d’où une vidange en temps fini \(t_v = \dfrac{S}{s}\sqrt{\dfrac{2h_0}{g}}\), deux fois le temps qu’il faudrait à débit initial constant.</p>
+<div class="methode" data-m="equadiff"><p>Le bilan de volume sur \(\mathrm dt\) donne \(S\,\mathrm dh = -s\sqrt{2gh}\,\mathrm dt\) : ce n’est ni une exponentielle ni un oscillateur, on sépare les variables, \(\mathrm dh/\sqrt h = -(s/S)\sqrt{2g}\,\mathrm dt\), et on intègre de \(h_0\) à 0. La fontaine de Héron se traite exactement de la même façon.</p></div>
+<div class="exo" data-q="ipho-2022-T2"></div>
+<div class="exo" data-q="ipho-2015-C20"></div>
+<div class="sim" data-name="torricelli"><p>Percez le réservoir à la hauteur de votre choix : vitesse et portée du jet, hauteur \(h(t)\) pendant la vidange, comparaison avec la chute libre. Trouvez la hauteur du trou qui donne la portée maximale.</p></div>
+
+<h3 id="siphon">Le siphon</h3>
+<p>Un tuyau plein de liquide, dont une extrémité plonge dans un réservoir et l’autre débouche plus bas, vide le réservoir en passant <em>par-dessus</em> le bord. Bernoulli entre la surface libre \(A\) (\(P_0\), \(v \approx 0\), altitude \(z_A\)) et la sortie \(C\) (\(P_0\), \(v\), \(z_C\)) :</p>
+\[v = \sqrt{2g\,(z_A - z_C)} :\]
+<p>seule compte la <strong>dénivelée entre surface libre et sortie</strong>, pas la hauteur du col. Au sommet \(B\) (altitude \(z_B\)), la vitesse est la même qu’en \(C\) (section constante), donc \(P_B = P_0 - \rho g\,(z_B - z_C)\) : la pression y est inférieure à \(P_0\). Elle ne peut pas descendre sous la pression de vapeur du liquide (\(\approx 0\) pour l’eau) : la hauteur \(z_B - z_C\) ne peut dépasser \(P_0/\rho g \approx 10\ \text{m}\), sinon le liquide se vaporise et le siphon se désamorce.</p>
+<figure>
+<svg viewBox="0 0 640 260" width="640" role="img" aria-label="Siphon : tuyau partant d'un réservoir, passant par un sommet B puis débouchant plus bas en C" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="ds-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2b6cb0"/></marker><marker id="ds-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker></defs>
+<path d="M40 100 L40 220 L260 220 L260 100" fill="none" stroke="#15213a" stroke-width="2"/><rect x="42" y="120" width="216" height="100" fill="#dbe8f7"/>
+<path d="M200 200 L200 60 Q200 40 220 40 L320 40 Q340 40 340 60 L340 230" fill="none" stroke="#2b6cb0" stroke-width="12"/><path d="M200 200 L200 60 Q200 40 220 40 L320 40 Q340 40 340 60 L340 230" fill="none" stroke="#15213a" stroke-width="15" stroke-opacity="0.35"/>
+<circle cx="120" cy="120" r="4" fill="#15213a"/><text x="100" y="112" fill="#15213a" font-weight="600">A : P₀, v ≈ 0</text>
+<circle cx="270" cy="40" r="4" fill="#b23a48"/><text x="250" y="28" fill="#b23a48" font-weight="600">B : P_B &lt; P₀</text>
+<circle cx="340" cy="230" r="4" fill="#15213a"/><text x="200" y="256" fill="#15213a" font-weight="600">C : P₀, v = √(2g(z_A − z_C))</text>
+<line x1="340" y1="236" x2="340" y2="250" stroke="#2b6cb0" stroke-width="3" marker-end="url(#ds-b)"/>
+<line x1="440" y1="120" x2="440" y2="230" stroke="#15213a" stroke-width="1"/><line x1="435" y1="120" x2="445" y2="120" stroke="#15213a"/><line x1="435" y1="230" x2="445" y2="230" stroke="#15213a"/><text x="448" y="180" fill="#15213a" font-weight="600">z_A − z_C : fixe le débit</text>
+<line x1="120" y1="120" x2="440" y2="120" stroke="#15213a" stroke-dasharray="3 3"/><line x1="345" y1="230" x2="440" y2="230" stroke="#15213a" stroke-dasharray="3 3"/>
+<line x1="520" y1="40" x2="520" y2="230" stroke="#b23a48" stroke-width="1"/><line x1="515" y1="40" x2="525" y2="40" stroke="#b23a48"/><line x1="515" y1="230" x2="525" y2="230" stroke="#b23a48"/><text x="528" y="130" fill="#b23a48" font-weight="600">z_B − z_C &lt; 10 m</text>
+<line x1="270" y1="40" x2="520" y2="40" stroke="#b23a48" stroke-dasharray="3 3"/>
+</svg>
+<figcaption>Le siphon : le débit ne dépend que de \(z_A - z_C\) ; la pression au sommet \(B\) vaut \(P_0 - \rho g (z_B - z_C)\), ce qui limite la hauteur du col.</figcaption>
+</figure>
+
+<h3 id="portance">Jets, balles et ailes : ce que Bernoulli explique, et ce qu’il n’explique pas</h3>
+<p><strong>Hauteur d’un jet.</strong> Un jet vertical sortant d’une lance à la vitesse \(v\) monte à \(v^2/2g\) ; si la lance est alimentée par un réservoir à la hauteur \(h\) sans pertes, le jet remonte exactement à \(h\) (en pratique moins : viscosité, résistance de l’air).</p>
+<p><strong>Balle de ping-pong dans un jet d’air</strong>, feuille de papier qui se soulève quand on souffle au-dessus, rideau de douche aspiré vers le jet : à chaque fois, le fluide rapide est à basse pression, et la pression ambiante pousse l’objet vers lui.</p>
+<p><strong>Portance d’une aile.</strong> L’air passe plus vite au-dessus du profil (extrados) qu’en dessous (intrados) ; la pression y est plus faible et la résultante est dirigée vers le haut. Bernoulli donne l’ordre de grandeur \(F \sim \tfrac12\rho v^2 S\,C_z\) ; mais l’argument des « chemins de longueur différente parcourus dans le même temps » est faux : les particules d’air passées au-dessus arrivent <em>avant</em> celles passées en dessous. La vraie cause est la déviation de l’air vers le bas par l’aile (troisième loi de Newton), qui crée la circulation. Retenez : la portance existe, elle vaut environ \(\tfrac12\rho v^2 S C_z\), et Bernoulli est cohérent avec elle sans suffire à l’expliquer.</p>
+
+<div class="piege">
+<ul>
+<li>Formule de Torricelli : \(h\) est la hauteur de liquide <em>au-dessus du trou</em>, pas la hauteur du réservoir, ni la hauteur du trou au-dessus du sol (celle-ci sert à la portée : \(x = v\sqrt{2H/g} = 2\sqrt{hH}\)).</li>
+<li>Négliger \(v_A\) à la surface libre n’est légitime que si \(S \gg s\) ; sinon, écrivez \(v_A = v\,s/S\) et gardez les deux termes.</li>
+<li>« Vite = basse pression » vaut <em>le long d’une ligne de courant</em> d’un même écoulement. Comparer la pression d’un jet rapide à celle de l’air calme à côté n’a de sens que si les deux sont reliés.</li>
+</ul>
+</div>
+
+<h2 id="reels">4. Fluides réels : viscosité, pertes de charge, traînée</h2>
+
+<h3 id="viscosite">La viscosité</h3>
+<p>Dans un fluide réel, les couches qui glissent les unes sur les autres se freinent : c’est la <strong>viscosité</strong>. Entre deux plaques parallèles distantes de \(e\), l’une fixe et l’autre tirée à la vitesse \(v\), le fluide exerce sur la plaque mobile une force de frottement proportionnelle à l’aire \(S\) et au gradient de vitesse :</p>
+\[F = \eta\,S\,\frac{v}{e},\]
+<p>où \(\eta\) (êta) est la <strong>viscosité dynamique</strong>, en Pa·s (ou kg·m⁻¹·s⁻¹). Eau à 20 °C : \(10^{-3}\ \text{Pa·s}\) ; air : \(1{,}8\times10^{-5}\) ; huile d’olive : \(0{,}08\) ; miel : \(\sim10\) ; glycérine : 1,5. La viscosité des liquides diminue fortement avec la température. On utilise aussi la viscosité cinématique \(\nu = \eta/\rho\) (m²·s⁻¹ ; eau : \(10^{-6}\)).</p>
+<div class="methode" data-m="dimension"><p>De \(F = \eta S v/e\), on tire \([\eta] = \text{N}\cdot\text{m}/(\text{m}^2\cdot\text{m·s}^{-1}) = \text{Pa·s} = \text{kg·m}^{-1}\text{·s}^{-1}\). Vérifiez ensuite que \(\rho vL/\eta\) est sans dimension et que \(6\pi\eta Rv\) est bien une force.</p></div>
+<p>Conséquences : le fluide <strong>adhère aux parois</strong> (vitesse nulle sur une paroi fixe), le profil de vitesse dans un tuyau est arrondi (parabolique en régime laminaire), et une partie de l’énergie mécanique se dissipe en chaleur : la charge \(P + \tfrac12\rho v^2 + \rho g z\) <strong>diminue</strong> dans le sens de l’écoulement. C’est la <strong>perte de charge</strong>, qu’une pompe doit compenser.</p>
+<figure>
+<svg viewBox="0 0 640 210" width="640" role="img" aria-label="Profil de vitesse dans un tuyau : plat pour un fluide parfait, parabolique en régime laminaire visqueux ; et cisaillement entre deux plaques" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="dvi-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2b6cb0"/></marker><marker id="dvi-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23a48"/></marker></defs>
+<text x="20" y="20" fill="#15213a" font-weight="600">Fluide parfait : profil plat</text>
+<rect x="20" y="40" width="200" height="120" fill="#dbe8f7"/><line x1="20" y1="40" x2="220" y2="40" stroke="#15213a" stroke-width="3"/><line x1="20" y1="160" x2="220" y2="160" stroke="#15213a" stroke-width="3"/>
+<g stroke="#2b6cb0" stroke-width="2" marker-end="url(#dvi-b)"><line x1="60" y1="55" x2="130" y2="55"/><line x1="60" y1="80" x2="130" y2="80"/><line x1="60" y1="100" x2="130" y2="100"/><line x1="60" y1="120" x2="130" y2="120"/><line x1="60" y1="145" x2="130" y2="145"/></g>
+<text x="230" y="20" fill="#15213a" font-weight="600">Visqueux, laminaire : parabole</text>
+<rect x="230" y="40" width="200" height="120" fill="#dbe8f7"/><line x1="230" y1="40" x2="430" y2="40" stroke="#15213a" stroke-width="3"/><line x1="230" y1="160" x2="430" y2="160" stroke="#15213a" stroke-width="3"/>
+<g stroke="#2b6cb0" stroke-width="2" marker-end="url(#dvi-b)"><line x1="270" y1="55" x2="296" y2="55"/><line x1="270" y1="80" x2="340" y2="80"/><line x1="270" y1="100" x2="360" y2="100"/><line x1="270" y1="120" x2="340" y2="120"/><line x1="270" y1="145" x2="296" y2="145"/></g>
+<path d="M270 42 Q380 100 270 158" fill="none" stroke="#2b6cb0" stroke-dasharray="4 3"/>
+<text x="450" y="20" fill="#15213a" font-weight="600">Cisaillement : F = η S v/e</text>
+<rect x="450" y="60" width="170" height="80" fill="#dbe8f7"/><rect x="450" y="52" width="170" height="8" fill="#9a9ca3"/><rect x="450" y="140" width="170" height="8" fill="#5f6b80"/>
+<line x1="500" y1="46" x2="560" y2="46" stroke="#b23a48" stroke-width="2.5" marker-end="url(#dvi-r)"/><text x="566" y="50" fill="#b23a48" font-weight="600">v</text>
+<g stroke="#2b6cb0" stroke-width="1.5" marker-end="url(#dvi-b)"><line x1="480" y1="70" x2="530" y2="70"/><line x1="480" y1="90" x2="516" y2="90"/><line x1="480" y1="110" x2="502" y2="110"/><line x1="480" y1="130" x2="488" y2="130"/></g>
+<text x="626" y="104" fill="#15213a" font-size="11" transform="rotate(90 626 104)">e</text>
+<text x="450" y="166" fill="#15213a" font-size="11">plaque fixe</text><text x="20" y="195" fill="#15213a" font-size="11">Le frottement entre couches de fluide dissipe de l’énergie : la charge diminue le long du tuyau (perte de charge).</text>
+</svg>
+<figcaption>Profils de vitesse et définition de la viscosité par l’écoulement de cisaillement entre deux plaques.</figcaption>
+</figure>
+
+<h3 id="reynolds">Laminaire ou turbulent : le nombre de Reynolds</h3>
+<p>Pour savoir si la viscosité domine, on compare les forces d’inertie (\(\sim \rho v^2/L\) par unité de volume) aux forces visqueuses (\(\sim \eta v/L^2\)). Leur rapport est le <strong>nombre de Reynolds</strong>, sans dimension :</p>
+\[Re = \frac{\rho\,v\,L}{\eta} = \frac{v\,L}{\nu},\]
+<p>où \(L\) est une taille caractéristique (diamètre du tuyau, de la bille…). \(Re \ll 1\) : écoulement rampant, dominé par la viscosité (bactérie dans l’eau, bille dans le miel). \(Re\) de l’ordre de \(10^3\) ou moins dans un tuyau : <strong>laminaire</strong>, les lignes de courant restent ordonnées ; au-delà de \(Re \approx 2000\) à \(3000\) : <strong>turbulent</strong>, tourbillons, mélange. Pour un nageur (\(v = 1\ \text{m·s}^{-1}\), \(L = 1\ \text{m}\)) : \(Re = 10^6\) ; pour un spermatozoïde (\(v = 10^{-4}\), \(L = 10^{-5}\)) : \(Re = 10^{-3}\). Le même nombre de Reynolds donne des écoulements semblables : c’est le principe des maquettes en soufflerie.</p>
+<div class="methode" data-m="sans-dimension"><p>Avant de choisir une loi de traînée, calculez \(Re\) avec la vitesse obtenue : une bille d’acier dans la glycérine donne \(Re \approx 1\) (Stokes valable), la même bille dans l’eau \(Re \approx 10^4\) (traînée quadratique). Si le \(Re\) trouvé contredit l’hypothèse de départ, changez de modèle.</p></div>
+
+<h3 id="trainee">Traînée sur un objet : Stokes et traînée quadratique</h3>
+<p>Un objet qui se déplace à la vitesse \(v\) dans un fluide subit une force de <strong>traînée</strong> opposée au mouvement :</p>
+<ul>
+<li>à petit Reynolds (\(Re \lesssim 1\)), elle est <strong>linéaire</strong> en \(v\) : pour une sphère de rayon \(R\), loi de <strong>Stokes</strong> \(F = 6\pi\eta R v\) (gouttelettes de brouillard, sédimentation, expérience de Millikan) ;</li>
+<li>à grand Reynolds (\(Re \gtrsim 10^3\)), elle est <strong>quadratique</strong> : \(F = \tfrac12 C_x\,\rho\,S\,v^2\), avec \(S\) la section frontale et \(C_x\) un coefficient de l’ordre de 0,1 (profilé) à 1 (plaque) : cycliste, parachutiste, balle, voiture.</li>
+</ul>
+<p>Dans les deux cas, un corps en chute atteint une <strong>vitesse limite</strong> quand la traînée équilibre le poids apparent : \(v_\text{lim} = \dfrac{2(\rho_c - \rho_f)gR^2}{9\eta}\) (Stokes) ou \(v_\text{lim} = \sqrt{\dfrac{2mg}{C_x\rho S}}\) (quadratique). Une goutte de pluie de 1 mm tombe à 4 m/s environ, une gouttelette de nuage de 10 µm à 3 mm/s : elle ne tombe pratiquement pas.</p>
+
+<div class="cpge" id="poiseuille" title="Écoulement laminaire dans un tuyau : loi de Poiseuille">
+<p>Pour un écoulement laminaire dans un tuyau cylindrique de rayon \(R\) et de longueur \(L\), la viscosité impose un profil de vitesse parabolique \(v(r) = v_\text{max}\left(1 - r^2/R^2\right)\), et le débit est proportionnel à la différence de pression entre les extrémités :</p>
+\[Q = \frac{\pi R^4}{8\eta L}\,\Delta P \qquad\text{(loi de Poiseuille).}\]
+<p>Le débit varie comme \(R^4\) : diviser le rayon par 2 divise le débit par 16 à \(\Delta P\) fixée. C’est pourquoi une artère légèrement rétrécie augmente beaucoup la résistance à l’écoulement (analogie électrique : \(\Delta P = R_h Q\) avec \(R_h = 8\eta L/\pi R^4\), les résistances hydrauliques s’ajoutant en série et leurs inverses en parallèle). La vitesse moyenne vaut \(v_\text{max}/2\). Démonstration : l’équilibre d’un cylindre de fluide de rayon \(r\) entre la force de pression \(\Delta P\,\pi r^2\) et le frottement visqueux \(-\eta\,\dfrac{\mathrm dv}{\mathrm dr}\,2\pi r L\) donne \(\dfrac{\mathrm dv}{\mathrm dr} = -\dfrac{\Delta P}{2\eta L}r\), qu’on intègre avec \(v(R) = 0\) ; puis \(Q = \int_0^R v(r)\,2\pi r\,\mathrm dr\).</p>
+</div>
+
+<div class="cpge" id="bernoulli-general" title="Bernoulli : constante globale, écoulement irrotationnel, régime non stationnaire">
+<p>Si l’écoulement est <strong>irrotationnel</strong> (\(\overrightarrow{\mathrm{rot}}\,\vec v = \vec 0\), ce qui est le cas d’un écoulement parfait issu d’un fluide au repos), la constante de Bernoulli est la même pour toutes les lignes de courant : on peut appliquer la relation entre deux points quelconques. Pour un écoulement <strong>non stationnaire</strong> irrotationnel, \(\vec v = \overrightarrow{\mathrm{grad}}\,\varphi\) et la relation devient \(\rho\,\dfrac{\partial\varphi}{\partial t} + P + \tfrac12\rho v^2 + \rho g z = \text{cste}(t)\). Exemple classique : les <strong>oscillations d’un liquide dans un tube en U</strong> de longueur totale \(L\) : l’écart \(x\) des niveaux obéit à \(\ddot x + \dfrac{2g}{L}x = 0\), période \(T = 2\pi\sqrt{L/2g}\), indépendante de la masse volumique. Autre exemple : la vidange d’un réservoir est quasi stationnaire parce que \(h\) varie lentement devant le temps de transit du fluide.</p>
+</div>
+
+<div class="cpge" id="bilan-qdm" title="Bilan de quantité de mouvement : force d’un jet, poussée d’un tuyau coudé">
+<p>Pour un système ouvert en régime stationnaire, la résultante des forces extérieures vaut le débit de quantité de mouvement sortant moins entrant : \(\sum\vec F_\text{ext} = D_m\,(\vec v_\text{sortie} - \vec v_\text{entrée})\). Un jet de section \(s\) et de vitesse \(v\) qui s’écrase perpendiculairement sur une plaque et repart latéralement exerce \(F = D_m v = \rho s v^2\) : pour une lance à incendie (\(s = 10\ \text{cm}^2\), \(v = 30\ \text{m·s}^{-1}\)), 900 N. Un tuyau coudé subit une force de l’ordre de \(\rho S v^2\) : il faut l’ancrer. Même raisonnement pour la poussée d’une fusée ou d’un réacteur (\(F = D_m\,v_\text{éjection}\)), et pour la force d’un jet d’eau sur une roue Pelton.</p>
+</div>
+
+<div class="complement" title="Tension superficielle : voir le chapitre 3">
+<p>Gouttes, bulles, ménisques, capillarité : la surface d’un liquide se comporte comme une membrane tendue, d’énergie \(\gamma\) par unité d’aire (eau : \(73\ \text{mN·m}^{-1}\)). La loi de Laplace \(\Delta P = 2\gamma/R\) et la loi de Jurin \(h = 2\gamma\cos\theta/(\rho g r)\) sont au programme du test CPGE. Elles font l’objet du <a href="#tension">chapitre 3</a>.</p>
+</div>
+
+<div class="piege">
+<ul>
+<li>Bernoulli et Poiseuille ne décrivent pas le même monde : Bernoulli, fluide parfait, inertie dominante (grand \(Re\)) ; Poiseuille, viscosité dominante, laminaire. Ne les combinez pas sans réfléchir.</li>
+<li>Le nombre de Reynolds dépend du choix de \(L\) (diamètre, rayon ?) : à un facteur 2 près, seul l’ordre de grandeur compte.</li>
+<li>Vitesse limite : égalité entre traînée et poids <em>apparent</em> (poids moins poussée d’Archimède), qui compte pour une bille dans un liquide, pas pour un parachutiste dans l’air.</li>
+</ul>
+</div>
+
+<div class="cpge" id="plus-loin" title="Pour aller plus loin : polycopiés olympiques">
+<p>Pour viser l’IPhO internationale, deux ressources en anglais, gratuites et d’un très bon niveau, reprennent ce chapitre en profondeur avec des centaines de problèmes corrigés :</p>
+<ul>
+<li><a href="https://knzhou.github.io/handouts/M7.pdf" target="_blank" rel="noopener">K. Zhou, polycopié M7</a> (fluides : la seconde moitié porte sur Bernoulli, les jets et la viscosité) · <a href="https://knzhou.github.io/handouts/M7Sol.pdf" target="_blank" rel="noopener">solutions</a></li>
+<li><a href="https://www.ioc.ee/~kalda/ipho/" target="_blank" rel="noopener">J. Kalda, <em>Thermodynamics</em></a> (partie sur les fluides)</li>
+</ul>
+<p>Les problèmes de ces polycopiés les plus utiles pour ce chapitre sont traduits et corrigés dans la section « S’entraîner » ci-dessous, source indiquée, de même que les exercices de mécanique des fluides de Victor Lequin (préparation aux olympiades du lycée Louis-le-Grand). Les polycopiés de Kevin Zhou ont été écrits pour l’équipe américaine (2019-2024) ; les guides de Jaan Kalda, pour l’équipe estonienne.</p>
+</div>

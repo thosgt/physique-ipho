@@ -1,0 +1,225 @@
+<p class="eyebrow">Physique moderne · Chapitre 2</p>
+<h1>Physique nucléaire</h1>
+<p class="subtitle">Le noyau, l’énergie de liaison, la radioactivité et la décroissance exponentielle, la fission et la fusion</p>
+
+<div class="objectifs">
+<p><strong>Ce que demandent les épreuves.</strong> Le syllabus IPhO (partie 5.3) met au programme des deux tests la structure du noyau, l’énergie de liaison, les désintégrations α, β, γ, la loi de décroissance radioactive, la fission et la fusion ; il s’appuie sur l’équivalence masse-énergie vue au chapitre « Relativité ». Le programme de terminale traite déjà la décroissance radioactive (avec l’équation différentielle \(\mathrm dN/\mathrm dt = -\lambda N\)) et l’énergie libérée par une réaction ; le Concours général aime les sujets appliqués : datation, centrale nucléaire, médecine nucléaire, énergie du Soleil.</p>
+<ul>
+<li><strong>Terminale (IPhO et Concours général)</strong> : tout le chapitre hors encadrés « Niveau CPGE ».</li>
+<li><strong>CPGE (IPhO)</strong> : tout, y compris le modèle de la goutte liquide, l’effet tunnel α et les filiations radioactives.</li>
+</ul>
+</div>
+
+<div class="retenir">
+<p><strong>L’essentiel à retenir</strong></p>
+<ol>
+<li>Noyau \({}^A_Z\mathrm X\) : \(Z\) protons, \(N = A - Z\) neutrons, \(A\) nucléons. Isotopes : même \(Z\), \(N\) différent. Rayon \(R \approx r_0A^{1/3}\) avec \(r_0 \approx 1{,}2\) fm : tous les noyaux ont la même masse volumique, \(\approx 2\times10^{17}\ \text{kg·m}^{-3}\).</li>
+<li><strong>Énergie de liaison</strong> \(E_\ell = \Delta m\,c^2\) avec le défaut de masse \(\Delta m = Zm_p + Nm_n - m_\text{noyau} > 0\). Par nucléon, \(E_\ell/A \approx 8\) MeV, maximale vers le fer (\(\approx 8{,}8\) MeV) : courbe d’Aston.</li>
+<li>Une réaction nucléaire libère \(Q = (m_\text{avant} - m_\text{après})c^2\) = (somme des énergies de liaison après) − (avant). Fission des noyaux lourds et fusion des noyaux légers rapprochent du fer : elles libèrent de l’énergie.</li>
+<li><strong>Lois de conservation</strong> (Soddy) : nombre de nucléons \(A\) et charge \(Z\) ; plus l’énergie et la quantité de mouvement.</li>
+<li>\(\alpha\) : émission d’un \({}^4_2\mathrm{He}\) ; \(\beta^-\) : \(n \to p + e^- + \bar\nu_e\) ; \(\beta^+\) : \(p \to n + e^+ + \nu_e\) ; \(\gamma\) : désexcitation du noyau (photon de quelques keV à quelques MeV).</li>
+<li><strong>Décroissance radioactive</strong> : \(\dfrac{\mathrm dN}{\mathrm dt} = -\lambda N \Rightarrow N(t) = N_0\,\mathrm e^{-\lambda t}\) ; demi-vie \(t_{1/2} = \dfrac{\ln 2}{\lambda}\) ; durée de vie moyenne \(\tau = 1/\lambda\).</li>
+<li><strong>Activité</strong> \(A = -\dfrac{\mathrm dN}{\mathrm dt} = \lambda N\), en becquerels (1 Bq = 1 désintégration par seconde) ; elle décroît avec la même demi-vie.</li>
+<li>Après \(n\) demi-vies, il reste \(N_0/2^n\) : 10 demi-vies divisent par 1 000. La désintégration d’un noyau donné est aléatoire ; seule la loi statistique est déterministe.</li>
+<li><strong>Datation</strong> : \(t = \dfrac{t_{1/2}}{\ln 2}\ln\dfrac{N_0}{N}\) ; carbone 14 (\(t_{1/2} = 5\,730\) ans) jusqu’à \(\sim 50\,000\) ans ; uranium-plomb, potassium-argon pour les roches.</li>
+<li>Ordres de grandeur : fission de \({}^{235}\mathrm U\) \(\approx 200\) MeV ; fusion D + T \(\to\) \({}^4\mathrm{He}\) + n : 17,6 MeV ; une réaction chimique : quelques eV. 1 u = 931,5 MeV/\(c^2\).</li>
+</ol>
+</div>
+
+<h2 id="noyau">1. Le noyau atomique</h2>
+
+<h3 id="composition">Composition et ordres de grandeur</h3>
+<p>Le noyau, découvert par Rutherford en 1911 en bombardant une feuille d’or de particules α, concentre plus de 99,9 % de la masse de l’atome dans un volume \(10^{15}\) fois plus petit. Il est formé de \(Z\) protons (charge \(+e\)) et de \(N\) neutrons (neutres), qu’on appelle ensemble les <strong>nucléons</strong> ; leur nombre \(A = Z + N\) est le <strong>nombre de masse</strong>. On note \({}^A_Z\mathrm X\) : \({}^{12}_6\mathrm C\), \({}^{235}_{92}\mathrm U\). Deux <strong>isotopes</strong> ont le même \(Z\) (même élément chimique, mêmes propriétés chimiques) et des \(N\) différents : \({}^{12}\mathrm C\), \({}^{13}\mathrm C\), \({}^{14}\mathrm C\).</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Grandeur</th><th>Valeur</th><th>Remarque</th></tr></thead>
+<tbody>
+<tr><td>Masse du proton, du neutron</td><td>\(1{,}6726\times10^{-27}\) kg, \(1{,}6749\times10^{-27}\) kg</td><td>938,3 et 939,6 MeV/\(c^2\) ; le neutron est plus lourd de 1,3 MeV/\(c^2\)</td></tr>
+<tr><td>Unité de masse atomique</td><td>1 u = \(1{,}6605\times10^{-27}\) kg = 931,5 MeV/\(c^2\)</td><td>1/12 de la masse d’un atome de carbone 12</td></tr>
+<tr><td>Rayon d’un noyau</td><td>\(R \approx 1{,}2\,A^{1/3}\) fm</td><td>1 fm = \(10^{-15}\) m ; uranium : 7,4 fm ; atome : \(10^{-10}\) m</td></tr>
+<tr><td>Masse volumique nucléaire</td><td>\(\rho \approx \dfrac{m_p}{\tfrac43\pi r_0^3} \approx 2\times10^{17}\ \text{kg·m}^{-3}\)</td><td>indépendante de \(A\) : une étoile à neutrons</td></tr>
+<tr><td>Énergie de liaison par nucléon</td><td>\(\approx 8\) MeV</td><td>contre 13,6 eV pour l’électron de l’hydrogène</td></tr>
+</tbody></table></div>
+<p>Pourquoi le noyau tient-il, malgré la répulsion électrique des protons ? Grâce à l’<strong>interaction forte</strong>, attractive entre nucléons, environ 100 fois plus intense que la force électrique à courte distance mais de portée très courte (\(\sim 1\) fm). Comme chaque nucléon n’interagit fortement qu’avec ses voisins immédiats, la matière nucléaire se comporte comme un liquide incompressible : d’où \(R \propto A^{1/3}\). Les neutrons « diluent » la répulsion des protons : les noyaux légers stables ont \(N \approx Z\), les lourds \(N > Z\) (\(N/Z \approx 1{,}5\) pour le plomb). Au-delà de \(Z = 83\) (bismuth), aucun noyau n’est stable.</p>
+<figure>
+<svg viewBox="0 0 640 300" width="640" role="img" aria-label="Carte des noyaux N en fonction de Z : vallée de stabilité qui s'écarte de la droite N = Z ; au-dessus, émetteurs bêta moins ; en dessous, bêta plus ; en haut à droite, alpha et fission" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="nz-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker><marker id="nz-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2b6cb0"/></marker><marker id="nz-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23a48"/></marker><marker id="nz-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1f8a4c"/></marker></defs>
+<line x1="50" y1="270" x2="360" y2="270" stroke="#15213a" stroke-width="1.5" marker-end="url(#nz-k)"/><text x="364" y="274" fill="#15213a" font-weight="600">Z</text>
+<line x1="50" y1="270" x2="50" y2="20" stroke="#15213a" stroke-width="1.5" marker-end="url(#nz-k)"/><text x="40" y="16" fill="#15213a" font-weight="600">N</text>
+<line x1="50" y1="270" x2="230" y2="90" stroke="#8a94a6" stroke-dasharray="4 3"/><text x="236" y="96" fill="#8a94a6" font-size="11">N = Z</text>
+<polyline points="50,270 58,262 65,254 72,245 80,236 88,227 95,216 102,206 110,195 118,183 125,171 132,159 140,146 148,133 155,119 162,104 170,90 178,74 185,58 192,42" fill="none" stroke="#15213a" stroke-width="10" stroke-opacity=".75" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="104" y="128" fill="#15213a" font-weight="600" font-size="11" transform="rotate(-58 104 128)">vallée de stabilité</text>
+<text x="58" y="44" fill="#2b6cb0" font-weight="600">excès de neutrons :</text><text x="58" y="60" fill="#2b6cb0" font-weight="600">β⁻ (n → p)</text>
+<line x1="102" y1="158" x2="116" y2="172" stroke="#2b6cb0" stroke-width="2.5" marker-end="url(#nz-b)"/>
+<text x="180" y="172" fill="#b23a48" font-weight="600">excès de protons :</text><text x="180" y="188" fill="#b23a48" font-weight="600">β⁺ ou capture (p → n)</text>
+<line x1="168" y1="144" x2="154" y2="130" stroke="#b23a48" stroke-width="2.5" marker-end="url(#nz-r)"/>
+<text x="224" y="34" fill="#1f8a4c" font-weight="600">noyaux lourds :</text><text x="224" y="50" fill="#1f8a4c" font-weight="600">α, fission</text>
+<line x1="218" y1="46" x2="202" y2="44" stroke="#1f8a4c" stroke-width="2.5" marker-end="url(#nz-g)"/>
+<g font-size="11" fill="#15213a"><text x="400" y="50" font-weight="600">Déplacements sur la carte</text>
+<text x="400" y="74">β⁻ : Z + 1, N − 1 (A inchangé)</text>
+<text x="400" y="94">β⁺ : Z − 1, N + 1 (A inchangé)</text>
+<text x="400" y="114">α : Z − 2, N − 2 (A − 4)</text>
+<text x="400" y="134">γ : aucun changement de Z, N</text>
+<text x="400" y="166">Les noyaux instables évoluent</text><text x="400" y="182">vers la vallée par une suite de</text><text x="400" y="198">désintégrations (filiation).</text>
+<text x="400" y="230">Plus aucun noyau stable</text><text x="400" y="246">au-delà de Z = 83.</text></g>
+</svg>
+<figcaption>Carte des noyaux (diagramme de Segrè) : les noyaux stables forment une vallée qui s’écarte de \(N = Z\) vers les neutrons ; les désintégrations ramènent les noyaux instables vers elle.</figcaption>
+</figure>
+
+<h3 id="liaison">Défaut de masse et énergie de liaison</h3>
+<p>Un noyau pèse <strong>moins</strong> que la somme de ses nucléons libres. Le <strong>défaut de masse</strong> \(\Delta m = Zm_p + (A - Z)m_n - m(\text{noyau})\) correspond, par \(E = mc^2\), à l’énergie qu’il faudrait fournir pour séparer tous les nucléons : l’<strong>énergie de liaison</strong></p>
+\[E_\ell = \Delta m\,c^2 > 0.\]
+<p>Exemple, l’hélium 4 : \(2m_p + 2m_n = 4{,}031\,88\) u, \(m({}^4\mathrm{He}) = 4{,}001\,51\) u, d’où \(\Delta m = 0{,}030\,37\) u et \(E_\ell = 28{,}3\) MeV, soit 7,07 MeV par nucléon. Les tables donnent souvent les masses <em>atomiques</em> (électrons compris) : utilisez alors la masse de l’atome d’hydrogène \(m({}^1\mathrm H)\) à la place de \(m_p\), les masses des électrons se compensent.</p>
+<div class="methode" data-m="masse-energie"><p>Pour l’hélium 4, tout se fait en u et en MeV : \(\Delta m = 0{,}030\,37\) u, puis \(0{,}030\,37\times931{,}5 = 28{,}3\) MeV, sans jamais passer par les kilogrammes ni les joules.</p></div>
+<p>L’énergie de liaison <strong>par nucléon</strong> \(E_\ell/A\) mesure la stabilité. Tracée en fonction de \(A\), c’est la <strong>courbe d’Aston</strong> : elle monte vite pour les noyaux légers (avec des pics pour \({}^4\mathrm{He}\), \({}^{12}\mathrm C\), \({}^{16}\mathrm O\)), atteint un maximum de 8,8 MeV vers le fer et le nickel (\(A \approx 56\)–\(62\)), puis décroît lentement (7,6 MeV pour l’uranium). Tout noyau qui se rapproche du sommet libère de l’énergie : les lourds en se cassant (<strong>fission</strong>), les légers en s’assemblant (<strong>fusion</strong>).</p>
+<figure>
+<svg viewBox="0 0 640 300" width="640" role="img" aria-label="Courbe d'Aston : énergie de liaison par nucléon en fonction de A, maximum vers le fer ; fusion à gauche, fission à droite" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="ca-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker><marker id="ca-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23a48"/></marker><marker id="ca-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1f8a4c"/></marker></defs>
+<line x1="60" y1="260" x2="610" y2="260" stroke="#15213a" stroke-width="1.5" marker-end="url(#ca-k)"/><text x="600" y="282" fill="#15213a" font-weight="600">A</text>
+<line x1="60" y1="260" x2="60" y2="20" stroke="#15213a" stroke-width="1.5" marker-end="url(#ca-k)"/><text x="68" y="24" fill="#15213a" font-weight="600">E_ℓ/A (MeV)</text>
+<g fill="#15213a" font-size="10"><text x="40" y="264">0</text><text x="40" y="164">5</text><text x="34" y="64">10</text><text x="56" y="276">0</text><text x="150" y="276">50</text><text x="250" y="276">100</text><text x="350" y="276">150</text><text x="450" y="276">200</text><text x="550" y="276">250</text></g>
+<g stroke="#e3e8f0"><line x1="60" y1="160" x2="600" y2="160"/><line x1="60" y1="84" x2="600" y2="84"/></g>
+<text x="604" y="88" fill="#8a94a6" font-size="10">8,8</text>
+<polyline fill="none" stroke="#2b6cb0" stroke-width="3" points="64,238 66,209 68,119 72,153 74,148 78,131 84,106 88,110 92,100 100,99 108,95 116,91 124,90 140,89 156,86 172,84 184,84 200,83 220,84 240,85 260,86 280,88 300,89 320,91 340,92 360,94 380,95 400,97 420,99 440,100 460,102 480,103 500,105 520,106 540,108"/>
+<g fill="#2b6cb0"><circle cx="64" cy="238" r="3"/><circle cx="66" cy="209" r="3"/><circle cx="68" cy="119" r="4"/><circle cx="84" cy="106" r="3"/><circle cx="172" cy="84" r="4"/><circle cx="530" cy="108" r="4"/></g>
+<g font-size="11" font-weight="600"><text x="72" y="240" fill="#15213a">²H</text><text x="74" y="215" fill="#15213a">³He</text><text x="74" y="126" fill="#15213a">⁴He</text><text x="96" y="114" fill="#15213a">¹²C</text><text x="160" y="74" fill="#15213a">⁵⁶Fe</text><text x="516" y="98" fill="#15213a">²³⁵U</text></g>
+<line x1="80" y1="190" x2="140" y2="130" stroke="#1f8a4c" stroke-width="3" marker-end="url(#ca-g)"/><text x="100" y="208" fill="#1f8a4c" font-weight="600">fusion</text>
+<line x1="520" y1="140" x2="420" y2="125" stroke="#b23a48" stroke-width="3" marker-end="url(#ca-r)"/><text x="430" y="160" fill="#b23a48" font-weight="600">fission : ≈ 0,9 MeV</text><text x="430" y="176" fill="#b23a48" font-weight="600">par nucléon × 235 ≈ 200 MeV</text>
+<text x="240" y="230" fill="#15213a" font-size="11">Les noyaux les plus stables sont au sommet (fer, nickel).</text>
+<text x="240" y="246" fill="#15213a" font-size="11">Se rapprocher du sommet libère de l’énergie.</text>
+</svg>
+<figcaption>Courbe d’Aston (valeurs réelles pour les noyaux marqués). La pente est forte côté noyaux légers : la fusion libère beaucoup plus d’énergie par nucléon (3,5 MeV pour D + T) que la fission (0,9 MeV).</figcaption>
+</figure>
+<div class="sim" data-name="aston"><p>Choisissez une réaction de fission ou de fusion sur la courbe d’Aston : l’énergie libérée se lit comme la différence des énergies de liaison totales avant et après.</p></div>
+
+<div class="cpge" id="goutte" title="Modèle de la goutte liquide (formule de Weizsäcker)">
+<p>Le noyau est assimilé à une goutte de liquide chargée. Son énergie de liaison s’écrit comme une somme de termes, chacun justifié par une image physique :</p>
+\[E_\ell(A, Z) = a_vA - a_sA^{2/3} - a_c\frac{Z(Z-1)}{A^{1/3}} - a_a\frac{(A - 2Z)^2}{A} \pm \delta(A),\]
+<p>avec \(a_v \approx 15{,}8\) MeV (volume : chaque nucléon lié à ses voisins), \(a_s \approx 18{,}3\) MeV (surface : les nucléons de surface ont moins de voisins, \(\propto R^2 \propto A^{2/3}\)), \(a_c \approx 0{,}71\) MeV (répulsion coulombienne d’une sphère chargée, \(\propto Z^2/R\)), \(a_a \approx 23{,}2\) MeV (asymétrie : la mécanique quantique favorise \(N = Z\)), et un terme d’appariement (noyaux pairs-pairs plus liés). Cette formule reproduit la courbe d’Aston à mieux que 1 % pour \(A > 30\), situe la vallée de stabilité (maximiser \(E_\ell\) à \(A\) fixé donne \(Z \approx A/(2 + 0{,}015A^{2/3})\)) et explique la fission : pour un noyau lourd, l’énergie de surface augmente moins quand il se déforme que l’énergie coulombienne ne diminue ; au-delà de \(Z^2/A \approx 50\), il se scinde spontanément.</p>
+</div>
+
+<h2 id="radioactivite">2. La radioactivité</h2>
+
+<h3 id="desintegrations">Les types de désintégration</h3>
+<p>Un noyau instable se transforme spontanément en un noyau plus stable en émettant un rayonnement. Becquerel (1896) le découvre avec l’uranium ; les Curie isolent le polonium et le radium. Dans toute désintégration, on conserve le nombre de nucléons \(A\), la charge \(Z\) (<strong>lois de Soddy</strong>), l’énergie totale et la quantité de mouvement.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Type</th><th>Équation</th><th>Qui ?</th><th>Rayonnement</th></tr></thead>
+<tbody>
+<tr><td>\(\alpha\)</td><td>\({}^A_Z\mathrm X \to {}^{A-4}_{Z-2}\mathrm Y + {}^4_2\mathrm{He}\)</td><td>noyaux lourds (\(A > 200\)) : \({}^{238}\mathrm U\), \({}^{226}\mathrm{Ra}\), \({}^{210}\mathrm{Po}\)</td><td>énergie bien définie (4 à 9 MeV) ; arrêté par une feuille de papier, quelques cm d’air</td></tr>
+<tr><td>\(\beta^-\)</td><td>\({}^A_Z\mathrm X \to {}^{A}_{Z+1}\mathrm Y + {}^0_{-1}e + \bar\nu_e\)</td><td>excès de neutrons : \({}^{14}\mathrm C\), \({}^{60}\mathrm{Co}\), \({}^{137}\mathrm{Cs}\)</td><td>spectre continu (partage avec l’antineutrino) ; arrêté par quelques mm d’aluminium</td></tr>
+<tr><td>\(\beta^+\)</td><td>\({}^A_Z\mathrm X \to {}^{A}_{Z-1}\mathrm Y + {}^0_{+1}e + \nu_e\)</td><td>excès de protons : \({}^{18}\mathrm F\) (imagerie TEP), \({}^{11}\mathrm C\)</td><td>le positon s’annihile avec un électron : deux photons de 511 keV</td></tr>
+<tr><td>Capture électronique</td><td>\({}^A_Z\mathrm X + {}^0_{-1}e \to {}^{A}_{Z-1}\mathrm Y + \nu_e\)</td><td>excès de protons, noyaux lourds</td><td>rayons X du réarrangement électronique</td></tr>
+<tr><td>\(\gamma\)</td><td>\({}^A_Z\mathrm X^* \to {}^A_Z\mathrm X + \gamma\)</td><td>noyau fils excité, juste après \(\alpha\) ou \(\beta\)</td><td>photons de 0,01 à 10 MeV ; très pénétrants (cm de plomb)</td></tr>
+</tbody></table></div>
+<p>Le <strong>spectre continu</strong> des électrons β avait fait douter de la conservation de l’énergie ; Pauli (1930) postule une particule neutre presque sans masse qui emporte l’énergie manquante : le <strong>neutrino</strong>, détecté en 1956. L’énergie libérée par une désintégration α se partage, par conservation de la quantité de mouvement, très inégalement : la particule α, 50 fois plus légère que le noyau fils, emporte environ \(\dfrac{A - 4}{A}\) de l’énergie \(Q\).</p>
+<div class="methode" data-m="conservation"><p>Pour compléter \({}^{226}_{88}\mathrm{Ra} \to \mathrm X + {}^4_2\mathrm{He}\), la conservation de \(A\) et de \(Z\) donne \(\mathrm X = {}^{222}_{86}\mathrm{Rn}\). La conservation de la quantité de mouvement fixe ensuite le partage de \(Q\) : la particule α et le noyau fils partent avec des quantités de mouvement opposées, donc des énergies cinétiques inversement proportionnelles à leurs masses.</p></div>
+
+<div class="exo" data-q="ipho-2005-19"></div>
+<div class="exo" data-q="ipho-2011-16"></div>
+<div class="exo" data-q="ipho-2022-T9"></div>
+
+<h3 id="decroissance">La loi de décroissance</h3>
+<p>Chaque noyau radioactif a, pendant \(\mathrm dt\), une probabilité \(\lambda\,\mathrm dt\) de se désintégrer, <strong>indépendante de son âge</strong> et de son environnement (température, pression, liaison chimique : à quelques exceptions infimes près). La constante radioactive \(\lambda\) (s⁻¹) caractérise le noyau. Sur une population de \(N\) noyaux, le nombre moyen de désintégrations pendant \(\mathrm dt\) est \(\lambda N\,\mathrm dt\), d’où</p>
+\[\frac{\mathrm dN}{\mathrm dt} = -\lambda N \quad\Longrightarrow\quad N(t) = N_0\,\mathrm e^{-\lambda t} = N_0\,2^{-t/t_{1/2}}, \qquad t_{1/2} = \frac{\ln 2}{\lambda},\quad \tau = \frac{1}{\lambda}.\]
+<div class="methode" data-m="equadiff"><p>Le bilan sur \(\mathrm dt\) s’écrit \(\mathrm dN = -\lambda N\,\mathrm dt\) : la variation est proportionnelle à \(N\) lui-même, c’est une équation du premier ordre, dont la solution est l’exponentielle de constante de temps \(\tau = 1/\lambda\).</p></div>
+<p>La <strong>demi-vie</strong> \(t_{1/2}\) est la durée au bout de laquelle la moitié des noyaux (en moyenne) s’est désintégrée ; elle va de \(10^{-22}\) s à \(10^{24}\) ans selon les noyaux. L’<strong>activité</strong> \(A(t) = \lambda N(t)\), en becquerels, est ce que mesure un compteur ; elle décroît avec la même demi-vie. Ordres de grandeur : le corps humain, 8 000 Bq (potassium 40 et carbone 14) ; 1 kg de granite, 1 000 Bq ; une source de radiothérapie au cobalt 60, \(10^{14}\) Bq. L’ancienne unité, le curie (1 Ci = \(3{,}7\times10^{10}\) Bq), est l’activité de 1 g de radium.</p>
+<figure>
+<svg viewBox="0 0 640 260" width="640" role="img" aria-label="Décroissance exponentielle N(t) : N0, N0/2 à t1/2, N0/4 à 2 t1/2 ; tangente à l'origine qui coupe l'axe à tau" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="de-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker></defs>
+<line x1="60" y1="220" x2="610" y2="220" stroke="#15213a" stroke-width="1.5" marker-end="url(#de-k)"/><text x="600" y="240" fill="#15213a" font-weight="600">t</text>
+<line x1="60" y1="220" x2="60" y2="20" stroke="#15213a" stroke-width="1.5" marker-end="url(#de-k)"/><text x="68" y="24" fill="#15213a" font-weight="600">N(t)</text>
+<polyline fill="none" stroke="#2b6cb0" stroke-width="3" points="60,40 80,55 100,69 120,81 140,93 160,104 180,113 200,122 220,130 240,138 260,145 280,151 300,157 320,162 340,167 360,171 380,175 400,179 420,183 440,186 460,189 480,191 500,194 520,196 540,198 560,200 580,201 600,203"/>
+<line x1="60" y1="40" x2="290" y2="220" stroke="#b85a0c" stroke-width="1.5" stroke-dasharray="5 4"/><text x="270" y="236" fill="#b85a0c" font-weight="600">τ = 1/λ</text>
+<g stroke="#15213a" stroke-dasharray="3 3"><line x1="60" y1="130" x2="219" y2="130"/><line x1="219" y1="130" x2="219" y2="220"/><line x1="60" y1="175" x2="378" y2="175"/><line x1="378" y1="175" x2="378" y2="220"/></g>
+<g fill="#15213a" font-weight="600"><text x="20" y="44">N₀</text><text x="12" y="134">N₀/2</text><text x="12" y="179">N₀/4</text><text x="200" y="236">t₁/₂</text><text x="352" y="236">2 t₁/₂</text></g>
+<text x="400" y="70" fill="#15213a" font-size="12">N(t) = N₀ e^(−λt)</text><text x="400" y="90" fill="#15213a" font-size="12">t₁/₂ = ln 2 / λ ≈ 0,69 τ</text><text x="400" y="110" fill="#15213a" font-size="12">Activité A = λN : même allure</text>
+<text x="400" y="140" fill="#15213a" font-size="11">En échelle logarithmique, ln N est</text><text x="400" y="156" fill="#15213a" font-size="11">une droite de pente −λ.</text>
+</svg>
+<figcaption>Décroissance radioactive : le nombre de noyaux est divisé par deux à chaque demi-vie. La tangente à l’origine coupe l’axe des temps à \(\tau = 1/\lambda\).</figcaption>
+</figure>
+<div class="methode" data-m="demi-vie"><p>Sur la courbe, chaque demi-vie divise \(N\) (et l’activité) par 2 : il reste 12,5 % après \(3\,t_{1/2}\), environ 3 % après \(5\,t_{1/2}\). Pour une durée qui n’est pas un multiple de \(t_{1/2}\), on résout \(N/N_0 = 2^{-t/t_{1/2}}\) avec un logarithme.</p></div>
+<div class="sim" data-name="decroissance"><p>Une population de noyaux (de 10 à 10 000) se désintègre au hasard : chaque noyau a la même probabilité de se désintégrer à chaque instant. Comparez la courbe obtenue à l’exponentielle : les fluctuations sont grandes pour quelques noyaux, négligeables pour des milliers (écart relatif \(\sim 1/\sqrt N\)).</p></div>
+<div class="piege">
+<ul>
+<li>Après deux demi-vies il reste un quart, pas zéro : la décroissance est exponentielle, pas linéaire.</li>
+<li>L’activité est \(\lambda N\), pas \(N\) : convertissez \(t_{1/2}\) en secondes pour avoir des becquerels (1 an \(\approx 3{,}16\times10^7\) s). Pour passer d’une masse à \(N\) : \(N = \dfrac{m}{M}N_A\).</li>
+<li>« La demi-vie est la durée de vie d’un noyau » : non, c’est une propriété statistique ; un noyau donné peut se désintégrer tout de suite ou dans mille demi-vies. La durée de vie <em>moyenne</em> est \(\tau = t_{1/2}/\ln 2\).</li>
+<li>Dans une équation de désintégration, vérifiez séparément la conservation de \(A\) et de \(Z\), et n’oubliez pas le (anti)neutrino dans les désintégrations β.</li>
+</ul>
+</div>
+
+<div class="exo" data-q="ipho-2011-15"></div>
+<div class="exo" data-q="ipho-2021-T3"></div>
+<div class="exo" data-q="ipho-2025-T7"></div>
+
+<h3 id="datation">Datation et applications</h3>
+<p>Si l’on connaît \(N_0\) (ou le rapport initial des isotopes) et qu’on mesure \(N\), l’âge est</p>
+\[t = \frac{1}{\lambda}\ln\frac{N_0}{N} = \frac{t_{1/2}}{\ln 2}\ln\frac{N_0}{N} = \frac{t_{1/2}}{\ln 2}\ln\frac{A_0}{A}.\]
+<p><strong>Carbone 14</strong> (\(t_{1/2} = 5\,730\) ans). Produit en haute atmosphère par les neutrons cosmiques (\({}^{14}\mathrm N + n \to {}^{14}\mathrm C + p\)), il est assimilé par les êtres vivants, qui gardent le même rapport \({}^{14}\mathrm C/{}^{12}\mathrm C \approx 1{,}2\times10^{-12}\) que l’atmosphère (activité 0,23 Bq par gramme de carbone). À la mort, l’apport cesse et \({}^{14}\mathrm C\) décroît : un os qui n’a plus que 25 % de l’activité initiale a 2 demi-vies, 11 500 ans. La méthode porte jusqu’à 50 000 ans environ (10 demi-vies : activité trop faible). <strong>Roches</strong> : uranium 238 → plomb 206 (4,5 Ga), potassium 40 → argon 40 (1,25 Ga), rubidium-strontium ; c’est ainsi qu’on a daté la Terre (4,54 Ga). Si un noyau père \(P\) donne un fils stable \(F\) et qu’il n’y avait pas de fils au départ, \(F(t) + P(t) = P_0\), d’où \(t = \dfrac{1}{\lambda}\ln\left(1 + \dfrac{F}{P}\right)\).</p>
+<p><strong>Autres applications</strong> : médecine nucléaire (scintigraphie au technétium 99m, \(t_{1/2} = 6\) h ; TEP au fluor 18, 110 min ; radiothérapie et curiethérapie), stérilisation, traceurs, générateurs thermoélectriques des sondes spatiales (plutonium 238), détecteurs de fumée (américium 241). <strong>Dosimétrie</strong> : la dose absorbée se mesure en grays (1 Gy = 1 J/kg), la dose efficace en sieverts (pondérée par la nocivité du rayonnement : facteur 20 pour α) ; exposition naturelle en France \(\approx 3\) mSv/an, scanner \(\approx 10\) mSv, dose létale \(\approx 5\) Sv en une fois.</p>
+
+<div class="exo" data-q="ipho-2015-T1"></div>
+<div class="exo" data-q="ipho-2026-T6"></div>
+
+<div class="cpge" id="filiation" title="Filiations radioactives et équilibre séculaire">
+<p>Si un père \(P\) (constante \(\lambda_1\)) donne un fils \(F\) lui-même radioactif (\(\lambda_2\)), \(\dfrac{\mathrm dN_F}{\mathrm dt} = \lambda_1N_P - \lambda_2N_F\). Avec \(N_F(0) = 0\) :</p>
+\[N_F(t) = \frac{\lambda_1N_{P,0}}{\lambda_2 - \lambda_1}\left(\mathrm e^{-\lambda_1t} - \mathrm e^{-\lambda_2t}\right).\]
+<p>Si le fils vit beaucoup moins longtemps que le père (\(\lambda_2 \gg \lambda_1\)), après quelques demi-vies du fils, \(N_F\) suit le père : \(\lambda_2N_F \approx \lambda_1N_P\), les <strong>activités du père et du fils sont égales</strong> (<strong>équilibre séculaire</strong>). Dans un minerai d’uranium ancien, les 14 descendants de la famille \({}^{238}\mathrm U\) ont tous la même activité ; c’est ainsi que Marie Curie a pu extraire du radium (\(t_{1/2} = 1\,600\) ans) en quantité proportionnelle à l’uranium (4,5 Ga) : \(N_\text{Ra}/N_\text{U} = t_{1/2,\text{Ra}}/t_{1/2,\text{U}} = 3{,}6\times10^{-7}\). Le générateur de technétium des hôpitaux (molybdène 99, 66 h → technétium 99m, 6 h) exploite un équilibre de régime « transitoire ».</p>
+</div>
+<div class="sim" data-name="filiation"><p>Père → fils → descendant stable : réglez les deux demi-vies et observez l’évolution des populations et des activités ; avec un fils de vie courte, son activité rejoint celle du père (équilibre séculaire).</p></div>
+
+<div class="exo" data-q="ipho-2019-T5"></div>
+
+<div class="cpge" id="tunnel-alpha" title="Pourquoi les demi-vies α s’étalent sur 30 ordres de grandeur : l’effet tunnel">
+<p>Dans le noyau, la particule α est piégée par l’interaction forte ; à l’extérieur, elle est repoussée par le noyau fils (barrière coulombienne de 25 à 30 MeV pour l’uranium). Avec une énergie de 4 à 9 MeV, elle ne devrait jamais sortir en mécanique classique. Gamow (1928) explique sa sortie par l’<strong>effet tunnel</strong> quantique : la probabilité de traverser la barrière décroît exponentiellement avec sa largeur et sa hauteur. Il en résulte la loi de Geiger-Nuttall : \(\ln t_{1/2}\) varie linéairement avec \(Z/\sqrt{E_\alpha}\). Polonium 212 (\(E_\alpha = 8{,}8\) MeV) : \(t_{1/2} = 0{,}3\) µs ; uranium 238 (4,3 MeV) : 4,5 milliards d’années. Un facteur 2 sur l’énergie, un facteur \(10^{23}\) sur la demi-vie.</p>
+</div>
+
+<h2 id="fission">3. La fission</h2>
+<p>Un neutron lent absorbé par un noyau d’uranium 235 forme un noyau d’uranium 236 excité, qui se déforme et se scinde en deux fragments de masses inégales (par exemple krypton et baryum, ou strontium et xénon), en libérant 2 à 3 neutrons :</p>
+\[{}^1_0n + {}^{235}_{92}\mathrm U \to {}^{236}_{92}\mathrm U^* \to {}^{140}_{54}\mathrm{Xe} + {}^{94}_{38}\mathrm{Sr} + 2\,{}^1_0n.\]
+<p>L’énergie libérée est d’environ <strong>200 MeV par fission</strong> (0,9 MeV de plus par nucléon sur la courbe d’Aston), dont 165 MeV d’énergie cinétique des fragments, convertie en chaleur dans le combustible. Une fission libère donc 50 millions de fois plus que la combustion d’une molécule de méthane : 1 g d’uranium 235 fissionné donne \(8\times10^{10}\) J, autant que 2 tonnes de pétrole. Les fragments, trop riches en neutrons, sont radioactifs β⁻ : ce sont les déchets à vie longue ou courte (iode 131, césium 137…).</p>
+<figure>
+<svg viewBox="0 0 640 230" width="640" role="img" aria-label="Fission de l'uranium 235 : un neutron absorbé, noyau excité qui se scinde en deux fragments et deux ou trois neutrons qui peuvent provoquer d'autres fissions" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="fi-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker></defs>
+<circle cx="40" cy="115" r="7" fill="#8a94a6"/><text x="26" y="140" fill="#15213a" font-size="11">neutron</text><text x="26" y="154" fill="#15213a" font-size="11">lent</text>
+<line x1="50" y1="115" x2="92" y2="115" stroke="#15213a" stroke-width="2" marker-end="url(#fi-k)"/>
+<circle cx="130" cy="115" r="34" fill="#f3d9a6" stroke="#b85a0c" stroke-width="2"/><text x="106" y="120" fill="#15213a" font-weight="600">²³⁵U</text>
+<line x1="170" y1="115" x2="210" y2="115" stroke="#15213a" stroke-width="2" marker-end="url(#fi-k)"/>
+<ellipse cx="260" cy="115" rx="44" ry="28" fill="#f3d9a6" stroke="#b85a0c" stroke-width="2"/><path d="M258 88 Q250 115 258 142" stroke="#b85a0c" fill="none" stroke-dasharray="3 3"/><text x="232" y="160" fill="#15213a" font-size="11">²³⁶U* déformé</text>
+<line x1="306" y1="100" x2="356" y2="62" stroke="#15213a" stroke-width="2" marker-end="url(#fi-k)"/><line x1="306" y1="130" x2="356" y2="168" stroke="#15213a" stroke-width="2" marker-end="url(#fi-k)"/>
+<circle cx="390" cy="50" r="26" fill="#e7edfb" stroke="#2b6cb0" stroke-width="2"/><text x="372" y="55" fill="#15213a" font-weight="600">¹⁴⁰Xe</text>
+<circle cx="386" cy="182" r="22" fill="#e7edfb" stroke="#2b6cb0" stroke-width="2"/><text x="370" y="187" fill="#15213a" font-weight="600">⁹⁴Sr</text>
+<g fill="#8a94a6"><circle cx="400" cy="112" r="7"/><circle cx="420" cy="128" r="7"/></g>
+<g stroke="#15213a" stroke-width="1.5" marker-end="url(#fi-k)"><line x1="408" y1="110" x2="480" y2="96"/><line x1="428" y1="130" x2="490" y2="150"/></g>
+<circle cx="510" cy="92" r="20" fill="#f3d9a6" stroke="#b85a0c" stroke-width="1.5"/><text x="496" y="97" fill="#15213a" font-size="10" font-weight="600">²³⁵U</text>
+<circle cx="520" cy="158" r="20" fill="#f3d9a6" stroke="#b85a0c" stroke-width="1.5"/><text x="506" y="163" fill="#15213a" font-size="10" font-weight="600">²³⁵U</text>
+<text x="546" y="96" fill="#15213a" font-size="11">nouvelles</text><text x="546" y="110" fill="#15213a" font-size="11">fissions…</text>
+<text x="40" y="208" fill="#15213a" font-size="12">≈ 200 MeV par fission, emportés surtout par les fragments ;</text><text x="40" y="224" fill="#15213a" font-size="12">2 à 3 neutrons rapides, ralentis par le modérateur (eau).</text>
+</svg>
+<figcaption>Fission induite de l’uranium 235 et principe de la réaction en chaîne.</figcaption>
+</figure>
+<p><strong>Réaction en chaîne</strong>. Si, en moyenne, chaque fission provoque exactement une nouvelle fission (facteur de multiplication \(k = 1\)), la réaction est entretenue : c’est le régime <strong>critique</strong> d’un réacteur. Si \(k > 1\), le nombre de fissions croît exponentiellement : c’est la bombe. Dans un réacteur à eau pressurisée, l’uranium est enrichi à 3–5 % en \({}^{235}\mathrm U\) (l’uranium naturel en contient 0,72 %, le reste est \({}^{238}\mathrm U\), peu fissile) ; l’eau sert de <strong>modérateur</strong> (elle ralentit les neutrons, qui sont alors bien plus efficaces pour provoquer la fission) et de caloporteur ; les barres de contrôle (bore, cadmium) absorbent les neutrons en excès. Le pilotage est possible grâce aux <em>neutrons retardés</em> (0,65 % des neutrons, émis par certains fragments après quelques secondes). Un réacteur de 900 MWe (rendement 33 %) fissionne \(\dfrac{2{,}7\times10^9}{200\times1{,}6\times10^{-13}} = 8\times10^{19}\) noyaux par seconde, soit environ 1 tonne d’uranium 235 par an.</p>
+<div class="methode" data-m="ordre-grandeur"><p>Le débit de fissions d’un réacteur se décompose en facteurs connus : puissance thermique (\(\sim 3\times10^9\) W) divisée par l’énergie d’une fission (200 MeV \(\approx 3\times10^{-11}\) J), soit \(\sim 10^{20}\) fissions par seconde ; multiplié par la masse d’un noyau (\(\sim 4\times10^{-25}\) kg) et par \(3\times10^7\) s, on retrouve l’ordre de la tonne par an.</p></div>
+
+<h2 id="fusion">4. La fusion</h2>
+<p>Deux noyaux légers qui fusionnent forment un noyau plus lié : la fusion deutérium-tritium,</p>
+\[{}^2_1\mathrm H + {}^3_1\mathrm H \to {}^4_2\mathrm{He} + {}^1_0n + 17{,}6\ \text{MeV},\]
+<p>libère 3,5 MeV par nucléon, quatre fois plus que la fission. Mais il faut d’abord rapprocher deux noyaux chargés positivement à quelques femtomètres, contre la répulsion coulombienne : \(E \sim \dfrac{e^2}{4\pi\varepsilon_0 r} \approx 0{,}4\) MeV pour \(r = 3\) fm. Il faut donc des températures de l’ordre de \(10^8\) K (l’effet tunnel et la queue de la distribution de Maxwell permettent de rester en dessous de \(E/k_B \sim 5\times10^9\) K). La matière est alors un <strong>plasma</strong>, qu’on confine par un champ magnétique (tokamak : ITER) ou par inertie (lasers : NIF, Laser Mégajoule). Le <strong>critère de Lawson</strong> exige que le produit densité × temps de confinement dépasse \(\sim 10^{20}\ \text{s·m}^{-3}\) pour que la fusion produise plus d’énergie qu’elle n’en consomme.</p>
+<div class="methode" data-m="unites-adaptees"><p>La barrière coulombienne se calcule en une ligne avec \(\dfrac{e^2}{4\pi\varepsilon_0} = 1{,}44\ \text{MeV·fm}\) : pour \(r = 3\) fm, \(E \approx 1{,}44/3\) MeV, quelques dixièmes de MeV ; avec \(k_B = 8{,}6\times10^{-5}\ \text{eV·K}^{-1}\), la température correspondante \(E/k_B\) se lit aussitôt, sans convertir en joules ni en mètres.</p></div>
+<p><strong>Le Soleil</strong> fusionne l’hydrogène en hélium par la chaîne proton-proton : bilan \(4\,{}^1\mathrm H \to {}^4\mathrm{He} + 2e^+ + 2\nu_e + 26{,}7\) MeV (0,7 % de la masse). Sa luminosité \(L = 3{,}8\times10^{26}\) W correspond à \(L/c^2 = 4{,}3\times10^9\) kg perdus chaque seconde et à \(\sim 10^{38}\) réactions par seconde ; au rythme actuel, les 10 % centraux de son hydrogène lui assurent 10 milliards d’années de vie. Chaque centimètre carré de la Terre est traversé par 65 milliards de neutrinos solaires par seconde. Les étoiles plus massives fusionnent ensuite l’hélium en carbone et oxygène, et ainsi de suite jusqu’au fer : au-delà, la fusion ne libère plus d’énergie, et les éléments plus lourds sont produits par capture de neutrons (explosions de supernovæ, fusions d’étoiles à neutrons).</p>
+<div class="piege">
+<ul>
+<li>Énergie libérée : \(Q = (m_\text{réactifs} - m_\text{produits})c^2\), positive pour une réaction exoénergétique. Avec les masses <em>atomiques</em>, les électrons se compensent dans α, β⁻, fission et fusion, mais pas dans β⁺ (il faut retrancher \(2m_ec^2 = 1{,}022\) MeV).</li>
+<li>\(Q\) = (énergies de liaison des produits) − (énergies de liaison des réactifs) : ne pas inverser.</li>
+<li>Fission : les produits ont la même somme de \(A\) et de \(Z\) que les réactifs, neutrons compris ; comptez bien les neutrons émis.</li>
+<li>Énergie par nucléon (fusion) ou par réaction (fission) ? Rapporté à la masse de combustible, D + T donne \(3{,}4\times10^{14}\) J/kg contre \(8\times10^{13}\) J/kg pour \({}^{235}\mathrm U\).</li>
+</ul>
+</div>
+
+<div class="cpge" id="plus-loin" title="Pour aller plus loin : polycopiés olympiques">
+<p>Pour viser l’IPhO internationale, deux ressources en anglais, gratuites et d’un très bon niveau, reprennent ce chapitre en profondeur avec des centaines de problèmes corrigés :</p>
+<ul>
+<li><a href="https://knzhou.github.io/handouts/X2.pdf" target="_blank" rel="noopener">K. Zhou, polycopié X2</a> (atomes, particules et noyaux : énergie de liaison, désintégrations, réactions) · <a href="https://knzhou.github.io/handouts/X2Sol.pdf" target="_blank" rel="noopener">solutions</a></li>
+<li><a href="https://knzhou.github.io/handouts/X3.pdf" target="_blank" rel="noopener">K. Zhou, polycopié X3</a> (matière, astrophysique et cosmologie : nucléosynthèse, étoiles) · <a href="https://knzhou.github.io/handouts/X3Sol.pdf" target="_blank" rel="noopener">solutions</a></li>
+</ul>
+<p>Les problèmes de ces polycopiés les plus utiles pour ce chapitre sont traduits et corrigés dans la section « S’entraîner » ci-dessous, source indiquée. Les polycopiés de Kevin Zhou ont été écrits pour l’équipe américaine (2019-2024) ; les guides de Jaan Kalda, pour l’équipe estonienne.</p>
+</div>

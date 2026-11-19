@@ -1,0 +1,124 @@
+<p class="eyebrow">Outils</p>
+<h1>Formulaire et constantes</h1>
+<p class="subtitle">Le peu qu’il faut savoir par cœur</p>
+
+<p>Un formulaire long est un piège : on s’y perd, et on finit par appliquer une formule hors de ses hypothèses. Pour chaque chapitre, seulement les <strong>quelques relations à connaître sans hésiter</strong> ; tout le reste se retrouve à partir d’elles. Sous chaque liste, les <a href="#methodes">méthodes</a> qui servent le plus dans le chapitre.</p>
+
+<h2 id="f-outils">Analyse dimensionnelle et outils</h2>
+<ul>
+<li>\([F] = MLT^{-2}\), \([E] = ML^2T^{-2}\), \([P] = ML^{-1}T^{-2}\) ; l’argument de exp, ln, sin est sans dimension.</li>
+<li>Pour \(x \ll 1\) : \((1+x)^n \approx 1 + nx\), \(\sin x \approx x\), \(\cos x \approx 1 - x^2/2\), \(\mathrm e^x \approx 1 + x\), \(\ln(1+x) \approx x\).</li>
+<li>Incertitudes : absolues qui s’ajoutent (en quadrature) pour une somme, relatives pour un produit ; \(u(x^n)/x^n = n\,u(x)/x\).</li>
+<li>\(\dot y + y/\tau = \text{cste}\) : exponentielle de temps caractéristique \(\tau\) ; \(\ddot y + \omega_0^2 y = 0\) : sinusoïde de pulsation \(\omega_0\).</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-dimension">Vérifier l’homogénéité, deviner une loi</a> · <a href="#methodes--m-cas-limites">Tester les cas limites</a> · <a href="#methodes--m-petit-parametre">Développer au premier ordre en un petit paramètre</a> · <a href="#methodes--m-ordre-grandeur">Estimer un ordre de grandeur</a> · <a href="#methodes--m-derivee-logarithmique">Différentier le logarithme</a>.</p>
+
+<h2 id="f-nongalileen">Référentiels non galiléens</h2>
+<ul>
+<li>Translation : \(\vec v = \vec v\,' + \vec v_{O'}\), \(\vec a = \vec a\,' + \vec a_{O'}\) ; force d’inertie \(-m\vec a_{O'}\), pesanteur effective \(\vec g - \vec a_{O'}\).</li>
+<li>Rotation uniforme : centrifuge \(m\omega^2\,\overrightarrow{HM}\) (\(E_p = -\tfrac12m\omega^2r^2\)) ; Coriolis \(-2m\,\vec\omega\wedge\vec v\,'\).</li>
+<li>Terre : \(\Omega = 7{,}3\times10^{-5}\ \text{rad·s}^{-1}\) ; \(\Omega^2R_T = 0{,}034\ \text{m·s}^{-2}\).</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-referentiel">Changer de référentiel</a> · <a href="#methodes--m-g-effectif">Remplacer g par une pesanteur effective</a> · <a href="#methodes--m-minimum-energie">Chercher l’équilibre comme un minimum d’énergie</a>.</p>
+
+<h2 id="f-statique">Statique des fluides</h2>
+<ul>
+<li>\(F = PS\) ; 1 bar = \(10^5\) Pa ≈ 1 atm = 760 mmHg.</li>
+<li>\(\dfrac{\mathrm dP}{\mathrm dz} = -\rho g\) (\(z\) vers le haut), d’où \(P = P_0 + \rho g h\) dans un liquide : <strong>1 bar tous les 10 m d’eau</strong>.</li>
+<li>Poussée d’Archimède : \(\vec\Pi = -\rho_\text{fluide}V_\text{immergé}\,\vec g\), appliquée au centre de poussée.</li>
+<li>Gaz parfait : \(PV = nRT\), donc \(\rho = \dfrac{PM}{RT}\).</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-chemin-pression">Suivre la pression le long d’un chemin</a> · <a href="#methodes--m-fluide-fictif">Remplacer un objet par le fluide qu’il déplace</a> · <a href="#methodes--m-equilibre">Écrire l’équilibre : forces et moments</a>.</p>
+
+<h2 id="f-dynamique">Dynamique des fluides</h2>
+<ul>
+<li>Débit \(Q = Sv\) ; conservation \(S_1v_1 = S_2v_2\).</li>
+<li>Bernoulli : \(P + \tfrac12\rho v^2 + \rho gz = \text{cste}\) sur une ligne de courant (fluide parfait, incompressible, stationnaire).</li>
+<li>Nombre de Reynolds \(Re = \rho vL/\eta\) ; traînée de Stokes \(6\pi\eta Rv\) à petit \(Re\), quadratique \(\tfrac12 C_x\rho Sv^2\) à grand \(Re\).</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-bernoulli-points">Appliquer Bernoulli entre deux points bien choisis</a> · <a href="#methodes--m-bilan">Faire un bilan sur un volume de contrôle</a> · <a href="#methodes--m-sans-dimension">Former les nombres sans dimension</a>.</p>
+
+<h2 id="f-tension">Tension superficielle</h2>
+<ul>
+<li>\(E = \gamma S\) ; force \(\gamma\ell\) le long d’un bord (\(2\gamma\ell\) pour un film à deux faces) ; eau : \(\gamma = 72\) mN·m⁻¹.</li>
+<li>Laplace : \(\Delta P = 2\gamma/R\) (goutte), \(4\gamma/R\) (bulle de savon) ; Young : \(\gamma\cos\theta = \gamma_{SG} - \gamma_{SL}\).</li>
+<li>Jurin : \(h = \dfrac{2\gamma\cos\theta}{\rho g r}\) ; longueur capillaire \(\ell_c = \sqrt{\gamma/\rho g}\) (2,7 mm pour l’eau).</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-coupe-fictive">Isoler une partie et écrire son équilibre</a> · <a href="#methodes--m-minimum-energie">Chercher l’équilibre comme un minimum d’énergie</a> · <a href="#methodes--m-sans-dimension">Former les nombres sans dimension</a>.</p>
+
+<h2 id="f-geometrique">Optique géométrique</h2>
+<ul>
+<li>\(n = c/v\) ; \(n_1\sin i_1 = n_2\sin i_2\) (réflexion totale si \(\sin i_1 > n_2/n_1\)) ; \(\dfrac{1}{\overline{OA'}} - \dfrac{1}{\overline{OA}} = \dfrac{1}{f'}\), \(\gamma = \overline{OA'}/\overline{OA}\).</li>
+<li>Loupe \(G = d_m/f'\) (\(d_m = 25\) cm) ; lunette afocale \(G = f'_1/f'_2\) ; vergence \(V = 1/f'\) en dioptries.</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-rayons">Tracer les rayons particuliers</a> · <a href="#methodes--m-conjugaison">Enchaîner les images avec la relation de conjugaison</a> · <a href="#methodes--m-chasse-angles">Suivre un rayon par une chasse aux angles</a>.</p>
+
+<h2 id="f-optique">Ondes et optique ondulatoire</h2>
+<ul>
+<li>\(\lambda = vT = v/f\) ; phase \(\omega t - kx\) avec \(k = 2\pi/\lambda\) ; déphasage \(2\pi d/\lambda\) ; intensité \(\propto\) amplitude².</li>
+<li>Niveau sonore \(L = 10\log(I/I_0)\), \(I_0 = 10^{-12}\ \text{W·m}^{-2}\).</li>
+<li>Doppler : \(f' = f\,\dfrac{v \pm v_o}{v \mp v_s}\) (haut : rapprochement) ; \(\Delta f/f \approx v_\text{rel}/v\).</li>
+<li>Interférences : constructives si \(\delta = p\lambda\), destructives si \((p + \tfrac12)\lambda\) ; Young \(i = \lambda D/a\).</li>
+<li>Corde ou tuyau ouvert : \(f_n = n\,v/2L\) ; battements \(f_b = |f_1 - f_2|\).</li>
+<li>Diffraction : \(\theta \approx \lambda/a\) ; réseau \(a\sin\theta = p\lambda\).</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-dephasage">Raisonner en différence de marche</a> · <a href="#methodes--m-amplitudes-complexes">Additionner des amplitudes complexes (vecteurs de Fresnel)</a> · <a href="#methodes--m-conditions-limites">Imposer les conditions aux limites : modes propres</a> · <a href="#methodes--m-doppler">Traiter un effet Doppler</a>.</p>
+
+<h2 id="f-relativite">Relativité restreinte</h2>
+<ul>
+<li>\(\gamma = \dfrac{1}{\sqrt{1 - v^2/c^2}}\) ; durée propre la plus courte : \(\Delta t = \gamma\Delta t_0\) ; longueur propre la plus grande : \(L = L_0/\gamma\).</li>
+<li>\(\vec p = \gamma m\vec v\), \(E = \gamma mc^2\), \(E_c = (\gamma - 1)mc^2\), \(E^2 = p^2c^2 + m^2c^4\) ; photon \(E = pc = h\nu\).</li>
+<li>Énergie libérée par une réaction : \(|\Delta m|\,c^2\) ; 1 u = 931,5 MeV/\(c^2\) ; \(m_ec^2 = 0{,}511\) MeV.</li>
+<li>Doppler (éloignement) : \(f = f_0\sqrt{\dfrac{1-\beta}{1+\beta}}\), \(\Delta\lambda/\lambda \approx \beta\).</li>
+<li>CPGE : \(x' = \gamma(x - vt)\), \(t' = \gamma(t - vx/c^2)\) ; \(u' = \dfrac{u - v}{1 - uv/c^2}\) ; invariant \(E^2 - p^2c^2\).</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-temps-propre">Identifier la durée propre et la longueur propre</a> · <a href="#methodes--m-invariant">Utiliser un invariant relativiste</a> · <a href="#methodes--m-masse-energie">Faire un bilan masse-énergie</a>.</p>
+
+<h2 id="f-nucleaire">Physique nucléaire</h2>
+<ul>
+<li>\({}^A_Z\mathrm X\) : \(A = Z + N\) ; conservation de \(A\) et de \(Z\).</li>
+<li>\(E_\ell = \Delta m\,c^2\), \(\Delta m = Zm_p + Nm_n - m_\text{noyau}\) ; \(Q = (m_\text{avant} - m_\text{après})c^2\).</li>
+<li>\(N(t) = N_0\,\mathrm e^{-\lambda t}\), \(t_{1/2} = \ln 2/\lambda\), activité \(A = \lambda N\) (Bq).</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-masse-energie">Faire un bilan masse-énergie</a> · <a href="#methodes--m-demi-vie">Raisonner en demi-vies</a> · <a href="#methodes--m-compter-entites">Passer d’une masse à un nombre d’entités</a>.</p>
+
+<h2 id="f-quantique">Physique quantique</h2>
+<ul>
+<li>Photon : \(E = h\nu = hc/\lambda\), \(p = h/\lambda\) ; \(hc = 1\,240\) eV·nm.</li>
+<li>Effet photoélectrique : \(E_{c,\max} = h\nu - W = eU_0\).</li>
+<li>Transition : \(h\nu = |E_n - E_p|\) ; hydrogène \(E_n = -13{,}6\ \text{eV}/n^2\).</li>
+<li>De Broglie : \(\lambda = h/p\) ; Heisenberg : \(\Delta x\,\Delta p \ge \hbar/2\).</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-quanta">Compter les quanta</a> · <a href="#methodes--m-unites-adaptees">Calculer dans des unités adaptées</a> · <a href="#methodes--m-confinement">Estimer une énergie par le confinement</a>.</p>
+
+<h2 id="f-constantes">Constantes et données utiles</h2>
+<table>
+<thead><tr><th>Grandeur</th><th>Valeur</th></tr></thead>
+<tbody>
+<tr><td>Intensité de la pesanteur</td><td>\(g = 9{,}81\ \text{m·s}^{-2}\)</td></tr>
+<tr><td>Constante des gaz parfaits</td><td>\(R = 8{,}314\ \text{J·K}^{-1}\text{·mol}^{-1}\)</td></tr>
+<tr><td>Constante de Boltzmann, nombre d’Avogadro</td><td>\(k_B = 1{,}381\times10^{-23}\ \text{J·K}^{-1}\), \(N_A = 6{,}02\times10^{23}\ \text{mol}^{-1}\)</td></tr>
+<tr><td>Pression atmosphérique normale</td><td>\(1\ \text{atm} = 101\,325\ \text{Pa} = 1{,}013\ \text{bar} = 760\ \text{mmHg}\)</td></tr>
+<tr><td>Masse molaire de l’air, de l’hélium</td><td>\(29\) et \(4\ \text{g·mol}^{-1}\)</td></tr>
+<tr><td>Masses volumiques : air (20 °C, 1 bar), eau douce, eau de mer, glace, mercure</td><td>1,2 ; 1 000 ; 1 025 ; 917 ; 13 600 kg·m⁻³</td></tr>
+<tr><td>Viscosité de l’eau, de l’air</td><td>\(1{,}0\times10^{-3}\) et \(1{,}8\times10^{-5}\ \text{Pa·s}\)</td></tr>
+<tr><td>Vitesse du son dans l’air (15 °C), dans l’eau</td><td>340 et 1 500 m·s⁻¹</td></tr>
+<tr><td>Vitesse de la lumière</td><td>\(c = 3{,}00\times10^8\ \text{m·s}^{-1}\)</td></tr>
+<tr><td>Indices : eau, verre, diamant</td><td>1,33 ; 1,5 ; 2,42</td></tr>
+<tr><td>Lumière visible</td><td>400 nm (violet) à 750 nm (rouge) ; \(f \approx 5\times10^{14}\) Hz</td></tr>
+<tr><td>Rayon de la Terre, distance Terre-Soleil</td><td>\(6{,}37\times10^6\ \text{m}\), \(1{,}50\times10^{11}\ \text{m}\)</td></tr>
+<tr><td>Charge et masse de l’électron, masse du proton</td><td>\(1{,}60\times10^{-19}\ \text{C}\), \(9{,}11\times10^{-31}\ \text{kg}\), \(1{,}67\times10^{-27}\ \text{kg}\)</td></tr>
+<tr><td>Constante de Planck</td><td>\(h = 6{,}63\times10^{-34}\ \text{J·s}\), \(\hbar = 1{,}055\times10^{-34}\ \text{J·s}\)</td></tr>
+<tr><td>Électronvolt, unité de masse atomique</td><td>1 eV = \(1{,}602\times10^{-19}\) J ; 1 u = \(1{,}6605\times10^{-27}\) kg = 931,5 MeV/\(c^2\)</td></tr>
+<tr><td>Masses du proton, du neutron, de l’électron</td><td>938,3 ; 939,6 ; 0,511 MeV/\(c^2\)</td></tr>
+</tbody>
+</table>
+
+<h2 id="f-conversions">Conversions</h2>
+<ul>
+<li>1 L = 1 dm³ = 10⁻³ m³ ; 1 mL = 1 cm³ = 10⁻⁶ m³ ; 1 cm² = 10⁻⁴ m².</li>
+<li>1 g·cm⁻³ = 1 kg·L⁻¹ = 1 000 kg·m⁻³.</li>
+<li>1 bar = 10⁵ Pa = 1 000 hPa ; 1 Pa = 1 N·m⁻².</li>
+<li>1 km·h⁻¹ = 1/3,6 m·s⁻¹ ; 1 kWh = 3,6 MJ ; 1 eV = 1,60 × 10⁻¹⁹ J.</li>
+<li>\(T(\text{K}) = \theta(\text{°C}) + 273{,}15\) ; angles : 1 rad = 57,3°, 1' = 2,9 × 10⁻⁴ rad.</li>
+</ul>

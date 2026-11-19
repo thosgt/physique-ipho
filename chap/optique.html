@@ -1,0 +1,275 @@
+<p class="eyebrow">Ondes · Chapitre 2</p>
+<h1>Ondes et optique ondulatoire</h1>
+<p class="subtitle">Ondes progressives, effet Doppler, interférences, battements, ondes stationnaires, diffraction, polarisation</p>
+
+<div class="objectifs">
+<p><strong>Ce que demandent les épreuves.</strong> Le syllabus IPhO (parties 4.2 à 4.6) couvre les ondes harmoniques, l’effet Doppler, le son, les interférences (deux sources, films minces), les battements, les ondes stationnaires, la diffraction (fente, réseau, Bragg) et la polarisation. Le test de terminale reste proche du programme de spécialité (ondes, Doppler, interférences, diffraction) mais pousse plus loin les calculs ; le test de CPGE ajoute la polarisation, le cône de Mach, les films minces et la loi de Bragg. Le Concours général aime les sujets « sonores » (violon 2020, Doppler) et optiques.</p>
+<ul>
+<li><strong>Terminale (IPhO et Concours général)</strong> : parties 1 à 4, hors encadrés « Niveau CPGE ». L’optique géométrique (réfraction, lentilles, instruments) a son <a href="#geometrique">chapitre à part</a>, à étudier avant celui-ci.</li>
+<li><strong>CPGE (IPhO)</strong> : tout le chapitre.</li>
+</ul>
+</div>
+
+<div class="retenir">
+<p><strong>L’essentiel à retenir</strong></p>
+<ol>
+<li><strong>Onde progressive harmonique</strong> : \(s(x,t) = A\cos(\omega t - kx + \varphi)\), avec \(\omega = 2\pi f = 2\pi/T\), \(k = 2\pi/\lambda\) et \(\lambda = vT = v/f\). Un retard \(\tau = d/v\) se traduit par un déphasage \(\Delta\varphi = 2\pi d/\lambda\).</li>
+<li>L’énergie (l’intensité) d’une onde est proportionnelle au <strong>carré de l’amplitude</strong>. Son : niveau \(L = 10\log(I/I_0)\), \(I_0 = 10^{-12}\ \text{W·m}^{-2}\) ; +3 dB = intensité doublée, +10 dB = ×10 ; source isotrope : \(I = P/(4\pi r^2)\).</li>
+<li><strong>Effet Doppler</strong> : \(f' = f\,\dfrac{v \pm v_\text{obs}}{v \mp v_\text{src}}\) (signes du haut : rapprochement). Pour \(v_\text{src}, v_\text{obs} \ll v\) : \(\dfrac{\Delta f}{f} \approx \dfrac{v_\text{rel}}{v}\). Lumière : \(\Delta\lambda/\lambda \approx v_r/c\) (décalage vers le rouge si éloignement).</li>
+<li><strong>Interférences</strong> à deux ondes de même fréquence : constructives si la différence de marche \(\delta = p\lambda\) (\(p\) entier), destructives si \(\delta = (p + \tfrac12)\lambda\). Fentes d’Young : interfrange \(i = \lambda D/a\).</li>
+<li><strong>Ondes stationnaires</strong> : corde fixée aux deux bouts, \(L = n\lambda/2\), \(f_n = n\,\dfrac{v}{2L}\) avec \(v = \sqrt{T/\mu}\) ; tuyau ouvert aux deux bouts : mêmes fréquences ; tuyau fermé à un bout : \(L = (2n+1)\lambda/4\), harmoniques impairs. <strong>Battements</strong> : \(f_b = |f_1 - f_2|\).</li>
+<li><strong>Diffraction</strong> par une fente de largeur \(a\) : demi-largeur angulaire \(\theta \approx \lambda/a\). <strong>Réseau</strong> de pas \(a\) : maxima pour \(a\,(\sin\theta - \sin\theta_0) = p\lambda\). Pouvoir de résolution d’une ouverture circulaire \(D\) : \(\theta_\min \approx 1{,}22\,\lambda/D\).</li>
+<li><strong>Polarisation</strong> (CPGE) : loi de Malus \(I = I_0\cos^2\theta\) ; lumière naturelle à travers un polariseur : \(I_0/2\).</li>
+</ol>
+</div>
+
+<h2 id="ondes">1. Ondes progressives</h2>
+
+<h3 id="progressive">Décrire une onde : double périodicité et phase</h3>
+<p>Une onde progressive est une perturbation qui se propage sans transport de matière, à la <strong>célérité</strong> \(v\) : la perturbation en \(x\) à l’instant \(t\) est celle qu’il y avait en \(x = 0\) à l’instant \(t - x/v\) : \(s(x,t) = f(t - x/v)\). Pour une onde <strong>harmonique</strong> (sinusoïdale), \(s(x,t) = A\cos\left[\omega\left(t - \dfrac{x}{v}\right)\right] = A\cos(\omega t - kx)\) avec \(k = \omega/v = 2\pi/\lambda\) le <strong>nombre d’onde</strong> (vecteur d’onde en 3D). Deux périodicités : dans le temps, la période \(T = 1/f\) ; dans l’espace, la longueur d’onde \(\lambda = vT\). La <strong>phase</strong> \(\omega t - kx\) est une fonction linéaire de \(t\) et \(x\) ; deux points distants de \(d\) vibrent avec un déphasage \(2\pi d/\lambda\) : en phase si \(d = p\lambda\), en opposition si \(d = (p + \tfrac12)\lambda\).</p>
+<figure>
+<svg viewBox="0 0 640 260" width="640" role="img" aria-label="Onde sinusoïdale : photographie à t fixé (période spatiale lambda) et signal en un point au cours du temps (période T)" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="ow-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker><marker id="ow-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2b6cb0"/></marker></defs>
+<text x="20" y="20" fill="#15213a" font-weight="600">Photographie à t fixé : s(x)</text>
+<line x1="30" y1="110" x2="300" y2="110" stroke="#15213a" stroke-width="1.5" marker-end="url(#ow-k)"/><text x="304" y="114" fill="#15213a">x</text>
+<path d="M30 110 C 50 50, 70 50, 90 110 S 130 170, 150 110 S 190 50, 210 110 S 250 170, 270 110" fill="none" stroke="#2b6cb0" stroke-width="2.5"/>
+<line x1="60" y1="40" x2="180" y2="40" stroke="#b23a48" stroke-width="1.5"/><line x1="60" y1="35" x2="60" y2="45" stroke="#b23a48"/><line x1="180" y1="35" x2="180" y2="45" stroke="#b23a48"/><text x="110" y="34" fill="#b23a48" font-weight="600">λ</text>
+<line x1="30" y1="110" x2="30" y2="60" stroke="#15213a" stroke-width="1" marker-end="url(#ow-k)"/><text x="12" y="70" fill="#15213a">A</text>
+<line x1="200" y1="150" x2="250" y2="150" stroke="#2b6cb0" stroke-width="2.5" marker-end="url(#ow-b)"/><text x="206" y="168" fill="#2b6cb0" font-weight="600">célérité v</text>
+<text x="340" y="20" fill="#15213a" font-weight="600">Signal en un point : s(t)</text>
+<line x1="350" y1="110" x2="620" y2="110" stroke="#15213a" stroke-width="1.5" marker-end="url(#ow-k)"/><text x="624" y="114" fill="#15213a">t</text>
+<path d="M350 110 C 370 50, 390 50, 410 110 S 450 170, 470 110 S 510 50, 530 110 S 570 170, 590 110" fill="none" stroke="#1f8a4c" stroke-width="2.5"/>
+<line x1="380" y1="40" x2="500" y2="40" stroke="#b23a48" stroke-width="1.5"/><line x1="380" y1="35" x2="380" y2="45" stroke="#b23a48"/><line x1="500" y1="35" x2="500" y2="45" stroke="#b23a48"/><text x="432" y="34" fill="#b23a48" font-weight="600">T</text>
+<text x="20" y="210" fill="#15213a" font-size="12">λ = v T = v / f   ·   phase ω t − k x, avec ω = 2π/T et k = 2π/λ   ·   retard τ = d/v  ⇔  déphasage 2π d/λ</text>
+<text x="20" y="236" fill="#15213a" font-size="11">Onde transversale (corde, lumière) : la perturbation est perpendiculaire à la propagation ; longitudinale (son) : parallèle.</text>
+</svg>
+<figcaption>Les deux périodicités d’une onde harmonique. La période \(T\) se lit sur le signal en un point, la longueur d’onde \(\lambda\) sur la photographie.</figcaption>
+</figure>
+<div class="sim" data-name="onde"><p>Faites varier la fréquence et la célérité : observez la longueur d’onde, suivez un point du milieu (il ne se déplace pas avec l’onde) et comparez la phase de deux points distants de \(d\).</p></div>
+<p><strong>Ondes transversales ou longitudinales.</strong> Sur une corde ou pour la lumière, la perturbation est perpendiculaire à la propagation (transversale) ; pour le son, les tranches d’air se compriment et se dilatent dans la direction de propagation (longitudinale). Les ondes à la surface de l’eau combinent les deux. Vitesses : corde tendue \(v = \sqrt{T/\mu}\) (\(T\) tension, \(\mu\) masse linéique) ; son dans l’air \(v = \sqrt{\gamma P/\rho} = \sqrt{\gamma RT/M} \approx 340\ \text{m·s}^{-1}\) à 15 °C (augmente avec la température, indépendante de la pression) ; dans l’eau 1 500 ; dans l’acier 5 000 ; lumière \(c = 3{,}00\times10^8\ \text{m·s}^{-1}\) dans le vide, \(c/n\) dans un milieu.</p>
+
+<div class="exo" data-group="cde-w4"></div>
+<div class="exo" data-q="ipho-2017-T2"></div>
+<h3 id="energie">Énergie, intensité, décibels</h3>
+<p>L’énergie transportée par une onde est proportionnelle au <strong>carré de son amplitude</strong>. L’<strong>intensité</strong> \(I\) (W·m⁻²) est la puissance traversant l’unité de surface ; pour une source isotrope de puissance \(P\), \(I = P/(4\pi r^2)\) : l’intensité décroît en \(1/r^2\), l’amplitude en \(1/r\). En acoustique, on utilise le <strong>niveau sonore</strong> \(L = 10\log_{10}(I/I_0)\) en décibels, avec \(I_0 = 10^{-12}\ \text{W·m}^{-2}\) (seuil d’audition) : conversation 60 dB, concert 110 dB, seuil de douleur 120 dB. Deux sources identiques incohérentes : \(+3\) dB ; dix sources : \(+10\) dB ; doubler la distance : \(-6\) dB. Dans un milieu absorbant, l’amplitude décroît exponentiellement, \(A(x) = A_0\mathrm e^{-x/\ell}\) ; le niveau en dB baisse alors linéairement avec la distance.</p>
+
+<div class="exo" data-q="ipho-2016-T19"></div>
+<h2 id="doppler">2. L’effet Doppler</h2>
+<p>Quand la source ou l’observateur se déplace par rapport au milieu, la fréquence perçue diffère de la fréquence émise. Les deux cas ne sont pas symétriques :</p>
+<ul>
+<li><strong>Source mobile</strong> à la vitesse \(v_s\) vers un observateur fixe : les fronts d’onde émis devant la source sont resserrés, \(\lambda' = (v - v_s)T\), donc \(f' = \dfrac{v}{\lambda'} = f\,\dfrac{v}{v - v_s}\) (plus aigu à l’approche, \(f\,\dfrac{v}{v + v_s}\) à l’éloignement).</li>
+<li><strong>Observateur mobile</strong> à la vitesse \(v_o\) vers une source fixe : la longueur d’onde est inchangée mais les fronts sont rencontrés plus souvent, \(f' = \dfrac{v + v_o}{\lambda} = f\,\dfrac{v + v_o}{v}\).</li>
+</ul>
+\[f' = f\,\frac{v \pm v_o}{v \mp v_s}\qquad\text{(signes du haut : rapprochement)}.\]
+<div class="methode" data-m="doppler"><p>Sirène qui passe : à l’approche \(f' = f\,v/(v - v_s)\), à l’éloignement \(f\,v/(v + v_s)\), soit un écart relatif d’environ \(2v_s/v\). Pour un écho sur une cible mobile (radar, chauve-souris, sonar), traitez la cible d’abord comme récepteur, puis comme source : les deux décalages s’ajoutent, \(\Delta f/f \approx 2v_\text{cible}/v\).</p></div>
+<p>Aux faibles vitesses, les deux cas se confondent : \(\dfrac{\Delta f}{f} \approx \dfrac{v_\text{rel}}{v}\). Radar routier, échographie Doppler (vitesse du sang), sirène d’ambulance (\(\Delta f/f = 2v_s/v\) au passage : à 20 m/s, 12 % soit environ un ton), vitesse radiale des étoiles et expansion de l’Univers (\(\Delta\lambda/\lambda = v_r/c\), décalage vers le rouge si la source s’éloigne), vélocimétrie des exoplanètes. Pour la lumière, il n’y a pas de milieu : seule la vitesse relative compte, et la formule relativiste \(f' = f\sqrt{\dfrac{1 - \beta}{1 + \beta}}\) (éloignement, \(\beta = v/c\)) se réduit à \(\Delta f/f \approx -v/c\) si \(v \ll c\).</p>
+<figure>
+<svg viewBox="0 0 640 230" width="640" role="img" aria-label="Fronts d'onde émis par une source en mouvement vers la droite : resserrés devant, espacés derrière" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="od-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23a48"/></marker></defs>
+<g fill="none" stroke="#2b6cb0" stroke-width="1.5">
+<circle cx="200" cy="120" r="160"/><circle cx="240" cy="120" r="128"/><circle cx="280" cy="120" r="96"/><circle cx="320" cy="120" r="64"/><circle cx="360" cy="120" r="32"/>
+</g>
+<circle cx="400" cy="120" r="6" fill="#b23a48"/><line x1="408" y1="120" x2="450" y2="120" stroke="#b23a48" stroke-width="3" marker-end="url(#od-r)"/><text x="396" y="104" fill="#b23a48" font-weight="600">source, v_s</text>
+<text x="400" y="200" fill="#15213a" font-weight="600">devant : λ' = (v − v_s) T, f' plus élevée</text>
+<text x="30" y="200" fill="#15213a" font-weight="600">derrière : λ' = (v + v_s) T, f' plus basse</text>
+<text x="30" y="226" fill="#15213a" font-size="11">Chaque front est un cercle centré sur la position de la source au moment de l’émission.</text>
+</svg>
+<figcaption>Source en mouvement : les fronts sont émis depuis des positions successives, d’où la compression vers l’avant.</figcaption>
+</figure>
+<div class="methode" data-m="referentiel"><p>Les fronts sont des cercles centrés sur les points d’émission dans le référentiel du milieu (l’air) : c’est là qu’on lit \(\lambda' = (v - v_s)T\) et qu’on compte les fronts rencontrés par l’observateur. Un vent uniforme, avec source et observateur fixes au sol, ne change pas la fréquence : dans le référentiel de l’air, les deux se déplacent à la même vitesse et les deux effets se compensent.</p></div>
+<div class="exo" data-q="ipho-2017-T5"></div>
+<div class="exo" data-q="ipho-2026-T12"></div>
+<div class="sim" data-name="doppler"><p>Déplacez une source sonore et écoutez (lisez) la fréquence perçue par un observateur fixe de chaque côté ; dépassez la vitesse du son pour voir le cône de Mach.</p></div>
+<div class="exo" data-q="ipho-2016-T20"></div>
+<div class="cpge" id="mach" title="Supersonique : cône de Mach">
+<p>Si la source va plus vite que l’onde (\(v_s > v\)), aucun front ne la précède : les fronts sphériques émis successivement ont pour enveloppe un <strong>cône</strong> de demi-angle au sommet \(\alpha\) tel que \(\sin\alpha = v/v_s = 1/\mathcal M\) (\(\mathcal M\) : nombre de Mach). Le passage de ce cône est le « bang » supersonique ; le sillage en V d’un bateau et le rayonnement Tcherenkov (particule plus rapide que la lumière dans l’eau, \(\cos\theta = c/(nv)\)) relèvent du même mécanisme. Un avion à Mach 2 à l’altitude \(h\) est entendu au sol quand il a dépassé l’observateur de \(h/\tan\alpha = h\sqrt{\mathcal M^2 - 1}\).</p>
+</div>
+
+<h2 id="superposition">3. Superposition : interférences, battements, ondes stationnaires</h2>
+
+<h3 id="interferences">Interférences à deux ondes</h3>
+<p>Deux ondes de même fréquence, issues de sources <strong>cohérentes</strong> (déphasage constant, en pratique une même source dédoublée), s’additionnent. En un point où leurs chemins diffèrent de la <strong>différence de marche</strong> \(\delta = d_2 - d_1\), le déphasage vaut \(\Delta\varphi = 2\pi\delta/\lambda\) :</p>
+<ul>
+<li>\(\delta = p\lambda\) (\(p\) entier) : en phase, amplitudes ajoutées, intensité \(4I_0\) : interférence <strong>constructive</strong> ;</li>
+<li>\(\delta = (p + \tfrac12)\lambda\) : en opposition, intensité nulle : interférence <strong>destructive</strong> ;</li>
+<li>en général, \(I = 2I_0\,[1 + \cos(2\pi\delta/\lambda)]\) : l’intensité moyenne est bien \(2I_0\), l’énergie est seulement redistribuée.</li>
+</ul>
+<h3 id="calcul-intensite">Le calcul de l’intensité, pas à pas</h3>
+<p>Ce calcul est un classique des épreuves écrites : il faut savoir le refaire entièrement.</p>
+<ol>
+<li><strong>Les deux ondes en M.</strong> Les sources émettent en phase la même onde \(A\cos\omega t\). Arrivée en \(M\) après le trajet \(d_i\), l’onde \(i\) a pris le retard \(d_i/v\) :
+\[s_1(M,t) = A\cos(\omega t - \varphi_1), \qquad s_2(M,t) = A\cos(\omega t - \varphi_2), \qquad \varphi_i = \omega\frac{d_i}{v} = \frac{2\pi d_i}{\lambda}.\]
+Le <strong>déphasage</strong> vaut donc \(\Delta\varphi = \varphi_2 - \varphi_1 = \dfrac{2\pi}{\lambda}(d_2 - d_1) = \dfrac{2\pi\delta}{\lambda}\).</li>
+<li><strong>L’intensité est une moyenne de carré.</strong> Un détecteur (œil, photodiode, oreille) est beaucoup trop lent pour suivre les oscillations à la fréquence \(\omega/2\pi\) : il mesure \(I = K\langle s^2\rangle\), moyenne sur une durée grande devant la période. Pour une onde seule, \(\langle\cos^2(\omega t - \varphi)\rangle = \tfrac12\), donc \(I_0 = K\langle s_1^2\rangle = \tfrac12KA^2\).</li>
+<li><strong>Développer le carré de la somme.</strong> En \(M\), les signaux s’ajoutent : \(s = s_1 + s_2\), et
+\[s^2 = s_1^2 + s_2^2 + 2s_1s_2.\]
+Le terme croisé se transforme avec \(2\cos a\cos b = \cos(a - b) + \cos(a + b)\) :
+\[2s_1s_2 = A^2\big[\cos(\varphi_2 - \varphi_1) + \cos(2\omega t - \varphi_1 - \varphi_2)\big].\]
+Le second cosinus oscille à \(2\omega\) : sa moyenne est nulle. Le premier ne dépend pas du temps.</li>
+<li><strong>Moyenner.</strong> \(K\langle s^2\rangle = I_0 + I_0 + KA^2\cos\Delta\varphi\), soit, puisque \(KA^2 = 2I_0\) :
+\[\boxed{I = 2I_0\,(1 + \cos\Delta\varphi) = 4I_0\cos^2\frac{\Delta\varphi}{2}}, \qquad \Delta\varphi = \frac{2\pi\delta}{\lambda}.\]</li>
+</ol>
+<p><strong>Autre voie : additionner directement les sinusoïdes.</strong> Avec \(\cos p + \cos q = 2\cos\frac{p - q}{2}\cos\frac{p + q}{2}\) :
+\[s = 2A\cos\frac{\Delta\varphi}{2}\,\cos\!\Big(\omega t - \frac{\varphi_1 + \varphi_2}{2}\Big).\]
+L’onde résultante est sinusoïdale, d’amplitude \(2A\,|\cos(\Delta\varphi/2)|\) ; son intensité \(\tfrac12K\,(2A)^2\cos^2(\Delta\varphi/2)\) redonne \(4I_0\cos^2(\Delta\varphi/2)\).</p>
+<figure>
+<svg viewBox="0 0 640 262" width="640" role="img" aria-label="Intensité en fonction de la différence de marche : sinusoïde entre 0 et 4 I0, de moyenne 2 I0, maxima pour delta multiple de lambda" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<line x1="60" y1="200" x2="610" y2="200" stroke="#15213a" stroke-width="1.2"/><line x1="330" y1="30" x2="330" y2="210" stroke="#15213a" stroke-width="1.2"/>
+<g stroke="#d5dbe5" stroke-width="1"><line x1="60" y1="40" x2="600" y2="40"/><line x1="60" y1="120" x2="600" y2="120" stroke="#1f8a4c" stroke-dasharray="6 4" stroke-width="1.5"/></g>
+<polyline points="60.0,40.0 62.2,40.4 64.5,41.7 66.8,43.9 69.0,46.9 71.2,50.7 73.5,55.3 75.8,60.5 78.0,66.5 80.2,73.0 82.5,80.0 84.8,87.5 87.0,95.3 89.2,103.4 91.5,111.6 93.8,120.0 96.0,128.4 98.2,136.6 100.5,144.7 102.8,152.5 105.0,160.0 107.2,167.0 109.5,173.5 111.8,179.5 114.0,184.7 116.2,189.3 118.5,193.1 120.8,196.1 123.0,198.3 125.2,199.6 127.5,200.0 129.8,199.6 132.0,198.3 134.2,196.1 136.5,193.1 138.8,189.3 141.0,184.7 143.2,179.5 145.5,173.5 147.8,167.0 150.0,160.0 152.2,152.5 154.5,144.7 156.8,136.6 159.0,128.4 161.2,120.0 163.5,111.6 165.8,103.4 168.0,95.3 170.2,87.5 172.5,80.0 174.8,73.0 177.0,66.5 179.2,60.5 181.5,55.3 183.8,50.7 186.0,46.9 188.2,43.9 190.5,41.7 192.8,40.4 195.0,40.0 197.2,40.4 199.5,41.7 201.8,43.9 204.0,46.9 206.2,50.7 208.5,55.3 210.8,60.5 213.0,66.5 215.2,73.0 217.5,80.0 219.8,87.5 222.0,95.3 224.2,103.4 226.5,111.6 228.8,120.0 231.0,128.4 233.2,136.6 235.5,144.7 237.8,152.5 240.0,160.0 242.2,167.0 244.5,173.5 246.8,179.5 249.0,184.7 251.2,189.3 253.5,193.1 255.8,196.1 258.0,198.3 260.2,199.6 262.5,200.0 264.8,199.6 267.0,198.3 269.2,196.1 271.5,193.1 273.8,189.3 276.0,184.7 278.2,179.5 280.5,173.5 282.8,167.0 285.0,160.0 287.2,152.5 289.5,144.7 291.8,136.6 294.0,128.4 296.2,120.0 298.5,111.6 300.8,103.4 303.0,95.3 305.2,87.5 307.5,80.0 309.8,73.0 312.0,66.5 314.2,60.5 316.5,55.3 318.8,50.7 321.0,46.9 323.2,43.9 325.5,41.7 327.8,40.4 330.0,40.0 332.2,40.4 334.5,41.7 336.8,43.9 339.0,46.9 341.2,50.7 343.5,55.3 345.8,60.5 348.0,66.5 350.2,73.0 352.5,80.0 354.8,87.5 357.0,95.3 359.2,103.4 361.5,111.6 363.8,120.0 366.0,128.4 368.2,136.6 370.5,144.7 372.8,152.5 375.0,160.0 377.2,167.0 379.5,173.5 381.8,179.5 384.0,184.7 386.2,189.3 388.5,193.1 390.8,196.1 393.0,198.3 395.2,199.6 397.5,200.0 399.8,199.6 402.0,198.3 404.2,196.1 406.5,193.1 408.8,189.3 411.0,184.7 413.2,179.5 415.5,173.5 417.8,167.0 420.0,160.0 422.2,152.5 424.5,144.7 426.8,136.6 429.0,128.4 431.2,120.0 433.5,111.6 435.8,103.4 438.0,95.3 440.2,87.5 442.5,80.0 444.8,73.0 447.0,66.5 449.2,60.5 451.5,55.3 453.8,50.7 456.0,46.9 458.2,43.9 460.5,41.7 462.8,40.4 465.0,40.0 467.2,40.4 469.5,41.7 471.8,43.9 474.0,46.9 476.2,50.7 478.5,55.3 480.8,60.5 483.0,66.5 485.2,73.0 487.5,80.0 489.8,87.5 492.0,95.3 494.2,103.4 496.5,111.6 498.8,120.0 501.0,128.4 503.2,136.6 505.5,144.7 507.8,152.5 510.0,160.0 512.2,167.0 514.5,173.5 516.8,179.5 519.0,184.7 521.2,189.3 523.5,193.1 525.8,196.1 528.0,198.3 530.2,199.6 532.5,200.0 534.8,199.6 537.0,198.3 539.2,196.1 541.5,193.1 543.8,189.3 546.0,184.7 548.2,179.5 550.5,173.5 552.8,167.0 555.0,160.0 557.2,152.5 559.5,144.7 561.8,136.6 564.0,128.4 566.2,120.0 568.5,111.6 570.8,103.4 573.0,95.3 575.2,87.5 577.5,80.0 579.8,73.0 582.0,66.5 584.2,60.5 586.5,55.3 588.8,50.7 591.0,46.9 593.2,43.9 595.5,41.7 597.8,40.4 600.0,40.0" fill="none" stroke="#2b6cb0" stroke-width="2.5"/>
+<g fill="#15213a" font-size="11" text-anchor="middle"><text x="60" y="218">−2λ</text><text x="195" y="218">−λ</text><text x="330" y="218">0</text><text x="465" y="218">λ</text><text x="600" y="218">2λ</text><text x="262" y="218">−λ/2</text><text x="398" y="218">λ/2</text></g>
+<text x="336" y="36" fill="#15213a" font-size="11">4I₀</text><text x="22" y="124" fill="#1f8a4c" font-size="11" font-weight="600">2I₀</text><text x="610" y="216" fill="#15213a">δ</text><text x="338" y="22" fill="#15213a">I</text>
+
+<text x="60" y="242" fill="#1f8a4c" font-size="11">pointillés : moyenne I₁ + I₂ = 2I₀</text><text x="60" y="258" fill="#15213a" font-size="11">constructive : δ = pλ (I = 4I₀) ; destructive : δ = (p + ½)λ (I = 0)</text>
+</svg>
+<figcaption>Intensité en fonction de la différence de marche pour deux ondes de même intensité \(I_0\). Elle oscille entre \(0\) et \(4I_0\) autour de sa moyenne \(2I_0\) : l’énergie n’est pas créée, elle est déplacée des franges sombres vers les franges brillantes.</figcaption>
+</figure>
+<p><strong>Deux remarques que l’on demande souvent.</strong></p>
+<ul>
+<li><strong>Intensités différentes</strong> (\(I_1 \ne I_2\)) : le même calcul donne la <strong>formule de Fresnel</strong> \(I = I_1 + I_2 + 2\sqrt{I_1I_2}\cos\Delta\varphi\). Les franges sombres ne sont plus noires : \(I_\text{min} = (\sqrt{I_1} - \sqrt{I_2})^2\), \(I_\text{max} = (\sqrt{I_1} + \sqrt{I_2})^2\), et le <strong>contraste</strong> \(C = \dfrac{I_\text{max} - I_\text{min}}{I_\text{max} + I_\text{min}} = \dfrac{2\sqrt{I_1I_2}}{I_1 + I_2}\) vaut 1 seulement si \(I_1 = I_2\).</li>
+<li><strong>Sources incohérentes</strong> (deux lampes, deux lasers indépendants) : leur déphasage varie au hasard très vite, \(\langle\cos\Delta\varphi\rangle = 0\), et \(I = I_1 + I_2\) : les intensités s’ajoutent, aucune frange n’apparaît. C’est pourquoi on dédouble une même source.</li>
+</ul>
+<div class="methode" data-m="amplitudes-complexes"><p>Le calcul se fait aussi en représentant chaque onde par le nombre complexe \(A\,\mathrm e^{-i\varphi_k}\) (ou par un vecteur de Fresnel) : l’amplitude résultante est \(|A\,\mathrm e^{-i\varphi_1} + A\,\mathrm e^{-i\varphi_2}|\), et \(I \propto |{\cdot}|^2 = 2A^2(1 + \cos\Delta\varphi)\). Pour trois fentes ou plus, c’est la seule méthode raisonnable.</p></div>
+<div class="sim" data-name="interferences"><p>Deux sources cohérentes : regardez les hyperboles sombres (interférences destructives) se dessiner dans le plan, puis l’intensité moyenne et son profil sur l’écran. Rapprochez les sources ou augmentez \(\lambda\) : les franges s’écartent.</p></div>
+<p><strong>Fentes d’Young.</strong> Deux fentes distantes de \(a\), écran à la distance \(D \gg a\) ; au point d’abscisse \(x\) (\(x \ll D\)) de l’écran, \(\delta \approx a x / D\) (calcul ci-dessous). En reportant dans le résultat précédent, l’éclairement de l’écran est \(I(x) = 2I_0\left[1 + \cos\left(\dfrac{2\pi a x}{\lambda D}\right)\right]\) : une sinusoïde de période spatiale \(\lambda D/a\). Les franges brillantes sont en \(x_p = p\lambda D/a\), régulièrement espacées de l’<strong>interfrange</strong></p>
+\[i = \frac{\lambda D}{a}.\]
+<p>Avec \(\lambda = 600\) nm, \(a = 0{,}2\) mm, \(D = 2\) m : \(i = 6\) mm. L’interfrange croît avec \(\lambda\) (le rouge plus écarté que le bleu : en lumière blanche, frange centrale blanche, puis irisations) et avec \(D\), décroît avec \(a\). Si les fentes sont dans un milieu d’indice \(n\), \(\lambda \to \lambda/n\) : l’interfrange diminue.</p>
+<div class="methode" data-m="petit-parametre"><p><strong>Calcul de \(\delta\).</strong> Plaçons l’origine au milieu des fentes : \(S_1 = (0, a/2)\), \(S_2 = (0, -a/2)\), \(M = (D, x)\). Alors \(S_2M = \sqrt{D^2 + (x + a/2)^2} = D\sqrt{1 + \frac{(x + a/2)^2}{D^2}} \approx D + \frac{(x + a/2)^2}{2D}\) avec \((1 + \varepsilon)^{1/2} \approx 1 + \varepsilon/2\), puisque \(x\) et \(a\) sont petits devant \(D\). De même \(S_1M \approx D + \frac{(x - a/2)^2}{2D}\). Dans la différence, les termes en \(x^2\) et \(a^2\) se compensent : \((x + a/2)^2 - (x - a/2)^2 = 2ax\), d’où \(\delta = S_2M - S_1M \approx \dfrac{ax}{D}\).</p></div>
+<figure>
+<svg viewBox="0 0 640 250" width="640" role="img" aria-label="Dispositif des fentes d'Young : deux sources S1 et S2 distantes de a, écran à la distance D, point M d'abscisse x, différence de marche a x / D" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="oy-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker></defs>
+<rect x="100" y="40" width="6" height="180" fill="#5f6b80"/><rect x="100" y="104" width="6" height="8" fill="#fff"/><rect x="100" y="148" width="6" height="8" fill="#fff"/>
+<circle cx="103" cy="108" r="3" fill="#b23a48"/><text x="70" y="104" fill="#b23a48" font-weight="600">S₁</text><circle cx="103" cy="152" r="3" fill="#b23a48"/><text x="70" y="158" fill="#b23a48" font-weight="600">S₂</text>
+<line x1="60" y1="108" x2="60" y2="152" stroke="#15213a"/><line x1="55" y1="108" x2="65" y2="108" stroke="#15213a"/><line x1="55" y1="152" x2="65" y2="152" stroke="#15213a"/><text x="40" y="134" fill="#15213a" font-weight="600">a</text>
+<rect x="500" y="30" width="6" height="200" fill="#15213a"/>
+<line x1="103" y1="108" x2="500" y2="70" stroke="#b23a48" stroke-width="1.5"/><line x1="103" y1="152" x2="500" y2="70" stroke="#b23a48" stroke-width="1.5"/>
+<circle cx="500" cy="70" r="3" fill="#15213a"/><text x="512" y="74" fill="#15213a" font-weight="600">M (x)</text><text x="512" y="134" fill="#15213a">O</text>
+<line x1="103" y1="130" x2="500" y2="130" stroke="#15213a" stroke-dasharray="3 3"/><line x1="520" y1="130" x2="520" y2="70" stroke="#15213a"/><line x1="515" y1="130" x2="525" y2="130" stroke="#15213a"/><line x1="515" y1="70" x2="525" y2="70" stroke="#15213a"/><text x="528" y="104" fill="#15213a">x</text>
+<line x1="103" y1="236" x2="500" y2="236" stroke="#15213a"/><line x1="103" y1="231" x2="103" y2="241" stroke="#15213a"/><line x1="500" y1="231" x2="500" y2="241" stroke="#15213a"/><text x="295" y="232" fill="#15213a" font-weight="600">D ≫ a</text>
+<g fill="#2b6cb0"><rect x="540" y="40" width="40" height="12" opacity=".2"/><rect x="540" y="60" width="40" height="12" opacity=".9"/><rect x="540" y="80" width="40" height="12" opacity=".2"/><rect x="540" y="100" width="40" height="12" opacity=".9"/><rect x="540" y="120" width="40" height="12" opacity=".2"/><rect x="540" y="140" width="40" height="12" opacity=".9"/><rect x="540" y="160" width="40" height="12" opacity=".2"/><rect x="540" y="180" width="40" height="12" opacity=".9"/><rect x="540" y="200" width="40" height="12" opacity=".2"/></g>
+<text x="588" y="134" fill="#2b6cb0" font-weight="600" font-size="11">i = λD/a</text>
+<text x="140" y="24" fill="#15213a">δ = S₂M − S₁M ≈ a x / D   →   franges brillantes en x = p λ D / a</text>
+</svg>
+<figcaption>Fentes d’Young. La différence de marche vaut \(ax/D\) dans l’approximation des petits angles ; les franges sont équidistantes.</figcaption>
+</figure>
+<div class="methode" data-m="dephasage"><p>Pour les fentes d’Young, on écrit \(\delta = S_2M - S_1M \approx ax/D\), puis on impose \(\delta = p\lambda\) : les franges brillantes \(x_p = p\lambda D/a\) s’obtiennent sans calculer d’amplitude. Le même réflexe sert pour deux haut-parleurs, un réseau (\(\delta = a\sin\theta\)) ou un film mince (\(\delta = 2ne + \lambda/2\)).</p></div>
+<div class="sim" data-name="young"><p>Changez \(\lambda\), \(a\) et \(D\) : observez la figure d’interférences, l’interfrange et l’enveloppe de diffraction de chaque fente (largeur \(b\)).</p></div>
+<div class="exo" data-q="ipho-2025-T12"></div>
+<div class="exo" data-q="ipho-2019-T9"></div>
+<p><strong>Autres dispositifs.</strong> Deux haut-parleurs alimentés en phase : le long d’une ligne, maxima tous les \(\lambda D/a\) ; un microphone qu’on déplace trouve des minima nets. Sur une surface, les <strong>hyperboles</strong> \(d_2 - d_1 = p\lambda\) (franges) et \((p + \tfrac12)\lambda\) (lignes nodales). Deux antennes, deux fentes, un trou et son image dans un miroir (miroir de Lloyd, déphasage de \(\pi\) à la réflexion).</p>
+
+<div class="cpge" id="films" title="Films minces : bulles de savon, couches antireflet, anneaux">
+<p>Une lame d’épaisseur \(e\) et d’indice \(n\) éclairée sous incidence quasi normale renvoie deux ondes : réfléchie sur la face avant et sur la face arrière. Différence de marche \(\delta = 2ne\), à laquelle s’ajoute \(\lambda/2\) si une seule des deux réflexions se fait sur un milieu plus réfringent (déphasage de \(\pi\) à la réflexion air → verre, pas verre → air). Bulle de savon dans l’air : \(\delta = 2ne + \lambda/2\), maximum de réflexion si \(2ne = (p + \tfrac12)\lambda\) ; une bulle très mince (\(e \ll \lambda\)) apparaît <em>noire</em> en réflexion. Couche antireflet d’indice \(n_c\) sur du verre (deux réflexions sur plus réfringent, pas de \(\lambda/2\) supplémentaire) : extinction si \(2n_ce = \lambda/2\), soit \(e = \lambda/(4n_c)\) ; pour \(\lambda = 550\) nm et \(n_c = 1{,}38\), \(e = 100\) nm. Sous incidence \(i\), \(\delta = 2ne\cos r\). Les couleurs des bulles, des flaques d’huile et des ailes de papillon viennent de là.</p>
+</div>
+
+<h3 id="battements">Battements</h3>
+<p>Deux ondes de fréquences voisines \(f_1\) et \(f_2\) en un même point donnent \(s = A[\cos(2\pi f_1 t) + \cos(2\pi f_2 t)] = 2A\cos\left(2\pi\frac{f_1 - f_2}{2}t\right)\cos\left(2\pi\frac{f_1 + f_2}{2}t\right)\) : une vibration à la fréquence moyenne dont l’amplitude est modulée lentement. L’intensité passe par un maximum \(|f_1 - f_2|\) fois par seconde : <strong>fréquence des battements</strong> \(f_b = |f_1 - f_2|\). C’est ainsi qu’on accorde un instrument (on annule les battements avec le diapason) et que fonctionnent certains radars (battement entre l’onde émise et l’écho Doppler : \(f_b = 2vf/c\)).</p>
+<div class="methode" data-m="superposition"><p>On additionne les deux signaux, puis on transforme la somme en produit : la porteuse et l’enveloppe apparaissent directement. Même démarche pour les ondes stationnaires ci-dessous : l’onde incidente \(A\cos(\omega t - kx)\) plus l’onde réfléchie \(A\cos(\omega t + kx)\) donnent \(2A\cos(kx)\cos(\omega t)\), d’où les nœuds et les ventres.</p></div>
+
+<div class="exo" data-q="ipho-2019-T10"></div>
+<div class="exo" data-q="ipho-2010-11"></div>
+<div class="sim" data-name="battements"><p>Deux sons de fréquences voisines : la somme oscille à la fréquence moyenne avec une amplitude modulée à \(|f_1 - f_2|\). Écoutez-les (bouton) et rapprochez les fréquences.</p></div>
+
+<h3 id="stationnaires">Ondes stationnaires</h3>
+<p>Une onde et sa réflexion sur un obstacle se superposent : \(s = A\cos(\omega t - kx) + A\cos(\omega t + kx) = 2A\cos(kx)\cos(\omega t)\). Il n’y a plus de propagation : tous les points vibrent en phase (ou en opposition), avec une amplitude \(2A|\cos kx|\) qui dépend du point. Les <strong>nœuds</strong> (amplitude nulle) sont distants de \(\lambda/2\), les <strong>ventres</strong> aussi, nœuds et ventres alternant tous les \(\lambda/4\).</p>
+<p>Sur une <strong>corde fixée à ses deux extrémités</strong> (longueur \(L\)), les deux bouts sont des nœuds : \(L = n\,\lambda/2\), d’où les <strong>modes propres</strong></p>
+\[f_n = n\,\frac{v}{2L} = \frac{n}{2L}\sqrt{\frac{T}{\mu}}, \qquad n = 1, 2, 3\ldots\]
+<p>Le fondamental \(f_1 = v/2L\) fixe la hauteur de la note ; les harmoniques \(nf_1\) font le timbre. Tendre la corde (\(T\)), la raccourcir (\(L\), le doigt du guitariste) ou l’alléger (\(\mu\)) rend le son plus aigu. Corde de violon (\(L = 33\) cm, la 440 Hz) : \(v = 290\ \text{m·s}^{-1}\). <strong>Tuyaux sonores</strong> : extrémité ouverte = ventre de vibration (nœud de pression), extrémité fermée = nœud de vibration. Tuyau ouvert-ouvert (flûte) : \(f_n = nv/2L\) ; tuyau ouvert-fermé (clarinette, bouteille) : \(L = (2n+1)\lambda/4\), \(f = (2n+1)v/4L\), harmoniques impairs seulement, fondamental une octave plus bas qu’un tuyau ouvert de même longueur. Corde de Melde, résonance d’une colonne d’air, cavité micro-onde, orbites de Bohr (\(2\pi r = n\lambda\)) : même idée.</p>
+<div class="methode" data-m="conditions-limites"><p>Pour la clarinette (tuyau fermé à l’embouchure, ouvert au pavillon), un nœud de vibration d’un côté et un ventre de l’autre imposent \(L = \lambda/4, 3\lambda/4\ldots\) : seuls les harmoniques impairs \((2n+1)\,v/4L\) existent. Boucher la flûte (ouvert-ouvert) change donc le fondamental, pas seulement la liste des harmoniques.</p></div>
+<div class="exo" data-q="ipho-2023-T10"></div>
+<div class="exo" data-q="ipho-2014-15"></div>
+<div class="sim" data-name="stationnaire"><p>Modes propres d’une corde (nœuds, ventres, fréquences selon la tension, la masse linéique et la longueur), et la superposition de l’onde incidente avec l’onde réfléchie qui les engendre.</p></div>
+<figure>
+<svg viewBox="0 0 640 230" width="640" role="img" aria-label="Modes propres d'une corde fixée aux deux bouts : n = 1, 2, 3 ; tuyau ouvert-fermé" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<g stroke="#15213a" stroke-width="3"><line x1="40" y1="40" x2="40" y2="200"/><line x1="340" y1="40" x2="340" y2="200"/></g>
+<g fill="none" stroke="#2b6cb0" stroke-width="2"><path d="M40 60 Q190 10 340 60"/><path d="M40 60 Q190 110 340 60" stroke-dasharray="4 3"/>
+<path d="M40 120 Q115 80 190 120 T340 120"/><path d="M40 120 Q115 160 190 120 T340 120" stroke-dasharray="4 3"/>
+<path d="M40 180 Q90 150 140 180 T240 180 T340 180"/><path d="M40 180 Q90 210 140 180 T240 180 T340 180" stroke-dasharray="4 3"/></g>
+<text x="350" y="64" fill="#15213a" font-weight="600">n = 1 : L = λ/2, f₁ = v/2L</text><text x="350" y="124" fill="#15213a" font-weight="600">n = 2 : L = λ, f₂ = 2f₁</text><text x="350" y="184" fill="#15213a" font-weight="600">n = 3 : L = 3λ/2, f₃ = 3f₁</text>
+<g fill="#b23a48"><circle cx="190" cy="120" r="4"/><circle cx="140" cy="180" r="4"/><circle cx="240" cy="180" r="4"/></g><text x="196" y="138" fill="#b23a48" font-size="11">nœud</text>
+<text x="40" y="24" fill="#15213a" font-weight="600">Corde fixée aux deux bouts : nœuds aux extrémités</text>
+<text x="40" y="222" fill="#15213a" font-size="11">Tuyau ouvert-ouvert : mêmes fréquences (ventres aux bouts). Tuyau ouvert-fermé : L = λ/4, 3λ/4… f = (2n+1) v/4L.</text>
+</svg>
+<figcaption>Les trois premiers modes d’une corde. Entre deux nœuds consécutifs, une demi-longueur d’onde.</figcaption>
+</figure>
+
+<h2 id="diffraction">4. Diffraction et réseaux</h2>
+<p>Une onde qui rencontre une ouverture ou un obstacle de taille \(a\) comparable à \(\lambda\) s’étale derrière : c’est la <strong>diffraction</strong>, conséquence du principe de Huygens (chaque point du front d’onde atteint est une source secondaire). Pour une fente de largeur \(a\), l’intensité s’annule dans les directions \(\sin\theta = p\lambda/a\) ; la tache centrale a une demi-largeur angulaire</p>
+\[\theta \approx \frac{\lambda}{a}\qquad(\text{en radians, } \lambda \ll a),\]
+<p>soit une largeur \(2\lambda D/a\) sur un écran à la distance \(D\). Plus la fente est étroite, plus la tache est large ; un cheveu de diamètre \(a\) donne la même figure qu’une fente (théorème de Babinet) : on mesure ainsi son diamètre. Pour une ouverture circulaire de diamètre \(D\), la tache d’Airy a un rayon angulaire \(1{,}22\,\lambda/D\) : c’est ce qui limite la <strong>résolution</strong> d’un instrument (critère de Rayleigh, deux points séparés si leur écart angulaire dépasse \(1{,}22\,\lambda/D\)) : œil (\(D = 3\) mm) \(\approx 2\times10^{-4}\) rad, soit 1 mm à 5 m ; télescope de 8 m à 500 nm : \(8\times10^{-8}\) rad. Le son (\(\lambda \sim 1\) m) contourne les portes ; la lumière (\(\lambda \sim 0{,}5\) µm) va droit sauf devant les très petites ouvertures.</p>
+<h3 id="obstacle-inconnu">Diffraction par une ouverture quelconque : retrouver l’obstacle</h3>
+<p>Une question revient souvent au test de présélection : on montre une figure de diffraction obtenue avec un laser et l’on demande la forme de l’objet (ouverture ou obstacle) qui l’a produite. On n’a pas à calculer la figure : quelques propriétés suffisent. Elles viennent toutes du même résultat : loin de l’objet (diffraction « à l’infini »), l’amplitude dans une direction est la somme des ondelettes émises par tous les points de l’ouverture, avec leur déphasage \(2\pi\delta/\lambda\) ; une dimension \(a\) de l’objet produit des variations d’intensité à l’échelle angulaire \(\lambda/a\).</p>
+<figure>
+<img src="img/fig/diffraction-formes.webp" alt="Six ouvertures (fente fine verticale, rectangle couché, disque, triangle, hexagone, deux trous) et leurs figures de diffraction à l’infini calculées : traînée horizontale, croix plus étalée verticalement, anneaux d’Airy, étoile à six branches, étoile à six branches, tache rayée de franges verticales" loading="lazy" width="970" height="374">
+<figcaption>Figures de diffraction à l’infini calculées pour six ouvertures (intensité en échelle logarithmique pour faire voir les détails). La fente verticale donne une traînée horizontale ; le triangle, à trois côtés, donne six branches ; les deux trous alignés horizontalement donnent des franges verticales.</figcaption>
+</figure>
+<p>Pour reconnaître l’objet, on vérifie les règles suivantes, dans cet ordre :</p>
+<ol>
+<li><strong>Inversion des échelles.</strong> La figure est d’autant plus étalée dans une direction que l’objet est étroit dans cette direction (\(\theta \approx \lambda/a\)) : une fente verticale donne une traînée horizontale, un rectangle couché une croix plus haute que large.</li>
+<li><strong>Bords rectilignes.</strong> Chaque bord droit de l’ouverture produit une traînée lumineuse perpendiculaire à ce bord, passant par le centre. Un contour courbe (disque, ellipse) ne donne pas de traînée mais des anneaux (anneaux d’Airy pour un disque, premier anneau sombre à \(1{,}22\,\lambda/D\)).</li>
+<li><strong>Symétrie centrale.</strong> L’intensité est toujours symétrique par rapport au centre, même si l’objet ne l’est pas. Un polygone régulier à \(n\) côtés donne donc \(2n\) branches si \(n\) est impair (triangle : 6, pentagone ou étoile à cinq branches : 10), \(n\) seulement si \(n\) est pair (carré : 4, hexagone : 6). Un triangle et un hexagone se distinguent par les détails (franges le long des branches), pas par le nombre de branches.</li>
+<li><strong>Rotation.</strong> Tourner l’objet tourne la figure du même angle : les branches sont perpendiculaires aux côtés, ce qui fixe l’orientation de l’objet.</li>
+<li><strong>Plusieurs motifs identiques.</strong> Deux ouvertures identiques séparées de \(e\) donnent la figure d’une seule, rayée de franges d’Young perpendiculaires à la droite qui les joint, d’interfrange angulaire \(\lambda/e\) ; \(N\) motifs réguliers (réseau) concentrent la lumière dans des directions très fines.</li>
+<li><strong>Babinet.</strong> Un obstacle opaque et l’ouverture de même forme donnent la même figure (en dehors du centre) : un cheveu diffracte comme une fente, une poussière comme un trou.</li>
+</ol>
+<div class="methode" data-m="figure-diffraction"><p>Face à une figure inconnue : comptez les branches et repérez leurs directions (chaque branche est perpendiculaire à un bord ; divisez par deux si \(n\) est impair), regardez dans quelle direction la figure est la plus étalée (c’est la direction où l’objet est le plus étroit), cherchez des franges régulières (deux motifs : franges perpendiculaires à la droite qui les joint) et des anneaux (contour circulaire). Éliminez ensuite les réponses qui violent la symétrie centrale ou l’orientation.</p></div>
+<div class="sim" data-name="diffraction2d"><p>Choisissez une ouverture, tournez-la, changez sa taille : la figure de diffraction est recalculée (transformée de Fourier). Vérifiez chacune des règles ci-dessus, puis entraînez-vous : masquez la colonne de gauche avec la main et devinez l’ouverture.</p></div>
+<div class="exo" data-q="ipho-2021-T4"></div>
+<div class="exo" data-q="ipho-2018-C10"></div>
+<div class="exo" data-q="ipho-2016-C2"></div>
+<p><strong>Réseau.</strong> \(N\) fentes (ou traits) régulièrement espacées de \(a\) (le <strong>pas</strong>) : les ondes issues de deux traits voisins ont une différence de marche \(a\sin\theta\) (incidence normale), constructive si</p>
+\[a\sin\theta_p = p\,\lambda\qquad(p \text{ entier : ordre}).\]
+<p>Les maxima sont d’autant plus fins que \(N\) est grand (largeur angulaire \(\approx \lambda/(Na)\)) : le réseau <strong>disperse</strong> la lumière et sert de spectromètre ; le pouvoir de résolution vaut \(\lambda/\Delta\lambda = pN\). Avec \(a = 2\) µm (500 traits/mm) et \(\lambda = 600\) nm : \(\theta_1 = 17{,}5°\), \(\theta_2 = 37°\), et l’ordre 3 n’existe pas (\(\sin\theta > 1\)). Un CD (pas 1,6 µm) et les ailes de certains papillons sont des réseaux par réflexion. Sous incidence \(\theta_0\), la condition devient \(a(\sin\theta - \sin\theta_0) = p\lambda\).</p>
+<figure>
+<svg viewBox="0 0 640 220" width="640" role="img" aria-label="Réseau : deux traits voisins distants de a, rayons diffractés dans la direction theta, différence de marche a sin theta" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
+<defs><marker id="og-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23a48"/></marker></defs>
+<rect x="200" y="30" width="6" height="170" fill="#5f6b80"/><g fill="#fff"><rect x="200" y="50" width="6" height="6"/><rect x="200" y="90" width="6" height="6"/><rect x="200" y="130" width="6" height="6"/><rect x="200" y="170" width="6" height="6"/></g>
+<g stroke="#2b6cb0" stroke-width="1.5"><line x1="60" y1="53" x2="198" y2="53"/><line x1="60" y1="93" x2="198" y2="93"/><line x1="60" y1="133" x2="198" y2="133"/><line x1="60" y1="173" x2="198" y2="173"/></g><text x="60" y="40" fill="#2b6cb0" font-weight="600">onde plane incidente</text>
+<g stroke="#b23a48" stroke-width="2" marker-end="url(#og-r)"><line x1="206" y1="53" x2="420" y2="-10"/><line x1="206" y1="93" x2="420" y2="30"/><line x1="206" y1="133" x2="420" y2="70"/><line x1="206" y1="173" x2="420" y2="110"/></g>
+<line x1="206" y1="133" x2="246" y2="133" stroke="#15213a" stroke-dasharray="3 3"/><path d="M236 133 A30 30 0 0 0 232 125" fill="none" stroke="#15213a"/><text x="246" y="128" fill="#15213a">θ</text>
+<line x1="206" y1="173" x2="243" y2="160" stroke="#1f8a4c" stroke-width="2"/><text x="214" y="196" fill="#1f8a4c" font-weight="600">δ = a sin θ</text>
+<line x1="180" y1="133" x2="180" y2="173" stroke="#15213a"/><line x1="175" y1="133" x2="185" y2="133" stroke="#15213a"/><line x1="175" y1="173" x2="185" y2="173" stroke="#15213a"/><text x="160" y="157" fill="#15213a" font-weight="600">a</text>
+<text x="430" y="150" fill="#15213a" font-weight="600">maxima : a sin θ = p λ</text><text x="430" y="170" fill="#15213a" font-size="11">plus N est grand, plus les pics sont fins</text><text x="430" y="186" fill="#15213a" font-size="11">(largeur ≈ λ / N a)</text>
+</svg>
+<figcaption>Réseau de pas \(a\) sous incidence normale : interférences constructives entre traits voisins quand \(a\sin\theta = p\lambda\).</figcaption>
+</figure>
+<div class="exo" data-q="ipho-2024-T3"></div>
+<div class="exo" data-q="ipho-2014-3"></div>
+<div class="exo" data-q="ipho-2005-6"></div>
+<div class="exo" data-q="ipho-2008-13"></div>
+<div class="cpge" id="bragg" title="Loi de Bragg : diffraction des rayons X par un cristal">
+<p>Dans un cristal, les plans atomiques parallèles distants de \(d\) réfléchissent une onde de longueur d’onde \(\lambda\) (rayons X, \(\lambda \sim 0{,}1\) nm, ou neutrons, électrons). Les réflexions sur deux plans voisins ont une différence de marche \(2d\sin\theta\), où \(\theta\) est l’angle entre le rayon et le <em>plan</em> (pas la normale) : interférences constructives si \(2d\sin\theta = p\lambda\). C’est ainsi qu’on mesure les distances interatomiques (et qu’on a lu la structure de l’ADN). Le même raisonnement explique les couleurs des opales et de certains cristaux photoniques.</p>
+</div>
+<div class="piege">
+<ul>
+<li>Interférences : on ajoute les <strong>amplitudes</strong> (avec leurs phases), pas les intensités ; deux sources non cohérentes n’interfèrent pas.</li>
+<li>Une réflexion sur un milieu plus réfringent ajoute \(\lambda/2\) à la différence de marche ; dans un milieu d’indice \(n\), le chemin optique vaut \(n\) fois la distance.</li>
+<li>Doppler sonore : ce qui compte est le mouvement par rapport au <strong>milieu</strong> (l’air) ; vérifiez le sens (la fréquence augmente à l’approche).</li>
+<li>Tuyau fermé à un bout : seulement les harmoniques <strong>impairs</strong> ; \(L = \lambda/4\) pour le fondamental, pas \(\lambda/2\).</li>
+<li>Diffraction : l’angle \(\lambda/a\) est une demi-largeur (du centre à la première extinction) ; la tache centrale a une largeur angulaire \(2\lambda/a\).</li>
+</ul>
+</div>
+
+<div class="cpge" id="polarisation" title="Polarisation : loi de Malus et angle de Brewster">
+<p>La lumière est une onde transversale : le champ électrique vibre perpendiculairement à la propagation. Un <strong>polariseur</strong> ne transmet que la composante du champ parallèle à son axe : lumière naturelle (toutes directions) → transmission \(I_0/2\) ; lumière polarisée faisant l’angle \(\theta\) avec l’axe → \(I = I_0\cos^2\theta\) (<strong>loi de Malus</strong>, car l’intensité est le carré de l’amplitude \(E_0\cos\theta\)). Deux polariseurs croisés éteignent la lumière, mais un troisième à 45° entre les deux en rétablit \(I_0/8\). La lumière réfléchie sur un diélectrique est partiellement polarisée perpendiculairement au plan d’incidence ; elle l’est totalement à l’<strong>angle de Brewster</strong> \(\tan i_B = n_2/n_1\) (eau : 53°, verre : 56°), quand rayon réfléchi et réfracté sont perpendiculaires : les lunettes de soleil polarisantes coupent les reflets de l’eau et de la route. Le ciel bleu (diffusion Rayleigh en \(1/\lambda^4\)) est lui aussi polarisé à 90° du Soleil.</p>
+</div>
+<div class="piege">
+<ul>
+<li>Mesures <strong>algébriques</strong> : \(\overline{OA} < 0\) pour un objet réel à gauche de la lentille. Oublier le signe donne une image du mauvais côté.</li>
+<li>\(f'\) en mètres pour obtenir des dioptries ; une lentille de 5 δ a \(f' = 20\) cm.</li>
+<li>Le grossissement (rapport d’angles, sans dimension) n’est pas le grandissement (rapport de tailles). Une loupe « ×10 » a \(f' = 2{,}5\) cm.</li>
+<li>Snell-Descartes : les angles se mesurent par rapport à la <strong>normale</strong>, pas à la surface ; vérifiez que \(\sin i_2 \le 1\) avant de calculer l’arcsinus.</li>
+<li>L’image à travers une lentille divergente, ou une loupe, est virtuelle : on ne peut pas la recueillir sur un écran.</li>
+</ul>
+</div>
+
+<div class="cpge" id="plus-loin" title="Pour aller plus loin : polycopiés olympiques">
+<p>Pour viser l’IPhO internationale, deux ressources en anglais, gratuites et d’un très bon niveau, reprennent ce chapitre en profondeur avec des centaines de problèmes corrigés :</p>
+<ul>
+<li><a href="https://knzhou.github.io/handouts/W1.pdf" target="_blank" rel="noopener">K. Zhou, polycopié W1</a> (équation d’onde, cordes, réflexions, énergie) · <a href="https://knzhou.github.io/handouts/W1Sol.pdf" target="_blank" rel="noopener">solutions</a></li>
+<li><a href="https://knzhou.github.io/handouts/W2.pdf" target="_blank" rel="noopener">K. Zhou, polycopié W2</a> (interférences et diffraction) · <a href="https://knzhou.github.io/handouts/W2Sol.pdf" target="_blank" rel="noopener">solutions</a></li>
+<li><a href="https://knzhou.github.io/handouts/W3.pdf" target="_blank" rel="noopener">K. Zhou, polycopié W3</a> (son, vagues et lumière : Doppler, dispersion) · <a href="https://knzhou.github.io/handouts/W3Sol.pdf" target="_blank" rel="noopener">solutions</a></li>
+<li><a href="https://www.ioc.ee/~kalda/ipho/" target="_blank" rel="noopener">J. Kalda, <em>Wave optics</em></a> (interférences, diffraction, réseaux, résolution des instruments)</li>
+</ul>
+<p>Les problèmes de ces polycopiés les plus utiles pour ce chapitre sont traduits et corrigés dans la section « S’entraîner » ci-dessous, source indiquée. Les polycopiés de Kevin Zhou ont été écrits pour l’équipe américaine (2019-2024) ; les guides de Jaan Kalda, pour l’équipe estonienne.</p>
+</div>

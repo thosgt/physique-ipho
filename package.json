@@ -1,0 +1,7 @@
+{
+  "name": "physique-ipho",
+  "private": true,
+  "description": "Physique des olympiades : préparation IPhO et Concours général (T. Sergent)",
+  "engines": { "node": ">=20" },
+  "dependencies": { "postgres": "3.4.5" }
+}
