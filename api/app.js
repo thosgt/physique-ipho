@@ -7,7 +7,7 @@ const { setSession, clearSession, getSession, sameSecret } = require("../lib/aut
 const { correct } = require("../lib/claude");
 
 const DAY = 86400000;
-const DEFAULT_SETTINGS = { claude: true, quota: 15, open: false };
+const DEFAULT_SETTINGS = { claude: true, quota: 15, open: true };
 const CHAP_TITLES = { outils: "Outils", statique: "Statique des fluides", dynamique: "Dynamique des fluides", tension: "Tension superficielle",
   nongalileen: "Référentiels non galiléens", geometrique: "Optique géométrique", optique: "Ondes et optique", relativite: "Relativité",
   nucleaire: "Nucléaire", quantique: "Quantique" };
