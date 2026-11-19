@@ -142,6 +142,23 @@ const actions = {
     return out;
   },
 
+  // Réponses faites sans compte dans ce navigateur, versées dans le compte à la connexion
+  async importLocal(req, res, b) {
+    const s = await needStudent(req);
+    const list = Array.isArray(b.attempts) ? b.attempts.slice(-5000) : [];
+    const Q = bank().q, now = Date.now();
+    let n = 0;
+    for (const a of list) {
+      const q = Q[str(a && a.qid, 120)]; if (!q) continue;
+      const id = "l" + str(a.id, 60).replace(/[^\w-]/g, "") + "-" + s.sid;
+      const ts = Math.min(now, Math.max(now - 730 * DAY, Number(a.ts) || now));
+      await query(`INSERT INTO attempts (id, sid, qid, chap, score, mode, hints, ts) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) ON CONFLICT (id) DO NOTHING`,
+        [id.slice(0, 140), s.sid, q.id, q.chap, clampScore(a.score), str(a.mode, 40), Math.max(0, Math.min(9, parseInt(a.hints) || 0)), ts]);
+      n++;
+    }
+    return { imported: n };
+  },
+
   async mine(req) {
     const s = await needStudent(req);
     return {

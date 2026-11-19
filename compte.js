@@ -14,8 +14,17 @@ function API(a, body){
   });
 }
 let ME = null, LAST = {};
+/* visiteur sans compte : réponses gardées dans ce navigateur (versées dans le compte à la connexion) */
+const LKEY = 'olymp-suivi';
+function localAll(){ try { const a = JSON.parse(localStorage.getItem(LKEY) || '[]'); return Array.isArray(a) ? a : []; } catch(e){ return []; } }
+function localSave(a){ try { const all = localAll().filter(x => x.id !== a.id); all.push(a); localStorage.setItem(LKEY, JSON.stringify(all.slice(-5000))); } catch(e){} }
+function localClear(){ try { localStorage.removeItem(LKEY); } catch(e){} }
+const isVisitor = () => !ME || !ME.role;
 const ready = API('me').then(m => { ME = m; }).catch(() => { ME = {role: null, open: true, offline: true}; })
-  .then(async () => { if (ME.role === 'eleve'){ try { const m = await API('mine'); m.attempts.forEach(a => LAST[a.qid] = a); } catch(e){} } });
+  .then(async () => {
+    if (ME.role === 'eleve'){ try { const m = await API('mine'); m.attempts.forEach(a => LAST[a.qid] = a); } catch(e){} }
+    else if (!ME.role) localAll().forEach(a => { if (!LAST[a.qid] || LAST[a.qid].ts <= a.ts) LAST[a.qid] = a; });
+  });
 
 const E = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
 const DAYMS = 86400000;
@@ -38,16 +47,16 @@ HOOKS.corrector = () => ready.then(() => ME && ME.claude && ME.claude.enabled ? 
 } : null);
 
 HOOKS.done = (q, d) => {
-  if (!ME || ME.role !== 'eleve') return;
+  if (ME && ME.role === 'admin') return;
   if (!d.dataset.aid) d.dataset.aid = q.id.replace(/[^\w-]/g, '').slice(-30) + '-' + Math.random().toString(36).slice(2, 10);
   const a = {id: d.dataset.aid, qid: q.id, score: parseFloat(d.dataset.score || 0), hints: parseInt(d.dataset.hints || 0), mode: mode()};
   LAST[q.id] = {...a, chap: q.chap, ts: Date.now()};
-  API('attempt', a).catch(() => {});
+  if (isVisitor()) localSave(LAST[q.id]); else API('attempt', a).catch(() => {});
 };
 
 HOOKS.decorate = (q, d) => {
   const a = LAST[q.id]; if (!a) return;
-  const m = d.querySelector('.meta'); if (!m) return;
+  const m = d.querySelector('.meta'); if (!m || m.querySelector('.tag.seen')) return;
   const t = document.createElement('span'); t.className = 'tag seen ' + scoreCls(a.score);
   t.title = 'Votre dernière réponse, ' + ago(a.ts); t.textContent = 'déjà faite · ' + scoreLabel(a.score);
   m.prepend(t);
@@ -152,7 +161,7 @@ function gate(){
     <p>Entrez le code personnel donné par votre professeur. Il garde votre progression d’un appareil à l’autre. Professeur : entrez votre mot de passe.</p>
     <form><input id="cptCode" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ABC-DEF" aria-label="Code personnel">
     <button class="cpt-btn" type="submit">Entrer</button><p class="err" aria-live="polite"></p></form>
-    ${ME && ME.open ? '<p style="margin:14px 0 0"><button type="button" class="cpt-btn sec" data-skip>Continuer sans compte</button></p>' : ''}
+    ${ME && ME.open ? '<p style="margin:14px 0 0"><button type="button" class="cpt-btn sec" data-skip>Continuer sans compte</button><br><small style="color:var(--fg-2)">Votre progression restera alors dans ce navigateur.</small></p>' : ''}
   </div>`;
   document.body.appendChild(g);
   const inp = g.querySelector('input'), err = g.querySelector('.err'), btn = g.querySelector('button[type=submit]');
@@ -161,6 +170,8 @@ function gate(){
     e.preventDefault(); err.textContent = ''; btn.disabled = true;
     try {
       const r = await API('login', {code: inp.value});
+      const loc = localAll();
+      if (r.role === 'eleve' && loc.length){ try { await API('importLocal', {attempts: loc}); localClear(); } catch(x){} }
       if (r.role === 'admin' && !location.hash.startsWith('#admin')) location.hash = '#admin';
       location.reload();
     } catch(x){ err.textContent = x.userMessage || 'Connexion impossible.'; btn.disabled = false; inp.select(); }
@@ -179,7 +190,7 @@ function accountBox(){
     b.innerHTML = `<div class="who">Espace professeur</div><a href="#admin" data-page="admin">Tableau de bord de la classe</a>
       <a href="#admin/eleves">Élèves et codes</a><button type="button" class="lk" data-out>Se déconnecter</button>`;
   } else {
-    b.innerHTML = `<div class="who">Visiteur<small>Votre progression n’est pas enregistrée.</small></div><button type="button" class="lk" data-in>Se connecter</button>`;
+    b.innerHTML = `<div class="who">Visiteur<small>Progression gardée dans ce navigateur.</small></div><a href="#suivi" data-page="suivi">Mon tableau de bord</a><button type="button" class="lk" data-in>Se connecter avec un code</button>`;
   }
   const lvl = rail.querySelector('.level'); (lvl || rail.querySelector('.brand')).after(b);
   b.addEventListener('click', e => { if (e.target.closest('[data-out]')) logout(); if (e.target.closest('[data-in]')) gate(); });
@@ -196,6 +207,8 @@ ready.then(() => {
   if (ME.role === 'eleve'){ let lv = null; try { lv = localStorage.getItem('olymp-niveau'); } catch(e){}
     if (!lv && ME.me.niveau === 'C'){ const bt = document.querySelector('.level button[data-lvl="C"]'); if (bt) bt.click(); } }
   const h = mode(); if (h === 'suivi' || h === 'admin') route();
+  // questions affichées avant la lecture du suivi
+  document.querySelectorAll('#view .q[data-id]').forEach(d => HOOKS.decorate({id: d.dataset.id}, d));
 });
 
 /* ------------------------------------------------------------ calculs communs */
@@ -287,7 +300,16 @@ async function showSuivi(){
   view.className = 'page wide dash'; view.dataset.page = '';
   view.innerHTML = '<p class="loading">Chargement…</p>';
   await ready;
-  if (!ME || ME.role !== 'eleve'){
+  if (isVisitor()){
+    const loc = localAll();
+    view.innerHTML = `<p class="eyebrow">Mon suivi</p><h1>Mon tableau de bord</h1>
+      <p class="muted">Sans compte, votre progression est enregistrée dans ce navigateur seulement (elle disparaît si vous effacez les données du site, et ne suit pas sur un autre appareil).${ME && !ME.offline ? ' Avec un code donné par votre professeur, elle est versée dans votre compte.' : ''}</p>
+      ${ME && !ME.offline ? '<p><button class="cpt-btn" type="button" id="cptIn">Se connecter avec un code</button></p>' : ''}<div id="sd"></div>`;
+    const b = document.getElementById('cptIn'); if (b) b.addEventListener('click', gate);
+    await renderStudentDash(view.querySelector('#sd'), loc, [], LEVEL);
+    window.scrollTo(0, 0); return;
+  }
+  if (ME.role !== 'eleve'){
     view.innerHTML = ME && ME.role === 'admin' ? '<h1>Tableau de bord</h1><p>Vous êtes connecté comme professeur : votre tableau de bord est <a href="#admin">celui de la classe</a>.</p>'
       : '<h1>Mon tableau de bord</h1><p>Connectez-vous avec votre code pour suivre votre progression.</p><p><button class="cpt-btn" type="button" id="cptIn">Se connecter</button></p>';
     const b = document.getElementById('cptIn'); if (b) b.addEventListener('click', gate); return;
@@ -439,7 +461,7 @@ function adminSettings(root){
     <label class="switch"><input type="checkbox" id="stC"${st.claude ? ' checked' : ''}><div><b>Proposer la correction par Claude aux élèves</b><span>Bouton « Faire corriger par Claude » sous les questions à rédiger.</span></div></label>
     <div class="form-row"><label>Corrections par élève et par 24 h<input type="number" id="stQ" min="0" max="200" value="${st.quota}" style="width:8em"></label></div>
     <h2>Accès au site</h2>
-    <label class="switch"><input type="checkbox" id="stO"${st.open ? ' checked' : ''}><div><b>Accès sans code</b><span>Un visiteur peut lire le cours et faire les exercices sans compte (rien n’est enregistré, pas de correction par Claude). Sinon, le code est demandé à l’entrée.</span></div></label>
+    <label class="switch"><input type="checkbox" id="stO"${st.open ? ' checked' : ''}><div><b>Accès sans code</b><span>Un visiteur peut lire le cours et faire les exercices sans compte : sa progression est gardée dans son navigateur et versée dans son compte s’il se connecte plus tard ; pas de correction par Claude sans code. Sinon, le code est demandé à l’entrée.</span></div></label>
     <p class="form-row"><button class="cpt-btn" type="button" id="stB">Enregistrer les réglages</button><span id="stOut"></span></p>`;
   root.querySelector('#stB').addEventListener('click', async () => {
     const o = root.querySelector('#stOut');
