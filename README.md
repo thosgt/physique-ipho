@@ -4,7 +4,7 @@ Préparation au test de présélection des IPhO (Terminale et CPGE) et au Concou
 
 - Site : https://physique-ipho.vercel.app
 - Artefact Claude source : https://claude.ai/artifact/USoqxVAkNMq9ZvTr2Rf5M6
-- Mis à jour le 19 novembre 2026 depuis la version 1795123617-0c87 de l'artefact (plus le serveur et les comptes) : chapitres mécanique du solide, champ électrique, champ magnétique et induction, particules chargées ; méthodes ; problèmes APhO et RMPh ; corrigés par étapes ; un compte élève de CPGE est verrouillé sur le niveau CPGE, sans les sujets du Concours général.
+- Mis à jour le 19 novembre 2026 depuis la version 1795124577-220f de l'artefact (plus le serveur et les comptes) : chapitres mécanique du solide, champ électrique, champ magnétique et induction, particules chargées ; méthodes ; problèmes APhO et RMPh ; corrigés par étapes ; un compte élève de CPGE est verrouillé sur le niveau CPGE, sans les sujets du Concours général.
 
 Généré depuis l'artefact Claude ; ne pas modifier à la main, redemander un déploiement à Claude. Hébergé sur Vercel.
 
