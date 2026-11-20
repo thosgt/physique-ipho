@@ -7,6 +7,17 @@ const { setSession, clearSession, getSession, sameSecret } = require("../lib/aut
 const { correct } = require("../lib/claude");
 
 const DAY = 86400000;
+// Photos de copie : 3 au plus, JPEG/PNG/WebP en data URL, 1,2 Mo chacune (réduites par le navigateur avant l'envoi).
+function readPhotos(v) {
+  if (v === undefined || v === null) return [];
+  if (!Array.isArray(v) || v.length > 3) fail(400, "Trois photos au maximum.");
+  return v.map(p => {
+    const m = typeof p === "string" && p.length <= 1700000 ? /^data:(image\/(?:jpeg|png|webp));base64,([A-Za-z0-9+/]+=*)$/.exec(p) : null;
+    if (!m) fail(400, "Photo illisible ou trop lourde : reprenez-la, puis réessayez.");
+    return { media_type: m[1], data: m[2] };
+  });
+}
+
 const DEFAULT_SETTINGS = { claude: true, quota: 15, open: true };
 const CHAP_TITLES = { outils: "Outils", statique: "Statique des fluides", dynamique: "Dynamique des fluides", tension: "Tension superficielle",
   nongalileen: "Référentiels non galiléens", geometrique: "Optique géométrique", optique: "Ondes et optique", relativite: "Relativité",
@@ -136,10 +147,14 @@ const actions = {
     const q = Q[str(b.qid, 120)];
     if (!q || q.type !== "open") fail(404, "Question introuvable.");
     const answer = str(b.answer, 3000).trim();
-    if (answer.length < 3) fail(400, "Écrivez d'abord votre réponse.");
-    const out = await correct(q, q.group ? G[q.group] : null, answer);
+    const photos = readPhotos(b.photos);
+    if (answer.length < 3 && !photos.length) fail(400, "Écrivez d'abord votre réponse, même inachevée, ou joignez une photo de votre copie.");
+    const mode = b.mode === "aide" ? "aide" : "";
+    const out = await correct(q, q.group ? G[q.group] : null, answer, photos, mode);
+    // Les photos ne sont pas conservées : on garde ce que Claude y a lu.
+    const kept = photos.length ? `[${photos.length} photo${photos.length > 1 ? "s" : ""}] Lu : ${out.lu || "?"}${answer ? " | " + answer : ""}`.slice(0, 3000) : answer;
     await query("INSERT INTO claude_log (id, sid, qid, ts, answer, verdict, comment) VALUES ($1,$2,$3,$4,$5,$6,$7)",
-      [uid("c"), sid, q.id, Date.now(), answer, out.verdict, out.commentaire]);
+      [uid("c"), sid, q.id, Date.now(), kept, out.verdict, out.commentaire]);
     return out;
   },
 

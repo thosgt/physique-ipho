@@ -43,7 +43,14 @@ const mode = () => decodeURIComponent((location.hash || '#accueil').slice(1)).sp
 
 /* ------------------------------------------------------------ crochets de la page */
 HOOKS.corrector = () => ready.then(() => ME && ME.claude && ME.claude.enabled ? {
-  correct: (q, answer) => API('correct', {qid: q.id, answer}).then(r => { if (ME.claude) ME.claude.used++; return r; })
+  photos: true,
+  correct: async (q, answer, photos, mode) => {
+    const urls = await Promise.all((photos || []).map(b => new Promise((ok, ko) => { const fr = new FileReader(); fr.onload = () => ok(fr.result); fr.onerror = ko; fr.readAsDataURL(b); })));
+    const body = {qid: q.id, answer}; if (urls.length) body.photos = urls; if (mode) body.mode = mode;
+    const r = await API('correct', body);
+    if (ME.claude) ME.claude.used++;
+    return r;
+  }
 } : null);
 
 HOOKS.done = (q, d) => {
@@ -291,7 +298,7 @@ async function renderStudentDash(root, attempts, claude, lv, opts = {}){
   h += `</div><div><h2>Corrections par Claude</h2>`;
   if (!claude.length) h += '<p class="muted">Aucune pour l’instant. Les questions « réponse à rédiger » proposent le bouton « Faire corriger par Claude ».</p>';
   else h += claude.slice(0, opts.admin ? 100 : 10).map(c => { const q = data.qById[c.qid]; const s = c.verdict === 'juste' ? 1 : c.verdict === 'partiel' ? .5 : 0;
-    return `<div class="cl"><div class="h"><span class="pill ${scoreCls(s)}">${c.verdict === 'partiel' ? 'en partie' : c.verdict === 'juste' ? 'juste' : 'à revoir'}</span><a href="#question/${encodeURIComponent(c.qid)}">${E(qLabel(q))}</a><span>${E(ago(c.ts))}</span></div>${c.answer ? `<div class="ans">${E(c.answer)}</div>` : ''}<div class="cm">${E(c.comment)}</div></div>`; }).join('');
+    return `<div class="cl"><div class="h"><span class="pill ${c.verdict === 'aide' ? '' : scoreCls(s)}">${c.verdict === 'aide' ? 'piste' : c.verdict === 'partiel' ? 'en partie' : c.verdict === 'juste' ? 'juste' : 'à revoir'}</span><a href="#question/${encodeURIComponent(c.qid)}">${E(qLabel(q))}</a><span>${E(ago(c.ts))}</span></div>${c.answer ? `<div class="ans">${E(c.answer)}</div>` : ''}<div class="cm">${E(c.comment)}</div></div>`; }).join('');
   h += '</div></div>';
   root.innerHTML = h; typeset(root);
 }

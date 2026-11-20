@@ -217,6 +217,14 @@ details.complement[open]{background:var(--bg-2)}
 .q .redac{margin:10px 0}
 .q .redac textarea{width:100%;min-height:4.5em;font:inherit;font-size:.93rem;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);resize:vertical}
 .q .redac textarea:focus{outline:2px solid var(--accent);outline-offset:0}
+.q .redac .photos{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0 0}
+.q .redac .photos[hidden]{display:none}
+.q .redac .ph{position:relative;width:64px;height:64px;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--bg)}
+.q .redac .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.q .redac .ph button{position:absolute;top:2px;right:2px;width:20px;height:20px;padding:0;border:0;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:20px;cursor:pointer}
+.q .redac .addph{display:inline-block;font-size:.85rem;padding:6px 10px;border:1px dashed var(--line);border-radius:6px;cursor:pointer;color:var(--fg-2)}
+.q .redac .addph:hover,.q .redac .addph:focus-within{border-color:var(--accent);color:var(--fg)}
+.q .claude .lu{display:block;margin-top:6px;font-size:.85rem;color:var(--fg-2)}
 .q .redac .note{font-size:.8rem;color:var(--fg-2);margin:4px 0 0}
 .q .claude{margin-top:10px;padding:10px 12px;border-left:3px solid var(--cpge);background:var(--cpge-soft);font-size:.93rem;border-radius:6px}
 .q .claude::before{content:"Avis de Claude";display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--cpge);margin-bottom:2px}
@@ -491,32 +499,75 @@ function formulaBlock(q){
 let SAMPLE = null, sampleReady = null;
 const HOOKS = window.HOOKS = window.HOOKS || {};
 function getSample(){ if (!sampleReady) sampleReady = (HOOKS.corrector ? Promise.resolve(HOOKS.corrector()) : window.claude && claude.use ? claude.use('sample') : Promise.resolve(null)).then(s => { SAMPLE = s || null; return SAMPLE; }).catch(() => null); return sampleReady; }
+const MAXPHOTOS = 3;
+async function shrinkPhoto(file){
+  if (!file || !/^image\//.test(file.type || '')) throw new Error('type');
+  let src = null;
+  try { src = await createImageBitmap(file, {imageOrientation: 'from-image'}); } catch(e){}
+  if (!src){ const url = URL.createObjectURL(file); try { src = await new Promise((ok, ko) => { const im = new Image(); im.onload = () => ok(im); im.onerror = ko; im.src = url; }); } finally { setTimeout(() => URL.revokeObjectURL(url), 5000); } }
+  const w0 = src.width || src.naturalWidth, h0 = src.height || src.naturalHeight; if (!w0 || !h0) throw new Error('vide');
+  let out = null;
+  for (const [side, quality] of [[1600, .82], [1280, .72], [1024, .6]]){
+    const k = Math.min(1, side / Math.max(w0, h0)), c = document.createElement('canvas'); c.width = Math.round(w0 * k); c.height = Math.round(h0 * k);
+    const ctx = c.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height); ctx.drawImage(src, 0, 0, c.width, c.height);
+    out = await new Promise(ok => c.toBlob(ok, 'image/jpeg', quality));
+    if (out && out.size <= 800000) break;
+  }
+  if (!out) throw new Error('encodage');
+  return out;
+}
 function redacBlock(q, d, after, mark){
   const r = document.createElement('div'); r.className = 'redac';
-  r.innerHTML = `<textarea aria-label="Votre réponse" placeholder="Rédigez ici votre réponse (résultat, étapes, formules en texte ou en LaTeX)…"></textarea><p class="note"></p>`;
-  const ta = r.querySelector('textarea'), note = r.querySelector('.note');
+  r.innerHTML = `<textarea aria-label="Votre réponse" placeholder="Rédigez ici votre réponse (résultat, étapes, formules en texte ou en LaTeX)…"></textarea><div class="photos" hidden><label class="addph"><input type="file" accept="image/*" multiple hidden>Ajouter une photo de ma copie</label></div><p class="note"></p>`;
+  const ta = r.querySelector('textarea'), note = r.querySelector('.note'), phBox = r.querySelector('.photos'), phIn = phBox.querySelector('input'), photos = [];
+  const paintPhotos = () => { phBox.querySelectorAll('.ph').forEach(e => { URL.revokeObjectURL(e.firstChild.src); e.remove(); });
+    photos.forEach((blob, i) => { const e = document.createElement('span'); e.className = 'ph'; const im = new Image(); im.alt = 'Photo ' + (i + 1) + ' de la copie'; im.src = URL.createObjectURL(blob); const x = document.createElement('button'); x.type = 'button'; x.textContent = '×'; x.setAttribute('aria-label', 'Retirer la photo ' + (i + 1)); x.addEventListener('click', () => { photos.splice(i, 1); paintPhotos(); }); e.append(im, x); phBox.insertBefore(e, phBox.lastElementChild); });
+    phBox.lastElementChild.hidden = photos.length >= MAXPHOTOS; };
+  phIn.addEventListener('change', async () => { const files = [...phIn.files]; phIn.value = '';
+    for (const f of files){ if (photos.length >= MAXPHOTOS){ note.textContent = `${MAXPHOTOS} photos au maximum par question.`; break; }
+      try { photos.push(await shrinkPhoto(f)); } catch(e){ note.textContent = 'Cette image n’a pas pu être lue ; essayez une photo au format JPEG ou PNG.'; } }
+    paintPhotos(); });
   getSample().then(s => { if (!s){ note.textContent = 'Comparez ensuite avec le corrigé et notez-vous.'; return; }
-    const b = document.createElement('button'); b.type = 'button'; b.className = 'secondary'; b.textContent = 'Faire corriger par Claude'; note.textContent = 'Claude lit votre réponse, la compare au corrigé et vous donne un avis (il peut se tromper : le corrigé fait foi).';
-    d.querySelector('.actions').prepend(b);
-    b.addEventListener('click', async () => {
-      const ans = ta.value.trim(); if (ans.length < 3){ note.textContent = 'Écrivez d’abord votre réponse dans le cadre.'; ta.focus(); return; }
-      b.disabled = true; b.textContent = 'Correction en cours…';
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'secondary'; b.textContent = 'Faire corriger par Claude'; note.textContent = 'Travail en cours ? « Demander une piste » : Claude lit ce que vous avez fait et vous oriente sans donner la réponse. Terminé ? « Faire corriger » : il compare au corrigé et donne un avis (il peut se tromper : le corrigé fait foi).';
+    const h = document.createElement('button'); h.type = 'button'; h.className = 'secondary'; h.textContent = 'Demander une piste';
+    Promise.resolve(s.photos || (s.limits ? s.limits().then(l => !!(l && l.images)) : false)).catch(() => false).then(ok => { if (!ok) return; phBox.hidden = false; note.textContent = 'Tapez votre réponse ou photographiez votre copie, même inachevée (3 photos au plus, nettes et bien éclairées). « Demander une piste » : Claude vous oriente sans donner la réponse. « Faire corriger » : il compare au corrigé et donne un avis (il peut se tromper : le corrigé fait foi).'; });
+    d.querySelector('.actions').prepend(h, b);
+    const run = async aide => {
+      const ans = ta.value.trim(), np = photos.length; if (ans.length < 3 && !np){ note.textContent = phBox.hidden ? 'Écrivez d’abord votre réponse dans le cadre.' : 'Écrivez d’abord votre réponse dans le cadre, ou ajoutez une photo de votre copie.'; ta.focus(); return; }
+      b.disabled = h.disabled = true; (aide ? h : b).textContent = np ? 'Lecture de la copie…' : aide ? 'Lecture de votre travail…' : 'Correction en cours…';
       const g = q.group && DATA ? DATA.gById[q.group] : null;
       const prompt = `Tu es un professeur de physique qui corrige la copie d'un élève préparant les Olympiades de physique. Compare la réponse de l'élève au corrigé de référence. Juge le fond, pas la forme : ce qui compte est le résultat final (expression littérale ou valeur numérique, à quelques pour cent près) et la justesse physique de la démarche. N'exige pas le détail des calculs intermédiaires ni une rédaction complète : une réponse courte qui donne le bon résultat avec l'idée clé est juste ; une expression équivalente algébriquement est juste ; le LaTeX et le texte brut sont acceptés. Réserve « faux » à un résultat ou un raisonnement erroné.
 ${g ? 'CONTEXTE DU PROBLÈME (HTML/LaTeX) : ' + plain(g.intro).slice(0, 2500) + '\n' : ''}QUESTION : ${plain(q.statement)}
 CORRIGÉ DE RÉFÉRENCE : ${plain(q.expected || '')} ${plain(q.explanation || '')}
-RÉPONSE DE L'ÉLÈVE : ${ans.slice(0, 3000)}
-Réponds uniquement par un objet JSON {"verdict": "juste" | "partiel" | "faux", "commentaire": "..."} ; le commentaire (3 phrases maximum, en français, tutoiement) dit ce qui est juste, ce qui manque ou l'erreur, sans réécrire tout le corrigé.`;
+${np ? `RÉPONSE DE L'ÉLÈVE : copie manuscrite, sur ${np > 1 ? 'les ' + np + ' photos jointes, dans l’ordre' : 'la photo jointe'}.${ans ? ' Complément tapé par l’élève : ' + ans.slice(0, 3000) : ''}
+Lis la copie en entier avant de juger. Si un passage est illisible ou hors cadre, dis-le au lieu de deviner ; ne prête pas à l'élève ce qu'il n'a pas écrit.
+Réponds uniquement par un objet JSON {"lu": "...", "verdict": "juste" | "partiel" | "faux", "commentaire": "..."} ; « lu » recopie en une phrase le résultat final que tu lis sur la copie (ou « illisible ») ; le commentaire (5 phrases maximum, en français, tutoiement) dit ce qui est juste, situe la première erreur (à quelle étape ou quelle ligne) et ce qui manque, sans réécrire tout le corrigé. Formules en LaTeX entre \\( et \\).` : `RÉPONSE DE L'ÉLÈVE : ${ans.slice(0, 3000)}
+Réponds uniquement par un objet JSON {"verdict": "juste" | "partiel" | "faux", "commentaire": "..."} ; le commentaire (3 phrases maximum, en français, tutoiement) dit ce qui est juste, ce qui manque ou l'erreur, sans réécrire tout le corrigé.`}`;
+      const promptAide = `Tu es un professeur de physique qui aide un élève préparant les Olympiades de physique. Il cherche la question ci-dessous, te montre son travail en cours et veut une piste, pas la solution. Dis-lui ce qui est juste dans ce qu'il a fait ; s'il y a une erreur, situe la première (à quelle étape ou quelle ligne) et dis de quelle nature elle est, sans la corriger à sa place ; puis donne UNE indication pour l'étape suivante : une question à se poser, une loi ou une méthode à mobiliser, une grandeur à introduire. Ne donne jamais le résultat final, ni l'expression littérale attendue, ni la valeur numérique, même s'il le demande : le corrigé de référence ne sert qu'à te guider, ne le cite pas. Si son travail est complet et juste, dis-le simplement et invite-le à demander la correction.
+${g ? 'CONTEXTE DU PROBLÈME (HTML/LaTeX) : ' + plain(g.intro).slice(0, 2500) + '\n' : ''}QUESTION : ${plain(q.statement)}
+CORRIGÉ DE RÉFÉRENCE (à ne pas révéler) : ${plain(q.expected || '')} ${plain(q.explanation || '')}
+${np ? `TRAVAIL DE L'ÉLÈVE : manuscrit, sur ${np > 1 ? 'les ' + np + ' photos jointes, dans l’ordre' : 'la photo jointe'}.${ans ? ' Ce qu’il ajoute : ' + ans.slice(0, 3000) : ''}
+Lis tout avant de répondre. Si un passage est illisible ou hors cadre, dis-le au lieu de deviner.
+Réponds uniquement par un objet JSON {"lu": "...", "commentaire": "..."} ; « lu » dit en une phrase où il en est d'après ce que tu lis (ou « illisible ») ;` : `TRAVAIL DE L'ÉLÈVE : ${ans.slice(0, 3000)}
+Réponds uniquement par un objet JSON {"commentaire": "..."} ;`} le commentaire (4 phrases maximum, en français, tutoiement) suit les consignes ci-dessus. Formules en LaTeX entre \\( et \\).`;
       try {
-        const v = s.correct ? await s.correct(q, ans) : await s.json(prompt, {modelTier: 'default'});
+        if (aide){
+          const v = s.correct ? await s.correct(q, ans, photos.slice(), 'aide') : await s.json(promptAide, np ? {modelTier: 'default', images: photos.slice(), cache: false} : {modelTier: 'default', cache: false});
+          const c = document.createElement('div'); c.className = 'claude'; c.innerHTML = `<span class="v">Piste.</span> ${esc(String(v && v.commentaire || ''))}${np && v && v.lu ? `<span class="lu">Lu sur ta copie : ${esc(String(v.lu).slice(0, 400))}</span>` : ''}`;
+          r.append(c); typeset(c);
+          b.disabled = h.disabled = false; h.textContent = 'Demander une autre piste';
+          return;
+        }
+        const v = s.correct ? await s.correct(q, ans, photos.slice()) : await s.json(prompt, np ? {modelTier: 'default', images: photos.slice(), cache: false} : {modelTier: 'default'});
         const verdict = ['juste', 'partiel', 'faux'].includes(v && v.verdict) ? v.verdict : 'partiel';
-        const c = document.createElement('div'); c.className = 'claude'; c.innerHTML = `<span class="v">${verdict === 'juste' ? 'Juste.' : verdict === 'partiel' ? 'En partie.' : 'À revoir.'}</span> ${esc(String(v && v.commentaire || ''))}`;
+        const c = document.createElement('div'); c.className = 'claude'; c.innerHTML = `<span class="v">${verdict === 'juste' ? 'Juste.' : verdict === 'partiel' ? 'En partie.' : 'À revoir.'}</span> ${esc(String(v && v.commentaire || ''))}${np && v && v.lu ? `<span class="lu">Lu sur ta copie : ${esc(String(v.lu).slice(0, 400))}</span>` : ''}`;
         if (!d.classList.contains('done')) d.querySelector('.reveal').click();
         after.before(c); typeset(c);
         const sel = after.querySelector(`.selfeval button[data-v="${verdict === 'juste' ? 1 : verdict === 'partiel' ? 0.5 : 0}"]`); if (sel) sel.click();
-        b.textContent = 'Corrigé par Claude';
-      } catch(e){ b.disabled = false; b.textContent = 'Faire corriger par Claude'; note.textContent = e && e.code === 'rate_limited' ? 'Trop de demandes : réessayez dans un instant.' : e && e.code === 'not_granted' ? 'Correction par Claude non autorisée pour ce lecteur.' : e && e.userMessage ? e.userMessage : 'La correction n’a pas abouti ; comparez avec le corrigé.'; }
-    }); });
+        b.textContent = 'Corrigé par Claude'; h.hidden = true;
+      } catch(e){ b.disabled = h.disabled = false; b.textContent = 'Faire corriger par Claude'; h.textContent = 'Demander une piste'; note.textContent = e && e.code === 'rate_limited' ? 'Trop de demandes : réessayez dans un instant.' : e && e.code === 'not_granted' ? 'Correction par Claude non autorisée pour ce lecteur.' : e && e.userMessage ? e.userMessage : 'La correction n’a pas abouti ; comparez avec le corrigé.'; }
+    };
+    b.addEventListener('click', () => run(false)); h.addEventListener('click', () => run(true)); });
   return r;
 }
 
