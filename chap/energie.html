@@ -1,0 +1,143 @@
+<p class="eyebrow">Mécanique · Chapitre 2</p>
+<h1>Approche énergétique</h1>
+<p class="subtitle">Travail et puissance, énergie potentielle, conservation, bilans avec frottement, diagrammes d’énergie, équilibre et stabilité, petites oscillations et oscillateurs couplés par l’énergie</p>
+
+<div class="objectifs">
+<p><strong>Ce que demande le test.</strong> L’énergie est l’outil le plus rentable de la mécanique : dans les QCM comme dans les problèmes, bien des questions de mécanique se résolvent plus vite par un bilan d’énergie que par la deuxième loi de Newton. Elle sert aussi très au-delà de la mécanique du point : orbites, fluides, circuits, oscillateurs. Le réflexe à acquérir : <strong>dès qu’on ne demande ni durée ni force, écrire l’énergie entre deux états bien choisis</strong>.</p>
+<ul>
+<li><strong>Terminale</strong> (en rouge dans le syllabus 2026-2027) : travail, puissance, énergie cinétique, énergie potentielle des champs de force simples, conservation de l’énergie, dissipation par frottement, équilibre stable ou instable (étude qualitative) : parties 1 à 4.</li>
+<li><strong>CPGE</strong> (en bleu) : en plus, l’énergie cinétique de rotation, l’énergie potentielle dans un référentiel tournant, le voisinage d’un équilibre instable et, de façon générale, la détermination d’une pulsation par l’énergie (parties 5 et 6). Les oscillateurs couplés (partie 6) ne figurent pas au syllabus mais ont été posés au test CPGE.</li>
+</ul>
+</div>
+
+<div class="retenir">
+<p><strong>L’essentiel à retenir</strong></p>
+<ol>
+<li>Théorème de l’énergie cinétique : \(\Delta E_c = \sum W\). Travail d’une force constante : \(\vec F\cdot\vec d\) ; puissance : \(\vec F\cdot\vec v\).</li>
+<li>Une force perpendiculaire au déplacement <strong>ne travaille pas</strong> : réaction normale, tension d’un pendule, force magnétique.</li>
+<li>Sans frottement, \(E_m = E_c + E_p\) se conserve. Avec frottement : \(\Delta E_m = W_\text{frottement} < 0\).</li>
+<li>Choisir les deux états : là où la vitesse est connue (souvent nulle) et là où on cherche quelque chose.</li>
+<li>Équilibre : \(\dfrac{\mathrm dE_p}{\mathrm dx} = 0\) ; stable si c’est un minimum.</li>
+<li>Un seul paramètre \(q\) : si \(E = \tfrac12m_\text{eff}\,\dot q^2 + \tfrac12\kappa\,q^2\), alors \(\omega_0 = \sqrt{\kappa/m_\text{eff}}\), sans projeter aucune force.</li>
+</ol>
+</div>
+
+<h2 id="choisir">1. Énergie ou deuxième loi de Newton ?</h2>
+<table>
+<thead><tr><th>On demande</th><th>Outil</th><th>Pourquoi</th></tr></thead>
+<tbody>
+<tr><td>Une vitesse en un point, une hauteur atteinte, une distance d’arrêt</td><td>Énergie</td><td>Elle relie deux états sans décrire ce qui se passe entre eux.</td></tr>
+<tr><td>Une durée, une trajectoire en fonction du temps</td><td>Deuxième loi de Newton</td><td>L’énergie ne contient pas le temps.</td></tr>
+<tr><td>Une force de contact, une tension</td><td>Énergie pour la vitesse, <strong>puis</strong> Newton en ce point</td><td>La force inconnue ne travaille souvent pas : l’énergie l’ignore.</td></tr>
+<tr><td>Une condition de décollage, de passage, de libération</td><td>Énergie et condition de seuil</td><td>Le seuil fixe la vitesse minimale, l’énergie la relie au départ.</td></tr>
+<tr><td>Une pulsation de petites oscillations</td><td>Énergie écrite avec un seul paramètre</td><td>Pas de projection ni de force de liaison.</td></tr>
+</tbody>
+</table>
+<div class="methode" data-m="conservation"></div>
+<div class="exo" data-q="en-freinage"></div>
+<div class="exo" data-q="en-pendule-tension"></div>
+
+<h2 id="travail">2. Travail, puissance, énergie potentielle</h2>
+<p>Le travail d’une force sur un petit déplacement est \(\delta W = \vec F\cdot\mathrm d\vec\ell\) ; pour une force qui dépend de la position, le travail total est l’<strong>aire sous la courbe</strong> \(F(x)\). La puissance \(P = \vec F\cdot\vec v\) est le travail par unité de temps. De même, l’aire sous \(F(t)\) donne la variation de quantité de mouvement : ne confondez pas les deux graphiques.</p>
+<p>Une force est <strong>conservative</strong> si son travail ne dépend pas du chemin suivi ; on lui associe une énergie potentielle telle que \(W = -\Delta E_p\), soit \(F_x = -\dfrac{\mathrm dE_p}{\mathrm dx}\).</p>
+<table>
+<thead><tr><th>Force</th><th>Énergie potentielle</th><th>Référence</th></tr></thead>
+<tbody>
+<tr><td>Poids (champ uniforme)</td><td>\(mgz\), axe vers le haut</td><td>Libre : seules les différences comptent.</td></tr>
+<tr><td>Ressort</td><td>\(\tfrac12k(\ell - \ell_0)^2\)</td><td>Nulle au repos.</td></tr>
+<tr><td>Gravitation</td><td>\(-\dfrac{GMm}{r}\)</td><td>Nulle à l’infini.</td></tr>
+<tr><td>Force électrique</td><td>\(qV\) ; entre deux charges \(\dfrac{q_1q_2}{4\pi\varepsilon_0r}\)</td><td>Nulle à l’infini.</td></tr>
+<tr><td>Force centrifuge (référentiel tournant, CPGE)</td><td>\(-\tfrac12m\omega^2r^2\)</td><td>Nulle sur l’axe.</td></tr>
+</tbody>
+</table>
+<p>Pour un système de plusieurs corps reliés par des fils inextensibles ou des tiges, les forces de liaison ont un travail total nul : l’énergie du <strong>système entier</strong> se conserve, et les tensions disparaissent du calcul.</p>
+<div class="methode" data-m="systeme"></div>
+<div class="exo" data-q="en-atwood"></div>
+<div class="exo" data-q="en-chaine"></div>
+
+<h2 id="frottement">3. Bilans avec frottement, puissance</h2>
+<p>Quand une force non conservative travaille, l’énergie mécanique varie de son travail : \(\Delta E_m = W_\text{nc}\). Pour un frottement solide de norme constante \(f\) sur une distance \(d\), \(W = -fd\) : l’énergie « perdue » est convertie en énergie interne (échauffement). Le bilan reste un bilan d’énergie : on compare l’état initial et l’état final.</p>
+<p>En régime permanent (vitesse constante), la puissance motrice compense exactement la puissance des forces résistantes : \(P = F_\text{résistante}\,v\). Pour une traînée en \(v^2\), la puissance nécessaire croît comme \(v^3\).</p>
+<div class="exo" data-q="en-toboggan"></div>
+<div class="piege">
+<p><strong>Pièges.</strong></p>
+<ul>
+<li>Le travail du poids ne dépend que de la <strong>dénivellation</strong>, pas de la longueur ni de la forme du trajet. Le travail d’un frottement, lui, dépend du chemin.</li>
+<li>Sans frottement, deux objets partis de la même hauteur arrivent avec la même vitesse en norme, quel que soit le chemin ; mais pas au même instant.</li>
+<li>Pendant un choc mou, l’énergie cinétique n’est pas conservée : découpez le problème en phases (voir <a href="#mecapoint--energie">Mécanique du point</a>).</li>
+<li>Énergie potentielle élastique : c’est l’<strong>allongement</strong> qui est au carré, pas la longueur.</li>
+<li>Un graphique en fonction du temps et un graphique en fonction de la position n’ont pas la même allure : en chute libre \(E_p\) est linéaire en \(z\) mais parabolique en \(t\).</li>
+</ul>
+</div>
+
+<h2 id="diagramme">4. Diagramme d’énergie potentielle, équilibre et stabilité</h2>
+<p>Pour un mouvement à un seul degré de liberté, tracer \(E_p(x)\) et la droite horizontale \(E_m\) dit tout sans calcul :</p>
+<ul>
+<li>le mouvement n’est possible que là où \(E_p(x) \le E_m\), puisque \(E_c \ge 0\) ;</li>
+<li>la vitesse s’annule aux <strong>points de rebroussement</strong>, où \(E_p = E_m\) ; elle est maximale au fond de la cuvette ;</li>
+<li>entre deux points de rebroussement, la particule oscille : c’est un <strong>état lié</strong> ; si \(E_m\) dépasse la barrière, elle s’échappe (c’est ainsi qu’on trouve une vitesse de libération) ;</li>
+<li>la force est l’opposé de la pente : \(F = -\mathrm dE_p/\mathrm dx\), dirigée vers les énergies potentielles décroissantes.</li>
+</ul>
+<div class="methode" data-m="graphe"></div>
+<div class="exo" data-q="en-rebroussement"></div>
+<p><strong>Équilibre.</strong> La force est nulle là où \(E_p\) est extrémale. Un <strong>minimum</strong> est un équilibre stable (écartée, la particule est ramenée) ; un <strong>maximum</strong> est instable. En terminale, seule cette lecture qualitative est exigible ; en CPGE on la traduit par le signe de \(\dfrac{\mathrm d^2E_p}{\mathrm dx^2}\).</p>
+<div class="methode" data-m="minimum-energie"></div>
+<div class="exo" data-q="en-stabilite"></div>
+
+<h2 id="oscillations">5. Petites oscillations par l’énergie</h2>
+<p>Près d’un équilibre stable \(x_0\), toute énergie potentielle ressemble à une parabole : \(E_p \approx E_p(x_0) + \tfrac12\kappa\,(x - x_0)^2\) avec \(\kappa = \dfrac{\mathrm d^2E_p}{\mathrm dx^2}(x_0) > 0\). Le système est un oscillateur harmonique de pulsation \(\sqrt{\kappa/m}\).</p>
+<p>La méthode devient vraiment puissante quand le système est compliqué mais ne dépend que d’<strong>un seul paramètre</strong> \(q\) (un angle, une hauteur, une charge) :</p>
+<ol>
+<li>écrire l’énergie cinétique sous la forme \(\tfrac12m_\text{eff}\,\dot q^2\), en exprimant toutes les vitesses avec \(\dot q\) ;</li>
+<li>écrire l’énergie potentielle et la développer au second ordre autour de l’équilibre : \(\tfrac12\kappa\,q^2\) ;</li>
+<li>conclure : \(\omega_0 = \sqrt{\kappa/m_\text{eff}}\). (Dériver \(E = \text{cste}\) par rapport au temps redonne \(m_\text{eff}\ddot q + \kappa q = 0\).)</li>
+</ol>
+<div class="methode" data-m="energie-parametre"></div>
+<table>
+<thead><tr><th>Système</th><th>\(m_\text{eff}\)</th><th>\(\kappa\)</th><th>\(\omega_0\)</th></tr></thead>
+<tbody>
+<tr><td>Pendule simple (paramètre \(\theta\))</td><td>\(m\ell^2\)</td><td>\(mg\ell\)</td><td>\(\sqrt{g/\ell}\)</td></tr>
+<tr><td>Liquide dans un tube en U (dénivellation \(x\))</td><td>\(\rho SL\)</td><td>\(2\rho gS\)</td><td>\(\sqrt{2g/L}\)</td></tr>
+<tr><td>Flotteur de section \(S\) (enfoncement \(x\))</td><td>\(m\)</td><td>\(\rho gS\)</td><td>\(\sqrt{\rho gS/m}\)</td></tr>
+<tr><td>Circuit LC (charge \(q\))</td><td>\(L\)</td><td>\(1/C\)</td><td>\(1/\sqrt{LC}\)</td></tr>
+<tr><td>Pendule réel (CPGE ; angle \(\theta\))</td><td>\(J\)</td><td>\(mgd\)</td><td>\(\sqrt{mgd/J}\)</td></tr>
+<tr><td>Cylindre qui roule sans glisser, attaché à un ressort (CPGE)</td><td>\(\tfrac32m\)</td><td>\(k\)</td><td>\(\sqrt{2k/3m}\)</td></tr>
+</tbody>
+</table>
+<p>Le dernier exemple montre l’intérêt de la méthode : la force de frottement qui assure le roulement est inconnue, mais elle ne travaille pas ; il suffit d’ajouter l’énergie cinétique de rotation, \(\tfrac12J\omega^2 = \tfrac14m\dot x^2\).</p>
+<div class="exo" data-q="en-tube-u"></div>
+<div class="cpge" id="osc-cpge" title="Niveau CPGE : pulsation au fond d’un puits de potentiel, équilibre instable">
+<p>Autour d’un équilibre <strong>instable</strong>, \(\kappa < 0\) : l’équation devient \(\ddot q = |\kappa|\,q/m_\text{eff}\) et l’écart croît comme \(\mathrm e^{t/\tau}\) avec \(\tau = \sqrt{m_\text{eff}/|\kappa|}\). Ce temps donne l’ordre de grandeur de la durée de chute d’un crayon posé sur sa pointe.</p>
+<div class="exo" data-q="en-petites-osc"></div>
+</div>
+
+<h2 id="couples">6. Oscillateurs couplés par l’énergie (CPGE)</h2>
+<div class="cpge" id="modes-energie" title="Niveau CPGE, hors syllabus : trouver les modes propres en découplant l’énergie">
+<p>Avec deux degrés de liberté \(x_1\) et \(x_2\), l’énergie contient en général un terme <strong>croisé</strong> (par exemple \(\tfrac12k(x_1 - x_2)^2\)) qui lie les deux mouvements. Trouver les modes propres, c’est trouver deux combinaisons de \(x_1\) et \(x_2\) pour lesquelles l’énergie se sépare en deux oscillateurs indépendants :</p>
+\[E = \left[\tfrac12m_s\dot s^2 + \tfrac12\kappa_ss^2\right] + \left[\tfrac12m_d\dot d^2 + \tfrac12\kappa_dd^2\right].\]
+<p>Chaque crochet se conserve séparément et oscille à sa propre pulsation, \(\sqrt{\kappa_s/m_s}\) et \(\sqrt{\kappa_d/m_d}\). Pour un système <strong>symétrique</strong> (deux oscillateurs identiques), les bonnes combinaisons sont toujours la somme et la différence :</p>
+\[s = x_1 + x_2, \qquad d = x_1 - x_2, \qquad x_1^2 + x_2^2 = \tfrac12(s^2 + d^2).\]
+<table>
+<thead><tr><th>Système (deux masses \(m\))</th><th>Mode symétrique</th><th>Mode antisymétrique</th></tr></thead>
+<tbody>
+<tr><td>Deux pendules de longueur \(\ell\) reliés par un ressort \(k\)</td><td>\(\sqrt{g/\ell}\)</td><td>\(\sqrt{g/\ell + 2k/m}\)</td></tr>
+<tr><td>Deux masses entre parois : ressorts \(k_1\) aux parois, \(k_2\) au milieu</td><td>\(\sqrt{k_1/m}\)</td><td>\(\sqrt{(k_1 + 2k_2)/m}\)</td></tr>
+<tr><td>Deux masses reliées par un ressort \(k\), libres</td><td>0 (translation d’ensemble)</td><td>\(\sqrt{2k/m}\)</td></tr>
+<tr><td>Deux circuits LC couplés par un condensateur \(C'\) commun</td><td colspan="2">Même démarche avec les charges : \(L\) joue le rôle de \(m\), \(1/C\) celui de \(k\).</td></tr>
+</tbody>
+</table>
+<p>Dans le mode symétrique le ressort de couplage ne se déforme pas : son énergie est absente du premier crochet, et la pulsation est celle d’un oscillateur seul. Si les masses sont différentes, le mode « libre » se traite dans le référentiel du centre de masse : deux masses \(m_1\) et \(m_2\) reliées par un ressort oscillent à \(\sqrt{k/\mu}\) avec la masse réduite \(\mu = \dfrac{m_1m_2}{m_1 + m_2}\).</p>
+<div class="methode" data-m="symetrie"></div>
+<div class="exo" data-q="en-couples"></div>
+<p><strong>Battements.</strong> Si l’on écarte une seule masse, les deux modes sont excités à parts égales ; l’énergie passe intégralement d’un oscillateur à l’autre et revient, en un temps \(\dfrac{2\pi}{\omega_d - \omega_s}\) pour l’aller-retour. Plus le couplage est faible, plus l’échange est lent.</p>
+<p>Les QCM du test (2015, 2017, 2019) donnent quatre expressions : le cas limite \(k_\text{couplage} = 0\) et l’homogénéité suffisent presque toujours à trancher. Voir aussi <a href="#oscillateurs--couples">Oscillateurs, partie 5</a>.</p>
+</div>
+
+<div class="cpge" id="plus-loin" title="Pour aller plus loin : au-delà du test">
+<ul>
+<li>Jaan Kalda, <a href="https://www.ioc.ee/~kalda/ipho/" target="_blank" rel="noopener">guide de mécanique</a> : la méthode de l’énergie à un paramètre et les modes propres y sont présentés comme deux « idées » centrales.</li>
+<li>Sur ce site : le <a href="#initiative--g-init-2019-canon">canon de Galilée</a> (chocs en cascade), les <a href="#initiative--g-eupho-2018-billes">trois billes articulées</a> (EuPhO 2018 : énergie et moment cinétique), l’<a href="#initiative--g-init-2018-brunt">oscillation d’un fluide stratifié</a>.</li>
+</ul>
+</div>
+</content>
+</invoke>

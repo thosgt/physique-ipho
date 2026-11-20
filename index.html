@@ -334,10 +334,11 @@ a.card:hover{border-color:var(--accent)}
   </div>
   <div class="navgroup"><h4>Mécanique</h4>
     <a href="#mecapoint" data-page="mecapoint"><span class="n">1</span>Mécanique du point</a>
-    <a href="#celeste" data-page="celeste"><span class="n">2</span>Mécanique céleste</a>
-    <a href="#oscillateurs" data-page="oscillateurs"><span class="n">3</span>Oscillateurs</a>
-    <a href="#nongalileen" data-page="nongalileen"><span class="n">4</span>Référentiels non galiléens</a>
-    <a href="#solide" data-page="solide"><span class="n">5</span>Mécanique du solide</a>
+    <a href="#energie" data-page="energie"><span class="n">2</span>Approche énergétique</a>
+    <a href="#celeste" data-page="celeste"><span class="n">3</span>Mécanique céleste</a>
+    <a href="#oscillateurs" data-page="oscillateurs"><span class="n">4</span>Oscillateurs</a>
+    <a href="#nongalileen" data-page="nongalileen"><span class="n">5</span>Référentiels non galiléens</a>
+    <a href="#solide" data-page="solide"><span class="n">6</span>Mécanique du solide</a>
   </div>
   <div class="navgroup"><h4>Mécanique des fluides</h4>
     <a href="#statique" data-page="statique"><span class="n">1</span>Statique des fluides</a>
@@ -384,8 +385,8 @@ const CHAPTERS = {
   outils: {title: "Analyse dimensionnelle et outils", label: "Méthodes · 0", topic: "l’analyse dimensionnelle, les ordres de grandeur, les incertitudes et les outils de calcul", cahier: "fiches 1 et 26", n: 7},
   statique: {title: "Statique des fluides", label: "Mécanique des fluides · 1", topic: "la statique des fluides", cahier: "fiche 21", n: 6},
   dynamique: {title: "Dynamique des fluides", label: "Mécanique des fluides · 2", topic: "la dynamique des fluides", cahier: "", n: 5},
-  nongalileen: {title: "Référentiels non galiléens", label: "Mécanique · 4", topic: "les référentiels non galiléens et les forces d’inertie", cahier: "", n: 5},
-  solide: {title: "Mécanique du solide", label: "Mécanique · 5", topic: "la mécanique du solide (moment d’inertie, moment cinétique, roulement)", cahier: "fiche 13", n: 6},
+  nongalileen: {title: "Référentiels non galiléens", label: "Mécanique · 5", topic: "les référentiels non galiléens et les forces d’inertie", cahier: "", n: 5},
+  solide: {title: "Mécanique du solide", label: "Mécanique · 6", topic: "la mécanique du solide (moment d’inertie, moment cinétique, roulement)", cahier: "fiche 13", n: 6},
   electrostatique: {title: "Champ électrique", label: "Électromagnétisme · 1", topic: "le champ et le potentiel électriques et les condensateurs", cahier: "fiche 14", n: 5},
   magnetisme: {title: "Champ magnétique et bobine", label: "Électromagnétisme · 2", topic: "le champ magnétique, l’auto-induction et le circuit RL", cahier: "fiches 16 et 17", n: 5},
   particules: {title: "Particules chargées", label: "Électromagnétisme · 3", topic: "le mouvement des particules chargées dans les champs électrique et magnétique", cahier: "fiche 15", n: 5},
@@ -396,8 +397,9 @@ const CHAPTERS = {
   nucleaire: {title: "Physique nucléaire", label: "Physique moderne · 2", topic: "la physique nucléaire et la radioactivité", cahier: "", n: 5},
   quantique: {title: "Physique quantique", label: "Physique moderne · 3", topic: "la physique quantique", cahier: "", n: 6},
   mecapoint: {title: "Mécanique du point", label: "Mécanique · 1", topic: "la mécanique du point (cinématique, lois de Newton, énergie, chocs)", cahier: "", n: 4},
-  celeste: {title: "Mécanique céleste", label: "Mécanique · 2", topic: "la gravitation et les orbites", cahier: "", n: 5},
-  oscillateurs: {title: "Oscillateurs", label: "Mécanique · 3", topic: "les oscillateurs (ressort, pendule, résonance, modes propres)", cahier: "", n: 6},
+  energie: {title: "Approche énergétique", label: "Mécanique · 2", topic: "l’approche énergétique en mécanique (travail, énergie potentielle, conservation, petites oscillations)", cahier: "", n: 7},
+  celeste: {title: "Mécanique céleste", label: "Mécanique · 3", topic: "la gravitation et les orbites", cahier: "", n: 5},
+  oscillateurs: {title: "Oscillateurs", label: "Mécanique · 4", topic: "les oscillateurs (ressort, pendule, résonance, modes propres)", cahier: "", n: 6},
   circuits: {title: "Circuits électriques", label: "Électromagnétisme · 4", topic: "les circuits électriques", cahier: "", n: 4},
   thermo: {title: "Thermodynamique et rayonnement", label: "Thermodynamique · 1", topic: "la thermodynamique et le rayonnement thermique", cahier: "", n: 6},
   initiative: {title: "Problèmes à prise d’initiative", label: "CPGE · dernière partie du test", topic: "les problèmes à prise d’initiative du test CPGE", cahier: "", n: 8, noTrain: true}

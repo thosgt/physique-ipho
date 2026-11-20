@@ -169,7 +169,8 @@
 "relativite",
 "solide",
 "mecapoint",
-"thermo"
+"thermo",
+"energie"
 ]
 },
 {
@@ -223,7 +224,8 @@
 "tension",
 "nucleaire",
 "solide",
-"electrostatique"
+"electrostatique",
+"energie"
 ]
 },
 {
@@ -294,7 +296,8 @@
 "mecapoint",
 "celeste",
 "oscillateurs",
-"thermo"
+"thermo",
+"energie"
 ]
 },
 {
@@ -379,7 +382,8 @@
 "magnetisme",
 "solide",
 "circuits",
-"oscillateurs"
+"oscillateurs",
+"energie"
 ]
 },
 {
@@ -562,7 +566,8 @@
 "tension",
 "solide",
 "magnetisme",
-"oscillateurs"
+"oscillateurs",
+"energie"
 ]
 },
 {
@@ -627,7 +632,8 @@
 "optique",
 "relativite",
 "nucleaire",
-"quantique"
+"quantique",
+"energie"
 ]
 },
 {
