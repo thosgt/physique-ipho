@@ -5,8 +5,8 @@
 <div class="objectifs">
 <p><strong>Ce que demande le test.</strong> Chaque test comporte un ou deux QCM de circuits et, une année sur deux, un exercice ou un problème entier (télégraphe 2019, milieu granulaire 2022, oscillateur électronique 2023, fils accolés 2025, orage 2026). Vous étudiez les circuits en cours : ce chapitre ne refait pas le cours. Il rassemble <strong>les réflexes</strong> qui permettent de répondre vite et <strong>les pièges</strong> des QCM.</p>
 <ul>
-<li><strong>Terminale</strong> : parties 1 et 2 (courant continu, circuits RC et RL).</li>
-<li><strong>CPGE</strong> : en plus, le régime sinusoïdal (encadré replié de la partie 3).</li>
+<li><strong>Terminale</strong> (en rouge dans le syllabus 2026-2027) : lois des nœuds et des mailles, loi d’Ohm, loi de Joule, piles idéales et non idéales, ampèremètres, voltmètres et ohmmètres, condensateurs, inductance, énergie des condensateurs et des bobines, constantes de temps des circuits RC et RL : parties 1 et 2.</li>
+<li><strong>CPGE</strong> (en bleu) : en plus, le travail d’une force électromotrice, les sources de courant, les caractéristiques d’éléments non linéaires, les oscillations du circuit LC et le régime sinusoïdal (impédances, résonance, puissance active) : encadrés repliés.</li>
 <li>Le condensateur et la bobine sont présentés dans les chapitres <a href="#electrostatique">Champ électrique</a> et <a href="#magnetisme">Champ magnétique et bobine</a>.</li>
 </ul>
 </div>
@@ -70,7 +70,9 @@
 <p>\(R_\text{éq}\) est la résistance vue par le condensateur (ou la bobine) quand on éteint les sources : une source de tension idéale est remplacée par un fil. Durées utiles : 63 % de l’évolution à \(\tau\), 95 % à \(3\tau\), 99 % à \(5\tau\) ; la tangente à l’origine coupe l’asymptote à \(t = \tau\).</p>
 <div class="methode" data-m="cas-limites"></div>
 <div class="exo" data-q="cir-instant-initial"></div>
+<div class="cpge" id="lc" title="Niveau CPGE : oscillations libres du circuit LC">
 <p><strong>Circuit LC.</strong> Un condensateur chargé relié à une bobine idéale oscille : la charge vérifie \(\ddot q + \dfrac{q}{LC} = 0\), de pulsation propre \(\omega_0 = \dfrac1{\sqrt{LC}}\). L’énergie passe du condensateur à la bobine et revient. C’est l’analogue électrique du système masse-ressort (chapitre <a href="#oscillateurs">Oscillateurs</a>) : \(L\) joue le rôle de la masse, \(1/C\) celui de la raideur, \(R\) celui du frottement.</p>
+</div>
 <div class="piege">
 <p><strong>Pièges.</strong></p>
 <ul>
@@ -88,6 +90,7 @@
 <li>Comportements limites : à basse fréquence, le condensateur est un interrupteur ouvert et la bobine un fil ; à haute fréquence, c’est l’inverse. Ils donnent la nature d’un filtre sans calcul.</li>
 <li>Filtre RC passe-bas (sortie sur \(C\)) : \(\underline H = \dfrac1{1 + jRC\omega}\), coupure à \(\omega_c = 1/RC\) où le gain vaut \(1/\sqrt2\).</li>
 <li>RLC série : résonance en courant à \(\omega_0 = 1/\sqrt{LC}\), où l’impédance se réduit à \(R\). Facteur de qualité \(Q = \dfrac{L\omega_0}{R} = \dfrac1R\sqrt{\dfrac LC}\) ; largeur de la résonance \(\Delta\omega = \omega_0/Q\).</li>
+<li>Source de courant idéale : elle impose le courant quelle que soit la tension à ses bornes (une source de tension réelle \(E, r\) équivaut à une source de courant \(E/r\) en parallèle avec \(r\)). Élément non linéaire (diode, lampe) : son point de fonctionnement est l’intersection de sa caractéristique \(i(u)\) avec la droite de charge du reste du circuit, \(u = E - Ri\).</li>
 <li>Puissance moyenne : \(P = U_\text{eff}I_\text{eff}\cos\varphi\) ; seule la résistance dissipe. Valeur efficace d’un signal sinusoïdal : amplitude divisée par \(\sqrt2\).</li>
 </ul>
 <div class="exo" data-q="cir-resonance"></div>

@@ -5,8 +5,9 @@
 <div class="objectifs">
 <p><strong>Ce que demande le test.</strong> Un QCM par an en moyenne (fréquence d’un ressort ou d’un pendule, ressorts associés, masses couplées en CPGE), et l’oscillateur réapparaît dans des exercices de tous les domaines : ions piégés (2023), oscillations de fluides stratifiés (2018), microscope à force atomique (2015), circuit LC. Le réflexe à acquérir : <strong>ramener l’équation du mouvement à \(\ddot x + \omega_0^2x = 0\)</strong> et lire la pulsation.</p>
 <ul>
-<li><strong>Terminale</strong> : parties 1 à 3.</li>
-<li><strong>CPGE</strong> : en plus, les parties 4 et 5 (amortissement, résonance, oscillateurs couplés).</li>
+<li><strong>Terminale</strong> (en rouge dans le syllabus 2026-2027) : oscillateur harmonique (équation du mouvement, fréquence, pulsation, période), pendule réel et longueur équivalente, décroissance exponentielle des oscillations amorties (approche qualitative seulement).</li>
+<li><strong>CPGE</strong> (en bleu) : en plus, la loi de Hooke, le comportement au voisinage d’un équilibre instable, la résonance d’un oscillateur forcé (amplitude et déphasage), les oscillations d’un circuit LC et l’analogie électrique-mécanique.</li>
+<li>Les <strong>oscillateurs couplés</strong> ne figurent pas au syllabus, mais des QCM du test CPGE en ont comporté (2015, 2017, 2019) : la partie 5 donne le strict nécessaire.</li>
 </ul>
 </div>
 
@@ -37,6 +38,7 @@
 <tr><td>Liquide dans un tube en U (longueur \(L\))</td><td>\(\sqrt{2g/L}\)</td><td></td></tr>
 </tbody>
 </table>
+<p><strong>Pendule réel.</strong> Un solide de masse \(m\) qui oscille autour d’un axe horizontal, son centre de masse étant à la distance \(d\) de l’axe et son moment d’inertie par rapport à l’axe valant \(J\), a pour période \(T = 2\pi\sqrt{\dfrac{J}{mgd}}\). C’est celle d’un pendule simple de <strong>longueur équivalente</strong> \(\ell_\text{éq} = \dfrac{J}{md}\). Exemple : une tige homogène de longueur \(L\) suspendue par une extrémité (\(J = \tfrac13mL^2\), \(d = L/2\)) oscille comme un pendule simple de longueur \(\tfrac23L\). En terminale, le moment d’inertie est fourni par l’énoncé.</p>
 <div class="exo" data-q="ipho-2014-2"></div>
 <div class="exo" data-q="osc-vertical"></div>
 <div class="piege">
@@ -53,7 +55,7 @@
 <p>Sans frottement, l’énergie mécanique se conserve :</p>
 \[E = \tfrac12m\dot x^2 + \tfrac12kx^2 = \tfrac12kA^2 = \tfrac12m(A\omega_0)^2.\]
 <p>Elle oscille entre forme cinétique (au passage par l’équilibre) et forme potentielle (aux extrémités), à la fréquence \(2f\) ; en moyenne, les deux formes sont égales.</p>
-<p><strong>Tout équilibre stable est un oscillateur.</strong> Près d’un minimum de l’énergie potentielle, en \(x_\text{éq}\), on développe au second ordre : \(E_p(x) \approx E_p(x_\text{éq}) + \tfrac12\kappa\,(x - x_\text{éq})^2\) avec \(\kappa = \dfrac{\mathrm d^2E_p}{\mathrm dx^2}\). Le système se comporte comme un ressort de raideur \(\kappa\) : \(\omega_0 = \sqrt{\kappa/m}\). Si \(\kappa < 0\), l’équilibre est instable. Deux voies mènent à \(\omega_0\) :</p>
+<p><strong>Tout équilibre stable est un oscillateur.</strong> Près d’un minimum de l’énergie potentielle, en \(x_\text{éq}\), on développe au second ordre : \(E_p(x) \approx E_p(x_\text{éq}) + \tfrac12\kappa\,(x - x_\text{éq})^2\) avec \(\kappa = \dfrac{\mathrm d^2E_p}{\mathrm dx^2}\). Le système se comporte comme un ressort de raideur \(\kappa\) : \(\omega_0 = \sqrt{\kappa/m}\). Si \(\kappa < 0\), l’équilibre est instable : l’écart croît exponentiellement, \(x \propto \mathrm e^{t\sqrt{|\kappa|/m}}\) (au programme du test CPGE seulement). Deux voies mènent à \(\omega_0\) :</p>
 <ul>
 <li><strong>par les forces</strong> : écrire la deuxième loi de Newton pour un petit écart et ne garder que le terme proportionnel à l’écart ;</li>
 <li><strong>par l’énergie</strong> : écrire \(E = \tfrac12m_\text{eff}\,\dot q^2 + \tfrac12\kappa\,q^2\) pour un paramètre \(q\) quelconque (angle, hauteur, charge) ; alors \(\omega_0 = \sqrt{\kappa/m_\text{eff}}\), sans avoir à projeter aucune force.</li>
@@ -75,8 +77,9 @@
 <p>La règle est l’inverse de celle des résistances, et la même que celle des condensateurs.</p>
 <div class="exo" data-q="ipho-2018-T12"></div>
 
-<h2 id="amorti">4. Amortissement et résonance (CPGE)</h2>
-<div class="cpge" id="amortissement" title="Niveau CPGE : oscillateur amorti, facteur de qualité, résonance">
+<h2 id="amorti">4. Amortissement et résonance</h2>
+<p>Un oscillateur réel perd de l’énergie par frottement. Si le frottement est faible, il continue d’osciller presque à sa période propre, mais son amplitude <strong>décroît exponentiellement</strong> : elle est multipliée par le même facteur à chaque période, \(A(t) = A_0\,\mathrm e^{-t/\tau}\). L’énergie, proportionnelle au carré de l’amplitude, décroît deux fois plus vite. Si le frottement est fort, le système revient à l’équilibre sans osciller. En terminale, seule cette description qualitative est exigible.</p>
+<div class="cpge" id="amortissement" title="Niveau CPGE : équation de l’oscillateur amorti, facteur de qualité, résonance">
 <p>Avec un frottement fluide \(-\alpha\dot x\), l’équation devient</p>
 \[\ddot x + \frac{\omega_0}{Q}\,\dot x + \omega_0^2x = 0, \qquad Q = \frac{m\omega_0}{\alpha}.\]
 <table>
@@ -99,8 +102,8 @@
 <div class="methode" data-m="terme-dominant"></div>
 </div>
 
-<h2 id="couples">5. Oscillateurs couplés (CPGE)</h2>
-<div class="cpge" id="modes" title="Niveau CPGE : modes propres de deux oscillateurs couplés">
+<h2 id="couples">5. Oscillateurs couplés (hors syllabus, posés au test CPGE)</h2>
+<div class="cpge" id="modes" title="Niveau CPGE, hors syllabus : modes propres de deux oscillateurs couplés">
 <p>Deux oscillateurs reliés échangent de l’énergie. Le mouvement général est compliqué, mais il existe des mouvements simples, les <strong>modes propres</strong>, où toutes les parties oscillent à la même pulsation. Pour un système symétrique, on les trouve sans calcul :</p>
 <ul>
 <li><strong>mode symétrique</strong> : les deux masses se déplacent ensemble, le ressort de couplage garde sa longueur et ne joue aucun rôle ;</li>

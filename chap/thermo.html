@@ -5,8 +5,8 @@
 <div class="objectifs">
 <p><strong>Ce que demande le test.</strong> Un QCM par an au moins (calorimétrie, gaz parfait, loi de Stefan) et des exercices ou problèmes entiers : capacité thermique de l’eau (2022), convection (2024), sondes Voyager (2024), thermophone et geysers (2025). Les calculs sont courts ; la difficulté est de <strong>définir le système</strong> et d’écrire un <strong>bilan d’énergie</strong> complet.</p>
 <ul>
-<li><strong>Terminale</strong> : parties 1, 2 et 5 (gaz parfait, premier principe et calorimétrie, transferts thermiques et rayonnement).</li>
-<li><strong>CPGE</strong> : en plus, les parties 3 et 4 (transformations du gaz parfait, machines thermiques).</li>
+<li><strong>Terminale et CPGE</strong>, même programme (tout est en rouge dans le syllabus 2026-2027, rien en bleu) : énergie interne, travail et chaleur, température en kelvins, systèmes fermés, premier principe, pression et loi des gaz parfaits, transformations isochores et capacité thermique à volume constant, notion de conductivité thermique, loi de Planck (qualitativement), loi de Wien, loi de Stefan-Boltzmann (rappelée dans l’énoncé en terminale) : parties 1, 2 et 5.</li>
+<li><strong>Hors syllabus du test</strong> (en noir : syllabus international seulement) : théorie cinétique, chaleurs latentes, transformations isothermes, isobares et adiabatiques, second principe, entropie, cycle de Carnot et rendements. Les tests en ont pourtant utilisé en rappelant les formules (chaleur latente en 2024 et 2025, loi de Newton en 2025) : ces notions sont présentées, signalées comme telles, et les parties 3 et 4 sont repliées.</li>
 <li>La statique de l’atmosphère (pression en fonction de l’altitude, montgolfière) est dans le chapitre <a href="#statique">Statique des fluides</a>.</li>
 </ul>
 </div>
@@ -16,10 +16,9 @@
 <ol>
 <li>Gaz parfait : \(PV = nRT\), avec \(T\) <strong>en kelvins</strong>, \(P\) en pascals, \(V\) en mètres cubes.</li>
 <li>Premier principe pour un système fermé : \(\Delta U = W + Q\). Pour un solide ou un liquide : \(\Delta U = mc\,\Delta T\).</li>
-<li>Changement d’état à température constante : \(Q = mL\).</li>
+<li>Changement d’état à température constante : \(Q = mL\) (hors syllabus : rappelé par l’énoncé).</li>
 <li>Système isolé (calorimètre) : la somme des variations d’énergie de ses parties est nulle.</li>
-<li>Adiabatique réversible d’un gaz parfait : \(PV^\gamma = \text{cste}\) (lois de Laplace).</li>
-<li>Rendement d’un moteur : \(\eta = W/Q_\text{chaud} \le 1 - T_f/T_c\).</li>
+<li>Hors syllabus du test : adiabatique réversible d’un gaz parfait, \(PV^\gamma = \text{cste}\) ; rendement d’un moteur, \(\eta \le 1 - T_f/T_c\).</li>
 <li>Rayonnement : puissance émise \(P = \sigma ST^4\) (Stefan), maximum d’émission à \(\lambda_\text{max}T = 2{,}9\times10^{-3}\ \text{m·K}\) (Wien).</li>
 </ol>
 </div>
@@ -38,7 +37,7 @@
 <p>Forme locale utile : \(P = \dfrac{\rho RT}{M}\), où \(\rho\) est la masse volumique et \(M\) la masse molaire (29 g/mol pour l’air, d’où \(\rho \approx 1{,}2\ \text{kg·m}^{-3}\) à 20 °C). Une mole occupe 24 L à 20 °C sous 1 bar.</p>
 <div class="methode" data-m="rapports"></div>
 <div class="exo" data-q="ipho-2026-T5"></div>
-<p><strong>Interprétation microscopique.</strong> La température mesure l’agitation : l’énergie cinétique moyenne de translation d’une molécule vaut \(\tfrac32k_BT\), soit une vitesse typique \(\sqrt{3k_BT/m} = \sqrt{3RT/M}\) (500 m/s pour l’air à 20 °C, proche de la vitesse du son). L’énergie interne d’un gaz parfait ne dépend que de \(T\) : \(U = \tfrac32nRT\) pour un gaz monoatomique, \(\tfrac52nRT\) pour un gaz diatomique aux températures usuelles.</p>
+<p><strong>Interprétation microscopique</strong> (hors syllabus du test, utile comme ordre de grandeur). La température mesure l’agitation : l’énergie cinétique moyenne de translation d’une molécule vaut \(\tfrac32k_BT\), soit une vitesse typique \(\sqrt{3k_BT/m} = \sqrt{3RT/M}\) (500 m/s pour l’air à 20 °C, proche de la vitesse du son). L’énergie interne d’un gaz parfait ne dépend que de \(T\) : \(U = \tfrac32nRT\) pour un gaz monoatomique, \(\tfrac52nRT\) pour un gaz diatomique aux températures usuelles.</p>
 <div class="piege">
 <p><strong>Pièges.</strong></p>
 <ul>
@@ -59,7 +58,7 @@
 <tr><td>Chauffage électrique</td><td>\(W = UI\,\Delta t = P\,\Delta t\)</td><td></td></tr>
 </tbody>
 </table>
-<p>Vaporiser un kilogramme d’eau coûte autant que le chauffer de 540 °C ; fondre un kilogramme de glace, autant que chauffer l’eau de 80 °C. Les changements d’état dominent presque toujours les bilans.</p>
+<p>Les chaleurs latentes ne figurent pas au syllabus du test : quand un sujet en a besoin (glaçons du QCM 2024, geysers 2025), il rappelle la relation \(Q = mL\) et donne la valeur. Vaporiser un kilogramme d’eau coûte autant que le chauffer de 540 °C ; fondre un kilogramme de glace, autant que chauffer l’eau de 80 °C. Les changements d’état dominent presque toujours les bilans.</p>
 <p><strong>Calorimétrie.</strong> Dans un récipient isolé, sans travail, \(\sum\Delta U_i = 0\) : l’énergie cédée par les corps chauds est reçue par les corps froids. Méthode : (1) lister les corps et, pour chacun, son état initial et son état final ; (2) écrire sa variation d’énergie, étape par étape s’il change d’état ; (3) annuler la somme.</p>
 <div class="methode" data-m="conservation"></div>
 <div class="exo" data-q="ipho-2026-T4"></div>
@@ -73,8 +72,9 @@
 </ul>
 </div>
 
-<h2 id="transformations">3. Transformations du gaz parfait (CPGE)</h2>
-<div class="cpge" id="laplace" title="Niveau CPGE : travail des forces de pression, isotherme, adiabatique, lois de Laplace">
+<h2 id="transformations">3. Transformations du gaz parfait (hors syllabus du test)</h2>
+<p>Seules les transformations <strong>isochores</strong> sont au programme du test : à volume constant le gaz ne reçoit aucun travail, \(\Delta U = Q = nC_V\,\Delta T\) et \(P/T\) reste constant. Le reste figure au syllabus international et sert aux problèmes d’olympiades.</p>
+<div class="complement" id="laplace" title="Hors syllabus du test : travail des forces de pression, isotherme, adiabatique, lois de Laplace">
 <p>Travail reçu par un gaz lors d’une transformation lente : \(\delta W = -P\,\mathrm dV\) ; c’est, au signe près, l’aire sous la courbe dans le diagramme \((P, V)\). Capacités thermiques molaires : \(C_V = \dfrac{R}{\gamma - 1}\), \(C_P = C_V + R\), \(\gamma = C_P/C_V\) (5/3 monoatomique, 7/5 diatomique).</p>
 <table>
 <thead><tr><th>Transformation</th><th>Relation</th><th>Travail reçu</th><th>Chaleur reçue</th></tr></thead>
@@ -90,8 +90,8 @@
 <p>Deux applications classiques : la vitesse du son \(c = \sqrt{\gamma RT/M}\) (les compressions sont adiabatiques), et le refroidissement de l’air qui s’élève, environ 10 °C par kilomètre pour de l’air sec. Le problème EuPhO <a href="#initiative--g-eupho-2021-fuite">La fuite</a> enchaîne deux compressions adiabatiques.</p>
 </div>
 
-<h2 id="machines">4. Machines thermiques (CPGE)</h2>
-<div class="cpge" id="carnot" title="Niveau CPGE : second principe, moteurs, réfrigérateurs et pompes à chaleur">
+<h2 id="machines">4. Machines thermiques (hors syllabus du test)</h2>
+<div class="complement" id="carnot" title="Hors syllabus du test : second principe, moteurs, réfrigérateurs et pompes à chaleur">
 <p>Sur un cycle, \(\Delta U = 0\) : \(W + Q_c + Q_f = 0\). Le second principe interdit de convertir intégralement de la chaleur en travail : un moteur prend \(Q_c\) à une source chaude (température \(T_c\)), fournit un travail et rejette nécessairement de la chaleur à une source froide (\(T_f\)).</p>
 <table>
 <thead><tr><th>Machine</th><th>Efficacité</th><th>Limite (cycle réversible de Carnot)</th></tr></thead>
@@ -110,7 +110,7 @@
 <thead><tr><th>Mode</th><th>Loi</th><th>Remarque</th></tr></thead>
 <tbody>
 <tr><td>Conduction (dans un solide, sans mouvement de matière)</td><td>\(P = \dfrac{\lambda S}{e}\,(T_1 - T_2)\) à travers une paroi d’épaisseur \(e\)</td><td>Analogie électrique : résistance thermique \(R_\text{th} = e/\lambda S\) ; en série elles s’ajoutent.</td></tr>
-<tr><td>Convection (échange entre une paroi et un fluide)</td><td>\(P = hS\,(T_\text{paroi} - T_\text{fluide})\), loi de Newton</td><td>Avec \(mc\,\dfrac{\mathrm dT}{\mathrm dt} = -hS(T - T_0)\) : retour exponentiel, \(\tau = mc/hS\).</td></tr>
+<tr><td>Convection (échange entre une paroi et un fluide ; hors syllabus, loi rappelée par l’énoncé)</td><td>\(P = hS\,(T_\text{paroi} - T_\text{fluide})\), loi de Newton</td><td>Avec \(mc\,\dfrac{\mathrm dT}{\mathrm dt} = -hS(T - T_0)\) : retour exponentiel, \(\tau = mc/hS\).</td></tr>
 <tr><td>Rayonnement (sans support matériel)</td><td>\(P = \sigma ST^4\), loi de Stefan</td><td>\(\sigma = 5{,}67\times10^{-8}\ \text{W·m}^{-2}\text{·K}^{-4}\)</td></tr>
 </tbody>
 </table>

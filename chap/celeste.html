@@ -5,8 +5,8 @@
 <div class="objectifs">
 <p><strong>Ce que demande le test.</strong> Un QCM presque chaque année (loi de Kepler, orbite basse, pesanteur à la surface d’un astre) et, une année sur deux, un exercice ou un problème à thème astronomique : exoplanètes (2015), cosmologie (2017), astéroïde et effets de marée (2023), durée du jour (2024), disques protoplanétaires (2025), trous noirs (2026). Presque tout se ramène à <strong>trois relations</strong> : la force de gravitation, l’accélération centripète et l’énergie potentielle \(-GMm/r\).</p>
 <ul>
-<li><strong>Terminale</strong> : parties 1 à 3 (gravitation, orbites circulaires, énergie).</li>
-<li><strong>CPGE</strong> : en plus, la partie 4 (orbites elliptiques, moment cinétique).</li>
+<li><strong>Terminale</strong> (en rouge dans le syllabus 2026-2027) : loi de la gravité, potentiel gravitationnel et les trois lois de Kepler, sans démonstration : parties 1 à 4, hors encadré.</li>
+<li><strong>CPGE</strong> (en bleu) : en plus, l’énergie d’un point matériel sur une orbite elliptique, et le moment cinétique (encadré de la partie 4).</li>
 <li>Les effets de marée sont traités dans le chapitre <a href="#nongalileen">Référentiels non galiléens</a>.</li>
 </ul>
 </div>
@@ -18,8 +18,8 @@
 <li>Pesanteur à la surface : \(g = \dfrac{GM}{R^2} = \dfrac43\pi G\rho R\).</li>
 <li>Orbite circulaire : \(\dfrac{mv^2}{r} = \dfrac{GMm}{r^2}\), d’où \(v = \sqrt{\dfrac{GM}{r}}\) et \(T^2 = \dfrac{4\pi^2}{GM}\,r^3\).</li>
 <li>Troisième loi de Kepler : \(T^2/a^3\) est le même pour tous les corps en orbite autour d’un même astre (\(a\) : demi-grand axe).</li>
-<li>Énergie potentielle \(E_p = -\dfrac{GMm}{r}\) ; énergie d’une orbite \(E = -\dfrac{GMm}{2a}\) ; vitesse de libération \(v_\ell = \sqrt{\dfrac{2GM}{R}}\).</li>
-<li>Force centrale : le moment cinétique se conserve, \(r\,v_\perp = \text{cste}\) (loi des aires).</li>
+<li>Énergie potentielle \(E_p = -\dfrac{GMm}{r}\) ; énergie d’une orbite circulaire \(E = -\dfrac{GMm}{2r}\) (elliptique, en CPGE : \(-\dfrac{GMm}{2a}\)) ; vitesse de libération \(v_\ell = \sqrt{\dfrac{2GM}{R}}\).</li>
+<li>Loi des aires (deuxième loi de Kepler) : \(r\,v_\perp = \text{cste}\) ; en CPGE, c’est la conservation du moment cinétique.</li>
 </ol>
 </div>
 
@@ -70,15 +70,18 @@
 <div class="exo" data-q="cel-liberation"></div>
 <p>Un astre retient une atmosphère si la vitesse d’agitation thermique des molécules, \(\sqrt{3k_BT/m}\), est très inférieure à \(v_\ell\) : c’est pourquoi la Lune n’en a pas et pourquoi la Terre a perdu son hydrogène.</p>
 
-<h2 id="ellipse">4. Orbites elliptiques (CPGE)</h2>
-<div class="cpge" id="kepler" title="Niveau CPGE : lois de Kepler, moment cinétique, transfert d’orbite">
-<p><strong>Les trois lois de Kepler.</strong> (1) L’orbite est une ellipse dont l’astre attracteur occupe un foyer. (2) Le rayon balaie des aires égales en des durées égales. (3) \(T^2/a^3 = 4\pi^2/GM\), avec \(a\) le demi-grand axe.</p>
-<p>La deuxième loi traduit la <strong>conservation du moment cinétique</strong> : la force est centrale, son moment par rapport à l’astre est nul, \(L = m\,r\,v_\perp\) est constant. Au périhélie (distance \(r_p\)) et à l’aphélie (\(r_a\)), la vitesse est perpendiculaire au rayon :</p>
-\[r_pv_p = r_av_a, \qquad r_p + r_a = 2a.\]
-<p>Avec la conservation de l’énergie, \(\tfrac12v^2 - \dfrac{GM}{r} = -\dfrac{GM}{2a}\), on a deux équations pour tout problème d’orbite. La seconde donne la vitesse en tout point :</p>
-\[v^2 = GM\left(\frac2r - \frac1a\right).\]
-<div class="methode" data-m="conservation"></div>
+<h2 id="ellipse">4. Orbites elliptiques et lois de Kepler</h2>
+<p><strong>Les trois lois de Kepler</strong> (leur démonstration n’est pas exigible). (1) L’orbite est une ellipse dont l’astre attracteur occupe un foyer. (2) Le rayon balaie des aires égales en des durées égales. (3) \(T^2/a^3 = 4\pi^2/GM\), avec \(a\) le demi-grand axe.</p>
+<p>Le point le plus proche de l’astre est le périhélie (distance \(r_p\)), le plus lointain l’aphélie (\(r_a\)) ; le grand axe vaut \(r_p + r_a = 2a\). En ces deux points la vitesse est perpendiculaire au rayon, et la loi des aires s’écrit simplement :</p>
+\[r_pv_p = r_av_a.\]
+<p>Le corps est donc d’autant plus rapide qu’il est proche de l’astre.</p>
 <div class="exo" data-q="cel-comete-periode"></div>
+<div class="cpge" id="kepler" title="Niveau CPGE : moment cinétique, énergie sur une orbite elliptique, transfert d’orbite">
+<p>La loi des aires traduit la <strong>conservation du moment cinétique</strong> : la force est centrale, son moment par rapport à l’astre est nul, \(L = m\,r\,v_\perp\) est constant tout au long de l’orbite.</p>
+<p><strong>Énergie.</strong> Sur une orbite elliptique de demi-grand axe \(a\), l’énergie mécanique vaut \(E = -\dfrac{GMm}{2a}\) : elle ne dépend que du grand axe. Avec la conservation de l’énergie, on en tire la vitesse en tout point :</p>
+\[\tfrac12v^2 - \frac{GM}{r} = -\frac{GM}{2a} \quad\Longrightarrow\quad v^2 = GM\left(\frac2r - \frac1a\right).\]
+<p>Moment cinétique et énergie donnent deux équations pour tout problème d’orbite.</p>
+<div class="methode" data-m="conservation"></div>
 <p><strong>Nature de la trajectoire.</strong> Elle ne dépend que du signe de l’énergie : ellipse (ou cercle) si \(E < 0\), parabole si \(E = 0\), hyperbole si \(E > 0\).</p>
 <p><strong>Transfert de Hohmann.</strong> Pour passer d’une orbite circulaire de rayon \(r_1\) à une orbite circulaire de rayon \(r_2\), on emprunte une demi-ellipse de grand axe \(r_1 + r_2\), avec une impulsion au départ et une à l’arrivée. Durée du transfert : la moitié de la période de l’ellipse, \(\pi\sqrt{\dfrac{(r_1 + r_2)^3}{8GM}}\) (environ 8,5 mois de la Terre à Mars).</p>
 <p><strong>Problème à deux corps.</strong> Si les deux masses sont comparables, elles tournent autour de leur centre de masse et la troisième loi s’écrit avec la masse totale : \(T^2 = \dfrac{4\pi^2d^3}{G(m_1 + m_2)}\), où \(d\) est la distance qui les sépare. C’est le principe de la détection des exoplanètes par vitesse radiale : l’étoile décrit un petit cercle autour du centre de masse, à la vitesse \(v_\star = v_\text{planète}\,m_p/M_\star\).</p>
