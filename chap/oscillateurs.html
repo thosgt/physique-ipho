@@ -1,0 +1,121 @@
+<p class="eyebrow">Mécanique · Chapitre 3</p>
+<h1>Oscillateurs</h1>
+<p class="subtitle">Oscillateur harmonique, ressort et pendule, énergie, associations de ressorts, petites oscillations, amortissement, résonance, oscillateurs couplés</p>
+
+<div class="objectifs">
+<p><strong>Ce que demande le test.</strong> Un QCM par an en moyenne (fréquence d’un ressort ou d’un pendule, ressorts associés, masses couplées en CPGE), et l’oscillateur réapparaît dans des exercices de tous les domaines : ions piégés (2023), oscillations de fluides stratifiés (2018), microscope à force atomique (2015), circuit LC. Le réflexe à acquérir : <strong>ramener l’équation du mouvement à \(\ddot x + \omega_0^2x = 0\)</strong> et lire la pulsation.</p>
+<ul>
+<li><strong>Terminale</strong> : parties 1 à 3.</li>
+<li><strong>CPGE</strong> : en plus, les parties 4 et 5 (amortissement, résonance, oscillateurs couplés).</li>
+</ul>
+</div>
+
+<div class="retenir">
+<p><strong>L’essentiel à retenir</strong></p>
+<ol>
+<li>\(\ddot x + \omega_0^2x = 0\) a pour solution \(x(t) = A\cos(\omega_0t + \varphi)\) ; période \(T = 2\pi/\omega_0\), <strong>indépendante de l’amplitude</strong>.</li>
+<li>Masse et ressort : \(\omega_0 = \sqrt{k/m}\). Pendule simple (petits angles) : \(\omega_0 = \sqrt{g/\ell}\), indépendante de la masse.</li>
+<li>Énergie \(\tfrac12m\dot x^2 + \tfrac12kx^2 = \tfrac12kA^2\), constante ; vitesse maximale \(A\omega_0\), accélération maximale \(A\omega_0^2\).</li>
+<li>Ressorts en série : les souplesses \(1/k\) s’ajoutent. En parallèle : les raideurs s’ajoutent. Un ressort coupé en deux est deux fois plus raide.</li>
+<li>Près de tout équilibre stable, un système oscille harmoniquement : \(\omega_0^2 = \dfrac{1}{m}\dfrac{\mathrm d^2E_p}{\mathrm dx^2}\) à l’équilibre.</li>
+<li>Avec amortissement, le facteur de qualité \(Q\) compte les oscillations visibles ; en régime forcé, la résonance a lieu près de \(\omega_0\), avec une largeur \(\omega_0/Q\).</li>
+</ol>
+</div>
+
+<h2 id="harmonique">1. L’oscillateur harmonique</h2>
+<p>Une masse \(m\) attachée à un ressort de raideur \(k\), repérée par son écart \(x\) à la position d’équilibre, subit la force de rappel \(-kx\) :</p>
+\[m\ddot x = -kx \quad\Longrightarrow\quad \ddot x + \omega_0^2x = 0, \qquad \omega_0 = \sqrt{\frac km}, \qquad T = 2\pi\sqrt{\frac mk}.\]
+<p>La solution \(x(t) = A\cos(\omega_0t + \varphi)\) contient deux constantes, fixées par la position et la vitesse initiales. Lâché sans vitesse d’un écart \(x_0\) : \(x = x_0\cos\omega_0t\). Lancé de l’équilibre à la vitesse \(v_0\) : \(x = \dfrac{v_0}{\omega_0}\sin\omega_0t\).</p>
+<table>
+<thead><tr><th>Système</th><th>Pulsation propre</th><th>Remarque</th></tr></thead>
+<tbody>
+<tr><td>Masse et ressort horizontal</td><td>\(\sqrt{k/m}\)</td><td></td></tr>
+<tr><td>Masse et ressort vertical</td><td>\(\sqrt{k/m} = \sqrt{g/\Delta\ell}\)</td><td>La pesanteur déplace l’équilibre de \(\Delta\ell = mg/k\) sans changer la période.</td></tr>
+<tr><td>Pendule simple</td><td>\(\sqrt{g/\ell}\)</td><td>Petits angles seulement ; indépendante de la masse.</td></tr>
+<tr><td>Circuit LC</td><td>\(1/\sqrt{LC}\)</td><td>Voir <a href="#circuits--transitoire">Circuits électriques</a>.</td></tr>
+<tr><td>Flotteur vertical de section \(S\)</td><td>\(\sqrt{\rho gS/m}\)</td><td>La poussée d’Archimède joue le rôle du ressort, \(k = \rho gS\).</td></tr>
+<tr><td>Liquide dans un tube en U (longueur \(L\))</td><td>\(\sqrt{2g/L}\)</td><td></td></tr>
+</tbody>
+</table>
+<div class="exo" data-q="ipho-2014-2"></div>
+<div class="exo" data-q="osc-vertical"></div>
+<div class="piege">
+<p><strong>Pièges.</strong></p>
+<ul>
+<li><strong>Fréquence et pulsation</strong> : \(f = \omega_0/2\pi\). Beaucoup de distracteurs de QCM diffèrent d’un facteur \(2\pi\).</li>
+<li>La période ne dépend <strong>pas de l’amplitude</strong> : écarter deux fois plus ne change pas la durée d’une oscillation.</li>
+<li>Pendule : la masse n’intervient pas ; sur la Lune (\(g/6\)) la période est multipliée par \(\sqrt6\), alors que celle d’un ressort est inchangée.</li>
+<li>Un pendule dont le fil rencontre un clou a deux demi-périodes différentes : additionnez la moitié de chacune.</li>
+</ul>
+</div>
+
+<h2 id="energie">2. Énergie et petites oscillations</h2>
+<p>Sans frottement, l’énergie mécanique se conserve :</p>
+\[E = \tfrac12m\dot x^2 + \tfrac12kx^2 = \tfrac12kA^2 = \tfrac12m(A\omega_0)^2.\]
+<p>Elle oscille entre forme cinétique (au passage par l’équilibre) et forme potentielle (aux extrémités), à la fréquence \(2f\) ; en moyenne, les deux formes sont égales.</p>
+<p><strong>Tout équilibre stable est un oscillateur.</strong> Près d’un minimum de l’énergie potentielle, en \(x_\text{éq}\), on développe au second ordre : \(E_p(x) \approx E_p(x_\text{éq}) + \tfrac12\kappa\,(x - x_\text{éq})^2\) avec \(\kappa = \dfrac{\mathrm d^2E_p}{\mathrm dx^2}\). Le système se comporte comme un ressort de raideur \(\kappa\) : \(\omega_0 = \sqrt{\kappa/m}\). Si \(\kappa < 0\), l’équilibre est instable. Deux voies mènent à \(\omega_0\) :</p>
+<ul>
+<li><strong>par les forces</strong> : écrire la deuxième loi de Newton pour un petit écart et ne garder que le terme proportionnel à l’écart ;</li>
+<li><strong>par l’énergie</strong> : écrire \(E = \tfrac12m_\text{eff}\,\dot q^2 + \tfrac12\kappa\,q^2\) pour un paramètre \(q\) quelconque (angle, hauteur, charge) ; alors \(\omega_0 = \sqrt{\kappa/m_\text{eff}}\), sans avoir à projeter aucune force.</li>
+</ul>
+<div class="methode" data-m="lineariser"></div>
+<div class="methode" data-m="energie-parametre"></div>
+<p>Exemples traités sur ce site : oscillation d’une charge entre deux charges fixes (chapitre <a href="#electrostatique">Champ électrique</a>), d’une particule de fluide dans un milieu stratifié (<a href="#initiative--g-init-2018-brunt">problème de 2018</a>), d’une perle sur un cerceau tournant (<a href="#nongalileen">Référentiels non galiléens</a>).</p>
+
+<h2 id="associations">3. Associer des ressorts</h2>
+<table>
+<thead><tr><th>Montage</th><th>Ce qui est commun</th><th>Raideur équivalente</th></tr></thead>
+<tbody>
+<tr><td>En série (bout à bout)</td><td>La force ; les allongements s’ajoutent</td><td>\(\dfrac1{k_\text{éq}} = \dfrac1{k_1} + \dfrac1{k_2}\)</td></tr>
+<tr><td>En parallèle (côte à côte)</td><td>L’allongement ; les forces s’ajoutent</td><td>\(k_\text{éq} = k_1 + k_2\)</td></tr>
+<tr><td>Masse entre deux ressorts fixés à deux parois</td><td>Le déplacement de la masse : quand l’un s’allonge, l’autre se raccourcit, les deux rappellent</td><td>\(k_\text{éq} = k_1 + k_2\) : c’est un montage en parallèle</td></tr>
+<tr><td>Ressort coupé à la fraction \(\alpha\) de sa longueur</td><td></td><td>\(k = k_0/\alpha\) : \(k\ell\) est constant</td></tr>
+</tbody>
+</table>
+<p>La règle est l’inverse de celle des résistances, et la même que celle des condensateurs.</p>
+<div class="exo" data-q="ipho-2018-T12"></div>
+
+<h2 id="amorti">4. Amortissement et résonance (CPGE)</h2>
+<div class="cpge" id="amortissement" title="Niveau CPGE : oscillateur amorti, facteur de qualité, résonance">
+<p>Avec un frottement fluide \(-\alpha\dot x\), l’équation devient</p>
+\[\ddot x + \frac{\omega_0}{Q}\,\dot x + \omega_0^2x = 0, \qquad Q = \frac{m\omega_0}{\alpha}.\]
+<table>
+<thead><tr><th>Régime</th><th>Condition</th><th>Comportement</th></tr></thead>
+<tbody>
+<tr><td>Pseudo-périodique</td><td>\(Q > \tfrac12\)</td><td>Oscillations d’amplitude \(\propto \mathrm e^{-\omega_0t/2Q}\), de pulsation \(\omega_0\sqrt{1 - 1/4Q^2} \approx \omega_0\)</td></tr>
+<tr><td>Critique</td><td>\(Q = \tfrac12\)</td><td>Retour à l’équilibre le plus rapide sans oscillation</td></tr>
+<tr><td>Apériodique</td><td>\(Q < \tfrac12\)</td><td>Retour lent, sans oscillation</td></tr>
+</tbody>
+</table>
+<p>Pour \(Q \gg 1\) : l’amplitude est divisée par \(\mathrm e\) en \(Q/\pi\) périodes, l’énergie en \(Q/2\pi\) périodes. \(Q\) est donc, à un facteur près, <strong>le nombre d’oscillations observables</strong> ; c’est aussi \(2\pi\) fois le rapport de l’énergie stockée à l’énergie perdue par période.</p>
+<div class="exo" data-q="osc-facteur-qualite"></div>
+<p><strong>Régime forcé.</strong> Soumis à une force \(F_0\cos\omega t\), l’oscillateur finit par osciller à la pulsation \(\omega\) imposée, avec une amplitude</p>
+\[X(\omega) = \frac{F_0/m}{\sqrt{(\omega_0^2 - \omega^2)^2 + (\omega\omega_0/Q)^2}}.\]
+<ul>
+<li>\(\omega \ll \omega_0\) : \(X \approx F_0/k\), la masse suit la force (réponse statique).</li>
+<li>\(\omega \approx \omega_0\) : <strong>résonance</strong>, \(X \approx Q\,F_0/k\) ; la largeur du pic est \(\Delta\omega \approx \omega_0/Q\).</li>
+<li>\(\omega \gg \omega_0\) : \(X \approx F_0/m\omega^2\), la masse ne suit plus, en opposition de phase.</li>
+</ul>
+<div class="methode" data-m="terme-dominant"></div>
+</div>
+
+<h2 id="couples">5. Oscillateurs couplés (CPGE)</h2>
+<div class="cpge" id="modes" title="Niveau CPGE : modes propres de deux oscillateurs couplés">
+<p>Deux oscillateurs reliés échangent de l’énergie. Le mouvement général est compliqué, mais il existe des mouvements simples, les <strong>modes propres</strong>, où toutes les parties oscillent à la même pulsation. Pour un système symétrique, on les trouve sans calcul :</p>
+<ul>
+<li><strong>mode symétrique</strong> : les deux masses se déplacent ensemble, le ressort de couplage garde sa longueur et ne joue aucun rôle ;</li>
+<li><strong>mode antisymétrique</strong> : déplacements opposés ; le milieu du ressort de couplage reste fixe, chaque moitié (de raideur double) agit comme un ressort supplémentaire.</li>
+</ul>
+<p>Exemple : deux masses \(m\), chacune reliée à une paroi par un ressort \(k_1\), et entre elles par un ressort \(k_2\). Mode symétrique : \(\omega_s = \sqrt{k_1/m}\). Mode antisymétrique : \(\omega_a = \sqrt{(k_1 + 2k_2)/m}\). Le mouvement général est la somme des deux ; si le couplage est faible, on observe des <strong>battements</strong> : l’énergie passe d’une masse à l’autre en un temps \(\pi/(\omega_a - \omega_s)\).</p>
+<div class="methode" data-m="symetrie"></div>
+<p>Un système de \(N\) masses a \(N\) modes propres. À la limite d’une chaîne continue, ce sont les ondes stationnaires du chapitre <a href="#optique--superposition">Ondes</a>.</p>
+</div>
+
+<div class="cpge" id="plus-loin" title="Pour aller plus loin : au-delà du test">
+<ul>
+<li>Kevin Zhou, <a href="https://knzhou.github.io/teaching/" target="_blank" rel="noopener">polycopié de mécanique sur les oscillations</a> : oscillations, méthode de l’énergie, modes normaux.</li>
+<li>Jaan Kalda, <a href="https://www.ioc.ee/~kalda/ipho/" target="_blank" rel="noopener">guide de mécanique</a>, idées sur les petites oscillations et les modes propres.</li>
+</ul>
+</div>
+</content>
+</invoke>

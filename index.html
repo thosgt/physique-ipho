@@ -333,9 +333,11 @@ a.card:hover{border-color:var(--accent)}
     <a href="#outils" data-page="outils"><span class="n">0</span>Analyse dimensionnelle et outils</a>
   </div>
   <div class="navgroup"><h4>Mécanique</h4>
-    <a href="#nongalileen" data-page="nongalileen"><span class="n">1</span>Référentiels non galiléens</a>
-    <a href="#solide" data-page="solide"><span class="n">2</span>Mécanique du solide</a>
-    <span class="soon"><span class="n">·</span>Mécanique du point<em>à venir</em></span>
+    <a href="#mecapoint" data-page="mecapoint"><span class="n">1</span>Mécanique du point</a>
+    <a href="#celeste" data-page="celeste"><span class="n">2</span>Mécanique céleste</a>
+    <a href="#oscillateurs" data-page="oscillateurs"><span class="n">3</span>Oscillateurs</a>
+    <a href="#nongalileen" data-page="nongalileen"><span class="n">4</span>Référentiels non galiléens</a>
+    <a href="#solide" data-page="solide"><span class="n">5</span>Mécanique du solide</a>
   </div>
   <div class="navgroup"><h4>Mécanique des fluides</h4>
     <a href="#statique" data-page="statique"><span class="n">1</span>Statique des fluides</a>
@@ -350,15 +352,15 @@ a.card:hover{border-color:var(--accent)}
     <a href="#electrostatique" data-page="electrostatique"><span class="n">1</span>Champ électrique</a>
     <a href="#magnetisme" data-page="magnetisme"><span class="n">2</span>Champ magnétique et bobine</a>
     <a href="#particules" data-page="particules"><span class="n">3</span>Particules chargées</a>
+    <a href="#circuits" data-page="circuits"><span class="n">4</span>Circuits électriques</a>
   </div>
   <div class="navgroup"><h4>Physique moderne</h4>
     <a href="#relativite" data-page="relativite"><span class="n">1</span>Relativité restreinte</a>
     <a href="#nucleaire" data-page="nucleaire"><span class="n">2</span>Physique nucléaire</a>
     <a href="#quantique" data-page="quantique"><span class="n">3</span>Physique quantique</a>
   </div>
-  <div class="navgroup"><h4>Autres chapitres</h4>
-    <span class="soon"><span class="n">·</span>Circuits électriques<em>à venir</em></span>
-    <span class="soon"><span class="n">·</span>Thermodynamique<em>à venir</em></span>
+  <div class="navgroup"><h4>Thermodynamique</h4>
+    <a href="#thermo" data-page="thermo"><span class="n">1</span>Thermodynamique et rayonnement</a>
   </div>
   <div class="navgroup"><h4>S’entraîner</h4>
     <a href="#sims" data-page="sims"><span class="n">▶</span>Toutes les simulations</a>
@@ -382,8 +384,8 @@ const CHAPTERS = {
   outils: {title: "Analyse dimensionnelle et outils", label: "Méthodes · 0", topic: "l’analyse dimensionnelle, les ordres de grandeur, les incertitudes et les outils de calcul", cahier: "fiches 1 et 26", n: 7},
   statique: {title: "Statique des fluides", label: "Mécanique des fluides · 1", topic: "la statique des fluides", cahier: "fiche 21", n: 6},
   dynamique: {title: "Dynamique des fluides", label: "Mécanique des fluides · 2", topic: "la dynamique des fluides", cahier: "", n: 5},
-  nongalileen: {title: "Référentiels non galiléens", label: "Mécanique · 1", topic: "les référentiels non galiléens et les forces d’inertie", cahier: "", n: 5},
-  solide: {title: "Mécanique du solide", label: "Mécanique · 2", topic: "la mécanique du solide (moment d’inertie, moment cinétique, roulement)", cahier: "fiche 13", n: 6},
+  nongalileen: {title: "Référentiels non galiléens", label: "Mécanique · 4", topic: "les référentiels non galiléens et les forces d’inertie", cahier: "", n: 5},
+  solide: {title: "Mécanique du solide", label: "Mécanique · 5", topic: "la mécanique du solide (moment d’inertie, moment cinétique, roulement)", cahier: "fiche 13", n: 6},
   electrostatique: {title: "Champ électrique", label: "Électromagnétisme · 1", topic: "le champ et le potentiel électriques et les condensateurs", cahier: "fiche 14", n: 5},
   magnetisme: {title: "Champ magnétique et bobine", label: "Électromagnétisme · 2", topic: "le champ magnétique, l’auto-induction et le circuit RL", cahier: "fiches 16 et 17", n: 5},
   particules: {title: "Particules chargées", label: "Électromagnétisme · 3", topic: "le mouvement des particules chargées dans les champs électrique et magnétique", cahier: "fiche 15", n: 5},
@@ -393,6 +395,11 @@ const CHAPTERS = {
   relativite: {title: "Relativité restreinte", label: "Physique moderne · 1", topic: "la relativité restreinte et l’énergie de masse", cahier: "", n: 7},
   nucleaire: {title: "Physique nucléaire", label: "Physique moderne · 2", topic: "la physique nucléaire et la radioactivité", cahier: "", n: 5},
   quantique: {title: "Physique quantique", label: "Physique moderne · 3", topic: "la physique quantique", cahier: "", n: 6},
+  mecapoint: {title: "Mécanique du point", label: "Mécanique · 1", topic: "la mécanique du point (cinématique, lois de Newton, énergie, chocs)", cahier: "", n: 4},
+  celeste: {title: "Mécanique céleste", label: "Mécanique · 2", topic: "la gravitation et les orbites", cahier: "", n: 5},
+  oscillateurs: {title: "Oscillateurs", label: "Mécanique · 3", topic: "les oscillateurs (ressort, pendule, résonance, modes propres)", cahier: "", n: 6},
+  circuits: {title: "Circuits électriques", label: "Électromagnétisme · 4", topic: "les circuits électriques", cahier: "", n: 4},
+  thermo: {title: "Thermodynamique et rayonnement", label: "Thermodynamique · 1", topic: "la thermodynamique et le rayonnement thermique", cahier: "", n: 6},
   initiative: {title: "Problèmes à prise d’initiative", label: "CPGE · dernière partie du test", topic: "les problèmes à prise d’initiative du test CPGE", cahier: "", n: 8, noTrain: true}
 };
 const ETAPES = {a: 'a · Système et référentiel', b: 'b · Modélisation et hypothèses', c: 'c · Lois', d: 'd · Calcul et synthèse', e: 'e · Limites du modèle'};

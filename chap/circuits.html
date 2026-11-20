@@ -1,0 +1,103 @@
+<p class="eyebrow">Électromagnétisme · Chapitre 4</p>
+<h1>Circuits électriques</h1>
+<p class="subtitle">Lois de Kirchhoff, associations, diviseurs, puissance, régimes transitoires RC et RL : les notions clés et les pièges</p>
+
+<div class="objectifs">
+<p><strong>Ce que demande le test.</strong> Chaque test comporte un ou deux QCM de circuits et, une année sur deux, un exercice ou un problème entier (télégraphe 2019, milieu granulaire 2022, oscillateur électronique 2023, fils accolés 2025, orage 2026). Vous étudiez les circuits en cours : ce chapitre ne refait pas le cours. Il rassemble <strong>les réflexes</strong> qui permettent de répondre vite et <strong>les pièges</strong> des QCM.</p>
+<ul>
+<li><strong>Terminale</strong> : parties 1 et 2 (courant continu, circuits RC et RL).</li>
+<li><strong>CPGE</strong> : en plus, le régime sinusoïdal (encadré replié de la partie 3).</li>
+<li>Le condensateur et la bobine sont présentés dans les chapitres <a href="#electrostatique">Champ électrique</a> et <a href="#magnetisme">Champ magnétique et bobine</a>.</li>
+</ul>
+</div>
+
+<div class="retenir">
+<p><strong>L’essentiel à retenir</strong></p>
+<ol>
+<li><strong>Loi des nœuds</strong> (conservation de la charge) et <strong>loi des mailles</strong> (le potentiel est défini en chaque point) : avec la relation de chaque dipôle, elles suffisent à tout résoudre.</li>
+<li>Série : même courant, les résistances s’ajoutent. Parallèle : même tension, les conductances \(1/R\) s’ajoutent. Les <strong>condensateurs</strong> suivent la règle inverse.</li>
+<li>Diviseur de tension : \(U_2 = E\,\dfrac{R_2}{R_1 + R_2}\), <strong>à condition</strong> que \(R_1\) et \(R_2\) soient parcourues par le même courant.</li>
+<li>Puissance reçue par un dipôle : \(P = UI\) ; dans une résistance, \(P = RI^2 = U^2/R\).</li>
+<li>Régime transitoire du premier ordre : \(x(t) = x_\infty + (x_0 - x_\infty)\,\mathrm e^{-t/\tau}\), avec \(\tau = RC\) ou \(L/R\). Il suffit de trouver la valeur initiale, la valeur finale et \(\tau\).</li>
+<li>Continuité : la <strong>tension</strong> d’un condensateur et le <strong>courant</strong> d’une bobine ne peuvent pas varier instantanément.</li>
+</ol>
+</div>
+
+<h2 id="continu">1. Courant continu</h2>
+<h3 id="courant">Courant et résistance à l’échelle microscopique</h3>
+<p>Un courant \(I\) dans un fil de section \(S\) contenant \(n\) porteurs par unité de volume correspond à une vitesse de dérive \(v\) telle que \(I = neSv\). Dans un métal, \(v\) est de l’ordre de 0,1 mm par seconde. La résistance d’un fil de longueur \(\ell\) est \(R = \dfrac{\rho\,\ell}{S} = \dfrac{\ell}{\sigma S}\), avec \(\rho\) la résistivité et \(\sigma\) la conductivité (cuivre : \(\rho \approx 1{,}7\times10^{-8}\ \Omega\text{·m}\)).</p>
+<div class="exo" data-q="ipho-2018-T3"></div>
+
+<h3 id="simplifier">Simplifier un circuit</h3>
+<table>
+<thead><tr><th>Réflexe</th><th>Comment</th></tr></thead>
+<tbody>
+<tr><td>Redessiner</td><td>Deux points reliés par un fil sont au même potentiel : fusionnez-les. Un circuit dessiné de façon trompeuse devient lisible.</td></tr>
+<tr><td>Associer</td><td>Série, puis parallèle, de proche en proche, en partant du dipôle le plus éloigné de la source.</td></tr>
+<tr><td>Symétrie</td><td>Des points que la symétrie rend équivalents sont au même potentiel : on peut les relier, ou supprimer la branche qui les joint (pont équilibré), sans rien changer.</td></tr>
+<tr><td>Potentiels de nœuds</td><td>Choisir une masse, écrire la loi des nœuds en fonction des potentiels inconnus : une équation par nœud.</td></tr>
+<tr><td>Source réelle</td><td>Une pile est une source idéale \(E\) en série avec une résistance interne \(r\) : \(U = E - rI\). La puissance fournie à une charge \(R\) est maximale pour \(R = r\).</td></tr>
+</tbody>
+</table>
+<div class="methode" data-m="symetrie"></div>
+<div class="exo" data-q="cir-diviseur-charge"></div>
+
+<h3 id="puissance">Puissance et énergie</h3>
+<p>Une énergie est une puissance multipliée par une durée : \(1\ \text{kWh} = 3{,}6\ \text{MJ}\). Pour comparer deux appareils, demandez-vous ce qui est imposé : sous une <strong>même tension</strong> (appareils en parallèle sur le secteur), la plus petite résistance dissipe le plus (\(U^2/R\)) ; parcourues par un <strong>même courant</strong> (en série), c’est la plus grande (\(RI^2\)).</p>
+<div class="exo" data-q="ipho-2014-12"></div>
+<div class="piege">
+<p><strong>Pièges.</strong></p>
+<ul>
+<li>Appliquer le diviseur de tension alors qu’une charge est branchée sur \(R_2\) : il faut d’abord remplacer \(R_2\) et la charge par leur équivalent.</li>
+<li>Ampoules identiques : l’éclat dépend de la puissance reçue par chacune, donc du courant qui la traverse ; court-circuiter une ampoule l’éteint et fait briller davantage celles qui restent en série avec la source.</li>
+<li>Un voltmètre idéal ne laisse passer aucun courant (branche ouverte) ; un ampèremètre idéal est un fil.</li>
+<li>Conventions : \(U = RI\) suppose la flèche de tension opposée au sens du courant (convention récepteur).</li>
+</ul>
+</div>
+
+<h2 id="transitoire">2. Régimes transitoires</h2>
+<p>Pour un circuit à un seul condensateur ou une seule bobine, inutile de résoudre l’équation différentielle dans un QCM : trois nombres suffisent.</p>
+<table>
+<thead><tr><th>Ce qu’on cherche</th><th>Condensateur</th><th>Bobine</th></tr></thead>
+<tbody>
+<tr><td>Grandeur continue</td><td>La tension \(u_C\) (et la charge \(q = Cu_C\))</td><td>Le courant \(i_L\)</td></tr>
+<tr><td>Juste après une commutation</td><td>Se comporte comme une source de tension \(u_C(0^-)\) ; déchargé : comme un fil</td><td>Se comporte comme une source de courant \(i_L(0^-)\) ; sans courant : comme un interrupteur ouvert</td></tr>
+<tr><td>En régime permanent continu</td><td>Interrupteur ouvert (\(i = 0\))</td><td>Fil (\(u = 0\))</td></tr>
+<tr><td>Constante de temps</td><td>\(\tau = R_\text{éq}C\)</td><td>\(\tau = L/R_\text{éq}\)</td></tr>
+<tr><td>Énergie stockée</td><td>\(\tfrac12Cu^2\)</td><td>\(\tfrac12Li^2\)</td></tr>
+</tbody>
+</table>
+<p>\(R_\text{éq}\) est la résistance vue par le condensateur (ou la bobine) quand on éteint les sources : une source de tension idéale est remplacée par un fil. Durées utiles : 63 % de l’évolution à \(\tau\), 95 % à \(3\tau\), 99 % à \(5\tau\) ; la tangente à l’origine coupe l’asymptote à \(t = \tau\).</p>
+<div class="methode" data-m="cas-limites"></div>
+<div class="exo" data-q="cir-instant-initial"></div>
+<p><strong>Circuit LC.</strong> Un condensateur chargé relié à une bobine idéale oscille : la charge vérifie \(\ddot q + \dfrac{q}{LC} = 0\), de pulsation propre \(\omega_0 = \dfrac1{\sqrt{LC}}\). L’énergie passe du condensateur à la bobine et revient. C’est l’analogue électrique du système masse-ressort (chapitre <a href="#oscillateurs">Oscillateurs</a>) : \(L\) joue le rôle de la masse, \(1/C\) celui de la raideur, \(R\) celui du frottement.</p>
+<div class="piege">
+<p><strong>Pièges.</strong></p>
+<ul>
+<li>Le <strong>courant</strong> dans un condensateur peut être discontinu ; la <strong>tension</strong> aux bornes d’une bobine aussi. Seules \(u_C\) et \(i_L\) sont continues.</li>
+<li>Deux condensateurs chargés que l’on relie : la <strong>charge</strong> totale des armatures reliées se conserve, pas l’énergie (une partie est dissipée dans les fils, quelle que soit leur résistance).</li>
+<li>En chargeant un condensateur à travers une résistance sous tension constante \(E\), la source fournit \(CE^2\) : la moitié seulement est stockée, l’autre moitié est dissipée, quelle que soit \(R\).</li>
+<li>Avec plusieurs résistances, \(\tau\) n’est pas « \(RC\) avec la résistance voisine » : cherchez la résistance équivalente vue par le condensateur.</li>
+</ul>
+</div>
+
+<h2 id="sinusoidal">3. Régime sinusoïdal (CPGE)</h2>
+<div class="cpge" id="impedances" title="Niveau CPGE : impédances complexes et résonance">
+<p>En régime sinusoïdal forcé à la pulsation \(\omega\), on associe à chaque grandeur une amplitude complexe et à chaque dipôle une <strong>impédance</strong> \(\underline Z = \underline U/\underline I\) : \(R\) pour une résistance, \(jL\omega\) pour une bobine, \(\dfrac1{jC\omega}\) pour un condensateur. Toutes les règles du continu (associations, diviseurs) s’appliquent aux impédances.</p>
+<ul>
+<li>Comportements limites : à basse fréquence, le condensateur est un interrupteur ouvert et la bobine un fil ; à haute fréquence, c’est l’inverse. Ils donnent la nature d’un filtre sans calcul.</li>
+<li>Filtre RC passe-bas (sortie sur \(C\)) : \(\underline H = \dfrac1{1 + jRC\omega}\), coupure à \(\omega_c = 1/RC\) où le gain vaut \(1/\sqrt2\).</li>
+<li>RLC série : résonance en courant à \(\omega_0 = 1/\sqrt{LC}\), où l’impédance se réduit à \(R\). Facteur de qualité \(Q = \dfrac{L\omega_0}{R} = \dfrac1R\sqrt{\dfrac LC}\) ; largeur de la résonance \(\Delta\omega = \omega_0/Q\).</li>
+<li>Puissance moyenne : \(P = U_\text{eff}I_\text{eff}\cos\varphi\) ; seule la résistance dissipe. Valeur efficace d’un signal sinusoïdal : amplitude divisée par \(\sqrt2\).</li>
+</ul>
+<div class="exo" data-q="cir-resonance"></div>
+</div>
+
+<div class="cpge" id="plus-loin" title="Pour aller plus loin : au-delà du test">
+<ul>
+<li>Jaan Kalda, <a href="https://www.ioc.ee/~kalda/ipho/" target="_blank" rel="noopener">guide « Electrical circuits »</a> : méthodes de symétrie, de superposition, circuits infinis, éléments non linéaires.</li>
+<li>Kevin Zhou, <a href="https://knzhou.github.io/teaching/" target="_blank" rel="noopener">polycopiés d’électromagnétisme</a> consacrés aux circuits en continu et en alternatif.</li>
+</ul>
+</div>
+</content>
+</invoke>

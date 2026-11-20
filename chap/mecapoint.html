@@ -1,0 +1,101 @@
+<p class="eyebrow">Mécanique · Chapitre 1</p>
+<h1>Mécanique du point</h1>
+<p class="subtitle">Cinématique, lois de Newton, frottement, énergie, quantité de mouvement et chocs : les notions clés et les pièges</p>
+
+<div class="objectifs">
+<p><strong>Ce que demande le test.</strong> La mécanique du point est, avec les ondes, le thème le plus présent : un QCM sur sept à huit et un exercice ou problème sur six ou sept. Vous l’étudiez en cours : ce chapitre ne refait pas le cours. Il rassemble <strong>ce qu’il faut savoir écrire sans hésiter</strong> et <strong>les pièges</strong> que tendent les QCM, puis renvoie aux exercices.</p>
+<ul>
+<li><strong>Terminale et CPGE</strong> : tout le chapitre. Les référentiels non galiléens, la gravitation et les oscillateurs ont leur propre chapitre.</li>
+</ul>
+</div>
+
+<div class="retenir">
+<p><strong>L’essentiel à retenir</strong></p>
+<ol>
+<li>Avant tout calcul : <strong>système, référentiel, bilan des forces</strong> sur un schéma.</li>
+<li>Deuxième loi de Newton : \(m\vec a = \sum\vec F\). Elle donne le mouvement à chaque instant ; projetez-la sur des axes bien choisis.</li>
+<li>Mouvement circulaire : l’accélération a une composante <strong>centripète</strong> \(v^2/R = \omega^2R\), même à vitesse constante.</li>
+<li>Énergie : \(\Delta E_c = \sum W\). Sans frottement, \(E_c + E_p\) se conserve : c’est la voie la plus courte quand on ne demande pas la durée.</li>
+<li>Quantité de mouvement : conservée pour un système isolé, donc pendant tout <strong>choc</strong>. L’énergie cinétique ne l’est que si le choc est élastique.</li>
+<li>Frottement solide : \(T \le \mu N\) sans glissement (le frottement s’ajuste), \(T = \mu N\) avec glissement.</li>
+</ol>
+</div>
+
+<h2 id="cinematique">1. Cinématique</h2>
+<table>
+<thead><tr><th>Mouvement</th><th>Ce qu’on écrit</th><th>À ne pas oublier</th></tr></thead>
+<tbody>
+<tr><td>Uniformément accéléré</td><td>\(v = v_0 + at\), \(x = x_0 + v_0t + \tfrac12at^2\), \(v^2 - v_0^2 = 2a(x - x_0)\)</td><td>La troisième relation évite de calculer le temps.</td></tr>
+<tr><td>Chute libre, tir</td><td>Horizontal : uniforme ; vertical : accélération \(-g\). Portée \(\dfrac{v_0^2\sin2\alpha}{g}\), flèche \(\dfrac{v_0^2\sin^2\alpha}{2g}\)</td><td>Portée maximale à 45°, égale à \(v_0^2/g\) ; durée de vol d’un tir vertical \(2v_0/g\).</td></tr>
+<tr><td>Circulaire</td><td>\(v = R\omega\), accélération normale \(v^2/R\), tangentielle \(\mathrm dv/\mathrm dt\)</td><td>Uniforme ne veut pas dire sans accélération.</td></tr>
+<tr><td>Deux mobiles</td><td>Raisonner sur la position et la vitesse <strong>relatives</strong></td><td>La rencontre a lieu quand la position relative s’annule.</td></tr>
+</tbody>
+</table>
+<p>Sur un graphe \(v(t)\), la pente est l’accélération et l’aire sous la courbe la distance parcourue ; sur un graphe \(x(t)\), la pente est la vitesse.</p>
+<div class="piege">
+<p><strong>Pièges.</strong></p>
+<ul>
+<li><strong>Vitesse moyenne</strong> : c’est la distance totale divisée par la durée totale, jamais la moyenne des vitesses. Sur deux moitiés de trajet parcourues à \(v_1\) et \(v_2\), elle vaut \(\dfrac{2v_1v_2}{v_1 + v_2}\).</li>
+<li>Des allers-retours compliqués à vitesse constante : la distance est la vitesse multipliée par la durée, inutile de sommer une série.</li>
+</ul>
+</div>
+<div class="exo" data-q="ipho-2023-T1"></div>
+<div class="methode" data-m="referentiel"></div>
+
+<h2 id="newton">2. Lois de Newton</h2>
+<p>La méthode ne change jamais : <strong>système</strong>, <strong>référentiel galiléen</strong>, <strong>bilan des forces extérieures</strong>, projection. Les forces à connaître :</p>
+<table>
+<thead><tr><th>Force</th><th>Expression</th><th>Remarque</th></tr></thead>
+<tbody>
+<tr><td>Poids</td><td>\(m\vec g\)</td><td>Dans le vide, tous les corps ont la même accélération.</td></tr>
+<tr><td>Réaction d’un support</td><td>Normale \(N\) et frottement \(T\)</td><td>\(N\) n’est égale à \(mg\) que sur un plan horizontal sans autre force verticale. Le contact cesse quand \(N = 0\).</td></tr>
+<tr><td>Tension d’un fil</td><td>Dirigée suivant le fil</td><td>La même tout le long d’un fil sans masse passant sur une poulie idéale. Le fil se détend quand elle s’annule.</td></tr>
+<tr><td>Ressort</td><td>\(k\,(\ell - \ell_0)\), vers la position de repos</td><td>Voir le chapitre <a href="#oscillateurs">Oscillateurs</a>.</td></tr>
+<tr><td>Frottement fluide</td><td>\(-\alpha\vec v\) à faible vitesse, \(\propto v^2\) à grande vitesse</td><td>Vitesse limite quand il compense le poids.</td></tr>
+</tbody>
+</table>
+<div class="methode" data-m="systeme"></div>
+<p>Pour plusieurs solides reliés (blocs en contact, masses et poulie), deux écritures se complètent : la deuxième loi pour l’<strong>ensemble</strong> donne l’accélération sans faire intervenir les forces intérieures ; la deuxième loi pour <strong>un seul</strong> solide donne ensuite la force de contact ou la tension.</p>
+<div class="piege">
+<p><strong>Pièges.</strong></p>
+<ul>
+<li><strong>Action et réaction</strong> ont toujours la même norme, même si l’un des corps accélère : elles ne s’appliquent pas au même objet et ne se compensent donc pas.</li>
+<li><strong>Frottement statique</strong> : il vaut ce qu’il faut pour empêcher le glissement, pas \(\mu N\). L’égalité n’a lieu qu’au seuil.</li>
+<li><strong>Pendule</strong> : aux extrémités la vitesse est nulle mais l’accélération ne l’est pas (elle est tangentielle) ; au point bas elle est centripète ; entre les deux elle a les deux composantes.</li>
+<li>« Force centrifuge » : elle n’existe que dans un référentiel tournant (chapitre <a href="#nongalileen">Référentiels non galiléens</a>). Dans le référentiel du laboratoire, on écrit que la résultante des forces vaut \(mv^2/R\) vers le centre.</li>
+</ul>
+</div>
+<div class="exo" data-q="ipho-2018-T2"></div>
+<div class="exo" data-q="mp-glissement"></div>
+
+<h2 id="energie">3. Énergie, quantité de mouvement, chocs</h2>
+<p>Trois outils répondent à trois questions différentes.</p>
+<table>
+<thead><tr><th>On cherche</th><th>Outil</th><th>Condition</th></tr></thead>
+<tbody>
+<tr><td>Une vitesse en fonction d’une position</td><td>Théorème de l’énergie cinétique, ou conservation de \(E_c + E_p\)</td><td>Connaître le travail des forces ; les forces perpendiculaires au déplacement (réaction normale, tension d’un pendule) ne travaillent pas.</td></tr>
+<tr><td>Une durée, une trajectoire, une force</td><td>Deuxième loi de Newton</td><td>Aucune.</td></tr>
+<tr><td>L’état après un choc, une explosion, une éjection</td><td>Conservation de la quantité de mouvement</td><td>Système isolé, ou choc assez bref pour négliger les forces extérieures.</td></tr>
+</tbody>
+</table>
+<p>Énergies potentielles : pesanteur \(mgz\) (axe vers le haut), ressort \(\tfrac12k(\ell - \ell_0)^2\), gravitation \(-GMm/r\). Puissance d’une force : \(\vec F\cdot\vec v\).</p>
+<div class="methode" data-m="conservation"></div>
+<p><strong>Chocs.</strong> La quantité de mouvement totale se conserve toujours. Si le choc est <strong>élastique</strong>, l’énergie cinétique aussi ; à une dimension la vitesse relative change alors simplement de signe. Si les corps restent accrochés (choc <strong>mou</strong>), la perte d’énergie cinétique est maximale. Deux résultats à connaître : une balle qui frappe une balle identique immobile s’arrête et lui cède sa vitesse ; une balle légère qui rebondit sur un objet très lourd avançant à la vitesse \(V\) repart avec sa vitesse augmentée de \(2V\) (c’est le principe du <a href="#initiative--g-init-2019-canon">canon de Galilée</a>).</p>
+<div class="piege">
+<p><strong>Pièges.</strong></p>
+<ul>
+<li>Appliquer la conservation de l’énergie <strong>pendant</strong> un choc mou : l’énergie cinétique n’y est pas conservée. Découpez en phases, une loi par phase.</li>
+<li>La quantité de mouvement est un <strong>vecteur</strong> : attention aux signes à une dimension, aux composantes à deux.</li>
+<li>Au sommet d’un looping ou d’une bosse, la vitesse minimale n’est pas nulle : elle est fixée par \(N \ge 0\).</li>
+</ul>
+</div>
+<div class="exo" data-q="mp-looping"></div>
+
+<div class="cpge" id="plus-loin" title="Pour aller plus loin : au-delà du test">
+<ul>
+<li>Jaan Kalda, <a href="https://www.ioc.ee/~kalda/ipho/" target="_blank" rel="noopener">guide de mécanique</a> : les « idées » 1 à 30 portent sur la statique et la dynamique du point.</li>
+<li>Kevin Zhou, <a href="https://knzhou.github.io/teaching/" target="_blank" rel="noopener">polycopiés M1 à M3</a> : cinématique, lois de Newton, énergie et quantité de mouvement.</li>
+</ul>
+</div>
+</content>
+</invoke>

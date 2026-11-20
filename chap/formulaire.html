@@ -13,6 +13,35 @@
 </ul>
 <p class="fmeth">Méthodes clés : <a href="#methodes--m-dimension">Vérifier l’homogénéité, deviner une loi</a> · <a href="#methodes--m-cas-limites">Tester les cas limites</a> · <a href="#methodes--m-petit-parametre">Développer au premier ordre en un petit paramètre</a> · <a href="#methodes--m-ordre-grandeur">Estimer un ordre de grandeur</a> · <a href="#methodes--m-derivee-logarithmique">Différentier le logarithme</a>.</p>
 
+<h2 id="f-mecapoint">Mécanique du point</h2>
+<ul>
+<li>Uniformément accéléré : \(v = v_0 + at\), \(x = x_0 + v_0t + \tfrac12at^2\), \(v^2 - v_0^2 = 2a\,\Delta x\). Tir : portée \(\dfrac{v_0^2\sin2\alpha}{g}\), flèche \(\dfrac{v_0^2\sin^2\alpha}{2g}\).</li>
+<li>Circulaire : \(v = R\omega\), accélération centripète \(v^2/R = \omega^2R\).</li>
+<li>Newton : \(m\vec a = \sum\vec F\). Frottement solide : \(T \le \mu N\), égalité au glissement.</li>
+<li>Énergie : \(\Delta E_c = \sum W\) ; \(E_p = mgz\), \(\tfrac12k(\ell - \ell_0)^2\). Puissance \(\vec F\cdot\vec v\).</li>
+<li>Chocs : \(\sum m\vec v\) conservée ; énergie cinétique conservée seulement si le choc est élastique.</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-systeme">Bien choisir le système</a> · <a href="#methodes--m-conservation">Utiliser une loi de conservation</a> · <a href="#methodes--m-seuil">Écrire la condition d’existence</a>.</p>
+
+<h2 id="f-celeste">Mécanique céleste</h2>
+<ul>
+<li>Gravitation : \(F = \dfrac{GMm}{r^2}\) ; pesanteur \(g = \dfrac{GM}{R^2}\) ; \(E_p = -\dfrac{GMm}{r}\).</li>
+<li>Orbite circulaire : \(v = \sqrt{GM/r}\), \(T^2 = \dfrac{4\pi^2}{GM}r^3\) ; énergie \(E = -\dfrac{GMm}{2a}\).</li>
+<li>Kepler : \(T^2/a^3\) identique autour d’un même astre. Loi des aires : \(r_pv_p = r_av_a\).</li>
+<li>Vitesse de libération : \(\sqrt{2GM/R}\) (Terre : 11,2 km/s) ; orbite basse : 7,9 km/s, 84 min ; géostationnaire : \(r = 42\,200\) km.</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-rapports">Raisonner en rapports</a> · <a href="#methodes--m-conservation">Utiliser une loi de conservation</a>.</p>
+
+<h2 id="f-oscillateurs">Oscillateurs</h2>
+<ul>
+<li>\(\ddot x + \omega_0^2x = 0\) : \(x = A\cos(\omega_0t + \varphi)\), \(T = 2\pi/\omega_0\). Ressort : \(\omega_0 = \sqrt{k/m}\) ; pendule : \(\sqrt{g/\ell}\) ; LC : \(1/\sqrt{LC}\).</li>
+<li>Énergie : \(\tfrac12m\dot x^2 + \tfrac12kx^2 = \tfrac12kA^2\) ; \(v_\text{max} = A\omega_0\).</li>
+<li>Ressorts en série : \(1/k = 1/k_1 + 1/k_2\) ; en parallèle : \(k = k_1 + k_2\).</li>
+<li>Petites oscillations : \(\omega_0^2 = \dfrac1m\dfrac{\mathrm d^2E_p}{\mathrm dx^2}\) à l’équilibre.</li>
+<li>Amorti (CPGE) : \(\ddot x + \dfrac{\omega_0}{Q}\dot x + \omega_0^2x = 0\) ; amplitude \(\propto \mathrm e^{-\omega_0t/2Q}\) ; largeur de résonance \(\omega_0/Q\).</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-lineariser">Linéariser autour d’un équilibre</a> · <a href="#methodes--m-energie-parametre">Un seul paramètre : écrire l’énergie, puis la dériver</a>.</p>
+
 <h2 id="f-nongalileen">Référentiels non galiléens</h2>
 <ul>
 <li>Translation : \(\vec v = \vec v\,' + \vec v_{O'}\), \(\vec a = \vec a\,' + \vec a_{O'}\) ; force d’inertie \(-m\vec a_{O'}\), pesanteur effective \(\vec g - \vec a_{O'}\).</li>
@@ -96,6 +125,26 @@
 <li>Champs croisés : vitesse non déviée, et vitesse de dérive, \(v = E/B\).</li>
 </ul>
 <p class="fmeth">Méthodes clés : <a href="#methodes--m-tension-acceleratrice">Relier la vitesse à la tension accélératrice</a> · <a href="#methodes--m-cyclotron">Reconnaître le mouvement cyclotron</a> · <a href="#methodes--m-champs-croises">Champs croisés : chercher la vitesse de dérive</a> · <a href="#methodes--m-seuil">Écrire la condition d’existence : le seuil est le cas d’égalité</a>.</p>
+
+<h2 id="f-circuits">Circuits électriques</h2>
+<ul>
+<li>Nœuds : \(\sum i = 0\) ; mailles : \(\sum u = 0\) ; Ohm : \(u = Ri\) ; \(R = \rho\ell/S\) ; \(I = neSv\).</li>
+<li>Série : \(R = R_1 + R_2\) ; parallèle : \(1/R = 1/R_1 + 1/R_2\) ; condensateurs : règle inverse. Diviseur : \(U_2 = E\,\dfrac{R_2}{R_1 + R_2}\).</li>
+<li>Puissance : \(P = UI = RI^2 = U^2/R\).</li>
+<li>Premier ordre : \(x(t) = x_\infty + (x_0 - x_\infty)\mathrm e^{-t/\tau}\), \(\tau = RC\) ou \(L/R\) ; \(u_C\) et \(i_L\) continus.</li>
+<li>CPGE : impédances \(R\), \(jL\omega\), \(1/jC\omega\) ; RLC série : \(\omega_0 = 1/\sqrt{LC}\), \(Q = \dfrac1R\sqrt{L/C}\).</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-cas-limites">Tester les cas limites</a> · <a href="#methodes--m-symetrie">Exploiter les symétries</a>.</p>
+
+<h2 id="f-thermo">Thermodynamique et rayonnement</h2>
+<ul>
+<li>Gaz parfait : \(PV = nRT\) (\(T\) en K) ; \(P = \rho RT/M\) ; énergie cinétique moyenne \(\tfrac32k_BT\).</li>
+<li>Premier principe : \(\Delta U = W + Q\) ; \(\Delta U = mc\,\Delta T\) ; changement d’état \(Q = mL\).</li>
+<li>Adiabatique réversible (CPGE) : \(PV^\gamma\), \(TV^{\gamma-1}\), \(T^\gamma P^{1-\gamma}\) constants.</li>
+<li>Moteur : \(\eta \le 1 - T_f/T_c\).</li>
+<li>Transferts : conduction \(\dfrac{\lambda S}{e}\Delta T\) ; Newton \(hS\,\Delta T\) ; Stefan \(\sigma ST^4\) ; Wien \(\lambda_\text{max}T = 2{,}9\times10^{-3}\) m·K.</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-conservation">Utiliser une loi de conservation</a> · <a href="#methodes--m-rapports">Raisonner en rapports</a> · <a href="#methodes--m-bilan">Faire un bilan sur un volume de contrôle</a>.</p>
 
 <h2 id="f-relativite">Relativité restreinte</h2>
 <ul>

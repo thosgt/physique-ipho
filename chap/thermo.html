@@ -1,0 +1,148 @@
+<p class="eyebrow">Thermodynamique · Chapitre 1</p>
+<h1>Thermodynamique et rayonnement thermique</h1>
+<p class="subtitle">Gaz parfait, énergie interne, premier principe, calorimétrie, changements d’état, transformations adiabatiques, machines thermiques, conduction, convection, rayonnement du corps noir</p>
+
+<div class="objectifs">
+<p><strong>Ce que demande le test.</strong> Un QCM par an au moins (calorimétrie, gaz parfait, loi de Stefan) et des exercices ou problèmes entiers : capacité thermique de l’eau (2022), convection (2024), sondes Voyager (2024), thermophone et geysers (2025). Les calculs sont courts ; la difficulté est de <strong>définir le système</strong> et d’écrire un <strong>bilan d’énergie</strong> complet.</p>
+<ul>
+<li><strong>Terminale</strong> : parties 1, 2 et 5 (gaz parfait, premier principe et calorimétrie, transferts thermiques et rayonnement).</li>
+<li><strong>CPGE</strong> : en plus, les parties 3 et 4 (transformations du gaz parfait, machines thermiques).</li>
+<li>La statique de l’atmosphère (pression en fonction de l’altitude, montgolfière) est dans le chapitre <a href="#statique">Statique des fluides</a>.</li>
+</ul>
+</div>
+
+<div class="retenir">
+<p><strong>L’essentiel à retenir</strong></p>
+<ol>
+<li>Gaz parfait : \(PV = nRT\), avec \(T\) <strong>en kelvins</strong>, \(P\) en pascals, \(V\) en mètres cubes.</li>
+<li>Premier principe pour un système fermé : \(\Delta U = W + Q\). Pour un solide ou un liquide : \(\Delta U = mc\,\Delta T\).</li>
+<li>Changement d’état à température constante : \(Q = mL\).</li>
+<li>Système isolé (calorimètre) : la somme des variations d’énergie de ses parties est nulle.</li>
+<li>Adiabatique réversible d’un gaz parfait : \(PV^\gamma = \text{cste}\) (lois de Laplace).</li>
+<li>Rendement d’un moteur : \(\eta = W/Q_\text{chaud} \le 1 - T_f/T_c\).</li>
+<li>Rayonnement : puissance émise \(P = \sigma ST^4\) (Stefan), maximum d’émission à \(\lambda_\text{max}T = 2{,}9\times10^{-3}\ \text{m·K}\) (Wien).</li>
+</ol>
+</div>
+
+<h2 id="gaz">1. Température et gaz parfait</h2>
+<p>L’équation d’état \(PV = nRT\) relie quatre grandeurs ; \(R = 8{,}314\ \text{J·K}^{-1}\text{·mol}^{-1}\). Dans un QCM, on ne calcule presque jamais \(n\) : on écrit l’équation dans deux états et on fait le rapport.</p>
+<table>
+<thead><tr><th>Ce qui est constant</th><th>Relation</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr><td>\(n\) et \(V\)</td><td>\(P/T\) constant</td><td>Pneu qui chauffe, bouteille au soleil</td></tr>
+<tr><td>\(n\) et \(P\)</td><td>\(V/T\) constant</td><td>Ballon qui se dilate</td></tr>
+<tr><td>\(n\) et \(T\)</td><td>\(PV\) constant</td><td>Bulle qui remonte, seringue comprimée lentement</td></tr>
+<tr><td>\(P\), \(V\) et \(T\) (récipient ouvert)</td><td>\(n\) change : \(nT\) constant</td><td>Montgolfière, pièce que l’on chauffe</td></tr>
+</tbody>
+</table>
+<p>Forme locale utile : \(P = \dfrac{\rho RT}{M}\), où \(\rho\) est la masse volumique et \(M\) la masse molaire (29 g/mol pour l’air, d’où \(\rho \approx 1{,}2\ \text{kg·m}^{-3}\) à 20 °C). Une mole occupe 24 L à 20 °C sous 1 bar.</p>
+<div class="methode" data-m="rapports"></div>
+<div class="exo" data-q="ipho-2026-T5"></div>
+<p><strong>Interprétation microscopique.</strong> La température mesure l’agitation : l’énergie cinétique moyenne de translation d’une molécule vaut \(\tfrac32k_BT\), soit une vitesse typique \(\sqrt{3k_BT/m} = \sqrt{3RT/M}\) (500 m/s pour l’air à 20 °C, proche de la vitesse du son). L’énergie interne d’un gaz parfait ne dépend que de \(T\) : \(U = \tfrac32nRT\) pour un gaz monoatomique, \(\tfrac52nRT\) pour un gaz diatomique aux températures usuelles.</p>
+<div class="piege">
+<p><strong>Pièges.</strong></p>
+<ul>
+<li><strong>Degrés Celsius</strong> dans un rapport de températures : l’erreur la plus fréquente, que les distracteurs des QCM exploitent toujours. Une <em>différence</em> de températures est la même en kelvins et en degrés Celsius ; un <em>rapport</em> ne l’est pas.</li>
+<li>Pression absolue et pression relative : un manomètre de pneu affiche l’écart à la pression atmosphérique.</li>
+<li>Récipient ouvert : c’est la quantité de matière qui change, pas la pression.</li>
+</ul>
+</div>
+
+<h2 id="premier-principe">2. Premier principe et calorimétrie</h2>
+<p>L’énergie interne \(U\) d’un système fermé varie par deux voies : le travail \(W\) et le transfert thermique \(Q\), comptés positivement quand le système les <strong>reçoit</strong> :</p>
+\[\Delta U = W + Q.\]
+<table>
+<thead><tr><th>Situation</th><th>Variation d’énergie</th><th>Ordres de grandeur</th></tr></thead>
+<tbody>
+<tr><td>Échauffement d’un solide ou d’un liquide</td><td>\(mc\,\Delta T\)</td><td>Eau : \(c = 4{,}18\ \text{kJ·kg}^{-1}\text{·K}^{-1}\) ; métaux : 0,1 à 0,9</td></tr>
+<tr><td>Fusion, vaporisation</td><td>\(mL\), à température constante</td><td>Glace : \(L_f = 334\ \text{kJ·kg}^{-1}\) ; eau : \(L_v = 2\,260\ \text{kJ·kg}^{-1}\)</td></tr>
+<tr><td>Chauffage électrique</td><td>\(W = UI\,\Delta t = P\,\Delta t\)</td><td></td></tr>
+</tbody>
+</table>
+<p>Vaporiser un kilogramme d’eau coûte autant que le chauffer de 540 °C ; fondre un kilogramme de glace, autant que chauffer l’eau de 80 °C. Les changements d’état dominent presque toujours les bilans.</p>
+<p><strong>Calorimétrie.</strong> Dans un récipient isolé, sans travail, \(\sum\Delta U_i = 0\) : l’énergie cédée par les corps chauds est reçue par les corps froids. Méthode : (1) lister les corps et, pour chacun, son état initial et son état final ; (2) écrire sa variation d’énergie, étape par étape s’il change d’état ; (3) annuler la somme.</p>
+<div class="methode" data-m="conservation"></div>
+<div class="exo" data-q="ipho-2026-T4"></div>
+<div class="piege">
+<p><strong>Pièges.</strong></p>
+<ul>
+<li>Oublier une étape : de la glace qui fond donne de l’eau à 0 °C, qu’il faut ensuite réchauffer jusqu’à la température finale.</li>
+<li>Supposer un état final impossible : vérifiez que toute la glace peut fondre (sinon l’état final est un mélange à 0 °C).</li>
+<li>Confondre la température finale et la variation de température : relisez ce que demande la question.</li>
+<li>Oublier la capacité thermique du récipient quand l’énoncé la donne.</li>
+</ul>
+</div>
+
+<h2 id="transformations">3. Transformations du gaz parfait (CPGE)</h2>
+<div class="cpge" id="laplace" title="Niveau CPGE : travail des forces de pression, isotherme, adiabatique, lois de Laplace">
+<p>Travail reçu par un gaz lors d’une transformation lente : \(\delta W = -P\,\mathrm dV\) ; c’est, au signe près, l’aire sous la courbe dans le diagramme \((P, V)\). Capacités thermiques molaires : \(C_V = \dfrac{R}{\gamma - 1}\), \(C_P = C_V + R\), \(\gamma = C_P/C_V\) (5/3 monoatomique, 7/5 diatomique).</p>
+<table>
+<thead><tr><th>Transformation</th><th>Relation</th><th>Travail reçu</th><th>Chaleur reçue</th></tr></thead>
+<tbody>
+<tr><td>Isochore</td><td>\(V\) constant</td><td>0</td><td>\(nC_V\Delta T\)</td></tr>
+<tr><td>Isobare</td><td>\(P\) constant</td><td>\(-P\Delta V\)</td><td>\(nC_P\Delta T\)</td></tr>
+<tr><td>Isotherme</td><td>\(PV\) constant, \(\Delta U = 0\)</td><td>\(nRT\ln(V_i/V_f)\)</td><td>\(-W\)</td></tr>
+<tr><td>Adiabatique réversible</td><td>\(PV^\gamma\), \(TV^{\gamma-1}\), \(T^\gamma P^{1-\gamma}\) constants</td><td>\(nC_V\Delta T\)</td><td>0</td></tr>
+</tbody>
+</table>
+<p><strong>Lente ou rapide ?</strong> Une transformation rapide devant les échanges thermiques est adiabatique (compression dans une pompe, onde sonore, air qui s’élève dans l’atmosphère) ; une transformation lente au contact d’un thermostat est isotherme. Dans un diagramme \((P, V)\), l’adiabatique est plus raide que l’isotherme.</p>
+<div class="exo" data-q="th-pompe"></div>
+<p>Deux applications classiques : la vitesse du son \(c = \sqrt{\gamma RT/M}\) (les compressions sont adiabatiques), et le refroidissement de l’air qui s’élève, environ 10 °C par kilomètre pour de l’air sec. Le problème EuPhO <a href="#initiative--g-eupho-2021-fuite">La fuite</a> enchaîne deux compressions adiabatiques.</p>
+</div>
+
+<h2 id="machines">4. Machines thermiques (CPGE)</h2>
+<div class="cpge" id="carnot" title="Niveau CPGE : second principe, moteurs, réfrigérateurs et pompes à chaleur">
+<p>Sur un cycle, \(\Delta U = 0\) : \(W + Q_c + Q_f = 0\). Le second principe interdit de convertir intégralement de la chaleur en travail : un moteur prend \(Q_c\) à une source chaude (température \(T_c\)), fournit un travail et rejette nécessairement de la chaleur à une source froide (\(T_f\)).</p>
+<table>
+<thead><tr><th>Machine</th><th>Efficacité</th><th>Limite (cycle réversible de Carnot)</th></tr></thead>
+<tbody>
+<tr><td>Moteur</td><td>\(\eta = \dfrac{|W|}{Q_c}\)</td><td>\(1 - \dfrac{T_f}{T_c}\)</td></tr>
+<tr><td>Réfrigérateur</td><td>\(\dfrac{Q_f}{W}\)</td><td>\(\dfrac{T_f}{T_c - T_f}\)</td></tr>
+<tr><td>Pompe à chaleur</td><td>\(\dfrac{|Q_c|}{W}\)</td><td>\(\dfrac{T_c}{T_c - T_f}\)</td></tr>
+</tbody>
+</table>
+<p>Les températures sont en kelvins. Une pompe à chaleur entre 0 °C et 20 °C a une efficacité théorique de 15 : elle fournit bien plus de chaleur qu’elle ne consomme de travail. L’entropie, \(\mathrm dS = \delta Q_\text{rév}/T\), ne peut qu’augmenter pour un système isolé : la chaleur passe spontanément du chaud vers le froid.</p>
+</div>
+
+<h2 id="transferts">5. Transferts thermiques et rayonnement</h2>
+<p>La chaleur se propage de trois façons. Dans les trois cas on raisonne sur une <strong>puissance</strong> (en watts) et, en régime permanent, on écrit que ce qui entre dans un système en sort.</p>
+<table>
+<thead><tr><th>Mode</th><th>Loi</th><th>Remarque</th></tr></thead>
+<tbody>
+<tr><td>Conduction (dans un solide, sans mouvement de matière)</td><td>\(P = \dfrac{\lambda S}{e}\,(T_1 - T_2)\) à travers une paroi d’épaisseur \(e\)</td><td>Analogie électrique : résistance thermique \(R_\text{th} = e/\lambda S\) ; en série elles s’ajoutent.</td></tr>
+<tr><td>Convection (échange entre une paroi et un fluide)</td><td>\(P = hS\,(T_\text{paroi} - T_\text{fluide})\), loi de Newton</td><td>Avec \(mc\,\dfrac{\mathrm dT}{\mathrm dt} = -hS(T - T_0)\) : retour exponentiel, \(\tau = mc/hS\).</td></tr>
+<tr><td>Rayonnement (sans support matériel)</td><td>\(P = \sigma ST^4\), loi de Stefan</td><td>\(\sigma = 5{,}67\times10^{-8}\ \text{W·m}^{-2}\text{·K}^{-4}\)</td></tr>
+</tbody>
+</table>
+<div class="methode" data-m="bilan"></div>
+<p>Le problème des <a href="#initiative--g-init-2025-geysers">geysers</a> (2025) repose entièrement sur la loi de Newton.</p>
+
+<h3 id="corps-noir">Rayonnement du corps noir</h3>
+<p>Tout corps chaud rayonne. Un <strong>corps noir</strong>, qui absorbe tout le rayonnement qu’il reçoit, émet un spectre continu qui ne dépend que de sa température :</p>
+<ul>
+<li><strong>loi de Stefan</strong> : puissance émise par unité de surface \(\sigma T^4\) ; pour une sphère, \(P = 4\pi R^2\sigma T^4\) ;</li>
+<li><strong>loi de Wien</strong> : le maximum du spectre est à \(\lambda_\text{max} = \dfrac{2{,}9\times10^{-3}\ \text{m·K}}{T}\) : 500 nm (visible) pour le Soleil à 5 800 K, 10 µm (infrarouge) pour un corps à 300 K.</li>
+</ul>
+<p>Presque tous les QCM se traitent en rapports : \(\dfrac{P_2}{P_1} = \left(\dfrac{R_2}{R_1}\right)^2\left(\dfrac{T_2}{T_1}\right)^4\). Loin de la source, la puissance se répartit sur une sphère : le flux reçu à la distance \(d\) est \(\dfrac{P}{4\pi d^2}\) (1 360 W/m² au niveau de la Terre).</p>
+<div class="exo" data-q="ipho-2019-T13"></div>
+<p><strong>Équilibre radiatif.</strong> La température d’un corps éclairé se fixe quand la puissance absorbée égale la puissance rayonnée. Une planète intercepte le flux de son étoile sur un disque \(\pi R^2\) et rayonne par toute sa surface \(4\pi R^2\) : ce facteur 4 est le cœur du calcul.</p>
+<div class="exo" data-q="th-equilibre-radiatif"></div>
+<div class="piege">
+<p><strong>Pièges.</strong></p>
+<ul>
+<li>\(T^4\) : doubler la température multiplie la puissance par 16, pas par 2 ni par 4.</li>
+<li>Température en kelvins dans les lois de Stefan et de Wien.</li>
+<li>Un énoncé qui donne la masse d’une étoile en plus de son rayon et de sa température : la masse ne sert à rien pour la puissance rayonnée.</li>
+<li>Un corps à la température \(T\) dans un environnement à \(T_0\) perd la puissance nette \(\sigma S(T^4 - T_0^4)\) : il reçoit aussi le rayonnement de ce qui l’entoure.</li>
+</ul>
+</div>
+
+<div class="cpge" id="plus-loin" title="Pour aller plus loin : au-delà du test">
+<ul>
+<li>Jaan Kalda, <a href="https://www.ioc.ee/~kalda/ipho/" target="_blank" rel="noopener">guide de thermodynamique</a> : bilans, cycles, transferts thermiques, équilibres de phases.</li>
+<li>Kevin Zhou, <a href="https://knzhou.github.io/teaching/" target="_blank" rel="noopener">polycopiés de thermodynamique T1 à T3</a>.</li>
+<li>Le rayonnement vu sous l’angle des photons (loi de Planck) : chapitre <a href="#quantique">Physique quantique</a>.</li>
+</ul>
+</div>
+</content>
+</invoke>

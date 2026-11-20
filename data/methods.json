@@ -83,7 +83,9 @@
 "tension",
 "quantique",
 "electrostatique",
-"particules"
+"particules",
+"celeste",
+"thermo"
 ]
 },
 {
@@ -104,7 +106,8 @@
 "solide",
 "electrostatique",
 "magnetisme",
-"particules"
+"particules",
+"circuits"
 ]
 },
 {
@@ -136,7 +139,8 @@
 "tension",
 "relativite",
 "solide",
-"particules"
+"particules",
+"oscillateurs"
 ]
 },
 {
@@ -163,7 +167,9 @@
 "tension",
 "optique",
 "relativite",
-"solide"
+"solide",
+"mecapoint",
+"thermo"
 ]
 },
 {
@@ -284,7 +290,11 @@
 "solide",
 "electrostatique",
 "magnetisme",
-"particules"
+"particules",
+"mecapoint",
+"celeste",
+"oscillateurs",
+"thermo"
 ]
 },
 {
@@ -295,7 +305,8 @@
 "chaps": [
 "dynamique",
 "tension",
-"nucleaire"
+"nucleaire",
+"thermo"
 ]
 },
 {
@@ -319,7 +330,8 @@
 "optique",
 "relativite",
 "particules",
-"magnetisme"
+"magnetisme",
+"mecapoint"
 ]
 },
 {
@@ -365,7 +377,9 @@
 "quantique",
 "electrostatique",
 "magnetisme",
-"solide"
+"solide",
+"circuits",
+"oscillateurs"
 ]
 },
 {
@@ -532,7 +546,8 @@
 "tension",
 "quantique",
 "solide",
-"electrostatique"
+"electrostatique",
+"oscillateurs"
 ]
 },
 {
@@ -546,7 +561,8 @@
 "statique",
 "tension",
 "solide",
-"magnetisme"
+"magnetisme",
+"oscillateurs"
 ]
 },
 {
@@ -574,7 +590,9 @@
 "nucleaire",
 "quantique",
 "solide",
-"particules"
+"particules",
+"mecapoint",
+"celeste"
 ]
 },
 {
@@ -592,7 +610,9 @@
 "nucleaire",
 "magnetisme",
 "particules",
-"solide"
+"solide",
+"circuits",
+"oscillateurs"
 ]
 },
 {

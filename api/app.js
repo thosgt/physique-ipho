@@ -22,7 +22,8 @@ const DEFAULT_SETTINGS = { claude: true, quota: 15, open: true };
 const CHAP_TITLES = { outils: "Outils", statique: "Statique des fluides", dynamique: "Dynamique des fluides", tension: "Tension superficielle",
   nongalileen: "Référentiels non galiléens", geometrique: "Optique géométrique", optique: "Ondes et optique", relativite: "Relativité",
   nucleaire: "Nucléaire", quantique: "Quantique", solide: "Mécanique du solide", electrostatique: "Champ électrique",
-  magnetisme: "Champ magnétique et bobine", particules: "Particules chargées", initiative: "Problèmes à prise d'initiative" };
+  magnetisme: "Champ magnétique et bobine", particules: "Particules chargées", initiative: "Problèmes à prise d'initiative",
+  mecapoint: "Mécanique du point", celeste: "Mécanique céleste", oscillateurs: "Oscillateurs", circuits: "Circuits électriques", thermo: "Thermodynamique et rayonnement" };
 
 /* ------------------------------------------------------------------ outils */
 class HttpError extends Error { constructor(status, msg) { super(msg); this.status = status; } }
