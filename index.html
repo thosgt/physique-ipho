@@ -115,6 +115,24 @@ mjx-container.wide-inline{display:inline-block;max-width:100%;overflow-x:auto;ov
 .methode .mg{color:var(--fg-2);font-size:.93rem;margin:0 0 6px}
 .methode p{margin:.4em 0}
 .methode .ml{font-size:.82rem}
+html:not([data-lvl="C"]) nav a.cpge-only{display:none}
+.headbars{margin:1em 0 1.2em;display:grid;gap:8px}
+.headbars .bar{border:1px solid var(--line);border-radius:var(--radius);padding:9px 14px;font-size:.92rem;background:var(--bg-2)}
+.headbars .bar.vid a{font-weight:600}
+.headbars .bar .k{display:inline-block;font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;font-weight:600;color:var(--fg-2);margin-right:8px}
+.headbars details{margin-top:6px}
+.headbars details summary{cursor:pointer;font-size:.85rem;color:var(--accent)}
+.headbars details ul{margin:.5em 0 0;padding-left:1.2em;font-size:.86rem;columns:2;column-gap:28px}
+@media (max-width:640px){.headbars details ul{columns:1}}
+table.imp td.num,table.imp th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+table.imp td:not(:first-child){white-space:nowrap}
+table.imp .meter{display:inline-block;height:8px;border-radius:4px;background:var(--accent);vertical-align:middle;margin-right:8px;min-width:2px}
+table.imp .meter.e{background:var(--sun)}
+table.imp .soon{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-2);margin-left:6px}
+table.imp .vid{font-size:.82rem;margin-left:6px;white-space:nowrap}
+.mcard .imp{font-size:.85rem;color:var(--fg-2);margin:0 0 6px}
+.q .expl ol.steps .se{display:inline-block;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;font-weight:700;color:var(--on-accent);background:var(--accent);border-radius:4px;padding:1px 7px;margin-right:8px}
+.pb summary .guided{display:inline-block;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--cpge);border:1px solid var(--cpge);border-radius:4px;padding:0 6px;margin-left:8px;vertical-align:middle}
 .mcard{border:1px solid var(--line);border-left:4px solid var(--ok);border-radius:var(--radius);padding:12px 16px;margin:14px 0;background:var(--bg)}
 .mcard h3{margin:0 0 4px;color:var(--fg)}
 .mcard .quand{font-size:.9rem;color:var(--ok);font-weight:600;margin:0 0 6px}
@@ -309,6 +327,7 @@ a.card:hover{border-color:var(--accent)}
     <a href="#accueil" data-page="accueil"><span class="n">⌂</span>Présentation et méthode</a>
     <a href="#formulaire" data-page="formulaire"><span class="n">∑</span>Formulaire et constantes</a>
     <a href="#methodes" data-page="methodes"><span class="n">✓</span>Fiches méthode</a>
+    <a href="#initiative" data-page="initiative" class="cpge-only"><span class="n">★</span>Problèmes à prise d’initiative</a>
   </div>
   <div class="navgroup"><h4>Outils</h4>
     <a href="#outils" data-page="outils"><span class="n">0</span>Analyse dimensionnelle et outils</a>
@@ -373,8 +392,10 @@ const CHAPTERS = {
   optique: {title: "Ondes et optique ondulatoire", label: "Ondes · 2", topic: "les ondes, les interférences et la diffraction", cahier: "fiche 2", n: 5},
   relativite: {title: "Relativité restreinte", label: "Physique moderne · 1", topic: "la relativité restreinte et l’énergie de masse", cahier: "", n: 7},
   nucleaire: {title: "Physique nucléaire", label: "Physique moderne · 2", topic: "la physique nucléaire et la radioactivité", cahier: "", n: 5},
-  quantique: {title: "Physique quantique", label: "Physique moderne · 3", topic: "la physique quantique", cahier: "", n: 6}
+  quantique: {title: "Physique quantique", label: "Physique moderne · 3", topic: "la physique quantique", cahier: "", n: 6},
+  initiative: {title: "Problèmes à prise d’initiative", label: "CPGE · dernière partie du test", topic: "les problèmes à prise d’initiative du test CPGE", cahier: "", n: 8, noTrain: true}
 };
+const ETAPES = {a: 'a · Système et référentiel', b: 'b · Modélisation et hypothèses', c: 'c · Lois', d: 'd · Calcul et synthèse', e: 'e · Limites du modèle'};
 const SRC_LABEL = { officiel: "Corrigé officiel (Sciences à l’École).", cle: "Réponse officielle ; explication rédigée pour ce cours.", jury: "D’après le corrigé du rapport du jury.",
   louchart: "D’après le corrigé de B. Louchart.", cours: "Corrigé rédigé pour ce cours.", cahier: "D’après le corrigé du cahier d’entraînement.", zhou: "D’après la solution de K. Zhou (Physics Olympiad Handouts).", kalda: "Énoncé des guides de J. Kalda ; corrigé rédigé pour ce cours à partir de ses indications.", lequin: "Énoncé de V. Lequin (préparation olympiades, LLG) ; corrigé rédigé pour ce cours.", physicite: "Énoncé de V. Lequin et M. Rouan (exercices Ondes 2026-27) ; corrigé rédigé pour ce cours.", apho: "Adapté d’un problème de l’Asian Physics Olympiad ; énoncé condensé et corrigé rédigés pour ce cours.", rmph: "Adapté d’un problème du Romanian Master of Physics ; énoncé condensé et corrigé rédigés pour ce cours." };
 const KIND_LABEL = { "qcm-annale": "QCM d’annales IPhO", pb: "Problèmes d’annales", cde: "Cahier d’entraînement", ext: "Polycopiés olympiques (Zhou, Kalda)", cours: "Exercices du cours", olymp: "Olympiades étrangères (APhO, RMPh)" };
@@ -383,7 +404,7 @@ let DATA = null, SIM_META = null, PRIORITY = null, SEARCH = null, METHODS = null
 
 function store(k, v){ try { if (v === undefined) return JSON.parse(localStorage.getItem(k)); localStorage.setItem(k, JSON.stringify(v)); } catch(e){ return null; } }
 let LEVEL = store('olymp-niveau') === 'C' ? 'C' : 'T';
-function paintLevel(){ document.querySelectorAll('.level button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lvl === LEVEL))); }
+function paintLevel(){ document.documentElement.dataset.lvl = LEVEL; document.querySelectorAll('.level button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lvl === LEVEL))); }
 document.querySelectorAll('.level button').forEach(b => b.addEventListener('click', () => { if (LEVEL === b.dataset.lvl) return; LEVEL = b.dataset.lvl; store('olymp-niveau', LEVEL); paintLevel(); CURRENT = null; route(); }));
 paintLevel();
 
@@ -409,6 +430,52 @@ async function loadData(){
   DATA = d; return d;
 }
 async function loadSimMeta(){ if (!SIM_META) SIM_META = await getJSON('data/sims.json', []); return SIM_META; }
+async function loadImp(){ if (!IMP){ IMP = await getJSON('data/importance.json', {items: [], extra: {}, videos: {}, years: []});
+  IMP.forLevel = lv => IMP.items.filter(it => it.lv.includes(lv)); }
+  return IMP; }
+function impLabel(it, data){
+  const lv = LEVEL, n = it.p === 'qcm' ? (lv === 'C' && it.nc ? it.nc : it.n) : null;
+  const txt = it.p === 'qcm' ? `${it.y} · QCM ${n}` : `${it.y} · ${it.p === 'exo' ? 'exercice' : it.p === 'ouvert' ? 'problème à initiative' : 'problème'} « ${it.t} »`;
+  const q = it.q && data.qById[it.q], g = it.g && data.gById[it.g];
+  if (q && forLevel(q) && typeof showOneQuestion === 'function') return `<a href="#question/${esc(q.id)}">${esc(txt)}</a>`;
+  if (g && forLevel(g)) return `<a href="#${esc(g.chap)}--g-${esc(g.id)}">${esc(txt)}</a>`;
+  return esc(txt);
+}
+function impCounts(imp){
+  const its = imp.forLevel(LEVEL), c = {}, tot = {q: 0, e: 0};
+  its.forEach(it => { const k = it.p === 'qcm' ? 'q' : 'e'; tot[k]++; it.c.forEach(ch => { (c[ch] = c[ch] || {q: 0, e: 0, its: []})[k]++; c[ch].its.push(it); }); });
+  return {c, tot};
+}
+async function headBars(id){
+  const imp = await loadImp(), data = await loadData(); if (!imp.items.length) return;
+  const at = view.querySelector('.subtitle') || view.querySelector('h1'); if (!at) return;
+  const box = document.createElement('div'); box.className = 'headbars'; let h = '';
+  const vids = (imp.videos || {})[id] || [];
+  if (vids.length) h += `<div class="bar vid"><span class="k">Cours vidéo</span>${vids.map(v => `<a href="${esc(v.url)}" target="_blank" rel="noopener">▶ ${esc(v.label)} ↗</a>`).join(' · ')}${vids[0].note ? ` <span class="lvlnote">${esc(vids[0].note)}</span>` : ''}</div>`;
+  const {c, tot} = impCounts(imp), me = c[id], lvName = LEVEL === 'C' ? 'CPGE' : 'terminale';
+  if (id === 'initiative'){ /* la section entière porte sur cette partie */ }
+  else if (me) h += `<div class="bar"><span class="k">Poids au test</span>Dans les tests de présélection <strong>${lvName}</strong> de ${imp.years[0]} à ${imp.years[imp.years.length - 1]}, ce chapitre était indispensable pour <strong>${me.q} QCM</strong> sur ${tot.q} et <strong>${me.e} exercice${me.e > 1 ? 's' : ''} ou problème${me.e > 1 ? 's' : ''}</strong> sur ${tot.e}. <a href="#accueil--importance">Comparer avec les autres chapitres</a>
+    <details><summary>Voir ces questions</summary><ul>${me.its.slice().sort((a, b) => b.y - a.y || (a.p === 'qcm') - (b.p === 'qcm')).map(it => `<li>${impLabel(it, data)}</li>`).join('')}</ul></details></div>`;
+  else h += `<div class="bar"><span class="k">Poids au test</span>Aucune question des tests de présélection ${lvName} de ${imp.years[0]} à ${imp.years[imp.years.length - 1]} n’exigeait ce chapitre. <a href="#accueil--importance">Comparer avec les autres chapitres</a></div>`;
+  if (!h) return; box.innerHTML = h; at.after(box);
+}
+async function fillImportance(root){
+  const host = root.querySelector('#importance-tab'); if (!host) return;
+  const imp = await loadImp(); await loadMethods(); if (!imp.items.length){ host.remove(); return; }
+  const {c, tot} = impCounts(imp), lvName = LEVEL === 'C' ? 'CPGE' : 'terminale';
+  const ids = Object.keys(c).sort((a, b) => (c[b].q + 3 * c[b].e) - (c[a].q + 3 * c[a].e));
+  const mq = Math.max(...ids.map(i => c[i].q)), me = Math.max(...ids.map(i => c[i].e));
+  const vid = i => ((imp.videos || {})[i] || []).map(v => `<a class="vid" href="${esc(v.url)}" target="_blank" rel="noopener">▶ vidéo PhysiCité ↗</a>`).slice(0, 1).join('');
+  let h = `<p>Niveau affiché : <strong>${lvName}</strong> (${imp.years.length} tests de ${imp.years[0]} à ${imp.years[imp.years.length - 1]}, soit ${tot.q} QCM et ${tot.e} exercices ou problèmes). Changez de niveau avec le sélecteur « Je prépare ».</p>
+  <table class="imp"><thead><tr><th>Chapitre</th><th>QCM qui l’exigent</th><th>Exercices et problèmes qui l’exigent</th></tr></thead><tbody>` +
+    ids.map(i => `<tr><td>${CHAPTERS[i] ? `<a href="#${i}">${esc(CHAPTERS[i].title)}</a>` : esc(imp.extra[i] || i) + '<span class="soon">à venir</span>' + vid(i)}</td><td><span class="meter" style="width:${Math.round(90 * c[i].q / mq)}px"></span>${c[i].q}</td><td><span class="meter e" style="width:${Math.round(90 * c[i].e / me)}px"></span>${c[i].e}</td></tr>`).join('') + '</tbody></table>';
+  const mc = {}; imp.forLevel(LEVEL).forEach(it => it.m.forEach(m => { mc[m] = (mc[m] || 0) + 1; }));
+  const ms = Object.keys(mc).filter(m => MBYID[m]).sort((a, b) => mc[b] - mc[a]).slice(0, 15), mm = mc[ms[0]] || 1;
+  h += `<h3 id="importance-methodes">Les méthodes les plus souvent mobilisées</h3><p>Même décompte, par fiche méthode : nombre de QCM, d’exercices et de problèmes des tests ${lvName} dont la résolution passe par cette idée.</p>
+  <table class="imp"><thead><tr><th>Méthode</th><th>Questions des tests</th></tr></thead><tbody>` + ms.map(m => `<tr><td><a href="#methodes--m-${esc(m)}">${esc(MBYID[m].title)}</a></td><td><span class="meter" style="width:${Math.round(140 * mc[m] / mm)}px"></span>${mc[m]}</td></tr>`).join('') + '</tbody></table>';
+  host.innerHTML = h;
+}
+let IMP = null;
 async function loadPriority(){ if (!PRIORITY) PRIORITY = await getJSON('data/priority.json', {}); return PRIORITY; }
 const simLoaded = {};
 window.SIMS = window.SIMS || {};
@@ -539,14 +606,14 @@ function redacBlock(q, d, after, mark){
       const prompt = `Tu es un professeur de physique qui corrige la copie d'un élève préparant les Olympiades de physique. Compare la réponse de l'élève au corrigé de référence. Juge le fond, pas la forme : ce qui compte est le résultat final (expression littérale ou valeur numérique, à quelques pour cent près) et la justesse physique de la démarche. N'exige pas le détail des calculs intermédiaires ni une rédaction complète : une réponse courte qui donne le bon résultat avec l'idée clé est juste ; une expression équivalente algébriquement est juste ; le LaTeX et le texte brut sont acceptés. Réserve « faux » à un résultat ou un raisonnement erroné.
 ${g ? 'CONTEXTE DU PROBLÈME (HTML/LaTeX) : ' + plain(g.intro).slice(0, 2500) + '\n' : ''}QUESTION : ${plain(q.statement)}
 CORRIGÉ DE RÉFÉRENCE : ${plain(q.expected || '')} ${plain(q.explanation || '')}
-${np ? `RÉPONSE DE L'ÉLÈVE : copie manuscrite, sur ${np > 1 ? 'les ' + np + ' photos jointes, dans l’ordre' : 'la photo jointe'}.${ans ? ' Complément tapé par l’élève : ' + ans.slice(0, 3000) : ''}
+${q.grille ? `GRILLE D'ÉVALUATION DE CETTE ÉTAPE : ${q.grille}\nCette question est une étape d'un problème ouvert : il n'y a pas de résultat unique. Juge selon la grille : dis quels critères sont remplis et lequel manque en priorité ; « juste » si l'essentiel des critères est rempli, « partiel » s'il en manque un important, « faux » si la réponse est hors sujet ou physiquement erronée.\n` : ''}${np ? `RÉPONSE DE L'ÉLÈVE : copie manuscrite, sur ${np > 1 ? 'les ' + np + ' photos jointes, dans l’ordre' : 'la photo jointe'}.${ans ? ' Complément tapé par l’élève : ' + ans.slice(0, 3000) : ''}
 Lis la copie en entier avant de juger. Si un passage est illisible ou hors cadre, dis-le au lieu de deviner ; ne prête pas à l'élève ce qu'il n'a pas écrit.
 Réponds uniquement par un objet JSON {"lu": "...", "verdict": "juste" | "partiel" | "faux", "commentaire": "..."} ; « lu » recopie en une phrase le résultat final que tu lis sur la copie (ou « illisible ») ; le commentaire (5 phrases maximum, en français, tutoiement) dit ce qui est juste, situe la première erreur (à quelle étape ou quelle ligne) et ce qui manque, sans réécrire tout le corrigé. Formules en LaTeX entre \\( et \\).` : `RÉPONSE DE L'ÉLÈVE : ${ans.slice(0, 3000)}
 Réponds uniquement par un objet JSON {"verdict": "juste" | "partiel" | "faux", "commentaire": "..."} ; le commentaire (3 phrases maximum, en français, tutoiement) dit ce qui est juste, ce qui manque ou l'erreur, sans réécrire tout le corrigé.`}`;
       const promptAide = `Tu es un professeur de physique qui aide un élève préparant les Olympiades de physique. Il cherche la question ci-dessous, te montre son travail en cours et veut une piste, pas la solution. Dis-lui ce qui est juste dans ce qu'il a fait ; s'il y a une erreur, situe la première (à quelle étape ou quelle ligne) et dis de quelle nature elle est, sans la corriger à sa place ; puis donne UNE indication pour l'étape suivante : une question à se poser, une loi ou une méthode à mobiliser, une grandeur à introduire. Ne donne jamais le résultat final, ni l'expression littérale attendue, ni la valeur numérique, même s'il le demande : le corrigé de référence ne sert qu'à te guider, ne le cite pas. Si son travail est complet et juste, dis-le simplement et invite-le à demander la correction.
 ${g ? 'CONTEXTE DU PROBLÈME (HTML/LaTeX) : ' + plain(g.intro).slice(0, 2500) + '\n' : ''}QUESTION : ${plain(q.statement)}
 CORRIGÉ DE RÉFÉRENCE (à ne pas révéler) : ${plain(q.expected || '')} ${plain(q.explanation || '')}
-${np ? `TRAVAIL DE L'ÉLÈVE : manuscrit, sur ${np > 1 ? 'les ' + np + ' photos jointes, dans l’ordre' : 'la photo jointe'}.${ans ? ' Ce qu’il ajoute : ' + ans.slice(0, 3000) : ''}
+${q.grille ? `GRILLE D'ÉVALUATION DE CETTE ÉTAPE (à ne pas réciter) : ${q.grille}\nCette question est une étape d'un problème ouvert : oriente l'élève vers le critère de la grille qui lui manque, sans lui donner le contenu attendu.\n` : ''}${np ? `TRAVAIL DE L'ÉLÈVE : manuscrit, sur ${np > 1 ? 'les ' + np + ' photos jointes, dans l’ordre' : 'la photo jointe'}.${ans ? ' Ce qu’il ajoute : ' + ans.slice(0, 3000) : ''}
 Lis tout avant de répondre. Si un passage est illisible ou hors cadre, dis-le au lieu de deviner.
 Réponds uniquement par un objet JSON {"lu": "...", "commentaire": "..."} ; « lu » dit en une phrase où il en est d'après ce que tu lis (ou « illisible ») ;` : `TRAVAIL DE L'ÉLÈVE : ${ans.slice(0, 3000)}
 Réponds uniquement par un objet JSON {"commentaire": "..."} ;`} le commentaire (4 phrases maximum, en français, tutoiement) suit les consignes ci-dessus. Formules en LaTeX entre \\( et \\).`;
@@ -674,13 +741,13 @@ function renderList(container, qs, opts = {}){
 }
 /* Corrigé « barème » : une étape par ligne, précédée de la méthode du cours qu'elle met en œuvre. */
 function stepsHTML(q){
-  return '<ol class="steps">' + q.steps.map(s => `<li>${s.m && MBYID[s.m] ? `<a class="sm" href="#methodes--m-${esc(s.m)}">${esc(MBYID[s.m].title)}</a>` : s.t ? `<span class="sm">${esc(s.t)}</span>` : ''}<div>${s.x}</div></li>`).join('') + '</ol>';
+  return '<ol class="steps">' + q.steps.map(s => `<li>${s.e && ETAPES[s.e] ? `<span class="se">${esc(ETAPES[s.e])}</span>` : ''}${s.m && MBYID[s.m] ? `<a class="sm" href="#methodes--m-${esc(s.m)}">${esc(MBYID[s.m].title)}</a>` : s.t ? `<span class="sm">${esc(s.t)}</span>` : ''}<div>${s.x}</div></li>`).join('') + '</ol>';
 }
 function renderGroup(g, qs, ex){
   const d = document.createElement('details'); d.className = 'pb' + (g.kind === 'cde' ? ' cde' : ''); d.id = 'g-' + g.id;
   const lv = (g.level || []).includes('T') ? '' : ' · niveau CPGE';
   const nq = qs.length + ' question' + (qs.length > 1 ? 's' : '');
-  d.innerHTML = `<summary><span class="pt">${ex && ex.star ? '<span class="star">★</span> ' : ''}${g.kind === 'cde' ? 'Entraînement ' + esc(g.num) + ' · ' : ''}${esc(g.title)}</span><span class="where">${esc(g.kind === 'cde' ? 'Cahier d’entraînement · ' + nq + lv : (g.origin || '') + ' · ' + nq + lv)}${ex && ex.why ? `<span class="why">${esc(ex.why)}</span>` : ''}</span></summary><div class="inner"></div>`;
+  d.innerHTML = `<summary><span class="pt">${ex && ex.star ? '<span class="star">★</span> ' : ''}${g.kind === 'cde' ? 'Entraînement ' + esc(g.num) + ' · ' : ''}${esc(g.title)}${g.guided ? '<span class="guided">mode guidé</span>' : ''}</span><span class="where">${esc(g.kind === 'cde' ? 'Cahier d’entraînement · ' + nq + lv : (g.origin || '') + ' · ' + nq + lv)}${ex && ex.why ? `<span class="why">${esc(ex.why)}</span>` : ''}</span></summary><div class="inner"></div>`;
   const inner = d.querySelector('.inner'); let built = false;
   d.addEventListener('toggle', () => { if (!d.open || built) return; built = true;
     let h = `<div class="intro">${g.kind === 'cde' ? '<p>' + g.intro + '</p>' : g.intro}</div>` + (g.figures || []).map(figHTML).join('');
@@ -745,6 +812,11 @@ async function showChapter(id, anchor){
     box.innerHTML = `<div class="exo-t">Exercice d’application · ${esc(g && box.dataset.group ? g.origin + (g.num ? ' ' + g.num : '') + ' · ' + g.title : (qs[0].origin || (g ? g.origin : '')))}</div>` + (box.dataset.group && g ? `<div class="intro">${g.intro}</div>` + (g.figures || []).map(figHTML).join('') : '');
     vis.forEach(q => box.appendChild(renderQuestion(q, {showSub: !box.dataset.group})));
   });
+  view.querySelectorAll('.pblist[data-groups]').forEach(box => {
+    box.dataset.groups.split(',').forEach(gid => { const g = data.gById[gid.trim()]; if (!g) return; const qs = data.byGroup[g.id] || []; qs.forEach(q => inline.add(q.id)); if (!forLevel(g)) return; box.appendChild(renderGroup(g, LEVEL === 'C' ? qs : qs.filter(forLevel))); });
+    if (!box.children.length) box.innerHTML = '<p class="empty">Ces problèmes sont de niveau CPGE : choisissez « CPGE » dans « Je prépare », en haut du menu.</p>'; });
+  await headBars(id);
+  if (meta.noTrain){ await typeset(view); mountSims(view); goAnchor(anchor); return; }
   const sec = document.createElement('section');
   const ofChap = x => x.chap === id;
   const prog = (await loadProg())[id] || [];
@@ -786,7 +858,7 @@ async function showChapter(id, anchor){
 }
 async function showPage(file, fb, anchor){
   view.className = 'page'; CURRENT = null; view.dataset.page = '';
-  view.innerHTML = await fetchText(file, fb); await loadMethods(); preparePage(view); await typeset(view); goAnchor(anchor);
+  view.innerHTML = await fetchText(file, fb); await loadMethods(); preparePage(view); await fillImportance(view); await typeset(view); goAnchor(anchor);
 }
 async function showSims(){
   view.className = 'page wide';
@@ -837,12 +909,13 @@ async function showQcm(anchor){
 async function showMethods(anchor){
   view.className = 'page'; CURRENT = null; const data = await loadData(); await loadMethods();
   const cnt = {}; data.questions.forEach(q => (q.methods || []).forEach(m => { cnt[m] = (cnt[m] || 0) + 1; }));
+  const imp = await loadImp(), tc = {}; imp.forLevel(LEVEL).forEach(it => it.m.forEach(m => { tc[m] = (tc[m] || 0) + 1; }));
   let h = `<p class="eyebrow">Départ</p><h1>Fiches méthode</h1><p class="subtitle">Les réflexes qui reviennent d’un chapitre à l’autre</p>
   <p>Aux olympiades, ce qui fait la différence n’est pas de connaître plus de formules, mais de reconnaître vite <strong>quelle idée</strong> débloque un problème. Chaque fiche dit quand y penser, rappelle la méthode et renvoie aux chapitres où elle sert, puis aux exercices qui la mobilisent. Dans le cours, un encadré vert « Méthode » la signale là où elle est utilisée.</p>
   <p class="lvlnote">Cette organisation par idées s’inspire des guides de Jaan Kalda (IPhO study guides).</p>`;
   for (const m of METHODS){
     const ch = (m.chaps || []).filter(c => CHAPTERS[c]);
-    h += `<div class="mcard" id="m-${esc(m.id)}"><h3>${esc(m.title)}</h3><p class="quand">Quand ? ${esc(m.quand)}</p><p>${m.texte}</p><div class="ml">${ch.map(c => `<a href="#${c}">${esc(CHAPTERS[c].title)}</a>`).join('')}${cnt[m.id] ? `<a href="#qcm/m-${esc(m.id)}"><strong>S’entraîner : ${cnt[m.id]} question${cnt[m.id] > 1 ? 's' : ''} →</strong></a>` : ''}</div></div>`;
+    h += `<div class="mcard" id="m-${esc(m.id)}"><h3>${esc(m.title)}</h3><p class="quand">Quand ? ${esc(m.quand)}</p>${tc[m.id] ? `<p class="imp">Tests de présélection ${LEVEL === 'C' ? 'CPGE' : 'terminale'} ${imp.years[0]}-${imp.years[imp.years.length - 1]} : mobilisée dans <strong>${tc[m.id]} question${tc[m.id] > 1 ? 's' : ''}</strong> (<a href="#accueil--importance-methodes">classement</a>).</p>` : ''}<p>${m.texte}</p><div class="ml">${ch.map(c => `<a href="#${c}">${esc(CHAPTERS[c].title)}</a>`).join('')}${cnt[m.id] ? `<a href="#qcm/m-${esc(m.id)}"><strong>S’entraîner : ${cnt[m.id]} question${cnt[m.id] > 1 ? 's' : ''} →</strong></a>` : ''}</div></div>`;
   }
   view.innerHTML = h; await typeset(view); goAnchor(anchor);
 }
