@@ -36,6 +36,7 @@
 <p>Le mouvement le plus général d’un solide se décompose en une translation (celle de \(G\)) et une rotation autour de \(G\), décrite par le <strong>vecteur rotation</strong> \(\vec\omega\) : sa direction est l’axe de rotation, sa norme la vitesse angulaire, son sens donné par la règle de la main droite. La vitesse d’un point \(P\) du solide est</p>
 \[\vec v_P = \vec v_G + \vec\omega\wedge\overrightarrow{GP}.\]
 <p>Pour une roue de rayon \(R\) qui roule sans glisser sur le sol à la vitesse \(v\), le point de contact \(I\) a une vitesse nulle, le centre va à \(v\) et le sommet à \(2v\) : à chaque instant, la roue tourne autour de \(I\), appelé <strong>centre instantané de rotation</strong>.</p>
+<div class="sim" data-name="roue-vitesses"><p>Les vitesses des points de la roue : en roulement sans glissement, toutes sont perpendiculaires à la droite qui les joint au point de contact (centre instantané de rotation). Faites patiner ou déraper la roue.</p></div>
 
 <h2 id="inertie">2. Moment d’une force, moment d’inertie</h2>
 <h3 id="moment">Le moment d’une force</h3>
@@ -67,11 +68,13 @@
 \[J\ddot\theta = \sum\mathcal M_\Delta .\]
 <p>C’est l’analogue de \(m\ddot x = \sum F\). La liaison pivot idéale exerce une force sur l’axe, donc de moment nul : elle n’apparaît pas. Côté énergie, la puissance d’une force de moment \(\mathcal M\) est \(\mathcal M\omega\), et le théorème de l’énergie cinétique s’écrit \(\mathrm d(\tfrac12J\omega^2)/\mathrm dt = \sum\mathcal M\omega\).</p>
 <div class="methode" data-m="point-moment"><p>Une poulie de moment d’inertie \(J\) et de rayon \(R\) sur laquelle passe un fil : la tension n’est plus la même des deux côtés. Écrivez \(J\dot\omega = (T_1 - T_2)R\) pour la poulie, Newton pour chaque masse, et \(a = R\dot\omega\) si le fil ne glisse pas.</p></div>
+<div class="sim" data-name="atwood"><p>Machine d’Atwood avec une poulie massive : \(J\dot\omega = (T_2 - T_1)R\), la poulie se comporte comme une masse supplémentaire \(J/R^2\).</p></div>
 <h3 id="pendule-pesant">Le pendule pesant</h3>
 <p>Un solide de masse \(m\) oscille autour d’un axe horizontal ; \(G\) est à la distance \(d\) de l’axe. Le poids a pour moment \(-mgd\sin\theta\), donc \(J\ddot\theta = -mgd\sin\theta\). Aux petits angles :</p>
 \[\ddot\theta + \frac{mgd}{J}\,\theta = 0, \qquad T = 2\pi\sqrt{\frac{J}{mgd}} .\]
 <p>Une tige suspendue par une extrémité (\(J = \tfrac13mL^2\), \(d = L/2\)) a pour période \(2\pi\sqrt{2L/3g}\) : celle d’un pendule simple de longueur \(2L/3\). Le pendule simple se retrouve avec \(J = md^2\).</p>
 <div class="methode" data-m="energie-parametre"><p>Pendule pesant, balance, culbuto, demi-cylindre qui oscille : tous ces systèmes n’ont qu’un paramètre \(\theta\). Écrivez \(E = \tfrac12J\dot\theta^2 + V(\theta)\), dérivez, linéarisez : \(\omega_0^2 = V''(\theta_0)/J\). Aucune force de liaison à calculer.</p></div>
+<div class="sim" data-name="pendule-pesant"><p>Déplacez l’axe le long de la tige ou du disque : la période passe par un minimum quand \(d\) vaut le rayon de giration \(\sqrt{J_G/m}\), et le pendule simple de longueur \(J/md\) bat en même temps.</p></div>
 <div class="exo" data-q="sol-pendule"></div>
 <div class="exo" data-q="ipho-2017-C18"></div>
 
@@ -110,18 +113,21 @@
 \[a = \frac{g\sin\alpha}{1 + k}, \qquad T = \frac{k}{1+k}\,Mg\sin\alpha .\]
 <p>L’accélération ne dépend ni de la masse ni du rayon, seulement de \(k\) : la boule (\(k = \tfrac25\), \(a = \tfrac57g\sin\alpha\)) arrive avant le cylindre plein (\(\tfrac23\)), qui arrive avant l’anneau (\(\tfrac12\)). Par l’énergie, on retrouve le résultat en une ligne : \(Mgh = \tfrac12Mv^2 + \tfrac12kMR^2(v/R)^2\), d’où \(v^2 = 2gh/(1+k)\).</p>
 <div class="methode" data-m="roulement"><p>Le roulement n’est possible que si \(T \le \mu_sN\) avec \(N = Mg\cos\alpha\), soit \(\tan\alpha \le \mu_s(1+k)/k\) (\(3\mu_s\) pour un cylindre plein, \(\tfrac72\mu_s\) pour une boule). Au-delà, le solide glisse : \(T = \mu_dN\) est alors connu, mais \(a \ne R\dot\omega\).</p></div>
+<div class="sim" data-name="course-roulement"><p>Lancez la course : seul compte \(k = J_G/MR^2\). Inclinez fortement le plan ou réduisez \(\mu\) : au-delà de \(\tan\alpha = \mu(1+k)/k\), le solide glisse en roulant.</p></div>
 <div class="exo" data-q="sol-course"></div>
 <div class="exo" data-group="sol-yoyo"></div>
 
 <div class="cpge" id="bille-glisse" title="Du glissement au roulement : la bille de billard">
 <p>Une bille (\(k = \tfrac25\)) est lancée sur une table à la vitesse \(v_0\) sans rotation. Elle glisse d’abord : le frottement dynamique \(\mu Mg\) freine le centre (\(v = v_0 - \mu gt\)) et accélère la rotation (\(\tfrac25MR^2\dot\omega = \mu MgR\), soit \(R\omega = \tfrac52\mu gt\)). Le glissement cesse quand \(v = R\omega\), à \(t_1 = \dfrac{2v_0}{7\mu g}\), et la bille roule ensuite à vitesse constante \(v_1 = \tfrac57v_0\).</p>
 <p>La vitesse finale ne dépend pas de \(\mu\). On le comprend sans calculer le régime transitoire : par rapport à un point fixe \(O\) de la table situé sur la ligne de contact, le frottement a un moment nul (sa droite d’action passe par \(O\)) et les moments du poids et de la réaction normale se compensent. Le moment cinétique en \(O\) se conserve : \(Mv_0R = Mv_1R + \tfrac25MR^2\,(v_1/R)\), d’où \(v_1 = \tfrac57v_0\). L’énergie perdue par frottement vaut \(\tfrac12Mv_0^2\,(1 - \tfrac57) = \tfrac17Mv_0^2\).</p>
+<div class="sim" data-name="bille-billard"><p>Lancez la bille sans effet, puis avec un effet coulé ou rétro : \(v\) et \(R\omega\) convergent vers \((5v_0 + 2R\omega_0)/7\), quel que soit \(\mu\).</p></div>
 </div>
 
 <h2 id="moment-cinetique">5. Conservation du moment cinétique</h2>
 <h3 id="conservation-l">Conservation du moment cinétique</h3>
 <p>Si la somme des moments extérieurs par rapport à un axe est nulle, \(L = J\omega\) se conserve. Une patineuse qui ramène les bras diminue \(J\) : elle tourne plus vite, \(\omega_2 = \omega_1J_1/J_2\). Son énergie cinétique \(L^2/2J\) augmente : le travail est fourni par ses muscles. De même, une étoile qui s’effondre en étoile à neutrons (rayon divisé par \(10^5\)) voit sa période de rotation divisée par \(10^{10}\) : d’un mois à moins d’une milliseconde.</p>
 <div class="methode" data-m="conservation"><p>Avant d’écrire une conservation, demandez-vous <em>par rapport à quel point</em> les moments extérieurs sont nuls. Pour un système en orbite ou sur un pivot sans frottement, c’est le centre ou le pivot. L’énergie, elle, n’est conservée que s’il n’y a ni frottement ni choc mou.</p></div>
+<div class="sim" data-name="patineur"><p>Lancez la rotation, puis ramenez et écartez les haltères : \(\omega\) varie en sens inverse de \(J\), \(L\) reste constant, et l’énergie cinétique augmente quand on ramène les bras.</p></div>
 <div class="exo" data-q="sol-patineur"></div>
 
 <div class="cpge" id="plus-loin" title="Pour aller plus loin : polycopiés olympiques">

@@ -90,6 +90,26 @@ const css = `
 .cpt-card input{font:inherit;font-family:var(--mono);font-size:1.15rem;letter-spacing:.12em;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);width:100%}
 .cpt-card input:focus{outline:2px solid var(--accent);outline-offset:0;border-color:var(--accent)}
 .cpt-card .err{color:var(--bad);font-size:.9rem;min-height:1.3em;margin:0}
+.cpt-card label.f{display:flex;flex-direction:column;gap:4px;font-size:.86rem;color:var(--fg-2)}
+.cpt-card label.f small{font-size:.78rem}
+.cpt-card input.nm{font-family:var(--body);font-size:1rem;letter-spacing:0;padding:9px 11px}
+.cpt-card fieldset{border:0;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.92rem}
+.cpt-card fieldset legend{font-size:.86rem;color:var(--fg-2);padding:0;margin-bottom:4px;width:100%}
+.cpt-card fieldset label{display:flex;align-items:center;gap:6px;cursor:pointer}
+.cpt-card fieldset input{width:auto;accent-color:var(--accent)}
+.cpt-card .lk{font:inherit;font-size:.92rem;background:none;border:0;padding:0;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.cpt-card .alt{border-top:1px solid var(--line);padding-top:14px;margin:18px 0 0}
+.cpt-card .status{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin:0 0 14px;color:var(--fg);font-size:.95rem}
+.cpt-card .status.wait::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--sun);margin-right:8px;animation:cptPulse 1.6s ease-in-out infinite}
+@keyframes cptPulse{50%{opacity:.25}}
+.cpt-card .bigcode{font-family:var(--mono);font-size:2rem;letter-spacing:.14em;text-align:center;background:var(--bg);border:2px dashed var(--accent);border-radius:10px;padding:12px;margin:6px 0 12px;color:var(--fg)}
+.cpt-card .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cpt-box .badge,.tabs .badge{display:inline-block;min-width:1.5em;text-align:center;font-size:.72rem;font-weight:600;padding:1px 6px;border-radius:99px;background:var(--sun);color:#fff;margin-left:4px;vertical-align:1px}
+.reqs td{vertical-align:top}
+.reqs td small{display:block;color:var(--fg-2);font-size:.8rem}
+.reqs .flag{display:block;font-size:.8rem;color:var(--sun);margin-top:3px}
+.reqs input[type=text]{width:8.5em}
+.reqs .acts{white-space:nowrap;display:flex;gap:6px;flex-wrap:wrap}
 .cpt-btn{font:inherit;font-size:.92rem;padding:8px 14px;border-radius:7px;border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);cursor:pointer;font-weight:500;text-decoration:none;display:inline-block;line-height:1.3}
 .cpt-btn.sec{background:var(--bg-2);color:var(--fg);border-color:var(--line)}
 .cpt-btn.dang{background:var(--bg-2);color:var(--bad);border-color:color-mix(in srgb,var(--bad) 45%,var(--line))}
@@ -159,31 +179,121 @@ const css = `
 `;
 const st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
-/* ------------------------------------------------------------ écran de connexion */
-function gate(){
-  if (document.querySelector('.cpt-gate')) return;
-  const g = document.createElement('div'); g.className = 'cpt-gate';
-  g.innerHTML = `<div class="cpt-card" role="dialog" aria-labelledby="cptT">
-    <p class="k">IPhO · Concours général</p><h1 id="cptT">Physique des olympiades</h1>
-    <p>Entrez le code personnel donné par votre professeur. Il garde votre progression d’un appareil à l’autre. Professeur : entrez votre mot de passe.</p>
-    <form><input id="cptCode" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ABC-DEF" aria-label="Code personnel">
-    <button class="cpt-btn" type="submit">Entrer</button><p class="err" aria-live="polite"></p></form>
-    ${ME && ME.open ? '<p style="margin:14px 0 0"><button type="button" class="cpt-btn sec" data-skip>Continuer sans compte</button><br><small style="color:var(--fg-2)">Votre progression restera alors dans ce navigateur.</small></p>' : ''}
-  </div>`;
-  document.body.appendChild(g);
-  const inp = g.querySelector('input'), err = g.querySelector('.err'), btn = g.querySelector('button[type=submit]');
-  setTimeout(() => inp.focus(), 50);
-  g.querySelector('form').addEventListener('submit', async e => {
-    e.preventDefault(); err.textContent = ''; btn.disabled = true;
-    try {
-      const r = await API('login', {code: inp.value});
-      const loc = localAll();
-      if (r.role === 'eleve' && loc.length){ try { await API('importLocal', {attempts: loc}); localClear(); } catch(x){} }
-      if (r.role === 'admin' && !location.hash.startsWith('#admin')) location.hash = '#admin';
-      location.reload();
-    } catch(x){ err.textContent = x.userMessage || 'Connexion impossible.'; btn.disabled = false; inp.select(); }
+/* ------------------------------------------------------------ écran de connexion et demande de code */
+// Demande de code en cours dans ce navigateur : {ticket, prenom, nom, ts}. Le ticket seul permet de lire la réponse du professeur.
+const RKEY = 'olymp-demande';
+function reqGet(){ try { const r = JSON.parse(localStorage.getItem(RKEY) || 'null'); return r && r.ticket ? r : null; } catch(e){ return null; } }
+function reqSet(o){ try { if (o) localStorage.setItem(RKEY, JSON.stringify(o)); else localStorage.removeItem(RKEY); } catch(e){} }
+let pollT = null;
+function gate(pane){
+  let g = document.querySelector('.cpt-gate');
+  if (!g){ g = document.createElement('div'); g.className = 'cpt-gate'; document.body.appendChild(g); }
+  clearTimeout(pollT);
+  pane = pane || (reqGet() ? 'attente' : 'code');
+  const open = ME && ME.open, canReq = ME && ME.requests !== false;
+  const skipBtn = label => open ? `<p style="margin:14px 0 0"><button type="button" class="cpt-btn sec" data-skip>${label || 'Continuer sans compte'}</button><br><small style="color:var(--fg-2)">Votre progression restera alors dans ce navigateur.</small></p>` : '';
+  const head = '<p class="k">IPhO · Concours général</p>';
+  const card = h => { g.innerHTML = `<div class="cpt-card" role="dialog" aria-labelledby="cptT">${head}${h}</div>`; const sk = g.querySelector('[data-skip]'); if (sk) sk.addEventListener('click', () => { try { sessionStorage.setItem('olymp-sans-compte', '1'); } catch(e){} clearTimeout(pollT); g.remove(); });
+    g.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => gate(b.dataset.go))); };
+  const enter = async () => {
+    const loc = localAll();
+    if (loc.length){ try { await API('importLocal', {attempts: loc}); localClear(); } catch(x){} }
+    reqSet(null); location.reload();
+  };
+
+  if (pane === 'code'){
+    const r = reqGet();
+    card(`<h1 id="cptT">Physique des olympiades</h1>
+      <p>Entrez le code personnel donné par votre professeur. Il garde votre progression d’un appareil à l’autre. Professeur : entrez votre mot de passe.</p>
+      <form><input id="cptCode" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ABC-DEF" aria-label="Code personnel">
+      <button class="cpt-btn" type="submit">Entrer</button><p class="err" aria-live="polite"></p></form>
+      ${r ? `<p class="alt"><button type="button" class="lk" data-go="attente">Voir ma demande de code en attente</button></p>`
+        : canReq ? `<p class="alt">Pas encore de code ? <button type="button" class="lk" data-go="demande">Demandez-en un</button> : votre professeur validera votre demande.</p>` : ''}
+      ${skipBtn()}`);
+    const inp = g.querySelector('input'), err = g.querySelector('.err'), btn = g.querySelector('button[type=submit]');
+    setTimeout(() => inp.focus(), 50);
+    g.querySelector('form').addEventListener('submit', async e => {
+      e.preventDefault(); err.textContent = ''; btn.disabled = true;
+      try {
+        const r = await API('login', {code: inp.value});
+        if (r.role === 'admin'){ if (!location.hash.startsWith('#admin')) location.hash = '#admin'; location.reload(); return; }
+        await enter();
+      } catch(x){ err.textContent = x.userMessage || 'Connexion impossible.'; btn.disabled = false; inp.select(); }
+    });
+    return;
+  }
+
+  if (pane === 'demande'){
+    card(`<h1 id="cptT">Demander un code</h1>
+      <p>Indiquez votre nom tel que votre professeur le connaît. Dès qu’il aura validé la demande, votre code s’affichera <strong>sur cet appareil</strong> : revenez sur ce site avec le même navigateur.</p>
+      <form novalidate>
+        <label class="f">Prénom<input class="nm" name="prenom" autocomplete="given-name" maxlength="60" required></label>
+        <label class="f">Nom<input class="nm" name="nom" autocomplete="family-name" maxlength="60" required></label>
+        <fieldset><legend>Vous êtes en</legend><label><input type="radio" name="niveau" value="T"> Terminale</label><label><input type="radio" name="niveau" value="C"> CPGE (MPSI, PCSI…)</label></fieldset>
+        <label class="f">Classe <small>(facultatif : PCSI 1, TG 3…)</small><input class="nm" name="groupe" maxlength="40" autocomplete="off"></label>
+        <button class="cpt-btn" type="submit">Envoyer la demande</button><p class="err" aria-live="polite"></p>
+      </form>
+      <p class="alt"><button type="button" class="lk" data-go="code">J’ai déjà un code</button></p>${skipBtn()}`);
+    const f = g.querySelector('form'), err = f.querySelector('.err'), btn = f.querySelector('button[type=submit]');
+    setTimeout(() => f.prenom.focus(), 50);
+    f.addEventListener('submit', async e => {
+      e.preventDefault(); err.textContent = '';
+      const niv = f.querySelector('input[name=niveau]:checked');
+      if (!f.prenom.value.trim() || !f.nom.value.trim()){ err.textContent = 'Indiquez votre prénom et votre nom.'; return; }
+      if (!niv){ err.textContent = 'Indiquez si vous êtes en terminale ou en CPGE.'; return; }
+      btn.disabled = true;
+      try {
+        const r = await API('requestCode', {prenom: f.prenom.value, nom: f.nom.value, niveau: niv.value, groupe: f.groupe.value});
+        reqSet({ticket: r.ticket, prenom: r.prenom, nom: r.nom, ts: r.ts}); gate('attente');
+      } catch(x){ err.textContent = x.userMessage || 'La demande n’a pas pu être envoyée.'; btn.disabled = false; }
+    });
+    return;
+  }
+
+  // pane 'attente' : état de la demande, vérifié toutes les 20 s tant que l'écran est ouvert
+  const r = reqGet(); if (!r) return gate('code');
+  const waitHTML = `<h1 id="cptT">Demande envoyée</h1>
+    <p class="status wait">Demande de <strong>${E(r.prenom)} ${E(r.nom)}</strong>, envoyée ${E(ago(r.ts))} : en attente de validation par votre professeur.</p>
+    <p>Votre code s’affichera ici dès qu’elle sera acceptée. Vous pouvez fermer cette page et revenir plus tard sur ce site, avec ce même navigateur.</p>
+    <div class="row"><button type="button" class="cpt-btn" data-check>Vérifier maintenant</button><button type="button" class="cpt-btn dang" data-cancel>Annuler la demande</button></div>
+    <p class="err" aria-live="polite"></p>
+    <p class="alt"><button type="button" class="lk" data-go="code">J’ai déjà un code</button></p>${skipBtn('Continuer sans compte en attendant')}`;
+  card(waitHTML);
+  const check = async manual => {
+    const err = g.querySelector('.err'); if (err) err.textContent = '';
+    let st; try { st = await API('requestStatus', {ticket: r.ticket, login: true}); }
+    catch(x){ if (manual && err) err.textContent = x.userMessage || 'Le serveur ne répond pas.'; if (g.isConnected) pollT = setTimeout(check, 20000); return; }
+    if (st.status === 'approved'){
+      card(`<h1 id="cptT">Bienvenue, ${E(st.prenom)} !</h1>
+        <p>Votre professeur a validé votre demande. Voici votre <strong>code personnel</strong> :</p>
+        <div class="bigcode">${E(fmtCode(st.code))}</div>
+        <p>Notez-le : il vous servira à vous connecter depuis un autre appareil (téléphone, ordinateur du lycée). Vous le retrouverez aussi sous votre nom, dans le menu.</p>
+        <button type="button" class="cpt-btn" data-enter>Entrer sur le site</button>`);
+      g.querySelector('[data-enter]').addEventListener('click', e => { e.currentTarget.disabled = true; enter(); });
+      return;
+    }
+    if (st.status === 'rejected'){
+      reqSet(null);
+      card(`<h1 id="cptT">Demande non acceptée</h1><p class="status">Votre professeur n’a pas validé la demande au nom de <strong>${E(st.prenom)} ${E(st.nom)}</strong>. S’il s’agit d’une erreur (nom mal orthographié, par exemple), parlez-lui-en ou faites une nouvelle demande.</p>
+        <div class="row"><button type="button" class="cpt-btn" data-go="demande">Nouvelle demande</button><button type="button" class="cpt-btn sec" data-go="code">J’ai un code</button></div>${skipBtn()}`);
+      return;
+    }
+    if (st.status !== 'pending'){
+      reqSet(null);
+      card(`<h1 id="cptT">Demande introuvable</h1><p class="status">Cette demande n’existe plus (annulée, trop ancienne ou compte supprimé). Faites une nouvelle demande ou entrez votre code.</p>
+        <div class="row"><button type="button" class="cpt-btn" data-go="demande">Nouvelle demande</button><button type="button" class="cpt-btn sec" data-go="code">J’ai un code</button></div>${skipBtn()}`);
+      return;
+    }
+    if (manual && err) err.textContent = 'Pas encore validée.';
+    if (g.isConnected) pollT = setTimeout(() => { if (g.isConnected && g.querySelector('[data-check]')) check(); }, 20000);
+  };
+  g.querySelector('[data-check]').addEventListener('click', () => check(true));
+  g.querySelector('[data-cancel]').addEventListener('click', async e => {
+    const b = e.currentTarget;
+    if (!b.dataset.armed){ b.dataset.armed = '1'; b.textContent = 'Confirmer l’annulation'; return; }
+    b.disabled = true; try { await API('cancelRequest', {ticket: r.ticket}); } catch(x){} reqSet(null); gate('code');
   });
-  const sk = g.querySelector('[data-skip]'); if (sk) sk.addEventListener('click', () => { try { sessionStorage.setItem('olymp-sans-compte', '1'); } catch(e){} g.remove(); });
+  check();
 }
 async function logout(){ try { await API('logout', {}); } catch(e){} location.hash = '#accueil'; location.reload(); }
 
@@ -191,23 +301,27 @@ function accountBox(){
   const rail = document.getElementById('rail'); if (!rail || rail.querySelector('.cpt-box')) return;
   const b = document.createElement('div'); b.className = 'cpt-box';
   if (ME.role === 'eleve'){
-    b.innerHTML = `<div class="who">${E(ME.me.prenom)} ${E(ME.me.nom)}<small>${ME.me.groupe ? E(ME.me.groupe) + ' · ' : ''}${ME.me.niveau === 'C' ? 'CPGE' : 'Terminale'}</small></div>
+    b.innerHTML = `<div class="who">${E(ME.me.prenom)} ${E(ME.me.nom)}<small>${ME.me.groupe ? E(ME.me.groupe) + ' · ' : ''}${ME.me.niveau === 'C' ? 'CPGE' : 'Terminale'}${ME.me.code ? ' · code <span class="code">' + E(fmtCode(ME.me.code)) + '</span>' : ''}</small></div>
       <a href="#suivi" data-page="suivi">Mon tableau de bord</a><button type="button" class="lk" data-out>Se déconnecter</button>`;
   } else if (ME.role === 'admin'){
     b.innerHTML = `<div class="who">Espace professeur</div><a href="#admin" data-page="admin">Tableau de bord de la classe</a>
-      <a href="#admin/eleves">Élèves et codes</a><button type="button" class="lk" data-out>Se déconnecter</button>`;
+      <a href="#admin/eleves">Élèves et codes${ME.pending ? `<span class="badge" title="Demandes de code en attente">${ME.pending}</span>` : ''}</a><button type="button" class="lk" data-out>Se déconnecter</button>`;
   } else {
-    b.innerHTML = `<div class="who">Visiteur<small>Progression gardée dans ce navigateur.</small></div><a href="#suivi" data-page="suivi">Mon tableau de bord</a><button type="button" class="lk" data-in>Se connecter avec un code</button>`;
+    const pend = reqGet();
+    b.innerHTML = `<div class="who">Visiteur<small>Progression gardée dans ce navigateur.</small></div><a href="#suivi" data-page="suivi">Mon tableau de bord</a><button type="button" class="lk" data-in>${pend ? 'Ma demande de code (en attente)' : 'Se connecter avec un code'}</button>${!pend && ME.requests !== false ? '<button type="button" class="lk" data-req>Demander un code</button>' : ''}`;
   }
   const lvl = rail.querySelector('.level'); (lvl || rail.querySelector('.brand')).after(b);
-  b.addEventListener('click', e => { if (e.target.closest('[data-out]')) logout(); if (e.target.closest('[data-in]')) gate(); });
+  b.addEventListener('click', e => { if (e.target.closest('[data-out]')) logout(); if (e.target.closest('[data-in]')) gate(); if (e.target.closest('[data-req]')) gate('demande'); });
 }
 
-ready.then(() => {
+ready.then(async () => {
   if (ME.offline) return;
-  if (ME.role) accountBox();
+  if (ME.role){ if (ME.role === 'eleve') reqSet(null); accountBox(); }
   else {
     let skipped = false; try { skipped = sessionStorage.getItem('olymp-sans-compte') === '1'; } catch(e){}
+    // une demande de code acceptée depuis la dernière visite : on affiche le code, même si le visiteur avait continué sans compte
+    const r = reqGet();
+    if (r && skipped){ try { const st = await API('requestStatus', {ticket: r.ticket}); if (st.status !== 'pending') skipped = false; } catch(e){} }
     if (ME.open){ accountBox(); if (!skipped) gate(); } else gate();
   }
   // un élève inscrit en CPGE n'a accès qu'au contenu CPGE (sélecteur verrouillé, pas de Concours général) ;
@@ -338,14 +452,24 @@ async function showAdmin(sub){
   sub = sub || '';
   const tab = sub.startsWith('eleve-') ? 'eleves' : sub || 'classe';
   view.innerHTML = `<p class="eyebrow">Espace professeur</p><h1>Tableau de bord</h1>
-    <nav class="tabs" aria-label="Rubriques"><a href="#admin" class="${tab === 'classe' ? 'on' : ''}">La classe</a><a href="#admin/eleves" class="${tab === 'eleves' ? 'on' : ''}">Élèves et codes</a><a href="#admin/reglages" class="${tab === 'reglages' ? 'on' : ''}">Réglages</a></nav><div id="adm"><p class="loading">Chargement…</p></div>`;
+    <nav class="tabs" aria-label="Rubriques"><a href="#admin" class="${tab === 'classe' ? 'on' : ''}">La classe</a><a href="#admin/eleves" class="${tab === 'eleves' ? 'on' : ''}">Élèves et codes${ME.pending ? `<span class="badge">${ME.pending}</span>` : ''}</a><a href="#admin/reglages" class="${tab === 'reglages' ? 'on' : ''}">Réglages</a></nav><div id="adm"><p class="loading">Chargement…</p></div>`;
   const root = view.querySelector('#adm');
   try { OV = await API('overview'); } catch(e){ root.innerHTML = `<p class="note-bad">${E(e.userMessage || 'Le serveur ne répond pas.')}</p>`; return; }
+  syncPending();
   await loadData(); await loadProg();
   if (sub.startsWith('eleve-')) return adminStudent(root, sub.slice(6));
   if (tab === 'eleves') return adminStudents(root);
   if (tab === 'reglages') return adminSettings(root);
   return adminClass(root);
+}
+// nombre de demandes en attente : pastilles du menu et des onglets
+function syncPending(){
+  ME.pending = (OV.requests || []).filter(r => r.status === 'pending').length;
+  document.querySelectorAll('.cpt-box a[href="#admin/eleves"], .dash .tabs a[href="#admin/eleves"]').forEach(a => {
+    let b = a.querySelector('.badge');
+    if (!ME.pending){ if (b) b.remove(); return; }
+    if (!b){ b = document.createElement('span'); b.className = 'badge'; a.appendChild(b); } b.textContent = ME.pending;
+  });
 }
 const nameOf = sid => { const s = OV.students.find(x => x.id === sid); return s ? (s.prenom + ' ' + s.nom).trim() : 'Élève supprimé'; };
 
@@ -362,7 +486,8 @@ function adminClass(root){
     <div class="kpi"><div class="v">${P.length ? pct(meanAll) : '–'}</div><div class="l">Réussite moyenne</div><div class="s">dernière réponse par élève et question</div></div>
     <div class="kpi"><div class="v">${cl7}</div><div class="l">Corrections Claude, 7 j</div><div class="s">${cl24} sur les dernières 24 h</div></div>
   </div>`;
-  if (!S.length) h += `<p class="newcodes">Commencez par <a href="#admin/eleves">créer les comptes des élèves</a> : chacun reçoit un code personnel à six caractères.</p>`;
+  if (ME.pending) h += `<p class="newcodes"><b>${ME.pending} demande${ME.pending > 1 ? 's' : ''} de code en attente</b> : <a href="#admin/eleves">les valider ou les refuser</a>.</p>`;
+  if (!S.length) h += `<p class="newcodes">Commencez par <a href="#admin/eleves">créer les comptes des élèves</a> ou laissez-les demander un code depuis la page d’accueil : chacun reçoit un code personnel à six caractères.</p>`;
   // activité sur 60 jours
   const today = Math.floor(now / DAYMS), N = 60, W = 720, H = 140, bw = W / N;
   const per = Object.fromEntries(days.map(d => [d.day, d])); const max = Math.max(1, ...days.map(d => d.n));
@@ -394,10 +519,74 @@ function adminClass(root){
   root.innerHTML = h;
 }
 
+const nkey = (p, n) => (String(p) + ' ' + String(n)).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z]/g, '');
+function requestsHTML(groups){
+  const R = OV.requests || [], P = R.filter(r => r.status === 'pending'), D = R.filter(r => r.status !== 'pending');
+  const byKey = {}; OV.students.forEach(s => (byKey[nkey(s.prenom, s.nom)] = byKey[nkey(s.prenom, s.nom)] || []).push(s));
+  const cnt = {}; P.forEach(r => { const k = nkey(r.prenom, r.nom); cnt[k] = (cnt[k] || 0) + 1; });
+  let h = '';
+  if (P.length){
+    h += `<h2>Demandes de code en attente (${P.length})</h2>
+      <p class="muted" style="font-size:.9rem">Des élèves ont demandé un code depuis l’écran d’accueil. Vérifiez le nom, corrigez la classe ou le niveau si besoin, puis validez : le compte est créé et l’élève voit son code s’afficher sur l’appareil d’où il a fait la demande. Si un élève de ce nom a déjà un compte (code perdu, autre appareil), vous pouvez lui redonner son code.</p>
+      <div class="scroll"><table class="reqs"><thead><tr><th>Élève</th><th>Classe</th><th>Niveau</th><th></th></tr></thead><tbody>`;
+    h += P.map(r => {
+      const k = nkey(r.prenom, r.nom), same = byKey[k] || [];
+      const flags = same.map(s => `<span class="flag">Déjà inscrit${s.groupe ? ' (' + E(s.groupe) + ')' : ''} · <button type="button" class="cpt-btn sec sm" data-link="${E(s.id)}">Lui redonner son code</button></span>`).join('')
+        + (cnt[k] > 1 ? '<span class="flag">Demande en double : refusez l’une des deux.</span>' : '');
+      return `<tr data-rid="${E(r.id)}"><td><b>${E(r.nom)} ${E(r.prenom)}</b><small>${E(ago(r.ts))}</small>${flags}</td>
+        <td><input type="text" class="rg" value="${E(r.groupe)}" list="adGl" aria-label="Classe"></td>
+        <td><select class="rn" aria-label="Niveau"><option value="T"${r.niveau !== 'C' ? ' selected' : ''}>Terminale</option><option value="C"${r.niveau === 'C' ? ' selected' : ''}>CPGE</option></select></td>
+        <td><div class="acts"><button type="button" class="cpt-btn sm" data-ok>Valider</button><button type="button" class="cpt-btn dang sm" data-no>Refuser</button></div></td></tr>`;
+    }).join('');
+    h += `</tbody></table></div>${P.length > 1 ? '<p><button type="button" class="cpt-btn sec" id="rqAll">Valider toutes les demandes</button></p>' : ''}<div id="rqOut"></div>`;
+  }
+  if (D.length){
+    h += `<details style="margin:10px 0 0"><summary>Demandes traitées depuis 30 jours (${D.length})</summary><ul class="qlist">` + D.map(r => {
+      const st = r.sid && OV.students.find(s => s.id === r.sid);
+      return `<li><span class="pill ${r.status === 'approved' ? 'ok' : 'bad'}">${r.status === 'approved' ? 'validée' : 'refusée'}</span><div>${st ? `<a href="#admin/eleve-${E(st.id)}">${E(r.nom)} ${E(r.prenom)}</a>` : `${E(r.nom)} ${E(r.prenom)}`}<span class="sn">demandée ${E(ago(r.ts))} · traitée ${E(ago(r.decided))}${st ? ' · code <span class="code">' + E(fmtCode(st.code)) + '</span>' : ''}</span></div></li>`;
+    }).join('') + '</ul></details>';
+  }
+  return h;
+}
+function bindRequests(root){
+  const out = () => root.querySelector('#rqOut');
+  const item = tr => ({id: tr.dataset.rid, groupe: tr.querySelector('.rg').value, niveau: tr.querySelector('.rn').value});
+  const after = async (r, verb) => {
+    OV = await API('overview'); syncPending(); adminStudents(root);
+    const made = r.done.filter(d => d.code);
+    const o = root.querySelector('#adOut');
+    if (o && r.done.length) o.innerHTML = `<div class="newcodes"><b>${r.done.length} demande${r.done.length > 1 ? 's' : ''} ${verb}</b>${made.length ? `<table>${made.map(d => `<tr><td>${E(d.prenom)} ${E(d.nom)}</td><td class="code">${E(fmtCode(d.code))}</td></tr>`).join('')}</table><small class="muted">Chaque élève voit son code s’afficher sur l’appareil d’où il a fait la demande.</small>` : ''}</div>`;
+    if (o) o.scrollIntoView({block: 'nearest'});
+  };
+  const t = root.querySelector('table.reqs'); if (!t) return;
+  t.addEventListener('click', async e => {
+    const tr = e.target.closest('tr[data-rid]'); if (!tr) return;
+    const b = e.target.closest('button'); if (!b) return;
+    let body;
+    if (b.matches('[data-ok]')) body = {decision: 'approve', items: [item(tr)]};
+    else if (b.matches('[data-no]')){
+      if (!b.dataset.armed){ b.dataset.armed = '1'; b.textContent = 'Confirmer le refus'; setTimeout(() => { if (b.isConnected){ delete b.dataset.armed; b.textContent = 'Refuser'; } }, 5000); return; }
+      body = {decision: 'reject', items: [{id: tr.dataset.rid}]};
+    }
+    else if (b.dataset.link) body = {decision: 'link', sid: b.dataset.link, items: [{id: tr.dataset.rid}]};
+    else return;
+    tr.querySelectorAll('button').forEach(x => x.disabled = true);
+    try { const r = await API('decideRequest', body); await after(r, body.decision === 'reject' ? 'refusée' + (r.done.length > 1 ? 's' : '') : 'validée' + (r.done.length > 1 ? 's' : '')); }
+    catch(x){ const o = out(); if (o) o.innerHTML = `<p class="note-bad">${E(x.userMessage || 'Échec.')}</p>`; tr.querySelectorAll('button').forEach(x => x.disabled = false); }
+  });
+  const all = root.querySelector('#rqAll');
+  if (all) all.addEventListener('click', async () => {
+    if (!all.dataset.armed){ all.dataset.armed = '1'; all.textContent = 'Confirmer : créer tous ces comptes'; return; }
+    all.disabled = true;
+    try { const r = await API('decideRequest', {decision: 'approve', items: [...t.querySelectorAll('tr[data-rid]')].map(item)}); await after(r, 'validées'); }
+    catch(x){ const o = out(); if (o) o.innerHTML = `<p class="note-bad">${E(x.userMessage || 'Échec.')}</p>`; all.disabled = false; }
+  });
+}
+
 function adminStudents(root){
   const S = OV.students;
   const groups = [...new Set(S.map(s => s.groupe).filter(Boolean))].sort();
-  let h = `<div class="cols2"><div><h2>Ajouter des élèves</h2>
+  let h = requestsHTML(groups) + `<div class="cols2"><div><h2>Ajouter des élèves</h2>
     <p class="muted" style="font-size:.9rem">Une ligne par élève : « Prénom Nom » (ou « Prénom ; Nom »). Chaque élève reçoit un code à six caractères, à lui transmettre.</p>
     <textarea id="adL" placeholder="Camille Martin&#10;Hugo Bernard"></textarea>
     <div class="form-row"><label>Groupe<input type="text" id="adG" placeholder="ex. TS 2026" list="adGl"><datalist id="adGl">${groups.map(g => `<option value="${E(g)}">`).join('')}</datalist></label>
@@ -414,6 +603,7 @@ function adminStudents(root){
   h += '</tbody></table></div>';
   if (!S.length) h += '<p class="muted">Aucun élève pour l’instant.</p>';
   root.innerHTML = h;
+  bindRequests(root);
   const out = root.querySelector('#adOut');
   root.querySelector('#adB').addEventListener('click', async e => {
     const b = e.currentTarget; b.disabled = true; out.innerHTML = '';
@@ -469,10 +659,11 @@ function adminSettings(root){
     <div class="form-row"><label>Corrections par élève et par 24 h<input type="number" id="stQ" min="0" max="200" value="${st.quota}" style="width:8em"></label></div>
     <h2>Accès au site</h2>
     <label class="switch"><input type="checkbox" id="stO"${st.open ? ' checked' : ''}><div><b>Accès sans code</b><span>Un visiteur peut lire le cours et faire les exercices sans compte : sa progression est gardée dans son navigateur et versée dans son compte s’il se connecte plus tard ; pas de correction par Claude sans code. Sinon, le code est demandé à l’entrée.</span></div></label>
+    <label class="switch"><input type="checkbox" id="stR"${st.requests !== false ? ' checked' : ''}><div><b>Demandes de code par les élèves</b><span>Sur l’écran de connexion, un élève sans code peut en demander un en donnant son prénom, son nom, son niveau et sa classe. Vous validez chaque demande dans « Élèves et codes » ; le code s’affiche alors sur l’appareil de l’élève.</span></div></label>
     <p class="form-row"><button class="cpt-btn" type="button" id="stB">Enregistrer les réglages</button><span id="stOut"></span></p>`;
   root.querySelector('#stB').addEventListener('click', async () => {
     const o = root.querySelector('#stOut');
-    try { const r = await API('saveSettings', {claude: root.querySelector('#stC').checked, quota: root.querySelector('#stQ').value, open: root.querySelector('#stO').checked}); OV.settings = r.settings; o.className = 'note-ok'; o.textContent = 'Réglages enregistrés.'; }
+    try { const r = await API('saveSettings', {claude: root.querySelector('#stC').checked, quota: root.querySelector('#stQ').value, open: root.querySelector('#stO').checked, requests: root.querySelector('#stR').checked}); OV.settings = r.settings; o.className = 'note-ok'; o.textContent = 'Réglages enregistrés.'; }
     catch(e){ o.className = 'note-bad'; o.textContent = e.userMessage || 'Échec.'; }
   });
 }

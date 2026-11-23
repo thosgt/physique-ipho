@@ -4,6 +4,7 @@ Préparation au test de présélection des IPhO (Terminale et CPGE) et au Concou
 
 - Site : https://physique-ipho.vercel.app
 - Artefact Claude source : https://claude.ai/artifact/USoqxVAkNMq9ZvTr2Rf5M6
+- Mis à jour le 23 novembre 2026 (version 25) : 23 simulations pour les chapitres de mécanique (point, énergie, céleste, oscillateurs, solide) ; demande de code par les élèves (prénom, nom, niveau, classe), validée par le professeur dans « Élèves et codes », le code s’affichant ensuite sur l’appareil de l’élève.
 - Mis à jour le 20 novembre 2026 (version 22) : chapitre « Approche énergétique », quinze QCM à figure et trente-deux exercices de cours pour les chapitres de mécanique.
 - Mis à jour le 20 novembre 2026 (version 21) : onze QCM de circuits avec leur schéma ; les cinq nouveaux chapitres sont alignés sur le code couleur du syllabus 2026-2027.
 - Mis à jour le 20 novembre 2026 (version 20) : cinq nouveaux chapitres (mécanique du point, mécanique céleste, oscillateurs, circuits électriques, thermodynamique et rayonnement), deux problèmes EuPhO corrigés et la liste des sujets EuPhO 2017-2026 ; version 19 : section CPGE « Problèmes à prise d’initiative », poids de chaque chapitre dans les tests 2014-2026, vidéos PhysiCité.
@@ -13,7 +14,7 @@ Généré depuis l'artefact Claude ; ne pas modifier à la main, redemander un d
 ## Organisation
 
 - `index.html`, `chap/`, `data/`, `img/`, `sim/`, `simkit.js` : le site, identique à l'artefact.
-- `compte.js` : connexion par code, enregistrement des réponses, tableau de bord élève (`#suivi`) et espace professeur (`#admin`).
+- `compte.js` : connexion par code, demande de code par l’élève (validée par le professeur), enregistrement des réponses, tableau de bord élève (`#suivi`) et espace professeur (`#admin`).
 - `api/app.js` : une seule fonction Vercel (`/api/app?a=…`) ; `lib/db.js` (Postgres Neon, tables créées automatiquement), `lib/auth.js` (session signée), `lib/claude.js` (correction par l'API Anthropic).
 
 ## Variables d'environnement (projet Vercel → Settings → Environment Variables)

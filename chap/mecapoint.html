@@ -41,6 +41,7 @@
 <li>Des allers-retours compliqués à vitesse constante : la distance est la vitesse multipliée par la durée, inutile de sommer une série.</li>
 </ul>
 </div>
+<div class="sim" data-name="tir"><p>Tirez à différents angles : la portée est maximale à 45° et deux angles complémentaires donnent la même portée ; l’accélération reste \(\vec g\) tout au long du vol. Ajoutez un frottement : la trajectoire perd sa symétrie et le meilleur angle diminue.</p></div>
 <div class="exo" data-q="ipho-2023-T1"></div>
 <div class="methode" data-m="referentiel"></div>
 
@@ -58,6 +59,7 @@
 </table>
 <div class="methode" data-m="systeme"></div>
 <p>Pour plusieurs solides reliés (blocs en contact, masses et poulie), deux écritures se complètent : la deuxième loi pour l’<strong>ensemble</strong> donne l’accélération sans faire intervenir les forces intérieures ; la deuxième loi pour <strong>un seul</strong> solide donne ensuite la force de contact ou la tension.</p>
+<div class="sim" data-name="atwood"><p>Deux masses reliées par un fil sur une poulie : écrivez la deuxième loi pour l’ensemble, puis pour chaque masse, et comparez avec les valeurs affichées. Donnez ensuite une masse à la poulie : les tensions ne sont plus égales.</p></div>
 <div class="piege">
 <p><strong>Pièges.</strong></p>
 <ul>
@@ -67,6 +69,8 @@
 <li>« Force centrifuge » : elle n’existe que dans un référentiel tournant (chapitre <a href="#nongalileen">Référentiels non galiléens</a>). Dans le référentiel du laboratoire, on écrit que la résultante des forces vaut \(mv^2/R\) vers le centre.</li>
 </ul>
 </div>
+<div class="sim" data-name="plan-frottement"><p>Inclinez le plan : tant que \(\tan\alpha \le \mu_s\), le frottement s’ajuste et compense \(mg\sin\alpha\) ; au-delà, le bloc glisse et le frottement vaut \(\mu_dN\). Lancez-le vers le haut : le frottement change de sens quand la vitesse s’annule.</p></div>
+<div class="sim" data-name="pendule-vecteurs"><p>Suivez les vecteurs vitesse et accélération d’un pendule (piège ci-dessus) : accélération tangentielle aux extrémités, centripète au point bas. Lancez-le du bas assez vite pour qu’il fasse le tour : avec un fil, la tension peut s’annuler avant le sommet et la masse tombe.</p></div>
 <div class="exo" data-q="ipho-2018-T2"></div>
 <div class="exo" data-q="mp-glissement"></div>
 
@@ -83,6 +87,7 @@
 <p>Énergies potentielles : pesanteur \(mgz\) (axe vers le haut), ressort \(\tfrac12k(\ell - \ell_0)^2\), gravitation \(-GMm/r\). Puissance d’une force : \(\vec F\cdot\vec v\).</p>
 <div class="methode" data-m="conservation"></div>
 <p><strong>Chocs.</strong> La quantité de mouvement totale se conserve toujours. Si le choc est <strong>élastique</strong>, l’énergie cinétique aussi ; à une dimension la vitesse relative change alors simplement de signe. Si les corps restent accrochés (choc <strong>mou</strong>), la perte d’énergie cinétique est maximale. Deux résultats à connaître : une balle qui frappe une balle identique immobile s’arrête et lui cède sa vitesse ; une balle légère qui rebondit sur un objet très lourd avançant à la vitesse \(V\) repart avec sa vitesse augmentée de \(2V\) (c’est le principe du <a href="#initiative--g-init-2019-canon">canon de Galilée</a>).</p>
+<div class="sim" data-name="chocs"><p>Réglez les masses, les vitesses et le coefficient de restitution \(e\) (1 : élastique, 0 : mou) : la quantité de mouvement est toujours conservée, l’énergie cinétique seulement si \(e = 1\). Passez dans le référentiel du centre de masse : le choc ne fait que retourner les vitesses.</p></div>
 <div class="piege">
 <p><strong>Pièges.</strong></p>
 <ul>
@@ -99,5 +104,3 @@
 <li>Kevin Zhou, <a href="https://knzhou.github.io/teaching/" target="_blank" rel="noopener">polycopiés M1 à M3</a> : cinématique, lois de Newton, énergie et quantité de mouvement.</li>
 </ul>
 </div>
-</content>
-</invoke>

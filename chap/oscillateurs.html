@@ -38,6 +38,7 @@
 <tr><td>Liquide dans un tube en U (longueur \(L\))</td><td>\(\sqrt{2g/L}\)</td><td></td></tr>
 </tbody>
 </table>
+<div class="sim" data-name="ressort-masse"><p>Changez l’amplitude : la période ne bouge pas. Changez la masse ou la raideur : \(T\) varie comme \(\sqrt{m/k}\). Passez en vertical : l’équilibre descend de \(mg/k\), la période reste la même. Observez \(a = -\omega_0^2x\) : accélération maximale aux extrémités, vitesse maximale au centre.</p></div>
 <p><strong>Pendule réel.</strong> Un solide de masse \(m\) qui oscille autour d’un axe horizontal, son centre de masse étant à la distance \(d\) de l’axe et son moment d’inertie par rapport à l’axe valant \(J\), a pour période \(T = 2\pi\sqrt{\dfrac{J}{mgd}}\). C’est celle d’un pendule simple de <strong>longueur équivalente</strong> \(\ell_\text{éq} = \dfrac{J}{md}\). Exemple : une tige homogène de longueur \(L\) suspendue par une extrémité (\(J = \tfrac13mL^2\), \(d = L/2\)) oscille comme un pendule simple de longueur \(\tfrac23L\). En terminale, le moment d’inertie est fourni par l’énoncé.</p>
 <div class="exo" data-q="ipho-2014-2"></div>
 <div class="exo" data-q="osc-vertical"></div>
@@ -51,6 +52,7 @@
 </ul>
 </div>
 
+<div class="sim" data-name="pendule-grand-angle"><p>Lâchez ensemble le pendule réel et son modèle linéarisé : jusqu’à 20° environ, ils restent synchrones ; au-delà, le pendule réel prend du retard. Lisez \(T/T_0\) en fonction de l’amplitude.</p></div>
 <h2 id="energie">2. Énergie et petites oscillations</h2>
 <p>Sans frottement, l’énergie mécanique se conserve :</p>
 \[E = \tfrac12m\dot x^2 + \tfrac12kx^2 = \tfrac12kA^2 = \tfrac12m(A\omega_0)^2.\]
@@ -75,6 +77,7 @@
 </tbody>
 </table>
 <p>La règle est l’inverse de celle des résistances, et la même que celle des condensateurs.</p>
+<div class="sim" data-name="ressorts-assoc"><p>Comparez la période de chaque montage à celle du ressort \(k_1\) seul, avec la même masse.</p></div>
 <div class="exo" data-q="ipho-2018-T12"></div>
 
 <h2 id="amorti">4. Amortissement et résonance</h2>
@@ -91,6 +94,7 @@
 </tbody>
 </table>
 <p>Pour \(Q \gg 1\) : l’amplitude est divisée par \(\mathrm e\) en \(Q/\pi\) périodes, l’énergie en \(Q/2\pi\) périodes. \(Q\) est donc, à un facteur près, <strong>le nombre d’oscillations observables</strong> ; c’est aussi \(2\pi\) fois le rapport de l’énergie stockée à l’énergie perdue par période.</p>
+<div class="sim" data-name="amorti"><p>Faites varier \(Q\) : comptez les oscillations visibles (environ \(Q\)), puis passez au régime critique et au régime apériodique.</p></div>
 <div class="exo" data-q="osc-facteur-qualite"></div>
 <p><strong>Régime forcé.</strong> Soumis à une force \(F_0\cos\omega t\), l’oscillateur finit par osciller à la pulsation \(\omega\) imposée, avec une amplitude</p>
 \[X(\omega) = \frac{F_0/m}{\sqrt{(\omega_0^2 - \omega^2)^2 + (\omega\omega_0/Q)^2}}.\]
@@ -99,6 +103,7 @@
 <li>\(\omega \approx \omega_0\) : <strong>résonance</strong>, \(X \approx Q\,F_0/k\) ; la largeur du pic est \(\Delta\omega \approx \omega_0/Q\).</li>
 <li>\(\omega \gg \omega_0\) : \(X \approx F_0/m\omega^2\), la masse ne suit plus, en opposition de phase.</li>
 </ul>
+<div class="sim" data-name="resonance"><p>Balayez la pulsation imposée : loin sous \(\omega_0\) la masse suit la force, près de \(\omega_0\) l’amplitude est multipliée par \(Q\) et le retard vaut 90°, au-delà la masse est en opposition de phase. Observez le régime transitoire, d’autant plus long que \(Q\) est grand.</p></div>
 <div class="methode" data-m="terme-dominant"></div>
 </div>
 
@@ -111,6 +116,7 @@
 </ul>
 <p>Exemple : deux masses \(m\), chacune reliée à une paroi par un ressort \(k_1\), et entre elles par un ressort \(k_2\). Mode symétrique : \(\omega_s = \sqrt{k_1/m}\). Mode antisymétrique : \(\omega_a = \sqrt{(k_1 + 2k_2)/m}\). Le mouvement général est la somme des deux ; si le couplage est faible, on observe des <strong>battements</strong> : l’énergie passe d’une masse à l’autre en un temps \(\pi/(\omega_a - \omega_s)\).</p>
 <div class="methode" data-m="symetrie"></div>
+<div class="sim" data-name="pendules-couples"><p>Deux pendules couplés : lâchez-les dans un mode propre, puis écartez-en un seul pour voir les battements et le transfert d’énergie.</p></div>
 <p>Un système de \(N\) masses a \(N\) modes propres. À la limite d’une chaîne continue, ce sont les ondes stationnaires du chapitre <a href="#optique--superposition">Ondes</a>.</p>
 </div>
 
@@ -120,5 +126,3 @@
 <li>Jaan Kalda, <a href="https://www.ioc.ee/~kalda/ipho/" target="_blank" rel="noopener">guide de mécanique</a>, idées sur les petites oscillations et les modes propres.</li>
 </ul>
 </div>
-</content>
-</invoke>

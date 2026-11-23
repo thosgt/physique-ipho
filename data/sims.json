@@ -85,6 +85,136 @@
   "desc": "Une fonction et ses approximations d’ordre 1, 2, 3 ; zone où l’erreur reste inférieure à 1 % (sin x ≈ x jusqu’à 14°)."
  },
  {
+  "name": "tir",
+  "page": "mecapoint",
+  "anchor": "cinematique",
+  "title": "Tir d’un projectile",
+  "desc": "Vitesse, angle et hauteur de départ : trajectoire, portée, flèche et durée, vecteurs vitesse et accélération ; ajoutez un frottement linéaire ou quadratique et cherchez le meilleur angle."
+ },
+ {
+  "name": "plan-frottement",
+  "page": "mecapoint",
+  "anchor": "newton",
+  "title": "Bloc sur un plan incliné avec frottement",
+  "desc": "Inclinaison, coefficients statique et dynamique : le frottement s’ajuste tant que tan α ≤ μs, puis vaut μd N ; lancez le bloc vers le haut pour voir le frottement changer de sens."
+ },
+ {
+  "name": "pendule-vecteurs",
+  "page": "mecapoint",
+  "anchor": "newton",
+  "title": "Vitesse, accélération et tension d’un pendule",
+  "desc": "Vecteurs vitesse et accélération (tangentielle et centripète) et tension, sans approximation ; avec un fil, la tension peut s’annuler : le fil se détend et la masse tombe."
+ },
+ {
+  "name": "atwood",
+  "page": "mecapoint",
+  "anchor": "newton",
+  "title": "Machine d’Atwood",
+  "desc": "Deux masses reliées par un fil sur une poulie : accélération et tensions, avec une poulie idéale puis massive (les tensions ne sont plus égales)."
+ },
+ {
+  "name": "chocs",
+  "page": "mecapoint",
+  "anchor": "energie",
+  "title": "Chocs à une dimension",
+  "desc": "Masses, vitesses et coefficient de restitution : conservation de la quantité de mouvement, énergie cinétique perdue, choc vu du centre de masse."
+ },
+ {
+  "name": "looping",
+  "page": "energie",
+  "anchor": "choisir",
+  "title": "Bille dans un looping",
+  "desc": "Hauteur de départ et frottement : énergies cinétique, potentielle et dissipée, réaction du rail ; en dessous de 5R/2 la bille décroche (N = 0) et suit une parabole."
+ },
+ {
+  "name": "diagramme-ep",
+  "page": "energie",
+  "anchor": "diagramme",
+  "title": "Lire un diagramme d’énergie potentielle",
+  "desc": "Double puits, molécule, barrière, pendule : zones interdites, points de rebroussement, force −dEp/dx, équilibres stables et instables, période des petites oscillations comparée à la période réelle."
+ },
+ {
+  "name": "roulement-ressort",
+  "page": "energie",
+  "anchor": "oscillations",
+  "title": "Glisser ou rouler : la masse effective",
+  "desc": "Un bloc, un cylindre et un anneau de même masse rappelés par le même ressort : l’énergie de rotation augmente la masse effective et allonge la période (méthode de l’énergie à un paramètre)."
+ },
+ {
+  "name": "tunnel",
+  "page": "celeste",
+  "anchor": "gravitation",
+  "title": "Un tunnel à travers la Terre",
+  "desc": "Chute dans un tunnel rectiligne à travers une Terre homogène : g proportionnel à r à l’intérieur, oscillation harmonique de 84 minutes quel que soit le tunnel, comme l’orbite rasante."
+ },
+ {
+  "name": "canon-newton",
+  "page": "celeste",
+  "anchor": "circulaire",
+  "title": "Le canon de Newton",
+  "desc": "Tir horizontal depuis une montagne : chute, orbite circulaire à v_c = √(GM/r), ellipse, libération à √2 v_c ; signe de l’énergie et période."
+ },
+ {
+  "name": "orbites",
+  "page": "celeste",
+  "anchor": "ellipse",
+  "title": "Orbites et lois de Kepler",
+  "desc": "Lancez une planète à 1 UA avec la vitesse et l’angle de votre choix : ellipse, périhélie et aphélie, aires balayées en des durées égales, T²/a³ constant, énergie et nature de la trajectoire."
+ },
+ {
+  "name": "hohmann",
+  "page": "celeste",
+  "anchor": "kepler",
+  "title": "Transfert de Hohmann",
+  "desc": "De la Terre à Mars ou Jupiter : demi-ellipse de transfert, impulsions Δv₁ et Δv₂, durée du voyage et fenêtre de tir.",
+  "level": "C"
+ },
+ {
+  "name": "ressort-masse",
+  "page": "oscillateurs",
+  "anchor": "harmonique",
+  "title": "Masse et ressort",
+  "desc": "Raideur, masse, amplitude, ressort horizontal ou vertical : x(t), v(t), a(t), échanges d’énergie ; la période ne dépend pas de l’amplitude et la pesanteur ne fait que déplacer l’équilibre."
+ },
+ {
+  "name": "pendule-grand-angle",
+  "page": "oscillateurs",
+  "anchor": "harmonique",
+  "title": "Pendule aux grands angles",
+  "desc": "Le pendule réel et son modèle linéarisé lâchés ensemble : quand l’amplitude grandit, la période s’allonge (T/T₀ ≈ 1 + θ₀²/16) et les deux se déphasent."
+ },
+ {
+  "name": "ressorts-assoc",
+  "page": "oscillateurs",
+  "anchor": "associations",
+  "title": "Associer des ressorts",
+  "desc": "Série, parallèle, masse entre deux parois, ressort coupé : raideur équivalente et période comparées à celles d’un ressort seul."
+ },
+ {
+  "name": "amorti",
+  "page": "oscillateurs",
+  "anchor": "amortissement",
+  "title": "Oscillateur amorti",
+  "desc": "Facteur de qualité Q : régimes pseudo-périodique, critique et apériodique, enveloppe exponentielle ; on voit environ Q oscillations.",
+  "level": "C"
+ },
+ {
+  "name": "resonance",
+  "page": "oscillateurs",
+  "anchor": "amortissement",
+  "title": "Oscillateur forcé et résonance",
+  "desc": "Pulsation imposée et facteur de qualité : régime transitoire puis permanent, amplitude et retard de phase, courbe de résonance de largeur ω₀/Q.",
+  "level": "C"
+ },
+ {
+  "name": "pendules-couples",
+  "page": "oscillateurs",
+  "anchor": "modes",
+  "title": "Deux pendules couplés",
+  "desc": "Deux pendules reliés par un ressort : modes symétrique et antisymétrique, battements et transfert d’énergie quand on n’en écarte qu’un.",
+  "level": "C"
+ },
+ {
   "name": "wagon",
   "page": "nongalileen",
   "anchor": "ascenseur",
@@ -97,6 +227,46 @@
   "anchor": "coriolis",
   "title": "Un palet lancé sur un manège",
   "desc": "Trajectoire droite vue du sol, courbée vue du manège : la force de Coriolis."
+ },
+ {
+  "name": "roue-vitesses",
+  "page": "solide",
+  "anchor": "vitesses",
+  "title": "Vitesses des points d’une roue",
+  "desc": "Champ des vitesses v_P = v_G + ω ∧ GP, centre instantané de rotation, cycloïde ; comparez roulement sans glissement, patinage et dérapage.",
+  "level": "C"
+ },
+ {
+  "name": "pendule-pesant",
+  "page": "solide",
+  "anchor": "pendule-pesant",
+  "title": "Pendule pesant",
+  "desc": "Tige ou disque oscillant autour d’un axe à la distance d de G : théorème de Huygens, longueur équivalente, période minimale au rayon de giration.",
+  "level": "C"
+ },
+ {
+  "name": "course-roulement",
+  "page": "solide",
+  "anchor": "plan-incline",
+  "title": "Course sur un plan incliné",
+  "desc": "Bloc sans frottement, boule, cylindre et anneau : a = g sin α/(1 + k) ; au-delà d’une inclinaison limite, le solide roule en glissant.",
+  "level": "C"
+ },
+ {
+  "name": "bille-billard",
+  "page": "solide",
+  "anchor": "bille-glisse",
+  "title": "Du glissement au roulement",
+  "desc": "Une bille lancée avec ou sans effet glisse, puis roule : v et Rω convergent vers (5v₀ + 2Rω₀)/7, quel que soit le frottement.",
+  "level": "C"
+ },
+ {
+  "name": "patineur",
+  "page": "solide",
+  "anchor": "conservation-l",
+  "title": "Conservation du moment cinétique",
+  "desc": "Sur un tabouret tournant, rapprochez ou écartez les haltères : J diminue, ω augmente, L = Jω reste constant mais l’énergie cinétique varie.",
+  "level": "C"
  },
  {
   "name": "onde",

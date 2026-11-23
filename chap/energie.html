@@ -34,6 +34,7 @@
 </tbody>
 </table>
 <div class="methode" data-m="conservation"></div>
+<div class="sim" data-name="looping"><p>Choisissez la hauteur de départ : l’énergie relie la hauteur à la vitesse en chaque point, et la condition \(N \ge 0\) au sommet fixe le seuil \(h = 5R/2\). En dessous, la bille décroche avant le sommet. Ajoutez du frottement : une partie de l’énergie devient chaleur.</p></div>
 <div class="exo" data-q="en-freinage"></div>
 <div class="exo" data-q="en-pendule-tension"></div>
 
@@ -78,6 +79,7 @@
 <li>entre deux points de rebroussement, la particule oscille : c’est un <strong>état lié</strong> ; si \(E_m\) dépasse la barrière, elle s’échappe (c’est ainsi qu’on trouve une vitesse de libération) ;</li>
 <li>la force est l’opposé de la pente : \(F = -\mathrm dE_p/\mathrm dx\), dirigée vers les énergies potentielles décroissantes.</li>
 </ul>
+<div class="sim" data-name="diagramme-ep"><p>Choisissez un profil d’énergie potentielle, une position et une énergie cinétique de départ : la particule ne quitte jamais la zone où \(E_p \le E_m\), rebrousse chemin là où \(E_p = E_m\) et accélère dans le sens où \(E_p\) diminue. Comparez la période mesurée à celle des petites oscillations.</p></div>
 <div class="methode" data-m="graphe"></div>
 <div class="exo" data-q="en-rebroussement"></div>
 <p><strong>Équilibre.</strong> La force est nulle là où \(E_p\) est extrémale. Un <strong>minimum</strong> est un équilibre stable (écartée, la particule est ramenée) ; un <strong>maximum</strong> est instable. En terminale, seule cette lecture qualitative est exigible ; en CPGE on la traduit par le signe de \(\dfrac{\mathrm d^2E_p}{\mathrm dx^2}\).</p>
@@ -105,6 +107,7 @@
 </tbody>
 </table>
 <p>Le dernier exemple montre l’intérêt de la méthode : la force de frottement qui assure le roulement est inconnue, mais elle ne travaille pas ; il suffit d’ajouter l’énergie cinétique de rotation, \(\tfrac12J\omega^2 = \tfrac14m\dot x^2\).</p>
+<div class="sim" data-name="roulement-ressort"><p>Le dernier exemple du tableau, en vrai : même ressort, même masse, mais le cylindre et l’anneau roulent. Leur énergie de rotation s’ajoute à celle de translation : la masse effective augmente et la période s’allonge de \(\sqrt{3/2}\) et \(\sqrt2\).</p></div>
 <div class="exo" data-q="en-tube-u"></div>
 <div class="cpge" id="osc-cpge" title="Niveau CPGE : pulsation au fond d’un puits de potentiel, équilibre instable">
 <p>Autour d’un équilibre <strong>instable</strong>, \(\kappa < 0\) : l’équation devient \(\ddot q = |\kappa|\,q/m_\text{eff}\) et l’écart croît comme \(\mathrm e^{t/\tau}\) avec \(\tau = \sqrt{m_\text{eff}/|\kappa|}\). Ce temps donne l’ordre de grandeur de la durée de chute d’un crayon posé sur sa pointe.</p>
@@ -130,6 +133,7 @@
 <div class="methode" data-m="symetrie"></div>
 <div class="exo" data-q="en-couples"></div>
 <p><strong>Battements.</strong> Si l’on écarte une seule masse, les deux modes sont excités à parts égales ; l’énergie passe intégralement d’un oscillateur à l’autre et revient, en un temps \(\dfrac{2\pi}{\omega_d - \omega_s}\) pour l’aller-retour. Plus le couplage est faible, plus l’échange est lent.</p>
+<div class="sim" data-name="pendules-couples"><p>Écartez un seul pendule : l’énergie passe entièrement à l’autre, puis revient. Lâchez-les dans un mode propre : chacun garde son énergie. Réduisez le couplage : les battements ralentissent.</p></div>
 <p>Les QCM du test (2015, 2017, 2019) donnent quatre expressions : le cas limite \(k_\text{couplage} = 0\) et l’homogénéité suffisent presque toujours à trancher. Voir aussi <a href="#oscillateurs--couples">Oscillateurs, partie 5</a>.</p>
 </div>
 
@@ -139,5 +143,3 @@
 <li>Sur ce site : le <a href="#initiative--g-init-2019-canon">canon de Galilée</a> (chocs en cascade), les <a href="#initiative--g-eupho-2018-billes">trois billes articulées</a> (EuPhO 2018 : énergie et moment cinétique), l’<a href="#initiative--g-init-2018-brunt">oscillation d’un fluide stratifié</a>.</li>
 </ul>
 </div>
-</content>
-</invoke>

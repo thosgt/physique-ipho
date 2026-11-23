@@ -29,6 +29,7 @@
 <div class="methode" data-m="rapports"></div>
 <div class="exo" data-q="ipho-2014-4"></div>
 <p>À l’intérieur d’un astre homogène, seule la masse située plus près du centre que le point considéré attire : \(\mathcal G(r) = \dfrac{GM}{R^3}\,r\), proportionnel à \(r\). C’est la clé des problèmes de tunnel à travers la Terre (mouvement harmonique de période 84 min, égale à celle d’un satellite rasant).</p>
+<div class="sim" data-name="tunnel"><p>Choisissez le tunnel : la traversée dure toujours 42 minutes, et l’objet reste à l’aplomb d’un satellite en orbite rasante dans le cas d’un diamètre.</p></div>
 
 <h2 id="circulaire">2. Orbites circulaires</h2>
 <p>Dans le référentiel de l’astre attracteur (supposé galiléen et beaucoup plus massif que le satellite), la gravitation fournit l’accélération centripète :</p>
@@ -44,6 +45,7 @@
 </tbody>
 </table>
 <p>La période d’une orbite basse ne dépend que de la <strong>masse volumique</strong> de l’astre : elle est du même ordre, une à trois heures, pour tous les corps rocheux, de l’astéroïde à la planète.</p>
+<div class="sim" data-name="canon-newton"><p>Le canon de Newton : augmentez la vitesse de tir jusqu’à mettre le boulet en orbite circulaire, puis en ellipse, puis à le libérer. Comparez les seuils \(v_c = \sqrt{GM/r}\) et \(v_\ell = \sqrt2\,v_c\).</p></div>
 <div class="exo" data-q="cel-geostationnaire"></div>
 <p><strong>Reconnaître une orbite.</strong> Des corps en orbite autour d’une masse centrale ont une vitesse qui décroît avec la distance, \(v \propto r^{-1/2}\) (rotation « képlérienne ») ; un solide en rotation a au contraire \(v \propto r\). Mesurer \(v(r)\) permet de distinguer les deux, et de peser l’astre central : \(M = \dfrac{v^2r}{G}\). C’est ainsi qu’on mesure la masse des planètes, des étoiles doubles, des trous noirs et des galaxies.</p>
 <div class="exo" data-q="ipho-2017-T15"></div>
@@ -75,6 +77,7 @@
 <p>Le point le plus proche de l’astre est le périhélie (distance \(r_p\)), le plus lointain l’aphélie (\(r_a\)) ; le grand axe vaut \(r_p + r_a = 2a\). En ces deux points la vitesse est perpendiculaire au rayon, et la loi des aires s’écrit simplement :</p>
 \[r_pv_p = r_av_a.\]
 <p>Le corps est donc d’autant plus rapide qu’il est proche de l’astre.</p>
+<div class="sim" data-name="orbites"><p>Lancez une planète à 1 UA avec la vitesse et la direction de votre choix : l’ellipse a le Soleil pour foyer, les aires balayées en des durées égales sont égales, et \(T^2/a^3\) vaut toujours 1 en années et en UA. Au-delà de \(\sqrt2\) fois la vitesse circulaire, la planète s’échappe.</p></div>
 <div class="exo" data-q="cel-comete-periode"></div>
 <div class="cpge" id="kepler" title="Niveau CPGE : moment cinétique, énergie sur une orbite elliptique, transfert d’orbite">
 <p>La loi des aires traduit la <strong>conservation du moment cinétique</strong> : la force est centrale, son moment par rapport à l’astre est nul, \(L = m\,r\,v_\perp\) est constant tout au long de l’orbite.</p>
@@ -84,6 +87,7 @@
 <div class="methode" data-m="conservation"></div>
 <p><strong>Nature de la trajectoire.</strong> Elle ne dépend que du signe de l’énergie : ellipse (ou cercle) si \(E < 0\), parabole si \(E = 0\), hyperbole si \(E > 0\).</p>
 <p><strong>Transfert de Hohmann.</strong> Pour passer d’une orbite circulaire de rayon \(r_1\) à une orbite circulaire de rayon \(r_2\), on emprunte une demi-ellipse de grand axe \(r_1 + r_2\), avec une impulsion au départ et une à l’arrivée. Durée du transfert : la moitié de la période de l’ellipse, \(\pi\sqrt{\dfrac{(r_1 + r_2)^3}{8GM}}\) (environ 8,5 mois de la Terre à Mars).</p>
+<div class="sim" data-name="hohmann"><p>Le transfert vers Mars dure 259 jours et ne réussit que si Mars est en avance d’environ 44° au départ : c’est la fenêtre de tir.</p></div>
 <p><strong>Problème à deux corps.</strong> Si les deux masses sont comparables, elles tournent autour de leur centre de masse et la troisième loi s’écrit avec la masse totale : \(T^2 = \dfrac{4\pi^2d^3}{G(m_1 + m_2)}\), où \(d\) est la distance qui les sépare. C’est le principe de la détection des exoplanètes par vitesse radiale : l’étoile décrit un petit cercle autour du centre de masse, à la vitesse \(v_\star = v_\text{planète}\,m_p/M_\star\).</p>
 </div>
 
@@ -94,5 +98,3 @@
 <li>Sur ce site : <a href="#initiative--g-init-2023-petit-prince">l’astéroïde du Petit Prince</a> et <a href="#initiative--g-init-2024-duree-jour">les variations de la durée du jour</a> (problèmes à prise d’initiative), <a href="#nongalileen">l’ascenseur spatial</a> (APhO 2018).</li>
 </ul>
 </div>
-</content>
-</invoke>

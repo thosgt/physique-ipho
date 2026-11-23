@@ -18,7 +18,7 @@ function readPhotos(v) {
   });
 }
 
-const DEFAULT_SETTINGS = { claude: true, quota: 15, open: true };
+const DEFAULT_SETTINGS = { claude: true, quota: 15, open: true, requests: true };
 const CHAP_TITLES = { outils: "Outils", statique: "Statique des fluides", dynamique: "Dynamique des fluides", tension: "Tension superficielle",
   nongalileen: "Référentiels non galiléens", geometrique: "Optique géométrique", optique: "Ondes et optique", relativite: "Relativité",
   nucleaire: "Nucléaire", quantique: "Quantique", solide: "Mécanique du solide", electrostatique: "Champ électrique",
@@ -40,6 +40,33 @@ function makeCode() {
 const normCode = c => String(c || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
 const str = (v, max = 200) => String(v ?? "").slice(0, max);
 const clampScore = v => { const x = Number(v); return isFinite(x) ? Math.max(0, Math.min(1, x)) : 0; };
+const clientIp = req => str((req.headers["x-forwarded-for"] || "local").split(",")[0].trim(), 80);
+// Nom ou prénom saisi par un élève : lettres (accents compris), espaces, tiret, apostrophe ; majuscule initiale
+function cleanName(v, what) {
+  const x = String(v ?? "").normalize("NFC").replace(/\s+/g, " ").trim().slice(0, 60);
+  if (!x) fail(400, `Indiquez votre ${what}.`);
+  if (!/^[\p{L}][\p{L}\p{M} '’.-]*$/u.test(x)) fail(400, `Votre ${what} ne doit contenir que des lettres, des espaces, des tirets ou des apostrophes.`);
+  // majuscule à chaque mot, sauf les particules (de, du, la, d’…) qui ne sont pas en tête
+  const PART = new Set(["de", "du", "des", "la", "le", "d", "van", "von", "der", "den", "di", "da", "dos", "del", "y"]);
+  return x.replace(/(^|[\s'’-])([\p{L}\p{M}]+)/gu, (m, sep, w) =>
+    sep + (sep !== "" && sep !== "-" && PART.has(w.toLowerCase()) && w === w.toLowerCase() ? w : w.charAt(0).toUpperCase() + w.slice(1)));
+}
+const nameKey = (p, n) => (String(p) + " " + String(n)).normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/[^a-z]/g, "");
+const hashTicket = t => crypto.createHash("sha256").update("ticket|" + String(t || "")).digest("hex");
+async function freshCode() {
+  for (let k = 0; k < 8; k++) {
+    const code = normCode(makeCode());
+    if (!(await query("SELECT 1 FROM students WHERE code = $1", [code])).length) return code;
+  }
+  fail(500, "Impossible de créer un code : réessayez.");
+}
+async function newStudent(prenom, nom, groupe, niveau) {
+  const code = await freshCode(), id = uid("s");
+  await query("INSERT INTO students (id, prenom, nom, groupe, niveau, code, created) VALUES ($1,$2,$3,$4,$5,$6,$7)",
+    [id, str(prenom, 60), str(nom, 80), str(groupe, 60), niveau === "C" ? "C" : "T", code, Date.now()]);
+  return { id, prenom, nom, code };
+}
+const REQ_KEEP = 30 * DAY;   // un code accordé reste lisible 30 jours par le navigateur qui l'a demandé
 
 // Énoncés et corrigés : lus une fois dans data/questions.json (inclus dans la fonction par vercel.json)
 let BANK = null;
@@ -81,6 +108,12 @@ async function needStudent(req) {
   return s;
 }
 const attemptCols = "qid, chap, score, mode, hints, ts";
+// Demandes en attente, puis celles traitées depuis 30 jours ; les plus anciennes sont effacées
+async function listRequests() {
+  await query("DELETE FROM code_requests WHERE (status <> 'pending' AND decided < $1) OR (status = 'pending' AND ts < $2)", [Date.now() - 90 * DAY, Date.now() - 180 * DAY]);
+  return query(`SELECT id, prenom, nom, groupe, niveau, ts, status, sid, decided FROM code_requests
+    WHERE status = 'pending' OR decided > $1 ORDER BY (status = 'pending') DESC, coalesce(decided, ts) DESC LIMIT 400`, [Date.now() - REQ_KEEP]);
+}
 
 /* ------------------------------------------------------------------ actions */
 const actions = {
@@ -89,17 +122,20 @@ const actions = {
     const settings = await getSettings();
     const hasKey = !!process.env.ANTHROPIC_API_KEY;
     const s = getSession(req);
-    const base = { open: !!settings.open };
+    const base = { open: !!settings.open, requests: !!settings.requests };
     if (!s) return { ...base, role: null };
-    if (s.role === "admin") return { ...base, role: "admin", claude: { enabled: hasKey, quota: null, used: 0 } };
-    const me = (await query("SELECT id, prenom, nom, groupe, niveau FROM students WHERE id = $1", [s.sid]))[0];
+    if (s.role === "admin") {
+      const p = await query("SELECT count(*)::int AS n FROM code_requests WHERE status = 'pending'");
+      return { ...base, role: "admin", pending: p[0].n, claude: { enabled: hasKey, quota: null, used: 0 } };
+    }
+    const me = (await query("SELECT id, prenom, nom, groupe, niveau, code FROM students WHERE id = $1", [s.sid]))[0];
     if (!me) return { ...base, role: null };
     await query("UPDATE students SET last = $2 WHERE id = $1", [s.sid, Date.now()]);
     return { ...base, role: "eleve", me, claude: { enabled: hasKey && !!settings.claude, quota: settings.quota, used: await claudeUsed(s.sid) } };
   },
 
   async login(req, res, b) {
-    const ip = str((req.headers["x-forwarded-for"] || "local").split(",")[0].trim(), 80);
+    const ip = clientIp(req);
     const f = await query("SELECT count(*)::int AS n FROM login_failures WHERE ip = $1 AND ts > $2", [ip, Date.now() - 10 * 60000]);
     if (f[0].n >= 15) fail(429, "Trop d'essais : attendez quelques minutes avant de réessayer.");
     const code = str(b.code, 200).trim();
@@ -113,13 +149,49 @@ const actions = {
     if (!st.length) {
       await query("INSERT INTO login_failures (ip, ts) VALUES ($1, $2)", [ip, Date.now()]);
       await query("DELETE FROM login_failures WHERE ts < $1", [Date.now() - DAY]);
-      fail(401, "Code inconnu. Vérifiez qu'il est bien recopié.");
+      fail(401, "Code inconnu. Vérifiez qu'il est bien recopié, ou demandez un code ci-dessous.");
     }
     setSession(res, { role: "eleve", sid: st[0].id }, 180);
     return { role: "eleve" };
   },
 
   async logout(req, res) { clearSession(res); return { ok: true }; },
+
+  /* ---- demande de code par un élève (validée par le professeur) ---- */
+  async requestCode(req, res, b) {
+    const settings = await getSettings();
+    if (!settings.requests) fail(403, "Les demandes de code sont fermées : adressez-vous à votre professeur.");
+    const prenom = cleanName(b.prenom, "prénom"), nom = cleanName(b.nom, "nom");
+    const niveau = b.niveau === "C" ? "C" : b.niveau === "T" ? "T" : fail(400, "Indiquez si vous êtes en terminale ou en CPGE.");
+    const groupe = str(b.groupe, 40).replace(/\s+/g, " ").trim();
+    const ip = clientIp(req), now = Date.now();
+    const recent = await query("SELECT count(*)::int AS n FROM code_requests WHERE ip = $1 AND ts > $2", [ip, now - 3600000]);
+    if (recent[0].n >= 6) fail(429, "Trop de demandes depuis cette connexion : réessayez dans une heure.");
+    const pending = await query("SELECT count(*)::int AS n FROM code_requests WHERE status = 'pending'");
+    if (pending[0].n >= 300) fail(429, "Trop de demandes en attente : adressez-vous directement à votre professeur.");
+    const ticket = crypto.randomBytes(24).toString("base64url");
+    await query("INSERT INTO code_requests (id, ticket, prenom, nom, groupe, niveau, ip, ts) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)",
+      [uid("r"), hashTicket(ticket), prenom, nom, groupe, niveau, ip, now]);
+    return { ticket, status: "pending", prenom, nom, ts: now };
+  },
+
+  // Le navigateur qui a fait la demande consulte son état ; une fois la demande validée, il reçoit le code et l'élève est connecté.
+  async requestStatus(req, res, b) {
+    const r = (await query("SELECT id, prenom, nom, ts, status, sid, decided FROM code_requests WHERE ticket = $1", [hashTicket(str(b.ticket, 100))]))[0];
+    if (!r) return { status: "unknown" };
+    const out = { status: r.status, prenom: r.prenom, nom: r.nom, ts: r.ts };
+    if (r.status !== "approved") return out;
+    if (Date.now() - r.decided > REQ_KEEP) return { ...out, status: "expired" };
+    const st = (await query("SELECT id, code FROM students WHERE id = $1", [r.sid]))[0];
+    if (!st) return { ...out, status: "expired" };
+    if (b.login) setSession(res, { role: "eleve", sid: st.id }, 180);
+    return { ...out, code: st.code };
+  },
+
+  async cancelRequest(req, res, b) {
+    await query("DELETE FROM code_requests WHERE ticket = $1 AND status = 'pending'", [hashTicket(str(b.ticket, 100))]);
+    return { ok: true };
+  },
 
   /* ---- élève ---- */
   // Une réponse traitée : id choisi par la page (une même question peut être réévaluée : « à revoir » puis « juste »)
@@ -200,6 +272,7 @@ const actions = {
       days: await query(`SELECT floor(ts / 86400000)::int AS day, count(*)::int AS n, count(DISTINCT sid)::int AS eleves FROM attempts WHERE ts > $1 GROUP BY 1 ORDER BY 1`, [since]),
       recent: await query(`SELECT sid, ${attemptCols} FROM attempts ORDER BY ts DESC LIMIT 40`),
       claude: await query(`SELECT c.sid, c.qid, c.ts, c.verdict FROM claude_log c ORDER BY ts DESC LIMIT 200`),
+      requests: await listRequests(),
       settings: await getSettings(),
       config: { hasKey: !!process.env.ANTHROPIC_API_KEY, model: process.env.ANTHROPIC_MODEL || "claude-haiku-5-5", hasDb: true },
     };
@@ -228,15 +301,7 @@ const actions = {
       let prenom, nom;
       if (parts.length >= 2) { [prenom, nom] = parts; }
       else { const w = l.split(/\s+/); prenom = w[0]; nom = w.slice(1).join(" "); }
-      let code, ok = false;
-      for (let k = 0; k < 8 && !ok; k++) {
-        code = normCode(makeCode());
-        ok = !(await query("SELECT 1 FROM students WHERE code = $1", [code])).length;
-      }
-      const id = uid("s");
-      await query("INSERT INTO students (id, prenom, nom, groupe, niveau, code, created) VALUES ($1,$2,$3,$4,$5,$6,$7)",
-        [id, str(prenom, 60), str(nom, 80), groupe, niveau, code, Date.now()]);
-      added.push({ id, prenom, nom, code });
+      added.push(await newStudent(prenom, nom, groupe, niveau));
     }
     return { added };
   },
@@ -251,8 +316,7 @@ const actions = {
 
   async regenCode(req, res, b) {
     needAdmin(req);
-    let code, ok = false;
-    for (let k = 0; k < 8 && !ok; k++) { code = normCode(makeCode()); ok = !(await query("SELECT 1 FROM students WHERE code = $1", [code])).length; }
+    const code = await freshCode();
     await query("UPDATE students SET code = $2 WHERE id = $1", [str(b.sid, 40), code]);
     return { code };
   },
@@ -266,6 +330,35 @@ const actions = {
     return { ok: true };
   },
 
+  // Demandes de code : valider (nouveau compte), rattacher à un compte existant (l'élève reçoit son code), refuser
+  async decideRequest(req, res, b) {
+    needAdmin(req);
+    // items : [{id, prenom?, nom?, groupe?, niveau?}] (une ou plusieurs demandes, avec les corrections du professeur)
+    const items = (Array.isArray(b.items) ? b.items : [b]).filter(x => x && x.id).slice(0, 300);
+    if (!items.length) fail(400, "Aucune demande choisie.");
+    const decision = b.decision;
+    if (!["approve", "link", "reject"].includes(decision)) fail(400, "Décision inconnue.");
+    const done = [];
+    for (const it of items) {
+      const r = (await query("SELECT * FROM code_requests WHERE id = $1", [str(it.id, 40)]))[0];
+      if (!r || r.status !== "pending") continue;
+      let sid = null, code = null;
+      if (decision === "approve") {
+        const st = await newStudent(str(it.prenom, 60).trim() || r.prenom, str(it.nom, 80).trim() || r.nom,
+          it.groupe !== undefined ? str(it.groupe, 60).trim() : r.groupe, it.niveau === "C" || it.niveau === "T" ? it.niveau : r.niveau);
+        sid = st.id; code = st.code;
+      } else if (decision === "link") {
+        const st = (await query("SELECT id, code FROM students WHERE id = $1", [str(b.sid, 40)]))[0];
+        if (!st) fail(404, "Élève introuvable.");
+        sid = st.id; code = st.code;
+      }
+      await query("UPDATE code_requests SET status = $2, sid = $3, decided = $4 WHERE id = $1",
+        [r.id, decision === "reject" ? "rejected" : "approved", sid, Date.now()]);
+      done.push({ id: r.id, sid, code, prenom: r.prenom, nom: r.nom });
+    }
+    return { done };
+  },
+
   async saveSettings(req, res, b) {
     needAdmin(req);
     const cur = await getSettings();
@@ -273,6 +366,7 @@ const actions = {
       claude: b.claude === undefined ? cur.claude : !!b.claude,
       quota: b.quota === undefined ? cur.quota : Math.max(0, Math.min(200, parseInt(b.quota) || 0)),
       open: b.open === undefined ? cur.open : !!b.open,
+      requests: b.requests === undefined ? cur.requests : !!b.requests,
     };
     await query("INSERT INTO settings (key, value) VALUES ('main', $1::jsonb) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value", [JSON.stringify(next)]);
     return { settings: next };
