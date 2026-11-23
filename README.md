@@ -4,7 +4,7 @@ Préparation au test de présélection des IPhO (Terminale et CPGE) et au Concou
 
 - Site : https://physique-ipho.vercel.app
 - Artefact Claude source : https://claude.ai/artifact/USoqxVAkNMq9ZvTr2Rf5M6
-- Mis à jour le 23 novembre 2026 (version 26) : 23 simulations pour les chapitres de mécanique (point, énergie, céleste, oscillateurs, solide) ; demande de code par les élèves (prénom, nom, niveau, classe), validée par le professeur dans « Élèves et codes », le code s’affichant ensuite sur l’appareil de l’élève.
+- Mis à jour le 23 novembre 2026 (version 27) : 23 simulations pour les chapitres de mécanique (point, énergie, céleste, oscillateurs, solide) ; demande de code par les élèves (prénom, nom, niveau, classe), validée par le professeur dans « Élèves et codes », le code s’affichant ensuite sur l’appareil de l’élève.
 - Mis à jour le 20 novembre 2026 (version 22) : chapitre « Approche énergétique », quinze QCM à figure et trente-deux exercices de cours pour les chapitres de mécanique.
 - Mis à jour le 20 novembre 2026 (version 21) : onze QCM de circuits avec leur schéma ; les cinq nouveaux chapitres sont alignés sur le code couleur du syllabus 2026-2027.
 - Mis à jour le 20 novembre 2026 (version 20) : cinq nouveaux chapitres (mécanique du point, mécanique céleste, oscillateurs, circuits électriques, thermodynamique et rayonnement), deux problèmes EuPhO corrigés et la liste des sujets EuPhO 2017-2026 ; version 19 : section CPGE « Problèmes à prise d’initiative », poids de chaque chapitre dans les tests 2014-2026, vidéos PhysiCité.
