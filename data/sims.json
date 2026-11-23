@@ -215,6 +215,14 @@
   "level": "C"
  },
  {
+  "name": "chaine-oscillateurs",
+  "page": "oscillateurs",
+  "anchor": "chaine",
+  "title": "Chaîne de N oscillateurs couplés",
+  "desc": "N masses entre deux parois : forme et pulsation de chaque mode propre, relation de dispersion ω = 2ω₀ sin(θ/2), propagation d’un ébranlement.",
+  "level": "C"
+ },
+ {
   "name": "wagon",
   "page": "nongalileen",
   "anchor": "ascenseur",
@@ -302,6 +310,14 @@
   "anchor": "lentilles",
   "title": "Lentille mince",
   "desc": "Construction de l’image par les trois rayons particuliers, relation de conjugaison, grandissement, image réelle ou virtuelle, lentille convergente ou divergente."
+ },
+ {
+  "name": "lentilles-periodiques",
+  "page": "geometrique",
+  "anchor": "n-lentilles",
+  "title": "Suite de lentilles : rayon confiné ou non",
+  "desc": "Un rayon traverse une suite de lentilles identiques ou alternées : récurrence sur les hauteurs, confinement pour d < 4f′, période en nombre de lentilles.",
+  "level": "C"
  },
  {
   "name": "interferences",

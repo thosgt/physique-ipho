@@ -130,6 +130,15 @@
 </tbody>
 </table>
 <p>Dans le mode symétrique le ressort de couplage ne se déforme pas : son énergie est absente du premier crochet, et la pulsation est celle d’un oscillateur seul. Si les masses sont différentes, le mode « libre » se traite dans le référentiel du centre de masse : deux masses \(m_1\) et \(m_2\) reliées par un ressort oscillent à \(\sqrt{k/\mu}\) avec la masse réduite \(\mu = \dfrac{m_1m_2}{m_1 + m_2}\).</p>
+<p><strong>Le calcul en détail, sur les deux pendules couplés.</strong> Deux pendules de masse \(m\) et de longueur \(\ell\), d’écarts horizontaux \(x_1\) et \(x_2\), reliés par un ressort \(k\) détendu à l’équilibre. Pour de petits écarts, l’énergie de pesanteur d’un pendule vaut \(mg\ell(1 - \cos\theta) \approx \tfrac12\dfrac{mg}{\ell}x^2\) :</p>
+\[E = \tfrac12m\left(\dot x_1^2 + \dot x_2^2\right) + \tfrac12\frac{mg}{\ell}\left(x_1^2 + x_2^2\right) + \tfrac12k\left(x_1 - x_2\right)^2 .\]
+<ol>
+<li>On pose \(s = x_1 + x_2\) et \(d = x_1 - x_2\), donc \(x_1 = \tfrac12(s + d)\), \(x_2 = \tfrac12(s - d)\) et \(x_1^2 + x_2^2 = \tfrac12(s^2 + d^2)\) (les doubles produits se compensent) ; de même \(\dot x_1^2 + \dot x_2^2 = \tfrac12(\dot s^2 + \dot d^2)\).</li>
+<li>On remplace : \(E = \left[\tfrac14m\dot s^2 + \tfrac14\dfrac{mg}{\ell}s^2\right] + \left[\tfrac14m\dot d^2 + \left(\tfrac14\dfrac{mg}{\ell} + \tfrac12k\right)d^2\right]\). Plus aucun terme croisé : chaque crochet est un oscillateur.</li>
+<li>On lit chaque crochet sous la forme \(\tfrac12m_\text{eff}\dot q^2 + \tfrac12\kappa q^2\) : pour \(s\), \(m_s = m/2\) et \(\kappa_s = mg/2\ell\) ; pour \(d\), \(m_d = m/2\) et \(\kappa_d = mg/2\ell + k\).</li>
+<li>\(\omega_s = \sqrt{\kappa_s/m_s} = \sqrt{g/\ell}\) et \(\omega_d = \sqrt{\kappa_d/m_d} = \sqrt{g/\ell + 2k/m}\).</li>
+</ol>
+<p><strong>Sans symétrie</strong>, on écrit l’énergie sous forme générale, \(E = \tfrac12\sum M_{ij}\dot q_i\dot q_j + \tfrac12\sum K_{ij}q_iq_j\), et l’on cherche \(q_j = A_j\cos\omega t\) : les équations du mouvement, \(\sum_jM_{ij}\ddot q_j = -\sum_jK_{ij}q_j\), donnent \(\sum_j\left(K_{ij} - \omega^2M_{ij}\right)A_j = 0\), et les pulsations propres annulent le déterminant \(\det\left(K - \omega^2M\right)\). Pour deux degrés de liberté, c’est une équation du second degré en \(\omega^2\) : voir l’exemple des masses \(m\) et \(2m\) dans <a href="#oscillateurs--calcul-pulsations">Oscillateurs, partie 5</a>, et la chaîne de \(N\) masses, traitée par une relation de récurrence, dans la <a href="#oscillateurs--chaine">partie 6</a>.</p>
 <div class="methode" data-m="symetrie"></div>
 <div class="exo" data-q="en-couples"></div>
 <p><strong>Battements.</strong> Si l’on écarte une seule masse, les deux modes sont excités à parts égales ; l’énergie passe intégralement d’un oscillateur à l’autre et revient, en un temps \(\dfrac{2\pi}{\omega_d - \omega_s}\) pour l’aller-retour. Plus le couplage est faible, plus l’échange est lent.</p>

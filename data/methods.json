@@ -387,6 +387,18 @@
 ]
 },
 {
+"id": "recurrence",
+"title": "Résoudre une relation de récurrence linéaire",
+"quand": "Un motif qui se répète N fois : chaîne de masses et de ressorts, suite de lentilles, échelle de résistances ou de condensateurs, réflexions multiples.",
+"texte": "Écrivez la relation entre trois éléments voisins, par exemple \\(u_{n+1} = b\\,u_n - u_{n-1}\\), en éliminant les grandeurs intermédiaires (pentes, courants). Cherchez \\(u_n = r^n\\) : l’équation caractéristique \\(r^2 - br + 1 = 0\\) a deux racines de produit 1. Si \\(|b| < 2\\), ce sont \\(\\mathrm e^{\\pm\\mathrm i\\theta}\\) avec \\(\\cos\\theta = b/2\\) et \\(u_n = \\alpha\\cos n\\theta + \\beta\\sin n\\theta\\) reste bornée ; si \\(|b| > 2\\), une racine dépasse 1 en module et la suite croît géométriquement. Les conditions aux bouts (\\(u_0\\), \\(u_{N+1}\\), ou \\(u_0\\) et \\(u_1\\)) fixent les constantes et, pour une chaîne, quantifient \\(\\theta\\). Vérifiez toujours les petits cas \\(N = 1\\) et \\(N = 2\\).",
+"chaps": [
+"oscillateurs",
+"energie",
+"geometrique",
+"circuits"
+]
+},
+{
 "id": "potentiel",
 "title": "Passer par le potentiel plutôt que par le champ",
 "quand": "Vitesse d’une charge entre deux points, énergie d’un ensemble de charges, champ d’une distribution sans symétrie simple.",

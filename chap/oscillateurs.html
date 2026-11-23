@@ -7,7 +7,7 @@
 <ul>
 <li><strong>Terminale</strong> (en rouge dans le syllabus 2026-2027) : oscillateur harmonique (équation du mouvement, fréquence, pulsation, période), pendule réel et longueur équivalente, décroissance exponentielle des oscillations amorties (approche qualitative seulement).</li>
 <li><strong>CPGE</strong> (en bleu) : en plus, la loi de Hooke, le comportement au voisinage d’un équilibre instable, la résonance d’un oscillateur forcé (amplitude et déphasage), les oscillations d’un circuit LC et l’analogie électrique-mécanique.</li>
-<li>Les <strong>oscillateurs couplés</strong> ne figurent pas au syllabus, mais des QCM du test CPGE en ont comporté (2015, 2017, 2019) : la partie 5 donne le strict nécessaire.</li>
+<li>Les <strong>oscillateurs couplés</strong> ne figurent pas au syllabus, mais des QCM du test CPGE en ont comporté (2015, 2017, 2019) : la partie 5 détaille le calcul des pulsations propres de deux oscillateurs ; la partie 6, pour aller plus loin, traite une chaîne de \(N\) oscillateurs par une relation de récurrence.</li>
 </ul>
 </div>
 
@@ -109,15 +109,63 @@
 
 <h2 id="couples">5. Oscillateurs couplés (hors syllabus, posés au test CPGE)</h2>
 <div class="cpge" id="modes" title="Niveau CPGE, hors syllabus : modes propres de deux oscillateurs couplés">
-<p>Deux oscillateurs reliés échangent de l’énergie. Le mouvement général est compliqué, mais il existe des mouvements simples, les <strong>modes propres</strong>, où toutes les parties oscillent à la même pulsation. Pour un système symétrique, on les trouve sans calcul :</p>
+<p>Deux oscillateurs reliés échangent de l’énergie. Le mouvement général est compliqué, mais il existe des mouvements simples, les <strong>modes propres</strong>, où toutes les parties oscillent à la <strong>même pulsation</strong>, en phase ou en opposition de phase. Pour un système symétrique, on les devine sans calcul :</p>
 <ul>
 <li><strong>mode symétrique</strong> : les deux masses se déplacent ensemble, le ressort de couplage garde sa longueur et ne joue aucun rôle ;</li>
 <li><strong>mode antisymétrique</strong> : déplacements opposés ; le milieu du ressort de couplage reste fixe, chaque moitié (de raideur double) agit comme un ressort supplémentaire.</li>
 </ul>
-<p>Exemple : deux masses \(m\), chacune reliée à une paroi par un ressort \(k_1\), et entre elles par un ressort \(k_2\). Mode symétrique : \(\omega_s = \sqrt{k_1/m}\). Mode antisymétrique : \(\omega_a = \sqrt{(k_1 + 2k_2)/m}\). Le mouvement général est la somme des deux ; si le couplage est faible, on observe des <strong>battements</strong> : l’énergie passe d’une masse à l’autre en un temps \(\pi/(\omega_a - \omega_s)\).</p>
+<h3 id="calcul-pulsations">Calculer les pulsations propres, pas à pas</h3>
+<p>Prenons deux masses \(m\), chacune reliée à une paroi par un ressort \(k_1\), et reliées entre elles par un ressort \(k_2\). On repère chaque masse par son écart \(x_1\), \(x_2\) à l’équilibre (vers la droite).</p>
+<p><strong>1. Les équations du mouvement.</strong> Quand \(x_2 > x_1\), le ressort du milieu est allongé de \(x_2 - x_1\) : il tire la masse 1 vers la droite et la masse 2 vers la gauche.</p>
+\[m\ddot x_1 = -k_1x_1 + k_2(x_2 - x_1), \qquad m\ddot x_2 = -k_1x_2 - k_2(x_2 - x_1).\]
+<p>Chaque équation contient l’autre inconnue : c’est le <strong>couplage</strong>.</p>
+<p><strong>2. Première méthode : découpler par la somme et la différence.</strong> En ajoutant puis en retranchant les deux équations, le terme de couplage disparaît de l’une et double dans l’autre :</p>
+\[s = x_1 + x_2 : \quad m\ddot s = -k_1s, \qquad\qquad d = x_1 - x_2 : \quad m\ddot d = -(k_1 + 2k_2)\,d.\]
+<p>Ce sont deux oscillateurs harmoniques indépendants : \(\omega_s = \sqrt{k_1/m}\) et \(\omega_a = \sqrt{(k_1 + 2k_2)/m}\). On revient aux masses par \(x_1 = (s + d)/2\), \(x_2 = (s - d)/2\).</p>
+<p><strong>3. Deuxième méthode, qui marche toujours : chercher les modes.</strong> Quand le système n’est pas symétrique (masses ou ressorts différents), on ne devine pas les bonnes combinaisons. On cherche alors directement une solution où tout oscille à la même pulsation : \(x_1 = A_1\cos\omega t\), \(x_2 = A_2\cos\omega t\). Comme \(\ddot x_j = -\omega^2x_j\), les équations deviennent un système linéaire pour les amplitudes :</p>
+\[\left(k_1 + k_2 - m\omega^2\right)A_1 - k_2A_2 = 0, \qquad -k_2A_1 + \left(k_1 + k_2 - m\omega^2\right)A_2 = 0.\]
+<p>\(A_1 = A_2 = 0\) est toujours solution (rien ne bouge). Il existe une autre solution seulement si le <strong>déterminant</strong> du système est nul :</p>
+\[\left(k_1 + k_2 - m\omega^2\right)^2 - k_2^2 = 0 \quad\Longleftrightarrow\quad k_1 + k_2 - m\omega^2 = \pm k_2 .\]
+<p>Signe \(+\) : \(\omega^2 = k_1/m\) et, en reportant, \(A_2 = A_1\) (mode symétrique). Signe \(-\) : \(\omega^2 = (k_1 + 2k_2)/m\) et \(A_2 = -A_1\) (mode antisymétrique). On retrouve les deux pulsations, et la forme de chaque mode.</p>
+<p><strong>Exemple sans symétrie.</strong> Masses \(m\) et \(2m\), trois ressorts identiques \(k\) (paroi, milieu, paroi). Le système s’écrit \((2k - m\omega^2)A_1 - kA_2 = 0\) et \(-kA_1 + (2k - 2m\omega^2)A_2 = 0\). Déterminant nul : \((2k - m\omega^2)(2k - 2m\omega^2) = k^2\), soit, avec \(u = m\omega^2/k\), \(2u^2 - 6u + 3 = 0\) et \(u = \dfrac{3 \pm \sqrt3}{2}\). Les pulsations valent \(\omega = \sqrt{\dfrac{3 \mp \sqrt3}{2}}\,\sqrt{\dfrac km}\), soit \(0{,}80\) et \(1{,}54\,\sqrt{k/m}\) ; dans le mode lent les deux masses vont dans le même sens, la plus lourde avec la plus grande amplitude.</p>
+<p><strong>Vérifications</strong> à faire à chaque fois : sans couplage (\(k_2 = 0\)) on doit retrouver \(\sqrt{k_1/m}\) deux fois ; une pulsation nulle signale une translation d’ensemble possible (rien ne rappelle le système, comme deux masses libres reliées par un ressort) ; la somme des \(\omega^2\) est la somme des \(k_{jj}/m_j\) (trace du système), un contrôle rapide.</p>
+<p><strong>4. Le mouvement général et les battements.</strong> Toute solution est une superposition des deux modes. Si l’on écarte la seule masse 1 de \(A\) et qu’on la lâche, \(s(0) = d(0) = A\) et</p>
+\[x_1 = \frac A2\left(\cos\omega_st + \cos\omega_at\right) = A\cos\frac{(\omega_a - \omega_s)t}{2}\cos\frac{(\omega_a + \omega_s)t}{2}, \qquad x_2 = A\sin\frac{(\omega_a - \omega_s)t}{2}\sin\frac{(\omega_a + \omega_s)t}{2}.\]
+<p>Si le couplage est faible, chaque masse oscille à la pulsation moyenne avec une amplitude lentement modulée : ce sont des <strong>battements</strong>. L’énergie passe entièrement de la masse 1 à la masse 2 en \(\tau = \dfrac{\pi}{\omega_a - \omega_s}\), puis revient. Pour \(k_2 \ll k_1\), \(\omega_a - \omega_s \approx \dfrac{k_2}{m\omega_s}\) : le transfert est d’autant plus lent que le couplage est faible.</p>
 <div class="methode" data-m="symetrie"></div>
 <div class="sim" data-name="pendules-couples"><p>Deux pendules couplés : lâchez-les dans un mode propre, puis écartez-en un seul pour voir les battements et le transfert d’énergie.</p></div>
-<p>Un système de \(N\) masses a \(N\) modes propres. À la limite d’une chaîne continue, ce sont les ondes stationnaires du chapitre <a href="#optique--superposition">Ondes</a>.</p>
+<div class="exo" data-q="osc-masses-differentes"></div>
+</div>
+
+<h2 id="chaine">6. N oscillateurs couplés : relations de récurrence (hors syllabus)</h2>
+<div class="cpge" id="chaine-n" title="Niveau CPGE, hors syllabus : chaîne de N masses, relation de récurrence, relation de dispersion">
+<p>Un système de \(N\) masses a \(N\) modes propres. Pour une <strong>chaîne</strong> régulière, on les obtient tous d’un coup grâce à une relation de récurrence. C’est le modèle d’un cristal (les atomes reliés par des « ressorts »), et sa limite continue est la corde vibrante du chapitre <a href="#optique--stationnaires">Ondes</a>.</p>
+<p><strong>Le modèle.</strong> \(N\) masses \(m\) identiques, alignées entre deux parois et reliées par \(N + 1\) ressorts identiques \(k\). On note \(x_n\) l’écart de la masse \(n\) (\(1 \le n \le N\)) et l’on pose \(x_0 = x_{N+1} = 0\) pour les parois. La masse \(n\) est tirée par ses deux voisines :</p>
+\[m\ddot x_n = k(x_{n+1} - x_n) - k(x_n - x_{n-1}) = k\left(x_{n+1} - 2x_n + x_{n-1}\right).\]
+<p><strong>1. Mode propre : une récurrence sur les amplitudes.</strong> Avec \(x_n = A_n\cos\omega t\) et \(\omega_0 = \sqrt{k/m}\) :</p>
+\[A_{n+1} = \left(2 - \frac{\omega^2}{\omega_0^2}\right)A_n - A_{n-1}, \qquad A_0 = A_{N+1} = 0.\]
+<p>C’est une suite récurrente linéaire d’ordre 2 : on cherche \(A_n = r^n\), d’où l’<strong>équation caractéristique</strong> \(r^2 - \left(2 - \omega^2/\omega_0^2\right)r + 1 = 0\). Le produit de ses racines vaut 1.</p>
+<ul>
+<li>Si \(\left|2 - \omega^2/\omega_0^2\right| < 2\), c’est-à-dire \(0 < \omega < 2\omega_0\), les racines sont complexes conjuguées de module 1 : \(r = \mathrm e^{\pm\mathrm i\theta}\) avec \(\cos\theta = 1 - \dfrac{\omega^2}{2\omega_0^2}\), soit \(\omega = 2\omega_0\sin\dfrac\theta2\). Alors \(A_n = \alpha\cos n\theta + \beta\sin n\theta\) : une sinusoïde « échantillonnée » sur les masses.</li>
+<li>Si \(\omega > 2\omega_0\), les racines sont réelles, négatives, l’une de module supérieur à 1 : \(A_n\) ne peut pas s’annuler aux deux bouts, il n’y a pas de mode. La chaîne ne transmet aucune pulsation au-delà de \(\omega_\text{max} = 2\omega_0\) (fréquence de coupure).</li>
+</ul>
+<p><strong>2. Les conditions aux limites quantifient \(\theta\).</strong> \(A_0 = 0\) impose \(\alpha = 0\) ; \(A_{N+1} = 0\) impose \(\sin\big((N+1)\theta\big) = 0\). D’où les \(N\) modes, \(p = 1, 2, \ldots, N\) :</p>
+\[\theta_p = \frac{p\pi}{N+1}, \qquad A_n^{(p)} = \sin\frac{np\pi}{N+1}, \qquad \boxed{\omega_p = 2\omega_0\sin\frac{p\pi}{2(N+1)}}.\]
+<p>Vérifications : \(N = 1\) (une masse entre deux ressorts) donne \(\omega = 2\omega_0\sin\frac\pi4 = \sqrt{2k/m}\) ; \(N = 2\) donne \(2\omega_0\sin\frac\pi6 = \omega_0\) et \(2\omega_0\sin\frac\pi3 = \sqrt3\,\omega_0\), les modes symétrique et antisymétrique de la partie 5 avec \(k_1 = k_2 = k\). Le mode \(p\) a \(p - 1\) nœuds (masses immobiles ou points fixes entre deux masses) : c’est une onde stationnaire.</p>
+<p><strong>3. Relation de dispersion et limite continue.</strong> Si les masses sont espacées de \(a\), le déphasage \(\theta\) entre voisines correspond au vecteur d’onde \(q = \theta/a\) : \(\omega = 2\omega_0\left|\sin\dfrac{qa}{2}\right|\). Pour les grandes longueurs d’onde (\(qa \ll 1\)), \(\omega \approx \omega_0a\,q\) : l’onde se propage sans dispersion à la célérité \(c = a\sqrt{k/m}\). En écrivant \(k = ES/a\) et \(m = \rho Sa\) pour une barre, on retrouve la célérité du son dans un solide, \(c = \sqrt{E/\rho}\) ; pour un cristal, c’est l’origine des <strong>phonons</strong>.</p>
+<table>
+<thead><tr><th>Variante</th><th>Récurrence ou bord</th><th>Pulsations</th></tr></thead>
+<tbody>
+<tr><td>Extrémités libres (pas de ressort aux bouts)</td><td>\(A_1 = A_0\), \(A_{N+1} = A_N\)</td><td>\(\omega_p = 2\omega_0\sin\dfrac{p\pi}{2N}\), \(p = 0, \ldots, N-1\) (\(p = 0\) : translation)</td></tr>
+<tr><td>Pendules couplés en chaîne (longueur \(\ell\))</td><td>terme \(-\dfrac g\ell x_n\) en plus</td><td>\(\omega_p^2 = \dfrac g\ell + 4\omega_0^2\sin^2\dfrac{\theta_p}{2}\)</td></tr>
+<tr><td>Chaîne fermée en anneau (\(x_{N+1} = x_1\))</td><td>périodicité</td><td>\(\theta_p = \dfrac{2p\pi}{N}\)</td></tr>
+<tr><td>Ligne électrique : bobines \(L\) en série, condensateurs \(C\) vers la masse</td><td>même récurrence sur les charges</td><td>\(\omega_0 = 1/\sqrt{LC}\), coupure \(2/\sqrt{LC}\)</td></tr>
+</tbody>
+</table>
+<div class="methode" data-m="recurrence"></div>
+<div class="sim" data-name="chaine-oscillateurs"><p>Choisissez le nombre de masses et un mode : la forme du mode est une sinusoïde \(\sin(np\pi/(N+1))\) et sa pulsation se place sur la courbe \(2\omega_0\sin(\theta/2)\). Écartez la première masse seule : l’ébranlement se propage le long de la chaîne et se réfléchit aux parois.</p></div>
+<div class="exo" data-q="osc-chaine-3"></div>
+<p>La même récurrence décrit un rayon lumineux qui traverse une suite de lentilles : voir <a href="#geometrique--n-lentilles">Optique géométrique, partie 5</a>.</p>
 </div>
 
 <div class="cpge" id="plus-loin" title="Pour aller plus loin : au-delà du test">

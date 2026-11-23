@@ -6,7 +6,7 @@
 <p><strong>Ce que demandent les épreuves.</strong> Le syllabus IPhO (parties 4.2 et 4.6) demande les lois de Snell-Descartes, la réflexion totale, les lentilles minces (relation de conjugaison, constructions) et les instruments simples. Le test de terminale y consacre presque chaque année un ou deux QCM (lentilles, réflexion totale, œil) ; le test de CPGE ajoute le principe de Fermat, les formules de Newton et les associations de lentilles. Le Concours général aime les sujets d’instruments (jumelles, appareil photo, microscope).</p>
 <ul>
 <li><strong>Terminale (IPhO et Concours général)</strong> : tout le chapitre hors encadrés « Niveau CPGE ».</li>
-<li><strong>CPGE (IPhO)</strong> : tout le chapitre.</li>
+<li><strong>CPGE (IPhO)</strong> : tout le chapitre ; la partie 5 (suite de \(N\) lentilles, relation de récurrence) va au-delà du syllabus.</li>
 </ul>
 </div>
 
@@ -49,9 +49,9 @@
 </svg>
 <figcaption>Trois rayons issus d’une source sous l’eau. En passant dans l’air, moins réfringent, le rayon s’écarte de la normale ; à l’angle limite il sort rasant, au-delà toute la lumière est réfléchie. Une partie est toujours réfléchie (trait pâle), même quand le rayon est réfracté.</figcaption>
 </figure>
-<p>En passant dans un milieu plus réfringent, le rayon se <strong>rapproche de la normale</strong>. En sens inverse (\(n_1 > n_2\)), il s’en écarte, et il n’y a plus de rayon réfracté dès que \(\sin i_1 > n_2/n_1\) : <strong>réflexion totale</strong>, à partir de l’angle limite \(i_\ell = \arcsin(n_2/n_1)\) (eau-air : 48,8° ; verre-air : 41,8°). C’est le principe de la <strong>fibre optique</strong> (cœur d’indice \(n_1\), gaine \(n_2 < n_1\) ; ouverture numérique \(\sin\theta_\max = \sqrt{n_1^2 - n_2^2}\)), des prismes à réflexion totale des jumelles, du poisson qui voit tout le ciel dans un cône de 97,6°, des mirages (gradient d’indice de l’air chaud). La fréquence ne change pas au passage d’un milieu à l’autre ; la longueur d’onde devient \(\lambda_0/n\). Comme \(n\) dépend un peu de \(\lambda\) (<strong>dispersion</strong>, \(n\) plus grand pour le bleu), un prisme décompose la lumière blanche et une goutte d’eau fait l’arc-en-ciel (rouge à 42°, violet à 40°).</p>
+<p>En passant dans un milieu plus réfringent, le rayon se <strong>rapproche de la normale</strong>. En sens inverse (\(n_1 > n_2\)), il s’en écarte, et il n’y a plus de rayon réfracté dès que \(\sin i_1 > n_2/n_1\) : <strong>réflexion totale</strong>, à partir de l’angle limite \(i_\ell = \arcsin(n_2/n_1)\) (eau-air : 48,8° ; verre-air : 41,8°). C’est le principe de la <strong>fibre optique</strong> (cœur d’indice \(n_1\), gaine \(n_2 < n_1\) ; ouverture numérique \(\sin\theta_{\max} = \sqrt{n_1^2 - n_2^2}\)), des prismes à réflexion totale des jumelles, du poisson qui voit tout le ciel dans un cône de 97,6°, des mirages (gradient d’indice de l’air chaud). La fréquence ne change pas au passage d’un milieu à l’autre ; la longueur d’onde devient \(\lambda_0/n\). Comme \(n\) dépend un peu de \(\lambda\) (<strong>dispersion</strong>, \(n\) plus grand pour le bleu), un prisme décompose la lumière blanche et une goutte d’eau fait l’arc-en-ciel (rouge à 42°, violet à 40°).</p>
 <p>Un <strong>miroir plan</strong> donne d’un objet une image virtuelle, symétrique de l’objet par rapport au plan du miroir : on se voit « derrière » le miroir, à la même distance. Deux miroirs à angle droit renvoient la lumière dans la direction d’où elle vient (catadioptres) ; tourner un miroir d’un angle \(\alpha\) tourne le rayon réfléchi de \(2\alpha\).</p>
-<p>En passant dans un milieu plus réfringent, le rayon se <strong>rapproche de la normale</strong>. En sens inverse (\(n_1 > n_2\)), il s’en écarte, et il n’y a plus de rayon réfracté dès que \(\sin i_1 > n_2/n_1\) : <strong>réflexion totale</strong>, à partir de l’angle limite \(i_\ell = \arcsin(n_2/n_1)\) (eau-air : 48,8° ; verre-air : 41,8°). C’est le principe de la <strong>fibre optique</strong> (cœur d’indice \(n_1\), gaine \(n_2 < n_1\) ; ouverture numérique \(\sin\theta_\max = \sqrt{n_1^2 - n_2^2}\)), des prismes à réflexion totale des jumelles, du poisson qui voit tout le ciel dans un cône de 97,6°, des mirages (gradient d’indice de l’air chaud). La fréquence ne change pas au passage d’un milieu à l’autre ; la longueur d’onde devient \(\lambda_0/n\). Comme \(n\) dépend un peu de \(\lambda\) (<strong>dispersion</strong>, \(n\) plus grand pour le bleu), un prisme décompose la lumière blanche et une goutte d’eau fait l’arc-en-ciel (rouge à 42°, violet à 40°).</p>
+<p>En passant dans un milieu plus réfringent, le rayon se <strong>rapproche de la normale</strong>. En sens inverse (\(n_1 > n_2\)), il s’en écarte, et il n’y a plus de rayon réfracté dès que \(\sin i_1 > n_2/n_1\) : <strong>réflexion totale</strong>, à partir de l’angle limite \(i_\ell = \arcsin(n_2/n_1)\) (eau-air : 48,8° ; verre-air : 41,8°). C’est le principe de la <strong>fibre optique</strong> (cœur d’indice \(n_1\), gaine \(n_2 < n_1\) ; ouverture numérique \(\sin\theta_{\max} = \sqrt{n_1^2 - n_2^2}\)), des prismes à réflexion totale des jumelles, du poisson qui voit tout le ciel dans un cône de 97,6°, des mirages (gradient d’indice de l’air chaud). La fréquence ne change pas au passage d’un milieu à l’autre ; la longueur d’onde devient \(\lambda_0/n\). Comme \(n\) dépend un peu de \(\lambda\) (<strong>dispersion</strong>, \(n\) plus grand pour le bleu), un prisme décompose la lumière blanche et une goutte d’eau fait l’arc-en-ciel (rouge à 42°, violet à 40°).</p>
 <div class="exo" data-q="ipho-2025-T1"></div>
 <div class="exo" data-q="ipho-2017-T16"></div>
 <div class="exo" data-group="cde-w7"></div>
@@ -135,6 +135,46 @@
 </figure>
 <div class="cpge" id="newton" title="Formules de Newton, grandissement et profondeur de champ">
 <p>Avec les origines aux foyers, \(\overline{FA}\cdot\overline{F'A'} = -f'^2\) (formule de Newton) et \(\gamma = -\dfrac{f'}{\overline{FA}} = -\dfrac{\overline{F'A'}}{f'}\). Elles sont souvent plus rapides que la relation de Descartes : pour un objet à la distance \(x\) avant \(F\), l’image est \(f'^2/x\) après \(F'\). Pour une lunette, la formule de Newton montre immédiatement qu’un objet à l’infini donne \(\overline{F'A'} = 0\). Pour un appareil photo (\(f' = 50\) mm) qui photographie un objet à 2 m : \(\overline{FA} = -1{,}95\) m, \(\overline{F'A'} = 1{,}3\) mm, \(\gamma = -0{,}026\). Association de deux lentilles accolées : les vergences s’ajoutent, \(V = V_1 + V_2\) ; à distance \(e\) : \(V = V_1 + V_2 - eV_1V_2\) (Gullstrand). Profondeur de champ : un point image décalé de \(\varepsilon\) hors du capteur donne une tache de diamètre \(\varepsilon D/f'\) : fermer le diaphragme (réduire \(D\)) augmente la profondeur de champ au prix de la lumière et de la diffraction.</p>
+</div>
+
+<h2 id="n-lentilles">5. Une suite de N lentilles : relations de récurrence (hors syllabus)</h2>
+<div class="cpge" id="lentilles-periodiques" title="Niveau CPGE, hors syllabus : rayon dans une suite périodique de lentilles convergentes">
+<p>Des lentilles convergentes identiques, de distance focale \(f'\), sont alignées sur un même axe et régulièrement espacées de \(d\). Un rayon entre dans le système : reste-t-il près de l’axe, ou s’en échappe-t-il ? Avec deux ou trois lentilles, on enchaîne les conjugaisons ; avec \(N\) lentilles, c’est une <strong>relation de récurrence</strong> qui répond, la même que pour une <a href="#oscillateurs--chaine">chaîne de \(N\) oscillateurs</a>.</p>
+<p><strong>1. Ce que fait chaque élément</strong> (conditions de Gauss). On repère le rayon par sa hauteur \(y_n\) au niveau de la lentille \(n\) et par sa pente \(\alpha_n\) juste après elle.</p>
+<ul>
+<li>Une lentille mince convergente ne change pas la hauteur et dévie le rayon vers l’axe proportionnellement à sa hauteur : \(\alpha_n = \alpha_{n-1} - \dfrac{y_n}{f'}\). (Un rayon parallèle à l’axe à la hauteur \(y\) passe ensuite par \(F'\) : sa pente devient \(-y/f'\).)</li>
+<li>Entre deux lentilles, le rayon va en ligne droite : \(y_{n+1} = y_n + d\,\alpha_n\).</li>
+</ul>
+<p><strong>2. Éliminer les pentes.</strong> On écrit la propagation sur deux intervalles successifs, \(y_{n+1} - y_n = d\,\alpha_n\) et \(y_n - y_{n-1} = d\,\alpha_{n-1}\), puis on soustrait et l’on utilise la déviation par la lentille \(n\) :</p>
+\[y_{n+1} - 2y_n + y_{n-1} = d\left(\alpha_n - \alpha_{n-1}\right) = -\frac{d}{f'}\,y_n \quad\Longrightarrow\quad \boxed{y_{n+1} = \left(2 - \frac{d}{f'}\right)y_n - y_{n-1}}.\]
+<p>C’est exactement la récurrence des oscillateurs couplés, avec \(d/f'\) à la place de \(\omega^2/\omega_0^2\). Les deux premières hauteurs (ou la hauteur et la pente d’entrée) fixent toute la suite.</p>
+<p><strong>3. Résoudre.</strong> On cherche \(y_n = r^n\) : \(r^2 - \left(2 - d/f'\right)r + 1 = 0\), dont les racines ont pour produit 1.</p>
+<ul>
+<li><strong>\(0 < d < 4f'\)</strong> : racines \(\mathrm e^{\pm\mathrm i\theta}\) avec \(\cos\theta = 1 - \dfrac{d}{2f'}\), et \(y_n = Y\cos(n\theta + \varphi)\). La hauteur oscille sans jamais dépasser \(Y\) : le rayon est <strong>confiné</strong>, quelle que soit la longueur du système. Il retrouve sa hauteur et sa pente toutes les \(2\pi/\theta\) lentilles quand ce nombre est entier.</li>
+<li><strong>\(d > 4f'\)</strong> : racines réelles négatives, l’une de module \(\rho > 1\) : \(|y_n|\) croît comme \(\rho^n\), le rayon change de côté à chaque lentille et <strong>s’échappe</strong>. Pour \(d = 5f'\), \(\rho = 2{,}6\) : la hauteur est multipliée par 2,6 d’une lentille à la suivante.</li>
+<li><strong>\(d = 4f'\)</strong> : racine double \(-1\), \(y_n = (-1)^n(A + Bn)\) ; l’écart croît linéairement, sauf pour les rayons particuliers (\(B = 0\)) qui alternent indéfiniment.</li>
+</ul>
+<table>
+<thead><tr><th>Espacement</th><th>\(\theta\)</th><th>Le rayon revient identique après</th><th>Exemple (entrée parallèle à l’axe, hauteur \(h\))</th></tr></thead>
+<tbody>
+<tr><td>\(d = f'\)</td><td>\(\pi/3\)</td><td>6 lentilles</td><td>\(h,\ 0,\ -h,\ -h,\ 0,\ h,\ h, \ldots\)</td></tr>
+<tr><td>\(d = 2f'\)</td><td>\(\pi/2\)</td><td>4 lentilles</td><td>\(h,\ -h,\ -h,\ h,\ h, \ldots\)</td></tr>
+<tr><td>\(d = 3f'\)</td><td>\(2\pi/3\)</td><td>3 lentilles</td><td>\(h,\ -2h,\ h,\ h,\ -2h, \ldots\)</td></tr>
+<tr><td>\(d > 4f'\)</td><td>aucun</td><td>jamais</td><td>croissance géométrique</td></tr>
+</tbody>
+</table>
+<p>Pour \(d = f'\), par exemple : la première lentille envoie le rayon parallèle vers son foyer \(F'\), qui est sur la deuxième lentille (\(y_1 = 0\)), et ainsi de suite ; la récurrence \(y_{n+1} = y_n - y_{n-1}\) donne la suite du tableau sans tracer un seul rayon.</p>
+<p><strong>4. Prolongements.</strong></p>
+<ul>
+<li><strong>Écriture matricielle</strong> : le vecteur \((y, \alpha)\) est multiplié par la matrice \(\begin{pmatrix}1 & d\\ 0 & 1\end{pmatrix}\begin{pmatrix}1 & 0\\ -1/f' & 1\end{pmatrix}\) à chaque période ; son déterminant vaut 1 et le rayon est confiné si et seulement si la valeur absolue de sa trace, \(2 - d/f'\), est inférieure à 2. Même critère pour une cavité laser entre deux miroirs, ou tout système optique périodique.</li>
+<li><strong>Limite continue</strong> (\(d \ll f'\)) : \(y_{n+1} - 2y_n + y_{n-1} \approx d^2\,y''(z)\), d’où \(y'' = -\dfrac{y}{f'd}\) : le rayon ondule avec la période spatiale \(2\pi\sqrt{f'd}\). C’est le principe de la fibre optique à gradient d’indice, une lentille « répartie ».</li>
+<li><strong>Lentilles alternées</strong> \(+f'\) et \(-f'\) espacées de \(d\) : l’ensemble reste focalisant tant que \(d \le 2f'\), bien qu’une lentille sur deux soit divergente. C’est la <strong>focalisation forte</strong> des accélérateurs de particules, où les « lentilles » sont des aimants quadripolaires.</li>
+<li>Suivre les <strong>images</strong> successives (l’image donnée par une lentille sert d’objet à la suivante) est possible mais conduit à une récurrence non linéaire (homographique) : pour \(N\) grand, la récurrence sur les hauteurs est bien plus simple.</li>
+</ul>
+<div class="methode" data-m="recurrence"></div>
+<div class="sim" data-name="lentilles-periodiques"><p>Réglez l’espacement : le rayon est confiné tant que \(d < 4f'\), avec une période de \(2\pi/\theta\) lentilles ; au-delà, il s’échappe en zigzag. Passez aux lentilles alternées convergentes et divergentes : elles focalisent tant que \(d \le 2f'\).</p></div>
+<div class="exo" data-q="geo-lentilles-periode"></div>
+<div class="exo" data-q="geo-lentilles-stabilite"></div>
 </div>
 <div class="piege">
 <ul>
