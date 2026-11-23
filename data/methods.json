@@ -406,6 +406,16 @@
 ]
 },
 {
+"id": "charge-conservee",
+"title": "Écrire la conservation de la charge d’un îlot",
+"quand": "On relie, bascule ou court-circuite des condensateurs ; on cherche l’état juste après une commutation ou l’état final ; un condensateur préchargé est placé en série ; la règle de continuité semble en défaut.",
+"texte": "Repérez les <strong>îlots</strong> : ensembles d’armatures reliées entre elles par des conducteurs, sans générateur, séparés du reste du circuit par des condensateurs. La charge totale d’un îlot ne change jamais, quoi qu’il se passe entre-temps (saut de tension, étincelle, dissipation). Écrivez-la avant et après, avec \\(q = C\\,(V_\\text{armature} - V_\\text{armature d’en face})\\) pour chaque armature : une inconnue (le potentiel de l’îlot) et une équation par îlot, le système se ferme. Juste après une commutation, seuls les fils délimitent les îlots ; à l’état final, les résistances aussi. Soignez les signes (armatures retournées) et n’écrivez pas la conservation de l’énergie : elle est fausse dès que l’on relie des condensateurs de tensions différentes.",
+"chaps": [
+"electrostatique",
+"circuits"
+]
+},
+{
 "id": "cyclotron",
 "title": "Reconnaître le mouvement cyclotron",
 "quand": "Particule chargée dans un champ magnétique uniforme : spectromètre de masse, cyclotron, chambre à bulles, aurores.",

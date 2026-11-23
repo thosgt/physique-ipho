@@ -19,7 +19,8 @@
 <li>Diviseur de tension : \(U_2 = E\,\dfrac{R_2}{R_1 + R_2}\), <strong>à condition</strong> que \(R_1\) et \(R_2\) soient parcourues par le même courant.</li>
 <li>Puissance reçue par un dipôle : \(P = UI\) ; dans une résistance, \(P = RI^2 = U^2/R\).</li>
 <li>Régime transitoire du premier ordre : \(x(t) = x_\infty + (x_0 - x_\infty)\,\mathrm e^{-t/\tau}\), avec \(\tau = RC\) ou \(L/R\). Il suffit de trouver la valeur initiale, la valeur finale et \(\tau\).</li>
-<li>Continuité : la <strong>tension</strong> d’un condensateur et le <strong>courant</strong> d’une bobine ne peuvent pas varier instantanément, tant que le circuit ne réclame pas un courant infini dans le condensateur ou une tension infinie aux bornes de la bobine. Cas limites : un fil idéal aux bornes d’un condensateur chargé, deux condensateurs reliés directement en parallèle. La tension saute alors, et c’est la <strong>charge</strong> qui se conserve (<a href="#circuits--discontinuite">voir ci-dessous</a>).</li>
+<li>Continuité : la <strong>tension</strong> d’un condensateur et le <strong>courant</strong> d’une bobine ne peuvent pas varier instantanément, tant que le circuit ne réclame pas un courant infini dans le condensateur ou une tension infinie aux bornes de la bobine. Cas limites : un fil idéal aux bornes d’un condensateur chargé, deux condensateurs reliés directement en parallèle. La tension saute alors (<a href="#circuits--discontinuite">voir ci-dessous</a>).</li>
+<li><strong>Conservation de la charge</strong> : la charge totale d’un îlot (armatures reliées entre elles, sans générateur) ne change jamais, même quand la tension saute et que l’énergie est dissipée. C’est l’outil qui donne l’état final quand on relie, bascule ou court-circuite des condensateurs (<a href="#circuits--charge">voir ci-dessous</a>).</li>
 </ol>
 </div>
 
@@ -79,15 +80,28 @@
 <li>un condensateur branché directement sur un générateur de tension idéal.</li>
 </ul>
 <p>Dans le modèle, la tension saute à l’instant de la commutation. Ce n’est pas une contradiction mais un <strong>cas limite</strong> : les fils ont une petite résistance \(r\) (et une petite inductance), si bien que l’évolution prend en réalité une durée de l’ordre de \(rC\), par exemple \(0{,}01\ \Omega \times 1\ \text{mF} = 10\ \mu\text{s}\), invisible à l’échelle d’une expérience qui dure une seconde. Sur le graphe, on voit un saut vertical.</p>
-<p><strong>Calculer la valeur juste après le saut.</strong> On ne peut plus écrire \(u_C(0^+) = u_C(0^-)\) : on écrit la <strong>conservation de la charge</strong>.</p>
-<ul>
-<li>Pendant le saut, une branche qui contient une résistance n’est parcourue que par un courant fini : elle ne transporte aucune charge pendant une durée nulle. Seules comptent les boucles sans résistance.</li>
-<li>La charge totale de chaque ensemble d’armatures reliées entre elles par ces boucles se conserve. Condensateur court-circuité : ses deux armatures sont reliées, sa charge et sa tension tombent à zéro. Condensateur \(C_1\) chargé sous \(U_0\), relié à \(C_2\) déchargé : tension commune \(U = \dfrac{C_1U_0}{C_1+C_2}\).</li>
-<li>L’énergie, elle, ne se conserve pas. Dans le second exemple, la perte vaut \(\dfrac12\,\dfrac{C_1C_2}{C_1+C_2}\,U_0^2\) (la moitié de l’énergie initiale si \(C_1 = C_2\)), dissipée par effet Joule dans les fils ou dans l’étincelle, <strong>quelle que soit</strong> la petitesse de \(r\). Pour un court-circuit, toute l’énergie \(\tfrac12CU_0^2\) est perdue.</li>
-<li>Après le saut, la continuité redevient valable : la valeur obtenue sert de valeur initiale pour la suite, avec la constante de temps du circuit restant.</li>
-</ul>
+<p>Ce qui ne saute jamais, en revanche, c’est la <strong>charge</strong> : c’est elle qui donne la valeur juste après le saut (partie suivante).</p>
 <p>Pour une bobine, le cas limite symétrique est l’ouverture brutale d’un circuit parcouru par un courant : rien ne limite alors la tension, et c’est l’étincelle qui joue le rôle de la résistance (voir <a href="#magnetisme--rupture">Ouvrir un circuit inductif</a>).</p>
-<p>Le QCM suivant (test 2026) enchaîne une charge, une décharge instantanée et une décharge lente.</p>
+
+<h3 id="charge">La conservation de la charge : l’outil qui sauve</h3>
+<p>Quand on relie, bascule ou court-circuite des condensateurs, la règle de continuité peut tomber en défaut et l’énergie n’est pas conservée. Une loi tient toujours : <strong>la charge se conserve</strong>. Aucune charge ne traverse l’isolant d’un condensateur ; les charges ne font que se déplacer dans les conducteurs. Cette loi ne dépend ni de la valeur des résistances, ni de la durée du transitoire, ni de ce qui se passe pendant le saut (étincelle, oscillations) : elle donne l’état final directement, souvent en une ligne, là où une équation différentielle serait longue et un bilan d’énergie faux.</p>
+<p><strong>Les îlots.</strong> Appelons îlot un ensemble d’armatures reliées entre elles par des conducteurs, sans générateur, et séparé du reste du circuit par des condensateurs. Sa charge totale est constante. Deux échelles de temps :</p>
+<ul>
+<li><strong>juste après une commutation</strong> (saut instantané) : seuls les fils comptent, car une résistance ne laisse passer qu’un courant fini, donc aucune charge pendant une durée nulle ; les îlots sont délimités par les fils ;</li>
+<li><strong>à l’état final</strong> : résistances et bobines sont des conducteurs comme les autres, les îlots englobent tout ce qu’elles relient.</li>
+</ul>
+<div class="methode" data-m="charge-conservee"><p>Exemple : \(C_1\) chargé sous \(U_1\) et \(C_2\) chargé sous \(U_2\), reliés en parallèle. Armatures de même signe reliées : l’îlot porte \(C_1U_1 + C_2U_2\), d’où \(U = \dfrac{C_1U_1 + C_2U_2}{C_1 + C_2}\). L’un des deux retourné : \(U = \dfrac{C_1U_1 - C_2U_2}{C_1 + C_2}\), les charges de signes opposés se neutralisent en partie.</p></div>
+<p><strong>Ce qu’elle contient, ce qu’elle corrige.</strong></p>
+<ul>
+<li>La <strong>continuité</strong> de \(u_C\) en est un cas particulier : quand une résistance sépare le condensateur du reste, aucune charge ne peut s’ajouter à ses armatures instantanément, donc \(q\) et \(u_C = q/C\) sont continues. La <strong>loi des nœuds</strong> est la même loi, écrite en chaque nœud et à chaque instant.</li>
+<li>« Deux condensateurs en série portent la même charge », et donc la capacité équivalente \(\dfrac{C_1C_2}{C_1 + C_2}\), supposent que l’îlot entre les deux est <strong>neutre</strong>. Si l’un est préchargé avant d’être mis en série, écrivez la conservation de la charge de cet îlot au lieu d’associer les capacités.</li>
+<li>L’<strong>énergie</strong>, elle, n’est pas conservée : en reliant \(C_1\) chargé sous \(U_0\) à \(C_2\) déchargé, la perte vaut \(\dfrac12\,\dfrac{C_1C_2}{C_1+C_2}\,U_0^2\) (la moitié de l’énergie initiale si \(C_1 = C_2\)), dissipée dans les fils ou l’étincelle, <strong>quelle que soit</strong> la petitesse de leur résistance. Un raisonnement qui conserve l’énergie donne ici un résultat faux.</li>
+<li>Même outil en électrostatique : deux conducteurs reliés par un fil se mettent au même potentiel en conservant leur charge totale (chapitre <a href="#electrostatique--energie-condensateur">Champ électrique</a>).</li>
+</ul>
+<div class="exo" data-q="cir-charge-inverse"></div>
+<div class="exo" data-q="cir-ilot-serie"></div>
+<p>Deux QCM d’annales reposent entièrement sur cet outil : un condensateur chargé placé en série avec deux autres (test 2025), et une charge suivie d’une décharge instantanée puis d’une décharge lente (test 2026), où l’interrupteur 2 fait des deux armatures du second condensateur un îlot de charge nulle.</p>
+<div class="exo" data-q="ipho-2025-T4"></div>
 <div class="exo" data-q="ipho-2026-T15"></div>
 <div class="cpge" id="lc" title="Niveau CPGE : oscillations libres du circuit LC">
 <p><strong>Circuit LC.</strong> Un condensateur chargé relié à une bobine idéale oscille : la charge vérifie \(\ddot q + \dfrac{q}{LC} = 0\), de pulsation propre \(\omega_0 = \dfrac1{\sqrt{LC}}\). L’énergie passe du condensateur à la bobine et revient. C’est l’analogue électrique du système masse-ressort (chapitre <a href="#oscillateurs">Oscillateurs</a>) : \(L\) joue le rôle de la masse, \(1/C\) celui de la raideur, \(R\) celui du frottement.</p>
@@ -96,7 +110,8 @@
 <p><strong>Pièges.</strong></p>
 <ul>
 <li>Le <strong>courant</strong> dans un condensateur peut être discontinu ; la <strong>tension</strong> aux bornes d’une bobine aussi. Seules \(u_C\) et \(i_L\) sont continues.</li>
-<li>Deux condensateurs que l’on relie directement, ou un fil branché aux bornes d’un condensateur chargé : la tension saute, malgré la règle de continuité. Écrivez la conservation de la <strong>charge</strong> des armatures reliées, pas celle de l’énergie (une partie est dissipée dans les fils, quelle que soit leur résistance).</li>
+<li>Deux condensateurs que l’on relie directement, ou un fil branché aux bornes d’un condensateur chargé : la tension saute, malgré la règle de continuité. Écrivez la conservation de la <strong>charge</strong> de chaque îlot, pas celle de l’énergie (une partie est dissipée dans les fils, quelle que soit leur résistance).</li>
+<li>Condensateur préchargé placé en série : les deux condensateurs ne portent plus la même charge, et la capacité équivalente série ne s’applique pas.</li>
 <li>En chargeant un condensateur à travers une résistance sous tension constante \(E\), la source fournit \(CE^2\) : la moitié seulement est stockée, l’autre moitié est dissipée, quelle que soit \(R\).</li>
 <li>Avec plusieurs résistances, \(\tau\) n’est pas « \(RC\) avec la résistance voisine » : cherchez la résistance équivalente vue par le condensateur.</li>
 </ul>
