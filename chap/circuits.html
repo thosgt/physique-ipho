@@ -19,7 +19,7 @@
 <li>Diviseur de tension : \(U_2 = E\,\dfrac{R_2}{R_1 + R_2}\), <strong>à condition</strong> que \(R_1\) et \(R_2\) soient parcourues par le même courant.</li>
 <li>Puissance reçue par un dipôle : \(P = UI\) ; dans une résistance, \(P = RI^2 = U^2/R\).</li>
 <li>Régime transitoire du premier ordre : \(x(t) = x_\infty + (x_0 - x_\infty)\,\mathrm e^{-t/\tau}\), avec \(\tau = RC\) ou \(L/R\). Il suffit de trouver la valeur initiale, la valeur finale et \(\tau\).</li>
-<li>Continuité : la <strong>tension</strong> d’un condensateur et le <strong>courant</strong> d’une bobine ne peuvent pas varier instantanément.</li>
+<li>Continuité : la <strong>tension</strong> d’un condensateur et le <strong>courant</strong> d’une bobine ne peuvent pas varier instantanément, tant que le circuit ne réclame pas un courant infini dans le condensateur ou une tension infinie aux bornes de la bobine. Cas limites : un fil idéal aux bornes d’un condensateur chargé, deux condensateurs reliés directement en parallèle. La tension saute alors, et c’est la <strong>charge</strong> qui se conserve (<a href="#circuits--discontinuite">voir ci-dessous</a>).</li>
 </ol>
 </div>
 
@@ -70,6 +70,25 @@
 <p>\(R_\text{éq}\) est la résistance vue par le condensateur (ou la bobine) quand on éteint les sources : une source de tension idéale est remplacée par un fil. Durées utiles : 63 % de l’évolution à \(\tau\), 95 % à \(3\tau\), 99 % à \(5\tau\) ; la tangente à l’origine coupe l’asymptote à \(t = \tau\).</p>
 <div class="methode" data-m="cas-limites"></div>
 <div class="exo" data-q="cir-instant-initial"></div>
+
+<h3 id="discontinuite">Quand la continuité est en défaut : court-circuit et condensateurs reliés</h3>
+<p>La continuité de \(u_C\) découle de \(i = C\,\dfrac{\mathrm du_C}{\mathrm dt}\) : pour que la tension saute, il faudrait un courant infini. Elle suppose donc que <strong>quelque chose limite le courant</strong> dans la branche du condensateur, en pratique une résistance. Les schémas idéalisés contiennent parfois des boucles où rien ne le limite :</p>
+<ul>
+<li>un <strong>fil</strong> (un interrupteur que l’on ferme) branché directement aux bornes d’un condensateur chargé ;</li>
+<li>deux condensateurs de tensions différentes reliés <strong>en parallèle</strong> par de simples fils ;</li>
+<li>un condensateur branché directement sur un générateur de tension idéal.</li>
+</ul>
+<p>Dans le modèle, la tension saute à l’instant de la commutation. Ce n’est pas une contradiction mais un <strong>cas limite</strong> : les fils ont une petite résistance \(r\) (et une petite inductance), si bien que l’évolution prend en réalité une durée de l’ordre de \(rC\), par exemple \(0{,}01\ \Omega \times 1\ \text{mF} = 10\ \mu\text{s}\), invisible à l’échelle d’une expérience qui dure une seconde. Sur le graphe, on voit un saut vertical.</p>
+<p><strong>Calculer la valeur juste après le saut.</strong> On ne peut plus écrire \(u_C(0^+) = u_C(0^-)\) : on écrit la <strong>conservation de la charge</strong>.</p>
+<ul>
+<li>Pendant le saut, une branche qui contient une résistance n’est parcourue que par un courant fini : elle ne transporte aucune charge pendant une durée nulle. Seules comptent les boucles sans résistance.</li>
+<li>La charge totale de chaque ensemble d’armatures reliées entre elles par ces boucles se conserve. Condensateur court-circuité : ses deux armatures sont reliées, sa charge et sa tension tombent à zéro. Condensateur \(C_1\) chargé sous \(U_0\), relié à \(C_2\) déchargé : tension commune \(U = \dfrac{C_1U_0}{C_1+C_2}\).</li>
+<li>L’énergie, elle, ne se conserve pas. Dans le second exemple, la perte vaut \(\dfrac12\,\dfrac{C_1C_2}{C_1+C_2}\,U_0^2\) (la moitié de l’énergie initiale si \(C_1 = C_2\)), dissipée par effet Joule dans les fils ou dans l’étincelle, <strong>quelle que soit</strong> la petitesse de \(r\). Pour un court-circuit, toute l’énergie \(\tfrac12CU_0^2\) est perdue.</li>
+<li>Après le saut, la continuité redevient valable : la valeur obtenue sert de valeur initiale pour la suite, avec la constante de temps du circuit restant.</li>
+</ul>
+<p>Pour une bobine, le cas limite symétrique est l’ouverture brutale d’un circuit parcouru par un courant : rien ne limite alors la tension, et c’est l’étincelle qui joue le rôle de la résistance (voir <a href="#magnetisme--rupture">Ouvrir un circuit inductif</a>).</p>
+<p>Le QCM suivant (test 2026) enchaîne une charge, une décharge instantanée et une décharge lente.</p>
+<div class="exo" data-q="ipho-2026-T15"></div>
 <div class="cpge" id="lc" title="Niveau CPGE : oscillations libres du circuit LC">
 <p><strong>Circuit LC.</strong> Un condensateur chargé relié à une bobine idéale oscille : la charge vérifie \(\ddot q + \dfrac{q}{LC} = 0\), de pulsation propre \(\omega_0 = \dfrac1{\sqrt{LC}}\). L’énergie passe du condensateur à la bobine et revient. C’est l’analogue électrique du système masse-ressort (chapitre <a href="#oscillateurs">Oscillateurs</a>) : \(L\) joue le rôle de la masse, \(1/C\) celui de la raideur, \(R\) celui du frottement.</p>
 </div>
@@ -77,7 +96,7 @@
 <p><strong>Pièges.</strong></p>
 <ul>
 <li>Le <strong>courant</strong> dans un condensateur peut être discontinu ; la <strong>tension</strong> aux bornes d’une bobine aussi. Seules \(u_C\) et \(i_L\) sont continues.</li>
-<li>Deux condensateurs chargés que l’on relie : la <strong>charge</strong> totale des armatures reliées se conserve, pas l’énergie (une partie est dissipée dans les fils, quelle que soit leur résistance).</li>
+<li>Deux condensateurs que l’on relie directement, ou un fil branché aux bornes d’un condensateur chargé : la tension saute, malgré la règle de continuité. Écrivez la conservation de la <strong>charge</strong> des armatures reliées, pas celle de l’énergie (une partie est dissipée dans les fils, quelle que soit leur résistance).</li>
 <li>En chargeant un condensateur à travers une résistance sous tension constante \(E\), la source fournit \(CE^2\) : la moitié seulement est stockée, l’autre moitié est dissipée, quelle que soit \(R\).</li>
 <li>Avec plusieurs résistances, \(\tau\) n’est pas « \(RC\) avec la résistance voisine » : cherchez la résistance équivalente vue par le condensateur.</li>
 </ul>
