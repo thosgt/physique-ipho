@@ -639,7 +639,7 @@ Réponds uniquement par un objet JSON {"commentaire": "..."} ;`} le commentaire 
         const c = document.createElement('div'); c.className = 'claude'; c.innerHTML = `<span class="v">${verdict === 'juste' ? 'Juste.' : verdict === 'partiel' ? 'En partie.' : 'À revoir.'}</span> ${esc(String(v && v.commentaire || ''))}${np && v && v.lu ? `<span class="lu">Lu sur ta copie : ${esc(String(v.lu).slice(0, 400))}</span>` : ''}`;
         if (!d.classList.contains('done')) d.querySelector('.reveal').click();
         after.before(c); typeset(c);
-        const sel = after.querySelector(`.selfeval button[data-v="${verdict === 'juste' ? 1 : verdict === 'partiel' ? 0.5 : 0}"]`); if (sel) sel.click();
+        const sel = after.querySelector(`.selfeval button[data-v="${verdict === 'juste' ? 1 : verdict === 'partiel' ? 0.5 : 0}"]`); d.dataset.how = 'claude'; if (sel) sel.click();
         b.textContent = 'Corrigé par Claude'; h.hidden = true;
       } catch(e){ b.disabled = h.disabled = false; b.textContent = 'Faire corriger par Claude'; h.textContent = 'Demander une piste'; note.textContent = e && e.code === 'rate_limited' ? 'Trop de demandes : réessayez dans un instant.' : e && e.code === 'not_granted' ? 'Correction par Claude non autorisée pour ce lecteur.' : e && e.userMessage ? e.userMessage : 'La correction n’a pas abouti ; comparez avec le corrigé.'; }
     };
@@ -698,11 +698,11 @@ function renderQuestion(q, opts = {}){
     after.innerHTML = x; after.hidden = false; typeset(after);
     if (q.type === 'open') after.querySelectorAll('.selfeval button').forEach(b => b.addEventListener('click', () => {
       after.querySelectorAll('.selfeval button').forEach(x2 => x2.classList.toggle('chosen', x2 === b));
-      const first = d.dataset.score === undefined; d.dataset.score = b.dataset.v; if (opts.onDone) opts.onDone(d, first);
+      const first = d.dataset.score === undefined; d.dataset.score = b.dataset.v; if (d.dataset.how !== 'claude') d.dataset.how = 'soi'; if (opts.onDone) opts.onDone(d, first);
     }));
   };
   const finish = checked => {
-    d.classList.add('done');
+    d.classList.add('done'); d.dataset.how = checked ? 'auto' : 'vu';
     d.querySelectorAll('.actions button').forEach(b => b.disabled = true);
     if (q.type === 'qcm'){
       const correct = new Set(q.correct);
@@ -729,7 +729,7 @@ function renderQuestion(q, opts = {}){
     if (q.type === 'num' && !isFinite(parseNum(d.querySelector('.numin input').value))){ verdict.textContent = 'Tapez un nombre (ex. 0,21 ou 1,9e2).'; verdict.className = 'verdict bad'; return; }
     if (q.type === 'qcm' && !d.querySelector('input:checked')){ verdict.textContent = 'Cochez au moins une réponse.'; verdict.className = 'verdict bad'; return; }
     finish(true); });
-  const rev = d.querySelector('.reveal'); rev.addEventListener('click', () => { if (q.type === 'open'){ rev.disabled = true; d.classList.add('done'); showExpl(); } else finish(false); });
+  const rev = d.querySelector('.reveal'); rev.addEventListener('click', () => { if (q.type === 'open'){ rev.disabled = true; d.classList.add('done'); showExpl(); if (HOOKS.seen) try { HOOKS.seen(q, d); } catch(e){} } else finish(false); });
   const ni = d.querySelector('.numin input'); if (ni) ni.addEventListener('keydown', e => { if (e.key === 'Enter') chk.click(); });
   if (HOOKS.decorate) try { HOOKS.decorate(q, d); } catch(e){}
   return d;

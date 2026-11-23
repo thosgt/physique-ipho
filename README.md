@@ -4,6 +4,7 @@ Préparation au test de présélection des IPhO (Terminale et CPGE) et au Concou
 
 - Site : https://physique-ipho.vercel.app
 - Artefact Claude source : https://claude.ai/artifact/USoqxVAkNMq9ZvTr2Rf5M6
+- Mis à jour le 23 novembre 2026 (version 29) : suivi détaillé des réponses (option cochée, valeur saisie, réponse vue sans essayer, temps à l’écran), onglets professeur « Suivi détaillé » (tableau élèves × questions, analyse de chaque question) et « Séries d’exercices » (séries avec date limite, page « Mes séries » pour les élèves), maîtrise par méthode, export de toutes les réponses.
 - Mis à jour le 23 novembre 2026 (version 28) : calcul détaillé des pulsations propres de deux oscillateurs couplés, chaîne de N oscillateurs et suite de N lentilles traitées par une relation de récurrence (fiche méthode, deux simulations, quatre exercices) ; cartes « À venir » retirées de l’accueil.
 - Mis à jour le 23 novembre 2026 (version 27) : 23 simulations pour les chapitres de mécanique (point, énergie, céleste, oscillateurs, solide) ; demande de code par les élèves (prénom, nom, niveau, classe), validée par le professeur dans « Élèves et codes », le code s’affichant ensuite sur l’appareil de l’élève.
 - Mis à jour le 20 novembre 2026 (version 22) : chapitre « Approche énergétique », quinze QCM à figure et trente-deux exercices de cours pour les chapitres de mécanique.

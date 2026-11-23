@@ -22,7 +22,7 @@ function localClear(){ try { localStorage.removeItem(LKEY); } catch(e){} }
 const isVisitor = () => !ME || !ME.role;
 const ready = API('me').then(m => { ME = m; }).catch(() => { ME = {role: null, open: true, offline: true}; })
   .then(async () => {
-    if (ME.role === 'eleve'){ try { const m = await API('mine'); m.attempts.forEach(a => LAST[a.qid] = a); } catch(e){} }
+    if (ME.role === 'eleve'){ try { const m = await API('mine'); m.attempts.forEach(a => LAST[a.qid] = a); SERIES = m.series || []; } catch(e){} }
     else if (!ME.role) localAll().forEach(a => { if (!LAST[a.qid] || LAST[a.qid].ts <= a.ts) LAST[a.qid] = a; });
   });
 
@@ -53,19 +53,45 @@ HOOKS.corrector = () => ready.then(() => ME && ME.claude && ME.claude.enabled ? 
   }
 } : null);
 
-HOOKS.done = (q, d) => {
+/* Temps passé sur chaque question : secondes pendant lesquelles elle est au moins à moitié visible, l'onglet actif,
+   sans inactivité de plus de 10 minutes (un élève peut chercher sur papier). Plafonné à une heure. */
+const TIMERS = new Map(); let lastInput = Date.now();
+['pointerdown', 'keydown', 'wheel', 'touchstart', 'scroll'].forEach(ev => addEventListener(ev, () => { lastInput = Date.now(); }, {passive: true, capture: true}));
+const IO = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(en => { const t = TIMERS.get(en.target); if (t) t.vis = en.isIntersecting && en.intersectionRect.height >= Math.min(en.boundingClientRect.height * 0.5, innerHeight * 0.35); }), {threshold: [0, .1, .25, .5, .75, 1]}) : null;
+setInterval(() => {
+  if (document.hidden || Date.now() - lastInput > 600000) return;
+  for (const [el, t] of TIMERS){ if (!el.isConnected){ TIMERS.delete(el); continue; } if (t.vis && !el.classList.contains('done')) t.s = Math.min(3600, t.s + 2); }
+}, 2000);
+function watch(d){ if (!IO || TIMERS.has(d)) return; TIMERS.set(d, {s: 0, vis: false}); IO.observe(d); }
+// ce que l'élève a répondu
+function answerOf(q, d){
+  if (q.type === 'qcm') return [...d.querySelectorAll('.opts input:checked')].map(i => i.value).join(',');
+  if (q.type === 'num'){ const i = d.querySelector('.numin input'); return i ? i.value.trim().slice(0, 60) : ''; }
+  const ta = d.querySelector('.redac textarea'), np = d.querySelectorAll('.redac .photos .ph').length;
+  return ((ta ? ta.value.trim() : '') + (np ? ` [${np} photo${np > 1 ? 's' : ''} de la copie]` : '')).trim().slice(0, 2000);
+}
+function record(q, d, extra){
   if (ME && ME.role === 'admin') return;
   if (!d.dataset.aid) d.dataset.aid = q.id.replace(/[^\w-]/g, '').slice(-30) + '-' + Math.random().toString(36).slice(2, 10);
-  const a = {id: d.dataset.aid, qid: q.id, score: parseFloat(d.dataset.score || 0), hints: parseInt(d.dataset.hints || 0), mode: mode()};
+  const t = TIMERS.get(d);
+  const a = {id: d.dataset.aid, qid: q.id, score: parseFloat(d.dataset.score || 0), hints: parseInt(d.dataset.hints || 0), mode: mode(),
+    how: d.dataset.how || null, answer: answerOf(q, d), dur: t ? t.s : null, ...extra};
   LAST[q.id] = {...a, chap: q.chap, ts: Date.now()};
   if (isVisitor()) localSave(LAST[q.id]); else API('attempt', a).catch(() => {});
-};
+  document.dispatchEvent(new CustomEvent('olymp:done', {detail: q.id}));
+}
+HOOKS.done = (q, d) => record(q, d);
+// corrigé d'une question à rédiger affiché sans rien avoir écrit : « réponse vue sans essayer »
+HOOKS.seen = (q, d) => { if (!d.dataset.aid) d.dataset.aid = q.id.replace(/[^\w-]/g, '').slice(-30) + '-' + Math.random().toString(36).slice(2, 10);
+  if (!answerOf(q, d) && d.dataset.score === undefined){ d.dataset.how = 'vu'; d.dataset.score = 0; record(q, d, {id: (d.dataset.aid || '').slice(0, 52) + '-vu'}); delete d.dataset.score; } };
 
 HOOKS.decorate = (q, d) => {
+  watch(d);
   const a = LAST[q.id]; if (!a) return;
   const m = d.querySelector('.meta'); if (!m || m.querySelector('.tag.seen')) return;
   const t = document.createElement('span'); t.className = 'tag seen ' + scoreCls(a.score);
-  t.title = 'Votre dernière réponse, ' + ago(a.ts); t.textContent = 'déjà faite · ' + scoreLabel(a.score);
+  t.title = 'Votre dernière réponse, ' + ago(a.ts); t.textContent = a.how === 'vu' ? 'corrigé déjà lu' : 'déjà faite · ' + scoreLabel(a.score);
+  if (a.how === 'vu') t.className = 'tag seen';
   m.prepend(t);
 };
 
@@ -118,6 +144,7 @@ const css = `
 .dash .tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin:14px 0 4px}
 .dash .tabs a{padding:8px 12px;text-decoration:none;color:var(--fg-2);border-bottom:2px solid transparent;margin-bottom:-1px;font-weight:500}
 .dash .tabs a.on{color:var(--accent-2);border-color:var(--accent)}
+.dash .tabs .admref{margin:0 0 6px auto;align-self:center}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0}
 .kpi{background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-width:0}
 .kpi .v{font-family:var(--display);font-size:2rem;font-weight:500;line-height:1.05;font-variant-numeric:tabular-nums}
@@ -160,7 +187,8 @@ const css = `
 .cl .h{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:4px;font-size:.85rem;color:var(--fg-2)}
 .cl .ans{white-space:pre-wrap;background:var(--bg);border-radius:6px;padding:6px 8px;margin:6px 0;font-size:.88rem}
 .cols2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
-@media (max-width:760px){.cols2{grid-template-columns:1fr}}
+@media (max-width:760px){.cols2{grid-template-columns:minmax(0,1fr)}}
+.cols2>div{min-width:0}
 .form-row{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin:8px 0}
 .form-row label{display:flex;flex-direction:column;gap:4px;font-size:.82rem;color:var(--fg-2);min-width:0}
 .dash textarea,.dash input[type=text],.dash input[type=number],.dash select{font:inherit;font-size:.92rem;padding:7px 9px;border:1px solid var(--line);border-radius:6px;background:var(--bg-2);color:var(--fg);max-width:100%}
@@ -176,6 +204,78 @@ const css = `
 .switch b{display:block}
 .switch span{color:var(--fg-2);font-size:.9rem}
 .muted{color:var(--fg-2)}
+.pill.vu{background:var(--bg-3);color:var(--fg-2)}
+.gridwrap{max-height:75vh;overflow:auto;border:1px solid var(--line);border-radius:8px}
+table.grid{border-collapse:separate;border-spacing:0;margin:0;font-size:.82rem;width:auto}
+table.grid th,table.grid td{padding:0;border:0;background:var(--bg-2)}
+table.grid thead th{position:sticky;top:0;z-index:2;background:var(--bg-2);border-bottom:1px solid var(--line)}
+table.grid th.nm{position:sticky;left:0;z-index:1;text-align:left;padding:2px 10px 2px 8px;white-space:nowrap;font-weight:500;border-right:1px solid var(--line)}
+table.grid thead th.nm{z-index:3}
+table.grid td.num,table.grid th.num{padding:2px 6px;font-size:.78rem;color:var(--fg-2)}
+table.grid th.qh{min-width:22px;text-align:center;font-weight:500;font-size:.68rem;padding:4px 0}
+table.grid th.qh a{text-decoration:none;color:var(--fg-2);display:block}
+table.grid th.qh a:hover{color:var(--accent)}
+table.grid td.c{width:22px;height:22px;min-width:22px;cursor:default;position:relative;box-shadow:inset 0 0 0 2px var(--bg-2);background:var(--bg-3)}
+table.grid td.c[data-s]{cursor:pointer}
+table.grid .gs{border-left:2px solid var(--line)}
+table.grid tfoot td.pc{font-size:.62rem;color:var(--fg-2);text-align:center;padding:3px 0;border-top:1px solid var(--line)}
+table.grid tfoot th{border-top:1px solid var(--line);font-size:.78rem}
+td.c.ok,i.c.ok{background:var(--ok)!important}
+td.c.mid,i.c.mid{background:var(--sun)!important}
+td.c.bad,i.c.bad{background:var(--bad)!important}
+td.c.vu,i.c.vu{background:repeating-linear-gradient(135deg,var(--fg-2) 0 2px,var(--bg-3) 2px 5px)!important}
+td.c.multi::after,i.c.multi::after{content:"";position:absolute;right:4px;top:4px;width:5px;height:5px;border-radius:50%;background:#fff}
+td.c.late::before,i.c.late::before{content:"";position:absolute;left:2px;bottom:2px;border-left:7px solid #111;border-top:7px solid transparent;opacity:.55}
+td.c.sel{outline:2px solid var(--accent);outline-offset:-2px}
+td.c:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.gridleg{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center}
+.gridleg i.c{display:inline-block;width:16px;height:16px;border-radius:3px;background:var(--bg-3);vertical-align:-3px;margin-right:4px;position:relative}
+.celld{border:1px solid var(--accent);border-radius:10px;padding:12px 14px;margin:14px 0;background:var(--bg-2)}
+.celld .hd{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.celld .hd button{margin-left:auto}
+table.att td{vertical-align:top;font-size:.9rem}
+.opt{display:inline-block;font-family:var(--mono);font-weight:600;padding:0 6px;border-radius:4px}
+.dash .g{color:var(--ok)} .dash .r{color:var(--bad)}
+.opt.g{background:color-mix(in srgb,var(--ok) 15%,var(--bg-2))}
+.opt.r{background:color-mix(in srgb,var(--bad) 13%,var(--bg-2))}
+.ans.sm{font-size:.84rem;max-height:7.5em;overflow:auto;margin:2px 0}
+.optbars{display:grid;gap:6px;margin:10px 0}
+.ob{display:grid;grid-template-columns:3.2em minmax(0,2fr) minmax(80px,1fr) 2.5em;gap:10px;align-items:center;font-size:.9rem}
+.ob .k{font-family:var(--mono);font-weight:600}
+.ob.g .k{color:var(--ok)}
+.ob .tx{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--fg-2)}
+.ob .n{text-align:right;font-variant-numeric:tabular-nums}
+.bar.bad>i{background:var(--bad)}
+details.qst{border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:8px 0;background:var(--bg-2)}
+details.qst summary{cursor:pointer;font-weight:500}
+.optl li.g{color:var(--ok)}
+label.chk{flex-direction:row!important;align-items:center;gap:6px!important;font-size:.88rem!important;color:var(--fg)!important}
+.stack{display:flex;height:8px;border-radius:99px;background:var(--bg-3);overflow:hidden;margin:3px 0}
+.stack i{display:block;height:100%}
+.stack i.ok{background:var(--ok)} .stack i.mid{background:var(--sun)}
+table.series td{vertical-align:top}
+.picker h3{font-size:1.05rem;margin:.8em 0 .3em}
+.pklist{max-height:60vh;overflow:auto;border:1px solid var(--line);border-radius:8px;padding:4px 8px;background:var(--bg-2)}
+.pklist label.pk{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--line);cursor:pointer;font-size:.9rem}
+.pklist label.pk.in{padding-left:14px}
+.pklist label.pk small{display:block;color:var(--fg-2);font-size:.8rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.pklist label.pk>span{min-width:0;flex:1}
+.pklist .pkg{display:flex;justify-content:space-between;gap:8px;padding:8px 0 2px;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--fg-2);font-weight:600}
+.pklist .pkg .lk{text-transform:none;letter-spacing:0;font-weight:500}
+.pklist .star{color:var(--sun)}
+.sellist{padding-left:1.4em;margin:.3em 0}
+.sellist li{padding:5px 0;border-bottom:1px solid var(--line)}
+.sellist li{display:list-item}
+.sellist .t{display:inline-block;max-width:calc(100% - 90px);vertical-align:top}
+.sellist .t small{display:block;color:var(--fg-2);font-size:.8rem}
+.sellist .b{float:right;display:flex;gap:6px}
+.dash .lk{font:inherit;background:none;border:0;padding:0;color:var(--accent);cursor:pointer}
+.dash .lk:disabled{color:var(--fg-3,#aaa);cursor:default}
+.sprog{margin:12px 0 18px;max-width:520px}
+.sprog .m{font-size:.9rem;color:var(--fg-2);margin-bottom:4px}
+section.sq{margin:1.6em 0}
+section.sq h2 small{font-family:var(--body);font-size:.8rem;color:var(--fg-2);font-weight:400;margin-left:8px}
+.esx h2:first-child{margin-top:1.2em}
 `;
 const st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
@@ -302,7 +402,7 @@ function accountBox(){
   const b = document.createElement('div'); b.className = 'cpt-box';
   if (ME.role === 'eleve'){
     b.innerHTML = `<div class="who">${E(ME.me.prenom)} ${E(ME.me.nom)}<small>${ME.me.groupe ? E(ME.me.groupe) + ' · ' : ''}${ME.me.niveau === 'C' ? 'CPGE' : 'Terminale'}${ME.me.code ? ' · code <span class="code">' + E(fmtCode(ME.me.code)) + '</span>' : ''}</small></div>
-      <a href="#suivi" data-page="suivi">Mon tableau de bord</a><button type="button" class="lk" data-out>Se déconnecter</button>`;
+      <a href="#suivi" data-page="suivi">Mon tableau de bord</a>${SERIES.length ? `<a href="#serie" data-page="serie">Mes séries d’exercices${seriesTodo() ? `<span class="badge" title="Séries pas encore terminées">${seriesTodo()}</span>` : ''}</a>` : ''}<button type="button" class="lk" data-out>Se déconnecter</button>`;
   } else if (ME.role === 'admin'){
     b.innerHTML = `<div class="who">Espace professeur</div><a href="#admin" data-page="admin">Tableau de bord de la classe</a>
       <a href="#admin/eleves">Élèves et codes${ME.pending ? `<span class="badge" title="Demandes de code en attente">${ME.pending}</span>` : ''}</a><button type="button" class="lk" data-out>Se déconnecter</button>`;
@@ -346,6 +446,8 @@ function stars(prog, data, chap, lv){
   }).filter(Boolean);
 }
 function qLabel(q){ if (!q) return 'Question supprimée'; return q.sub || q.origin || (DATA.gById[q.group] || {}).title || 'Question'; }
+// libellé complet : pour une question d'un problème, titre du problème et numéro de la question
+function qFull(q){ if (!q) return 'Question supprimée'; const g = q.group && DATA.gById[q.group]; if (!g) return qLabel(q); const n = q.num ? String(q.num).replace(/[.)]\s*$/, '') : (DATA.byGroup[q.group] || []).indexOf(q) + 1; return g.title + ' · question ' + n; }
 function qSnippet(q){ return q ? plain(q.statement).slice(0, 140) : ''; }
 
 /* heatmap de l'activité (16 semaines) */
@@ -436,9 +538,9 @@ async function showSuivi(){
     const b = document.getElementById('cptIn'); if (b) b.addEventListener('click', gate); return;
   }
   const m = await API('mine').catch(() => ({attempts: [], claude: []}));
-  m.attempts.forEach(a => { if (!LAST[a.qid] || LAST[a.qid].ts <= a.ts) LAST[a.qid] = a; });
+  m.attempts.forEach(a => { if (!LAST[a.qid] || LAST[a.qid].ts <= a.ts) LAST[a.qid] = a; }); if (m.series) SERIES = m.series;
   view.innerHTML = `<p class="eyebrow">Mon suivi</p><h1>Bonjour ${E(ME.me.prenom)}</h1>
-    <p class="muted">${ME.claude && ME.claude.enabled ? `Corrections par Claude : ${Math.max(0, ME.claude.quota - ME.claude.used)} restantes sur ${ME.claude.quota} par 24 h.` : ''}</p><div id="sd"></div>`;
+    <p class="muted">${ME.claude && ME.claude.enabled ? `Corrections par Claude : ${Math.max(0, ME.claude.quota - ME.claude.used)} restantes sur ${ME.claude.quota} par 24 h.` : ''}</p>${seriesBlock()}<div id="sd"></div>`;
   await renderStudentDash(view.querySelector('#sd'), m.attempts, m.claude, LEVEL);
   window.scrollTo(0, 0);
 }
@@ -450,14 +552,21 @@ async function showAdmin(sub){
   await ready;
   if (!ME || ME.role !== 'admin'){ view.innerHTML = '<h1>Espace professeur</h1><p>Connectez-vous avec le mot de passe professeur.</p><p><button class="cpt-btn" type="button" id="cptIn">Se connecter</button></p>'; document.getElementById('cptIn').addEventListener('click', gate); return; }
   sub = sub || '';
-  const tab = sub.startsWith('eleve-') ? 'eleves' : sub || 'classe';
+  const tab = sub.startsWith('eleve-') ? 'eleves' : sub.startsWith('suivi') || sub.startsWith('q-') ? 'suivi' : sub.startsWith('serie') ? 'series' : sub || 'classe';
   view.innerHTML = `<p class="eyebrow">Espace professeur</p><h1>Tableau de bord</h1>
-    <nav class="tabs" aria-label="Rubriques"><a href="#admin" class="${tab === 'classe' ? 'on' : ''}">La classe</a><a href="#admin/eleves" class="${tab === 'eleves' ? 'on' : ''}">Élèves et codes${ME.pending ? `<span class="badge">${ME.pending}</span>` : ''}</a><a href="#admin/reglages" class="${tab === 'reglages' ? 'on' : ''}">Réglages</a></nav><div id="adm"><p class="loading">Chargement…</p></div>`;
+    <nav class="tabs" aria-label="Rubriques"><a href="#admin" class="${tab === 'classe' ? 'on' : ''}">La classe</a><a href="#admin/suivi" class="${tab === 'suivi' ? 'on' : ''}">Suivi détaillé</a><a href="#admin/series" class="${tab === 'series' ? 'on' : ''}">Séries d’exercices</a><a href="#admin/eleves" class="${tab === 'eleves' ? 'on' : ''}">Élèves et codes${ME.pending ? `<span class="badge">${ME.pending}</span>` : ''}</a><a href="#admin/reglages" class="${tab === 'reglages' ? 'on' : ''}">Réglages</a><button type="button" class="cpt-btn sec sm admref" title="Recharger les dernières réponses">Actualiser</button></nav><div id="adm"><p class="loading">Chargement…</p></div>`;
   const root = view.querySelector('#adm');
+  view.querySelector('.admref').addEventListener('click', () => showAdmin(sub));
   try { OV = await API('overview'); } catch(e){ root.innerHTML = `<p class="note-bad">${E(e.userMessage || 'Le serveur ne répond pas.')}</p>`; return; }
   syncPending();
   await loadData(); await loadProg();
   if (sub.startsWith('eleve-')) return adminStudent(root, sub.slice(6));
+  if (sub.startsWith('q-')) return adminQuestion(root, sub.slice(2));
+  if (sub === 'suivi' || sub.startsWith('suivi-')) return adminSuivi(root, sub.slice(6));
+  if (sub === 'series') return adminSeries(root);
+  if (sub === 'serie-new') return adminSerieEdit(root, null);
+  if (sub.startsWith('serie-edit-')) return adminSerieEdit(root, sub.slice(11));
+  if (sub.startsWith('serie-')) return adminSerie(root, sub.slice(6));
   if (tab === 'eleves') return adminStudents(root);
   if (tab === 'reglages') return adminSettings(root);
   return adminClass(root);
@@ -478,12 +587,12 @@ function adminClass(root){
   const S = OV.students, P = OV.perq;
   const active7 = new Set(P.filter(p => p.ts > week).map(p => p.sid)).size;
   const days = OV.days, n7 = days.filter(d => d.day * DAYMS > week).reduce((s, d) => s + d.n, 0);
-  const meanAll = P.length ? P.reduce((s, p) => s + p.score, 0) / P.length : 0;
+  const PR = P.filter(p => p.how !== 'vu'), meanAll = PR.length ? PR.reduce((s, p) => s + p.score, 0) / PR.length : 0;
   const cl24 = OV.claude.filter(c => c.ts > now - DAYMS).length, cl7 = OV.claude.filter(c => c.ts > week).length;
   let h = `<div class="kpis">
     <div class="kpi"><div class="v">${S.length}</div><div class="l">Élèves</div><div class="s">${active7} actif${active7 > 1 ? 's' : ''} cette semaine</div></div>
     <div class="kpi"><div class="v">${n7}</div><div class="l">Réponses sur 7 jours</div><div class="s">${P.length} questions traitées en tout</div></div>
-    <div class="kpi"><div class="v">${P.length ? pct(meanAll) : '–'}</div><div class="l">Réussite moyenne</div><div class="s">dernière réponse par élève et question</div></div>
+    <div class="kpi"><div class="v">${PR.length ? pct(meanAll) : '–'}</div><div class="l">Réussite moyenne</div><div class="s">dernière réponse par élève et question${P.length > PR.length ? ` ; ${P.length - PR.length} corrigé${P.length - PR.length > 1 ? 's' : ''} lu${P.length - PR.length > 1 ? 's' : ''} sans essayer` : ''}</div></div>
     <div class="kpi"><div class="v">${cl7}</div><div class="l">Corrections Claude, 7 j</div><div class="s">${cl24} sur les dernières 24 h</div></div>
   </div>`;
   if (ME.pending) h += `<p class="newcodes"><b>${ME.pending} demande${ME.pending > 1 ? 's' : ''} de code en attente</b> : <a href="#admin/eleves">les valider ou les refuser</a>.</p>`;
@@ -500,23 +609,24 @@ function adminClass(root){
   // chapitres
   h += `<h2>Chapitres</h2><div class="scroll"><table><thead><tr><th>Chapitre</th><th class="num">Élèves</th><th class="num">Questions / élève</th><th>Réussite</th></tr></thead><tbody>`;
   for (const c of Object.keys(CHAPTERS)){
-    const rows = P.filter(p => p.chap === c), who = new Set(rows.map(p => p.sid));
-    const m = rows.length ? rows.reduce((s, p) => s + p.score, 0) / rows.length : null;
-    h += `<tr><td><a href="#${c}">${E(CHAPTERS[c].title)}</a></td><td class="num">${who.size} / ${S.length}</td><td class="num">${who.size ? (rows.length / who.size).toFixed(1).replace('.', ',') : '–'}</td><td>${m === null ? '–' : `<div style="display:flex;gap:8px;align-items:center"><div class="bar ok" style="flex:1"><i style="width:${100 * m}%"></i></div><span style="min-width:3.2em;text-align:right">${pct(m)}</span></div>`}</td></tr>`;
+    const rows = P.filter(p => p.chap === c), who = new Set(rows.map(p => p.sid)), rr = rows.filter(p => p.how !== 'vu');
+    const m = rr.length ? rr.reduce((s, p) => s + p.score, 0) / rr.length : null;
+    h += `<tr><td><a href="#admin/suivi-${c}" title="Suivi détaillé, question par question">${E(CHAPTERS[c].title)}</a></td><td class="num">${who.size} / ${S.length}</td><td class="num">${who.size ? (rows.length / who.size).toFixed(1).replace('.', ',') : '–'}</td><td>${m === null ? '–' : `<div style="display:flex;gap:8px;align-items:center"><div class="bar ok" style="flex:1"><i style="width:${100 * m}%"></i></div><span style="min-width:3.2em;text-align:right">${pct(m)}</span></div>`}</td></tr>`;
   }
-  h += '</tbody></table></div>';
+  h += '</tbody></table></div><p class="muted" style="font-size:.86rem">Cliquez sur un chapitre pour le suivi détaillé, élève par élève et question par question.</p>';
+  h += '<h2>Maîtrise des méthodes</h2><p class="muted" style="font-size:.9rem">Réussite des questions rattachées à chaque fiche méthode (dernière réponse de chaque élève), des moins bien réussies aux mieux réussies.</p>' + methodsHTML(methodRows(P), {students: true, min: 2});
   // questions difficiles
-  const byQ = {}; P.forEach(p => (byQ[p.qid] = byQ[p.qid] || []).push(p.score));
+  const byQ = {}; PR.forEach(p => (byQ[p.qid] = byQ[p.qid] || []).push(p.score));
   const hard = Object.entries(byQ).filter(([, v]) => v.length >= Math.min(3, Math.max(1, S.length))).map(([qid, v]) => ({qid, n: v.length, m: v.reduce((a, b) => a + b, 0) / v.length}))
     .filter(x => x.m < 0.75).sort((a, b) => a.m - b.m || b.n - a.n).slice(0, 12);
   h += `<div class="cols2"><div><h2>Questions les plus ratées</h2>`;
-  h += hard.length ? '<ul class="qlist">' + hard.map(x => { const q = DATA.qById[x.qid]; return `<li><span class="pill ${scoreCls(x.m >= .5 ? .5 : 0)}">${pct(x.m)}</span><div><a href="#question/${encodeURIComponent(x.qid)}">${E(qLabel(q))}</a><span class="sn">${E(q && CHAPTERS[q.chap] ? CHAPTERS[q.chap].title : '')} · ${x.n} élève${x.n > 1 ? 's' : ''}</span></div></li>`; }).join('') + '</ul>'
+  h += hard.length ? '<ul class="qlist">' + hard.map(x => { const q = DATA.qById[x.qid]; return `<li><span class="pill ${scoreCls(x.m >= .5 ? .5 : 0)}">${pct(x.m)}</span><div><a href="#admin/q-${encodeURIComponent(x.qid)}">${E(qFull(q))}</a><span class="sn">${E(q && CHAPTERS[q.chap] ? CHAPTERS[q.chap].title : '')} · ${x.n} élève${x.n > 1 ? 's' : ''}</span></div></li>`; }).join('') + '</ul>'
     : '<p class="muted">Pas encore assez de réponses (il faut au moins trois élèves sur une même question).</p>';
   h += `</div><div><h2>Dernières réponses</h2>`;
-  h += OV.recent.length ? '<ul class="qlist">' + OV.recent.slice(0, 15).map(a => { const q = DATA.qById[a.qid]; return `<li><span class="pill ${scoreCls(a.score)}">${scoreLabel(a.score)}</span><div><a href="#admin/eleve-${E(a.sid)}">${E(nameOf(a.sid))}</a> · <a href="#question/${encodeURIComponent(a.qid)}">${E(qLabel(q))}</a><span class="sn">${E(ago(a.ts))}${a.hints ? ' · ' + a.hints + ' indice' + (a.hints > 1 ? 's' : '') : ''}</span></div></li>`; }).join('') + '</ul>'
+  h += OV.recent.length ? '<ul class="qlist">' + OV.recent.slice(0, 15).map(a => { const q = DATA.qById[a.qid]; return `<li>${pillHTML(a)}<div><a href="#admin/eleve-${E(a.sid)}">${E(nameOf(a.sid))}</a> · <a href="#admin/q-${encodeURIComponent(a.qid)}">${E(qFull(q))}</a><span class="sn">${E(ago(a.ts))}${a.hints ? ' · ' + a.hints + ' indice' + (a.hints > 1 ? 's' : '') : ''}</span></div></li>`; }).join('') + '</ul>'
     : '<p class="muted">Aucune réponse enregistrée pour l’instant.</p>';
   h += '</div></div>';
-  root.innerHTML = h;
+  root.innerHTML = h; bindMore(root);
 }
 
 const nkey = (p, n) => (String(p) + ' ' + String(n)).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z]/g, '');
@@ -649,6 +759,8 @@ async function adminStudent(root, sid){
     catch(e){ o.className = 'note-bad'; o.textContent = e.userMessage || 'Échec.'; }
   });
   await renderStudentDash(root.querySelector('#esD'), d.attempts, d.claude, s.niveau, {admin: true});
+  const x = document.createElement('div'); x.className = 'esx'; x.innerHTML = studentExtraHTML(d);
+  root.querySelector('#esD').before(x); bindJournal(x, d.attempts); bindMore(x);
 }
 
 function adminSettings(root){
@@ -668,5 +780,419 @@ function adminSettings(root){
   });
 }
 
-HOOKS.routes = Object.assign(HOOKS.routes || {}, {suivi: showSuivi, admin: showAdmin});
+/* ------------------------------------------------------------ suivi détaillé : outils communs */
+const stOf = a => !a ? '' : a.how === 'vu' ? 'vu' : a.score >= 1 ? 'ok' : a.score > 0 ? 'mid' : 'bad';
+const ST_LABEL = {ok: 'juste', mid: 'en partie', bad: 'faux', vu: 'corrigé lu sans essayer', '': 'pas faite'};
+const HOW_LABEL = {auto: 'vérifiée par le site', soi: 'auto-évaluée', claude: 'corrigée par Claude', vu: ''};
+const PAGE_LABEL = {qcm: 'banque de questions', question: 'page de la question', serie: 'série d’exercices', suivi: 'tableau de bord', recherche: 'recherche', accueil: 'accueil'};
+const pageName = m => (CHAPTERS[m] && CHAPTERS[m].title) || PAGE_LABEL[m] || m || '';
+function fmtDur(s){ if (s === null || s === undefined || s === '') return '–'; s = +s; if (s < 60) return Math.round(s) + ' s'; const m = Math.round(s / 60); return m < 60 ? m + ' min' : Math.floor(m / 60) + ' h ' + String(m % 60).padStart(2, '0'); }
+const fmtDate = ts => new Date(ts).toLocaleString('fr-FR', {weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'});
+const median = v => { if (!v.length) return null; const s = [...v].sort((a, b) => a - b), m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+const sup = e => String(e).split('').map(c => '⁻⁰¹²³⁴⁵⁶⁷⁸⁹'['-0123456789'.indexOf(c)]).join('');
+const sget = k => { try { return sessionStorage.getItem(k); } catch(e){ return null; } };
+const sset = (k, v) => { try { sessionStorage.setItem(k, v); } catch(e){} };
+// écart d'une valeur numérique à la bonne réponse : facteur 2, puissance de 10 (unité ?), signe…
+function ratioHint(r){
+  if (!isFinite(r)) return '';
+  if (r === 0) return 'zéro';
+  const sg = r < 0 ? 'signe opposé' : '', ar = Math.abs(r);
+  if (Math.abs(ar - 1) < 0.03) return sg;
+  const F = [[1, ''], [2, '×2'], [0.5, '÷2'], [4, '×4'], [0.25, '÷4'], [3, '×3'], [1 / 3, '÷3'], [Math.SQRT2, '×√2'], [Math.SQRT1_2, '÷√2'], [Math.PI, '×π'], [1 / Math.PI, '÷π'], [2 * Math.PI, '×2π'], [1 / (2 * Math.PI), '÷2π']];
+  for (let e = 0; Math.abs(e) <= 9; e = e > 0 ? -e : 1 - e) for (const [f, l] of F){
+    if (Math.abs(ar / (f * 10 ** e) - 1) < 0.03) return [sg, [l, e ? '×10' + sup(e) : ''].filter(Boolean).join(' ')].filter(Boolean).join(', ');
+  }
+  return [sg, '×' + ar.toPrecision(2).replace('.', ',')].filter(Boolean).join(', ');
+}
+function answerHTML(q, a){
+  const v = a && a.answer;
+  if (!v) return '<span class="muted">—</span>';
+  if (q && q.type === 'qcm'){ const ok = new Set(q.correct || []); return v.split(',').map(k => `<span class="opt ${ok.has(k) ? 'g' : 'r'}">${E(k)}</span>`).join(' '); }
+  if (q && q.type === 'num' && q.answer){
+    const x = parseNum(v), r = q.answer.value ? x / q.answer.value : NaN, good = isFinite(r) && Math.abs(r - 1) <= (q.answer.tol || 0.05), hint = isFinite(r) && !good ? ratioHint(r) : '';
+    return `<span class="${good ? 'g' : 'r'}">${E(v)}${q.answer.unit ? ' ' + E(q.answer.unit) : ''}</span>${hint ? ` <small class="muted">(${E(hint)})</small>` : ''}`;
+  }
+  return `<div class="ans">${E(v)}</div>`;
+}
+const pillHTML = a => `<span class="pill ${stOf(a)}">${E(ST_LABEL[stOf(a)])}</span>`;
+function claudeHTML(c){
+  const s = c.verdict === 'juste' ? 1 : c.verdict === 'partiel' ? .5 : 0;
+  return `<div class="cl"><div class="h"><span class="pill ${c.verdict === 'aide' ? '' : scoreCls(s)}">${c.verdict === 'aide' ? 'piste demandée' : 'Claude : ' + (c.verdict === 'partiel' ? 'en partie' : c.verdict === 'juste' ? 'juste' : 'à revoir')}</span>${c.sid ? `<b>${E(nameOf(c.sid))}</b>` : ''}<span>${E(fmtDate(c.ts))}</span></div>${c.answer ? `<div class="ans">${E(c.answer)}</div>` : ''}<div>${E(c.comment || '')}</div></div>`;
+}
+function attemptsHTML(q, list){
+  return `<div class="scroll"><table class="att"><thead><tr><th>Date</th><th>Résultat</th><th>Réponse donnée</th><th class="num">Indices</th><th class="num">Temps</th><th>Où</th></tr></thead><tbody>` +
+    list.map(a => `<tr><td>${E(fmtDate(a.ts))}</td><td>${pillHTML(a)}${HOW_LABEL[a.how] ? `<small class="muted"> ${E(HOW_LABEL[a.how])}</small>` : ''}</td><td>${answerHTML(q, a)}</td><td class="num">${a.hints || 0}</td><td class="num">${fmtDur(a.dur)}</td><td><small>${E(pageName(a.mode))}</small></td></tr>`).join('') +
+    '</tbody></table></div>';
+}
+const byPair = attempts => { const m = {}; attempts.forEach(a => (m[a.sid + '|' + a.qid] = m[a.sid + '|' + a.qid] || []).push(a)); Object.values(m).forEach(L => L.sort((x, y) => x.ts - y.ts)); return m; };
+// une question pour un élève, résumée à partir de toutes ses réponses (dans l'ordre)
+function summary(L){
+  if (!L || !L.length) return null;
+  const real = L.filter(a => a.how !== 'vu');
+  return {L, last: L[L.length - 1], real, lastReal: real[real.length - 1] || null, firstOk: L[0].how !== 'vu' && L[0].score >= 1, seen: L.some(a => a.how === 'vu')};
+}
+const LEGEND = `<p class="legend gridleg"><i class="c ok"></i>juste <i class="c mid"></i>en partie <i class="c bad"></i>faux <i class="c vu"></i>corrigé lu sans essayer <i class="c"></i>pas faite <i class="c ok multi"></i>plusieurs réponses (la case montre la dernière) <i class="c ok late"></i>faite après l’échéance</p>`;
+
+// tableau élèves × questions ; byKey : réponses groupées par « élève|question »
+function gridHTML(students, qs, byKey, opts = {}){
+  let h = '<div class="scroll gridwrap"><table class="grid"><thead><tr><th class="nm">Élève</th><th class="num" title="Questions auxquelles l’élève a répondu">Faites</th><th class="num" title="Questions réussies dès la première réponse, parmi celles abordées">1<sup>er</sup> coup</th>';
+  let pg = null;
+  const sepOf = (q, i) => { const s = i > 0 && (q.group || q.id) !== pg ? ' gs' : ''; pg = q.group || q.id; return s; };
+  qs.forEach((q, i) => { h += `<th class="qh${sepOf(q, i)}"><a href="#admin/q-${encodeURIComponent(q.id)}" title="${E(qFull(q) + ' — ' + qSnippet(q))}">${opts.num ? opts.num(q, i) : i + 1}</a></th>`; });
+  h += '</tr></thead><tbody>';
+  const col = qs.map(() => ({n: 0, ok: 0}));
+  for (const s of students){
+    let done = 0, met = 0, first = 0, row = ''; pg = null;
+    qs.forEach((q, i) => {
+      const sep = sepOf(q, i), S = summary(byKey[s.id + '|' + q.id]);
+      if (!S){ row += `<td class="c${sep}"></td>`; return; }
+      met++; if (S.firstOk) first++; if (S.real.length) done++;
+      if (S.lastReal){ col[i].n++; if (S.lastReal.score >= 1) col[i].ok++; }
+      const st = stOf(S.last), late = opts.due && S.real.length && S.real[0].ts > opts.due;
+      const tip = `${s.prenom} ${s.nom} · ${qFull(q)} : ${ST_LABEL[st]}${S.L.length > 1 ? ` (${S.L.length} réponses)` : ''}${S.last.hints ? ` · ${S.last.hints} indice${S.last.hints > 1 ? 's' : ''}` : ''}${S.last.dur ? ' · ' + fmtDur(S.last.dur) : ''} · ${fmtDate(S.last.ts)}${late ? ' · après l’échéance' : ''}`;
+      row += `<td class="c ${st}${sep}${S.L.length > 1 ? ' multi' : ''}${late ? ' late' : ''}" data-s="${E(s.id)}" data-q="${E(q.id)}" title="${E(tip)}" tabindex="0" role="button"></td>`;
+    });
+    h += `<tr><th class="nm"><a href="#admin/eleve-${E(s.id)}">${E(s.nom)} ${E(s.prenom)}</a></th><td class="num">${done}</td><td class="num">${met ? pct(first / met) : '–'}</td>${row}</tr>`;
+  }
+  pg = null;
+  h += `</tbody><tfoot><tr><th class="nm" title="Part des élèves dont la dernière réponse est juste">Réussite (%)</th><td></td><td></td>${qs.map((q, i) => `<td class="pc${sepOf(q, i)}" title="${col[i].n ? `${col[i].ok} juste${col[i].ok > 1 ? 's' : ''} sur ${col[i].n} élève${col[i].n > 1 ? 's' : ''}` : 'Aucune réponse'}">${col[i].n ? Math.round(100 * col[i].ok / col[i].n) : ''}</td>`).join('')}</tr></tfoot></table></div>`;
+  return h;
+}
+// clic sur une case : toutes les réponses de l'élève à cette question
+function bindGrid(box, panel){
+  const open = async td => {
+    if (!td || !td.dataset.s) return;
+    box.querySelectorAll('td.sel').forEach(x => x.classList.remove('sel')); td.classList.add('sel');
+    const sid = td.dataset.s, qid = td.dataset.q, q = DATA.qById[qid];
+    panel.innerHTML = '<p class="loading">Chargement…</p>';
+    let d; try { d = await API('cell', {sid, qid}); } catch(e){ panel.innerHTML = `<p class="note-bad">${E(e.userMessage || 'Échec.')}</p>`; return; }
+    panel.innerHTML = `<div class="celld"><div class="hd"><b><a href="#admin/eleve-${E(sid)}">${E(nameOf(sid))}</a></b><span>·</span><a href="#admin/q-${encodeURIComponent(qid)}">${E(qFull(q))}</a><button type="button" class="cpt-btn sec sm" data-x>Fermer</button></div>
+      <p class="muted">${E(qSnippet(q))}${q && q.type === 'qcm' ? ` · bonne réponse : ${E((q.correct || []).join(', '))}` : q && q.type === 'num' ? ` · bonne réponse : ${E(q.answer.display ? plain(q.answer.display) : fmtNum(q.answer.value) + (q.answer.unit ? ' ' + q.answer.unit : ''))}` : ''}</p>
+      ${attemptsHTML(q, d.attempts)}${d.claude.map(claudeHTML).join('')}</div>`;
+    panel.querySelector('[data-x]').addEventListener('click', () => { panel.innerHTML = ''; td.classList.remove('sel'); });
+    panel.scrollIntoView({block: 'nearest', behavior: 'smooth'});
+  };
+  box.addEventListener('click', e => open(e.target.closest('td.c')));
+  box.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' '){ const td = e.target.closest('td.c'); if (td){ e.preventDefault(); open(td); } } });
+}
+
+/* ------------------------------------------------------------ onglet « Suivi détaillé » */
+async function adminSuivi(root, chap){
+  const perChap = {}; OV.perq.forEach(p => { perChap[p.chap] = (perChap[p.chap] || 0) + 1; });
+  const chs = Object.keys(CHAPTERS);
+  if (!chap || !CHAPTERS[chap]) chap = sget('olymp-suivi-c') || chs.filter(c => perChap[c]).sort((a, b) => perChap[b] - perChap[a])[0] || chs[0];
+  if (!CHAPTERS[chap]) chap = chs[0];
+  sset('olymp-suivi-c', chap);
+  const groups = [...new Set(OV.students.map(s => s.groupe).filter(Boolean))].sort();
+  let g = sget('olymp-suivi-g') || ''; if (g && !groups.includes(g)) g = '';
+  let all = sget('olymp-suivi-all') === '1';
+  root.innerHTML = `<h2>Suivi détaillé, question par question</h2>
+    <p class="muted" style="font-size:.92rem">Une ligne par élève, une colonne par question du chapitre (numérotées dans l’ordre du chapitre ; un trait sépare les problèmes). Cliquez sur une case pour voir toutes les réponses de l’élève à cette question, sur un numéro pour l’analyse de la question par toute la classe.</p>
+    <div class="form-row"><label>Chapitre<select id="suC">${chs.map(c => `<option value="${c}"${c === chap ? ' selected' : ''}>${E(CHAPTERS[c].title)}${perChap[c] ? ` (${perChap[c]} réponse${perChap[c] > 1 ? 's' : ''})` : ''}</option>`).join('')}</select></label>
+    ${groups.length ? `<label>Élèves<select id="suG"><option value="">tous</option>${groups.map(x => `<option${x === g ? ' selected' : ''}>${E(x)}</option>`).join('')}</select></label>` : ''}
+    <label class="chk"><input type="checkbox" id="suA"${all ? ' checked' : ''}> afficher aussi les questions que personne n’a faites</label>
+    <a class="cpt-btn sec" href="/api/app?a=exportReponses">Exporter toutes les réponses (CSV)</a></div>
+    ${LEGEND}<div id="suGrid"><p class="loading">Chargement…</p></div><div id="suCell"></div>`;
+  root.querySelector('#suC').addEventListener('change', e => { location.hash = '#admin/suivi-' + e.target.value; });
+  let d; try { d = await API('attemptsFor', {chap}); } catch(e){ root.querySelector('#suGrid').innerHTML = `<p class="note-bad">${E(e.userMessage || 'Échec.')}</p>`; return; }
+  const byKey = byPair(d.attempts), qsAll = DATA.questions.filter(q => q.chap === chap), idx = new Map(qsAll.map((q, i) => [q.id, i + 1]));
+  const draw = () => {
+    const S = OV.students.filter(s => !g || s.groupe === g);
+    const qs = all ? qsAll : qsAll.filter(q => S.some(s => byKey[s.id + '|' + q.id]));
+    const box = root.querySelector('#suGrid');
+    if (!S.length){ box.innerHTML = '<p class="muted">Aucun élève.</p>'; return; }
+    if (!qs.length){ box.innerHTML = '<p class="muted">Aucune réponse dans ce chapitre pour ces élèves. Cochez « afficher aussi les questions que personne n’a faites » pour voir la grille vide.</p>'; return; }
+    box.innerHTML = `<p class="muted" style="font-size:.86rem">${qs.length} question${qs.length > 1 ? 's' : ''} sur ${qsAll.length} · ${S.length} élève${S.length > 1 ? 's' : ''}</p>` + gridHTML(S, qs, byKey, {num: q => idx.get(q.id)});
+  };
+  draw(); bindGrid(root.querySelector('#suGrid'), root.querySelector('#suCell'));
+  const gs = root.querySelector('#suG'); if (gs) gs.addEventListener('change', () => { g = gs.value; sset('olymp-suivi-g', g); draw(); });
+  root.querySelector('#suA').addEventListener('change', e => { all = e.target.checked; sset('olymp-suivi-all', all ? '1' : ''); draw(); });
+}
+
+/* ------------------------------------------------------------ une question, vue par toute la classe */
+async function adminQuestion(root, qid){
+  const q = DATA.qById[qid];
+  if (!q){ root.innerHTML = '<p class="note-bad">Question introuvable (elle a peut-être été retirée du site).</p>'; return; }
+  root.innerHTML = '<p class="loading">Chargement…</p>';
+  let d; try { d = await API('question', {qid}); } catch(e){ root.innerHTML = `<p class="note-bad">${E(e.userMessage || 'Échec.')}</p>`; return; }
+  const by = {}; d.attempts.forEach(a => (by[a.sid] = by[a.sid] || []).push(a));
+  const sids = Object.keys(by).sort((a, b) => nameOf(a).localeCompare(nameOf(b)));
+  const sums = sids.map(sid => ({sid, ...summary(by[sid])}));
+  const withReal = sums.filter(s => s.real.length), firstOk = sums.filter(s => s.firstOk).length, seenFirst = sums.filter(s => s.L[0].how === 'vu').length;
+  const lastOk = withReal.filter(s => s.lastReal.score >= 1).length;
+  const durs = d.attempts.filter(a => a.how !== 'vu' && a.dur > 0).map(a => a.dur), hints = withReal.map(s => s.lastReal.hints || 0);
+  const g = q.group ? DATA.gById[q.group] : null, ch = CHAPTERS[q.chap];
+  let h = `<p style="margin-top:14px"><a href="#admin/suivi-${E(q.chap)}">← Suivi détaillé${ch ? ' : ' + E(ch.title) : ''}</a></p>
+    <h2 style="margin-top:.3em">${E(qFull(q))}</h2>
+    <p class="muted">${ch ? E(ch.title) + ' · ' : ''}${q.type === 'qcm' ? 'QCM' : q.type === 'num' ? 'réponse numérique' : 'réponse à rédiger'} · <a href="#question/${encodeURIComponent(q.id)}">ouvrir la question</a>${g ? ` · <a href="#${E(g.chap || q.chap)}--g-${E(g.id)}">le problème dans le chapitre</a>` : ''} · identifiant <span class="code">${E(q.id)}</span></p>
+    <details class="qst"><summary>Énoncé${q.type === 'qcm' ? ' et options' : ''}</summary><div>${g ? `<div class="muted" style="font-size:.9rem">${g.intro || ''}</div>` : ''}${q.statement}${q.type === 'qcm' ? '<ol class="optl">' + q.options.map(o => `<li class="${(q.correct || []).includes(o.key) ? 'g' : ''}"><b>${E(o.key)}.</b> ${o.text}</li>`).join('') + '</ol>' : ''}${q.type === 'num' ? `<p><b>Réponse attendue :</b> ${q.answer.display || E(fmtNum(q.answer.value) + ' ' + (q.answer.unit || ''))}</p>` : ''}</div></details>
+    <div class="kpis">
+      <div class="kpi"><div class="v">${sids.length}</div><div class="l">Élèves</div><div class="s">${withReal.length} ont répondu</div></div>
+      <div class="kpi"><div class="v">${sids.length ? pct(firstOk / sids.length) : '–'}</div><div class="l">Juste du premier coup</div><div class="s">${firstOk} élève${firstOk > 1 ? 's' : ''}</div></div>
+      <div class="kpi"><div class="v">${withReal.length ? pct(lastOk / withReal.length) : '–'}</div><div class="l">Juste à la fin</div><div class="s">dernière réponse de chacun</div></div>
+      <div class="kpi"><div class="v">${seenFirst}</div><div class="l">Corrigé lu d’abord</div><div class="s">sans avoir essayé</div></div>
+      <div class="kpi"><div class="v">${durs.length ? fmtDur(median(durs)) : '–'}</div><div class="l">Temps médian</div><div class="s">${hints.length ? (hints.reduce((x, y) => x + y, 0) / hints.length).toFixed(1).replace('.', ',') + ' indice(s) en moyenne' : ''}</div></div>
+    </div>`;
+  // réponses fausses fréquentes : première réponse de chaque élève
+  const firsts = sums.map(s => s.real[0]).filter(a => a && a.answer);
+  if (q.type === 'qcm' && firsts.length){
+    const cnt = {}; firsts.forEach(a => a.answer.split(',').forEach(k => { cnt[k] = (cnt[k] || 0) + 1; }));
+    const mx = Math.max(1, ...Object.values(cnt));
+    h += `<h2>Options choisies (première réponse de chaque élève)</h2><div class="optbars">` + q.options.map(o => { const n = cnt[o.key] || 0, ok = (q.correct || []).includes(o.key);
+      return `<div class="ob${ok ? ' g' : ''}"><span class="k">${E(o.key)}${ok ? ' ✓' : ''}</span><span class="tx">${o.text}</span><span class="bar ${ok ? 'ok' : 'bad'}"><i style="width:${100 * n / mx}%"></i></span><span class="n">${n}</span></div>`; }).join('') + '</div>';
+  } else if (q.type === 'num' && firsts.length){
+    const grp = {}; firsts.forEach(a => { const x = parseNum(a.answer), k = isFinite(x) ? x.toPrecision(3) : a.answer.trim(); (grp[k] = grp[k] || {x, n: 0, raw: a.answer}).n++; });
+    const rows = Object.values(grp).sort((a, b) => b.n - a.n);
+    h += `<h2>Valeurs proposées (première réponse de chaque élève)</h2><div class="scroll"><table><thead><tr><th>Valeur</th><th class="num">Élèves</th><th>Écart à la bonne réponse</th></tr></thead><tbody>` +
+      rows.map(r => { const ratio = isFinite(r.x) && q.answer.value ? r.x / q.answer.value : NaN, good = isFinite(ratio) && Math.abs(ratio - 1) <= (q.answer.tol || .05);
+        return `<tr><td><span class="${good ? 'g' : 'r'}">${E(r.raw)}${q.answer.unit ? ' ' + E(q.answer.unit) : ''}</span></td><td class="num">${r.n}</td><td>${good ? 'juste' : isFinite(ratio) ? E(ratioHint(ratio)) : 'pas un nombre'}</td></tr>`; }).join('') + '</tbody></table></div>';
+  } else if (q.type === 'open'){
+    const txt = sums.filter(s => s.L.some(a => a.answer));
+    if (txt.length) h += `<h2>Réponses rédigées</h2>` + txt.map(s => { const a = [...s.L].reverse().find(x => x.answer); return `<div class="cl"><div class="h">${pillHTML(s.last)}<b>${E(nameOf(s.sid))}</b><span>${E(HOW_LABEL[s.last.how] || '')}</span><span>${E(fmtDate(a.ts))}</span></div><div class="ans">${E(a.answer)}</div></div>`; }).join('');
+    if (d.claude.length) h += `<h2>Corrections et pistes données par Claude</h2>` + d.claude.slice().reverse().map(claudeHTML).join('');
+  }
+  // un élève par ligne
+  h += `<h2>Élève par élève</h2>`;
+  if (!sids.length) h += '<p class="muted">Aucun élève n’a encore traité cette question.</p>';
+  else h += `<div class="scroll"><table class="att"><thead><tr><th>Élève</th><th>Première réponse</th><th>Dernière réponse</th><th class="num">Réponses</th><th class="num">Indices</th><th class="num">Temps</th><th>Date</th></tr></thead><tbody>` +
+    sums.map(s => `<tr data-sid="${E(s.sid)}"><td><a href="#admin/eleve-${E(s.sid)}">${E(nameOf(s.sid))}</a></td><td>${pillHTML(s.L[0])} ${answerHTML(q, s.L[0]).replace('<div class="ans">', '<div class="ans sm">')}</td><td>${s.L.length > 1 ? pillHTML(s.last) + ' ' + answerHTML(q, s.last).replace('<div class="ans">', '<div class="ans sm">') : '<span class="muted">—</span>'}</td><td class="num">${s.L.length}</td><td class="num">${Math.max(...s.L.map(a => a.hints || 0))}</td><td class="num">${fmtDur(s.L.reduce((x, a) => x + (a.dur || 0), 0) || null)}</td><td>${E(ago(s.last.ts))}</td></tr>`).join('') + '</tbody></table></div>';
+  root.innerHTML = h; typeset(root);
+}
+
+/* ------------------------------------------------------------ maîtrise des méthodes */
+function methodsOf(q){ return [...new Set([...(q.methods || []), ...((q.steps || []).map(s => s.m).filter(Boolean))])].filter(m => MBYID[m]); }
+function methodRows(list){            // list : réponses (une par élève et par question) avec sid, qid, score, how
+  const agg = {};
+  list.filter(p => p.how !== 'vu').forEach(p => { const q = DATA.qById[p.qid]; if (!q) return; methodsOf(q).forEach(m => { const A = agg[m] = agg[m] || {m, n: 0, s: 0, who: new Set(), qs: new Set()}; A.n++; A.s += p.score; A.who.add(p.sid); A.qs.add(p.qid); }); });
+  return Object.values(agg).map(A => ({...A, mean: A.s / A.n})).sort((a, b) => a.mean - b.mean || b.n - a.n);
+}
+function methodsHTML(rows, opts = {}){
+  if (!rows.length) return '<p class="muted">Pas encore de réponses à des questions rattachées à une fiche méthode.</p>';
+  const show = rows.filter(r => r.n >= (opts.min || 1));
+  return `<div class="scroll"><table><thead><tr><th>Méthode</th><th class="num">Réponses</th>${opts.students ? '<th class="num">Élèves</th>' : ''}<th class="num">Questions</th><th>Réussite</th></tr></thead><tbody>` +
+    show.map((r, i) => `<tr${i >= (opts.top || 12) ? ' class="more" hidden' : ''}><td><a href="#methodes--m-${E(r.m)}">${E(MBYID[r.m].title)}</a></td><td class="num">${r.n}</td>${opts.students ? `<td class="num">${r.who.size}</td>` : ''}<td class="num">${r.qs.size}</td><td><div style="display:flex;align-items:center;gap:8px"><div class="bar ok" style="flex:1"><i style="width:${100 * r.mean}%"></i></div><span style="font-size:.82rem;min-width:3em;text-align:right">${pct(r.mean)}</span></div></td></tr>`).join('') +
+    `</tbody></table></div>${show.length > (opts.top || 12) ? `<p><button type="button" class="cpt-btn sec sm" data-more>Afficher les ${show.length} méthodes</button></p>` : ''}`;
+}
+function bindMore(root){ root.querySelectorAll('[data-more]').forEach(b => b.addEventListener('click', () => { b.closest('p').previousElementSibling.querySelectorAll('tr.more').forEach(t => t.hidden = false); b.remove(); })); }
+
+/* ------------------------------------------------------------ fiche d'un élève : compléments */
+function sessionsOf(A){
+  const s = [...A].sort((a, b) => a.ts - b.ts), out = [];
+  for (const a of s){ const cur = out[out.length - 1]; if (cur && a.ts - cur.end < 40 * 60000){ cur.end = a.ts; cur.list.push(a); } else out.push({start: a.ts, end: a.ts, list: [a]}); }
+  return out.reverse();
+}
+function studentExtraHTML(d){
+  const A = d.attempts, byQ = {}; A.forEach(a => (byQ[a.qid] = byQ[a.qid] || []).push(a));
+  const S = Object.values(byQ).map(L => summary(L.sort((x, y) => x.ts - y.ts)));
+  const met = S.length, first = S.filter(s => s.firstOk).length, seen = S.filter(s => s.seen).length, onlySeen = S.filter(s => !s.real.length).length;
+  const tot = A.reduce((x, a) => x + (a.dur || 0), 0), sess = sessionsOf(A);
+  let h = `<h2>Suivi détaillé</h2><div class="kpis">
+    <div class="kpi"><div class="v">${met ? pct(first / met) : '–'}</div><div class="l">Juste du premier coup</div><div class="s">${first} question${first > 1 ? 's' : ''} sur ${met} abordée${met > 1 ? 's' : ''}</div></div>
+    <div class="kpi"><div class="v">${seen}</div><div class="l">Corrigés lus sans essayer</div><div class="s">${onlySeen} jamais tentée${onlySeen > 1 ? 's' : ''} ensuite</div></div>
+    <div class="kpi"><div class="v">${tot ? fmtDur(tot) : '–'}</div><div class="l">Temps sur les questions</div><div class="s">temps à l’écran, mesuré depuis le 23 nov.</div></div>
+    <div class="kpi"><div class="v">${sess.length}</div><div class="l">Séances</div><div class="s">${sess.length ? 'dernière ' + E(ago(sess[0].end)) : ''}</div></div></div>`;
+  // séries
+  const mySeries = (OV.series || []).filter(se => !se.archived && serieFor(se, d.me));
+  if (mySeries.length){
+    h += '<h2>Séries d’exercices</h2><ul class="qlist">' + mySeries.map(se => { const n = se.qids.filter(q => byQ[q] && byQ[q].some(a => a.how !== 'vu')).length;
+      return `<li><span class="pill ${n === se.qids.length ? 'ok' : n ? 'mid' : 'bad'}">${n} / ${se.qids.length}</span><div><a href="#admin/serie-${E(se.id)}">${E(se.title)}</a><span class="sn">${E(dueText(se.due))}</span></div></li>`; }).join('') + '</ul>';
+  }
+  // méthodes
+  const last = Object.values(byQ).map(L => { const r = L.filter(a => a.how !== 'vu'); return r.length ? {...r[r.length - 1]} : L[L.length - 1]; });
+  h += '<h2>Par méthode</h2>' + methodsHTML(methodRows(last.map(a => ({...a, sid: d.me.id}))), {top: 8});
+  // séances
+  h += '<h2>Séances de travail</h2>';
+  if (!sess.length) h += '<p class="muted">Aucune réponse enregistrée.</p>';
+  else h += '<div class="scroll"><table><thead><tr><th>Début</th><th class="num">Durée</th><th class="num">Réponses</th><th>Résultats</th><th>Chapitres</th></tr></thead><tbody>' + sess.slice(0, 25).map(s => {
+    const c = {ok: 0, mid: 0, bad: 0, vu: 0}; s.list.forEach(a => c[stOf(a)]++);
+    const dur = Math.max((s.end - s.start) / 1000, s.list.reduce((x, a) => x + (a.dur || 0), 0));
+    const chs = [...new Set(s.list.map(a => a.chap))].map(x => CHAPTERS[x] ? CHAPTERS[x].title : x);
+    return `<tr><td>${E(fmtDate(s.start))}</td><td class="num">${dur ? fmtDur(dur) : '–'}</td><td class="num">${s.list.length}</td><td style="white-space:nowrap">${c.ok ? `<span class="pill ok">${c.ok} juste${c.ok > 1 ? 's' : ''}</span> ` : ''}${c.mid ? `<span class="pill mid">${c.mid} en partie</span> ` : ''}${c.bad ? `<span class="pill bad">${c.bad} faux</span> ` : ''}${c.vu ? `<span class="pill vu">${c.vu} lu${c.vu > 1 ? 's' : ''}</span>` : ''}</td><td><small>${E(chs.join(', '))}</small></td></tr>`; }).join('') + '</tbody></table></div>' + (sess.length > 25 ? `<p class="muted">${sess.length - 25} séances plus anciennes non affichées.</p>` : '');
+  // journal
+  const chs = [...new Set(A.map(a => a.chap))].filter(c => CHAPTERS[c]);
+  h += `<h2>Toutes les réponses</h2><div class="form-row"><label>Chapitre<select id="jrC"><option value="">tous</option>${chs.map(c => `<option value="${c}">${E(CHAPTERS[c].title)}</option>`).join('')}</select></label>
+    <label>Résultat<select id="jrS"><option value="">tous</option><option value="ok">juste</option><option value="mid">en partie</option><option value="bad">faux</option><option value="vu">corrigé lu sans essayer</option></select></label></div><div id="jr"></div>`;
+  return h;
+}
+function bindJournal(root, A){
+  const box = root.querySelector('#jr'); if (!box) return;
+  let lim = 60;
+  const draw = () => {
+    const c = root.querySelector('#jrC').value, st = root.querySelector('#jrS').value;
+    const L = [...A].sort((a, b) => b.ts - a.ts).filter(a => (!c || a.chap === c) && (!st || stOf(a) === st));
+    box.innerHTML = !L.length ? '<p class="muted">Aucune réponse.</p>' : `<div class="scroll"><table class="att"><thead><tr><th>Date</th><th>Question</th><th>Résultat</th><th>Réponse donnée</th><th class="num">Indices</th><th class="num">Temps</th></tr></thead><tbody>` +
+      L.slice(0, lim).map(a => { const q = DATA.qById[a.qid]; return `<tr><td style="white-space:nowrap">${E(fmtDate(a.ts))}</td><td><a href="#admin/q-${encodeURIComponent(a.qid)}">${E(qFull(q))}</a><br><small class="muted">${E(CHAPTERS[a.chap] ? CHAPTERS[a.chap].title : a.chap)}</small></td><td>${pillHTML(a)}${HOW_LABEL[a.how] ? `<br><small class="muted">${E(HOW_LABEL[a.how])}</small>` : ''}</td><td>${answerHTML(q, a).replace('<div class="ans">', '<div class="ans sm">')}</td><td class="num">${a.hints || 0}</td><td class="num">${fmtDur(a.dur)}</td></tr>`; }).join('') +
+      `</tbody></table></div>${L.length > lim ? `<p><button type="button" class="cpt-btn sec sm" id="jrM">Afficher les ${L.length - lim} suivantes</button></p>` : ''}`;
+    const m = box.querySelector('#jrM'); if (m) m.addEventListener('click', () => { lim += 200; draw(); });
+  };
+  root.querySelector('#jrC').addEventListener('change', () => { lim = 60; draw(); });
+  root.querySelector('#jrS').addEventListener('change', () => { lim = 60; draw(); });
+  draw();
+}
+
+/* ------------------------------------------------------------ séries d'exercices (professeur) */
+const normG = x => String(x || '').normalize('NFC').trim().toLowerCase().replace(/\s+/g, ' ');
+const serieFor = (se, st) => !se.cible || (se.cible === '@T' ? st.niveau !== 'C' : se.cible === '@C' ? st.niveau === 'C' : normG(se.cible) === normG(st.groupe));
+const cibleLabel = c => !c ? 'tous les élèves' : c === '@T' ? 'les élèves de terminale' : c === '@C' ? 'les élèves de CPGE' : 'la classe « ' + c + ' »';
+function dueText(due){
+  if (!due) return 'sans date limite';
+  const s = new Date(due).toLocaleString('fr-FR', {weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit'});
+  const left = due - Date.now();
+  if (left < 0) return 'date limite passée (' + s + ')';
+  return 'à faire pour le ' + s + (left < DAYMS ? ' (moins de 24 h)' : left < 7 * DAYMS ? ` (dans ${Math.ceil(left / DAYMS)} j)` : '');
+}
+function serieStats(se){
+  const studs = OV.students.filter(s => serieFor(se, s)), last = {};
+  OV.perq.forEach(p => { last[p.sid + '|' + p.qid] = p; });
+  const per = studs.map(s => { const n = se.qids.filter(q => { const p = last[s.id + '|' + q]; return p && p.how !== 'vu'; }).length; return {s, n, any: n > 0 || se.qids.some(q => last[s.id + '|' + q])}; });
+  return {studs, per, full: per.filter(x => x.n === se.qids.length).length, started: per.filter(x => x.any && x.n < se.qids.length).length, none: per.filter(x => !x.any).length};
+}
+function adminSeries(root){
+  const L = OV.series || [], act = L.filter(s => !s.archived), arch = L.filter(s => s.archived);
+  const row = se => { const st = serieStats(se), N = st.studs.length;
+    return `<tr data-id="${E(se.id)}"><td><a href="#admin/serie-${E(se.id)}"><b>${E(se.title)}</b></a><br><small class="muted">${E(cibleLabel(se.cible))} · ${se.qids.length} question${se.qids.length > 1 ? 's' : ''}</small></td>
+      <td><small>${E(dueText(se.due))}</small></td>
+      <td style="min-width:180px">${N ? `<div class="stack" title="${st.full} ont tout fait, ${st.started} ont commencé, ${st.none} n’ont pas commencé"><i class="ok" style="width:${100 * st.full / N}%"></i><i class="mid" style="width:${100 * st.started / N}%"></i></div><small>${st.full} / ${N} ont tout fait · ${st.none} pas commencé${st.none > 1 ? 's' : ''}</small>` : '<small class="muted">aucun élève visé</small>'}</td>
+      <td style="white-space:nowrap"><a class="cpt-btn sec sm" href="#admin/serie-edit-${E(se.id)}">Modifier</a> <button type="button" class="cpt-btn sec sm" data-arch="${se.archived ? '' : '1'}">${se.archived ? 'Réactiver' : 'Archiver'}</button> <button type="button" class="cpt-btn dang sm" data-del>Supprimer</button></td></tr>`; };
+  const table = list => `<div class="scroll"><table class="series"><thead><tr><th>Série</th><th>Échéance</th><th>Avancement</th><th></th></tr></thead><tbody>${list.map(row).join('')}</tbody></table></div>`;
+  root.innerHTML = `<h2>Séries d’exercices</h2>
+    <p class="muted" style="font-size:.92rem">Composez une série de questions de la banque, pour toute la classe, un niveau ou un groupe, avec une date limite. Les élèves concernés la voient dans leur menu (« Mes séries ») et la font sur une page dédiée ; vous suivez ici qui a fait quoi, et quand.</p>
+    <p><a class="cpt-btn" href="#admin/serie-new">Nouvelle série</a></p>
+    ${act.length ? table(act) : '<p class="muted">Aucune série en cours.</p>'}
+    ${arch.length ? `<details style="margin-top:1.5em"><summary>Séries archivées (${arch.length}) : invisibles pour les élèves</summary>${table(arch)}</details>` : ''}<p id="seOut"></p>`;
+  root.addEventListener('click', async e => {
+    const tr = e.target.closest('tr[data-id]'), b = e.target.closest('button'); if (!tr || !b) return;
+    const id = tr.dataset.id, out = root.querySelector('#seOut');
+    try {
+      if (b.hasAttribute('data-arch')){ await API('archiveSerie', {id, archived: b.dataset.arch === '1'}); }
+      else if (b.hasAttribute('data-del')){
+        if (!b.dataset.armed){ b.dataset.armed = '1'; b.textContent = 'Confirmer la suppression'; return; }
+        await API('deleteSerie', {id});
+      } else return;
+      OV = await API('overview'); adminSeries(root);
+    } catch(x){ out.className = 'note-bad'; out.textContent = x.userMessage || 'Échec.'; }
+  });
+}
+async function adminSerieEdit(root, id){
+  const se = id ? (OV.series || []).find(x => x.id === id) : null;
+  if (id && !se){ root.innerHTML = '<p class="note-bad">Série introuvable.</p>'; return; }
+  let sel = se ? se.qids.filter(q => DATA.qById[q]) : [];
+  const groups = [...new Set(OV.students.map(s => s.groupe).filter(Boolean))].sort();
+  const dd = se && se.due ? new Date(se.due) : null, pad = n => String(n).padStart(2, '0');
+  const dateV = dd ? `${dd.getFullYear()}-${pad(dd.getMonth() + 1)}-${pad(dd.getDate())}` : '', timeV = dd ? `${pad(dd.getHours())}:${pad(dd.getMinutes())}` : '22:00';
+  const doneBy = {}; OV.perq.forEach(p => { if (p.how !== 'vu') doneBy[p.qid] = (doneBy[p.qid] || 0) + 1; });
+  const prog = await loadProg();
+  root.innerHTML = `<p style="margin-top:14px"><a href="#admin/series">← Toutes les séries</a></p><h2 style="margin-top:.3em">${se ? 'Modifier la série' : 'Nouvelle série'}</h2>
+    <div class="form-row"><label style="flex:2 1 260px">Titre<input type="text" id="sfT" maxlength="120" value="${E(se ? se.title : '')}" placeholder="ex. Oscillateurs : série 1"></label>
+    <label>Pour<select id="sfC"><option value="">tous les élèves</option><option value="@T">les élèves de terminale</option><option value="@C">les élèves de CPGE</option>${groups.map(g => `<option value="${E(g)}">la classe « ${E(g)} »</option>`).join('')}</select></label>
+    <label>Date limite<input type="date" id="sfD" value="${dateV}"></label><label>Heure<input type="time" id="sfH" value="${timeV}"></label></div>
+    <label class="f" style="display:block;font-size:.82rem;color:var(--fg-2)">Consigne (facultative, affichée aux élèves)<textarea id="sfN" style="min-height:60px">${E(se ? se.note : '')}</textarea></label>
+    <div class="cols2 picker"><div><h3>Choisir des questions</h3>
+      <div class="form-row"><label>Chapitre<select id="pkC">${Object.keys(CHAPTERS).map(c => `<option value="${c}">${E(CHAPTERS[c].title)}</option>`).join('')}</select></label>
+      <label style="flex:1 1 140px">Filtrer<input type="text" id="pkF" placeholder="mot de l’énoncé, année…"></label>
+      <label class="chk"><input type="checkbox" id="pkS"> incontournables ★</label></div><div id="pkL" class="pklist"></div></div>
+    <div><h3>Questions de la série (<span id="sfNb">0</span>)</h3><ol id="sfL" class="sellist"></ol></div></div>
+    <p class="form-row"><button type="button" class="cpt-btn" id="sfB">${se ? 'Enregistrer' : 'Créer la série'}</button><span id="sfO"></span></p>`;
+  if (se) root.querySelector('#sfC').value = se.cible || '';
+  if (se && se.cible && !['', '@T', '@C', ...groups].includes(se.cible)){ const o = document.createElement('option'); o.value = se.cible; o.textContent = 'la classe « ' + se.cible + ' »'; root.querySelector('#sfC').appendChild(o); root.querySelector('#sfC').value = se.cible; }
+  const firstChap = sel.length ? DATA.qById[sel[0]].chap : sget('olymp-suivi-c') || Object.keys(CHAPTERS)[0];
+  root.querySelector('#pkC').value = CHAPTERS[firstChap] ? firstChap : Object.keys(CHAPTERS)[0];
+  const starSet = chap => { const s = new Set(); ['T', 'C'].forEach(lv => stars(prog, DATA, chap, lv).forEach(x => x.qids.forEach(q => s.add(q)))); return s; };
+  const lab = q => qFull(q);
+  const drawPick = () => {
+    const c = root.querySelector('#pkC').value, f = normG(root.querySelector('#pkF').value), onlyStar = root.querySelector('#pkS').checked, st = starSet(c), inSel = new Set(sel);
+    let L = DATA.questions.filter(q => q.chap === c);
+    if (onlyStar) L = L.filter(q => st.has(q.id));
+    if (f) L = L.filter(q => normG(lab(q) + ' ' + plain(q.statement) + ' ' + (q.origin || '') + ' ' + q.id).includes(f));
+    let pg = null;
+    root.querySelector('#pkL').innerHTML = !L.length ? '<p class="muted">Aucune question.</p>' : L.slice(0, 250).map(q => {
+      const head = q.group && q.group !== pg ? `<div class="pkg"><span>${E(DATA.gById[q.group] ? DATA.gById[q.group].title : '')}</span><button type="button" class="lk" data-grp="${E(q.group)}">ajouter tout le problème</button></div>` : ''; pg = q.group || null;
+      return `${head}<label class="pk${q.group ? ' in' : ''}"><input type="checkbox" value="${E(q.id)}"${inSel.has(q.id) ? ' checked' : ''}><span><b>${E(q.group ? lab(q).split(' · ').pop() : lab(q))}</b>${st.has(q.id) ? ' <span class="star">★</span>' : ''}${(q.level || ['T', 'C']).includes('T') ? '' : ' <span class="tag lvl">CPGE</span>'}<small>${E(q.type === 'qcm' ? 'QCM' : q.type === 'num' ? 'numérique' : 'à rédiger')}${doneBy[q.id] ? ` · déjà faite par ${doneBy[q.id]} élève${doneBy[q.id] > 1 ? 's' : ''}` : ''} · ${E(qSnippet(q))}</small></span></label>`; }).join('') + (L.length > 250 ? `<p class="muted">${L.length - 250} autres : précisez le filtre.</p>` : '');
+  };
+  const drawSel = () => {
+    root.querySelector('#sfNb').textContent = sel.length;
+    root.querySelector('#sfL').innerHTML = sel.map((id, i) => { const q = DATA.qById[id]; return `<li data-i="${i}"><span class="t"><b>${E(lab(q))}</b><small>${E(CHAPTERS[q.chap] ? CHAPTERS[q.chap].title : '')}</small></span><span class="b"><button type="button" class="lk" data-up${i ? '' : ' disabled'} aria-label="Monter">↑</button><button type="button" class="lk" data-dn${i < sel.length - 1 ? '' : ' disabled'} aria-label="Descendre">↓</button><button type="button" class="lk" data-rm aria-label="Retirer">✕</button></span></li>`; }).join('') || '<p class="muted">Cochez des questions à gauche.</p>';
+  };
+  drawPick(); drawSel();
+  ['#pkC', '#pkS'].forEach(s => root.querySelector(s).addEventListener('change', drawPick));
+  root.querySelector('#pkF').addEventListener('input', drawPick);
+  root.querySelector('#pkL').addEventListener('change', e => { const i = e.target.closest('input[type=checkbox]'); if (!i) return; if (i.checked){ if (!sel.includes(i.value)) sel.push(i.value); } else sel = sel.filter(x => x !== i.value); drawSel(); });
+  root.querySelector('#pkL').addEventListener('click', e => { const b = e.target.closest('[data-grp]'); if (!b) return; (DATA.byGroup[b.dataset.grp] || []).forEach(q => { if (!sel.includes(q.id)) sel.push(q.id); }); drawSel(); drawPick(); });
+  root.querySelector('#sfL').addEventListener('click', e => { const li = e.target.closest('li[data-i]'), b = e.target.closest('button'); if (!li || !b) return; const i = +li.dataset.i;
+    if (b.hasAttribute('data-rm')) sel.splice(i, 1); else if (b.hasAttribute('data-up') && i > 0) [sel[i - 1], sel[i]] = [sel[i], sel[i - 1]]; else if (b.hasAttribute('data-dn') && i < sel.length - 1) [sel[i + 1], sel[i]] = [sel[i], sel[i + 1]];
+    drawSel(); drawPick(); });
+  root.querySelector('#sfB').addEventListener('click', async () => {
+    const o = root.querySelector('#sfO'), dv = root.querySelector('#sfD').value, hv = root.querySelector('#sfH').value || '22:00';
+    const due = dv ? new Date(dv + 'T' + hv).getTime() : null;
+    try {
+      const r = await API('saveSerie', {id: se ? se.id : undefined, title: root.querySelector('#sfT').value, cible: root.querySelector('#sfC').value, note: root.querySelector('#sfN').value, qids: sel, due, archived: se ? se.archived : false});
+      OV = await API('overview'); location.hash = '#admin/serie-' + r.id;
+    } catch(x){ o.className = 'note-bad'; o.textContent = x.userMessage || 'Échec.'; }
+  });
+}
+async function adminSerie(root, id){
+  const se = (OV.series || []).find(x => x.id === id);
+  if (!se){ root.innerHTML = '<p class="note-bad">Série introuvable.</p>'; return; }
+  const qs = se.qids.map(q => DATA.qById[q]).filter(Boolean), st = serieStats(se), N = st.studs.length;
+  const late = se.due && se.due < Date.now(), soon = se.due && !late && se.due - Date.now() < DAYMS;
+  root.innerHTML = `<p style="margin-top:14px"><a href="#admin/series">← Toutes les séries</a></p><h2 style="margin-top:.3em">${E(se.title)}${se.archived ? ' <span class="pill">archivée</span>' : ''}</h2>
+    <p class="muted">Pour ${E(cibleLabel(se.cible))} · ${E(dueText(se.due))} · créée ${E(ago(se.created))} · <a href="#admin/serie-edit-${E(se.id)}">modifier</a> · <a href="#serie/${E(se.id)}">voir la page des élèves</a></p>
+    ${se.note ? `<div class="newcodes">${E(se.note)}</div>` : ''}
+    <div class="kpis"><div class="kpi"><div class="v">${N}</div><div class="l">Élèves concernés</div></div>
+    <div class="kpi"><div class="v">${st.full}</div><div class="l">Ont tout fait</div><div class="s">${qs.length} question${qs.length > 1 ? 's' : ''}</div></div>
+    <div class="kpi"><div class="v">${st.started}</div><div class="l">Ont commencé</div></div>
+    <div class="kpi"><div class="v">${st.none}</div><div class="l">Pas commencé</div><div class="s">${soon ? 'échéance dans moins de 24 h' : late ? 'échéance passée' : ''}</div></div></div>
+    ${st.none ? `<p class="${soon || late ? 'newcodes' : 'muted'}"><b>Pas encore commencé :</b> ${st.per.filter(x => !x.any).map(x => E(x.s.prenom + ' ' + x.s.nom)).join(', ')} <button type="button" class="cpt-btn sec sm" id="seCp">Copier la liste</button></p>` : ''}
+    ${LEGEND}<div id="seGrid"><p class="loading">Chargement…</p></div><div id="seCell"></div>`;
+  const cp = root.querySelector('#seCp'); if (cp) cp.addEventListener('click', async () => { try { await navigator.clipboard.writeText(st.per.filter(x => !x.any).map(x => x.s.prenom + ' ' + x.s.nom).join('\n')); cp.textContent = 'Copiée'; } catch(e){ cp.textContent = 'Copie impossible'; } });
+  let d; try { d = await API('attemptsFor', {qids: se.qids}); } catch(e){ root.querySelector('#seGrid').innerHTML = `<p class="note-bad">${E(e.userMessage || 'Échec.')}</p>`; return; }
+  const box = root.querySelector('#seGrid');
+  box.innerHTML = !N ? '<p class="muted">Aucun élève ne correspond à la cible de cette série.</p>' : gridHTML(st.studs, qs, byPair(d.attempts), {due: se.due});
+  bindGrid(box, root.querySelector('#seCell'));
+}
+
+/* ------------------------------------------------------------ séries d'exercices (élève) */
+let SERIES = [];
+const serieDone = se => se.qids.filter(q => LAST[q] && LAST[q].how !== 'vu').length;
+const seriesTodo = () => SERIES.filter(se => serieDone(se) < se.qids.length).length;
+function seriesBlock(){
+  if (!SERIES.length) return '';
+  return '<h2>Mes séries d’exercices</h2><ul class="qlist">' + SERIES.map(se => { const n = serieDone(se), N = se.qids.length;
+    return `<li><span class="pill ${n === N ? 'ok' : n ? 'mid' : 'bad'}">${n} / ${N}</span><div><a href="#serie/${E(se.id)}">${E(se.title)}</a><span class="sn">${E(dueText(se.due))}</span></div></li>`; }).join('') + '</ul>';
+}
+function syncSeriesBadge(){
+  const a = document.querySelector('.cpt-box a[href="#serie"]'); if (!a) return;
+  let b = a.querySelector('.badge'); const n = seriesTodo();
+  if (!n){ if (b) b.remove(); return; }
+  if (!b){ b = document.createElement('span'); b.className = 'badge'; b.title = 'Séries pas encore terminées'; a.appendChild(b); } b.textContent = n;
+}
+document.addEventListener('olymp:done', syncSeriesBadge);
+async function showSerie(id){
+  view.className = 'page'; view.dataset.page = '';
+  view.innerHTML = '<p class="loading">Chargement…</p>';
+  await ready;
+  if (ME && ME.role === 'admin'){ location.replace('#admin/' + (id ? 'serie-' + id : 'series')); return; }
+  if (!ME || ME.role !== 'eleve'){ view.innerHTML = '<h1>Séries d’exercices</h1><p>Les séries sont données par votre professeur aux élèves connectés avec leur code.</p>'; return; }
+  await loadData();
+  const se = id && SERIES.find(x => x.id === id);
+  if (!se){
+    view.innerHTML = `<p class="eyebrow">Mon suivi</p><h1>Mes séries d’exercices</h1>${SERIES.length ? seriesBlock().replace('<h2>Mes séries d’exercices</h2>', '') : '<p class="muted">Aucune série pour l’instant.</p>'}`;
+    window.scrollTo(0, 0); return;
+  }
+  view.innerHTML = `<p class="eyebrow">Série d’exercices</p><h1>${E(se.title)}</h1><p class="lede">${E(dueText(se.due))}</p>
+    ${se.note ? `<div class="newcodes" style="white-space:pre-wrap">${E(se.note)}</div>` : ''}<div class="sprog"></div><div class="slist"></div>`;
+  const list = view.querySelector('.slist');
+  se.qids.forEach((qid, i) => { const q = DATA.qById[qid]; if (!q) return;
+    const w = document.createElement('section'); w.className = 'sq'; w.id = 'sq-' + qid;
+    w.innerHTML = `<h2>Question ${i + 1} <small>${E(CHAPTERS[q.chap] ? CHAPTERS[q.chap].title : '')}</small></h2>`;
+    w.appendChild(renderQuestion(q, {showGroup: true, showSub: true})); list.appendChild(w); });
+  typeset(list);
+  const upd = () => { const p = view.querySelector('.sprog'); if (!p || !view.contains(list)) return document.removeEventListener('olymp:done', upd);
+    const n = serieDone(se), N = se.qids.length;
+    p.innerHTML = `<div class="m"><span>${n === N ? 'Série terminée : bravo !' : `${n} question${n > 1 ? 's' : ''} faite${n > 1 ? 's' : ''} sur ${N}`}</span></div><div class="bar ok"><i style="width:${100 * n / N}%"></i></div>`; };
+  upd(); document.addEventListener('olymp:done', upd);
+  window.scrollTo(0, 0);
+}
+
+HOOKS.routes = Object.assign(HOOKS.routes || {}, {suivi: showSuivi, admin: showAdmin, serie: showSerie});
 })();

@@ -107,7 +107,18 @@ async function needStudent(req) {
   if (!r.length) fail(401, "Ce compte n'existe plus : reconnectez-vous.");
   return s;
 }
-const attemptCols = "qid, chap, score, mode, hints, ts";
+const attemptCols = "qid, chap, score, mode, hints, ts, how, answer, dur";
+// Détail d'une réponse : comment elle a été évaluée, ce que l'élève a répondu, temps passé à l'écran (s)
+const HOWS = ["auto", "vu", "soi", "claude"];
+const cleanHow = v => HOWS.includes(v) ? v : null;
+const cleanDur = v => { const x = parseInt(v); return isFinite(x) && x >= 0 ? Math.min(3600, x) : null; };
+// Une série vise tous les élèves (''), un niveau ('@T', '@C') ou une classe (nom du groupe)
+const normG = g => String(g || "").normalize("NFC").trim().toLowerCase().replace(/\s+/g, " ");
+const serieFor = (se, st) => !se.cible || (se.cible === "@T" ? st.niveau !== "C" : se.cible === "@C" ? st.niveau === "C" : normG(se.cible) === normG(st.groupe));
+const serieCols = "id, title, cible, qids, note, created, due, archived";
+// qids : liste JSON stockée en texte
+const fixSerie = r => { let q = r.qids; for (let k = 0; k < 2 && typeof q === "string"; k++) { try { q = JSON.parse(q); } catch (e) { q = []; } } return { ...r, qids: Array.isArray(q) ? q : [] }; };
+const listSeries = async (where = "") => (await query(`SELECT ${serieCols} FROM series ${where} ORDER BY archived, coalesce(due, 1e15) DESC, created DESC`)).map(fixSerie);
 // Demandes en attente, puis celles traitées depuis 30 jours ; les plus anciennes sont effacées
 async function listRequests() {
   await query("DELETE FROM code_requests WHERE (status <> 'pending' AND decided < $1) OR (status = 'pending' AND ts < $2)", [Date.now() - 90 * DAY, Date.now() - 180 * DAY]);
@@ -201,9 +212,12 @@ const actions = {
     const q = bank().q[str(b.qid, 120)];
     if (!q) fail(404, "Question inconnue.");
     const id = str(b.id, 60).replace(/[^\w-]/g, "") || uid("a");
-    await query(`INSERT INTO attempts (id, sid, qid, chap, score, mode, hints, ts) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
-      ON CONFLICT (id) DO UPDATE SET score = EXCLUDED.score, hints = GREATEST(attempts.hints, EXCLUDED.hints), ts = EXCLUDED.ts WHERE attempts.sid = EXCLUDED.sid`,
-      [id, s.sid, q.id, q.chap, clampScore(b.score), str(b.mode, 40), Math.max(0, Math.min(9, parseInt(b.hints) || 0)), Date.now()]);
+    await query(`INSERT INTO attempts (id, sid, qid, chap, score, mode, hints, ts, how, answer, dur) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
+      ON CONFLICT (id) DO UPDATE SET score = EXCLUDED.score, hints = GREATEST(attempts.hints, EXCLUDED.hints), ts = EXCLUDED.ts,
+        how = coalesce(EXCLUDED.how, attempts.how), answer = CASE WHEN coalesce(EXCLUDED.answer, '') <> '' THEN EXCLUDED.answer ELSE attempts.answer END,
+        dur = GREATEST(coalesce(attempts.dur, 0), coalesce(EXCLUDED.dur, 0)) WHERE attempts.sid = EXCLUDED.sid`,
+      [id, s.sid, q.id, q.chap, clampScore(b.score), str(b.mode, 40), Math.max(0, Math.min(9, parseInt(b.hints) || 0)), Date.now(),
+       cleanHow(b.how), str(b.answer, 2000), cleanDur(b.dur)]);
     return { ok: true };
   },
 
@@ -241,8 +255,9 @@ const actions = {
       const q = Q[str(a && a.qid, 120)]; if (!q) continue;
       const id = "l" + str(a.id, 60).replace(/[^\w-]/g, "") + "-" + s.sid;
       const ts = Math.min(now, Math.max(now - 730 * DAY, Number(a.ts) || now));
-      await query(`INSERT INTO attempts (id, sid, qid, chap, score, mode, hints, ts) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) ON CONFLICT (id) DO NOTHING`,
-        [id.slice(0, 140), s.sid, q.id, q.chap, clampScore(a.score), str(a.mode, 40), Math.max(0, Math.min(9, parseInt(a.hints) || 0)), ts]);
+      await query(`INSERT INTO attempts (id, sid, qid, chap, score, mode, hints, ts, how, answer, dur) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) ON CONFLICT (id) DO NOTHING`,
+        [id.slice(0, 140), s.sid, q.id, q.chap, clampScore(a.score), str(a.mode, 40), Math.max(0, Math.min(9, parseInt(a.hints) || 0)), ts,
+         cleanHow(a.how), str(a.answer, 2000), cleanDur(a.dur)]);
       n++;
     }
     return { imported: n };
@@ -250,7 +265,9 @@ const actions = {
 
   async mine(req) {
     const s = await needStudent(req);
+    const st = (await query("SELECT groupe, niveau FROM students WHERE id = $1", [s.sid]))[0];
     return {
+      series: (await listSeries("WHERE NOT archived")).filter(se => serieFor(se, st)).sort((a, b) => (a.due || 1e15) - (b.due || 1e15)),
       attempts: await query(`SELECT ${attemptCols} FROM attempts WHERE sid = $1 ORDER BY ts`, [s.sid]),
       claude: await query("SELECT qid, ts, verdict, comment FROM claude_log WHERE sid = $1 ORDER BY ts DESC LIMIT 30", [s.sid]),
     };
@@ -262,15 +279,16 @@ const actions = {
     const since = Date.now() - 60 * DAY;
     return {
       students: await query(`SELECT s.id, s.prenom, s.nom, s.groupe, s.niveau, s.code, s.created, s.last,
-          (SELECT count(DISTINCT qid)::int FROM attempts a WHERE a.sid = s.id) AS done,
-          (SELECT coalesce(avg(score), 0)::float FROM attempts a WHERE a.sid = s.id) AS mean,
+          (SELECT count(DISTINCT qid)::int FROM attempts a WHERE a.sid = s.id AND coalesce(a.how, '') <> 'vu') AS done,
+          (SELECT coalesce(avg(score), 0)::float FROM attempts a WHERE a.sid = s.id AND coalesce(a.how, '') <> 'vu') AS mean,
           (SELECT max(ts) FROM attempts a WHERE a.sid = s.id) AS lastanswer,
           (SELECT count(*)::int FROM claude_log c WHERE c.sid = s.id AND c.ts > $1) AS claude24
         FROM students s ORDER BY s.groupe, s.nom, s.prenom`, [Date.now() - DAY]),
       // une ligne par élève et par question : dernière note et nombre d'essais
-      perq: await query(`SELECT DISTINCT ON (sid, qid) sid, qid, chap, score, ts FROM attempts ORDER BY sid, qid, ts DESC`),
+      perq: await query(`SELECT DISTINCT ON (sid, qid) sid, qid, chap, score, ts, how FROM attempts ORDER BY sid, qid, ts DESC`),
       days: await query(`SELECT floor(ts / 86400000)::int AS day, count(*)::int AS n, count(DISTINCT sid)::int AS eleves FROM attempts WHERE ts > $1 GROUP BY 1 ORDER BY 1`, [since]),
       recent: await query(`SELECT sid, ${attemptCols} FROM attempts ORDER BY ts DESC LIMIT 40`),
+      series: await listSeries(),
       claude: await query(`SELECT c.sid, c.qid, c.ts, c.verdict FROM claude_log c ORDER BY ts DESC LIMIT 200`),
       requests: await listRequests(),
       settings: await getSettings(),
@@ -288,6 +306,83 @@ const actions = {
       attempts: await query(`SELECT ${attemptCols} FROM attempts WHERE sid = $1 ORDER BY ts`, [sid]),
       claude: await query("SELECT qid, ts, answer, verdict, comment FROM claude_log WHERE sid = $1 ORDER BY ts DESC LIMIT 100", [sid]),
     };
+  },
+
+  // Toutes les réponses (sans le texte) d'un chapitre ou d'une liste de questions : tableau élèves × questions
+  async attemptsFor(req, res, b) {
+    needAdmin(req);
+    const cols = "id, sid, qid, chap, score, mode, hints, ts, how, dur";
+    if (Array.isArray(b.qids)) return { attempts: await query(`SELECT ${cols} FROM attempts WHERE qid = ANY(string_to_array($1::text, '|')) ORDER BY ts`, [b.qids.slice(0, 400).map(x => str(x, 120).replace(/\|/g, "")).join("|")]) };
+    return { attempts: await query(`SELECT ${cols} FROM attempts WHERE chap = $1 ORDER BY ts`, [str(b.chap, 40)]) };
+  },
+
+  // Une case du tableau : toutes les réponses d'un élève à une question, et ses corrections par Claude
+  async cell(req, res, b) {
+    needAdmin(req);
+    const sid = str(b.sid, 40), qid = str(b.qid, 120);
+    return {
+      attempts: await query(`SELECT ${attemptCols} FROM attempts WHERE sid = $1 AND qid = $2 ORDER BY ts`, [sid, qid]),
+      claude: await query("SELECT ts, answer, verdict, comment FROM claude_log WHERE sid = $1 AND qid = $2 ORDER BY ts", [sid, qid]),
+    };
+  },
+
+  // Une question : les réponses de toute la classe
+  async question(req, res, b) {
+    needAdmin(req);
+    const qid = str(b.qid, 120);
+    return {
+      attempts: await query(`SELECT sid, ${attemptCols} FROM attempts WHERE qid = $1 ORDER BY ts`, [qid]),
+      claude: await query("SELECT sid, ts, answer, verdict, comment FROM claude_log WHERE qid = $1 ORDER BY ts", [qid]),
+    };
+  },
+
+  // Export de toutes les réponses, une ligne par réponse (tableur CSV)
+  async exportReponses(req, res) {
+    needAdmin(req);
+    const rows = await query(`SELECT a.ts, s.nom, s.prenom, s.groupe, s.niveau, a.chap, a.qid, a.score, a.how, left(coalesce(a.answer, ''), 1000) AS answer, a.hints, a.dur, a.mode
+      FROM attempts a JOIN students s ON s.id = a.sid ORDER BY a.ts LIMIT 100000`);
+    const cell = v => `"${String(v ?? "").replace(/"/g, '""')}"`;
+    const HOWL = { auto: "vérifiée automatiquement", vu: "réponse affichée sans essayer", soi: "auto-évaluée", claude: "corrigée par Claude" };
+    const date = ts => new Date(ts).toLocaleString("fr-FR", { timeZone: "Europe/Paris" });
+    const out = [["Date", "Nom", "Prénom", "Groupe", "Niveau", "Chapitre", "Question", "Résultat", "Score", "Évaluation", "Réponse donnée", "Indices", "Temps (s)", "Page"]];
+    for (const r of rows) out.push([date(r.ts), r.nom, r.prenom, r.groupe, r.niveau === "C" ? "CPGE" : "Terminale", CHAP_TITLES[r.chap] || r.chap, r.qid,
+      r.how === "vu" ? "corrigé lu sans essayer" : r.score >= 1 ? "juste" : r.score > 0 ? "en partie" : "faux", String(r.score).replace(".", ","), HOWL[r.how] || "",
+      r.answer, r.hints, r.dur ?? "", r.mode]);
+    res.setHeader("Content-Type", "text/csv; charset=utf-8");
+    res.setHeader("Content-Disposition", 'attachment; filename="reponses-olympiades.csv"');
+    return { __raw: "\ufeff" + out.map(r => r.map(cell).join(";")).join("\r\n") };
+  },
+
+  /* ---- séries d'exercices ---- */
+  async saveSerie(req, res, b) {
+    needAdmin(req);
+    const Q = bank().q;
+    const qids = [...new Set((Array.isArray(b.qids) ? b.qids : []).map(x => str(x, 120)).filter(x => Q[x]))].slice(0, 200);
+    const title = str(b.title, 120).trim();
+    if (!title) fail(400, "Donnez un titre à la série.");
+    if (!qids.length) fail(400, "Choisissez au moins une question.");
+    const due = Number(b.due) > 0 ? Number(b.due) : null, cible = str(b.cible, 60).trim(), note = str(b.note, 2000).trim();
+    if (b.id) {
+      const r = await query("UPDATE series SET title = $2, cible = $3, qids = $4, note = $5, due = $6, archived = $7 WHERE id = $1 RETURNING id",
+        [str(b.id, 40), title, cible, JSON.stringify(qids), note, due, !!b.archived]);
+      if (!r.length) fail(404, "Série introuvable.");
+      return { id: r[0].id };
+    }
+    const id = uid("se");
+    await query("INSERT INTO series (id, title, cible, qids, note, created, due) VALUES ($1,$2,$3,$4,$5,$6,$7)", [id, title, cible, JSON.stringify(qids), note, Date.now(), due]);
+    return { id };
+  },
+
+  async archiveSerie(req, res, b) {
+    needAdmin(req);
+    await query("UPDATE series SET archived = $2 WHERE id = $1", [str(b.id, 40), !!b.archived]);
+    return { ok: true };
+  },
+
+  async deleteSerie(req, res, b) {
+    needAdmin(req);
+    await query("DELETE FROM series WHERE id = $1", [str(b.id, 40)]);
+    return { ok: true };
   },
 
   async addStudents(req, res, b) {
@@ -390,7 +485,7 @@ const actions = {
   },
 };
 
-const GET_OK = new Set(["me", "mine", "overview", "export"]);
+const GET_OK = new Set(["me", "mine", "overview", "export", "exportReponses"]);
 
 module.exports = async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
