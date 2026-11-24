@@ -404,8 +404,9 @@ function accountBox(){
     b.innerHTML = `<div class="who">${E(ME.me.prenom)} ${E(ME.me.nom)}<small>${ME.me.groupe ? E(ME.me.groupe) + ' · ' : ''}${ME.me.niveau === 'C' ? 'CPGE' : 'Terminale'}${ME.me.code ? ' · code <span class="code">' + E(fmtCode(ME.me.code)) + '</span>' : ''}</small></div>
       <a href="#suivi" data-page="suivi">Mon tableau de bord</a>${SERIES.length ? `<a href="#serie" data-page="serie">Mes séries d’exercices${seriesTodo() ? `<span class="badge" title="Séries pas encore terminées">${seriesTodo()}</span>` : ''}</a>` : ''}<button type="button" class="lk" data-out>Se déconnecter</button>`;
   } else if (ME.role === 'admin'){
-    b.innerHTML = `<div class="who">Espace professeur</div><a href="#admin" data-page="admin">Tableau de bord de la classe</a>
-      <a href="#admin/eleves">Élèves et codes${ME.pending ? `<span class="badge" title="Demandes de code en attente">${ME.pending}</span>` : ''}</a><button type="button" class="lk" data-out>Se déconnecter</button>`;
+    const ad = ME.admin || {principal: true, eleves: true};
+    b.innerHTML = `<div class="who">Espace professeur<small>${ad.principal ? 'compte principal' : E(ad.nom)}</small></div><a href="#admin" data-page="admin">Tableau de bord de la classe</a>
+      <a href="#admin/series">Séries d’exercices</a><a href="#admin/eleves">${ad.eleves ? 'Élèves et codes' : 'Élèves'}${ME.pending ? `<span class="badge" title="Demandes de code en attente">${ME.pending}</span>` : ''}</a><button type="button" class="lk" data-out>Se déconnecter</button>`;
   } else {
     const pend = reqGet();
     b.innerHTML = `<div class="who">Visiteur<small>Progression gardée dans ce navigateur.</small></div><a href="#suivi" data-page="suivi">Mon tableau de bord</a><button type="button" class="lk" data-in>${pend ? 'Ma demande de code (en attente)' : 'Se connecter avec un code'}</button>${!pend && ME.requests !== false ? '<button type="button" class="lk" data-req>Demander un code</button>' : ''}`;
@@ -550,16 +551,21 @@ let OV = null;
 async function showAdmin(sub){
   view.className = 'page wide dash'; view.dataset.page = '';
   await ready;
-  if (!ME || ME.role !== 'admin'){ view.innerHTML = '<h1>Espace professeur</h1><p>Connectez-vous avec le mot de passe professeur.</p><p><button class="cpt-btn" type="button" id="cptIn">Se connecter</button></p>'; document.getElementById('cptIn').addEventListener('click', gate); return; }
+  if (!ME || ME.role !== 'admin'){ view.innerHTML = '<h1>Espace professeur</h1><p>Connectez-vous avec votre mot de passe professeur.</p><p><button class="cpt-btn" type="button" id="cptIn">Se connecter</button></p>'; document.getElementById('cptIn').addEventListener('click', gate); return; }
   sub = sub || '';
-  const tab = sub.startsWith('eleve-') ? 'eleves' : sub.startsWith('suivi') || sub.startsWith('q-') ? 'suivi' : sub.startsWith('serie') ? 'series' : sub || 'classe';
-  view.innerHTML = `<p class="eyebrow">Espace professeur</p><h1>Tableau de bord</h1>
-    <nav class="tabs" aria-label="Rubriques"><a href="#admin" class="${tab === 'classe' ? 'on' : ''}">La classe</a><a href="#admin/suivi" class="${tab === 'suivi' ? 'on' : ''}">Suivi détaillé</a><a href="#admin/series" class="${tab === 'series' ? 'on' : ''}">Séries d’exercices</a><a href="#admin/eleves" class="${tab === 'eleves' ? 'on' : ''}">Élèves et codes${ME.pending ? `<span class="badge">${ME.pending}</span>` : ''}</a><a href="#admin/reglages" class="${tab === 'reglages' ? 'on' : ''}">Réglages</a><button type="button" class="cpt-btn sec sm admref" title="Recharger les dernières réponses">Actualiser</button></nav><div id="adm"><p class="loading">Chargement…</p></div>`;
+  const AD = ME.admin || {principal: true, eleves: true};
+  const tab = sub.startsWith('eleve-') ? 'eleves' : sub.startsWith('suivi') || sub.startsWith('q-') ? 'suivi' : sub.startsWith('serie') ? 'series' : sub === 'reglages' && !AD.principal ? 'compte' : sub || 'classe';
+  const T = (h, t, label) => `<a href="${h}" class="${tab === t ? 'on' : ''}">${label}</a>`;
+  view.innerHTML = `<p class="eyebrow">Espace professeur${AD.principal ? '' : ' · ' + E(AD.nom)}</p><h1>Tableau de bord</h1>
+    <nav class="tabs" aria-label="Rubriques">${T('#admin', 'classe', 'La classe')}${T('#admin/suivi', 'suivi', 'Suivi détaillé')}${T('#admin/series', 'series', 'Séries d’exercices')}${T('#admin/eleves', 'eleves', (AD.eleves ? 'Élèves et codes' : 'Élèves') + (ME.pending ? `<span class="badge">${ME.pending}</span>` : ''))}${AD.principal ? T('#admin/profs', 'profs', 'Professeurs') + T('#admin/reglages', 'reglages', 'Réglages') : T('#admin/compte', 'compte', 'Mon compte')}<button type="button" class="cpt-btn sec sm admref" title="Recharger les dernières réponses">Actualiser</button></nav><div id="adm"><p class="loading">Chargement…</p></div>`;
   const root = view.querySelector('#adm');
   view.querySelector('.admref').addEventListener('click', () => showAdmin(sub));
-  try { OV = await API('overview'); } catch(e){ root.innerHTML = `<p class="note-bad">${E(e.userMessage || 'Le serveur ne répond pas.')}</p>`; return; }
+  try { OV = await API('overview'); } catch(e){ root.innerHTML = `<p class="note-bad">${E(e.userMessage || 'Le serveur ne répond pas.')}</p>`; if (e.status === 401) setTimeout(() => location.reload(), 2500); return; }
+  if (OV.me) ME.admin = OV.me;
   syncPending();
   await loadData(); await loadProg();
+  if (tab === 'profs') return AD.principal ? adminProfs(root) : adminCompte(root);
+  if (tab === 'compte') return adminCompte(root);
   if (sub.startsWith('eleve-')) return adminStudent(root, sub.slice(6));
   if (sub.startsWith('q-')) return adminQuestion(root, sub.slice(2));
   if (sub === 'suivi' || sub.startsWith('suivi-')) return adminSuivi(root, sub.slice(6));
@@ -568,7 +574,7 @@ async function showAdmin(sub){
   if (sub.startsWith('serie-edit-')) return adminSerieEdit(root, sub.slice(11));
   if (sub.startsWith('serie-')) return adminSerie(root, sub.slice(6));
   if (tab === 'eleves') return adminStudents(root);
-  if (tab === 'reglages') return adminSettings(root);
+  if (tab === 'reglages') return AD.principal ? adminSettings(root) : adminCompte(root);
   return adminClass(root);
 }
 // nombre de demandes en attente : pastilles du menu et des onglets
@@ -694,15 +700,16 @@ function bindRequests(root){
 }
 
 function adminStudents(root){
-  const S = OV.students;
+  const S = OV.students, MG = !ME.admin || ME.admin.eleves;
   const groups = [...new Set(S.map(s => s.groupe).filter(Boolean))].sort();
+  if (!MG) return adminStudentsRO(root, S, groups);
   let h = requestsHTML(groups) + `<div class="cols2"><div><h2>Ajouter des élèves</h2>
     <p class="muted" style="font-size:.9rem">Une ligne par élève : « Prénom Nom » (ou « Prénom ; Nom »). Chaque élève reçoit un code à six caractères, à lui transmettre.</p>
     <textarea id="adL" placeholder="Camille Martin&#10;Hugo Bernard"></textarea>
     <div class="form-row"><label>Groupe<input type="text" id="adG" placeholder="ex. TS 2026" list="adGl"><datalist id="adGl">${groups.map(g => `<option value="${E(g)}">`).join('')}</datalist></label>
     <label>Niveau<select id="adN"><option value="T">Terminale</option><option value="C">CPGE</option></select></label>
     <button class="cpt-btn" id="adB" type="button">Créer les comptes</button></div><div id="adOut"></div></div>
-    <div><h2>Codes</h2><p class="muted" style="font-size:.9rem">Les élèves se connectent avec leur code ; vous, avec le mot de passe professeur. Un nouveau code remplace l’ancien (l’élève garde sa progression).</p>
+    <div><h2>Codes</h2><p class="muted" style="font-size:.9rem">Les élèves se connectent avec leur code ; les professeurs, avec leur mot de passe. Un nouveau code remplace l’ancien (l’élève garde sa progression).</p>
     <p><a class="cpt-btn sec" href="/api/app?a=export">Exporter le suivi (tableur CSV)</a> <button class="cpt-btn sec" type="button" id="adPrint">Imprimer les codes</button></p></div></div>`;
   h += `<h2>Élèves (${S.length})</h2>`;
   if (groups.length > 1) h += `<div class="form-row"><label>Groupe<select id="adF"><option value="">Tous</option>${groups.map(g => `<option>${E(g)}</option>`).join('')}</select></label></div>`;
@@ -736,6 +743,16 @@ function adminStudents(root){
     }
   });
 }
+// compte professeur sans la gestion des élèves : liste et résultats seulement, sans les codes
+function adminStudentsRO(root, S, groups){
+  let h = `<h2>Élèves (${S.length})</h2><p class="muted" style="font-size:.9rem">Votre compte donne accès aux résultats de tous les élèves. La création des comptes, les codes et les demandes de code sont gérés par le professeur principal.</p>`;
+  if (groups.length > 1) h += `<div class="form-row"><label>Groupe<select id="adF"><option value="">Tous</option>${groups.map(g => `<option>${E(g)}</option>`).join('')}</select></label></div>`;
+  h += `<div class="scroll"><table id="adT"><thead><tr><th>Élève</th><th>Groupe</th><th>Niveau</th><th class="num">Questions</th><th class="num">Réussite</th><th>Dernière réponse</th><th class="num">Claude 24 h</th></tr></thead><tbody>`;
+  h += S.map(s => `<tr data-g="${E(s.groupe)}"><td><a href="#admin/eleve-${E(s.id)}">${E(s.nom)} ${E(s.prenom)}</a></td><td>${E(s.groupe)}</td><td>${s.niveau === 'C' ? 'CPGE' : 'Term.'}</td><td class="num">${s.done}</td><td class="num">${s.done ? pct(s.mean) : '–'}</td><td>${E(ago(s.lastanswer))}</td><td class="num">${s.claude24}</td></tr>`).join('');
+  h += '</tbody></table></div>' + (S.length ? '' : '<p class="muted">Aucun élève pour l’instant.</p>') + '<p><a class="cpt-btn sec" href="/api/app?a=export">Exporter le suivi (tableur CSV)</a></p>';
+  root.innerHTML = h;
+  const f = root.querySelector('#adF'); if (f) f.addEventListener('change', () => root.querySelectorAll('#adT tbody tr').forEach(tr => tr.hidden = !!f.value && tr.dataset.g !== f.value));
+}
 function printCodes(group){
   const S = OV.students.filter(s => !group || s.groupe === group);
   const w = window.open('', '_blank'); if (!w) return;
@@ -746,11 +763,11 @@ function printCodes(group){
 
 async function adminStudent(root, sid){
   let d; try { d = await API('student', {sid}); } catch(e){ root.innerHTML = `<p class="note-bad">${E(e.userMessage || 'Élève introuvable.')}</p>`; return; }
-  const s = d.me;
+  const s = d.me, MG = !ME.admin || ME.admin.eleves;
   root.innerHTML = `<p style="margin-top:14px"><a href="#admin/eleves">← Tous les élèves</a></p>
     <h2 style="margin-top:.4em">${E(s.prenom)} ${E(s.nom)}</h2>
-    <p class="muted">Code <span class="code">${E(fmtCode(s.code))}</span> · ${s.niveau === 'C' ? 'CPGE' : 'Terminale'}${s.groupe ? ' · ' + E(s.groupe) : ''} · dernière visite ${E(ago(s.last))}</p>
-    <details><summary>Modifier la fiche</summary><div class="form-row"><label>Prénom<input type="text" id="esP" value="${E(s.prenom)}"></label><label>Nom<input type="text" id="esN" value="${E(s.nom)}"></label>
+    <p class="muted">${s.code ? `Code <span class="code">${E(fmtCode(s.code))}</span> · ` : ''}${s.niveau === 'C' ? 'CPGE' : 'Terminale'}${s.groupe ? ' · ' + E(s.groupe) : ''} · dernière visite ${E(ago(s.last))}</p>
+    <details${MG ? '' : ' hidden'}><summary>Modifier la fiche</summary><div class="form-row"><label>Prénom<input type="text" id="esP" value="${E(s.prenom)}"></label><label>Nom<input type="text" id="esN" value="${E(s.nom)}"></label>
     <label>Groupe<input type="text" id="esG" value="${E(s.groupe)}"></label><label>Niveau<select id="esL"><option value="T"${s.niveau !== 'C' ? ' selected' : ''}>Terminale</option><option value="C"${s.niveau === 'C' ? ' selected' : ''}>CPGE</option></select></label>
     <button class="cpt-btn" type="button" id="esB">Enregistrer</button><span id="esO"></span></div></details><div id="esD"></div>`;
   root.querySelector('#esB').addEventListener('click', async () => {
@@ -1050,13 +1067,13 @@ function serieStats(se){
 function adminSeries(root){
   const L = OV.series || [], act = L.filter(s => !s.archived), arch = L.filter(s => s.archived);
   const row = se => { const st = serieStats(se), N = st.studs.length;
-    return `<tr data-id="${E(se.id)}"><td><a href="#admin/serie-${E(se.id)}"><b>${E(se.title)}</b></a><br><small class="muted">${E(cibleLabel(se.cible))} · ${se.qids.length} question${se.qids.length > 1 ? 's' : ''}</small></td>
+    return `<tr data-id="${E(se.id)}"><td><a href="#admin/serie-${E(se.id)}"><b>${E(se.title)}</b></a><br><small class="muted">${E(cibleLabel(se.cible))} · ${se.qids.length} question${se.qids.length > 1 ? 's' : ''}${authorNote(se)}</small></td>
       <td><small>${E(dueText(se.due))}</small></td>
       <td style="min-width:180px">${N ? `<div class="stack" title="${st.full} ont tout fait, ${st.started} ont commencé, ${st.none} n’ont pas commencé"><i class="ok" style="width:${100 * st.full / N}%"></i><i class="mid" style="width:${100 * st.started / N}%"></i></div><small>${st.full} / ${N} ont tout fait · ${st.none} pas commencé${st.none > 1 ? 's' : ''}</small>` : '<small class="muted">aucun élève visé</small>'}</td>
-      <td style="white-space:nowrap"><a class="cpt-btn sec sm" href="#admin/serie-edit-${E(se.id)}">Modifier</a> <button type="button" class="cpt-btn sec sm" data-arch="${se.archived ? '' : '1'}">${se.archived ? 'Réactiver' : 'Archiver'}</button> <button type="button" class="cpt-btn dang sm" data-del>Supprimer</button></td></tr>`; };
+      <td style="white-space:nowrap">${mayEdit(se) ? `<a class="cpt-btn sec sm" href="#admin/serie-edit-${E(se.id)}">Modifier</a> <button type="button" class="cpt-btn sec sm" data-arch="${se.archived ? '' : '1'}">${se.archived ? 'Réactiver' : 'Archiver'}</button> <button type="button" class="cpt-btn dang sm" data-del>Supprimer</button>` : ''}</td></tr>`; };
   const table = list => `<div class="scroll"><table class="series"><thead><tr><th>Série</th><th>Échéance</th><th>Avancement</th><th></th></tr></thead><tbody>${list.map(row).join('')}</tbody></table></div>`;
   root.innerHTML = `<h2>Séries d’exercices</h2>
-    <p class="muted" style="font-size:.92rem">Composez une série de questions de la banque, pour toute la classe, un niveau ou un groupe, avec une date limite. Les élèves concernés la voient dans leur menu (« Mes séries ») et la font sur une page dédiée ; vous suivez ici qui a fait quoi, et quand.</p>
+    <p class="muted" style="font-size:.92rem">Composez une série (un devoir d’entraînement) avec les questions du site : QCM et problèmes d’annales, cahier d’entraînement, exercices du cours… pour toute la classe, un niveau ou un groupe, avec une date limite. Les élèves concernés la voient dans leur menu (« Mes séries ») et la font sur une page dédiée ; vous suivez ici qui a fait quoi, et quand.</p>
     <p><a class="cpt-btn" href="#admin/serie-new">Nouvelle série</a></p>
     ${act.length ? table(act) : '<p class="muted">Aucune série en cours.</p>'}
     ${arch.length ? `<details style="margin-top:1.5em"><summary>Séries archivées (${arch.length}) : invisibles pour les élèves</summary>${table(arch)}</details>` : ''}<p id="seOut"></p>`;
@@ -1073,9 +1090,12 @@ function adminSeries(root){
     } catch(x){ out.className = 'note-bad'; out.textContent = x.userMessage || 'Échec.'; }
   });
 }
+// provenance des questions, pour composer une série à partir des annales
+const PICK_KINDS = [['qcm-annale', 'QCM d’annales IPhO'], ['pb-ipho', 'Problèmes d’annales IPhO'], ['cg', 'Concours général'], ['cde', 'Cahier d’entraînement'], ['cours', 'Exercices du cours'], ['ext', 'Polycopiés olympiques (Zhou, Kalda…)'], ['olymp', 'Olympiades étrangères (APhO, RMPh, EuPhO)']];
 async function adminSerieEdit(root, id){
   const se = id ? (OV.series || []).find(x => x.id === id) : null;
   if (id && !se){ root.innerHTML = '<p class="note-bad">Série introuvable.</p>'; return; }
+  if (se && !mayEdit(se)){ root.innerHTML = `<p class="note-bad">Seul l’auteur de cette série (${E(profName(se.author))}), ou le compte principal, peut la modifier.</p>`; return; }
   let sel = se ? se.qids.filter(q => DATA.qById[q]) : [];
   const groups = [...new Set(OV.students.map(s => s.groupe).filter(Boolean))].sort();
   const dd = se && se.due ? new Date(se.due) : null, pad = n => String(n).padStart(2, '0');
@@ -1089,6 +1109,7 @@ async function adminSerieEdit(root, id){
     <label class="f" style="display:block;font-size:.82rem;color:var(--fg-2)">Consigne (facultative, affichée aux élèves)<textarea id="sfN" style="min-height:60px">${E(se ? se.note : '')}</textarea></label>
     <div class="cols2 picker"><div><h3>Choisir des questions</h3>
       <div class="form-row"><label>Chapitre<select id="pkC">${Object.keys(CHAPTERS).map(c => `<option value="${c}">${E(CHAPTERS[c].title)}</option>`).join('')}</select></label>
+      <label>Provenance<select id="pkK"><option value="">toutes</option>${PICK_KINDS.map(([v, l]) => `<option value="${v}">${E(l)}</option>`).join('')}</select></label>
       <label style="flex:1 1 140px">Filtrer<input type="text" id="pkF" placeholder="mot de l’énoncé, année…"></label>
       <label class="chk"><input type="checkbox" id="pkS"> incontournables ★</label></div><div id="pkL" class="pklist"></div></div>
     <div><h3>Questions de la série (<span id="sfNb">0</span>)</h3><ol id="sfL" class="sellist"></ol></div></div>
@@ -1101,7 +1122,8 @@ async function adminSerieEdit(root, id){
   const lab = q => qFull(q);
   const drawPick = () => {
     const c = root.querySelector('#pkC').value, f = normG(root.querySelector('#pkF').value), onlyStar = root.querySelector('#pkS').checked, st = starSet(c), inSel = new Set(sel);
-    let L = DATA.questions.filter(q => q.chap === c);
+    const kd = root.querySelector('#pkK').value; sset('olymp-pick-k', kd);
+    let L = DATA.questions.filter(q => q.chap === c && (!kd || (kd === 'cg' ? isCG(q) : kd === 'pb-ipho' ? q.kind === 'pb' && !isCG(q) : q.kind === kd)));
     if (onlyStar) L = L.filter(q => st.has(q.id));
     if (f) L = L.filter(q => normG(lab(q) + ' ' + plain(q.statement) + ' ' + (q.origin || '') + ' ' + q.id).includes(f));
     let pg = null;
@@ -1114,7 +1136,8 @@ async function adminSerieEdit(root, id){
     root.querySelector('#sfL').innerHTML = sel.map((id, i) => { const q = DATA.qById[id]; return `<li data-i="${i}"><span class="t"><b>${E(lab(q))}</b><small>${E(CHAPTERS[q.chap] ? CHAPTERS[q.chap].title : '')}</small></span><span class="b"><button type="button" class="lk" data-up${i ? '' : ' disabled'} aria-label="Monter">↑</button><button type="button" class="lk" data-dn${i < sel.length - 1 ? '' : ' disabled'} aria-label="Descendre">↓</button><button type="button" class="lk" data-rm aria-label="Retirer">✕</button></span></li>`; }).join('') || '<p class="muted">Cochez des questions à gauche.</p>';
   };
   drawPick(); drawSel();
-  ['#pkC', '#pkS'].forEach(s => root.querySelector(s).addEventListener('change', drawPick));
+  root.querySelector('#pkK').value = PICK_KINDS.some(([v]) => v === sget('olymp-pick-k')) ? sget('olymp-pick-k') : '';
+  ['#pkC', '#pkS', '#pkK'].forEach(s => root.querySelector(s).addEventListener('change', drawPick));
   root.querySelector('#pkF').addEventListener('input', drawPick);
   root.querySelector('#pkL').addEventListener('change', e => { const i = e.target.closest('input[type=checkbox]'); if (!i) return; if (i.checked){ if (!sel.includes(i.value)) sel.push(i.value); } else sel = sel.filter(x => x !== i.value); drawSel(); });
   root.querySelector('#pkL').addEventListener('click', e => { const b = e.target.closest('[data-grp]'); if (!b) return; (DATA.byGroup[b.dataset.grp] || []).forEach(q => { if (!sel.includes(q.id)) sel.push(q.id); }); drawSel(); drawPick(); });
@@ -1136,7 +1159,7 @@ async function adminSerie(root, id){
   const qs = se.qids.map(q => DATA.qById[q]).filter(Boolean), st = serieStats(se), N = st.studs.length;
   const late = se.due && se.due < Date.now(), soon = se.due && !late && se.due - Date.now() < DAYMS;
   root.innerHTML = `<p style="margin-top:14px"><a href="#admin/series">← Toutes les séries</a></p><h2 style="margin-top:.3em">${E(se.title)}${se.archived ? ' <span class="pill">archivée</span>' : ''}</h2>
-    <p class="muted">Pour ${E(cibleLabel(se.cible))} · ${E(dueText(se.due))} · créée ${E(ago(se.created))} · <a href="#admin/serie-edit-${E(se.id)}">modifier</a> · <a href="#serie/${E(se.id)}">voir la page des élèves</a></p>
+    <p class="muted">Pour ${E(cibleLabel(se.cible))} · ${E(dueText(se.due))} · créée ${E(ago(se.created))}${authorNote(se, true)}${mayEdit(se) ? ` · <a href="#admin/serie-edit-${E(se.id)}">modifier</a>` : ''}</p>
     ${se.note ? `<div class="newcodes">${E(se.note)}</div>` : ''}
     <div class="kpis"><div class="kpi"><div class="v">${N}</div><div class="l">Élèves concernés</div></div>
     <div class="kpi"><div class="v">${st.full}</div><div class="l">Ont tout fait</div><div class="s">${qs.length} question${qs.length > 1 ? 's' : ''}</div></div>
@@ -1193,6 +1216,91 @@ async function showSerie(id){
   upd(); document.addEventListener('olymp:done', upd);
   window.scrollTo(0, 0);
 }
+
+/* ============================================================ comptes professeurs */
+const AD = () => (ME && ME.admin) || {id: 'principal', principal: true, eleves: true, nom: ''};
+const mayEdit = row => AD().principal || (!!row.author && row.author === AD().id);
+function profName(aid){ if (!aid || aid === 'principal') return 'compte principal'; const p = ((OV && OV.profs) || []).find(x => x.id === aid); return p ? p.nom : 'compte supprimé'; }
+const authorNote = (row, long) => (row.author || 'principal') === (AD().id || 'principal') ? '' : (long ? ' · créé par ' : ' · par ') + E(profName(row.author));
+// bouton à confirmer d'un second clic (dans les 5 s)
+function arm(b, label){ const old = b.textContent; b.dataset.armed = '1'; b.textContent = label; setTimeout(() => { if (b.isConnected && b.dataset.armed){ delete b.dataset.armed; b.textContent = old; } }, 5000); }
+
+async function adminProfs(root){
+  root.innerHTML = '<p class="loading">Chargement…</p>';
+  let L; try { L = (await API('admins')).admins; } catch(e){ root.innerHTML = `<p class="note-bad">${E(e.userMessage || 'Échec.')}</p>`; return; }
+  const hasEl = a => a.rights.split(',').includes('eleves');
+  let h = `<h2>Comptes professeurs</h2>
+    <p class="muted" style="font-size:.92rem">Vous êtes connecté avec le compte principal (le mot de passe ADMIN_PASSWORD du projet Vercel). Créez ici un compte pour chaque collègue : il se connecte avec son propre mot de passe, dans le champ où les élèves tapent leur code. Un collègue voit tous les résultats des élèves (tableau de bord, suivi détaillé, fiches, exports) et crée des séries d’exercices à partir des questions du site ; il ne modifie que les séries qu’il a créées. La création des comptes élèves, les codes et les demandes de code lui restent fermés, sauf si vous cochez « Peut gérer les élèves et les codes ». Les réglages et cette page sont réservés au compte principal.</p>`;
+  h += L.length ? `<div class="scroll"><table id="pfT"><thead><tr><th>Professeur</th><th>Accès</th><th>Créé</th><th>Dernière visite</th><th></th></tr></thead><tbody>${L.map(a => `<tr data-id="${E(a.id)}"><td><b>${E(a.nom)}</b></td><td><small>résultats, séries d’exercices${hasEl(a) ? ', <b>élèves et codes</b>' : ''}</small></td><td>${E(ago(a.created))}</td><td>${E(a.last ? ago(a.last) : 'jamais connecté')}</td>
+      <td style="white-space:nowrap"><button type="button" class="cpt-btn sec sm" data-edit>Modifier</button> <button type="button" class="cpt-btn sec sm" data-reset>Nouveau mot de passe</button> <button type="button" class="cpt-btn dang sm" data-del>Supprimer</button></td></tr>`).join('')}</tbody></table></div>`
+    : '<p class="muted">Aucun autre compte professeur pour l’instant.</p>';
+  h += `<div id="pfOut"></div><h2 id="pfH">Nouveau compte</h2>
+    <div class="form-row"><label style="flex:1 1 220px">Nom (affiché dans l’espace professeur)<input type="text" id="pfN" maxlength="80" placeholder="ex. Mme Durand"></label>
+    <label style="flex:1 1 260px">Mot de passe <small>(facultatif : vide, il est tiré au sort)</small><input type="text" id="pfP" maxlength="100" autocomplete="off" spellcheck="false" placeholder="10 caractères au moins"></label></div>
+    <label class="switch"><input type="checkbox" id="pfE"><div><b>Peut gérer les élèves et les codes</b><span>Créer et supprimer des comptes élèves, voir et changer leurs codes, valider les demandes de code. Sans cette case, les codes des élèves lui sont masqués.</span></div></label>
+    <p class="form-row"><button type="button" class="cpt-btn" id="pfB">Créer le compte</button><button type="button" class="cpt-btn sec" id="pfX" hidden>Annuler</button><span id="pfO"></span></p>`;
+  root.innerHTML = h;
+  let editing = null;
+  const o = root.querySelector('#pfO');
+  const showPwd = (nom, pw, what) => {
+    const out = root.querySelector('#pfOut');    // la page a pu être redessinée entre-temps
+    out.innerHTML = `<div class="newcodes"><b>${E(what)} · ${E(nom)}</b><div><span class="bigpw code">${E(pw)}</span> <button type="button" class="cpt-btn sec sm" id="pfC">Copier</button></div><small class="muted">Transmettez-le à votre collègue : il se connecte sur ${E(location.origin)} en le tapant dans le champ du code (majuscules ou minuscules, peu importe). Ce mot de passe ne sera plus affiché ; en cas d’oubli, créez-en un nouveau.</small></div>`;
+    const c = out.querySelector('#pfC'); c.addEventListener('click', async () => { try { await navigator.clipboard.writeText(pw); c.textContent = 'Copié'; } catch(e){ c.textContent = 'Copie impossible'; } });
+    out.scrollIntoView({block: 'nearest'});
+  };
+  root.querySelector('#pfX').addEventListener('click', () => adminProfs(root));
+  root.querySelector('#pfB').addEventListener('click', async e => {
+    const b = e.currentTarget; b.disabled = true; o.textContent = '';
+    const body = {nom: root.querySelector('#pfN').value, password: root.querySelector('#pfP').value, eleves: root.querySelector('#pfE').checked};
+    if (editing) body.id = editing;
+    try {
+      const r = await API('saveAdmin', body);
+      await adminProfs(root);
+      if (r.password) showPwd(body.nom.trim(), r.password, body.id ? 'Nouveau mot de passe' : 'Compte créé, mot de passe');
+      else root.querySelector('#pfOut').innerHTML = '<p class="note-ok">Compte modifié.</p>';
+    } catch(x){ o.className = 'note-bad'; o.textContent = x.userMessage || 'Échec.'; b.disabled = false; }
+  });
+  const t = root.querySelector('#pfT'); if (t) t.addEventListener('click', async e => {
+    const tr = e.target.closest('tr[data-id]'), b = e.target.closest('button'); if (!tr || !b) return;
+    const a = L.find(x => x.id === tr.dataset.id);
+    if (b.hasAttribute('data-edit')){
+      editing = a.id; root.querySelector('#pfH').textContent = 'Modifier le compte de ' + a.nom;
+      root.querySelector('#pfN').value = a.nom; const p = root.querySelector('#pfP'); p.value = ''; p.placeholder = 'vide : le mot de passe ne change pas';
+      root.querySelector('#pfE').checked = hasEl(a); root.querySelector('#pfB').textContent = 'Enregistrer'; root.querySelector('#pfX').hidden = false;
+      root.querySelector('#pfH').scrollIntoView({block: 'start', behavior: 'smooth'}); root.querySelector('#pfN').focus(); return;
+    }
+    if (b.hasAttribute('data-reset')){
+      if (!b.dataset.armed){ arm(b, 'Confirmer : l’ancien ne marchera plus'); return; }
+      b.disabled = true;
+      try { const r = await API('saveAdmin', {id: a.id, nom: a.nom, eleves: hasEl(a), reset: true}); showPwd(a.nom, r.password, 'Nouveau mot de passe'); b.textContent = 'Mot de passe changé'; } catch(x){ b.textContent = 'Échec'; }
+      return;
+    }
+    if (b.hasAttribute('data-del')){
+      if (!b.dataset.armed){ arm(b, 'Confirmer la suppression'); return; }
+      b.disabled = true; try { await API('deleteAdmin', {id: a.id}); await adminProfs(root); } catch(x){ b.textContent = 'Échec'; }
+    }
+  });
+}
+
+function adminCompte(root){
+  const a = AD();
+  root.innerHTML = `<h2>Mon compte</h2><p>Connecté comme <b>${E(a.nom)}</b>. Ce compte donne accès aux résultats de tous les élèves et aux séries d’exercices (vous modifiez celles que vous avez créées)${a.eleves ? ', ainsi qu’à la gestion des élèves et des codes' : ''}. Les réglages du site et les comptes professeurs sont gérés par le compte principal.</p>
+    <h2>Changer de mot de passe</h2><div class="form-row"><label>Mot de passe actuel<input type="password" id="mcO" autocomplete="current-password"></label><label>Nouveau <small>(10 caractères au moins)</small><input type="password" id="mcN" autocomplete="new-password"></label><label>Confirmation<input type="password" id="mcC" autocomplete="new-password"></label><button type="button" class="cpt-btn" id="mcB">Changer</button></div><p id="mcOut"></p>`;
+  root.querySelector('#mcB').addEventListener('click', async e => {
+    const b = e.currentTarget, o = root.querySelector('#mcOut'), n = root.querySelector('#mcN').value;
+    if (n !== root.querySelector('#mcC').value){ o.className = 'note-bad'; o.textContent = 'Les deux saisies du nouveau mot de passe diffèrent.'; return; }
+    b.disabled = true;
+    try { await API('changePassword', {old: root.querySelector('#mcO').value, password: n}); o.className = 'note-ok'; o.textContent = 'Mot de passe changé. Sur vos autres appareils, il faudra vous reconnecter.'; root.querySelectorAll('input').forEach(i => { i.value = ''; }); }
+    catch(x){ o.className = 'note-bad'; o.textContent = x.userMessage || 'Échec.'; }
+    b.disabled = false;
+  });
+}
+
+const css2 = `
+.dash input[type=password],.dash input[type=date],.dash input[type=time]{font:inherit;font-size:.92rem;padding:6px 9px;border:1px solid var(--line);border-radius:6px;background:var(--bg-2);color:var(--fg);max-width:100%}
+.bigpw{display:inline-block;font-size:1.45rem;letter-spacing:.1em;margin:8px 0;padding:6px 12px;background:var(--bg-2);border:2px dashed var(--accent);border-radius:8px}
+`;
+{ const s2 = document.createElement('style'); s2.textContent = css2; document.head.appendChild(s2); }
 
 HOOKS.routes = Object.assign(HOOKS.routes || {}, {suivi: showSuivi, admin: showAdmin, serie: showSerie});
 })();

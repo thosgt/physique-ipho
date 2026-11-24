@@ -95,10 +95,49 @@ function need(req) {
   if (!s) fail(401, "Connectez-vous d'abord.");
   return s;
 }
-function needAdmin(req) {
+/* Comptes professeurs. Le compte principal se connecte avec ADMIN_PASSWORD (variable Vercel) ; il crée d'autres comptes
+   (table admins, mot de passe haché par scrypt, sans distinction de casse). Droits d'un autre compte : résultats des élèves,
+   séries d'exercices (les siennes en modification) ; gestion des élèves et des codes seulement si rights contient « eleves ».
+   Réglages et comptes professeurs : compte principal seulement. Une session porte pv : changer le mot de passe la révoque. */
+async function needAdmin(req, what) {
   const s = need(req);
-  if (s.role !== "admin") fail(403, "Réservé au professeur.");
-  return s;
+  if (s.role !== "admin") fail(403, "Réservé aux professeurs.");
+  let a;
+  if (!s.aid || s.aid === "principal") a = { aid: "principal", principal: true, eleves: true, nom: "" };
+  else {
+    const r = (await query("SELECT id, nom, rights, pv FROM admins WHERE id = $1", [s.aid]))[0];
+    if (!r || r.pv !== s.pv) fail(401, "Ce compte professeur a été supprimé ou son mot de passe a changé : reconnectez-vous.");
+    a = { aid: r.id, principal: false, eleves: r.rights.split(",").includes("eleves"), nom: r.nom };
+  }
+  if (what === "eleves" && !a.eleves) fail(403, "Réservé au professeur principal ou à un compte autorisé à gérer les élèves.");
+  if (what === "principal" && !a.principal) fail(403, "Réservé au compte professeur principal.");
+  return a;
+}
+const canEdit = (a, row) => a.principal || (row.author && row.author === a.aid);
+const normPwd = p => String(p ?? "").normalize("NFC").trim().toLowerCase();
+const SCRYPT = { N: 16384, r: 8, p: 1, maxmem: 64 * 1024 * 1024 };
+function hashPwd(p) {
+  const salt = crypto.randomBytes(16);
+  return "s1$" + salt.toString("base64") + "$" + crypto.scryptSync(normPwd(p), salt, 32, SCRYPT).toString("base64");
+}
+function checkPwd(p, h) {
+  const [v, s, k] = String(h || "").split("$");
+  if (v !== "s1" || !s || !k) return false;
+  const want = Buffer.from(k, "base64");
+  return crypto.timingSafeEqual(crypto.scryptSync(normPwd(p), Buffer.from(s, "base64"), want.length, SCRYPT), want);
+}
+function makePassword() {
+  const b = crypto.randomBytes(12);
+  let c = "";
+  for (let i = 0; i < 12; i++) c += ALPHA[b[i] % ALPHA.length];
+  return c.slice(0, 4) + "-" + c.slice(4, 8) + "-" + c.slice(8);
+}
+async function checkNewPwd(p, selfId) {
+  const x = normPwd(p);
+  if (x.length < 10) fail(400, "Le mot de passe doit compter au moins 10 caractères.");
+  if (x.length > 100) fail(400, "Mot de passe trop long (100 caractères au plus).");
+  if (process.env.ADMIN_PASSWORD && normPwd(process.env.ADMIN_PASSWORD) === x) fail(400, "Choisissez un mot de passe différent de celui du compte principal.");
+  for (const r of await query("SELECT id, hash FROM admins")) if (r.id !== selfId && checkPwd(x, r.hash)) fail(400, "Ce mot de passe est déjà celui d'un autre compte professeur.");
 }
 async function needStudent(req) {
   const s = need(req);
@@ -115,9 +154,14 @@ const cleanDur = v => { const x = parseInt(v); return isFinite(x) && x >= 0 ? Ma
 // Une série vise tous les élèves (''), un niveau ('@T', '@C') ou une classe (nom du groupe)
 const normG = g => String(g || "").normalize("NFC").trim().toLowerCase().replace(/\s+/g, " ");
 const serieFor = (se, st) => !se.cible || (se.cible === "@T" ? st.niveau !== "C" : se.cible === "@C" ? st.niveau === "C" : normG(se.cible) === normG(st.groupe));
-const serieCols = "id, title, cible, qids, note, created, due, archived";
+const serieCols = "id, title, cible, qids, note, created, due, archived, author";
 // qids : liste JSON stockée en texte
 const fixSerie = r => { let q = r.qids; for (let k = 0; k < 2 && typeof q === "string"; k++) { try { q = JSON.parse(q); } catch (e) { q = []; } } return { ...r, qids: Array.isArray(q) ? q : [] }; };
+async function ownSerie(A, id) {
+  const r = (await query("SELECT author FROM series WHERE id = $1", [str(id, 40)]))[0];
+  if (!r) fail(404, "Série introuvable.");
+  if (!canEdit(A, r)) fail(403, "Seul l'auteur de cette série, ou le compte principal, peut la modifier.");
+}
 const listSeries = async (where = "") => (await query(`SELECT ${serieCols} FROM series ${where} ORDER BY archived, coalesce(due, 1e15) DESC, created DESC`)).map(fixSerie);
 // Demandes en attente, puis celles traitées depuis 30 jours ; les plus anciennes sont effacées
 async function listRequests() {
@@ -129,15 +173,18 @@ async function listRequests() {
 /* ------------------------------------------------------------------ actions */
 const actions = {
   /* ---- connexion ---- */
-  async me(req) {
+  async me(req, res) {
     const settings = await getSettings();
     const hasKey = !!process.env.ANTHROPIC_API_KEY;
     const s = getSession(req);
     const base = { open: !!settings.open, requests: !!settings.requests };
     if (!s) return { ...base, role: null };
     if (s.role === "admin") {
-      const p = await query("SELECT count(*)::int AS n FROM code_requests WHERE status = 'pending'");
-      return { ...base, role: "admin", pending: p[0].n, claude: { enabled: hasKey, quota: null, used: 0 } };
+      let a;
+      try { a = await needAdmin(req); } catch (e) { if (e.status === 401) { clearSession(res); return { ...base, role: null }; } throw e; }
+      if (!a.principal) await query("UPDATE admins SET last = $2 WHERE id = $1", [a.aid, Date.now()]);
+      const p = a.eleves ? (await query("SELECT count(*)::int AS n FROM code_requests WHERE status = 'pending'"))[0].n : 0;
+      return { ...base, role: "admin", admin: { id: a.aid, nom: a.nom, principal: a.principal, eleves: a.eleves }, pending: p, claude: { enabled: hasKey, quota: null, used: 0 } };
     }
     const me = (await query("SELECT id, prenom, nom, groupe, niveau, code FROM students WHERE id = $1", [s.sid]))[0];
     if (!me) return { ...base, role: null };
@@ -153,8 +200,17 @@ const actions = {
     if (!code) fail(400, "Entrez votre code.");
     const admin = process.env.ADMIN_PASSWORD;
     if (admin && sameSecret(code, admin)) {
-      setSession(res, { role: "admin" }, 14);
+      setSession(res, { role: "admin", aid: "principal" }, 14);
       return { role: "admin" };
+    }
+    // autres comptes professeurs : mot de passe d'au moins 10 caractères (un code élève en a 6)
+    if (normPwd(code).length >= 10) {
+      for (const r of await query("SELECT id, hash, pv FROM admins")) {
+        if (!checkPwd(code, r.hash)) continue;
+        await query("UPDATE admins SET last = $2 WHERE id = $1", [r.id, Date.now()]);
+        setSession(res, { role: "admin", aid: r.id, pv: r.pv }, 14);
+        return { role: "admin" };
+      }
     }
     const st = await query("SELECT id FROM students WHERE code = $1", [normCode(code)]);
     if (!st.length) {
@@ -275,9 +331,11 @@ const actions = {
 
   /* ---- professeur ---- */
   async overview(req) {
-    needAdmin(req);
+    const A = await needAdmin(req);
     const since = Date.now() - 60 * DAY;
-    return {
+    const out = {
+      me: { id: A.aid, nom: A.nom, principal: A.principal, eleves: A.eleves },
+      profs: await query("SELECT id, nom FROM admins ORDER BY created"),
       students: await query(`SELECT s.id, s.prenom, s.nom, s.groupe, s.niveau, s.code, s.created, s.last,
           (SELECT count(DISTINCT qid)::int FROM attempts a WHERE a.sid = s.id AND coalesce(a.how, '') <> 'vu') AS done,
           (SELECT coalesce(avg(score), 0)::float FROM attempts a WHERE a.sid = s.id AND coalesce(a.how, '') <> 'vu') AS mean,
@@ -290,17 +348,21 @@ const actions = {
       recent: await query(`SELECT sid, ${attemptCols} FROM attempts ORDER BY ts DESC LIMIT 40`),
       series: await listSeries(),
       claude: await query(`SELECT c.sid, c.qid, c.ts, c.verdict FROM claude_log c ORDER BY ts DESC LIMIT 200`),
-      requests: await listRequests(),
+      requests: A.eleves ? await listRequests() : [],
       settings: await getSettings(),
       config: { hasKey: !!process.env.ANTHROPIC_API_KEY, model: process.env.ANTHROPIC_MODEL || "claude-haiku-5-5", hasDb: true },
     };
+    // les codes permettent de se connecter à la place d'un élève : réservés aux comptes qui gèrent les élèves
+    if (!A.eleves) out.students.forEach(s => { s.code = ""; });
+    return out;
   },
 
   async student(req, res, b) {
-    needAdmin(req);
+    const A = await needAdmin(req);
     const sid = str(b.sid, 40);
     const me = (await query("SELECT id, prenom, nom, groupe, niveau, code, created, last FROM students WHERE id = $1", [sid]))[0];
     if (!me) fail(404, "Élève introuvable.");
+    if (!A.eleves) me.code = "";
     return {
       me,
       attempts: await query(`SELECT ${attemptCols} FROM attempts WHERE sid = $1 ORDER BY ts`, [sid]),
@@ -310,7 +372,7 @@ const actions = {
 
   // Toutes les réponses (sans le texte) d'un chapitre ou d'une liste de questions : tableau élèves × questions
   async attemptsFor(req, res, b) {
-    needAdmin(req);
+    await needAdmin(req);
     const cols = "id, sid, qid, chap, score, mode, hints, ts, how, dur";
     if (Array.isArray(b.qids)) return { attempts: await query(`SELECT ${cols} FROM attempts WHERE qid = ANY(string_to_array($1::text, '|')) ORDER BY ts`, [b.qids.slice(0, 400).map(x => str(x, 120).replace(/\|/g, "")).join("|")]) };
     return { attempts: await query(`SELECT ${cols} FROM attempts WHERE chap = $1 ORDER BY ts`, [str(b.chap, 40)]) };
@@ -318,7 +380,7 @@ const actions = {
 
   // Une case du tableau : toutes les réponses d'un élève à une question, et ses corrections par Claude
   async cell(req, res, b) {
-    needAdmin(req);
+    await needAdmin(req);
     const sid = str(b.sid, 40), qid = str(b.qid, 120);
     return {
       attempts: await query(`SELECT ${attemptCols} FROM attempts WHERE sid = $1 AND qid = $2 ORDER BY ts`, [sid, qid]),
@@ -328,7 +390,7 @@ const actions = {
 
   // Une question : les réponses de toute la classe
   async question(req, res, b) {
-    needAdmin(req);
+    await needAdmin(req);
     const qid = str(b.qid, 120);
     return {
       attempts: await query(`SELECT sid, ${attemptCols} FROM attempts WHERE qid = $1 ORDER BY ts`, [qid]),
@@ -338,7 +400,7 @@ const actions = {
 
   // Export de toutes les réponses, une ligne par réponse (tableur CSV)
   async exportReponses(req, res) {
-    needAdmin(req);
+    await needAdmin(req);
     const rows = await query(`SELECT a.ts, s.nom, s.prenom, s.groupe, s.niveau, a.chap, a.qid, a.score, a.how, left(coalesce(a.answer, ''), 1000) AS answer, a.hints, a.dur, a.mode
       FROM attempts a JOIN students s ON s.id = a.sid ORDER BY a.ts LIMIT 100000`);
     const cell = v => `"${String(v ?? "").replace(/"/g, '""')}"`;
@@ -355,7 +417,7 @@ const actions = {
 
   /* ---- séries d'exercices ---- */
   async saveSerie(req, res, b) {
-    needAdmin(req);
+    const A = await needAdmin(req);
     const Q = bank().q;
     const qids = [...new Set((Array.isArray(b.qids) ? b.qids : []).map(x => str(x, 120)).filter(x => Q[x]))].slice(0, 200);
     const title = str(b.title, 120).trim();
@@ -363,30 +425,33 @@ const actions = {
     if (!qids.length) fail(400, "Choisissez au moins une question.");
     const due = Number(b.due) > 0 ? Number(b.due) : null, cible = str(b.cible, 60).trim(), note = str(b.note, 2000).trim();
     if (b.id) {
+      await ownSerie(A, b.id);
       const r = await query("UPDATE series SET title = $2, cible = $3, qids = $4, note = $5, due = $6, archived = $7 WHERE id = $1 RETURNING id",
         [str(b.id, 40), title, cible, JSON.stringify(qids), note, due, !!b.archived]);
       if (!r.length) fail(404, "Série introuvable.");
       return { id: r[0].id };
     }
     const id = uid("se");
-    await query("INSERT INTO series (id, title, cible, qids, note, created, due) VALUES ($1,$2,$3,$4,$5,$6,$7)", [id, title, cible, JSON.stringify(qids), note, Date.now(), due]);
+    await query("INSERT INTO series (id, title, cible, qids, note, created, due, author) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)", [id, title, cible, JSON.stringify(qids), note, Date.now(), due, A.aid]);
     return { id };
   },
 
   async archiveSerie(req, res, b) {
-    needAdmin(req);
+    const A = await needAdmin(req);
+    await ownSerie(A, b.id);
     await query("UPDATE series SET archived = $2 WHERE id = $1", [str(b.id, 40), !!b.archived]);
     return { ok: true };
   },
 
   async deleteSerie(req, res, b) {
-    needAdmin(req);
+    const A = await needAdmin(req);
+    await ownSerie(A, b.id);
     await query("DELETE FROM series WHERE id = $1", [str(b.id, 40)]);
     return { ok: true };
   },
 
   async addStudents(req, res, b) {
-    needAdmin(req);
+    await needAdmin(req, "eleves");
     const lines = str(b.lines, 20000).split(/\r?\n/).map(l => l.trim()).filter(Boolean).slice(0, 200);
     if (!lines.length) fail(400, "Une ligne par élève : Prénom Nom.");
     const groupe = str(b.groupe, 60).trim(), niveau = b.niveau === "C" ? "C" : "T";
@@ -402,7 +467,7 @@ const actions = {
   },
 
   async updateStudent(req, res, b) {
-    needAdmin(req);
+    await needAdmin(req, "eleves");
     const sid = str(b.sid, 40);
     await query("UPDATE students SET prenom = $2, nom = $3, groupe = $4, niveau = $5 WHERE id = $1",
       [sid, str(b.prenom, 60).trim(), str(b.nom, 80).trim(), str(b.groupe, 60).trim(), b.niveau === "C" ? "C" : "T"]);
@@ -410,14 +475,14 @@ const actions = {
   },
 
   async regenCode(req, res, b) {
-    needAdmin(req);
+    await needAdmin(req, "eleves");
     const code = await freshCode();
     await query("UPDATE students SET code = $2 WHERE id = $1", [str(b.sid, 40), code]);
     return { code };
   },
 
   async deleteStudent(req, res, b) {
-    needAdmin(req);
+    await needAdmin(req, "eleves");
     const sid = str(b.sid, 40);
     await query("DELETE FROM attempts WHERE sid = $1", [sid]);
     await query("DELETE FROM claude_log WHERE sid = $1", [sid]);
@@ -427,7 +492,7 @@ const actions = {
 
   // Demandes de code : valider (nouveau compte), rattacher à un compte existant (l'élève reçoit son code), refuser
   async decideRequest(req, res, b) {
-    needAdmin(req);
+    await needAdmin(req, "eleves");
     // items : [{id, prenom?, nom?, groupe?, niveau?}] (une ou plusieurs demandes, avec les corrections du professeur)
     const items = (Array.isArray(b.items) ? b.items : [b]).filter(x => x && x.id).slice(0, 300);
     if (!items.length) fail(400, "Aucune demande choisie.");
@@ -455,7 +520,7 @@ const actions = {
   },
 
   async saveSettings(req, res, b) {
-    needAdmin(req);
+    await needAdmin(req, "principal");
     const cur = await getSettings();
     const next = {
       claude: b.claude === undefined ? cur.claude : !!b.claude,
@@ -468,7 +533,7 @@ const actions = {
   },
 
   async export(req, res) {
-    needAdmin(req);
+    const A = await needAdmin(req);
     const st = await query("SELECT id, prenom, nom, groupe, niveau, code FROM students ORDER BY groupe, nom, prenom");
     const per = await query(`SELECT sid, chap, count(DISTINCT qid)::int AS n, avg(score)::float AS m FROM attempts GROUP BY sid, chap`);
     const chaps = [...new Set(per.map(r => r.chap))].sort();
@@ -476,16 +541,62 @@ const actions = {
     const rows = [["Nom", "Prénom", "Groupe", "Niveau", "Code", ...chaps.flatMap(c => [(CHAP_TITLES[c] || c) + " (questions)", (CHAP_TITLES[c] || c) + " (réussite %)"])]];
     for (const s of st) {
       const mine = Object.fromEntries(per.filter(r => r.sid === s.id).map(r => [r.chap, r]));
-      rows.push([s.nom, s.prenom, s.groupe, s.niveau === "C" ? "CPGE" : "Terminale", s.code.slice(0, 3) + "-" + s.code.slice(3),
+      rows.push([s.nom, s.prenom, s.groupe, s.niveau === "C" ? "CPGE" : "Terminale", A.eleves ? s.code.slice(0, 3) + "-" + s.code.slice(3) : "",
         ...chaps.flatMap(c => mine[c] ? [mine[c].n, Math.round(100 * mine[c].m)] : ["", ""])]);
     }
     res.setHeader("Content-Type", "text/csv; charset=utf-8");
     res.setHeader("Content-Disposition", 'attachment; filename="suivi-olympiades.csv"');
     return { __raw: "﻿" + rows.map(r => r.map(cell).join(";")).join("\r\n") };
   },
+
+  /* ---- comptes professeurs (compte principal) ---- */
+  async admins(req) {
+    await needAdmin(req, "principal");
+    return { admins: await query("SELECT id, nom, rights, created, last FROM admins ORDER BY created") };
+  },
+
+  // Création ou modification ; sans mot de passe fourni, un mot de passe est tiré au sort (création, ou reset: true).
+  async saveAdmin(req, res, b) {
+    await needAdmin(req, "principal");
+    const nom = str(b.nom, 80).replace(/\s+/g, " ").trim();
+    if (!nom) fail(400, "Indiquez le nom du professeur.");
+    const rights = b.eleves ? "eleves" : "", id = b.id ? str(b.id, 40) : null;
+    let password = String(b.password ?? "").trim() || null;
+    if (!password && (!id || b.reset)) password = makePassword();
+    if (password) await checkNewPwd(password, id);
+    if (id) {
+      const r = password
+        ? await query("UPDATE admins SET nom = $2, rights = $3, hash = $4, pv = pv + 1 WHERE id = $1 RETURNING id", [id, nom, rights, hashPwd(password)])
+        : await query("UPDATE admins SET nom = $2, rights = $3 WHERE id = $1 RETURNING id", [id, nom, rights]);
+      if (!r.length) fail(404, "Compte introuvable.");
+      return { id, password };
+    }
+    if ((await query("SELECT count(*)::int AS n FROM admins"))[0].n >= 20) fail(400, "Vingt comptes professeurs au plus.");
+    const nid = uid("p");
+    await query("INSERT INTO admins (id, nom, hash, rights, created) VALUES ($1,$2,$3,$4,$5)", [nid, nom, hashPwd(password), rights, Date.now()]);
+    return { id: nid, password };
+  },
+
+  async deleteAdmin(req, res, b) {
+    await needAdmin(req, "principal");
+    await query("DELETE FROM admins WHERE id = $1", [str(b.id, 40)]);
+    return { ok: true };
+  },
+
+  // Un professeur (autre que le compte principal) change son propre mot de passe ; ses autres sessions sont fermées.
+  async changePassword(req, res, b) {
+    const A = await needAdmin(req);
+    if (A.principal) fail(400, "Le mot de passe du compte principal se change dans les réglages du projet Vercel (variable ADMIN_PASSWORD).");
+    const r = (await query("SELECT hash FROM admins WHERE id = $1", [A.aid]))[0];
+    if (!r || !checkPwd(str(b.old, 200), r.hash)) fail(400, "Mot de passe actuel incorrect.");
+    await checkNewPwd(b.password, A.aid);
+    const u = await query("UPDATE admins SET hash = $2, pv = pv + 1 WHERE id = $1 RETURNING pv", [A.aid, hashPwd(b.password)]);
+    setSession(res, { role: "admin", aid: A.aid, pv: u[0].pv }, 14);
+    return { ok: true };
+  },
 };
 
-const GET_OK = new Set(["me", "mine", "overview", "export", "exportReponses"]);
+const GET_OK = new Set(["me", "mine", "overview", "admins", "export", "exportReponses"]);
 
 module.exports = async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
