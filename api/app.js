@@ -31,12 +31,15 @@ const fail = (status, msg) => { throw new HttpError(status, msg); };
 const uid = p => p + crypto.randomBytes(6).toString("base64url").replace(/[-_]/g, "x");
 const ALPHA = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
 function makeCode() {
-  // 6 caractères sans ambiguïté (pas de O/0, I/1, L), affichés XXX-XXX
-  const b = crypto.randomBytes(6);
+  // 4 caractères sans ambiguïté (pas de O/0, I/1, L) ; les codes de 6 caractères donnés avant la version 31 restent valables
+  const b = crypto.randomBytes(4);
   let c = "";
-  for (let i = 0; i < 6; i++) c += ALPHA[b[i] % ALPHA.length];
-  return c.slice(0, 3) + "-" + c.slice(3);
+  for (let i = 0; i < 4; i++) c += ALPHA[b[i] % ALPHA.length];
+  return c;
 }
+const fmtCode = c => c && c.length === 6 ? c.slice(0, 3) + "-" + c.slice(3) : c || "";
+// classes proposées aux élèves qui demandent un code (le professeur peut en saisir d'autres)
+const CLASSES = { T: [4, 5, 6, 7, 8, 9].map(n => "Terminale " + n), C: ["MPSI 1", "MPSI 2", "PCSI 1", "PCSI 2", "PCSI 3"] };
 const normCode = c => String(c || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
 const str = (v, max = 200) => String(v ?? "").slice(0, max);
 const clampScore = v => { const x = Number(v); return isFinite(x) ? Math.max(0, Math.min(1, x)) : 0; };
@@ -203,7 +206,7 @@ const actions = {
       setSession(res, { role: "admin", aid: "principal" }, 14);
       return { role: "admin" };
     }
-    // autres comptes professeurs : mot de passe d'au moins 10 caractères (un code élève en a 6)
+    // autres comptes professeurs : mot de passe d'au moins 10 caractères (un code élève en a 4, ou 6 pour les anciens)
     if (normPwd(code).length >= 10) {
       for (const r of await query("SELECT id, hash, pv FROM admins")) {
         if (!checkPwd(code, r.hash)) continue;
@@ -231,6 +234,7 @@ const actions = {
     const prenom = cleanName(b.prenom, "prénom"), nom = cleanName(b.nom, "nom");
     const niveau = b.niveau === "C" ? "C" : b.niveau === "T" ? "T" : fail(400, "Indiquez si vous êtes en terminale ou en CPGE.");
     const groupe = str(b.groupe, 40).replace(/\s+/g, " ").trim();
+    if (!CLASSES[niveau].includes(groupe)) fail(400, niveau === "T" ? "Choisissez votre classe de terminale (de 4 à 9)." : "Choisissez votre classe : MPSI 1 ou 2, PCSI 1, 2 ou 3.");
     const ip = clientIp(req), now = Date.now();
     const recent = await query("SELECT count(*)::int AS n FROM code_requests WHERE ip = $1 AND ts > $2", [ip, now - 3600000]);
     if (recent[0].n >= 6) fail(429, "Trop de demandes depuis cette connexion : réessayez dans une heure.");
@@ -541,7 +545,7 @@ const actions = {
     const rows = [["Nom", "Prénom", "Groupe", "Niveau", "Code", ...chaps.flatMap(c => [(CHAP_TITLES[c] || c) + " (questions)", (CHAP_TITLES[c] || c) + " (réussite %)"])]];
     for (const s of st) {
       const mine = Object.fromEntries(per.filter(r => r.sid === s.id).map(r => [r.chap, r]));
-      rows.push([s.nom, s.prenom, s.groupe, s.niveau === "C" ? "CPGE" : "Terminale", A.eleves ? s.code.slice(0, 3) + "-" + s.code.slice(3) : "",
+      rows.push([s.nom, s.prenom, s.groupe, s.niveau === "C" ? "CPGE" : "Terminale", A.eleves ? fmtCode(s.code) : "",
         ...chaps.flatMap(c => mine[c] ? [mine[c].n, Math.round(100 * mine[c].m)] : ["", ""])]);
     }
     res.setHeader("Content-Type", "text/csv; charset=utf-8");

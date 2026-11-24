@@ -29,7 +29,10 @@ const ready = API('me').then(m => { ME = m; }).catch(() => { ME = {role: null, o
 const E = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
 const DAYMS = 86400000;
 const pct = x => Math.round(100 * x) + ' %';
-const fmtCode = c => c ? c.slice(0, 3) + '-' + c.slice(3) : '';
+// codes de 4 caractères (ceux de 6, donnés avant la version 31, s'affichent XXX-XXX)
+const fmtCode = c => !c ? '' : c.length === 6 ? c.slice(0, 3) + '-' + c.slice(3) : c;
+// classes proposées aux élèves qui demandent un code (même liste côté serveur)
+const CLASSES = {T: [4, 5, 6, 7, 8, 9].map(n => 'Terminale ' + n), C: ['MPSI 1', 'MPSI 2', 'PCSI 1', 'PCSI 2', 'PCSI 3']};
 function ago(ts){
   if (!ts) return 'jamais';
   const s = (Date.now() - ts) / 1000;
@@ -305,7 +308,7 @@ function gate(pane){
     const r = reqGet();
     card(`<h1 id="cptT">Physique des olympiades</h1>
       <p>Entrez le code personnel donné par votre professeur. Il garde votre progression d’un appareil à l’autre. Professeur : entrez votre mot de passe.</p>
-      <form><input id="cptCode" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ABC-DEF" aria-label="Code personnel">
+      <form><input id="cptCode" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ex. K7QM" aria-label="Code personnel">
       <button class="cpt-btn" type="submit">Entrer</button><p class="err" aria-live="polite"></p></form>
       ${r ? `<p class="alt"><button type="button" class="lk" data-go="attente">Voir ma demande de code en attente</button></p>`
         : canReq ? `<p class="alt">Pas encore de code ? <button type="button" class="lk" data-go="demande">Demandez-en un</button> : votre professeur validera votre demande.</p>` : ''}
@@ -329,21 +332,34 @@ function gate(pane){
       <form novalidate>
         <label class="f">Prénom<input class="nm" name="prenom" autocomplete="given-name" maxlength="60" required></label>
         <label class="f">Nom<input class="nm" name="nom" autocomplete="family-name" maxlength="60" required></label>
-        <fieldset><legend>Vous êtes en</legend><label><input type="radio" name="niveau" value="T"> Terminale</label><label><input type="radio" name="niveau" value="C"> CPGE (MPSI, PCSI…)</label></fieldset>
-        <label class="f">Classe <small>(facultatif : PCSI 1, TG 3…)</small><input class="nm" name="groupe" maxlength="40" autocomplete="off"></label>
+        <fieldset><legend>Vous êtes en</legend><label><input type="radio" name="niveau" value="T"> Terminale</label><label><input type="radio" name="niveau" value="C"> CPGE (MPSI ou PCSI)</label></fieldset>
+        <fieldset class="cls" data-for="T" hidden><legend>Votre classe de terminale</legend>${[4, 5, 6, 7, 8, 9].map(n => `<label><input type="radio" name="groupe" value="Terminale ${n}"> ${n}</label>`).join('')}</fieldset>
+        <fieldset class="cls" data-for="C" hidden><legend>Votre filière</legend><label><input type="radio" name="filiere" value="MPSI"> MPSI</label><label><input type="radio" name="filiere" value="PCSI"> PCSI</label></fieldset>
+        <fieldset class="cls" data-for="MPSI" hidden><legend>Votre classe de MPSI</legend>${[1, 2].map(n => `<label><input type="radio" name="groupe" value="MPSI ${n}"> MPSI ${n}</label>`).join('')}</fieldset>
+        <fieldset class="cls" data-for="PCSI" hidden><legend>Votre classe de PCSI</legend>${[1, 2, 3].map(n => `<label><input type="radio" name="groupe" value="PCSI ${n}"> PCSI ${n}</label>`).join('')}</fieldset>
         <button class="cpt-btn" type="submit">Envoyer la demande</button><p class="err" aria-live="polite"></p>
       </form>
       <p class="alt"><button type="button" class="lk" data-go="code">J’ai déjà un code</button></p>${skipBtn()}`);
     const f = g.querySelector('form'), err = f.querySelector('.err'), btn = f.querySelector('button[type=submit]');
     setTimeout(() => f.prenom.focus(), 50);
+    // terminale : numéro de 4 à 9 ; CPGE : MPSI (1, 2) ou PCSI (1, 2, 3) ; un choix masqué est décoché
+    const showCls = () => {
+      const niv = (f.querySelector('input[name=niveau]:checked') || {}).value, fil = (f.querySelector('input[name=filiere]:checked') || {}).value;
+      f.querySelectorAll('fieldset.cls').forEach(fs => {
+        const on = fs.dataset.for === niv || (niv === 'C' && fs.dataset.for === fil);
+        fs.hidden = !on; if (!on) fs.querySelectorAll('input').forEach(i => { i.checked = false; });
+      });
+    };
+    f.addEventListener('change', e => { if (e.target.name === 'niveau' || e.target.name === 'filiere') showCls(); });
     f.addEventListener('submit', async e => {
       e.preventDefault(); err.textContent = '';
-      const niv = f.querySelector('input[name=niveau]:checked');
+      const niv = f.querySelector('input[name=niveau]:checked'), grp = f.querySelector('input[name=groupe]:checked');
       if (!f.prenom.value.trim() || !f.nom.value.trim()){ err.textContent = 'Indiquez votre prénom et votre nom.'; return; }
       if (!niv){ err.textContent = 'Indiquez si vous êtes en terminale ou en CPGE.'; return; }
+      if (!grp){ err.textContent = niv.value === 'T' ? 'Choisissez votre classe de terminale (de 4 à 9).' : f.querySelector('input[name=filiere]:checked') ? 'Choisissez le numéro de votre classe.' : 'Choisissez MPSI ou PCSI, puis le numéro de votre classe.'; return; }
       btn.disabled = true;
       try {
-        const r = await API('requestCode', {prenom: f.prenom.value, nom: f.nom.value, niveau: niv.value, groupe: f.groupe.value});
+        const r = await API('requestCode', {prenom: f.prenom.value, nom: f.nom.value, niveau: niv.value, groupe: grp.value});
         reqSet({ticket: r.ticket, prenom: r.prenom, nom: r.nom, ts: r.ts}); gate('attente');
       } catch(x){ err.textContent = x.userMessage || 'La demande n’a pas pu être envoyée.'; btn.disabled = false; }
     });
@@ -602,7 +618,7 @@ function adminClass(root){
     <div class="kpi"><div class="v">${cl7}</div><div class="l">Corrections Claude, 7 j</div><div class="s">${cl24} sur les dernières 24 h</div></div>
   </div>`;
   if (ME.pending) h += `<p class="newcodes"><b>${ME.pending} demande${ME.pending > 1 ? 's' : ''} de code en attente</b> : <a href="#admin/eleves">les valider ou les refuser</a>.</p>`;
-  if (!S.length) h += `<p class="newcodes">Commencez par <a href="#admin/eleves">créer les comptes des élèves</a> ou laissez-les demander un code depuis la page d’accueil : chacun reçoit un code personnel à six caractères.</p>`;
+  if (!S.length) h += `<p class="newcodes">Commencez par <a href="#admin/eleves">créer les comptes des élèves</a> ou laissez-les demander un code depuis la page d’accueil : chacun reçoit un code personnel à quatre caractères.</p>`;
   // activité sur 60 jours
   const today = Math.floor(now / DAYMS), N = 60, W = 720, H = 140, bw = W / N;
   const per = Object.fromEntries(days.map(d => [d.day, d])); const max = Math.max(1, ...days.map(d => d.n));
@@ -704,9 +720,9 @@ function adminStudents(root){
   const groups = [...new Set(S.map(s => s.groupe).filter(Boolean))].sort();
   if (!MG) return adminStudentsRO(root, S, groups);
   let h = requestsHTML(groups) + `<div class="cols2"><div><h2>Ajouter des élèves</h2>
-    <p class="muted" style="font-size:.9rem">Une ligne par élève : « Prénom Nom » (ou « Prénom ; Nom »). Chaque élève reçoit un code à six caractères, à lui transmettre.</p>
+    <p class="muted" style="font-size:.9rem">Une ligne par élève : « Prénom Nom » (ou « Prénom ; Nom »). Chaque élève reçoit un code à quatre caractères, à lui transmettre.</p>
     <textarea id="adL" placeholder="Camille Martin&#10;Hugo Bernard"></textarea>
-    <div class="form-row"><label>Groupe<input type="text" id="adG" placeholder="ex. TS 2026" list="adGl"><datalist id="adGl">${groups.map(g => `<option value="${E(g)}">`).join('')}</datalist></label>
+    <div class="form-row"><label>Groupe<input type="text" id="adG" placeholder="ex. PCSI 1" list="adGl"><datalist id="adGl">${[...new Set([...CLASSES.T, ...CLASSES.C, ...groups])].map(g => `<option value="${E(g)}">`).join('')}</datalist></label>
     <label>Niveau<select id="adN"><option value="T">Terminale</option><option value="C">CPGE</option></select></label>
     <button class="cpt-btn" id="adB" type="button">Créer les comptes</button></div><div id="adOut"></div></div>
     <div><h2>Codes</h2><p class="muted" style="font-size:.9rem">Les élèves se connectent avec leur code ; les professeurs, avec leur mot de passe. Un nouveau code remplace l’ancien (l’élève garde sa progression).</p>
@@ -768,7 +784,7 @@ async function adminStudent(root, sid){
     <h2 style="margin-top:.4em">${E(s.prenom)} ${E(s.nom)}</h2>
     <p class="muted">${s.code ? `Code <span class="code">${E(fmtCode(s.code))}</span> · ` : ''}${s.niveau === 'C' ? 'CPGE' : 'Terminale'}${s.groupe ? ' · ' + E(s.groupe) : ''} · dernière visite ${E(ago(s.last))}</p>
     <details${MG ? '' : ' hidden'}><summary>Modifier la fiche</summary><div class="form-row"><label>Prénom<input type="text" id="esP" value="${E(s.prenom)}"></label><label>Nom<input type="text" id="esN" value="${E(s.nom)}"></label>
-    <label>Groupe<input type="text" id="esG" value="${E(s.groupe)}"></label><label>Niveau<select id="esL"><option value="T"${s.niveau !== 'C' ? ' selected' : ''}>Terminale</option><option value="C"${s.niveau === 'C' ? ' selected' : ''}>CPGE</option></select></label>
+    <label>Groupe<input type="text" id="esG" value="${E(s.groupe)}" list="esGl"><datalist id="esGl">${[...CLASSES.T, ...CLASSES.C].map(g => `<option value="${E(g)}">`).join('')}</datalist></label><label>Niveau<select id="esL"><option value="T"${s.niveau !== 'C' ? ' selected' : ''}>Terminale</option><option value="C"${s.niveau === 'C' ? ' selected' : ''}>CPGE</option></select></label>
     <button class="cpt-btn" type="button" id="esB">Enregistrer</button><span id="esO"></span></div></details><div id="esD"></div>`;
   root.querySelector('#esB').addEventListener('click', async () => {
     const o = root.querySelector('#esO');

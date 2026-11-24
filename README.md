@@ -4,6 +4,7 @@ Préparation au test de présélection des IPhO (Terminale et CPGE) et au Concou
 
 - Site : https://physique-ipho.vercel.app
 - Artefact Claude source : https://claude.ai/artifact/USoqxVAkNMq9ZvTr2Rf5M6
+- Mis à jour le 24 novembre 2026 (version 31) : les nouveaux codes élèves ont 4 caractères (les codes de 6 caractères déjà donnés restent valables) ; un élève qui demande un code choisit sa classe : Terminale 4 à 9, ou MPSI 1 ou 2, ou PCSI 1, 2 ou 3.
 - Mis à jour le 24 novembre 2026 (version 30) : comptes professeurs supplémentaires, créés par le compte principal dans l’onglet « Professeurs » (mot de passe propre à chacun) : accès à tous les résultats et création de séries d’exercices, sans les codes ni la gestion des élèves sauf autorisation ; filtre par provenance (QCM d’annales, problèmes d’annales IPhO, Concours général…) pour composer une série.
 - Mis à jour le 23 novembre 2026 (version 29) : suivi détaillé des réponses (option cochée, valeur saisie, réponse vue sans essayer, temps à l’écran), onglets professeur « Suivi détaillé » (tableau élèves × questions, analyse de chaque question) et « Séries d’exercices » (séries avec date limite, page « Mes séries » pour les élèves), maîtrise par méthode, export de toutes les réponses.
 - Mis à jour le 23 novembre 2026 (version 28) : calcul détaillé des pulsations propres de deux oscillateurs couplés, chaîne de N oscillateurs et suite de N lentilles traitées par une relation de récurrence (fiche méthode, deux simulations, quatre exercices) ; cartes « À venir » retirées de l’accueil.
