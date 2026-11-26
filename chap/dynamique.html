@@ -29,8 +29,14 @@
 <h2 id="debit">1. Décrire un écoulement : lignes de courant et débit</h2>
 
 <h3 id="lignes">Vitesse, lignes de courant, régime stationnaire</h3>
-<p>Dans un fluide en mouvement, on attache à chaque point \(M\) et à chaque instant la vitesse \(\vec v(M, t)\) de la particule de fluide qui s’y trouve (description <strong>eulérienne</strong> : on regarde passer le fluide depuis un point fixe). Une <strong>ligne de courant</strong> est une courbe tangente en chacun de ses points à \(\vec v\) ; l’ensemble des lignes de courant qui s’appuient sur un contour fermé forme un <strong>tube de courant</strong>, que le fluide ne traverse pas.</p>
-<p>L’écoulement est <strong>stationnaire</strong> (ou permanent) si \(\vec v\) ne dépend pas du temps en chaque point : les lignes de courant sont alors fixes et coïncident avec les trajectoires. Les vitesses peuvent très bien varier d’un point à l’autre : dans un rétrécissement, chaque particule accélère, mais le champ des vitesses, lui, ne change pas.</p>
+<p>Dans un fluide en mouvement, on attache à chaque point \(M\) et à chaque instant la vitesse \(\vec v(M, t)\) de la particule de fluide qui s’y trouve : c’est la description <strong>eulérienne</strong>, où l’on regarde passer le fluide depuis un point fixe.</p>
+<table>
+<thead><tr><th>Notion</th><th>Définition</th><th>À retenir</th></tr></thead>
+<tbody>
+<tr><td><strong>Ligne de courant</strong></td><td>courbe tangente en chacun de ses points à \(\vec v\)</td><td>deux lignes de courant ne se croisent pas</td></tr>
+<tr><td><strong>Tube de courant</strong></td><td>ensemble des lignes de courant qui s’appuient sur un contour fermé</td><td>le fluide ne traverse pas sa paroi</td></tr>
+<tr><td><strong>Écoulement stationnaire</strong> (permanent)</td><td>\(\vec v\) ne dépend pas du temps en chaque point</td><td>les lignes de courant sont fixes et coïncident avec les trajectoires ; les vitesses peuvent varier d’un point à l’autre (dans un rétrécissement, chaque particule accélère, mais le champ des vitesses ne change pas)</td></tr>
+</tbody></table>
 
 <h3 id="conservation">Débit et conservation de la masse</h3>
 <p>Le <strong>débit volumique</strong> \(Q\) est le volume de fluide qui traverse une section par unité de temps. Si la vitesse est uniforme et perpendiculaire à la section d’aire \(S\), le volume passé pendant \(\mathrm dt\) est le cylindre de base \(S\) et de longueur \(v\,\mathrm dt\) :</p>
@@ -70,7 +76,15 @@
 \[P + \frac12\rho v^2 + \rho g z\]
 <p>est constante <strong>le long d’une ligne de courant</strong> (axe \(z\) vertical ascendant). Si l’écoulement est de plus irrotationnel, la constante est la même pour tout l’écoulement (CPGE).</p>
 </div>
-<p>Les trois termes sont homogènes à une pression : \(P\) est la pression (statique), \(\tfrac12\rho v^2\) la <strong>pression dynamique</strong>, \(\rho g z\) la pression de pesanteur. Divisée par \(\rho g\), la relation s’écrit en hauteurs : \(\dfrac{P}{\rho g} + \dfrac{v^2}{2g} + z = H\), la <strong>charge</strong> (en mètres), conservée dans un fluide parfait. Si \(v = 0\) partout, on retrouve la statique des fluides : \(P + \rho g z = \text{cste}\).</p>
+<table>
+<thead><tr><th>Terme</th><th>Nom</th><th>Divisé par \(\rho g\) (en mètres)</th></tr></thead>
+<tbody>
+<tr><td>\(P\)</td><td>pression (statique)</td><td>hauteur piézométrique \(P/\rho g\)</td></tr>
+<tr><td>\(\tfrac12\rho v^2\)</td><td><strong>pression dynamique</strong></td><td>hauteur de vitesse \(v^2/2g\)</td></tr>
+<tr><td>\(\rho g z\)</td><td>pression de pesanteur</td><td>altitude \(z\)</td></tr>
+<tr><td>Somme</td><td>constante le long d’une ligne de courant</td><td>la <strong>charge</strong> \(H\), conservée dans un fluide parfait</td></tr>
+</tbody></table>
+<p>Si \(v = 0\) partout, on retrouve la statique des fluides : \(P + \rho g z = \text{cste}\).</p>
 
 <h3 id="demo">Démonstration par un bilan d’énergie</h3>
 <figure>
@@ -98,7 +112,13 @@
 <li>travail des forces pressantes : en amont, \(P_1 S_1\) pousse sur \(v_1\,\mathrm dt\) : \(+P_1 S_1 v_1\,\mathrm dt = P_1\,\mathrm dm/\rho\) ; en aval, \(P_2 S_2\) s’oppose au déplacement : \(-P_2\,\mathrm dm/\rho\). Les forces pressantes latérales sont perpendiculaires au mouvement : travail nul. Fluide parfait : pas de frottement intérieur.</li>
 </ul>
 \[\tfrac12\,\mathrm dm\,(v_2^2 - v_1^2) = -\mathrm dm\,g\,(z_2 - z_1) + \frac{P_1 - P_2}{\rho}\,\mathrm dm \quad\Longrightarrow\quad P_1 + \tfrac12\rho v_1^2 + \rho g z_1 = P_2 + \tfrac12\rho v_2^2 + \rho g z_2.\]
-<p>Cette démonstration dit aussi ce que Bernoulli <em>n’est pas</em> : si une pompe ou une turbine se trouve entre 1 et 2, elle fournit ou prélève un travail \(w\) par unité de masse, et la relation devient \(P_2 + \ldots = P_1 + \ldots + \rho w\) ; si le fluide est visqueux, une partie de l’énergie est dissipée : la charge diminue le long de l’écoulement (<strong>perte de charge</strong>).</p>
+<p>Cette démonstration dit aussi ce que Bernoulli <em>n’est pas</em> :</p>
+<table>
+<thead><tr><th>Entre 1 et 2, il y a…</th><th>La relation devient</th></tr></thead>
+<tbody>
+<tr><td>une pompe ou une turbine qui fournit (ou prélève) un travail \(w\) par unité de masse</td><td>\(P_2 + \tfrac12\rho v_2^2 + \rho gz_2 = P_1 + \tfrac12\rho v_1^2 + \rho gz_1 + \rho w\)</td></tr>
+<tr><td>de la viscosité</td><td>une partie de l’énergie est dissipée : la charge diminue le long de l’écoulement (<strong>perte de charge</strong>)</td></tr>
+</tbody></table>
 
 <div class="piege">
 <ul>
@@ -114,7 +134,14 @@
 <h3 id="venturi">Effet Venturi : vite, donc à basse pression</h3>
 <p>Dans un tube horizontal (\(z_1 = z_2\)) qui se rétrécit de \(S_1\) à \(S_2\), la conservation du débit impose \(v_2 = v_1 S_1/S_2 > v_1\), et Bernoulli donne</p>
 \[P_1 - P_2 = \tfrac12\rho\,(v_2^2 - v_1^2) = \tfrac12\rho v_1^2\left[\left(\frac{S_1}{S_2}\right)^2 - 1\right] > 0.\]
-<p>La pression est <strong>plus faible dans le rétrécissement</strong>. Des tubes verticaux ouverts (prises de pression statique) le montrent : le niveau est plus bas au-dessus de la gorge. Mesurer \(\Delta h\) permet de déduire le débit : c’est le <strong>débitmètre Venturi</strong>. Même principe pour la trompe à eau, le carburateur, le vaporisateur, et pour l’aspiration d’une feuille de papier au-dessus de laquelle on souffle.</p>
+<p>La pression est <strong>plus faible dans le rétrécissement</strong>. Des tubes verticaux ouverts (prises de pression statique) le montrent : le niveau est plus bas au-dessus de la gorge.</p>
+<table>
+<thead><tr><th>Application</th><th>Principe</th></tr></thead>
+<tbody>
+<tr><td>Débitmètre Venturi</td><td>la dénivellation \(\Delta h\) entre les tubes donne le débit</td></tr>
+<tr><td>Trompe à eau, carburateur, vaporisateur</td><td>la dépression de la gorge aspire un second fluide</td></tr>
+<tr><td>Feuille de papier au-dessus de laquelle on souffle</td><td>l’air rapide au-dessus est à pression plus faible : la feuille se soulève</td></tr>
+</tbody></table>
 <div class="methode" data-m="bernoulli-points"><p>Pour le Venturi, prenez deux points de la même ligne de courant horizontale, l’un dans la section \(S_1\), l’autre dans la gorge : \(z_1 = z_2\) élimine la pesanteur, la conservation du débit donne \(v_2\), et l’hydrostatique dans les tubes verticaux (fluide au repos) relie chaque pression à une hauteur. Pour une vidange ou un siphon, prenez plutôt la surface libre et le jet, tous deux à \(P_0\).</p></div>
 <figure>
 <svg viewBox="0 0 640 250" width="640" role="img" aria-label="Tube de Venturi horizontal avec trois tubes piézométriques : le niveau est plus bas au-dessus de la gorge" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
@@ -164,7 +191,21 @@
 <h3 id="torricelli">Vidange d’un réservoir : formule de Torricelli</h3>
 <p>Un réservoir large, ouvert, contient un liquide sur une hauteur \(h\) au-dessus d’un petit orifice de section \(s\). Ligne de courant de la surface libre \(A\) (pression \(P_0\), vitesse \(v_A \approx 0\) car la section \(S \gg s\) : \(v_A = v\,s/S\)) jusqu’au jet \(B\) (pression \(P_0\) dès la sortie, vitesse \(v\)) :</p>
 \[P_0 + 0 + \rho g h = P_0 + \tfrac12\rho v^2 + 0 \quad\Longrightarrow\quad v = \sqrt{2gh}.\]
-<p>C’est la vitesse qu’aurait une goutte tombée en chute libre de la hauteur \(h\) : le liquide « tombe » à travers la colonne. Le débit vaut \(Q = s\sqrt{2gh}\) (en pratique, le jet se contracte : \(Q \approx 0{,}6\,s\sqrt{2gh}\)). Pour un réservoir qui se vide, \(h\) diminue : \(S\,\dfrac{\mathrm dh}{\mathrm dt} = -s\sqrt{2gh}\), d’où une vidange en temps fini \(t_v = \dfrac{S}{s}\sqrt{\dfrac{2h_0}{g}}\), deux fois le temps qu’il faudrait à débit initial constant.</p>
+<table>
+<thead><tr><th>Grandeur</th><th>Expression</th><th>Remarque</th></tr></thead>
+<tbody>
+<tr><td>Vitesse du jet</td><td>\(v = \sqrt{2gh}\)</td><td>celle d’une goutte tombée en chute libre de la hauteur \(h\) : le liquide « tombe » à travers la colonne</td></tr>
+<tr><td>Débit</td><td>\(Q = s\sqrt{2gh}\)</td><td>en pratique le jet se contracte : \(Q \approx 0{,}6\,s\sqrt{2gh}\)</td></tr>
+<tr><td>Durée de vidange</td><td>\(t_v = \dfrac{S}{s}\sqrt{\dfrac{2h_0}{g}}\)</td><td>deux fois le temps qu’il faudrait à débit initial constant</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="La durée de vidange">
+<ol class="etapes">
+<li><strong>Bilan de volume</strong> pendant \(\mathrm dt\) : le niveau baisse de \(\mathrm dh\) pendant qu’un volume \(Q\,\mathrm dt\) sort, \(S\,\mathrm dh = -s\sqrt{2gh}\,\mathrm dt\) (Torricelli supposé valable à chaque instant : régime quasi stationnaire).</li>
+<li><strong>Séparer les variables</strong> : \(\dfrac{\mathrm dh}{\sqrt h} = -\dfrac sS\sqrt{2g}\,\mathrm dt\).</li>
+<li><strong>Intégrer</strong> de \(h_0\) à 0 : \(\big[2\sqrt h\big]_{h_0}^0 = -2\sqrt{h_0} = -\dfrac sS\sqrt{2g}\,t_v\), d’où \(t_v = \dfrac Ss\sqrt{\dfrac{2h_0}{g}}\).</li>
+<li><strong>Comparaison</strong> : au débit initial \(s\sqrt{2gh_0}\) constant, le volume \(Sh_0\) s’écoulerait en \(\dfrac Ss\sqrt{\dfrac{h_0}{2g}}\), deux fois moins.</li>
+</ol>
+</div>
 <div class="methode" data-m="equadiff"><p>Le bilan de volume sur \(\mathrm dt\) donne \(S\,\mathrm dh = -s\sqrt{2gh}\,\mathrm dt\) : ce n’est ni une exponentielle ni un oscillateur, on sépare les variables, \(\mathrm dh/\sqrt h = -(s/S)\sqrt{2g}\,\mathrm dt\), et on intègre de \(h_0\) à 0. La fontaine de Héron se traite exactement de la même façon.</p></div>
 <div class="exo" data-q="ipho-2022-T2"></div>
 <div class="exo" data-q="ipho-2015-C20"></div>
@@ -173,7 +214,12 @@
 <h3 id="siphon">Le siphon</h3>
 <p>Un tuyau plein de liquide, dont une extrémité plonge dans un réservoir et l’autre débouche plus bas, vide le réservoir en passant <em>par-dessus</em> le bord. Bernoulli entre la surface libre \(A\) (\(P_0\), \(v \approx 0\), altitude \(z_A\)) et la sortie \(C\) (\(P_0\), \(v\), \(z_C\)) :</p>
 \[v = \sqrt{2g\,(z_A - z_C)} :\]
-<p>seule compte la <strong>dénivelée entre surface libre et sortie</strong>, pas la hauteur du col. Au sommet \(B\) (altitude \(z_B\)), la vitesse est la même qu’en \(C\) (section constante), donc \(P_B = P_0 - \rho g\,(z_B - z_C)\) : la pression y est inférieure à \(P_0\). Elle ne peut pas descendre sous la pression de vapeur du liquide (\(\approx 0\) pour l’eau) : la hauteur \(z_B - z_C\) ne peut dépasser \(P_0/\rho g \approx 10\ \text{m}\), sinon le liquide se vaporise et le siphon se désamorce.</p>
+<table>
+<thead><tr><th>Point</th><th>Résultat</th><th>Conséquence</th></tr></thead>
+<tbody>
+<tr><td>Débit</td><td>fixé par la <strong>dénivelée entre surface libre et sortie</strong>, pas par la hauteur du col</td><td>le siphon s’arrête quand la surface libre atteint le niveau de la sortie</td></tr>
+<tr><td>Sommet \(B\)</td><td>même vitesse qu’en \(C\) (section constante), donc \(P_B = P_0 - \rho g\,(z_B - z_C) < P_0\)</td><td>la pression ne peut pas descendre sous la pression de vapeur du liquide (\(\approx 0\) pour l’eau) : \(z_B - z_C\) ne peut dépasser \(P_0/\rho g \approx 10\ \text{m}\), sinon le liquide se vaporise et le siphon se désamorce</td></tr>
+</tbody></table>
 <figure>
 <svg viewBox="0 0 640 260" width="640" role="img" aria-label="Siphon : tuyau partant d'un réservoir, passant par un sommet B puis débouchant plus bas en C" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
 <defs><marker id="ds-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2b6cb0"/></marker><marker id="ds-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker></defs>
@@ -194,7 +240,15 @@
 <h3 id="portance">Jets, balles et ailes : ce que Bernoulli explique, et ce qu’il n’explique pas</h3>
 <p><strong>Hauteur d’un jet.</strong> Un jet vertical sortant d’une lance à la vitesse \(v\) monte à \(v^2/2g\) ; si la lance est alimentée par un réservoir à la hauteur \(h\) sans pertes, le jet remonte exactement à \(h\) (en pratique moins : viscosité, résistance de l’air).</p>
 <p><strong>Balle de ping-pong dans un jet d’air</strong>, feuille de papier qui se soulève quand on souffle au-dessus, rideau de douche aspiré vers le jet : à chaque fois, le fluide rapide est à basse pression, et la pression ambiante pousse l’objet vers lui.</p>
-<p><strong>Portance d’une aile.</strong> L’air passe plus vite au-dessus du profil (extrados) qu’en dessous (intrados) ; la pression y est plus faible et la résultante est dirigée vers le haut. Bernoulli donne l’ordre de grandeur \(F \sim \tfrac12\rho v^2 S\,C_z\) ; mais l’argument des « chemins de longueur différente parcourus dans le même temps » est faux : les particules d’air passées au-dessus arrivent <em>avant</em> celles passées en dessous. La vraie cause est la déviation de l’air vers le bas par l’aile (troisième loi de Newton), qui crée la circulation. Retenez : la portance existe, elle vaut environ \(\tfrac12\rho v^2 S C_z\), et Bernoulli est cohérent avec elle sans suffire à l’expliquer.</p>
+<p><strong>Portance d’une aile.</strong></p>
+<table>
+<thead><tr><th>Affirmation</th><th>Statut</th></tr></thead>
+<tbody>
+<tr><td>L’air passe plus vite au-dessus du profil (extrados) qu’en dessous (intrados) ; la pression y est plus faible et la résultante est dirigée vers le haut</td><td>vrai</td></tr>
+<tr><td>La portance vaut environ \(\tfrac12\rho v^2 S\,C_z\)</td><td>vrai (ordre de grandeur cohérent avec Bernoulli)</td></tr>
+<tr><td>Les particules d’air parcourent des chemins de longueur différente « dans le même temps »</td><td><strong>faux</strong> : celles passées au-dessus arrivent <em>avant</em> celles passées en dessous</td></tr>
+<tr><td>La vraie cause : l’aile dévie l’air vers le bas (troisième loi de Newton), ce qui crée la circulation</td><td>Bernoulli est cohérent avec la portance sans suffire à l’expliquer</td></tr>
+</tbody></table>
 
 <div class="piege">
 <ul>
@@ -209,9 +263,18 @@
 <h3 id="viscosite">La viscosité</h3>
 <p>Dans un fluide réel, les couches qui glissent les unes sur les autres se freinent : c’est la <strong>viscosité</strong>. Entre deux plaques parallèles distantes de \(e\), l’une fixe et l’autre tirée à la vitesse \(v\), le fluide exerce sur la plaque mobile une force de frottement proportionnelle à l’aire \(S\) et au gradient de vitesse :</p>
 \[F = \eta\,S\,\frac{v}{e},\]
-<p>où \(\eta\) (êta) est la <strong>viscosité dynamique</strong>, en Pa·s (ou kg·m⁻¹·s⁻¹). Eau à 20 °C : \(10^{-3}\ \text{Pa·s}\) ; air : \(1{,}8\times10^{-5}\) ; huile d’olive : \(0{,}08\) ; miel : \(\sim10\) ; glycérine : 1,5. La viscosité des liquides diminue fortement avec la température. On utilise aussi la viscosité cinématique \(\nu = \eta/\rho\) (m²·s⁻¹ ; eau : \(10^{-6}\)).</p>
+<p>où \(\eta\) (êta) est la <strong>viscosité dynamique</strong>, en Pa·s (ou kg·m⁻¹·s⁻¹). On utilise aussi la viscosité cinématique \(\nu = \eta/\rho\) (m²·s⁻¹ ; eau : \(10^{-6}\)).</p>
+<table>
+<thead><tr><th>Fluide (20 °C)</th><th>air</th><th>eau</th><th>huile d’olive</th><th>glycérine</th><th>miel</th></tr></thead>
+<tbody><tr><td>\(\eta\) (Pa·s)</td><td>\(1{,}8\times10^{-5}\)</td><td>\(10^{-3}\)</td><td>0,08</td><td>1,5</td><td>\(\sim10\)</td></tr></tbody></table>
+<p>La viscosité des liquides diminue fortement quand la température augmente.</p>
 <div class="methode" data-m="dimension"><p>De \(F = \eta S v/e\), on tire \([\eta] = \text{N}\cdot\text{m}/(\text{m}^2\cdot\text{m·s}^{-1}) = \text{Pa·s} = \text{kg·m}^{-1}\text{·s}^{-1}\). Vérifiez ensuite que \(\rho vL/\eta\) est sans dimension et que \(6\pi\eta Rv\) est bien une force.</p></div>
-<p>Conséquences : le fluide <strong>adhère aux parois</strong> (vitesse nulle sur une paroi fixe), le profil de vitesse dans un tuyau est arrondi (parabolique en régime laminaire), et une partie de l’énergie mécanique se dissipe en chaleur : la charge \(P + \tfrac12\rho v^2 + \rho g z\) <strong>diminue</strong> dans le sens de l’écoulement. C’est la <strong>perte de charge</strong>, qu’une pompe doit compenser.</p>
+<p>Conséquences de la viscosité :</p>
+<ul>
+<li>le fluide <strong>adhère aux parois</strong> : vitesse nulle sur une paroi fixe ;</li>
+<li>le profil de vitesse dans un tuyau est arrondi (parabolique en régime laminaire) ;</li>
+<li>une partie de l’énergie mécanique se dissipe en chaleur : la charge \(P + \tfrac12\rho v^2 + \rho g z\) <strong>diminue</strong> dans le sens de l’écoulement. C’est la <strong>perte de charge</strong>, qu’une pompe doit compenser.</li>
+</ul>
 <figure>
 <svg viewBox="0 0 640 210" width="640" role="img" aria-label="Profil de vitesse dans un tuyau : plat pour un fluide parfait, parabolique en régime laminaire visqueux ; et cisaillement entre deux plaques" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
 <defs><marker id="dvi-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2b6cb0"/></marker><marker id="dvi-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23a48"/></marker></defs>
@@ -235,7 +298,15 @@
 <h3 id="reynolds">Laminaire ou turbulent : le nombre de Reynolds</h3>
 <p>Pour savoir si la viscosité domine, on compare les forces d’inertie (\(\sim \rho v^2/L\) par unité de volume) aux forces visqueuses (\(\sim \eta v/L^2\)). Leur rapport est le <strong>nombre de Reynolds</strong>, sans dimension :</p>
 \[Re = \frac{\rho\,v\,L}{\eta} = \frac{v\,L}{\nu},\]
-<p>où \(L\) est une taille caractéristique (diamètre du tuyau, de la bille…). \(Re \ll 1\) : écoulement rampant, dominé par la viscosité (bactérie dans l’eau, bille dans le miel). \(Re\) de l’ordre de \(10^3\) ou moins dans un tuyau : <strong>laminaire</strong>, les lignes de courant restent ordonnées ; au-delà de \(Re \approx 2000\) à \(3000\) : <strong>turbulent</strong>, tourbillons, mélange. Pour un nageur (\(v = 1\ \text{m·s}^{-1}\), \(L = 1\ \text{m}\)) : \(Re = 10^6\) ; pour un spermatozoïde (\(v = 10^{-4}\), \(L = 10^{-5}\)) : \(Re = 10^{-3}\). Le même nombre de Reynolds donne des écoulements semblables : c’est le principe des maquettes en soufflerie.</p>
+<p>où \(L\) est une taille caractéristique (diamètre du tuyau, de la bille…).</p>
+<table>
+<thead><tr><th>Reynolds</th><th>Régime</th><th>Exemples</th></tr></thead>
+<tbody>
+<tr><td>\(Re \ll 1\)</td><td>écoulement rampant, dominé par la viscosité</td><td>spermatozoïde (\(v = 10^{-4}\ \text{m·s}^{-1}\), \(L = 10^{-5}\ \text{m}\)) : \(Re = 10^{-3}\) ; bille dans le miel</td></tr>
+<tr><td>jusqu’à \(10^3\) environ (tuyau)</td><td><strong>laminaire</strong> : lignes de courant ordonnées</td><td>écoulement lent dans un tube fin</td></tr>
+<tr><td>au-delà de 2 000 à 3 000 (tuyau)</td><td><strong>turbulent</strong> : tourbillons, mélange</td><td>nageur (\(v = 1\ \text{m·s}^{-1}\), \(L = 1\ \text{m}\)) : \(Re = 10^6\)</td></tr>
+</tbody></table>
+<p>Le même nombre de Reynolds donne des écoulements semblables : c’est le principe des maquettes en soufflerie.</p>
 <div class="methode" data-m="sans-dimension"><p>Avant de choisir une loi de traînée, calculez \(Re\) avec la vitesse obtenue : une bille d’acier dans la glycérine donne \(Re \approx 1\) (Stokes valable), la même bille dans l’eau \(Re \approx 10^4\) (traînée quadratique). Si le \(Re\) trouvé contredit l’hypothèse de départ, changez de modèle.</p></div>
 
 <h3 id="trainee">Traînée sur un objet : Stokes et traînée quadratique</h3>
@@ -244,20 +315,57 @@
 <li>à petit Reynolds (\(Re \lesssim 1\)), elle est <strong>linéaire</strong> en \(v\) : pour une sphère de rayon \(R\), loi de <strong>Stokes</strong> \(F = 6\pi\eta R v\) (gouttelettes de brouillard, sédimentation, expérience de Millikan) ;</li>
 <li>à grand Reynolds (\(Re \gtrsim 10^3\)), elle est <strong>quadratique</strong> : \(F = \tfrac12 C_x\,\rho\,S\,v^2\), avec \(S\) la section frontale et \(C_x\) un coefficient de l’ordre de 0,1 (profilé) à 1 (plaque) : cycliste, parachutiste, balle, voiture.</li>
 </ul>
-<p>Dans les deux cas, un corps en chute atteint une <strong>vitesse limite</strong> quand la traînée équilibre le poids apparent : \(v_\text{lim} = \dfrac{2(\rho_c - \rho_f)gR^2}{9\eta}\) (Stokes) ou \(v_\text{lim} = \sqrt{\dfrac{2mg}{C_x\rho S}}\) (quadratique). Une goutte de pluie de 1 mm tombe à 4 m/s environ, une gouttelette de nuage de 10 µm à 3 mm/s : elle ne tombe pratiquement pas.</p>
+<p>Dans les deux cas, un corps en chute atteint une <strong>vitesse limite</strong> quand la traînée équilibre le poids apparent :</p>
+<table>
+<thead><tr><th>Traînée</th><th>Vitesse limite</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr><td>Stokes</td><td>\(v_\text{lim} = \dfrac{2(\rho_c - \rho_f)gR^2}{9\eta}\)</td><td>gouttelette de nuage de 10 µm : 3 mm/s, elle ne tombe pratiquement pas</td></tr>
+<tr><td>Quadratique</td><td>\(v_\text{lim} = \sqrt{\dfrac{2mg}{C_x\rho S}}\)</td><td>goutte de pluie de 1 mm : 4 m/s environ</td></tr>
+</tbody></table>
 
 <div class="cpge" id="poiseuille" title="Écoulement laminaire dans un tuyau : loi de Poiseuille">
 <p>Pour un écoulement laminaire dans un tuyau cylindrique de rayon \(R\) et de longueur \(L\), la viscosité impose un profil de vitesse parabolique \(v(r) = v_\text{max}\left(1 - r^2/R^2\right)\), et le débit est proportionnel à la différence de pression entre les extrémités :</p>
 \[Q = \frac{\pi R^4}{8\eta L}\,\Delta P \qquad\text{(loi de Poiseuille).}\]
-<p>Le débit varie comme \(R^4\) : diviser le rayon par 2 divise le débit par 16 à \(\Delta P\) fixée. C’est pourquoi une artère légèrement rétrécie augmente beaucoup la résistance à l’écoulement (analogie électrique : \(\Delta P = R_h Q\) avec \(R_h = 8\eta L/\pi R^4\), les résistances hydrauliques s’ajoutant en série et leurs inverses en parallèle). La vitesse moyenne vaut \(v_\text{max}/2\). Démonstration : l’équilibre d’un cylindre de fluide de rayon \(r\) entre la force de pression \(\Delta P\,\pi r^2\) et le frottement visqueux \(-\eta\,\dfrac{\mathrm dv}{\mathrm dr}\,2\pi r L\) donne \(\dfrac{\mathrm dv}{\mathrm dr} = -\dfrac{\Delta P}{2\eta L}r\), qu’on intègre avec \(v(R) = 0\) ; puis \(Q = \int_0^R v(r)\,2\pi r\,\mathrm dr\).</p>
+<ul>
+<li>Le débit varie comme \(R^4\) : diviser le rayon par 2 divise le débit par 16 à \(\Delta P\) fixée. Une artère légèrement rétrécie augmente beaucoup la résistance à l’écoulement.</li>
+<li>Analogie électrique : \(\Delta P = R_h Q\) avec \(R_h = 8\eta L/\pi R^4\) ; les résistances hydrauliques s’ajoutent en série, leurs inverses en parallèle.</li>
+<li>La vitesse moyenne vaut \(v_\text{max}/2\).</li>
+</ul>
+<div class="complement" data-tag="Démonstration" title="Le profil parabolique et la loi de Poiseuille">
+<ol class="etapes">
+<li><strong>Système</strong> : un cylindre de fluide de rayon \(r\) et de longueur \(L\), coaxial au tuyau, en mouvement uniforme.</li>
+<li><strong>Équilibre</strong> entre la force de pression \(\Delta P\,\pi r^2\) et le frottement visqueux sur sa surface latérale, \(-\eta\,\dfrac{\mathrm dv}{\mathrm dr}\,2\pi r L\) : \(\dfrac{\mathrm dv}{\mathrm dr} = -\dfrac{\Delta P}{2\eta L}\,r\).</li>
+<li><strong>Intégrer</strong> avec \(v(R) = 0\) (adhérence) : \(v(r) = \dfrac{\Delta P}{4\eta L}\,(R^2 - r^2)\), parabolique, maximale sur l’axe.</li>
+<li><strong>Débit</strong> en couronnes : \(Q = \displaystyle\int_0^R v(r)\,2\pi r\,\mathrm dr = \frac{\pi R^4}{8\eta L}\,\Delta P\).</li>
+</ol>
+</div>
 </div>
 
 <div class="cpge" id="bernoulli-general" title="Bernoulli : constante globale, écoulement irrotationnel, régime non stationnaire">
-<p>Si l’écoulement est <strong>irrotationnel</strong> (\(\overrightarrow{\mathrm{rot}}\,\vec v = \vec 0\), ce qui est le cas d’un écoulement parfait issu d’un fluide au repos), la constante de Bernoulli est la même pour toutes les lignes de courant : on peut appliquer la relation entre deux points quelconques. Pour un écoulement <strong>non stationnaire</strong> irrotationnel, \(\vec v = \overrightarrow{\mathrm{grad}}\,\varphi\) et la relation devient \(\rho\,\dfrac{\partial\varphi}{\partial t} + P + \tfrac12\rho v^2 + \rho g z = \text{cste}(t)\). Exemple classique : les <strong>oscillations d’un liquide dans un tube en U</strong> de longueur totale \(L\) : l’écart \(x\) des niveaux obéit à \(\ddot x + \dfrac{2g}{L}x = 0\), période \(T = 2\pi\sqrt{L/2g}\), indépendante de la masse volumique. Autre exemple : la vidange d’un réservoir est quasi stationnaire parce que \(h\) varie lentement devant le temps de transit du fluide.</p>
+<table>
+<thead><tr><th>Écoulement</th><th>Relation de Bernoulli</th></tr></thead>
+<tbody>
+<tr><td>Parfait, stationnaire</td><td>constante le long d’<strong>une</strong> ligne de courant</td></tr>
+<tr><td>Parfait, stationnaire et <strong>irrotationnel</strong> (\(\overrightarrow{\mathrm{rot}}\,\vec v = \vec 0\) : écoulement issu d’un fluide au repos)</td><td>même constante pour toutes les lignes de courant : on l’applique entre deux points quelconques</td></tr>
+<tr><td>Irrotationnel <strong>non stationnaire</strong>, \(\vec v = \overrightarrow{\mathrm{grad}}\,\varphi\)</td><td>\(\rho\,\dfrac{\partial\varphi}{\partial t} + P + \tfrac12\rho v^2 + \rho g z = \text{cste}(t)\)</td></tr>
+</tbody></table>
+<ul>
+<li>Exemple : les oscillations d’un liquide dans un tube en U de longueur totale \(L\) ; l’écart \(x\) des niveaux obéit à \(\ddot x + \dfrac{2g}{L}x = 0\), période \(T = 2\pi\sqrt{L/2g}\), indépendante de la masse volumique.</li>
+<li>La vidange d’un réservoir est quasi stationnaire parce que \(h\) varie lentement devant le temps de transit du fluide.</li>
+</ul>
 </div>
 
 <div class="cpge" id="bilan-qdm" title="Bilan de quantité de mouvement : force d’un jet, poussée d’un tuyau coudé">
-<p>Pour un système ouvert en régime stationnaire, la résultante des forces extérieures vaut le débit de quantité de mouvement sortant moins entrant : \(\sum\vec F_\text{ext} = D_m\,(\vec v_\text{sortie} - \vec v_\text{entrée})\). Un jet de section \(s\) et de vitesse \(v\) qui s’écrase perpendiculairement sur une plaque et repart latéralement exerce \(F = D_m v = \rho s v^2\) : pour une lance à incendie (\(s = 10\ \text{cm}^2\), \(v = 30\ \text{m·s}^{-1}\)), 900 N. Un tuyau coudé subit une force de l’ordre de \(\rho S v^2\) : il faut l’ancrer. Même raisonnement pour la poussée d’une fusée ou d’un réacteur (\(F = D_m\,v_\text{éjection}\)), et pour la force d’un jet d’eau sur une roue Pelton.</p>
+<p>Pour un système ouvert en régime stationnaire, la résultante des forces extérieures vaut le débit de quantité de mouvement sortant moins entrant :</p>
+\[\sum\vec F_\text{ext} = D_m\,(\vec v_\text{sortie} - \vec v_\text{entrée}).\]
+<table>
+<thead><tr><th>Situation</th><th>Force</th><th>Ordre de grandeur</th></tr></thead>
+<tbody>
+<tr><td>Jet de section \(s\), vitesse \(v\), qui s’écrase perpendiculairement sur une plaque et repart latéralement</td><td>\(F = D_m v = \rho s v^2\)</td><td>lance à incendie (\(s = 10\ \text{cm}^2\), \(v = 30\ \text{m·s}^{-1}\)) : 900 N</td></tr>
+<tr><td>Tuyau coudé</td><td>de l’ordre de \(\rho S v^2\)</td><td>il faut l’ancrer</td></tr>
+<tr><td>Fusée, réacteur</td><td>poussée \(F = D_m\,v_\text{éjection}\)</td><td></td></tr>
+<tr><td>Jet d’eau sur une roue Pelton</td><td>jusqu’à \(2D_mv\) si le jet repart en arrière</td><td></td></tr>
+</tbody></table>
 </div>
 
 <div class="complement" title="Tension superficielle : voir le chapitre 3">

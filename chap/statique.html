@@ -67,11 +67,29 @@
 
 <div class="sim" data-name="molecules"><p>D’où vient la pression d’un gaz ? Des molécules rebondissent sur les parois ; chaque choc sur la paroi de droite lui transfère de la quantité de mouvement. Augmentez le nombre de molécules ou la température : la force moyenne sur la paroi augmente en proportion (\(PV = Nk_BT\)).</p></div>
 
-<p>On ne sent pas la pression atmosphérique parce qu’elle s’exerce des deux côtés : sur les deux faces de la main, l’air pousse avec 1 bar, soit environ 1 000 N sur chaque face, et les deux forces se compensent. On la met en évidence en supprimant l’air d’un côté : ventouse, canette qui s’écrase quand on condense la vapeur qu’elle contient, hémisphères de Magdebourg (deux demi-sphères de 50 cm de diamètre vidées de leur air ne peuvent être séparées que par une force de l’ordre de \(P_0\,\pi R^2 \approx 2\times10^4\ \text{N}\)).</p>
+<p>On ne sent pas la pression atmosphérique parce qu’elle s’exerce <strong>des deux côtés</strong> : sur les deux faces de la main, l’air pousse avec 1 bar, soit environ 1 000 N sur chaque face, et les deux forces se compensent. On la met en évidence en supprimant l’air d’un côté :</p>
+<table>
+<thead><tr><th>Expérience</th><th>Ce qui se passe</th></tr></thead>
+<tbody>
+<tr><td>Ventouse</td><td>l’air chassé sous la ventouse ne la repousse plus : l’atmosphère la plaque</td></tr>
+<tr><td>Canette chauffée puis retournée dans l’eau froide</td><td>la vapeur se condense, la pression intérieure chute : la canette s’écrase</td></tr>
+<tr><td>Hémisphères de Magdebourg (50 cm de diamètre, vidés de leur air)</td><td>il faut une force de l’ordre de \(P_0\,\pi R^2 \approx 2\times10^4\ \text{N}\) pour les séparer</td></tr>
+</tbody></table>
 
 <div class="complement" title="Pression absolue, pression relative ; origine microscopique de la pression">
-<p><strong>Absolue ou relative ?</strong> La pression absolue est mesurée par rapport au vide. Un manomètre de pneu ou de bouteille de plongée affiche souvent une pression <em>relative</em> (surpression par rapport à l’atmosphère) : « 2,5 bar » au gonfleur signifie 3,5 bar absolus. Les lois des gaz (\(PV = nRT\)) s’écrivent toujours avec la pression absolue. Lisez l’énoncé : l’annale IPhO 2026 (Q5, pneus de course) donne explicitement la « pression absolue ».</p>
-<p><strong>D’où vient la pression ?</strong> Dans un gaz, elle résulte des chocs incessants des molécules sur la paroi : chaque choc transfère de la quantité de mouvement, et la force moyenne par unité de surface est la pression. La théorie cinétique donne \(P = n^* k_B T\), où \(n^*\) est le nombre de molécules par unité de volume : c’est la loi des gaz parfaits. Dans un liquide, les molécules sont au contact et les forces intermoléculaires s’ajoutent, mais la définition macroscopique reste la même.</p>
+<table>
+<thead><tr><th>Pression</th><th>Mesurée par rapport à</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr><td><strong>Absolue</strong></td><td>au vide</td><td>celle qui figure dans \(PV = nRT\), toujours</td></tr>
+<tr><td><strong>Relative</strong> (surpression)</td><td>à l’atmosphère</td><td>« 2,5 bar » au gonfleur de pneu signifie 3,5 bar absolus</td></tr>
+</tbody></table>
+<p>Lisez l’énoncé : l’annale IPhO 2026 (Q5, pneus de course) donne explicitement la « pression absolue ».</p>
+<p><strong>D’où vient la pression ?</strong></p>
+<ul>
+<li>Dans un gaz, elle résulte des chocs incessants des molécules sur la paroi : chaque choc transfère de la quantité de mouvement, et la force moyenne par unité de surface est la pression.</li>
+<li>La théorie cinétique donne \(P = n^* k_B T\), où \(n^*\) est le nombre de molécules par unité de volume : c’est la loi des gaz parfaits.</li>
+<li>Dans un liquide, les molécules sont au contact et les forces intermoléculaires s’ajoutent, mais la définition macroscopique reste la même.</li>
+</ul>
 </div>
 
 <h3 id="fluides">Liquides et gaz : masse volumique</h3>
@@ -159,7 +177,12 @@
 
 <div class="complement" title="Gaz piégé : la paille bouchée et la théière défectueuse">
 <p>Bouchez du doigt le haut d’une paille plongée dans un verre et sortez-la : l’eau reste dans la paille. Le peu d’air piégé sous le doigt s’est légèrement détendu, sa pression est devenue \(P_0 - \rho g h\), et la pression atmosphérique sous la paille soutient la colonne de hauteur \(h\).</p>
-<p>C’est la clé de l’annale IPhO 2019 (Q6) : dans une théière, le thé monte plus haut dans le bec (hauteur \(h\)) que dans le corps (hauteur \(H\)), parce qu’un défaut bouche le haut du bec. Le corps de la théière communique avec l’atmosphère : la pression au fond vaut \(P_0 + \rho g H\). Dans le bec, l’air est piégé à une pression \(P_0 - \rho g (h - H)\), inférieure à \(P_0\), ce qui retient le thé plus haut. La surpression au fond est donc \(\Delta P = \rho g H\).</p>
+<p>C’est la clé de l’annale IPhO 2019 (Q6) : dans une théière, le thé monte plus haut dans le bec (hauteur \(h\)) que dans le corps (hauteur \(H\)), parce qu’un défaut bouche le haut du bec.</p>
+<ol class="etapes">
+<li>Le corps de la théière communique avec l’atmosphère : la pression au fond vaut \(P_0 + \rho g H\).</li>
+<li>Dans le bec, l’air piégé est à une pression \(P_0 - \rho g (h - H)\), inférieure à \(P_0\) : c’est elle qui retient le thé plus haut.</li>
+<li>La surpression au fond est donc \(\Delta P = \rho g H\), fixée par le corps ouvert.</li>
+</ol>
 </div>
 
 <h3 id="pascal">Transmission des pressions : la presse hydraulique</h3>
@@ -215,7 +238,13 @@
 <div class="exo" data-group="cde-12"></div>
 
 <h3 id="partiellement-immerge">Quand Archimède ne s’applique pas : corps posé au fond, coque, vitre</h3>
-<p>La démonstration du théorème suppose que le fluide <strong>entoure toute la surface</strong> du corps (ou de sa partie immergée). Si une partie de cette surface n’est pas en contact avec le fluide (objet collé au fond, coque posée sur le sol, vitre d’aquarium), il manque les forces pressantes que le fluide aurait exercées sur cette face, et la résultante n’est plus \(\rho_f V g\) vers le haut : elle peut même <strong>plaquer</strong> l’objet contre le fond. C’est l’effet ventouse.</p>
+<p>La démonstration du théorème suppose que le fluide <strong>entoure toute la surface</strong> du corps (ou de sa partie immergée).</p>
+<table>
+<thead><tr><th>Situation</th><th>Résultante des forces de pression</th></tr></thead>
+<tbody>
+<tr><td>Corps entièrement entouré de fluide</td><td>\(\rho_fVg\), vers le haut</td></tr>
+<tr><td>Une face n’est pas mouillée (objet collé au fond, coque posée sur le sol, vitre d’aquarium)</td><td>il manque les forces que le fluide aurait exercées sur cette face : la résultante n’est plus \(\rho_fVg\) et peut même <strong>plaquer</strong> l’objet contre le fond (effet ventouse)</td></tr>
+</tbody></table>
 <figure>
 <svg viewBox="0 0 640 250" width="640" role="img" aria-label="Un cube entouré d’eau subit la poussée d’Archimède ; posé au fond sans eau dessous, il ne subit que la pression sur ses faces supérieure et latérales" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
 <defs><marker id="pa-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23a48"/></marker>
@@ -305,7 +334,13 @@
 <figcaption>Vitre hémicylindrique verticale (cahier d’entraînement, Q12 et Q16) : en prenant pour système l’eau comprise entre la vitre et le plan vertical \(\mathcal P\) de ses bords, la force horizontale de l’eau sur la vitre courbe est celle que subirait une vitre plane de même largeur \(2R\).</figcaption>
 </figure>
 <div class="cpge" id="vitre-courbe" title="Vitre hémicylindrique : la résultante est celle d’une vitre plane (Q16)">
-<p>Prenons pour système \(\mathcal S\) l’eau comprise entre la vitre courbe et le plan vertical \(\mathcal P\) passant par ses bords (hachures). \(\mathcal S\) est à l’équilibre sous l’action de son poids (vertical), de la réaction du fond (verticale), des forces de pression du reste de l’eau sur \(\mathcal P\) (horizontales, car normales à \(\mathcal P\)) et des forces de pression de la vitre. La somme est nulle : la composante horizontale de la force de la vitre sur \(\mathcal S\) est l’opposée de la force de l’eau sur \(\mathcal P\). Par le principe des actions réciproques, la force horizontale de l’eau sur la vitre courbe est <strong>exactement</strong> celle que l’eau exercerait sur la vitre plane \(\mathcal P\), de largeur \(2R\) et de hauteur \(H\) : \(F = \tfrac12\rho g H^2\times 2R = \rho g R H^2\) (surpression seule, l’atmosphère poussant de l’autre côté), appliquée au tiers de la hauteur. Aucune intégrale sur le demi-cylindre n’est nécessaire.</p>
+<ol class="etapes">
+<li><strong>Système</strong> \(\mathcal S\) : l’eau comprise entre la vitre courbe et le plan vertical \(\mathcal P\) passant par ses bords (hachures).</li>
+<li><strong>Forces sur \(\mathcal S\)</strong> : son poids et la réaction du fond (verticaux), les forces de pression du reste de l’eau sur \(\mathcal P\) (horizontales, car normales à \(\mathcal P\)), les forces de pression de la vitre.</li>
+<li><strong>Équilibre horizontal</strong> : la composante horizontale de la force de la vitre sur \(\mathcal S\) est l’opposée de la force de l’eau sur \(\mathcal P\).</li>
+<li><strong>Actions réciproques</strong> : la force horizontale de l’eau sur la vitre courbe est donc <strong>exactement</strong> celle que l’eau exercerait sur la vitre plane \(\mathcal P\), de largeur \(2R\) et de hauteur \(H\).</li>
+<li><strong>Résultat</strong> : \(F = \tfrac12\rho g H^2\times 2R = \rho g R H^2\) (surpression seule, l’atmosphère poussant de l’autre côté), appliquée au tiers de la hauteur. Aucune intégrale sur le demi-cylindre n’est nécessaire.</li>
+</ol>
 <div class="exo" data-q="cde-22-16"></div>
 <p>La composante verticale de la force sur une surface courbe est, de même, le poids de l’eau située au-dessus de la surface : nulle ici (vitre verticale), égale au poids du liquide surplombant pour une paroi inclinée ou un dôme. C’est la règle énoncée dans la partie 5 pour les parois courbes.</p>
 </div>
@@ -346,7 +381,14 @@ Un corps qui <strong>repose au fond</strong> déplace exactement son <strong>vol
 <div class="exo" data-q="ipho-2025-T9"></div>
 
 <h3 id="plongeur">Un équilibre instable : le plongeur et le ludion</h3>
-<p>Un plongeur règle sa flottabilité avec l’air de son gilet. Mais cet air est comprimé quand il descend : son volume \(V_\text{air} = \dfrac{nRT}{P_0 + \rho g z}\) diminue avec la profondeur \(z\), donc la poussée d’Archimède diminue aussi. Supposons-le en équilibre à 20 m. S’il descend un peu, la poussée devient inférieure à son poids : il descend encore. S’il monte un peu, la poussée l’emporte : il monte de plus en plus vite. L’équilibre est <strong>instable</strong> (Concours général 2026, Q13). En remontant, le plongeur doit purger l’air de son gilet pour ne pas être emporté vers la surface.</p>
+<p>Un plongeur règle sa flottabilité avec l’air de son gilet. Mais cet air est comprimé quand il descend : son volume \(V_\text{air} = \dfrac{nRT}{P_0 + \rho g z}\) diminue avec la profondeur \(z\), et la poussée d’Archimède aussi. Supposons-le en équilibre à 20 m :</p>
+<table>
+<thead><tr><th>Petit écart</th><th>Volume d’air</th><th>Poussée comparée au poids</th><th>Suite</th></tr></thead>
+<tbody>
+<tr><td>il descend un peu</td><td>diminue</td><td>plus faible</td><td>il descend encore</td></tr>
+<tr><td>il monte un peu</td><td>augmente</td><td>plus forte</td><td>il monte de plus en plus vite</td></tr>
+</tbody></table>
+<p>L’équilibre est <strong>instable</strong> (Concours général 2026, Q13). En remontant, le plongeur doit purger l’air de son gilet pour ne pas être emporté vers la surface.</p>
 <p>Un bouchon qui flotte à la surface est au contraire en équilibre <strong>stable</strong> : si on l’enfonce, son volume immergé augmente et la poussée le fait remonter. Le <strong>ludion</strong> (une fiole renversée contenant une bulle, dans une bouteille fermée) illustre l’instabilité : en pressant la bouteille, on comprime la bulle et le ludion coule.</p>
 <div class="methode" data-m="lineariser"><p>Pour le plongeur, on écrit la force résultante à la profondeur \(z_0 + \delta z\) au premier ordre en \(\delta z\) : la poussée varie de \(\rho g\,\dfrac{\mathrm dV_\text{air}}{\mathrm dz}\,\delta z\), négatif pour \(\delta z > 0\) puisque \(\mathrm dV_\text{air}/\mathrm dz < 0\), si bien que la force résultante (axe \(z\) vers le bas) a le signe de \(\delta z\). On obtient \(\ddot{\delta z} = +\alpha^2\,\delta z\) : l’écart croît exponentiellement, l’équilibre est instable.</p></div>
 
@@ -357,7 +399,12 @@ Un corps qui <strong>repose au fond</strong> déplace exactement son <strong>vol
 <p><strong>Montgolfière</strong> : l’enveloppe est ouverte en bas, l’air intérieur est à la pression extérieure mais plus chaud, donc moins dense : \(\rho_\text{int} = \dfrac{PM}{RT_\text{int}}\). En notant \(m\) la masse de l’enveloppe et du chargement, la condition de décollage s’écrit \(\rho_\text{ext} V > m + \rho_\text{int} V\).</p>
 <div class="methode" data-m="systeme"><p>Pour la montgolfière, le système est {enveloppe + nacelle + air chaud contenu} : son poids inclut \(\rho_\text{int}Vg\), et la poussée est le poids de l’air froid extérieur de même volume. Oublier l’air chaud dans le système, c’est oublier ce qui rend le décollage difficile.</p></div>
 <div class="exo" data-q="ipho-2024-T7"></div>
-<p><strong>Ballon à hélium ouvert</strong> (ballon-sonde du Concours général 2023). L’hélium est à la pression et à la température de l’air, donc \(\rho_\text{He}/\rho_\text{air} = M_\text{He}/M_\text{air} = 4/29\). En montant, la pression baisse, l’hélium se dilate et le ballon gonfle ; tant qu’aucun gaz ne s’échappe, la poussée \(\rho_\text{air} V g = \dfrac{M_\text{air}}{M_\text{He}}\,m_\text{He}\,g\) reste <strong>constante</strong>. Quand l’enveloppe atteint son volume maximal, l’hélium en excès s’échappe et le ballon s’arrête à l’altitude (le <strong>plafond</strong>) où \(\rho_\text{air} V_\text{max} = m_\text{ballon} + m_\text{He}\).</p>
+<p><strong>Ballon à hélium ouvert</strong> (ballon-sonde du Concours général 2023). L’hélium est à la pression et à la température de l’air, donc \(\rho_\text{He}/\rho_\text{air} = M_\text{He}/M_\text{air} = 4/29\).</p>
+<ol class="etapes">
+<li><strong>Montée, enveloppe pas encore pleine</strong> : la pression baisse, l’hélium se dilate et le ballon gonfle. Tant qu’aucun gaz ne s’échappe, la poussée \(\rho_\text{air} V g = \dfrac{M_\text{air}}{M_\text{He}}\,m_\text{He}\,g\) reste <strong>constante</strong>.</li>
+<li><strong>Enveloppe pleine</strong> : au-delà, l’hélium en excès s’échappe par l’ouverture, le volume reste \(V_\text{max}\) et la poussée diminue avec \(\rho_\text{air}\).</li>
+<li><strong>Plafond</strong> : le ballon s’arrête à l’altitude où \(\rho_\text{air} V_\text{max} = m_\text{ballon} + m_\text{He}\).</li>
+</ol>
 
 <div class="sim" data-name="ballon-sonde"><p>Suivez un ballon-sonde dans le modèle d’atmosphère du Concours général 2023 : volume, poussée et poids selon l’altitude, jusqu’au plafond.</p></div>
 
@@ -378,12 +425,27 @@ Un corps qui <strong>repose au fond</strong> déplace exactement son <strong>vol
 <h3 id="atmosphere">L’atmosphère isotherme et la troposphère</h3>
 <p>Si la température \(T\) est uniforme :</p>
 \[\frac{\mathrm dP}{\mathrm dz} = -\frac{Mg}{RT}\,P \quad\Longrightarrow\quad P(z) = P_0\,\mathrm e^{-z/H}, \qquad H = \frac{RT}{Mg}.\]
-<p>\(H\) est la <strong>hauteur d’échelle</strong> : la pression est divisée par \(\mathrm e \approx 2{,}7\) chaque fois qu’on monte de \(H\). Pour l’air à 288 K, \(H = \dfrac{8{,}314\times288}{0{,}029\times9{,}8} = 8{,}4\ \text{km}\) ; à 217 K (basse stratosphère), 6,3 km. La pression est divisée par 2 environ tous les 6 km (\(H\ln 2\)) : c’est pourquoi l’Everest (8,8 km) est à 0,33 bar. La masse volumique \(\rho = PM/(RT)\) suit la même exponentielle.</p>
+<p>\(H\) est la <strong>hauteur d’échelle</strong> : la pression est divisée par \(\mathrm e \approx 2{,}7\) chaque fois qu’on monte de \(H\). La masse volumique \(\rho = PM/(RT)\) suit la même exponentielle.</p>
+<table>
+<thead><tr><th>Grandeur</th><th>Valeur</th></tr></thead>
+<tbody>
+<tr><td>\(H\) pour l’air à 288 K</td><td>\(\dfrac{8{,}314\times288}{0{,}029\times9{,}8} = 8{,}4\ \text{km}\)</td></tr>
+<tr><td>\(H\) à 217 K (basse stratosphère)</td><td>6,3 km</td></tr>
+<tr><td>Altitude où la pression est divisée par 2 (\(H\ln 2\))</td><td>environ 6 km</td></tr>
+<tr><td>Pression au sommet de l’Everest (8,8 km)</td><td>0,33 bar</td></tr>
+</tbody></table>
 <p>Dans la <strong>troposphère</strong> (0 à 11 km), la température baisse d’environ 6,5 K par kilomètre : \(T(z) = T_0 - bz\). L’équation devient \(\dfrac{\mathrm dP}{\mathrm dz} = -\dfrac{Mg}{R(T_0 - bz)}\,P\), dont la solution est (Concours général 2023, Q9)</p>
 \[P(z) = P_0\left(1 - \frac{bz}{T_0}\right)^{\alpha}, \qquad \alpha = \frac{Mg}{Rb} \approx 5{,}8.\]
 
 <div class="complement" title="Le facteur de Boltzmann : une autre lecture de l’atmosphère isotherme">
-<p>La densité de molécules \(n^* = P/(k_BT)\) suit la même loi : \(n^*(z) = n^*(0)\,\exp\left(-\dfrac{m g z}{k_B T}\right)\), où \(m = M/N_A\) est la masse d’une molécule et \(mgz\) son énergie potentielle. C’est un exemple du <strong>facteur de Boltzmann</strong> \(\mathrm e^{-E/k_BT}\) : un état d’énergie \(E\) est d’autant moins peuplé que \(E\) est grand devant l’énergie thermique \(k_BT\). La hauteur d’échelle \(H = k_BT/(mg)\) est l’altitude à laquelle l’énergie potentielle d’une molécule égale \(k_BT\). Les molécules légères ont un \(H\) plus grand : la haute atmosphère est enrichie en hélium et en hydrogène.</p>
+<p>La densité de molécules \(n^* = P/(k_BT)\) suit la même loi :</p>
+\[n^*(z) = n^*(0)\,\exp\left(-\frac{m g z}{k_B T}\right),\]
+<p>où \(m = M/N_A\) est la masse d’une molécule et \(mgz\) son énergie potentielle.</p>
+<ul>
+<li>C’est un exemple du <strong>facteur de Boltzmann</strong> \(\mathrm e^{-E/k_BT}\) : un état d’énergie \(E\) est d’autant moins peuplé que \(E\) est grand devant l’énergie thermique \(k_BT\).</li>
+<li>La hauteur d’échelle \(H = k_BT/(mg)\) est l’altitude à laquelle l’énergie potentielle d’une molécule égale \(k_BT\).</li>
+<li>Les molécules légères ont un \(H\) plus grand : la haute atmosphère est enrichie en hélium et en hydrogène.</li>
+</ul>
 </div>
 
 <div class="cpge" id="vectorielle" title="Forme vectorielle et équivalent volumique des forces de pression">
@@ -400,7 +462,14 @@ Un corps qui <strong>repose au fond</strong> déplace exactement son <strong>vol
 <div class="cpge" id="paroi" title="Forces pressantes sur une paroi : barrage et centre de poussée">
 <p>Un barrage vertical de largeur \(L\) retient une hauteur \(h\) d’eau. L’atmosphère pousse des deux côtés : seule compte la surpression \(p(z) = \rho g (h - z)\) (axe \(z\) vers le haut depuis le pied du barrage). La résultante s’obtient en intégrant sur des bandes horizontales d’aire \(L\,\mathrm dz\) :</p>
 \[F = \int_0^h \rho g (h - z)\,L\,\mathrm dz = \frac12 \rho g L h^2.\]
-<p>C’est la pression moyenne \(\rho g h/2\) (à mi-hauteur, car \(p\) varie linéairement) multipliée par l’aire \(Lh\). Le moment en \(O\) (pied du barrage) vaut \(\mathcal M = \displaystyle\int_0^h z\,\rho g (h - z) L\,\mathrm dz = \frac16 \rho g L h^3\) : la force est appliquée au <strong>centre de poussée</strong>, à la hauteur \(z_C = \mathcal M/F = h/3\) au-dessus du pied, plus bas que le milieu. Un barrage de 100 m subit environ \(5\times10^7\ \text{N}\) par mètre de largeur, d’où leur base très épaisse (barrages-poids) ou leur forme en voûte.</p>
+<table>
+<thead><tr><th>Grandeur</th><th>Résultat</th><th>Interprétation</th></tr></thead>
+<tbody>
+<tr><td>Force</td><td>\(F = \tfrac12\rho gLh^2\)</td><td>pression moyenne \(\rho gh/2\) (à mi-hauteur, car \(p\) varie linéairement) multipliée par l’aire \(Lh\)</td></tr>
+<tr><td>Moment au pied \(O\)</td><td>\(\mathcal M = \displaystyle\int_0^h z\,\rho g (h - z) L\,\mathrm dz = \frac16 \rho g L h^3\)</td><td></td></tr>
+<tr><td>Centre de poussée</td><td>\(z_C = \mathcal M/F = h/3\) au-dessus du pied</td><td>plus bas que le milieu</td></tr>
+<tr><td>Ordre de grandeur</td><td>barrage de 100 m : \(5\times10^7\ \text{N}\) par mètre de largeur</td><td>d’où leur base très épaisse (barrages-poids) ou leur forme en voûte</td></tr>
+</tbody></table>
 <div class="methode" data-m="decouper-integrer"><p>Pour le barrage, la tranche est une bande horizontale d’aire \(L\,\mathrm dz\), où la surpression \(\rho g(h - z)\) est uniforme ; on somme \(\mathrm dF\) pour la résultante et \(z\,\mathrm dF\) pour le moment. Contrôle : \(\tfrac12\rho gLh^2\) est bien une force, et c’est la pression à mi-hauteur multipliée par l’aire.</p></div>
 <div class="sim" data-name="barrage"><p>Profil de pression sur une paroi verticale ou inclinée, résultante et centre de poussée.</p></div>
 <p><strong>Paroi courbe</strong> : la composante horizontale de la force sur une surface courbe est égale à la force qui s’exercerait sur sa projection sur un plan vertical ; la composante verticale est égale au poids du liquide situé au-dessus de la surface (jusqu’à la surface libre).</p>
@@ -424,7 +493,13 @@ Un corps qui <strong>repose au fond</strong> déplace exactement son <strong>vol
 <svg viewBox="0 0 640 230" width="640" role="img" aria-label="Coque flottante inclinée : stable si le métacentre M est au-dessus du centre de gravité G, instable sinon" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px"><defs><marker id="fm-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23a48"/></marker><marker id="fm-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1f8a4c"/></marker><marker id="fm-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2b6cb0"/></marker><marker id="fm-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker></defs><rect x="20" y="110" width="280" height="90" fill="#dbe8f7"/><line x1="20" y1="110" x2="300" y2="110" stroke="#2b6cb0" stroke-width="2"/><g transform="rotate(15 160 130)"><path d="M90 60 L90 150 Q160 190 230 150 L230 60 Z" fill="#f3e3c3" stroke="#15213a" stroke-width="2"/></g><circle cx="160" cy="120" r="4" fill="#15213a"/><text x="168" y="118" fill="#15213a" font-weight="600">G</text><circle cx="178" cy="156" r="4" fill="#2b6cb0"/><text x="186" y="160" fill="#2b6cb0" font-weight="600">C (centre de poussée)</text><line x1="178" y1="156" x2="178" y2="62" stroke="#2b6cb0" stroke-dasharray="4 3"/><circle cx="178" cy="68" r="4" fill="#1f8a4c"/><text x="186" y="66" fill="#1f8a4c" font-weight="600">M (métacentre)</text><line x1="178" y1="156" x2="178" y2="100" stroke="#2b6cb0" stroke-width="3" marker-end="url(#fm-b)"/><line x1="160" y1="120" x2="160" y2="176" stroke="#b23a48" stroke-width="3" marker-end="url(#fm-r)"/><text x="24" y="226" fill="#15213a" font-size="11">Poids en G, poussée en C : le couple redresse la coque.</text><text x="20" y="24" fill="#15213a" font-weight="600">Stable : M au-dessus de G</text><rect x="340" y="110" width="280" height="90" fill="#dbe8f7"/><line x1="340" y1="110" x2="620" y2="110" stroke="#2b6cb0" stroke-width="2"/><g transform="rotate(15 480 130)"><path d="M440 50 L440 170 Q480 190 520 170 L520 50 Z" fill="#f3e3c3" stroke="#15213a" stroke-width="2"/></g><circle cx="480" cy="100" r="4" fill="#15213a"/><text x="488" y="98" fill="#15213a" font-weight="600">G (haut)</text><circle cx="488" cy="160" r="4" fill="#2b6cb0"/><text x="496" y="164" fill="#2b6cb0" font-weight="600">C</text><circle cx="488" cy="130" r="4" fill="#1f8a4c"/><text x="496" y="134" fill="#1f8a4c" font-weight="600">M sous G</text><line x1="488" y1="160" x2="488" y2="112" stroke="#2b6cb0" stroke-width="3" marker-end="url(#fm-b)"/><line x1="480" y1="100" x2="480" y2="150" stroke="#b23a48" stroke-width="3" marker-end="url(#fm-r)"/><text x="340" y="24" fill="#15213a" font-weight="600">Instable : le couple accentue l’inclinaison</text><text x="344" y="226" fill="#15213a" font-size="11">Bloc haut et étroit : il chavire ; lestez bas.</text></svg>
 <figcaption>Stabilité d’un flotteur : quand on l’incline, le centre de poussée \(C\) se déplace vers le côté enfoncé ; la verticale de \(C\) coupe l’axe du flotteur au métacentre \(M\). Stable si \(M\) est au-dessus de \(G\).</figcaption>
 </figure>
-<p>Pour un corps flottant, la poussée s’applique au centre de poussée \(C\), le poids au centre de gravité \(G\). Si l’on incline le corps, la forme de la partie immergée change et \(C\) se déplace. L’équilibre est stable si le couple poids-poussée tend à redresser le corps : c’est le cas quand le <strong>métacentre</strong> (intersection de la nouvelle verticale passant par \(C\) avec l’axe de symétrie) est au-dessus de \(G\). Un bateau large et lesté par le fond est stable ; un cylindre long et léger flotte couché. Un corps entièrement immergé est stable si \(G\) est sous \(C\) (sous-marin, ballon dont la nacelle pend sous l’enveloppe).</p>
+<p>Pour un corps flottant, la poussée s’applique au <strong>centre de poussée</strong> \(C\) (centre de la partie immergée), le poids au centre de gravité \(G\). Si l’on incline le corps, la forme de la partie immergée change et \(C\) se déplace : le couple poids-poussée redresse le corps, ou le fait chavirer.</p>
+<table>
+<thead><tr><th>Corps</th><th>Condition de stabilité</th><th>Exemples</th></tr></thead>
+<tbody>
+<tr><td>Flottant</td><td>le <strong>métacentre</strong> (intersection de la nouvelle verticale passant par \(C\) avec l’axe de symétrie) est au-dessus de \(G\)</td><td>un bateau large et lesté par le fond est stable ; un cylindre long et léger flotte couché</td></tr>
+<tr><td>Entièrement immergé</td><td>\(G\) sous \(C\)</td><td>sous-marin, ballon dont la nacelle pend sous l’enveloppe</td></tr>
+</tbody></table>
 <p>Pour un corps compressible immergé (ludion, plongeur), l’équilibre vertical est instable : voir la partie 4.</p>
 </div>
 

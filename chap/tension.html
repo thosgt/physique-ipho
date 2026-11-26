@@ -24,7 +24,11 @@
 
 <h2 id="origine">1. Énergie de surface et tension superficielle</h2>
 <h3 id="energie">Pourquoi une surface coûte de l’énergie</h3>
-<p>Dans un liquide, chaque molécule est attirée par ses voisines : c’est ce qui fait la cohésion du liquide. Une molécule de la surface n’a des voisines que d’un côté ; elle a perdu une partie de ses liaisons, et son énergie est plus élevée que celle d’une molécule de l’intérieur. Amener des molécules en surface, c’est-à-dire augmenter l’aire de la surface, coûte donc de l’énergie, proportionnellement à l’aire créée :</p>
+<ol class="etapes">
+<li>Dans un liquide, chaque molécule est attirée par ses voisines : c’est ce qui fait la cohésion du liquide.</li>
+<li>Une molécule de la surface n’a des voisines que d’un côté : elle a perdu une partie de ses liaisons, son énergie est plus élevée que celle d’une molécule de l’intérieur.</li>
+<li>Augmenter l’aire de la surface, c’est amener des molécules en surface : cela coûte de l’énergie, proportionnellement à l’aire créée :</li>
+</ol>
 \[E_\text{surf} = \gamma S.\]
 <figure>
 <svg viewBox="0 0 640 230" width="640" role="img" aria-label="Molécules d'un liquide : une molécule de l'intérieur est attirée de façon symétrique, une molécule de la surface est attirée vers l'intérieur" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
@@ -57,11 +61,24 @@
 <tr><td>Mercure</td><td>485</td></tr>
 </tbody>
 </table>
-<p>Pour minimiser son énergie, un liquide livré à lui-même prend la forme de surface minimale : une petite goutte est sphérique, un film de savon tendu sur un cadre est plan, un jet d’eau se fragmente en gouttes. Les <strong>tensioactifs</strong> (savon, détergents), qui se placent à la surface, abaissent \(\gamma\) : c’est ce qui permet de faire des bulles.</p>
+<p>Pour minimiser son énergie, un liquide livré à lui-même prend la forme de <strong>surface minimale</strong> :</p>
+<table>
+<thead><tr><th>Situation</th><th>Forme</th></tr></thead>
+<tbody>
+<tr><td>petite goutte</td><td>sphère (aire minimale à volume donné)</td></tr>
+<tr><td>film de savon tendu sur un cadre plan</td><td>plan</td></tr>
+<tr><td>jet d’eau</td><td>se fragmente en gouttes</td></tr>
+</tbody></table>
+<p>Les <strong>tensioactifs</strong> (savon, détergents), qui se placent à la surface, abaissent \(\gamma\) : c’est ce qui permet de faire des bulles.</p>
 <div class="methode" data-m="minimum-energie"><p>Une goutte isolée minimise son énergie de surface \(\gamma S\) à volume fixé : la sphère est la forme d’aire minimale pour un volume donné. Dès qu’il y a de la pesanteur, on minimise \(\gamma S + E_\text{pes}\) : c’est l’origine des gouttes aplaties et des flaques (partie 4).</p></div>
 
 <h3 id="force">La tension superficielle comme force</h3>
-<p>Tirons sur la barre mobile d’un cadre où est tendu un film de savon. Si la barre de longueur \(\ell\) avance de \(\Delta x\), l’aire du film augmente de \(\ell\Delta x\) sur <strong>chacune de ses deux faces</strong>. Le travail fourni est stocké en énergie de surface : \(F\Delta x = \gamma\cdot 2\ell\Delta x\), donc le film retient la barre avec la force</p>
+<p>Tirons sur la barre mobile, de longueur \(\ell\), d’un cadre où est tendu un film de savon.</p>
+<ol class="etapes">
+<li>Si la barre avance de \(\Delta x\), l’aire du film augmente de \(\ell\Delta x\) sur <strong>chacune de ses deux faces</strong>.</li>
+<li>Le travail fourni est stocké en énergie de surface : \(F\Delta x = \gamma\cdot 2\ell\Delta x\).</li>
+<li>Le film retient donc la barre avec la force :</li>
+</ol>
 \[F = 2\gamma\ell \qquad\text{(film à deux faces) ;}\qquad F = \gamma\ell \quad\text{pour une seule interface.}\]
 <figure>
 <svg viewBox="0 0 640 220" width="640" role="img" aria-label="Cadre en fil de fer avec une barre mobile retenant un film de savon : la force de l'opérateur équilibre la force 2 gamma l exercée par le film" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
@@ -79,7 +96,8 @@
 </svg>
 <figcaption>Le film tire sur la barre avec la force \(2\gamma\ell\) (deux faces). Pour la déplacer de \(\Delta x\), il faut fournir le travail \(2\gamma\ell\Delta x\) : c’est l’énergie de la surface créée.</figcaption>
 </figure>
-<p>Plus généralement, une interface se comporte comme une membrane tendue : le long de toute ligne tracée sur elle, chaque côté tire sur l’autre avec une force \(\gamma\) par unité de longueur, tangente à la surface et perpendiculaire à la ligne. Ces forces sont faibles mais l’emportent aux petites échelles : un trombone ou un gerris (« araignée d’eau ») tient sur l’eau parce que la surface, légèrement déformée, le porte avec une force de l’ordre de \(\gamma\) fois le périmètre de contact (\(0{,}07\ \text{N·m}^{-1} \times 10\ \text{cm} = 7\) mN, de quoi porter près d’un gramme).</p>
+<p>Plus généralement, une interface se comporte comme une <strong>membrane tendue</strong> : le long de toute ligne tracée sur elle, chaque côté tire sur l’autre avec une force \(\gamma\) par unité de longueur, tangente à la surface et perpendiculaire à la ligne.</p>
+<p>Ces forces sont faibles mais l’emportent aux petites échelles. Un trombone ou un gerris (« araignée d’eau ») tient sur l’eau parce que la surface, légèrement déformée, le porte avec une force de l’ordre de \(\gamma\) fois le périmètre de contact : \(0{,}07\ \text{N·m}^{-1} \times 10\ \text{cm} = 7\) mN, de quoi porter près d’un gramme.</p>
 
 <h2 id="laplace">2. Pression de Laplace</h2>
 <p>Une surface courbe tendue presse sur son côté concave, comme un ballon de baudruche : la pression est plus grande à l’intérieur d’une goutte qu’à l’extérieur. Pour calculer l’écart, isolons la moitié d’une goutte sphérique de rayon \(R\) et écrivons l’équilibre des forces selon l’axe perpendiculaire à la coupe :</p>
@@ -101,13 +119,29 @@
 </figure>
 \[P_\text{int} - P_\text{ext} = \frac{2\gamma}{R}\ \text{(goutte, bulle dans un liquide)}, \qquad P_\text{int} - P_\text{ext} = \frac{4\gamma}{R}\ \text{(bulle de savon : deux interfaces).}\]
 <div class="methode" data-m="coupe-fictive"><p>Ici, on coupe la goutte en deux et on écrit l’équilibre d’une moitié : la pression uniforme sur la calotte équivaut à la pression fois l’aire projetée \(\pi R^2\), et la tension agit sur tout le bord de la coupe. La même coupe, pour une bulle de savon, fait apparaître deux interfaces, donc \(4\gamma/R\).</p></div>
-<p>Ordres de grandeur : une bulle de savon de 1 cm de rayon a une surpression de \(4 \times 0{,}025/0{,}01 = 10\) Pa, insignifiante devant \(P_0 = 10^5\) Pa ; une gouttelette de brouillard de 1 µm, \(2\times 0{,}072/10^{-6} \approx 1{,}4\) bar ; une bulle de 1 µm dans l’eau aussi, ce qui explique qu’il soit si difficile de faire naître une bulle (ébullition retardée, cavitation). Conséquence surprenante : si l’on relie deux bulles de savon, la <strong>petite se vide dans la grande</strong>, puisque sa pression intérieure est plus forte.</p>
+<table>
+<thead><tr><th>Objet</th><th>Surpression de Laplace</th><th>Conséquence</th></tr></thead>
+<tbody>
+<tr><td>Bulle de savon de 1 cm (\(\gamma = 0{,}025\ \text{N·m}^{-1}\), deux interfaces)</td><td>\(4\gamma/R = 10\) Pa</td><td>insignifiante devant \(P_0 = 10^5\) Pa</td></tr>
+<tr><td>Gouttelette de brouillard de 1 µm</td><td>\(2\gamma/R \approx 1{,}4\) bar</td><td>comparable à la pression atmosphérique</td></tr>
+<tr><td>Bulle de 1 µm dans l’eau</td><td>\(\approx 1{,}4\) bar</td><td>il est difficile de faire naître une bulle : ébullition retardée, cavitation</td></tr>
+</tbody></table>
+<p>Conséquence surprenante : si l’on relie deux bulles de savon, la <strong>petite se vide dans la grande</strong>, puisque sa pression intérieure est plus forte.</p>
 <div class="sim" data-name="bulles"><p>Choisissez les rayons des deux bulles, puis ouvrez le robinet : l’air va de la bulle où la surpression \(4\gamma/R\) est la plus forte (la plus petite) vers l’autre.</p></div>
 <div class="exo" data-group="lequin-D-26"></div>
 <div class="exo" data-group="lequin-D-25"></div>
 <div class="exo" data-group="cde-t1"></div>
 <div class="cpge" id="laplace-general" title="Loi de Laplace générale et surfaces minimales">
-<p>Pour une surface quelconque, de rayons de courbure principaux \(R_1\) et \(R_2\) en un point, la loi de Laplace s’écrit \(\Delta P = \gamma\left(\dfrac{1}{R_1} + \dfrac{1}{R_2}\right)\) (rayons comptés positivement du côté où la pression est la plus forte). Une sphère a \(R_1 = R_2 = R\) et redonne \(2\gamma/R\) ; un cylindre de rayon \(R\) (jet, fil d’eau) a \(R_2 = \infty\) : \(\Delta P = \gamma/R\). Un film de savon tendu entre deux cadres, avec la même pression des deux côtés, a une <strong>courbure moyenne nulle</strong> : \(1/R_1 + 1/R_2 = 0\), c’est une surface minimale (caténoïde entre deux anneaux, en forme de selle). Si les deux anneaux sont trop éloignés (distance supérieure à environ 1,33 fois leur rayon), aucune caténoïde n’existe et le film se rompt.</p>
+<p>Pour une surface quelconque, de rayons de courbure principaux \(R_1\) et \(R_2\) en un point (comptés positivement du côté où la pression est la plus forte) :</p>
+\[\Delta P = \gamma\left(\frac{1}{R_1} + \frac{1}{R_2}\right).\]
+<table>
+<thead><tr><th>Surface</th><th>Rayons</th><th>\(\Delta P\)</th></tr></thead>
+<tbody>
+<tr><td>Sphère (goutte)</td><td>\(R_1 = R_2 = R\)</td><td>\(2\gamma/R\)</td></tr>
+<tr><td>Cylindre (jet, fil d’eau)</td><td>\(R_1 = R\), \(R_2 = \infty\)</td><td>\(\gamma/R\)</td></tr>
+<tr><td>Film de savon entre deux cadres, même pression des deux côtés</td><td>\(1/R_1 + 1/R_2 = 0\) : courbure moyenne nulle</td><td>0 : surface minimale (caténoïde entre deux anneaux, en forme de selle)</td></tr>
+</tbody></table>
+<p>Si les deux anneaux sont trop éloignés (distance supérieure à environ 1,33 fois leur rayon), aucune caténoïde n’existe et le film se rompt.</p>
 </div>
 
 <h2 id="mouillage">3. Mouillage et angle de contact</h2>
@@ -130,12 +164,24 @@
 </svg>
 <figcaption>À gauche, l’équilibre de la ligne de contact selon le solide donne la loi de Young. Selon le signe de \(\gamma_{SG} - \gamma_{SL}\), la goutte s’étale (verre propre) ou perle (téflon, feuilles cireuses).</figcaption>
 </figure>
-<p>Si \(\gamma_{SG} - \gamma_{SL} \ge \gamma\), aucun angle ne convient : le liquide s’étale complètement (<strong>mouillage total</strong>, cas de l’eau sur un verre très propre, des huiles sur la plupart des solides). Sur une surface rugueuse et hydrophobe, l’eau repose sur les pointes en emprisonnant de l’air : l’angle apparent approche 180° et les gouttes roulent en emportant les poussières (effet lotus). L’angle de contact gouverne la forme du ménisque au bord d’un récipient : l’eau remonte le long d’un verre propre (ménisque concave), le mercure s’en écarte (ménisque convexe, \(\theta \approx 140°\)).</p>
+<table>
+<thead><tr><th>Cas</th><th>Ce qu’on observe</th></tr></thead>
+<tbody>
+<tr><td>\(\gamma_{SG} - \gamma_{SL} \ge \gamma\) : aucun angle ne convient</td><td><strong>mouillage total</strong> : le liquide s’étale (eau sur un verre très propre, huiles sur la plupart des solides)</td></tr>
+<tr><td>Surface rugueuse et hydrophobe</td><td>l’eau repose sur les pointes en emprisonnant de l’air : angle apparent proche de 180°, les gouttes roulent en emportant les poussières (effet lotus)</td></tr>
+<tr><td>Eau contre un verre propre (\(\theta \approx 0\))</td><td>l’eau remonte le long de la paroi : ménisque concave</td></tr>
+<tr><td>Mercure contre le verre (\(\theta \approx 140°\))</td><td>il s’en écarte : ménisque convexe</td></tr>
+</tbody></table>
 <div class="exo" data-group="lequin-D-27"></div>
 
 <h2 id="capillarite">4. Capillarité : loi de Jurin, longueur capillaire</h2>
 <h3 id="jurin">Ascension dans un tube fin</h3>
-<p>Dans un tube fin plongé dans un liquide mouillant, le liquide <strong>monte</strong> au-dessus du niveau du bain : c’est l’ascension capillaire, qui fait monter l’eau dans un sucre, un papier ou le sol. Écrivons l’équilibre de la colonne soulevée (rayon \(r\), hauteur \(h\)) : la tension superficielle tire vers le haut tout le long de la ligne de contact (\(2\pi r\) fois \(\gamma\cos\theta\)), le poids tire vers le bas ; les pressions en haut et en bas valent toutes deux \(P_0\) (le bas de la colonne est au niveau du bain). D’où la <strong>loi de Jurin</strong> :</p>
+<p>Dans un tube fin plongé dans un liquide mouillant, le liquide <strong>monte</strong> au-dessus du niveau du bain : c’est l’ascension capillaire, qui fait monter l’eau dans un sucre, un papier ou le sol.</p>
+<ol class="etapes">
+<li><strong>Système</strong> : la colonne soulevée, de rayon \(r\) et de hauteur \(h\).</li>
+<li><strong>Forces</strong> : la tension superficielle tire vers le haut tout le long de la ligne de contact, \(2\pi r\,\gamma\cos\theta\) ; le poids \(\rho\pi r^2hg\) tire vers le bas ; les pressions en haut et en bas valent toutes deux \(P_0\) (le bas de la colonne est au niveau du bain).</li>
+<li><strong>Équilibre</strong> : \(2\pi r\gamma\cos\theta = \rho\pi r^2hg\), d’où la <strong>loi de Jurin</strong> :</li>
+</ol>
 \[2\pi r\gamma\cos\theta = \rho g\,\pi r^2 h \qquad\Longrightarrow\qquad h = \frac{2\gamma\cos\theta}{\rho g r}.\]
 <figure>
 <svg viewBox="0 0 640 272" width="640" role="img" aria-label="Tube capillaire plongé dans un bain : le liquide monte d'une hauteur h ; la tension superficielle le long de la ligne de contact équilibre le poids de la colonne" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
@@ -155,7 +201,20 @@
 </svg>
 <figcaption>La force de tension superficielle sur la ligne de contact (\(2\pi r\gamma\cos\theta\), vers le haut pour un liquide mouillant) porte le poids de la colonne soulevée.</figcaption>
 </figure>
-<p>Pour l’eau dans un tube de verre propre (\(\theta \approx 0\)) : \(h = 1{,}5\times10^{-5}\ \text{m}^2/r\), soit 3 cm pour \(r = 0{,}5\) mm et 15 cm pour \(r = 0{,}1\) mm. Pour le mercure (\(\theta > 90°\)), \(\cos\theta < 0\) : le niveau <strong>descend</strong> dans le tube. On retrouve le même résultat par la pression de Laplace : juste sous le ménisque, de rayon \(r/\cos\theta\), la pression vaut \(P_0 - 2\gamma\cos\theta/r\), et l’hydrostatique impose \(P_0 - \rho g h\) à la hauteur \(h\).</p>
+<table>
+<thead><tr><th>Cas</th><th>Hauteur</th></tr></thead>
+<tbody>
+<tr><td>Eau, verre propre (\(\theta \approx 0\)) : \(h = 1{,}5\times10^{-5}\ \text{m}^2/r\)</td><td>3 cm pour \(r = 0{,}5\) mm ; 15 cm pour \(r = 0{,}1\) mm</td></tr>
+<tr><td>Mercure (\(\theta > 90°\), \(\cos\theta < 0\))</td><td>le niveau <strong>descend</strong> dans le tube</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="La loi de Jurin par la pression de Laplace">
+<ol class="etapes">
+<li>Le ménisque est une calotte sphérique de rayon \(r/\cos\theta\).</li>
+<li>Juste sous le ménisque, la pression est plus faible que \(P_0\) de la surpression de Laplace : \(P = P_0 - \dfrac{2\gamma\cos\theta}{r}\).</li>
+<li>L’hydrostatique dans la colonne impose \(P = P_0 - \rho g h\) à la hauteur \(h\) au-dessus du bain.</li>
+<li>En égalant : \(h = \dfrac{2\gamma\cos\theta}{\rho g r}\), comme par le bilan de forces.</li>
+</ol>
+</div>
 <div class="sim" data-name="jurin"><p>Changez le rayon du tube et le liquide : la hauteur d’ascension varie comme \(1/r\), et le mercure, non mouillant, descend dans le tube.</p></div>
 <div class="exo" data-q="ipho-2021-C7"></div>
 <div class="exo" data-group="lequin-D-28"></div>
@@ -163,21 +222,57 @@
 <h3 id="longueur-capillaire">Longueur capillaire : gouttes et flaques</h3>
 <p>La pesanteur et la tension superficielle s’équilibrent à une échelle qu’on obtient en comparant la pression hydrostatique \(\rho g\ell\) à la pression de Laplace \(\gamma/\ell\) : c’est la <strong>longueur capillaire</strong></p>
 \[\ell_c = \sqrt{\frac{\gamma}{\rho g}} \approx 2{,}7\ \text{mm pour l’eau}.\]
-<p>Une goutte plus petite que \(\ell_c\) reste sphérique ; une goutte plus grande s’aplatit en <strong>flaque</strong>, dont l’épaisseur ne dépend plus de son étendue : \(e = 2\ell_c\sin(\theta/2)\) (environ 5 mm pour l’eau sur une surface hydrophobe). Le rapport \(\text{Bo} = (R/\ell_c)^2 = \rho g R^2/\gamma\) (<strong>nombre de Bond</strong>) dit lequel des deux effets domine : la loi de Jurin, qui néglige la masse du ménisque, n’est valable que pour \(r \ll \ell_c\). Les ménisques le long d’une paroi s’étendent sur quelques \(\ell_c\) ; deux objets flottants proches s’attirent à travers leurs ménisques (agrégation des céréales dans le bol, « effet Cheerios »).</p>
+<table>
+<thead><tr><th>Taille \(R\)</th><th>Effet dominant</th><th>Forme ou conséquence</th></tr></thead>
+<tbody>
+<tr><td>\(R \ll \ell_c\)</td><td>tension superficielle</td><td>goutte sphérique ; loi de Jurin valable (elle néglige la masse du ménisque)</td></tr>
+<tr><td>\(R \gg \ell_c\)</td><td>pesanteur</td><td>flaque d’épaisseur indépendante de son étendue, \(e = 2\ell_c\sin(\theta/2)\) (environ 5 mm pour l’eau sur une surface hydrophobe)</td></tr>
+</tbody></table>
+<ul>
+<li>Le rapport \(\text{Bo} = (R/\ell_c)^2 = \rho g R^2/\gamma\) (<strong>nombre de Bond</strong>) dit lequel des deux effets domine.</li>
+<li>Les ménisques le long d’une paroi s’étendent sur quelques \(\ell_c\) ; deux objets flottants proches s’attirent à travers leurs ménisques (agrégation des céréales dans le bol, « effet Cheerios »).</li>
+</ul>
 <div class="methode" data-m="sans-dimension"><p>Le nombre de Bond \(\rho gR^2/\gamma\) compare pesanteur et capillarité. Avant tout calcul, évaluez-le : s’il est petit, la goutte est sphérique et la loi de Laplace suffit ; s’il est grand, la pesanteur domine et l’on raisonne sur une flaque d’épaisseur fixée par \(\ell_c\).</p></div>
 <div class="cpge" id="flaque" title="Épaisseur d’une flaque par un bilan de forces">
-<p>Isolons le bord d’une grande flaque d’épaisseur \(e\) sur une bande de largeur \(L\) : la pression hydrostatique pousse ce bord vers l’extérieur avec la force \(\int_0^e\rho g z\,L\,\mathrm dz = \tfrac12\rho g e^2L\). Vers l’intérieur, la surface libre tire avec \(\gamma L\) et l’interface solide-liquide avec \(\gamma_{SL}L\), tandis que \(\gamma_{SG}L\) tire vers l’extérieur. L’équilibre donne \(\tfrac12\rho g e^2 = \gamma + \gamma_{SL} - \gamma_{SG} = \gamma(1 - \cos\theta)\) par la loi de Young, soit \(e = 2\ell_c\sin(\theta/2)\).</p>
+<ol class="etapes">
+<li><strong>Système</strong> : le bord d’une grande flaque d’épaisseur \(e\), sur une bande de largeur \(L\).</li>
+<li><strong>Vers l’extérieur</strong> : la pression hydrostatique pousse ce bord avec \(\displaystyle\int_0^e\rho g z\,L\,\mathrm dz = \tfrac12\rho g e^2L\), et l’interface solide-gaz tire avec \(\gamma_{SG}L\).</li>
+<li><strong>Vers l’intérieur</strong> : la surface libre tire avec \(\gamma L\) et l’interface solide-liquide avec \(\gamma_{SL}L\).</li>
+<li><strong>Équilibre</strong> : \(\tfrac12\rho g e^2 = \gamma + \gamma_{SL} - \gamma_{SG} = \gamma(1 - \cos\theta)\) par la loi de Young, soit \(e = 2\ell_c\sin(\theta/2)\).</li>
+</ol>
 </div>
 
 <h2 id="dynamique-capillaire">5. Phénomènes dynamiques (CPGE)</h2>
 <div class="cpge" id="ondes-capillaires" title="Ondes capillaires et rides">
-<p>À la surface de l’eau, la tension superficielle s’ajoute à la pesanteur comme force de rappel. En eau profonde, la relation de dispersion devient \(\omega^2 = gk + \dfrac{\gamma}{\rho}k^3\). Les grandes vagues (\(\lambda \gg 2\pi\ell_c\)) sont des ondes de gravité ; les rides de quelques millimètres sont des ondes capillaires. La vitesse de phase \(\omega/k\) passe par un minimum d’environ 23 cm·s⁻¹ pour \(\lambda = 2\pi\ell_c \approx 1{,}7\) cm : un objet qui se déplace plus lentement à la surface (un insecte, un fil de pêche dans le courant) ne crée pas de sillage.</p>
+<p>À la surface de l’eau, la tension superficielle s’ajoute à la pesanteur comme force de rappel. En eau profonde, la relation de dispersion devient</p>
+\[\omega^2 = gk + \frac{\gamma}{\rho}k^3.\]
+<table>
+<thead><tr><th>Longueur d’onde</th><th>Type d’onde</th></tr></thead>
+<tbody>
+<tr><td>\(\lambda \gg 2\pi\ell_c\) (grandes vagues)</td><td>ondes de gravité</td></tr>
+<tr><td>quelques millimètres (rides)</td><td>ondes capillaires</td></tr>
+<tr><td>\(\lambda = 2\pi\ell_c \approx 1{,}7\) cm</td><td>vitesse de phase minimale, environ 23 cm·s⁻¹ : un objet plus lent (insecte, fil de pêche dans le courant) ne crée pas de sillage</td></tr>
+</tbody></table>
 </div>
 <div class="cpge" id="rayleigh-plateau" title="Instabilité de Rayleigh-Plateau : un jet se brise en gouttes">
-<p>Un cylindre de liquide de rayon \(R\) n’est pas la forme d’aire minimale à volume donné : une ondulation de longueur d’onde \(\lambda > 2\pi R\) diminue son aire. Le jet du robinet se fragmente donc en gouttes, avec une longueur d’onde dominante d’environ \(9R\) ; le temps de croissance est de l’ordre de \(\sqrt{\rho R^3/\gamma}\) (temps capillaire), quelques millisecondes pour un filet d’eau. C’est aussi pourquoi la rosée perle sur un fil d’araignée.</p>
+<ul>
+<li>Un cylindre de liquide de rayon \(R\) n’est pas la forme d’aire minimale à volume donné : une ondulation de longueur d’onde \(\lambda > 2\pi R\) diminue son aire.</li>
+<li>Le jet du robinet se fragmente donc en gouttes, avec une longueur d’onde dominante d’environ \(9R\).</li>
+<li>Le temps de croissance est de l’ordre du temps capillaire \(\sqrt{\rho R^3/\gamma}\) : quelques millisecondes pour un filet d’eau.</li>
+<li>C’est aussi pourquoi la rosée perle sur un fil d’araignée.</li>
+</ul>
 </div>
 <div class="cpge" id="taylor-culick" title="Éclatement d’un film de savon">
-<p>Quand un film de savon d’épaisseur \(e\) se perce, le bord du trou recule en accumulant le liquide dans un bourrelet. Le bilan de quantité de mouvement sur le bourrelet (force \(2\gamma\) par unité de longueur, masse balayée \(\rho e\) par unité d’aire) donne une vitesse constante \(v = \sqrt{2\gamma/(\rho e)}\) (Taylor-Culick) : pour \(e = 1\) µm, environ 7 m·s⁻¹, si bien qu’une bulle de savon de quelques centimètres disparaît en quelques millisecondes. Le bilan d’énergie, qui donnerait \(\sqrt{2}\) fois plus, est faux ici : l’accumulation du liquide dans le bourrelet est un choc mou qui dissipe de l’énergie.</p>
+<p>Quand un film de savon d’épaisseur \(e\) se perce, le bord du trou recule en accumulant le liquide dans un bourrelet, à vitesse constante (Taylor-Culick) :</p>
+\[v = \sqrt{\frac{2\gamma}{\rho e}},\]
+<p>environ 7 m·s⁻¹ pour \(e = 1\) µm : une bulle de quelques centimètres disparaît en quelques millisecondes.</p>
+<div class="complement" data-tag="Démonstration" title="Pourquoi un bilan de quantité de mouvement, et pas d’énergie">
+<ol class="etapes">
+<li><strong>Système</strong> : le bourrelet, par unité de longueur de bord. Il est tiré par le film avec la force \(2\gamma\) (deux faces).</li>
+<li><strong>Quantité de mouvement</strong> : en reculant de \(v\,\mathrm dt\), il balaie la masse \(\rho e\,v\,\mathrm dt\), initialement immobile, qu’il met à la vitesse \(v\) : \(\mathrm dp = \rho e v^2\,\mathrm dt = 2\gamma\,\mathrm dt\), d’où \(v = \sqrt{2\gamma/(\rho e)}\).</li>
+<li><strong>Le bilan d’énergie donnerait \(\sqrt2\) fois plus</strong>, et il est faux ici : l’agglomération du liquide au bourrelet est un choc mou, qui dissipe la moitié de l’énergie libérée par la surface.</li>
+</ol>
+</div>
 </div>
 
 <div class="piege">
