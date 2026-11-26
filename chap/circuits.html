@@ -26,7 +26,12 @@
 
 <h2 id="continu">1. Courant continu</h2>
 <h3 id="courant">Courant et résistance à l’échelle microscopique</h3>
-<p>Un courant \(I\) dans un fil de section \(S\) contenant \(n\) porteurs par unité de volume correspond à une vitesse de dérive \(v\) telle que \(I = neSv\). Dans un métal, \(v\) est de l’ordre de 0,1 mm par seconde. La résistance d’un fil de longueur \(\ell\) est \(R = \dfrac{\rho\,\ell}{S} = \dfrac{\ell}{\sigma S}\), avec \(\rho\) la résistivité et \(\sigma\) la conductivité (cuivre : \(\rho \approx 1{,}7\times10^{-8}\ \Omega\text{·m}\)).</p>
+<table>
+<thead><tr><th>Grandeur</th><th>Expression</th><th>Ordre de grandeur</th></tr></thead>
+<tbody>
+<tr><td>Vitesse de dérive des porteurs (\(n\) par unité de volume, section \(S\))</td><td>\(I = neSv\)</td><td>0,1 mm/s dans un métal</td></tr>
+<tr><td>Résistance d’un fil de longueur \(\ell\)</td><td>\(R = \dfrac{\rho\,\ell}{S} = \dfrac{\ell}{\sigma S}\) (\(\rho\) résistivité, \(\sigma\) conductivité)</td><td>cuivre : \(\rho \approx 1{,}7\times10^{-8}\ \Omega\text{·m}\)</td></tr>
+</tbody></table>
 <div class="exo" data-q="ipho-2018-T3"></div>
 
 <h3 id="simplifier">Simplifier un circuit</h3>
@@ -104,7 +109,12 @@
 <div class="exo" data-q="ipho-2025-T4"></div>
 <div class="exo" data-q="ipho-2026-T15"></div>
 <div class="cpge" id="lc" title="Niveau CPGE : oscillations libres du circuit LC">
-<p><strong>Circuit LC.</strong> Un condensateur chargé relié à une bobine idéale oscille : la charge vérifie \(\ddot q + \dfrac{q}{LC} = 0\), de pulsation propre \(\omega_0 = \dfrac1{\sqrt{LC}}\). L’énergie passe du condensateur à la bobine et revient. C’est l’analogue électrique du système masse-ressort (chapitre <a href="#oscillateurs">Oscillateurs</a>) : \(L\) joue le rôle de la masse, \(1/C\) celui de la raideur, \(R\) celui du frottement.</p>
+<p><strong>Circuit LC.</strong> Un condensateur chargé relié à une bobine idéale oscille : la charge vérifie \(\ddot q + \dfrac{q}{LC} = 0\), de pulsation propre \(\omega_0 = \dfrac1{\sqrt{LC}}\). L’énergie passe du condensateur à la bobine et revient. C’est l’analogue électrique du système masse-ressort (chapitre <a href="#oscillateurs">Oscillateurs</a>) :</p>
+<table>
+<thead><tr><th>Mécanique</th><th>\(x\)</th><th>\(m\)</th><th>\(k\)</th><th>frottement \(h\)</th><th>\(\tfrac12mv^2\)</th></tr></thead>
+<tbody>
+<tr><td>Électricité</td><td>\(q\)</td><td>\(L\)</td><td>\(1/C\)</td><td>\(R\)</td><td>\(\tfrac12Li^2\)</td></tr>
+</tbody></table>
 </div>
 <div class="piege">
 <p><strong>Pièges.</strong></p>

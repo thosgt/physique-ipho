@@ -26,12 +26,108 @@
 <h3 id="loi-coulomb">La loi de Coulomb</h3>
 <p>La charge électrique est quantifiée (\(e = 1{,}60\times10^{-19}\) C) et se conserve. Deux charges ponctuelles \(q_1\) et \(q_2\) distantes de \(r\) exercent l’une sur l’autre une force portée par la droite qui les joint, de norme</p>
 \[F = \frac{1}{4\pi\varepsilon_0}\,\frac{|q_1q_2|}{r^2}, \qquad \varepsilon_0 = 8{,}85\times10^{-12}\ \text{F·m}^{-1},\]
-<p>répulsive si les charges sont de même signe, attractive sinon. Elle a la même forme que la gravitation, mais elle est incomparablement plus intense : entre le proton et l’électron d’un atome d’hydrogène, le rapport des deux forces vaut \(e^2/(4\pi\varepsilon_0Gm_pm_e) \approx 2\times10^{39}\), quelle que soit la distance. Si la gravitation domine à grande échelle, c’est que la matière est neutre.</p>
+<p>répulsive si les charges sont de même signe, attractive sinon. Elle a la même forme que la gravitation :</p>
+<table>
+<thead><tr><th></th><th>Force électrique</th><th>Gravitation</th></tr></thead>
+<tbody>
+<tr><td>Norme</td><td>\(\dfrac{|q_1q_2|}{4\pi\varepsilon_0r^2}\)</td><td>\(\dfrac{Gm_1m_2}{r^2}\)</td></tr>
+<tr><td>Sens</td><td>attractive ou répulsive selon les signes</td><td>toujours attractive</td></tr>
+<tr><td>Intensité (proton-électron)</td><td colspan="2">rapport \(e^2/(4\pi\varepsilon_0Gm_pm_e) \approx 2\times10^{39}\), quelle que soit la distance</td></tr>
+<tr><td>Domine…</td><td>à l’échelle des atomes et des objets usuels</td><td>à grande échelle, parce que la matière est neutre</td></tr>
+</tbody></table>
 <div class="exo" data-q="es-coulomb-gravite"></div>
 <h3 id="champ">Le champ électrique</h3>
-<p>Une charge \(q\) placée en un point subit \(\vec F = q\vec E\), où le <strong>champ électrique</strong> \(\vec E\) (en V·m⁻¹) est créé par toutes les autres charges. Le champ d’une charge ponctuelle \(Q\) est radial, de norme \(Q/4\pi\varepsilon_0r^2\). Comme les forces, les champs s’ajoutent : le champ de plusieurs charges est la somme vectorielle des champs de chacune. Les lignes de champ partent des charges positives et arrivent sur les charges négatives ; elles ne se coupent pas.</p>
-<p>Ordres de grandeur : 100 V·m⁻¹ dans l’atmosphère par beau temps, \(3\times10^6\) V·m⁻¹ pour le claquage de l’air sec (l’étincelle), \(5\times10^{11}\) V·m⁻¹ sur l’électron dans l’atome d’hydrogène.</p>
-<div class="methode" data-m="symetrie"><p>Avant tout calcul de champ, cherchez les plans de symétrie de la distribution : en un point d’un tel plan, \(\vec E\) est contenu dans le plan. Deux plans de symétrie donnent la direction du champ. Exemple : sur la médiatrice de deux charges égales, le champ est porté par la médiatrice ; pour deux charges opposées, il est parallèle à la droite qui les joint.</p></div>
+<p>Une charge \(q\) placée en un point subit \(\vec F = q\vec E\), où le <strong>champ électrique</strong> \(\vec E\) (en V·m⁻¹) est créé par toutes les autres charges.</p>
+<table>
+<thead><tr><th>Propriété du champ</th><th>Énoncé</th></tr></thead>
+<tbody>
+<tr><td>Charge ponctuelle \(Q\)</td><td>champ radial, de norme \(\dfrac{|Q|}{4\pi\varepsilon_0r^2}\), sortant si \(Q > 0\), entrant si \(Q < 0\)</td></tr>
+<tr><td>Superposition</td><td>le champ de plusieurs charges est la <strong>somme vectorielle</strong> des champs de chacune</td></tr>
+<tr><td>Lignes de champ</td><td>tangentes à \(\vec E\) en chaque point ; elles partent des charges positives, arrivent sur les charges négatives (ou à l’infini) et ne se coupent pas</td></tr>
+<tr><td>Intensité</td><td>plus les lignes sont serrées, plus le champ est intense</td></tr>
+</tbody></table>
+<figure>
+<svg viewBox="0 0 640 240" width="640" role="img" aria-label="Lignes de champ de deux charges opposées (dipôle) et de deux charges égales positives" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
+<clipPath id="cp10"><rect x="10" y="22" width="300" height="210"/></clipPath>
+<rect x="10" y="22" width="300" height="210" fill="#fbfcfe" stroke="#c9d2e3"/>
+<g clip-path="url(#cp10)" fill="none" stroke="#1f3a68" stroke-width="1.3">
+<path d="M116,126 L121,125 L127,123 L132,122 L138,121 L143,120 L149,119 L154,118 L160,118 L166,118 L171,119 L177,120 L182,121 L188,122 L193,123 L199,125 L204,126 L205,127"/>
+<path d="M115,125 L119,121 L123,117 L127,113 L132,110 L136,106 L141,104 L146,101 L151,99 L157,98 L163,98 L168,99 L174,101 L179,103 L183,106 L188,109 L192,113 L197,117 L201,121 L205,125 L205,125"/>
+<path d="M114,124 L115,119 L117,113 L119,108 L121,103 L123,98 L125,93 L128,88 L132,83 L136,79 L140,76 L145,73 L150,71 L155,69 L161,69 L167,70 L172,71 L177,74 L182,77 L186,81 L190,85 L193,90 L196,95 L198,100 L200,105 L202,110 L204,115 L205,121 L206,125"/>
+<path d="M112,124 L111,119 L110,113 L108,108 L107,102 L106,97 L106,91 L105,86 L105,80 L105,74 L106,69 L106,63 L108,58 L109,52 L111,47 L113,42 L116,37 L119,32 L122,28 L126,24 L130,20 L135,17 L140,14 L145,12 L151,10 L156,10 L162,9 L167,10 L173,11 L178,13 L183,16 L188,19 L192,22 L196,26 L200,31 L203,35 L206,40 L208,45 L210,50 L212,56 L213,61 L214,67 L215,72 L215,78 L215,84 L214,89 L214,95 L213,100 L212,106 L211,111 L210,117 L208,122 L207,125"/>
+<path d="M111,125 L107,121 L103,117 L99,113 L96,109 L92,105 L88,100 L85,96 L81,92 L78,87 L74,82 L71,78 L68,73 L65,68 L63,63 L60,58 L57,53 L55,48 L53,43 L50,38 L48,33 L46,28 L45,22 L43,17 L41,11 L40,6 L39,0 L38,-5 L37,-11 L36,-16"/>
+<path d="M110,126 L105,125 L100,123 L94,122 L89,120 L83,119 L78,117 L73,116 L67,114 L62,112 L56,110 L51,109 L46,107 L40,105 L35,103 L30,101 L25,99 L19,97 L14,95 L9,93 L4,91 L-2,89 L-7,87 L-12,85 L-17,83 L-22,81 L-28,78"/>
+<path d="M110,128 L105,129 L100,131 L94,132 L89,134 L83,135 L78,137 L73,138 L67,140 L62,142 L56,144 L51,145 L46,147 L40,149 L35,151 L30,153 L25,155 L19,157 L14,159 L9,161 L4,163 L-2,165 L-7,167 L-12,169 L-17,171 L-22,173 L-28,176"/>
+<path d="M111,129 L107,133 L103,137 L99,141 L96,145 L92,149 L88,154 L85,158 L81,162 L78,167 L74,172 L71,176 L68,181 L65,186 L63,191 L60,196 L57,201 L55,206 L53,211 L50,216 L48,221 L46,226 L45,232 L43,237 L41,243 L40,248 L39,254 L38,259 L37,265 L36,270"/>
+<path d="M112,130 L111,135 L110,141 L108,146 L107,152 L106,157 L106,163 L105,168 L105,174 L105,180 L106,185 L106,191 L108,196 L109,202 L111,207 L113,212 L116,217 L119,222 L122,226 L126,230 L130,234 L135,237 L140,240 L145,242 L151,244 L156,244 L162,245 L167,244 L173,243 L178,241 L183,238 L188,235 L192,232 L196,228 L200,223 L203,219 L206,214 L208,209 L210,204 L212,198 L213,193 L214,187 L215,182 L215,176 L215,170 L214,165 L214,159 L213,154 L212,148 L211,143 L210,137 L208,132 L207,129"/>
+<path d="M114,130 L115,135 L117,141 L119,146 L121,151 L123,156 L125,161 L128,166 L132,171 L136,175 L140,178 L145,181 L150,183 L155,185 L161,185 L167,184 L172,183 L177,180 L182,177 L186,173 L190,169 L193,164 L196,159 L198,154 L200,149 L202,144 L204,139 L205,133 L206,129"/>
+<path d="M115,129 L119,133 L123,137 L127,141 L132,144 L136,148 L141,150 L146,153 L151,155 L157,156 L163,156 L168,155 L174,153 L179,151 L183,148 L188,145 L192,141 L197,137 L201,133 L205,129 L205,129"/>
+<path d="M116,128 L121,129 L127,131 L132,132 L138,133 L143,134 L149,135 L154,136 L160,136 L166,136 L171,135 L177,134 L182,133 L188,132 L193,131 L199,129 L204,128 L205,127"/>
+</g>
+<path d="M158.5,118.0 L145.6,122.3 L145.0,116.2 Z" fill="#1f3a68" stroke="none"/>
+<path d="M156.3,97.9 L144.4,104.6 L142.7,98.8 Z" fill="#1f3a68" stroke="none"/>
+<path d="M151.0,69.6 L140.6,78.4 L137.8,73.0 Z" fill="#1f3a68" stroke="none"/>
+<path d="M44.9,23.6 L52.3,35.1 L46.6,37.2 Z" fill="#1f3a68" stroke="none"/>
+<path d="M44.9,230.4 L46.6,216.8 L52.3,218.9 Z" fill="#1f3a68" stroke="none"/>
+<path d="M151.0,184.4 L137.8,181.0 L140.6,175.6 Z" fill="#1f3a68" stroke="none"/>
+<path d="M156.3,156.1 L142.7,155.2 L144.4,149.4 Z" fill="#1f3a68" stroke="none"/>
+<path d="M158.5,136.0 L145.0,137.8 L145.6,131.7 Z" fill="#1f3a68" stroke="none"/>
+<circle cx="113.1" cy="127.0" r="10" fill="#c0392b"/><text x="113.1" y="131.5" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">+</text>
+<circle cx="206.9" cy="127.0" r="10" fill="#2563a8"/><text x="206.9" y="131.5" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">−</text>
+<text x="160.0" y="15" text-anchor="middle" font-size="13" font-weight="600" fill="#15213a">+q et −q : les lignes vont de + à −</text>
+<clipPath id="cp330"><rect x="330" y="22" width="300" height="210"/></clipPath>
+<rect x="330" y="22" width="300" height="210" fill="#fbfcfe" stroke="#c9d2e3"/>
+<g clip-path="url(#cp330)" fill="none" stroke="#1f3a68" stroke-width="1.3">
+<path d="M436,126 L441,125 L447,123 L452,122 L457,120 L463,118 L468,115 L472,112 L475,107 L476,101 L477,96 L477,90 L478,85 L478,79 L478,73 L478,68 L478,62 L478,56 L478,51 L478,45 L478,40 L478,34 L478,28 L478,23 L478,17 L478,11 L477,6 L477,0 L477,-5 L477,-11 L477,-17"/>
+<path d="M435,125 L439,121 L443,117 L447,113 L450,108 L454,104 L456,99 L458,94 L460,88 L461,83 L462,77 L462,72 L462,66 L462,60 L462,55 L462,49 L462,44 L461,38 L461,32 L460,27 L460,21 L459,16 L458,10 L458,4 L457,-1 L457,-7 L456,-12 L455,-18"/>
+<path d="M434,124 L435,119 L437,113 L438,108 L439,102 L439,97 L440,91 L440,86 L440,80 L439,74 L439,69 L438,63 L437,58 L436,52 L434,47 L433,41 L431,36 L430,30 L428,25 L427,20 L425,14 L423,9 L422,3 L420,-2 L418,-7 L416,-13 L414,-18"/>
+<path d="M432,124 L431,119 L429,113 L428,108 L426,103 L424,97 L422,92 L420,87 L417,82 L415,77 L412,72 L409,67 L407,62 L404,57 L401,53 L398,48 L395,43 L392,38 L389,34 L386,29 L382,24 L379,20 L376,15 L373,10 L369,6 L366,1 L363,-3 L359,-8 L356,-12 L353,-17"/>
+<path d="M431,125 L427,121 L423,117 L419,113 L415,109 L411,106 L407,102 L402,98 L398,95 L394,91 L389,88 L385,84 L380,81 L376,77 L371,74 L367,71 L362,67 L358,64 L353,61 L348,58 L344,55 L339,51 L334,48 L330,45 L325,42 L320,39 L316,36 L311,33 L306,29 L302,26 L297,23 L292,20"/>
+<path d="M430,126 L425,125 L420,123 L414,122 L409,121 L403,119 L398,118 L392,117 L387,115 L381,114 L376,113 L370,111 L365,110 L359,109 L354,108 L348,107 L343,105 L337,104 L332,103 L326,102 L321,101 L315,100 L310,99 L304,97 L299,96 L293,95"/>
+<path d="M430,128 L425,129 L420,131 L414,132 L409,133 L403,135 L398,136 L392,137 L387,139 L381,140 L376,141 L370,143 L365,144 L359,145 L354,146 L348,147 L343,149 L337,150 L332,151 L326,152 L321,153 L315,154 L310,155 L304,157 L299,158 L293,159"/>
+<path d="M431,129 L427,133 L423,137 L419,141 L415,145 L411,148 L407,152 L402,156 L398,159 L394,163 L389,166 L385,170 L380,173 L376,177 L371,180 L367,183 L362,187 L358,190 L353,193 L348,196 L344,199 L339,203 L334,206 L330,209 L325,212 L320,215 L316,218 L311,221 L306,225 L302,228 L297,231 L292,234"/>
+<path d="M432,130 L431,135 L429,141 L428,146 L426,151 L424,157 L422,162 L420,167 L417,172 L415,177 L412,182 L409,187 L407,192 L404,197 L401,201 L398,206 L395,211 L392,216 L389,220 L386,225 L382,230 L379,234 L376,239 L373,244 L369,248 L366,253 L363,257 L359,262 L356,266"/>
+<path d="M434,130 L435,135 L437,141 L438,146 L439,152 L439,157 L440,163 L440,168 L440,174 L439,180 L439,185 L438,191 L437,196 L436,202 L434,207 L433,213 L431,218 L430,224 L428,229 L427,234 L425,240 L423,245 L422,251 L420,256 L418,261 L416,267"/>
+<path d="M435,129 L439,133 L443,137 L447,141 L450,146 L454,150 L456,155 L458,160 L460,166 L461,171 L462,177 L462,182 L462,188 L462,194 L462,199 L462,205 L462,210 L461,216 L461,222 L460,227 L460,233 L459,238 L458,244 L458,250 L457,255 L457,261 L456,266"/>
+<path d="M436,128 L441,129 L447,131 L452,132 L457,134 L463,136 L468,139 L472,142 L475,147 L476,153 L477,158 L477,164 L478,169 L478,175 L478,181 L478,186 L478,192 L478,198 L478,203 L478,209 L478,214 L478,220 L478,226 L478,231 L478,237 L478,243 L477,248 L477,254 L477,259 L477,265 L477,271"/>
+<path d="M530,126 L535,125 L540,123 L546,122 L551,121 L557,119 L562,118 L568,117 L573,115 L579,114 L584,113 L590,111 L595,110 L601,109 L606,108 L612,107 L617,105 L623,104 L628,103 L634,102 L639,101 L645,100 L650,99 L656,97 L661,96 L667,95"/>
+<path d="M529,125 L533,121 L537,117 L541,113 L545,109 L549,106 L553,102 L558,98 L562,95 L566,91 L571,88 L575,84 L580,81 L584,77 L589,74 L593,71 L598,67 L602,64 L607,61 L612,58 L616,55 L621,51 L626,48 L630,45 L635,42 L640,39 L644,36 L649,33 L654,29 L658,26 L663,23 L668,20"/>
+<path d="M528,124 L529,119 L531,113 L532,108 L534,103 L536,97 L538,92 L540,87 L543,82 L545,77 L548,72 L551,67 L553,62 L556,57 L559,53 L562,48 L565,43 L568,38 L571,34 L574,29 L578,24 L581,20 L584,15 L587,10 L591,6 L594,1 L597,-3 L601,-8 L604,-12 L607,-17"/>
+<path d="M526,124 L525,119 L523,113 L522,108 L521,102 L521,97 L520,91 L520,86 L520,80 L521,74 L521,69 L522,63 L523,58 L524,52 L526,47 L527,41 L529,36 L530,30 L532,25 L533,20 L535,14 L537,9 L538,3 L540,-2 L542,-7 L544,-13 L546,-18"/>
+<path d="M525,125 L521,121 L517,117 L513,113 L510,108 L506,104 L504,99 L502,94 L500,88 L499,83 L498,77 L498,72 L498,66 L498,60 L498,55 L498,49 L498,44 L499,38 L499,32 L500,27 L500,21 L501,16 L502,10 L502,4 L503,-1 L503,-7 L504,-12 L505,-18"/>
+<path d="M524,126 L519,125 L513,123 L508,122 L503,120 L497,118 L492,115 L488,112 L485,107 L484,101 L483,96 L483,90 L482,85 L482,79 L482,73 L482,68 L482,62 L482,56 L482,51 L482,45 L482,40 L482,34 L482,28 L482,23 L482,17 L482,11 L483,6 L483,0 L483,-5 L483,-11 L483,-17"/>
+<path d="M524,128 L519,129 L513,131 L508,132 L503,134 L497,136 L492,139 L488,142 L485,147 L484,153 L483,158 L483,164 L482,169 L482,175 L482,181 L482,186 L482,192 L482,198 L482,203 L482,209 L482,214 L482,220 L482,226 L482,231 L482,237 L482,243 L483,248 L483,254 L483,259 L483,265 L483,271"/>
+<path d="M525,129 L521,133 L517,137 L513,141 L510,146 L506,150 L504,155 L502,160 L500,166 L499,171 L498,177 L498,182 L498,188 L498,194 L498,199 L498,205 L498,210 L499,216 L499,222 L500,227 L500,233 L501,238 L502,244 L502,250 L503,255 L503,261 L504,266"/>
+<path d="M526,130 L525,135 L523,141 L522,146 L521,152 L521,157 L520,163 L520,168 L520,174 L521,180 L521,185 L522,191 L523,196 L524,202 L526,207 L527,213 L529,218 L530,224 L532,229 L533,234 L535,240 L537,245 L538,251 L540,256 L542,261 L544,267"/>
+<path d="M528,130 L529,135 L531,141 L532,146 L534,151 L536,157 L538,162 L540,167 L543,172 L545,177 L548,182 L551,187 L553,192 L556,197 L559,201 L562,206 L565,211 L568,216 L571,220 L574,225 L578,230 L581,234 L584,239 L587,244 L591,248 L594,253 L597,257 L601,262 L604,266"/>
+<path d="M529,129 L533,133 L537,137 L541,141 L545,145 L549,148 L553,152 L558,156 L562,159 L566,163 L571,166 L575,170 L580,173 L584,177 L589,180 L593,183 L598,187 L602,190 L607,193 L612,196 L616,199 L621,203 L626,206 L630,209 L635,212 L640,215 L644,218 L649,221 L654,225 L658,228 L663,231 L668,234"/>
+<path d="M530,128 L535,129 L540,131 L546,132 L551,133 L557,135 L562,136 L568,137 L573,139 L579,140 L584,141 L590,143 L595,144 L601,145 L606,146 L612,147 L617,149 L623,150 L628,151 L634,152 L639,153 L645,154 L650,155 L656,157 L661,158 L667,159"/>
+</g>
+<path d="M477.7,29.7 L480.9,43.0 L474.8,43.0 Z" fill="#1f3a68" stroke="none"/>
+<path d="M477.7,224.3 L474.8,211.0 L480.9,211.0 Z" fill="#1f3a68" stroke="none"/>
+<path d="M482.3,29.7 L485.2,43.0 L479.1,43.0 Z" fill="#1f3a68" stroke="none"/>
+<path d="M482.3,224.3 L479.1,211.0 L485.2,211.0 Z" fill="#1f3a68" stroke="none"/>
+<circle cx="433.1" cy="127.0" r="10" fill="#c0392b"/><text x="433.1" y="131.5" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">+</text>
+<circle cx="526.9" cy="127.0" r="10" fill="#c0392b"/><text x="526.9" y="131.5" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">+</text>
+<text x="480.0" y="15" text-anchor="middle" font-size="13" font-weight="600" fill="#15213a">+q et +q : champ nul au milieu</text>
+</svg>
+<figcaption>Lignes de champ calculées pour deux charges égales en valeur absolue. À gauche, toutes les lignes issues de \(+q\) arrivent sur \(-q\). À droite, les lignes se repoussent et partent à l’infini ; au milieu, les deux champs se compensent.</figcaption>
+</figure>
+<div class="sim" data-name="lignes-champ"><p>Changez la charge de droite (signe et valeur) et l’écartement : les lignes de champ restent perpendiculaires aux équipotentielles ; avec \(+q\) et \(-2q\), une partie des lignes qui arrivent sur la charge négative vient de l’infini. Cliquez pour lire \(V\) et \(\vec E\) en un point.</p></div>
+<table>
+<thead><tr><th>Champ électrique</th><th>Ordre de grandeur</th></tr></thead>
+<tbody>
+<tr><td>Atmosphère par beau temps</td><td>100 V·m⁻¹</td></tr>
+<tr><td>Claquage de l’air sec (étincelle)</td><td>\(3\times10^6\) V·m⁻¹</td></tr>
+<tr><td>Sur l’électron dans l’atome d’hydrogène</td><td>\(5\times10^{11}\) V·m⁻¹</td></tr>
+</tbody></table>
+<div class="methode" data-m="symetrie"><p>Avant tout calcul de champ, cherchez les plans de symétrie de la distribution :</p>
+<ol class="etapes">
+<li>en un point d’un plan de symétrie, \(\vec E\) est contenu dans ce plan ;</li>
+<li>deux plans de symétrie qui passent par le point donnent la direction du champ (leur intersection) ;</li>
+<li>il ne reste qu’à calculer une composante.</li>
+</ol>
+<p>Exemple : sur la médiatrice de deux charges égales, le champ est porté par la médiatrice ; pour deux charges opposées, il est parallèle à la droite qui les joint (voir la figure).</p></div>
 <div class="exo" data-q="es-champ-nul"></div>
 <div class="exo" data-q="ipho-2018-T14"></div>
 <div class="exo" data-q="ipho-2024-T13"></div>
@@ -39,24 +135,72 @@
 
 <h2 id="potentiel">2. Potentiel et énergie</h2>
 <h3 id="potentiel-def">Travail de la force électrique</h3>
-<p>La force électrostatique est conservative. Le travail qu’elle fournit à une charge \(q\) allant de A à B ne dépend pas du chemin : \(W = q(V_A - V_B)\), où \(V\) est le <strong>potentiel</strong> (en volts). L’énergie potentielle de la charge est \(E_p = qV\). Pour une charge ponctuelle \(Q\), avec \(V = 0\) à l’infini :</p>
+<p>La force électrostatique est conservative : le travail qu’elle fournit à une charge \(q\) allant de A à B ne dépend pas du chemin,</p>
+\[W_{A\to B} = q(V_A - V_B), \qquad E_p = qV,\]
+<p>où \(V\) est le <strong>potentiel</strong> (en volts) et \(E_p\) l’énergie potentielle de la charge. Pour une charge ponctuelle \(Q\), avec \(V = 0\) à l’infini :</p>
 \[V(r) = \frac{Q}{4\pi\varepsilon_0r}.\]
-<p>Les potentiels de plusieurs charges s’ajoutent, et ce sont des nombres : pas de projection. Le champ s’en déduit : \(E_x = -\mathrm dV/\mathrm dx\) à une dimension ; il pointe vers les potentiels décroissants. Entre deux plaques parallèles distantes de \(d\) sous la tension \(U\), le champ est uniforme, \(E = U/d\), dirigé de la plaque au potentiel le plus haut vers l’autre.</p>
-<div class="methode" data-m="potentiel"><p>Question « quelle vitesse », « jusqu’où s’approche », « quelle énergie pour assembler » : n’intégrez pas la force, écrivez la conservation de \(\tfrac12mv^2 + qV\) entre le départ et l’arrivée. Une particule \(\alpha\) d’énergie \(E_c\) lancée vers un noyau de charge \(Ze\) s’arrête à la distance \(r_\text{min} = \dfrac{2Ze^2}{4\pi\varepsilon_0E_c}\).</p></div>
+<table>
+<thead><tr><th></th><th>Champ \(\vec E\)</th><th>Potentiel \(V\)</th></tr></thead>
+<tbody>
+<tr><td>Nature</td><td>vecteur (V·m⁻¹)</td><td>nombre (V)</td></tr>
+<tr><td>Charge ponctuelle</td><td>\(\dfrac{Q}{4\pi\varepsilon_0r^2}\), radial</td><td>\(\dfrac{Q}{4\pi\varepsilon_0r}\)</td></tr>
+<tr><td>Plusieurs charges</td><td>somme <strong>vectorielle</strong> (projeter)</td><td>somme de nombres (pas de projection)</td></tr>
+<tr><td>Lien</td><td colspan="2">\(E_x = -\dfrac{\mathrm dV}{\mathrm dx}\) à une dimension, \(\vec E = -\overrightarrow{\text{grad}}\,V\) en général (<a href="#vecteurs--gradient-physique">outils vectoriels</a>) : \(\vec E\) pointe vers les potentiels décroissants, perpendiculairement aux équipotentielles</td></tr>
+<tr><td>Deux plaques parallèles distantes de \(d\) sous la tension \(U\)</td><td>uniforme, \(E = U/d\), de la plaque au potentiel le plus haut vers l’autre</td><td>affine entre les plaques</td></tr>
+</tbody></table>
+<div class="methode" data-m="potentiel"><p>Question « quelle vitesse », « jusqu’où s’approche », « quelle énergie pour assembler » : n’intégrez pas la force, écrivez la conservation de \(\tfrac12mv^2 + qV\) entre le départ et l’arrivée.</p>
+<div class="complement" data-tag="Démonstration" title="Distance minimale d’approche d’une particule α">
+<ol class="etapes">
+<li>La particule \(\alpha\) (charge \(2e\)) part de très loin (\(V = 0\)) avec l’énergie cinétique \(E_c\), droit vers un noyau fixe de charge \(Ze\).</li>
+<li>Au point le plus proche, elle s’arrête : toute son énergie cinétique est devenue potentielle, \(E_c = 2e \times \dfrac{Ze}{4\pi\varepsilon_0r_\text{min}}\).</li>
+<li>D’où \(r_\text{min} = \dfrac{2Ze^2}{4\pi\varepsilon_0E_c}\). Pour l’or (\(Z = 79\)) et \(E_c = 5\) MeV : \(r_\text{min} = 2 \times 79 \times 1{,}44\ \text{MeV·fm}/5\ \text{MeV} \approx 45\) fm, bien plus que le rayon du noyau (7 fm) : c’est l’expérience de Rutherford.</li>
+</ol>
+</div></div>
 <div class="exo" data-q="es-approche"></div>
 <h3 id="energie-systeme">Énergie d’un système de charges</h3>
-<p>L’énergie d’interaction de deux charges est \(\dfrac{q_1q_2}{4\pi\varepsilon_0r}\) : positive si elles se repoussent (il a fallu fournir du travail pour les rapprocher). Pour \(N\) charges, on somme sur les paires, ce qui s’écrit aussi \(\tfrac12\sum q_iV_i\) où \(V_i\) est le potentiel créé au point \(i\) par les autres charges. Unité pratique : \(\dfrac{e^2}{4\pi\varepsilon_0} = 1{,}44\) eV·nm \(= 1{,}44\) MeV·fm. Deux protons à 1 fm l’un de l’autre : 1,44 MeV ; l’électron de l’hydrogène à 0,053 nm du proton : \(-27{,}2\) eV.</p>
+<p>L’énergie d’interaction de deux charges est \(\dfrac{q_1q_2}{4\pi\varepsilon_0r}\) : positive si elles se repoussent (il a fallu fournir du travail pour les rapprocher depuis l’infini), négative si elles s’attirent. Pour \(N\) charges, on somme sur les <strong>paires</strong> :</p>
+\[E_p = \sum_{\text{paires } i &lt; j}\frac{q_iq_j}{4\pi\varepsilon_0r_{ij}} = \frac12\sum_i q_iV_i,\]
+<p>où \(V_i\) est le potentiel créé au point \(i\) par les <em>autres</em> charges (le facteur \(\tfrac12\) évite de compter chaque paire deux fois). Unité pratique : \(\dfrac{e^2}{4\pi\varepsilon_0} = 1{,}44\) eV·nm \(= 1{,}44\) MeV·fm.</p>
+<table>
+<thead><tr><th>Système</th><th>Énergie d’interaction</th></tr></thead>
+<tbody>
+<tr><td>Deux protons à 1 fm</td><td>\(+1{,}44\) MeV (échelle nucléaire)</td></tr>
+<tr><td>Électron et proton à 0,053 nm (hydrogène)</td><td>\(-27{,}2\) eV (échelle atomique)</td></tr>
+<tr><td>Trois charges \(q\) aux sommets d’un triangle équilatéral de côté \(a\)</td><td>\(3\,\dfrac{q^2}{4\pi\varepsilon_0a}\) (trois paires)</td></tr>
+</tbody></table>
 
 <h2 id="condensateur">3. Le condensateur</h2>
 <h3 id="capacite">Capacité</h3>
 <p>Deux conducteurs en regard portant les charges \(+Q\) et \(-Q\) sous la tension \(U\) forment un condensateur de <strong>capacité</strong> \(C = Q/U\) (en farads). Pour deux armatures planes d’aire \(S\) distantes de \(d\), le champ entre elles est uniforme et proportionnel à la charge, \(E = Q/\varepsilon_0S\) (résultat admis), et \(U = Ed\), donc</p>
 \[C = \frac{\varepsilon_0S}{d}\quad(\text{multipliée par }\varepsilon_r\text{ avec un isolant de permittivité relative }\varepsilon_r).\]
-<p>Ordres de grandeur : du picofarad (deux plaques de quelques centimètres carrés) au farad (supercondensateurs). En parallèle les capacités s’ajoutent ; en série ce sont leurs inverses.</p>
+<table>
+<thead><tr><th>Association</th><th>Ce qui est commun</th><th>Capacité équivalente</th></tr></thead>
+<tbody>
+<tr><td>En parallèle</td><td>la tension</td><td>\(C = C_1 + C_2\) (les charges s’ajoutent)</td></tr>
+<tr><td>En série</td><td>la charge</td><td>\(\dfrac1C = \dfrac1{C_1} + \dfrac1{C_2}\) (les tensions s’ajoutent)</td></tr>
+</tbody></table>
+<p>Ordres de grandeur : du picofarad (deux plaques de quelques centimètres carrés) au farad (supercondensateurs).</p>
 <h3 id="energie-condensateur">Énergie</h3>
 <p>Charger un condensateur demande le travail \(\int u\,\mathrm dq\), stocké sous forme d’énergie</p>
 \[E_\text{él} = \tfrac12CU^2 = \frac{Q^2}{2C} = \tfrac12QU .\]
-<p>Cette énergie ne peut pas varier instantanément (il faudrait une puissance infinie) : la tension aux bornes d’un condensateur est continue. Cela suppose qu’une résistance limite le courant. Un fil idéal branché aux bornes d’un condensateur chargé, ou deux condensateurs reliés directement, sont des cas limites où la tension saute et où c’est la charge qui se conserve (chapitre <a href="#circuits--discontinuite">Circuits électriques</a>).</p>
-<div class="methode" data-m="charge-ou-tension"><p>On écarte les armatures d’un condensateur plan. Isolé : \(Q\) fixe, le champ \(Q/\varepsilon_0S\) ne change pas, \(U\) et l’énergie \(Q^2d/2\varepsilon_0S\) augmentent ; l’opérateur a fourni le travail de la force d’attraction entre les armatures, \(F = Q^2/2\varepsilon_0S\). Relié au générateur : \(U\) fixe, \(C\) et \(Q\) diminuent, l’énergie diminue et de la charge retourne au générateur.</p></div>
+<div class="complement" data-tag="Démonstration" title="L’énergie stockée dans un condensateur">
+<ol class="etapes">
+<li>Quand le condensateur porte la charge \(q\), sa tension est \(u = q/C\).</li>
+<li>Amener la charge supplémentaire \(\mathrm dq\) d’une armature à l’autre demande le travail \(u\,\mathrm dq = \dfrac{q}{C}\,\mathrm dq\).</li>
+<li>De \(q = 0\) à \(q = Q\) : \(E = \displaystyle\int_0^Q \frac{q}{C}\,\mathrm dq = \frac{Q^2}{2C}\), c’est l’aire du triangle sous la droite \(u(q)\) (<a href="#maths--somme">intégrale</a>).</li>
+<li>Le facteur \(\tfrac12\) vient de ce que la tension croît pendant la charge : l’énergie n’est pas \(QU\). Un générateur de tension constante \(U\) fournit, lui, \(QU\) : la moitié est dissipée dans la résistance, quelle que soit sa valeur.</li>
+</ol>
+</div>
+<p>Cette énergie ne peut pas varier instantanément (il faudrait une puissance infinie) : <strong>la tension aux bornes d’un condensateur est continue</strong>. Cela suppose qu’une résistance limite le courant. Un fil idéal branché aux bornes d’un condensateur chargé, ou deux condensateurs reliés directement, sont des cas limites où la tension saute et où c’est la charge qui se conserve (chapitre <a href="#circuits--discontinuite">Circuits électriques</a>).</p>
+<div class="methode" data-m="charge-ou-tension"><p>On écarte les armatures d’un condensateur plan (\(d\) augmente, \(C = \varepsilon_0S/d\) diminue). Tout dépend de ce qui reste fixe :</p>
+<table>
+<thead><tr><th>Grandeur</th><th>Isolé : \(Q\) fixe</th><th>Relié au générateur : \(U\) fixe</th></tr></thead>
+<tbody>
+<tr><td>Champ entre les armatures</td><td>\(Q/\varepsilon_0S\) : inchangé</td><td>\(U/d\) : diminue</td></tr>
+<tr><td>Tension</td><td>\(U = Q/C\) : augmente</td><td>fixe</td></tr>
+<tr><td>Charge</td><td>fixe</td><td>\(Q = CU\) : diminue, de la charge retourne au générateur</td></tr>
+<tr><td>Énergie</td><td>\(Q^2d/2\varepsilon_0S\) : augmente, grâce au travail de l’opérateur contre l’attraction \(F = Q^2/2\varepsilon_0S\)</td><td>\(\tfrac12CU^2\) : diminue</td></tr>
+</tbody></table></div>
 <div class="exo" data-group="es-condensateur"></div>
 <div class="methode" data-m="charge-conservee"></div>
 <div class="exo" data-q="ipho-2025-T4"></div>

@@ -197,6 +197,13 @@
   "desc": "Écoulement uniforme et surface que l’on incline : débit v S cos θ, maximal face à l’écoulement, nul quand la surface est parallèle aux lignes."
  },
  {
+  "name": "lignes-champ",
+  "page": "electrostatique",
+  "anchor": "champ",
+  "title": "Lignes de champ et équipotentielles",
+  "desc": "Deux charges ponctuelles de signes et valeurs réglables : lignes de champ de + vers −, équipotentielles perpendiculaires, champ nul entre deux charges de même signe, lignes venues de l’infini quand la charge totale est négative."
+ },
+ {
   "name": "tir",
   "page": "mecapoint",
   "anchor": "cinematique",

@@ -37,7 +37,14 @@
 <p>Forme locale utile : \(P = \dfrac{\rho RT}{M}\), où \(\rho\) est la masse volumique et \(M\) la masse molaire (29 g/mol pour l’air, d’où \(\rho \approx 1{,}2\ \text{kg·m}^{-3}\) à 20 °C). Une mole occupe 24 L à 20 °C sous 1 bar.</p>
 <div class="methode" data-m="rapports"></div>
 <div class="exo" data-q="ipho-2026-T5"></div>
-<p><strong>Interprétation microscopique</strong> (hors syllabus du test, utile comme ordre de grandeur). La température mesure l’agitation : l’énergie cinétique moyenne de translation d’une molécule vaut \(\tfrac32k_BT\), soit une vitesse typique \(\sqrt{3k_BT/m} = \sqrt{3RT/M}\) (500 m/s pour l’air à 20 °C, proche de la vitesse du son). L’énergie interne d’un gaz parfait ne dépend que de \(T\) : \(U = \tfrac32nRT\) pour un gaz monoatomique, \(\tfrac52nRT\) pour un gaz diatomique aux températures usuelles.</p>
+<p><strong>Interprétation microscopique</strong> (hors syllabus du test, utile comme ordre de grandeur). La température mesure l’agitation des molécules :</p>
+<table>
+<thead><tr><th>Grandeur</th><th>Expression</th><th>Ordre de grandeur</th></tr></thead>
+<tbody>
+<tr><td>Énergie cinétique moyenne de translation d’une molécule</td><td>\(\tfrac32k_BT\)</td><td>0,04 eV à 20 °C</td></tr>
+<tr><td>Vitesse typique</td><td>\(\sqrt{3k_BT/m} = \sqrt{3RT/M}\)</td><td>500 m/s pour l’air à 20 °C, proche de la vitesse du son</td></tr>
+<tr><td>Énergie interne d’un gaz parfait (ne dépend que de \(T\))</td><td>\(\tfrac32nRT\) (monoatomique), \(\tfrac52nRT\) (diatomique aux températures usuelles)</td><td></td></tr>
+</tbody></table>
 <div class="piege">
 <p><strong>Pièges.</strong></p>
 <ul>
@@ -58,8 +65,26 @@
 <tr><td>Chauffage électrique</td><td>\(W = UI\,\Delta t = P\,\Delta t\)</td><td></td></tr>
 </tbody>
 </table>
-<p>Les chaleurs latentes ne figurent pas au syllabus du test : quand un sujet en a besoin (glaçons du QCM 2024, geysers 2025), il rappelle la relation \(Q = mL\) et donne la valeur. Vaporiser un kilogramme d’eau coûte autant que le chauffer de 540 °C ; fondre un kilogramme de glace, autant que chauffer l’eau de 80 °C. Les changements d’état dominent presque toujours les bilans.</p>
-<p><strong>Calorimétrie.</strong> Dans un récipient isolé, sans travail, \(\sum\Delta U_i = 0\) : l’énergie cédée par les corps chauds est reçue par les corps froids. Méthode : (1) lister les corps et, pour chacun, son état initial et son état final ; (2) écrire sa variation d’énergie, étape par étape s’il change d’état ; (3) annuler la somme.</p>
+<p>Les chaleurs latentes ne figurent pas au syllabus du test : quand un sujet en a besoin (glaçons du QCM 2024, geysers 2025), il rappelle la relation \(Q = mL\) et donne la valeur. Les changements d’état dominent presque toujours les bilans :</p>
+<ul>
+<li>vaporiser un kilogramme d’eau coûte autant que le chauffer de 540 °C ;</li>
+<li>fondre un kilogramme de glace, autant que chauffer l’eau de 80 °C.</li>
+</ul>
+<p><strong>Calorimétrie.</strong> Dans un récipient isolé, sans travail, \(\sum\Delta U_i = 0\) : l’énergie cédée par les corps chauds est reçue par les corps froids.</p>
+<ol class="etapes">
+<li>Lister les corps et, pour chacun, son état initial et son état final (récipient compris si sa capacité est donnée).</li>
+<li>Écrire la variation d’énergie de chacun, étape par étape s’il change d’état : glace à −10 °C → glace à 0 °C → eau à 0 °C → eau à \(T_f\).</li>
+<li>Annuler la somme et résoudre ; vérifier que l’état final supposé est possible.</li>
+</ol>
+<div class="complement" data-tag="Exemple" title="Un glaçon dans un verre d’eau">
+<p>On met 20 g de glace à 0 °C dans 200 g d’eau à 25 °C (\(c = 4{,}18\ \text{kJ·kg}^{-1}\text{·K}^{-1}\), \(L_f = 334\ \text{kJ·kg}^{-1}\)).</p>
+<ol class="etapes">
+<li>Hypothèse : toute la glace fond. Fusion : \(0{,}020 \times 334 = 6{,}7\) kJ ; l’eau de fonte passe de 0 °C à \(T_f\) : \(0{,}020 \times 4{,}18\,T_f\) kJ.</li>
+<li>L’eau chaude passe de 25 °C à \(T_f\) : \(0{,}200 \times 4{,}18\,(T_f - 25)\) kJ.</li>
+<li>Somme nulle : \(6{,}7 + 0{,}0836\,T_f + 0{,}836\,(T_f - 25) = 0\), d’où \(T_f = \dfrac{20{,}9 - 6{,}7}{0{,}920} \approx 15\) °C.</li>
+<li>Vérification : \(T_f > 0\), l’hypothèse est cohérente. Avec 100 g de glace, on trouverait \(T_f < 0\) : impossible, l’état final serait un mélange à 0 °C.</li>
+</ol>
+</div>
 <div class="methode" data-m="conservation"></div>
 <div class="exo" data-q="ipho-2026-T4"></div>
 <div class="piege">
@@ -75,7 +100,10 @@
 <h2 id="transformations">3. Transformations du gaz parfait (hors syllabus du test)</h2>
 <p>Seules les transformations <strong>isochores</strong> sont au programme du test : à volume constant le gaz ne reçoit aucun travail, \(\Delta U = Q = nC_V\,\Delta T\) et \(P/T\) reste constant. Le reste figure au syllabus international et sert aux problèmes d’olympiades.</p>
 <div class="complement" id="laplace" title="Hors syllabus du test : travail des forces de pression, isotherme, adiabatique, lois de Laplace">
-<p>Travail reçu par un gaz lors d’une transformation lente : \(\delta W = -P\,\mathrm dV\) ; c’est, au signe près, l’aire sous la courbe dans le diagramme \((P, V)\). Capacités thermiques molaires : \(C_V = \dfrac{R}{\gamma - 1}\), \(C_P = C_V + R\), \(\gamma = C_P/C_V\) (5/3 monoatomique, 7/5 diatomique).</p>
+<ul>
+<li>Travail reçu par un gaz lors d’une transformation lente : \(\delta W = -P\,\mathrm dV\) ; c’est, au signe près, l’aire sous la courbe dans le diagramme \((P, V)\).</li>
+<li>Capacités thermiques molaires : \(C_V = \dfrac{R}{\gamma - 1}\), \(C_P = C_V + R\), \(\gamma = C_P/C_V\) (5/3 monoatomique, 7/5 diatomique).</li>
+</ul>
 <table>
 <thead><tr><th>Transformation</th><th>Relation</th><th>Travail reçu</th><th>Chaleur reçue</th></tr></thead>
 <tbody>
@@ -85,14 +113,25 @@
 <tr><td>Adiabatique réversible</td><td>\(PV^\gamma\), \(TV^{\gamma-1}\), \(T^\gamma P^{1-\gamma}\) constants</td><td>\(nC_V\Delta T\)</td><td>0</td></tr>
 </tbody>
 </table>
-<p><strong>Lente ou rapide ?</strong> Une transformation rapide devant les échanges thermiques est adiabatique (compression dans une pompe, onde sonore, air qui s’élève dans l’atmosphère) ; une transformation lente au contact d’un thermostat est isotherme. Dans un diagramme \((P, V)\), l’adiabatique est plus raide que l’isotherme.</p>
+<table>
+<thead><tr><th>Transformation</th><th>Modèle</th><th>Exemples</th></tr></thead>
+<tbody>
+<tr><td>rapide devant les échanges thermiques</td><td>adiabatique</td><td>compression dans une pompe, onde sonore, air qui s’élève dans l’atmosphère</td></tr>
+<tr><td>lente, au contact d’un thermostat</td><td>isotherme</td><td>bulle qui remonte lentement dans l’eau, seringue poussée doucement</td></tr>
+</tbody></table>
+<p>Dans un diagramme \((P, V)\), l’adiabatique est plus raide que l’isotherme : sans échange de chaleur, le gaz comprimé s’échauffe et sa pression monte plus vite.</p>
 <div class="exo" data-q="th-pompe"></div>
 <p>Deux applications classiques : la vitesse du son \(c = \sqrt{\gamma RT/M}\) (les compressions sont adiabatiques), et le refroidissement de l’air qui s’élève, environ 10 °C par kilomètre pour de l’air sec. Le problème EuPhO <a href="#initiative--g-eupho-2021-fuite">La fuite</a> enchaîne deux compressions adiabatiques.</p>
 </div>
 
 <h2 id="machines">4. Machines thermiques (hors syllabus du test)</h2>
 <div class="complement" id="carnot" title="Hors syllabus du test : second principe, moteurs, réfrigérateurs et pompes à chaleur">
-<p>Sur un cycle, \(\Delta U = 0\) : \(W + Q_c + Q_f = 0\). Le second principe interdit de convertir intégralement de la chaleur en travail : un moteur prend \(Q_c\) à une source chaude (température \(T_c\)), fournit un travail et rejette nécessairement de la chaleur à une source froide (\(T_f\)).</p>
+<p>Sur un cycle, \(\Delta U = 0\) : \(W + Q_c + Q_f = 0\). Le second principe interdit de convertir intégralement de la chaleur en travail :</p>
+<ol class="etapes">
+<li>un moteur prend \(Q_c > 0\) à une source chaude (température \(T_c\)) ;</li>
+<li>il fournit un travail (\(W < 0\)) ;</li>
+<li>il rejette nécessairement de la chaleur (\(Q_f < 0\)) à une source froide (\(T_f\)).</li>
+</ol>
 <table>
 <thead><tr><th>Machine</th><th>Efficacité</th><th>Limite (cycle réversible de Carnot)</th></tr></thead>
 <tbody>
@@ -101,7 +140,17 @@
 <tr><td>Pompe à chaleur</td><td>\(\dfrac{|Q_c|}{W}\)</td><td>\(\dfrac{T_c}{T_c - T_f}\)</td></tr>
 </tbody>
 </table>
-<p>Les températures sont en kelvins. Une pompe à chaleur entre 0 °C et 20 °C a une efficacité théorique de 15 : elle fournit bien plus de chaleur qu’elle ne consomme de travail. L’entropie, \(\mathrm dS = \delta Q_\text{rév}/T\), ne peut qu’augmenter pour un système isolé : la chaleur passe spontanément du chaud vers le froid.</p>
+<ul>
+<li>Les températures sont en kelvins. Une pompe à chaleur entre 0 °C et 20 °C a une efficacité théorique de 293/20 ≈ 15 : elle fournit bien plus de chaleur qu’elle ne consomme de travail.</li>
+<li>L’entropie, \(\mathrm dS = \delta Q_\text{rév}/T\), ne peut qu’augmenter pour un système isolé : la chaleur passe spontanément du chaud vers le froid.</li>
+</ul>
+<div class="complement" data-tag="Démonstration" title="Le rendement de Carnot">
+<ol class="etapes">
+<li>Cycle réversible : l’entropie du gaz revient à sa valeur initiale, donc \(\dfrac{Q_c}{T_c} + \dfrac{Q_f}{T_f} = 0\) (pas de création d’entropie).</li>
+<li>Rendement : \(\eta = \dfrac{-W}{Q_c} = \dfrac{Q_c + Q_f}{Q_c} = 1 + \dfrac{Q_f}{Q_c} = 1 - \dfrac{T_f}{T_c}\).</li>
+<li>Cycle réel : de l’entropie est créée, \(\dfrac{Q_c}{T_c} + \dfrac{Q_f}{T_f} < 0\), et le rendement est plus faible.</li>
+</ol>
+</div>
 </div>
 
 <h2 id="transferts">5. Transferts thermiques et rayonnement</h2>
@@ -123,9 +172,17 @@
 <li><strong>loi de Stefan</strong> : puissance émise par unité de surface \(\sigma T^4\) ; pour une sphère, \(P = 4\pi R^2\sigma T^4\) ;</li>
 <li><strong>loi de Wien</strong> : le maximum du spectre est à \(\lambda_\text{max} = \dfrac{2{,}9\times10^{-3}\ \text{m·K}}{T}\) : 500 nm (visible) pour le Soleil à 5 800 K, 10 µm (infrarouge) pour un corps à 300 K.</li>
 </ul>
-<p>Presque tous les QCM se traitent en rapports : \(\dfrac{P_2}{P_1} = \left(\dfrac{R_2}{R_1}\right)^2\left(\dfrac{T_2}{T_1}\right)^4\). Loin de la source, la puissance se répartit sur une sphère : le flux reçu à la distance \(d\) est \(\dfrac{P}{4\pi d^2}\) (1 360 W/m² au niveau de la Terre).</p>
+<p>Presque tous les QCM se traitent en rapports :</p>
+\[\frac{P_2}{P_1} = \left(\frac{R_2}{R_1}\right)^2\left(\frac{T_2}{T_1}\right)^4.\]
+<p>Loin de la source, la puissance se répartit sur une sphère : le flux reçu à la distance \(d\) est \(\dfrac{P}{4\pi d^2}\) (1 360 W/m² au niveau de la Terre).</p>
 <div class="exo" data-q="ipho-2019-T13"></div>
-<p><strong>Équilibre radiatif.</strong> La température d’un corps éclairé se fixe quand la puissance absorbée égale la puissance rayonnée. Une planète intercepte le flux de son étoile sur un disque \(\pi R^2\) et rayonne par toute sa surface \(4\pi R^2\) : ce facteur 4 est le cœur du calcul.</p>
+<p><strong>Équilibre radiatif.</strong> La température d’un corps éclairé se fixe quand la puissance absorbée égale la puissance rayonnée.</p>
+<ol class="etapes">
+<li>Puissance absorbée : la planète intercepte le flux \(\Phi\) de son étoile sur un <strong>disque</strong> \(\pi R^2\) (et en réfléchit la fraction \(A\), l’albédo).</li>
+<li>Puissance émise : elle rayonne par toute sa <strong>surface</strong> \(4\pi R^2\) : \(4\pi R^2\sigma T^4\).</li>
+<li>Égalité : \(\sigma T^4 = \dfrac{(1 - A)\Phi}{4}\). Ce facteur 4 est le cœur du calcul ; le rayon de la planète disparaît.</li>
+</ol>
+<p>Pour la Terre (\(\Phi = 1\,360\) W/m², \(A = 0{,}3\)) : \(T \approx 255\) K, soit −18 °C ; l’effet de serre explique l’écart avec les 15 °C observés.</p>
 <div class="exo" data-q="th-equilibre-radiatif"></div>
 <div class="piege">
 <p><strong>Pièges.</strong></p>

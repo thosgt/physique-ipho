@@ -25,8 +25,15 @@
 <h2 id="lorentz">1. La force de Lorentz</h2>
 <p>Une particule de charge \(q\) et de vitesse \(\vec v\) subit dans des champs électrique et magnétique la <strong>force de Lorentz</strong></p>
 \[\vec F = q\vec E + q\,\vec v\wedge\vec B .\]
-<p>La partie électrique ne dépend pas de la vitesse et a la direction du champ (sens opposé pour une charge négative). La partie magnétique est perpendiculaire à \(\vec v\) et à \(\vec B\), de norme \(|q|vB\sin\theta\), nulle si la particule est immobile ou se déplace le long du champ ; son sens se trouve par la règle de la main droite pour une charge positive, et s’inverse pour une charge négative.</p>
-<p>Comparons au poids pour un électron dans un champ modeste de 100 V·m⁻¹ : \(eE/m_eg \approx 2\times10^{12}\). On néglige toujours le poids. La puissance de la force de Lorentz est \(q\vec E\cdot\vec v\) : la force magnétique ne travaille pas.</p>
+<table>
+<thead><tr><th></th><th>Partie électrique \(q\vec E\)</th><th>Partie magnétique \(q\,\vec v\wedge\vec B\)</th></tr></thead>
+<tbody>
+<tr><td>Dépend de la vitesse ?</td><td>non</td><td>oui : nulle si la particule est immobile ou se déplace le long du champ</td></tr>
+<tr><td>Direction</td><td>celle de \(\vec E\) (sens opposé si \(q < 0\))</td><td>perpendiculaire à \(\vec v\) et à \(\vec B\) ; sens par la main droite pour \(q > 0\), inversé pour \(q < 0\)</td></tr>
+<tr><td>Norme</td><td>\(|q|E\)</td><td>\(|q|vB\sin\theta\), où \(\theta\) est l’angle entre \(\vec v\) et \(\vec B\)</td></tr>
+<tr><td>Puissance</td><td>\(q\vec E\cdot\vec v\) : change l’énergie cinétique</td><td>nulle : ne change que la direction de la vitesse</td></tr>
+</tbody></table>
+<p>Le poids est toujours négligeable : pour un électron dans un champ modeste de 100 V·m⁻¹, \(eE/m_eg \approx 2\times10^{12}\).</p>
 <div class="methode" data-m="conservation"><p>Dans un champ magnétique seul, même non uniforme, la norme de la vitesse est constante. Dans des champs \(\vec E\) et \(\vec B\) statiques, \(\tfrac12mv^2 + qV\) se conserve : la vitesse en un point se lit sur le potentiel, sans connaître la trajectoire.</p></div>
 <div class="exo" data-q="pc-sens"></div>
 <div class="exo" data-q="ipho-2025-T6"></div>
@@ -35,24 +42,92 @@
 <h3 id="acceleration">Accélérer : le canon à électrons</h3>
 <p>Des électrons émis sans vitesse par une cathode chauffée sont accélérés vers une anode portée au potentiel \(+U\) par rapport à la cathode. Ils gagnent l’énergie \(eU\) :</p>
 \[\tfrac12m_ev^2 = eU \quad\Longrightarrow\quad v = \sqrt{\frac{2eU}{m_e}} .\]
-<p>Pour \(U = 1\) kV, \(v = 1{,}9\times10^7\) m·s⁻¹, soit 6 % de \(c\). Le résultat ne dépend ni de la distance entre les électrodes ni de leur forme. C’est l’origine de l’<strong>électronvolt</strong> : 1 eV \(= 1{,}60\times10^{-19}\) J est l’énergie gagnée par une charge \(e\) sous 1 V.</p>
+<ul>
+<li>Pour \(U = 1\) kV, \(v = 1{,}9\times10^7\) m·s⁻¹, soit 6 % de \(c\).</li>
+<li>Le résultat ne dépend ni de la distance entre les électrodes ni de leur forme : seule compte la tension.</li>
+<li>C’est l’origine de l’<strong>électronvolt</strong> : 1 eV \(= 1{,}60\times10^{-19}\) J est l’énergie gagnée par une charge \(e\) sous 1 V.</li>
+</ul>
 <div class="methode" data-m="tension-acceleratrice"><p>Comparez \(|q|U\) à l’énergie de masse : 511 keV pour l’électron, 938 MeV pour le proton. Sous 10 kV, un électron est encore classique à 1 % près ; sous 1 MV, il faut écrire \((\gamma - 1)m_ec^2 = eU\), ce qui donne \(\gamma = 2{,}96\) et \(v = 0{,}94\,c\), alors que la formule classique donnerait \(2\,c\).</p></div>
 <div class="exo" data-q="pc-canon"></div>
 <div class="exo" data-q="ipho-2021-T9"></div>
 <h3 id="deviation">Dévier : les plaques de déflexion</h3>
-<p>Un électron entre à la vitesse \(v_0\), parallèlement aux plaques, dans le champ uniforme \(E = U/d\) d’un condensateur plan de longueur \(\ell\). Selon l’axe des plaques, aucune force : \(x = v_0t\). Perpendiculairement, accélération constante \(a = eE/m_e\) : \(y = \tfrac12at^2\). La trajectoire est une parabole,</p>
+<p>Un électron entre à la vitesse \(v_0\), parallèlement aux plaques, dans le champ uniforme \(E = U/d\) d’un condensateur plan de longueur \(\ell\).</p>
+<figure>
+<svg viewBox="0 0 660 250" width="660" role="img" aria-label="Électron dévié entre deux plaques : parabole entre les plaques, droite après, dont le prolongement passe par le milieu des plaques" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
+<rect x="120" y="52" width="220" height="8" fill="#c0392b" opacity="0.85"/><text x="110" y="61" text-anchor="end" font-size="13" font-weight="700" fill="#c0392b">+U</text>
+<rect x="120" y="200" width="220" height="8" fill="#2563a8" opacity="0.85"/><text x="110" y="209" text-anchor="end" font-size="13" font-weight="700" fill="#2563a8">0</text>
+<line x1="150" y1="72" x2="150" y2="182" stroke="#b85a0c" stroke-width="1.6"/>
+<path d="M150.0,196.0 L146.5,180.8 L153.5,180.8 Z" fill="#b85a0c"/>
+<line x1="300" y1="72" x2="300" y2="182" stroke="#b85a0c" stroke-width="1.6"/>
+<path d="M300.0,196.0 L296.5,180.8 L303.5,180.8 Z" fill="#b85a0c"/>
+<text x="160" y="176" font-size="13" font-weight="700" fill="#b85a0c">E</text>
+<line x1="20" y1="130" x2="640" y2="130" stroke="#5a6b8a" stroke-width="0.8" stroke-dasharray="3 4"/>
+<path d="M40,130 L120,130 L120,130.0 L130,129.9 L140,129.8 L150,129.4 L160,129.0 L170,128.5 L180,127.8 L190,127.0 L200,126.0 L210,125.0 L220,123.8 L230,122.5 L240,121.1 L250,119.5 L260,117.9 L270,116.1 L280,114.1 L290,112.1 L300,109.9 L310,107.6 L320,105.2 L330,102.7 L340,100.0 L600,29.1" fill="none" stroke="#1f3a68" stroke-width="2.4"/>
+<path d="M88.0,130.0 L72.8,133.5 L72.8,126.5 Z" fill="#1f3a68"/>
+<text x="58" y="120" font-size="13" font-weight="600" fill="#1f3a68">v₀</text>
+<path d="M487.7,59.7 L474.0,67.1 L472.1,60.4 Z" fill="#1f3a68"/>
+<line x1="230" y1="130" x2="340" y2="100" stroke="#1f3a68" stroke-width="1.4" stroke-dasharray="5 4"/>
+<circle cx="230" cy="130" r="3.5" fill="#1f3a68"/><text x="230" y="150" text-anchor="middle" font-size="11" fill="#15213a">milieu des plaques</text>
+<path d="M400,100 A60,60 0 0 0 398.1,83.9" fill="none" stroke="#b85a0c" stroke-width="1.4"/><line x1="340" y1="100" x2="420" y2="100" stroke="#5a6b8a" stroke-width="0.8" stroke-dasharray="3 3"/><text x="406" y="94" font-size="13" font-weight="700" fill="#b85a0c">θ</text>
+<line x1="610" y1="15" x2="610" y2="240" stroke="#15213a" stroke-width="3"/><text x="618" y="236" font-size="11" fill="#15213a">écran</text>
+<line x1="120" y1="222" x2="340" y2="222" stroke="#15213a" stroke-width="1"/><path d="M114.0,222.0 L125.4,219.4 L125.4,224.6 Z" fill="#15213a"/><path d="M346.0,222.0 L334.6,224.6 L334.6,219.4 Z" fill="#15213a"/><text x="230" y="240" text-anchor="middle" font-size="13" fill="#15213a">ℓ</text>
+<text x="180" y="96" font-size="11" fill="#15213a">parabole</text><text x="470" y="80" font-size="11" fill="#15213a">droite</text>
+</svg>
+<figcaption>L’électron, attiré par la plaque positive, décrit une parabole entre les plaques puis une droite. Prolongée vers l’arrière (pointillés), cette droite passe par le milieu des plaques.</figcaption>
+</figure>
+<ol class="etapes">
+<li><strong>Selon l’axe des plaques</strong>, aucune force : \(x = v_0t\).</li>
+<li><strong>Perpendiculairement</strong>, accélération constante \(a = eE/m_e\) : \(y = \tfrac12at^2\).</li>
+<li><strong>Éliminer \(t\)</strong> : la trajectoire est une parabole,</li>
+</ol>
 \[y = \frac{eE}{2m_ev_0^2}\,x^2 ,\]
-<p>et à la sortie l’électron a été dévié de l’angle \(\theta\) tel que \(\tan\theta = \dfrac{v_y}{v_0} = \dfrac{eE\ell}{m_ev_0^2}\). Si les électrons ont été accélérés sous \(U_0\), alors \(m_ev_0^2 = 2eU_0\) et \(\tan\theta = \dfrac{U\ell}{2U_0d}\) : la déviation ne dépend ni de la charge ni de la masse. Un champ électrique seul ne sépare pas des particules accélérées par la même tension.</p>
-<p>C’est exactement un tir parabolique où \(g\) est remplacé par \(|q|E/m\) : portée, flèche et temps de vol se transposent tels quels. Après les plaques, la particule continue en ligne droite, et sa trajectoire prolongée vers l’arrière passe par le milieu des plaques.</p>
+<p>À la sortie, l’électron a été dévié de l’angle \(\theta\) tel que</p>
+\[\tan\theta = \frac{v_y}{v_0} = \frac{eE\ell}{m_ev_0^2} = \frac{U\ell}{2U_0d}\quad\text{(électrons accélérés sous }U_0\text{, donc }m_ev_0^2 = 2eU_0).\]
+<p>La déviation ne dépend ni de la charge ni de la masse : <strong>un champ électrique seul ne sépare pas des particules accélérées par la même tension</strong>.</p>
+<div class="complement" data-tag="Démonstration" title="L’angle de sortie et le point de concours">
+<ol class="etapes">
+<li>Durée de la traversée : \(t_s = \ell/v_0\).</li>
+<li>Vitesse transversale à la sortie : \(v_y = at_s = \dfrac{eE\ell}{m_ev_0}\), d’où \(\tan\theta = v_y/v_0\).</li>
+<li>Déviation à la sortie : \(y_s = \tfrac12at_s^2 = \dfrac{\ell}{2}\tan\theta\).</li>
+<li>La droite de sortie, de pente \(\tan\theta\), passe donc par le point d’abscisse \(\ell - y_s/\tan\theta = \ell/2\) sur l’axe : le milieu des plaques. Sur un écran à la distance \(L\) de ce milieu, le spot est dévié de \(L\tan\theta\), proportionnel à \(U\) : c’est le principe de l’oscilloscope analogique.</li>
+</ol>
+</div>
+<table>
+<thead><tr><th>Tir dans la pesanteur</th><th>Déviation électrique</th></tr></thead>
+<tbody>
+<tr><td>accélération \(g\)</td><td>accélération \(|q|E/m\)</td></tr>
+<tr><td>parabole, portée, flèche, temps de vol</td><td>mêmes formules, \(g\) remplacé par \(|q|E/m\)</td></tr>
+<tr><td>après le champ : —</td><td>ligne droite, dont le prolongement passe par le milieu des plaques</td></tr>
+</tbody></table>
 <div class="exo" data-group="pc-deflexion"></div>
 
 <h2 id="champ-b">3. Dans un champ magnétique uniforme</h2>
 <h3 id="cyclotron">Le mouvement circulaire</h3>
-<p>La force \(q\vec v\wedge\vec B\) est perpendiculaire à la vitesse : la norme \(v\) est constante, seule la direction change. Si \(\vec v\) est perpendiculaire à \(\vec B\), la force, de norme constante \(|q|vB\) et toujours perpendiculaire à la vitesse, impose un mouvement circulaire uniforme : \(mv^2/R = |q|vB\), d’où</p>
+<p>La force \(q\vec v\wedge\vec B\) est perpendiculaire à la vitesse : la norme \(v\) est constante, seule la direction change. Si \(\vec v\) est perpendiculaire à \(\vec B\), la force a une norme constante \(|q|vB\) et reste perpendiculaire à la vitesse : elle impose un <strong>mouvement circulaire uniforme</strong>, avec \(mv^2/R = |q|vB\), d’où</p>
 \[R = \frac{mv}{|q|B}, \qquad \omega_c = \frac vR = \frac{|q|B}{m}, \qquad T = \frac{2\pi m}{|q|B}.\]
-<p>La période ne dépend pas de la vitesse : une particule plus rapide décrit un cercle plus grand dans le même temps. Les charges positives et négatives tournent en sens inverses. Ordres de grandeur dans 1 T : \(\omega_c/2\pi = 28\) GHz pour l’électron, 15 MHz pour le proton.</p>
+<ul>
+<li>La période <strong>ne dépend pas de la vitesse</strong> : une particule plus rapide décrit un cercle plus grand dans le même temps.</li>
+<li>Les charges positives et négatives tournent en sens inverses.</li>
+</ul>
+<table>
+<thead><tr><th>Dans un champ de 1 T</th><th>Fréquence cyclotron \(\omega_c/2\pi\)</th></tr></thead>
+<tbody>
+<tr><td>électron</td><td>28 GHz</td></tr>
+<tr><td>proton</td><td>15 MHz</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="Pourquoi la trajectoire est un cercle">
+<ol class="etapes">
+<li>La puissance de la force magnétique est nulle (\(\vec F\perp\vec v\)) : l’énergie cinétique, donc \(v\), est constante.</li>
+<li>Avec \(\vec B = B\,\vec u_z\) et \(\vec v\) dans le plan \(xy\), la force reste dans ce plan : le mouvement est plan.</li>
+<li>Dans la base de Frenet, l’accélération est \(v^2/R\) vers le centre de courbure, et la force a la norme constante \(|q|vB\) : le rayon de courbure \(R = mv/|q|B\) est constant. Une courbe plane de courbure constante est un cercle.</li>
+</ol>
+</div>
 <div class="sim" data-name="cyclotron"></div>
-<p>Si la vitesse a une composante \(v_\parallel\) le long du champ, celle-ci n’est pas modifiée : la trajectoire est une <strong>hélice</strong> de rayon \(mv_\perp/|q|B\) et de pas \(v_\parallel T\). Les particules chargées s’enroulent autour des lignes de champ : c’est ainsi que le champ terrestre guide les particules du vent solaire vers les pôles, où elles produisent les aurores.</p>
+<p>Si la vitesse a une composante \(v_\parallel\) le long du champ, celle-ci n’est pas modifiée :</p>
+<ul>
+<li>la trajectoire est une <strong>hélice</strong> de rayon \(mv_\perp/|q|B\) et de pas \(v_\parallel T\) ;</li>
+<li>les particules chargées s’enroulent autour des lignes de champ : c’est ainsi que le champ terrestre guide les particules du vent solaire vers les pôles, où elles produisent les aurores.</li>
+</ul>
 <div class="methode" data-m="cyclotron"><p>Sur une photo de chambre à bulles ou un schéma de spectromètre, mesurez le rayon : il donne la quantité de mouvement, \(p = |q|BR\). En unités pratiques, pour une charge \(e\) : \(p\,[\text{GeV}/c] = 0{,}30\,B\,[\text{T}]\,R\,[\text{m}]\). Le sens de rotation donne le signe de la charge.</p></div>
 <div class="exo" data-q="pc-rayon"></div>
 <div class="exo" data-q="ipho-2024-C17"></div>
@@ -61,7 +136,12 @@
 <p><strong>Spectromètre de masse.</strong> Des ions de charge \(q\) sont accélérés sous \(U\) puis décrivent un demi-cercle dans un champ \(B\). Avec \(\tfrac12mv^2 = qU\) et \(R = mv/qB\) :</p>
 \[R = \frac1B\sqrt{\frac{2mU}{q}}, \qquad \frac mq = \frac{B^2R^2}{2U}.\]
 <p>Le rayon croît comme \(\sqrt m\) : deux isotopes arrivent en deux points distincts du détecteur.</p>
-<p><strong>Cyclotron.</strong> Deux demi-boîtes métalliques en forme de D, dans un champ \(B\) uniforme, sont séparées par un intervalle où règne une tension alternative. Comme la période de rotation ne dépend pas de la vitesse, une tension de fréquence fixe \(f = qB/2\pi m\) accélère la particule à chaque demi-tour ; elle spirale vers l’extérieur. À la sortie (rayon \(R_\text{max}\)) :</p>
+<p><strong>Cyclotron.</strong> Deux demi-boîtes métalliques en forme de D, dans un champ \(B\) uniforme, sont séparées par un intervalle où règne une tension alternative.</p>
+<ol class="etapes">
+<li>Dans chaque D, la particule décrit un demi-cercle, en une demi-période \(\pi m/qB\) indépendante de sa vitesse.</li>
+<li>Une tension de fréquence fixe \(f = qB/2\pi m\) l’accélère donc à chaque passage dans l’intervalle.</li>
+<li>Son rayon croît à chaque demi-tour : elle spirale vers l’extérieur, jusqu’au rayon \(R_\text{max}\) de la machine, où \(v = qBR_\text{max}/m\) :</li>
+</ol>
 \[E_c = \frac{q^2B^2R_\text{max}^2}{2m},\]
 <p>indépendante de la tension appliquée, qui ne fixe que le nombre de tours.</p>
 <div class="methode" data-m="seuil"><p>Questions « la particule atteint-elle le détecteur ? », « ressort-elle de la zone de champ ? » : comparez le diamètre \(2R\) de la trajectoire à la largeur de la zone. Une particule qui entre perpendiculairement dans une zone de champ de largeur \(a\) ressort de l’autre côté si \(R > a\), et fait demi-tour sinon.</p></div>
@@ -71,10 +151,21 @@
 <h3 id="filtre">Le filtre de vitesse</h3>
 <p>Dans des champs \(\vec E\) et \(\vec B\) perpendiculaires entre eux, une particule dont la vitesse est perpendiculaire aux deux subit les forces \(qE\) et \(qvB\), de sens opposés si la vitesse est bien orientée. Elles se compensent pour</p>
 \[v = \frac EB ,\]
-<p>quelles que soient la charge et la masse. Seules les particules de cette vitesse traversent le dispositif en ligne droite. C’est ainsi que J. J. Thomson a mesuré \(e/m\) en 1897 : il règle \(B\) pour annuler la déviation due à \(E\) (ce qui donne \(v\)), puis coupe \(B\) et mesure la déviation électrique, qui donne \(e/m = v^2\tan\theta/E\ell\).</p>
+<p>quelles que soient la charge et la masse. Seules les particules de cette vitesse traversent le dispositif en ligne droite. C’est ainsi que J. J. Thomson a mesuré \(e/m\) en 1897 :</p>
+<ol class="etapes">
+<li>il règle \(B\) pour annuler la déviation due à \(E\), ce qui donne \(v = E/B\) ;</li>
+<li>il coupe \(B\) et mesure la déviation électrique seule, \(\tan\theta = eE\ell/mv^2\) ;</li>
+<li>il en tire \(e/m = v^2\tan\theta/(E\ell)\).</li>
+</ol>
 <div class="exo" data-q="pc-filtre"></div>
 <div class="cpge" id="derive" title="Vitesse de dérive : la cycloïde">
-<p>Avec \(\vec E = E\,\vec u_y\) et \(\vec B = B\,\vec u_z\), posons \(\vec v = \vec v_d + \vec v\,'\) où \(\vec v_d = \dfrac{\vec E\wedge\vec B}{B^2} = \dfrac EB\,\vec u_x\). Alors \(q\vec E + q\vec v_d\wedge\vec B = \vec 0\), et il reste \(m\,\mathrm d\vec v\,'/\mathrm dt = q\vec v\,'\wedge\vec B\) : dans le référentiel qui se déplace à \(\vec v_d\), la particule décrit un cercle cyclotron. Dans le laboratoire, la trajectoire est un cercle qui dérive à la vitesse \(E/B\), perpendiculairement aux deux champs et dans le même sens pour toutes les charges. Une particule lâchée sans vitesse a \(v' = E/B\) : elle décrit une cycloïde, s’éloigne au plus de \(2mE/|q|B^2\) dans la direction de \(\vec E\) et atteint la vitesse maximale \(2E/B\).</p>
+<p>Avec \(\vec E = E\,\vec u_y\) et \(\vec B = B\,\vec u_z\) :</p>
+<ol class="etapes">
+<li><strong>Changer de variable.</strong> On pose \(\vec v = \vec v_d + \vec v\,'\) avec \(\vec v_d = \dfrac{\vec E\wedge\vec B}{B^2} = \dfrac EB\,\vec u_x\). Alors \(q\vec E + q\vec v_d\wedge\vec B = \vec 0\).</li>
+<li><strong>Équation restante.</strong> \(m\,\mathrm d\vec v\,'/\mathrm dt = q\vec v\,'\wedge\vec B\) : dans le référentiel qui se déplace à \(\vec v_d\), la particule décrit un cercle cyclotron.</li>
+<li><strong>Dans le laboratoire</strong>, la trajectoire est un cercle qui dérive à la vitesse \(E/B\), perpendiculairement aux deux champs et dans le même sens pour toutes les charges.</li>
+<li><strong>Particule lâchée sans vitesse</strong> : \(v' = E/B\), elle décrit une <strong>cycloïde</strong>, s’éloigne au plus de \(2mE/|q|B^2\) dans la direction de \(\vec E\) et atteint la vitesse maximale \(2E/B\).</li>
+</ol>
 </div>
 <div class="methode" data-m="champs-croises"><p>Le même raisonnement vaut pour toute force constante \(\vec F\) perpendiculaire à \(\vec B\) : dérive à \(\vec F\wedge\vec B/qB^2\). Dans le champ de pesanteur, les ions et les électrons d’un plasma dérivent en sens opposés, ce qui crée un courant.</p></div>
 <div class="piege">

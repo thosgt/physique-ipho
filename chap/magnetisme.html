@@ -24,31 +24,140 @@
 
 <h2 id="champ">1. Le champ magnétique</h2>
 <h3 id="sources">Sources, lignes de champ, ordres de grandeur</h3>
-<p>Une aiguille aimantée s’oriente près d’un aimant ou d’un fil parcouru par un courant (Ørsted, 1820) : elle indique la direction du <strong>champ magnétique</strong> \(\vec B\). Les lignes de champ sortent du pôle nord d’un aimant et rentrent par son pôle sud ; à l’intérieur elles se referment. Il n’existe pas de « charge magnétique » : toute ligne de champ est fermée.</p>
-<p>Ordres de grandeur : \(5\times10^{-5}\) T pour le champ terrestre en France, \(10^{-2}\) T près d’un petit aimant, 1 T pour un aimant au néodyme ou un électroaimant, 1,5 à 3 T en IRM, 8 T dans les aimants supraconducteurs du LHC.</p>
+<p>Une aiguille aimantée s’oriente près d’un aimant ou d’un fil parcouru par un courant (Ørsted, 1820) : elle indique la direction du <strong>champ magnétique</strong> \(\vec B\).</p>
+<ul>
+<li>Les lignes de champ sortent du pôle nord d’un aimant et rentrent par son pôle sud ; à l’intérieur de l’aimant, elles se referment.</li>
+<li>Il n’existe pas de « charge magnétique » : <strong>toute ligne de champ est fermée</strong> (contrairement au champ électrique, dont les lignes partent des charges).</li>
+</ul>
+<table>
+<thead><tr><th>Source</th><th>Champ magnétique</th></tr></thead>
+<tbody>
+<tr><td>Champ terrestre en France</td><td>\(5\times10^{-5}\) T</td></tr>
+<tr><td>Près d’un petit aimant</td><td>\(10^{-2}\) T</td></tr>
+<tr><td>Aimant au néodyme, électroaimant</td><td>1 T</td></tr>
+<tr><td>IRM</td><td>1,5 à 3 T</td></tr>
+<tr><td>Aimants supraconducteurs du LHC</td><td>8 T</td></tr>
+</tbody></table>
 <h3 id="sens">Sens du champ créé par un courant</h3>
-<p>Autour d’un fil rectiligne, les lignes de champ sont des cercles centrés sur le fil : main droite, pouce selon le courant, les doigts donnent le sens de \(\vec B\). Dans une bobine, c’est l’inverse : les doigts suivent le courant dans les spires, le pouce donne le sens du champ sur l’axe. À l’intérieur d’une <strong>bobine longue</strong> (solénoïde), le champ est uniforme, parallèle à l’axe et proportionnel à l’intensité ; il est très faible à l’extérieur. Les expressions de ces champs ne sont pas à connaître pour le test : elles sont données quand elles servent.</p>
+<table>
+<thead><tr><th>Source</th><th>Lignes de champ</th><th>Règle de la main droite</th></tr></thead>
+<tbody>
+<tr><td>Fil rectiligne</td><td>cercles centrés sur le fil</td><td>pouce selon le courant : les doigts donnent le sens de \(\vec B\)</td></tr>
+<tr><td>Bobine longue (solénoïde)</td><td>à l’intérieur : champ <strong>uniforme</strong>, parallèle à l’axe, proportionnel à l’intensité ; très faible à l’extérieur</td><td>l’inverse : les doigts suivent le courant dans les spires, le pouce donne le sens du champ sur l’axe</td></tr>
+</tbody></table>
+<figure>
+<svg viewBox="0 0 660 240" width="660" role="img" aria-label="Lignes de champ magnétique : cercles autour d’un fil rectiligne, champ uniforme à l’intérieur d’une bobine longue" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
+<text x="150" y="18" text-anchor="middle" font-size="13" font-weight="600" fill="#15213a">Fil rectiligne, vu en coupe</text>
+<circle cx="150" cy="128" r="30" fill="none" stroke="#1f3a68" stroke-width="1.4"/>
+<path d="M143.0,98.0 L156.3,95.0 L156.3,101.0 Z" fill="#1f3a68"/>
+<path d="M157.0,158.0 L143.7,161.0 L143.7,155.0 Z" fill="#1f3a68"/>
+<circle cx="150" cy="128" r="55" fill="none" stroke="#1f3a68" stroke-width="1.4"/>
+<path d="M143.0,73.0 L156.3,70.0 L156.3,76.0 Z" fill="#1f3a68"/>
+<path d="M157.0,183.0 L143.7,186.0 L143.7,180.0 Z" fill="#1f3a68"/>
+<circle cx="150" cy="128" r="82" fill="none" stroke="#1f3a68" stroke-width="1.4"/>
+<path d="M143.0,46.0 L156.3,43.0 L156.3,49.0 Z" fill="#1f3a68"/>
+<path d="M157.0,210.0 L143.7,213.0 L143.7,207.0 Z" fill="#1f3a68"/>
+<circle cx="150" cy="128" r="10" fill="#fff" stroke="#c0392b" stroke-width="2"/><circle cx="150" cy="128" r="3.5" fill="#c0392b"/>
+<text x="164" y="114" font-size="12" fill="#c0392b" font-weight="600">I</text>
+<text x="212" y="66" font-size="13" fill="#b85a0c" font-weight="700">B</text>
+<text x="150" y="232" text-anchor="middle" font-size="11" fill="#15213a">courant vers vous : B tourne dans le sens direct</text>
+<text x="490" y="18" text-anchor="middle" font-size="13" font-weight="600" fill="#15213a">Bobine longue, vue en coupe</text>
+<path d="M624,104 C700,4 280,4 356,104" fill="none" stroke="#1f3a68" stroke-width="1.1" stroke-dasharray="4 3" opacity="0.7"/>
+<path d="M624,146 C700,246 280,246 356,146" fill="none" stroke="#1f3a68" stroke-width="1.1" stroke-dasharray="4 3" opacity="0.7"/>
+<path d="M483.0,29.0 L496.3,26.0 L496.3,32.0 Z" fill="#1f3a68"/>
+<path d="M483.0,221.0 L496.3,218.0 L496.3,224.0 Z" fill="#1f3a68"/>
+<line x1="350" y1="100" x2="630" y2="100" stroke="#1f3a68" stroke-width="1.6"/>
+<path d="M572.0,100.0 L558.7,103.0 L558.7,97.0 Z" fill="#1f3a68"/>
+<path d="M619.0,100.0 L605.7,103.0 L605.7,97.0 Z" fill="#1f3a68"/>
+<line x1="350" y1="125" x2="630" y2="125" stroke="#1f3a68" stroke-width="1.6"/>
+<path d="M572.0,125.0 L558.7,128.0 L558.7,122.0 Z" fill="#1f3a68"/>
+<path d="M619.0,125.0 L605.7,128.0 L605.7,122.0 Z" fill="#1f3a68"/>
+<line x1="350" y1="150" x2="630" y2="150" stroke="#1f3a68" stroke-width="1.6"/>
+<path d="M572.0,150.0 L558.7,153.0 L558.7,147.0 Z" fill="#1f3a68"/>
+<path d="M619.0,150.0 L605.7,153.0 L605.7,147.0 Z" fill="#1f3a68"/>
+<circle cx="390" cy="76" r="7" fill="#fff" stroke="#c0392b" stroke-width="1.6"/><circle cx="390" cy="76" r="2.4" fill="#c0392b"/>
+<circle cx="390" cy="174" r="7" fill="#fff" stroke="#c0392b" stroke-width="1.6"/><path d="M386,170 L394,178 M394,170 L386,178" stroke="#c0392b" stroke-width="1.6"/>
+<circle cx="415" cy="76" r="7" fill="#fff" stroke="#c0392b" stroke-width="1.6"/><circle cx="415" cy="76" r="2.4" fill="#c0392b"/>
+<circle cx="415" cy="174" r="7" fill="#fff" stroke="#c0392b" stroke-width="1.6"/><path d="M411,170 L419,178 M419,170 L411,178" stroke="#c0392b" stroke-width="1.6"/>
+<circle cx="440" cy="76" r="7" fill="#fff" stroke="#c0392b" stroke-width="1.6"/><circle cx="440" cy="76" r="2.4" fill="#c0392b"/>
+<circle cx="440" cy="174" r="7" fill="#fff" stroke="#c0392b" stroke-width="1.6"/><path d="M436,170 L444,178 M444,170 L436,178" stroke="#c0392b" stroke-width="1.6"/>
+<circle cx="465" cy="76" r="7" fill="#fff" stroke="#c0392b" stroke-width="1.6"/><circle cx="465" cy="76" r="2.4" fill="#c0392b"/>
+<circle cx="465" cy="174" r="7" fill="#fff" stroke="#c0392b" stroke-width="1.6"/><path d="M461,170 L469,178 M469,170 L461,178" stroke="#c0392b" stroke-width="1.6"/>
+<circle cx="490" cy="76" r="7" fill="#fff" stroke="#c0392b" stroke-width="1.6"/><circle cx="490" cy="76" r="2.4" fill="#c0392b"/>
+<circle cx="490" cy="174" r="7" fill="#fff" stroke="#c0392b" stroke-width="1.6"/><path d="M486,170 L494,178 M494,170 L486,178" stroke="#c0392b" stroke-width="1.6"/>
+<circle cx="515" cy="76" r="7" fill="#fff" stroke="#c0392b" stroke-width="1.6"/><circle cx="515" cy="76" r="2.4" fill="#c0392b"/>
+<circle cx="515" cy="174" r="7" fill="#fff" stroke="#c0392b" stroke-width="1.6"/><path d="M511,170 L519,178 M519,170 L511,178" stroke="#c0392b" stroke-width="1.6"/>
+<circle cx="540" cy="76" r="7" fill="#fff" stroke="#c0392b" stroke-width="1.6"/><circle cx="540" cy="76" r="2.4" fill="#c0392b"/>
+<circle cx="540" cy="174" r="7" fill="#fff" stroke="#c0392b" stroke-width="1.6"/><path d="M536,170 L544,178 M544,170 L536,178" stroke="#c0392b" stroke-width="1.6"/>
+<circle cx="565" cy="76" r="7" fill="#fff" stroke="#c0392b" stroke-width="1.6"/><circle cx="565" cy="76" r="2.4" fill="#c0392b"/>
+<circle cx="565" cy="174" r="7" fill="#fff" stroke="#c0392b" stroke-width="1.6"/><path d="M561,170 L569,178 M569,170 L561,178" stroke="#c0392b" stroke-width="1.6"/>
+<circle cx="590" cy="76" r="7" fill="#fff" stroke="#c0392b" stroke-width="1.6"/><circle cx="590" cy="76" r="2.4" fill="#c0392b"/>
+<circle cx="590" cy="174" r="7" fill="#fff" stroke="#c0392b" stroke-width="1.6"/><path d="M586,170 L594,178 M594,170 L586,178" stroke="#c0392b" stroke-width="1.6"/>
+<text x="490" y="51" text-anchor="middle" font-size="11" fill="#15213a">à l’extérieur : champ faible</text>
+<rect x="372" y="129" width="150" height="16" fill="#fff" opacity="0.9"/><text x="447" y="141" text-anchor="middle" font-size="11" fill="#15213a">intérieur : champ uniforme</text>
+<text x="640" y="129" font-size="13" fill="#b85a0c" font-weight="700">B</text>
+</svg>
+<figcaption>À gauche, le courant sort de la page (⊙) : les lignes de champ sont des cercles parcourus dans le sens direct. À droite, le courant sort en haut (⊙) et entre en bas (⊗) : le champ est uniforme dans la bobine et se referme à l’extérieur, où il est faible.</figcaption>
+</figure>
+<p>Les expressions de ces champs ne sont pas à connaître pour le test : elles sont données quand elles servent.</p>
 <h3 id="action">Action sur une charge</h3>
-<p>Une charge \(q\) de vitesse \(\vec v\) subit dans un champ magnétique la force \(\vec F = q\,\vec v\wedge\vec B\) : nulle si la charge est immobile ou se déplace le long du champ, perpendiculaire à la vitesse sinon. Elle ne travaille donc jamais. Le chapitre <a href="#particules">particules chargées</a> en tire toutes les conséquences.</p>
+<p>Une charge \(q\) de vitesse \(\vec v\) subit dans un champ magnétique la force \(\vec F = q\,\vec v\wedge\vec B\) (<a href="#vecteurs--vectoriel">produit vectoriel</a>) :</p>
+<ul>
+<li>nulle si la charge est immobile ou se déplace le long du champ ;</li>
+<li>perpendiculaire à la vitesse sinon : elle ne travaille donc <strong>jamais</strong>, et ne change que la direction de la vitesse.</li>
+</ul>
+<p>Le chapitre <a href="#particules">particules chargées</a> en tire toutes les conséquences.</p>
 <div class="exo" data-group="cde-m1"></div>
 
 <h2 id="bobine">2. La bobine dans un circuit</h2>
 <h3 id="auto-induction">Auto-induction et inductance</h3>
 <p>Une bobine parcourue par un courant crée un champ magnétique proportionnel à ce courant. Quand le courant varie, le champ varie, et la bobine réagit en s’opposant à cette variation : c’est l’<strong>auto-induction</strong>. Pour une bobine idéale (sans résistance), en convention récepteur,</p>
 \[u = L\,\frac{\mathrm di}{\mathrm dt},\]
-<p>où l’<strong>inductance</strong> \(L\) (en henrys, 1 H = 1 V·s·A⁻¹) ne dépend que de la géométrie de la bobine et de son noyau : quelques millihenrys pour une bobine de travaux pratiques, jusqu’à un henry avec un noyau de fer. Une bobine réelle se modélise par une bobine idéale en série avec une résistance \(r\).</p>
-<p>Deux conséquences à retenir. En régime continu (\(i\) constant), \(u = 0\) : la bobine idéale se comporte comme un simple fil. Et le courant qui la traverse <strong>ne peut pas être discontinu</strong>, car il faudrait une tension infinie.</p>
-<div class="methode" data-m="cas-limites"><p>Pour analyser un circuit avec une bobine sans écrire d’équation, regardez deux instants. Juste après une commutation : le courant dans la bobine garde la valeur qu’il avait juste avant. Longtemps après : la bobine est un fil. Pour un condensateur, c’est la tension qui est continue, et il se comporte à la fin comme un interrupteur ouvert.</p></div>
+<p>où l’<strong>inductance</strong> \(L\) (en henrys, 1 H = 1 V·s·A⁻¹) ne dépend que de la géométrie de la bobine et de son noyau.</p>
+<table>
+<thead><tr><th>Bobine</th><th>Inductance</th></tr></thead>
+<tbody>
+<tr><td>Bobine de travaux pratiques</td><td>quelques millihenrys</td></tr>
+<tr><td>Avec un noyau de fer</td><td>jusqu’à un henry</td></tr>
+<tr><td>Bobine réelle</td><td>modèle : bobine idéale \(L\) en série avec une résistance \(r\)</td></tr>
+</tbody></table>
+<p>Deux conséquences à retenir :</p>
+<ol class="etapes">
+<li>en régime continu (\(i\) constant), \(u = 0\) : la bobine idéale se comporte comme un simple <strong>fil</strong> ;</li>
+<li>le courant qui la traverse <strong>ne peut pas être discontinu</strong> : un saut de courant demanderait une tension infinie.</li>
+</ol>
+<div class="methode" data-m="cas-limites"><p>Pour analyser un circuit avec une bobine sans écrire d’équation, regardez deux instants :</p>
+<table>
+<thead><tr><th>Instant</th><th>Bobine</th><th>Condensateur</th></tr></thead>
+<tbody>
+<tr><td>Juste après une commutation</td><td>le <strong>courant</strong> garde la valeur qu’il avait juste avant</td><td>la <strong>tension</strong> garde la valeur qu’elle avait juste avant</td></tr>
+<tr><td>Longtemps après (régime continu)</td><td>un fil</td><td>un interrupteur ouvert</td></tr>
+</tbody></table></div>
 <div class="exo" data-q="mg-bobine-tension"></div>
 <h3 id="energie-magnetique">Énergie d’une bobine</h3>
 <p>La puissance reçue par la bobine est \(ui = Li\,\dfrac{\mathrm di}{\mathrm dt} = \dfrac{\mathrm d}{\mathrm dt}\left(\tfrac12Li^2\right)\) : la bobine stocke l’énergie</p>
 \[E_\text{mag} = \tfrac12Li^2,\]
-<p>qu’elle restitue quand le courant diminue. C’est l’analogue de \(\tfrac12Cu^2\) pour un condensateur. Comme une énergie ne peut pas varier instantanément (il faudrait une puissance infinie), on retrouve la continuité du courant.</p>
+<p>qu’elle restitue quand le courant diminue. C’est l’analogue de \(\tfrac12Cu^2\) pour un condensateur, et de \(\tfrac12mv^2\) en mécanique (l’inductance joue le rôle d’une inertie). Comme une énergie ne peut pas varier instantanément (il faudrait une puissance infinie), on retrouve la continuité du courant.</p>
 <div class="exo" data-q="mg-energie"></div>
 <h3 id="rl">Le circuit RL</h3>
 <p>Une bobine d’inductance \(L\) en série avec une résistance \(R\) (qui inclut celle de la bobine) est branchée à \(t = 0\) sur un générateur de tension \(E\). La loi des mailles donne</p>
 \[L\,\frac{\mathrm di}{\mathrm dt} + Ri = E \quad\Longrightarrow\quad i(t) = \frac ER\left(1 - \mathrm e^{-t/\tau}\right), \qquad \tau = \frac LR.\]
-<p>Le courant s’établit progressivement : il part de zéro (continuité), atteint 63 % de sa valeur finale \(E/R\) à \(t = \tau\) et 99 % à \(5\tau\). Si l’on remplace ensuite le générateur par un fil, le courant décroît en \(\mathrm e^{-t/\tau}\), et l’énergie \(\tfrac12Li^2\) est dissipée dans la résistance.</p>
+<table>
+<thead><tr><th>Instant</th><th>Courant</th></tr></thead>
+<tbody>
+<tr><td>\(t = 0\)</td><td>0 (continuité)</td></tr>
+<tr><td>\(t = \tau\)</td><td>63 % de la valeur finale \(E/R\)</td></tr>
+<tr><td>\(t = 5\tau\)</td><td>99 % : régime permanent atteint en pratique</td></tr>
+</tbody></table>
+<p>Si l’on remplace ensuite le générateur par un fil, le courant décroît en \(\mathrm e^{-t/\tau}\), et l’énergie \(\tfrac12Li^2\) est dissipée dans la résistance.</p>
+<div class="complement" data-tag="Démonstration" title="Établissement du courant et bilan d’énergie">
+<ol class="etapes">
+<li><strong>Équation.</strong> Loi des mailles : \(E = Ri + L\,\dfrac{\mathrm di}{\mathrm dt}\), soit \(\tau\,\dfrac{\mathrm di}{\mathrm dt} + i = \dfrac ER\) avec \(\tau = L/R\) : c’est l’équation du <a href="#maths--premier-ordre">premier ordre</a>.</li>
+<li><strong>Solution.</strong> \(i(t) = \dfrac ER + A\,\mathrm e^{-t/\tau}\) ; la continuité impose \(i(0) = 0\), donc \(A = -E/R\).</li>
+<li><strong>Bilan de puissance.</strong> En multipliant la loi des mailles par \(i\) : \(Ei = Ri^2 + \dfrac{\mathrm d}{\mathrm dt}\left(\tfrac12Li^2\right)\). Le générateur fournit \(Ei\), la résistance dissipe \(Ri^2\), la bobine stocke le reste.</li>
+<li><strong>Décharge.</strong> Générateur remplacé par un fil : \(i = I_0\,\mathrm e^{-t/\tau}\), et l’énergie dissipée vaut \(\displaystyle\int_0^\infty RI_0^2\,\mathrm e^{-2t/\tau}\,\mathrm dt = RI_0^2\,\frac{\tau}{2} = \tfrac12LI_0^2\) : toute l’énergie stockée.</li>
+</ol>
+</div>
 <table>
 <thead><tr><th></th><th>Condensateur</th><th>Bobine</th></tr></thead>
 <tbody>
@@ -59,12 +168,29 @@
 <tr><td>Temps caractéristique avec \(R\)</td><td>\(RC\)</td><td>\(L/R\)</td></tr>
 </tbody>
 </table>
-<div class="methode" data-m="equadiff"><p>Toute équation \(\tau\,\dot y + y = y_\infty\) a pour solution \(y = y_\infty + (y_0 - y_\infty)\,\mathrm e^{-t/\tau}\). Il suffit donc de trois informations : la valeur initiale (par continuité), la valeur finale (régime permanent) et \(\tau\). Vérifiez l’homogénéité : \(L/R\) est bien un temps, comme \(RC\).</p></div>
+<div class="methode" data-m="equadiff"><p>Toute équation \(\tau\,\dot y + y = y_\infty\) a pour solution \(y = y_\infty + (y_0 - y_\infty)\,\mathrm e^{-t/\tau}\). Il suffit donc de trois informations :</p>
+<ol class="etapes">
+<li>la valeur initiale \(y_0\), par continuité ;</li>
+<li>la valeur finale \(y_\infty\), en régime permanent (bobine = fil, condensateur = interrupteur ouvert) ;</li>
+<li>le temps caractéristique \(\tau\), dont on vérifie l’homogénéité : \(L/R\) est bien un temps, comme \(RC\).</li>
+</ol></div>
 <div class="exo" data-group="mg-rl"></div>
 <div class="exo" data-q="ipho-2017-C2"></div>
 <div class="exo" data-q="ipho-2019-C14"></div>
 <h3 id="rupture">Ouvrir un circuit inductif</h3>
-<p>Si l’on ouvre brutalement l’interrupteur d’un circuit où circule un courant \(i\), le courant devrait s’annuler en un temps très court : \(L\,\mathrm di/\mathrm dt\) devient énorme, et une <strong>surtension</strong> de plusieurs milliers de volts apparaît aux bornes de l’interrupteur. Une étincelle éclate, par laquelle l’énergie \(\tfrac12Li^2\) se dissipe. C’est le principe de la bobine d’allumage d’un moteur ; à l’inverse, on protège un circuit en plaçant une diode « de roue libre » en parallèle de la bobine, qui offre un chemin au courant. C’est le cas limite symétrique du court-circuit d’un condensateur chargé (chapitre <a href="#circuits--discontinuite">Circuits électriques</a>) : la règle de continuité suppose que le circuit laisse passer le courant de la bobine.</p>
+<p>Si l’on ouvre brutalement l’interrupteur d’un circuit où circule un courant \(i\) :</p>
+<ol class="etapes">
+<li>le courant devrait s’annuler en un temps très court : \(L\,\mathrm di/\mathrm dt\) devient énorme ;</li>
+<li>une <strong>surtension</strong> de plusieurs milliers de volts apparaît aux bornes de l’interrupteur ;</li>
+<li>une étincelle éclate, par laquelle l’énergie \(\tfrac12Li^2\) se dissipe.</li>
+</ol>
+<table>
+<thead><tr><th>Application</th><th>Principe</th></tr></thead>
+<tbody>
+<tr><td>Bobine d’allumage d’un moteur</td><td>on exploite la surtension pour faire jaillir l’étincelle</td></tr>
+<tr><td>Diode « de roue libre » en parallèle de la bobine</td><td>on offre un chemin au courant pour protéger le circuit</td></tr>
+</tbody></table>
+<p>C’est le cas limite symétrique du court-circuit d’un condensateur chargé (chapitre <a href="#circuits--discontinuite">Circuits électriques</a>) : la règle de continuité suppose que le circuit laisse passer le courant de la bobine.</p>
 <div class="exo" data-q="mg-rupture"></div>
 
 <div class="piege">
@@ -77,7 +203,14 @@
 </div>
 
 <div class="cpge" id="faraday" title="Complément : la loi de Faraday (hors syllabus du test, mais posée au test CPGE 2026)">
-<p>La loi de Faraday n’est pas retenue dans le syllabus 2026-2027 du test, mais une question du test CPGE 2026 la supposait connue ; en voici le strict nécessaire. Le <strong>flux</strong> d’un champ uniforme à travers un circuit plan d’aire \(A\), perpendiculaire au champ, est \(\Phi = BA\). Quand ce flux varie, une force électromotrice apparaît dans le circuit : \(|e| = \left|\dfrac{\mathrm d\Phi}{\mathrm dt}\right|\). L’auto-induction en est un cas particulier : le flux du champ de la bobine à travers elle-même vaut \(Li\).</p>
+<p>La loi de Faraday n’est pas retenue dans le syllabus 2026-2027 du test, mais une question du test CPGE 2026 la supposait connue ; en voici le strict nécessaire.</p>
+<table>
+<thead><tr><th>Notion</th><th>Énoncé</th></tr></thead>
+<tbody>
+<tr><td><strong>Flux</strong> d’un champ uniforme à travers un circuit plan d’aire \(A\), perpendiculaire au champ</td><td>\(\Phi = BA\) (en webers)</td></tr>
+<tr><td>Loi de Faraday</td><td>quand ce flux varie, une force électromotrice apparaît dans le circuit : \(|e| = \left|\dfrac{\mathrm d\Phi}{\mathrm dt}\right|\)</td></tr>
+<tr><td>Auto-induction</td><td>cas particulier : le flux du champ de la bobine à travers elle-même vaut \(Li\)</td></tr>
+</tbody></table>
 </div>
 <div class="exo" data-q="ipho-2026-C8"></div>
 
