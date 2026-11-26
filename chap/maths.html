@@ -1,0 +1,554 @@
+<p class="eyebrow">Outils · Chapitre 2</p>
+<h1>Outils mathématiques</h1>
+<p class="subtitle">Dériver, approcher, intégrer, résoudre les deux équations différentielles du cours, projeter des vecteurs</p>
+
+<div class="objectifs">
+<p><strong>Pourquoi ce chapitre.</strong> Les sujets du test IPhO et du Concours général supposent des outils que la terminale n’utilise qu’en partie : dériver une fonction du temps, intégrer en découpant un objet en petits morceaux, résoudre une équation différentielle. Ce chapitre les reprend pas à pas, avec des simulations pour voir ce que font les calculs. Les démonstrations complètes sont repliées dans des encadrés « Démonstration » : lisez-les au moins une fois.</p>
+<ul>
+<li><strong>Terminale (IPhO et Concours général)</strong> : tout le chapitre sauf les encadrés « Niveau CPGE ».</li>
+<li><strong>CPGE (IPhO)</strong> : tout, y compris la linéarisation autour d’un équilibre et le produit vectoriel.</li>
+<li>Deux équations différentielles seulement sont à connaître : celle du <strong>premier ordre</strong> et celle de l’<strong>oscillateur harmonique</strong>.</li>
+</ul>
+</div>
+
+<div class="retenir">
+<p><strong>L’essentiel à retenir</strong></p>
+<ol>
+<li>La dérivée \(\dfrac{\mathrm dy}{\mathrm dt}\) est la <strong>pente de la tangente</strong> : le taux de variation instantané. \(v = \dfrac{\mathrm dx}{\mathrm dt}\), \(a = \dfrac{\mathrm dv}{\mathrm dt}\), \(i = \dfrac{\mathrm dq}{\mathrm dt}\).</li>
+<li>Pour \(x \ll 1\) : \((1+x)^n \approx 1 + nx\), \(\sin x \approx x\), \(\cos x \approx 1 - x^2/2\), \(\mathrm e^x \approx 1 + x\), \(\ln(1+x) \approx x\) (angles en radians).</li>
+<li>Intégrer, c’est <strong>sommer des petits morceaux</strong> : \(\displaystyle\int_a^b f(x)\,\mathrm dx\) est l’aire sous la courbe, et vaut \(F(b) - F(a)\) si \(F' = f\).</li>
+<li>Pour une grandeur qui varie d’un point à l’autre : découper en éléments où elle est uniforme, écrire la contribution d’un élément, sommer.</li>
+<li><strong>Premier ordre</strong> : \(\tau\dfrac{\mathrm dy}{\mathrm dt} + y = y_\infty\) a pour solution \(y = y_\infty + (y_0 - y_\infty)\,\mathrm e^{-t/\tau}\). À \(t = \tau\), 63 % du chemin est fait ; à \(5\tau\), 99 %.</li>
+<li><strong>Oscillateur harmonique</strong> : \(\ddot y + \omega_0^2 y = 0\) a pour solution \(y = A\cos(\omega_0 t + \varphi)\), de période \(T_0 = 2\pi/\omega_0\) indépendante de l’amplitude.</li>
+<li>Dans les deux cas : écrire l’équation sous <strong>forme canonique</strong> pour lire \(\tau\) ou \(\omega_0\), puis fixer les constantes avec les <strong>conditions initiales</strong>.</li>
+</ol>
+</div>
+
+<h2 id="derivee">1. Dériver</h2>
+
+<h3 id="sens-derivee">Ce que mesure une dérivée</h3>
+<p>Entre deux instants \(t\) et \(t + \Delta t\), la position d’un mobile passe de \(x(t)\) à \(x(t + \Delta t)\). Sa <strong>vitesse moyenne</strong> est la pente de la corde (la sécante) :</p>
+\[v_\text{moy} = \frac{\Delta x}{\Delta t} = \frac{x(t + \Delta t) - x(t)}{\Delta t}.\]
+<p>Quand \(\Delta t\) devient très petit, la corde se confond avec la <strong>tangente</strong> et le rapport tend vers la <strong>vitesse instantanée</strong>, la dérivée de \(x\) :</p>
+\[v(t) = \frac{\mathrm dx}{\mathrm dt} = \lim_{\Delta t \to 0} \frac{\Delta x}{\Delta t}.\]
+<div class="sim" data-name="tangente"><p>Faites tendre \(\Delta t\) vers 0 : la sécante tourne et devient la tangente, et \(\Delta x/\Delta t\) tend vers la vitesse instantanée. Déplacez l’instant \(t\) : là où la courbe monte, la dérivée est positive ; au sommet, elle s’annule.</p></div>
+<table>
+<thead><tr><th>Notation</th><th>Se lit</th><th>Signification</th></tr></thead>
+<tbody>
+<tr><td>\(\dfrac{\mathrm dy}{\mathrm dt}\), \(y'(t)\), \(\dot y\)</td><td>dérivée de \(y\) par rapport au temps</td><td>pente de la courbe \(y(t)\) ; un point sur la lettre signifie toujours « dérivée par rapport au temps »</td></tr>
+<tr><td>\(\dfrac{\mathrm d^2y}{\mathrm dt^2}\), \(\ddot y\)</td><td>dérivée seconde</td><td>dérivée de la dérivée : courbure de \(y(t)\)</td></tr>
+<tr><td>\(\mathrm dy\), \(\mathrm dt\)</td><td>« petite variation » de \(y\), de \(t\)</td><td>\(\mathrm dy \approx y'(t)\,\mathrm dt\) pour une durée \(\mathrm dt\) très courte</td></tr>
+</tbody></table>
+<p>La dimension d’une dérivée est celle d’un quotient : \(\left[\dfrac{\mathrm dy}{\mathrm dt}\right] = \dfrac{[y]}{T}\). En physique, presque toutes les grandeurs « par seconde » sont des dérivées :</p>
+<table>
+<thead><tr><th>Grandeur</th><th>Dérivée de</th><th>Relation</th></tr></thead>
+<tbody>
+<tr><td>vitesse</td><td>position</td><td>\(v = \dot x\)</td></tr>
+<tr><td>accélération</td><td>vitesse</td><td>\(a = \dot v = \ddot x\)</td></tr>
+<tr><td>intensité</td><td>charge</td><td>\(i = \dfrac{\mathrm dq}{\mathrm dt}\) ; pour un condensateur \(i = C\dfrac{\mathrm du_C}{\mathrm dt}\)</td></tr>
+<tr><td>tension d’une bobine</td><td>intensité</td><td>\(u_L = L\dfrac{\mathrm di}{\mathrm dt}\)</td></tr>
+<tr><td>puissance</td><td>énergie</td><td>\(P = \dfrac{\mathrm dE}{\mathrm dt}\)</td></tr>
+<tr><td>force</td><td>quantité de mouvement ; énergie potentielle</td><td>\(\vec F = \dfrac{\mathrm d\vec p}{\mathrm dt}\) ; \(F_x = -\dfrac{\mathrm dE_p}{\mathrm dx}\)</td></tr>
+<tr><td>activité radioactive</td><td>nombre de noyaux</td><td>\(A = -\dfrac{\mathrm dN}{\mathrm dt}\)</td></tr>
+</tbody></table>
+
+<h3 id="derivees-usuelles">Les dérivées à connaître</h3>
+<table>
+<thead><tr><th>Fonction \(f(t)\)</th><th>Dérivée \(f'(t)\)</th><th>Exemple en physique</th></tr></thead>
+<tbody>
+<tr><td>\(t^n\)</td><td>\(n\,t^{n-1}\)</td><td>\(x = \tfrac12at^2\) : \(v = at\)</td></tr>
+<tr><td>\(\dfrac{1}{t}\)</td><td>\(-\dfrac{1}{t^2}\)</td><td>\(E_p = -\dfrac{GMm}{r}\) : \(\dfrac{\mathrm dE_p}{\mathrm dr} = \dfrac{GMm}{r^2}\)</td></tr>
+<tr><td>\(\mathrm e^{at}\)</td><td>\(a\,\mathrm e^{at}\)</td><td>\(N = N_0\mathrm e^{-\lambda t}\) : \(\dot N = -\lambda N\)</td></tr>
+<tr><td>\(\ln t\)</td><td>\(\dfrac{1}{t}\)</td><td>\(\dfrac{\mathrm d}{\mathrm dV}(nRT\ln V) = \dfrac{nRT}{V}\)</td></tr>
+<tr><td>\(\cos(\omega t)\)</td><td>\(-\omega\sin(\omega t)\)</td><td>\(x = A\cos\omega t\) : \(v = -A\omega\sin\omega t\)</td></tr>
+<tr><td>\(\sin(\omega t)\)</td><td>\(\omega\cos(\omega t)\)</td><td>\(q = Q\sin\omega t\) : \(i = Q\omega\cos\omega t\)</td></tr>
+</tbody></table>
+<table>
+<thead><tr><th>Règle</th><th>Formule</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr><td>Constante multiplicative</td><td>\((kf)' = kf'\)</td><td>\((\tfrac12mv^2)' = mv\dot v\) si \(v\) dépend du temps</td></tr>
+<tr><td>Somme</td><td>\((f + g)' = f' + g'\)</td><td>\(x = x_0 + v_0t + \tfrac12at^2\) : \(v = v_0 + at\)</td></tr>
+<tr><td>Produit</td><td>\((fg)' = f'g + fg'\)</td><td>\(\dfrac{\mathrm d}{\mathrm dt}(t\,\mathrm e^{-t/\tau}) = \mathrm e^{-t/\tau}\left(1 - \dfrac{t}{\tau}\right)\)</td></tr>
+<tr><td>Composée</td><td>\(\big(f(u(t))\big)' = u'(t)\,f'(u(t))\)</td><td>\(\dfrac{\mathrm d}{\mathrm dt}\cos(\omega t + \varphi) = -\omega\sin(\omega t + \varphi)\)</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="Vitesse et accélération d’un oscillateur, par la règle de la composée">
+<p>Soit \(x(t) = A\cos(\omega t + \varphi)\). La fonction intérieure est \(u(t) = \omega t + \varphi\), de dérivée \(u' = \omega\) ; la fonction extérieure est \(\cos\), de dérivée \(-\sin\).</p>
+<ol class="etapes">
+<li>\(v = \dot x = A \times \omega \times \big(-\sin(\omega t + \varphi)\big) = -A\omega\sin(\omega t + \varphi)\).</li>
+<li>\(a = \dot v = -A\omega \times \omega\cos(\omega t + \varphi) = -A\omega^2\cos(\omega t + \varphi)\).</li>
+<li>On reconnaît \(x\) : \(a = -\omega^2 x\). C’est l’équation de l’oscillateur harmonique (partie 4).</li>
+</ol>
+<p>Conséquences : la vitesse maximale vaut \(A\omega\) et l’accélération maximale \(A\omega^2\). La vitesse est maximale quand \(x = 0\) (passage par l’équilibre) et nulle aux extrémités.</p>
+</div>
+<div class="exo" data-q="maths-derivee-vitesse"></div>
+
+<h3 id="extremum">Trouver un maximum ou un minimum</h3>
+<p>Au sommet d’une courbe, la tangente est horizontale : <strong>la dérivée s’annule</strong>. D’où la méthode :</p>
+<ol class="etapes">
+<li>Exprimer la grandeur à optimiser en fonction d’<strong>une seule variable</strong>.</li>
+<li><strong>Dériver</strong> et chercher où la dérivée s’annule.</li>
+<li><strong>Vérifier</strong> qu’il s’agit d’un maximum (ou d’un minimum) : signe de la dérivée de part et d’autre, ou valeurs aux bornes.</li>
+</ol>
+<p>Exemple classique : un générateur de force électromotrice \(E\) et de résistance interne \(r\) alimente une résistance \(R\). La puissance reçue par \(R\) est \(P(R) = \dfrac{E^2R}{(R + r)^2}\). Elle est maximale pour \(R = r\).</p>
+<div class="complement" data-tag="Démonstration" title="La puissance est maximale pour R = r">
+<ol class="etapes">
+<li>Règle du quotient (ou du produit avec \((R + r)^{-2}\)) : \(P'(R) = E^2\,\dfrac{(R + r)^2 - R \times 2(R + r)}{(R + r)^4} = E^2\,\dfrac{r - R}{(R + r)^3}\).</li>
+<li>\(P'(R) = 0\) pour \(R = r\).</li>
+<li>Pour \(R < r\), \(P' > 0\) (\(P\) croît) ; pour \(R > r\), \(P' < 0\) (\(P\) décroît) : c’est bien un maximum, \(P_\text{max} = \dfrac{E^2}{4r}\).</li>
+<li>Cas limites : \(R \to 0\) (court-circuit) ou \(R \to \infty\) (circuit ouvert) donnent \(P = 0\), ce qui confirme qu’il y a un maximum entre les deux.</li>
+</ol>
+</div>
+<div class="methode" data-m="extremum"><p>Pour la puissance transférée, on écrit \(P\) en fonction de la seule variable \(R\), on annule \(P'(R)\) et on vérifie le changement de signe : \(R = r\).</p></div>
+<div class="exo" data-q="maths-extremum-puissance"></div>
+
+<h3 id="petites-variations">Petites variations</h3>
+<p>Pour une petite variation \(\Delta x\), la courbe se confond avec sa tangente :</p>
+\[\Delta y \approx f'(x)\,\Delta x.\]
+<p>Pour une loi de puissance \(y = k\,x_1^a x_2^b\), il est plus simple de passer par le logarithme (\(\ln y = \ln k + a\ln x_1 + b\ln x_2\)) puis de dériver : les <strong>variations relatives</strong> s’ajoutent, pondérées par les exposants.</p>
+\[\frac{\Delta y}{y} \approx a\,\frac{\Delta x_1}{x_1} + b\,\frac{\Delta x_2}{x_2}.\]
+<p>Exemple : \(T_0 = 2\pi\sqrt{\ell/g}\). Si \(\ell\) augmente de 2 %, \(T_0\) augmente de \(\tfrac12 \times 2 = 1\ \%\). C’est aussi la règle de propagation des incertitudes relatives du <a href="#outils--propagation">chapitre 1</a>.</p>
+<div class="methode" data-m="derivee-logarithmique"><p>Pour une loi \(y \propto x_1^a x_2^b\), on prend le logarithme, puis on différentie : \(\mathrm dy/y = a\,\mathrm dx_1/x_1 + b\,\mathrm dx_2/x_2\). Les exposants deviennent des coefficients.</p></div>
+
+<h2 id="approximations">2. Approximations et développements limités</h2>
+<p>Presque tout calcul de physique repose sur une <strong>petite quantité sans dimension</strong> \(x \ll 1\) : un angle, un rapport de longueurs \(h/R\), \(v/c\), \(\Delta T/T\)… On remplace alors la fonction par sa tangente (ordre 1), éventuellement corrigée d’un terme en \(x^2\) (ordre 2).</p>
+<table>
+<thead><tr><th>Fonction</th><th>Ordre 1</th><th>Ordre 2</th><th>Usage typique</th></tr></thead>
+<tbody>
+<tr><td>\((1+x)^n\)</td><td>\(1 + nx\)</td><td>\(1 + nx + \tfrac{n(n-1)}{2}x^2\)</td><td>\(\sqrt{1+x} \approx 1 + \tfrac{x}{2}\), \(\dfrac{1}{1+x} \approx 1 - x\), \(\dfrac{1}{(1+x)^2} \approx 1 - 2x\)</td></tr>
+<tr><td>\(\sin x\)</td><td>\(x\)</td><td>\(x - x^3/6\)</td><td>pendule, petits angles, diffraction</td></tr>
+<tr><td>\(\cos x\)</td><td>\(1\)</td><td>\(1 - x^2/2\)</td><td>énergie potentielle \(mg\ell(1-\cos\theta) \approx \tfrac12 mg\ell\theta^2\)</td></tr>
+<tr><td>\(\tan x\)</td><td>\(x\)</td><td>\(x + x^3/3\)</td><td>optique paraxiale</td></tr>
+<tr><td>\(\mathrm e^x\)</td><td>\(1 + x\)</td><td>\(1 + x + x^2/2\)</td><td>début d’une charge de condensateur</td></tr>
+<tr><td>\(\ln(1+x)\)</td><td>\(x\)</td><td>\(x - x^2/2\)</td><td>petites variations relatives</td></tr>
+</tbody></table>
+<p>D’où viennent ces formules ? L’ordre 1 est la tangente : \(f(x) \approx f(0) + f'(0)\,x\). Par exemple, \((1 + x)^n\) a pour dérivée \(n(1+x)^{n-1}\), qui vaut \(n\) en 0 : d’où \(1 + nx\).</p>
+<div class="sim" data-name="dl"><p>Comparez une fonction à ses développements limités d’ordre 1, 2 et 3 : jusqu’où l’approximation reste-t-elle bonne à 1 % ? Observez que \(\sin x \approx x\) tient jusqu’à 14° à 1 % près.</p></div>
+
+<h3 id="exemple-altitude">Exemple pas à pas : la pesanteur en altitude</h3>
+<p>À l’altitude \(h\), la pesanteur vaut \(g(h) = \dfrac{GM}{(R_T + h)^2}\). Que devient-elle pour \(h \ll R_T\) ?</p>
+<ol class="etapes">
+<li><strong>Factoriser par la grande grandeur</strong> : \(g(h) = \dfrac{GM}{R_T^2\,(1 + h/R_T)^2} = g_0\,(1 + h/R_T)^{-2}\).</li>
+<li><strong>Identifier le petit paramètre</strong> sans dimension : \(\varepsilon = h/R_T \ll 1\).</li>
+<li><strong>Appliquer</strong> \((1 + \varepsilon)^n \approx 1 + n\varepsilon\) avec \(n = -2\) : \(g(h) \approx g_0\left(1 - \dfrac{2h}{R_T}\right)\).</li>
+<li><strong>Chiffrer</strong> : à 10 km d’altitude, \(\varepsilon = 1{,}6\times10^{-3}\), donc \(g\) diminue de \(2\varepsilon \approx 0{,}3\ \%\). Le terme d’ordre 2 (\(3\varepsilon^2\)) est mille fois plus petit.</li>
+</ol>
+<div class="methode" data-m="petit-parametre"><p>On factorise par la grande grandeur pour faire apparaître \(1 + \varepsilon\), on identifie \(\varepsilon\) sans dimension, puis on applique le développement d’ordre 1. On vérifie enfin que le terme suivant est bien négligeable.</p></div>
+<div class="complement" data-tag="Démonstration" title="Différence de marche des fentes d’Young, par le développement de la racine">
+<p>Deux fentes distantes de \(a\) sont vues depuis un point situé à la distance \(D\) et à la hauteur \(x\) de l’axe, avec \(a, x \ll D\).</p>
+<ol class="etapes">
+<li>Distances aux deux fentes : \(d_\pm = \sqrt{D^2 + (x \pm a/2)^2} = D\sqrt{1 + \dfrac{(x \pm a/2)^2}{D^2}}\).</li>
+<li>Petit paramètre : \(\varepsilon_\pm = (x \pm a/2)^2/D^2\). Avec \(\sqrt{1 + \varepsilon} \approx 1 + \varepsilon/2\) : \(d_\pm \approx D + \dfrac{(x \pm a/2)^2}{2D}\).</li>
+<li>Différence : \(\delta = d_+ - d_- \approx \dfrac{(x + a/2)^2 - (x - a/2)^2}{2D} = \dfrac{2ax}{2D} = \dfrac{ax}{D}\).</li>
+</ol>
+</div>
+<div class="exo" data-q="ipho-2016-T16"></div>
+<div class="exo" data-q="maths-dl-relativite"></div>
+
+<div class="cpge" id="linearisation" title="Linéariser autour d’un équilibre : petites oscillations">
+<p>Si une particule a l’énergie potentielle \(E_p(x)\) avec un minimum en \(x_0\), le développement à l’ordre 2 donne :</p>
+\[E_p(x) \approx E_p(x_0) + \tfrac12 E_p''(x_0)\,(x - x_0)^2.\]
+<p>Au voisinage de l’équilibre, tout ressemble à un ressort de raideur \(k = E_p''(x_0)\) : les petites oscillations ont la pulsation \(\omega_0 = \sqrt{E_p''(x_0)/m}\).</p>
+<p>De même, une équation \(\ddot x = f(x)\) avec \(f(x_0) = 0\) se linéarise en posant \(x = x_0 + \varepsilon\) : \(\ddot\varepsilon = f'(x_0)\,\varepsilon\).</p>
+<table>
+<thead><tr><th>Signe de \(f'(x_0)\)</th><th>Équation</th><th>Solution</th><th>Équilibre</th></tr></thead>
+<tbody>
+<tr><td>\(f'(x_0) = -\omega_0^2 < 0\)</td><td>\(\ddot\varepsilon + \omega_0^2\varepsilon = 0\)</td><td>\(A\cos(\omega_0t + \varphi)\)</td><td>stable : oscillations</td></tr>
+<tr><td>\(f'(x_0) = \alpha^2 > 0\)</td><td>\(\ddot\varepsilon - \alpha^2\varepsilon = 0\)</td><td>\(A\,\mathrm e^{\alpha t} + B\,\mathrm e^{-\alpha t}\)</td><td>instable : divergence exponentielle (pendule inversé, ludion)</td></tr>
+</tbody></table>
+<p>Pendule : \(\ddot\theta = -\dfrac{g}{\ell}\sin\theta \approx -\dfrac{g}{\ell}\theta\). Molécule diatomique, potentiel de Lennard-Jones, ludion : même méthode.</p>
+</div>
+
+<h2 id="integrales">3. Intégrer</h2>
+
+<h3 id="somme">Intégrer, c’est sommer des petits morceaux</h3>
+<p>Un mobile roule à vitesse variable \(v(t)\). Comment calculer la distance parcourue entre \(t = a\) et \(t = b\) ?</p>
+<ol class="etapes">
+<li>On découpe la durée en petits intervalles \(\mathrm dt\), si courts que la vitesse y est presque constante.</li>
+<li>Pendant l’un d’eux, le mobile parcourt \(v(t)\,\mathrm dt\) : c’est l’aire d’un rectangle fin sous la courbe \(v(t)\).</li>
+<li>On additionne tous ces morceaux. Quand \(\mathrm dt \to 0\), la somme tend vers l’<strong>aire sous la courbe</strong>, notée :</li>
+</ol>
+\[d = \int_a^b v(t)\,\mathrm dt.\]
+<p>Le signe \(\int\) est un S allongé, pour « somme » ; \(\mathrm dt\) rappelle la largeur des rectangles.</p>
+<div class="sim" data-name="riemann"><p>Augmentez le nombre de rectangles : la somme des aires \(\sum f(x_i)\,\Delta x\) se rapproche de l’intégrale. Changez de fonction : quand la courbe passe sous l’axe, les rectangles comptent négativement.</p></div>
+<table>
+<thead><tr><th>Propriété</th><th>Ce qu’elle dit</th></tr></thead>
+<tbody>
+<tr><td>Aire algébrique</td><td>Une partie de courbe sous l’axe compte <strong>négativement</strong> : un mobile qui recule diminue \(x\).</td></tr>
+<tr><td>Dimension</td><td>\(\left[\int f\,\mathrm dx\right] = [f] \times [x]\) : l’intégrale d’une vitesse sur une durée est une longueur.</td></tr>
+<tr><td>Additivité</td><td>\(\int_a^b + \int_b^c = \int_a^c\) : on peut découper l’intervalle.</td></tr>
+<tr><td>Linéarité</td><td>\(\int (kf + g) = k\int f + \int g\).</td></tr>
+</tbody></table>
+
+<h3 id="primitive">Calculer une intégrale : la primitive</h3>
+<p>Une <strong>primitive</strong> \(F\) de \(f\) est une fonction dont la dérivée est \(f\) : \(F' = f\). Alors :</p>
+\[\int_a^b f(x)\,\mathrm dx = F(b) - F(a).\]
+<div class="complement" data-tag="Démonstration" title="Pourquoi l’aire se calcule avec une primitive">
+<ol class="etapes">
+<li>Notons \(\mathcal A(x)\) l’aire sous la courbe entre \(a\) et \(x\). Si l’on avance de \(\mathrm dx\), l’aire augmente d’un rectangle fin : \(\mathrm d\mathcal A = f(x)\,\mathrm dx\).</li>
+<li>Donc \(\dfrac{\mathrm d\mathcal A}{\mathrm dx} = f(x)\) : \(\mathcal A\) est une primitive de \(f\).</li>
+<li>Deux primitives ne diffèrent que d’une constante : \(\mathcal A(x) = F(x) + C\). Comme \(\mathcal A(a) = 0\), \(C = -F(a)\), d’où \(\mathcal A(b) = F(b) - F(a)\).</li>
+</ol>
+</div>
+<table>
+<thead><tr><th>Fonction \(f(x)\)</th><th>Primitive \(F(x)\)</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr><td>\(x^n\) (\(n \ne -1\))</td><td>\(\dfrac{x^{n+1}}{n+1}\)</td><td>\(\int_0^h z\,\mathrm dz = \dfrac{h^2}{2}\)</td></tr>
+<tr><td>\(\dfrac{1}{x}\)</td><td>\(\ln x\)</td><td>\(\int_{V_1}^{V_2} \dfrac{\mathrm dV}{V} = \ln\dfrac{V_2}{V_1}\)</td></tr>
+<tr><td>\(\dfrac{1}{x^2}\)</td><td>\(-\dfrac{1}{x}\)</td><td>\(\int_R^\infty \dfrac{GMm}{r^2}\,\mathrm dr = \dfrac{GMm}{R}\)</td></tr>
+<tr><td>\(\mathrm e^{-x/\tau}\)</td><td>\(-\tau\,\mathrm e^{-x/\tau}\)</td><td>\(\int_0^\infty \mathrm e^{-t/\tau}\,\mathrm dt = \tau\)</td></tr>
+<tr><td>\(\cos(\omega x)\)</td><td>\(\dfrac{\sin(\omega x)}{\omega}\)</td><td>\(\int_0^{\pi} \sin\theta\,\mathrm d\theta = 2\)</td></tr>
+<tr><td>\(\sin(\omega x)\)</td><td>\(-\dfrac{\cos(\omega x)}{\omega}\)</td><td></td></tr>
+</tbody></table>
+
+<h3 id="cinematique">Aller-retour entre position, vitesse et accélération</h3>
+<p>Dériver fait descendre de la position à l’accélération ; intégrer fait remonter. À chaque intégration apparaît une constante, fixée par une <strong>condition initiale</strong>.</p>
+<table>
+<thead><tr><th></th><th>Dériver ↓</th><th>Intégrer ↑</th></tr></thead>
+<tbody>
+<tr><td>position \(x(t)\)</td><td rowspan="2">\(v = \dot x\) : pente de \(x(t)\)</td><td rowspan="2">\(x(t) = x_0 + \int_0^t v\,\mathrm dt'\) : aire sous \(v(t)\)</td></tr>
+<tr><td>vitesse \(v(t)\)</td></tr>
+<tr><td>accélération \(a(t)\)</td><td>\(a = \dot v\) : pente de \(v(t)\)</td><td>\(v(t) = v_0 + \int_0^t a\,\mathrm dt'\) : aire sous \(a(t)\)</td></tr>
+</tbody></table>
+<p>Exemple : la chute libre. \(a = -g\) (axe vers le haut), donc \(v = v_0 - gt\), puis \(z = z_0 + v_0t - \tfrac12gt^2\). Les constantes \(v_0\) et \(z_0\) sont la vitesse et l’altitude initiales.</p>
+<div class="sim" data-name="primitive"><p>La courbe du haut est la vitesse \(v(t)\) ; l’aire colorée s’accumule au fil du temps et trace la position \(x(t)\) en dessous. Là où \(v\) est grande, \(x\) monte vite ; là où \(v < 0\), \(x\) redescend ; au maximum de \(x\), \(v\) s’annule.</p></div>
+<div class="exo" data-q="maths-int-distance"></div>
+<div class="exo" data-group="cde-11-3"></div>
+
+<h3 id="decouper">Découper en éléments</h3>
+<p>Quand une grandeur varie d’un point à l’autre (la pression sur un barrage, la masse volumique d’une étoile…), on ne peut pas multiplier simplement. On découpe l’objet en éléments assez petits pour que la grandeur y soit <strong>uniforme</strong>.</p>
+<ol class="etapes">
+<li><strong>Choisir l’élément</strong> adapté à la symétrie : tranche, couronne, pelure sphérique.</li>
+<li><strong>Écrire sa contribution</strong> \(\mathrm dG\) : force, masse, charge… sur cet élément, comme si tout y était uniforme.</li>
+<li><strong>Sommer</strong> : \(G = \int \mathrm dG\), en choisissant bien les bornes.</li>
+<li><strong>Vérifier</strong> la dimension et le cas uniforme.</li>
+</ol>
+<figure>
+<svg viewBox="0 0 660 200" width="660" role="img" aria-label="Trois éléments de découpage : tranche horizontale d'un barrage, couronne d'un disque, pelure d'une sphère" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
+<g font-size="11" fill="#15213a">
+<rect x="20" y="30" width="170" height="130" fill="#dbe8f7" stroke="#0b5fa5"/>
+<line x1="20" y1="30" x2="190" y2="30" stroke="#0b5fa5" stroke-width="2"/>
+<rect x="20" y="104" width="170" height="10" fill="#d9900b" opacity=".85"/>
+<line x1="198" y1="30" x2="198" y2="104" stroke="#4a5670" marker-end="url(#mt-arr)"/><text x="203" y="70">z</text>
+<text x="196" y="114" font-size="10">dz</text>
+<text x="105" y="185" text-anchor="middle" font-weight="600">tranche : dS = L dz</text>
+<text x="105" y="22" text-anchor="middle" font-size="10">surface libre</text>
+<circle cx="330" cy="95" r="65" fill="#dbe8f7" stroke="#0b5fa5"/>
+<circle cx="330" cy="95" r="42" fill="none" stroke="#d9900b" stroke-width="9" opacity=".85"/>
+<line x1="330" y1="95" x2="368" y2="78" stroke="#15213a"/><text x="342" y="80" font-size="10">r</text>
+<text x="330" y="185" text-anchor="middle" font-weight="600">couronne : dS = 2πr dr</text>
+<circle cx="540" cy="95" r="65" fill="#dbe8f7" stroke="#0b5fa5"/>
+<circle cx="540" cy="95" r="42" fill="none" stroke="#d9900b" stroke-width="9" opacity=".85"/>
+<ellipse cx="540" cy="95" rx="42" ry="12" fill="none" stroke="#b85a0c" stroke-dasharray="3 3"/>
+<line x1="540" y1="95" x2="578" y2="78" stroke="#15213a"/><text x="552" y="80" font-size="10">r</text>
+<text x="540" y="185" text-anchor="middle" font-weight="600">pelure : dV = 4πr² dr</text>
+</g>
+<defs><marker id="mt-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#4a5670"/></marker></defs>
+</svg>
+<figcaption>Les trois découpages les plus fréquents. L’élément (en orange) est assez fin pour que la grandeur y soit uniforme.</figcaption>
+</figure>
+<table>
+<thead><tr><th>Objet</th><th>Élément</th><th>Taille de l’élément</th><th>Exemple de somme</th></tr></thead>
+<tbody>
+<tr><td>Segment, tige</td><td>petit morceau \(\mathrm dx\)</td><td>longueur \(\mathrm dx\), masse \(\lambda(x)\,\mathrm dx\)</td><td>masse d’une tige de densité variable</td></tr>
+<tr><td>Paroi plane verticale</td><td>tranche horizontale</td><td>aire \(L\,\mathrm dz\)</td><td>force de pression sur un barrage</td></tr>
+<tr><td>Disque</td><td>couronne de rayon \(r\)</td><td>aire \(2\pi r\,\mathrm dr\)</td><td>aire \(\int_0^R 2\pi r\,\mathrm dr = \pi R^2\)</td></tr>
+<tr><td>Boule</td><td>pelure sphérique</td><td>volume \(4\pi r^2\,\mathrm dr\)</td><td>volume \(\int_0^R 4\pi r^2\,\mathrm dr = \tfrac43\pi R^3\)</td></tr>
+<tr><td>Durée</td><td>petit intervalle \(\mathrm dt\)</td><td>\(\mathrm dq = i\,\mathrm dt\), \(\mathrm dE = P\,\mathrm dt\)</td><td>charge, énergie</td></tr>
+<tr><td>Déplacement</td><td>petit déplacement \(\mathrm dx\)</td><td>\(\delta W = F(x)\,\mathrm dx\)</td><td>travail d’une force variable</td></tr>
+</tbody></table>
+<div class="sim" data-name="decoupage"><p>Découpez un barrage en tranches, un disque en couronnes ou une boule en pelures : la somme des contributions se rapproche de la valeur exacte quand les éléments s’affinent.</p></div>
+<div class="methode" data-m="decouper-integrer"><p>Pour le barrage : la pression à la profondeur \(z\) est \(\rho gz\) ; une tranche de largeur \(L\) et d’épaisseur \(\mathrm dz\) subit \(\mathrm dF = \rho gz\,L\,\mathrm dz\) ; on somme de \(0\) à \(h\).</p></div>
+<table>
+<thead><tr><th>Exemple</th><th>Élément et contribution</th><th>Résultat</th></tr></thead>
+<tbody>
+<tr><td>Force de l’eau sur un barrage (hauteur \(h\), largeur \(L\))</td><td>\(\mathrm dF = \rho g z\,L\,\mathrm dz\)</td><td>\(F = \tfrac12\rho gLh^2\)</td></tr>
+<tr><td>Travail pour étirer un ressort de \(0\) à \(x\)</td><td>\(\delta W = kx'\,\mathrm dx'\)</td><td>\(W = \tfrac12kx^2\)</td></tr>
+<tr><td>Charge qui traverse un circuit, \(i = I_0\,\mathrm e^{-t/\tau}\)</td><td>\(\mathrm dq = i\,\mathrm dt\)</td><td>\(q = I_0\tau\)</td></tr>
+<tr><td>Énergie pour amener une masse de \(R\) à l’infini</td><td>\(\delta W = \dfrac{GMm}{r^2}\,\mathrm dr\)</td><td>\(W = \dfrac{GMm}{R}\)</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="La force sur un barrage, pas à pas">
+<ol class="etapes">
+<li><strong>Élément.</strong> La pression (relative à l’atmosphère) dépend de la profondeur \(z\), comptée depuis la surface : \(p(z) = \rho gz\). On découpe la paroi en tranches horizontales de largeur \(L\) et d’épaisseur \(\mathrm dz\), où la pression est uniforme.</li>
+<li><strong>Contribution.</strong> \(\mathrm dF = p(z)\,\mathrm dS = \rho gz\,L\,\mathrm dz\).</li>
+<li><strong>Somme.</strong> \(F = \displaystyle\int_0^h \rho gL\,z\,\mathrm dz = \rho gL\left[\frac{z^2}{2}\right]_0^h = \tfrac12\rho gLh^2\).</li>
+<li><strong>Vérification.</strong> C’est la pression moyenne \(\rho gh/2\) (à mi-hauteur) multipliée par la surface \(Lh\) : logique, puisque \(p\) croît linéairement. Dimension : \(ML^{-3}\cdot LT^{-2}\cdot L\cdot L^2 = MLT^{-2}\) ✓.</li>
+</ol>
+</div>
+<div class="complement" data-tag="Démonstration" title="Le volume d’une boule, en pelures">
+<ol class="etapes">
+<li>Une pelure de rayon \(r\) et d’épaisseur \(\mathrm dr\) est une coquille presque plane, d’aire \(4\pi r^2\) : son volume est \(\mathrm dV = 4\pi r^2\,\mathrm dr\).</li>
+<li>\(V = \displaystyle\int_0^R 4\pi r^2\,\mathrm dr = 4\pi\,\frac{R^3}{3} = \tfrac43\pi R^3\).</li>
+<li>La même méthode donne la masse d’une étoile de masse volumique \(\rho(r)\) : \(M = \int_0^R 4\pi r^2\rho(r)\,\mathrm dr\).</li>
+</ol>
+</div>
+<div class="exo" data-q="maths-int-barrage"></div>
+<div class="exo" data-q="maths-int-charge"></div>
+<div class="exo" data-q="maths-int-tige"></div>
+
+<h3 id="moyenne">Valeur moyenne</h3>
+<p>La valeur moyenne d’une fonction sur une durée \(T\) est la hauteur du rectangle qui a la même aire :</p>
+\[\langle f\rangle = \frac{1}{T}\int_0^T f(t)\,\mathrm dt.\]
+<table>
+<thead><tr><th>Moyenne sur une période</th><th>Valeur</th><th>Pourquoi</th></tr></thead>
+<tbody>
+<tr><td>\(\langle\cos\omega t\rangle\), \(\langle\sin\omega t\rangle\)</td><td>0</td><td>autant d’aire au-dessus qu’en dessous de l’axe</td></tr>
+<tr><td>\(\langle\cos^2\omega t\rangle\), \(\langle\sin^2\omega t\rangle\)</td><td>\(\tfrac12\)</td><td>\(\cos^2 + \sin^2 = 1\), et les deux ont la même moyenne</td></tr>
+<tr><td>\(\langle\sin\omega t\cos\omega t\rangle\)</td><td>0</td><td>\(\sin\omega t\cos\omega t = \tfrac12\sin 2\omega t\)</td></tr>
+</tbody></table>
+<p>Application : une résistance \(R\) parcourue par \(i = I_m\cos\omega t\) reçoit en moyenne \(\langle Ri^2\rangle = \tfrac12RI_m^2\). C’est pour cela qu’on définit la valeur efficace \(I_\text{eff} = I_m/\sqrt2\).</p>
+<div class="methode" data-m="moyenne"><p>Quand un mouvement rapide se superpose à une évolution lente, on remplace la grandeur rapide par sa moyenne sur une période : \(\langle\cos^2\rangle = \tfrac12\), \(\langle\cos\rangle = 0\).</p></div>
+<div class="exo" data-q="maths-int-moyenne"></div>
+
+<h3 id="geometrie">Fiche de référence : aires et volumes</h3>
+<table>
+<thead><tr><th>Objet</th><th>Aire</th><th>Volume</th></tr></thead>
+<tbody>
+<tr><td>Disque de rayon \(R\)</td><td>\(\pi R^2\) (périmètre \(2\pi R\))</td><td></td></tr>
+<tr><td>Sphère, boule</td><td>\(4\pi R^2\)</td><td>\(\tfrac43\pi R^3\)</td></tr>
+<tr><td>Cylindre (rayon \(R\), hauteur \(h\))</td><td>latérale \(2\pi Rh\)</td><td>\(\pi R^2h\)</td></tr>
+<tr><td>Cône (base \(S\), hauteur \(h\))</td><td></td><td>\(\tfrac13Sh\)</td></tr>
+<tr><td>Arc de cercle d’angle \(\theta\) (rad)</td><td>longueur \(R\theta\) ; secteur \(\tfrac12R^2\theta\)</td><td></td></tr>
+</tbody></table>
+
+<h2 id="eqdiff">4. Équations différentielles</h2>
+
+<h3 id="principe">Qu’est-ce qu’une équation différentielle ?</h3>
+<p>Une équation ordinaire a pour inconnue un <strong>nombre</strong>. Une équation différentielle a pour inconnue une <strong>fonction</strong> \(y(t)\), et elle relie cette fonction à ses dérivées. Exemple, pour un condensateur qui se charge à travers une résistance :</p>
+\[RC\,\frac{\mathrm du}{\mathrm dt} + u = E.\]
+<p>Elle se lit comme une règle d’évolution : connaissant \(u\) à un instant, elle donne la <strong>pente</strong> \(\dfrac{\mathrm du}{\mathrm dt} = \dfrac{E - u}{RC}\), donc la valeur un instant plus tard. Plus \(u\) est loin de \(E\), plus elle varie vite ; quand \(u = E\), elle ne varie plus.</p>
+<ol class="etapes">
+<li>Une <strong>solution</strong> est une fonction qui, remplacée dans l’équation, la vérifie à chaque instant.</li>
+<li>Il y a une infinité de solutions ; la <strong>condition initiale</strong> (\(u(0)\), et aussi \(\dot u(0)\) pour une équation du second ordre) choisit la bonne.</li>
+<li>Pour <strong>vérifier</strong> une solution proposée, on la dérive et on la remplace dans l’équation : c’est souvent la question la plus rapide d’un QCM.</li>
+</ol>
+<div class="sim" data-name="euler"><p>L’équation donne la pente en chaque point (petits traits gris). En partant de la condition initiale, on avance d’un pas \(\Delta t\) en suivant la pente : c’est la méthode d’Euler, qu’utilisent les ordinateurs. Diminuez le pas : la courbe construite rejoint la solution exacte.</p></div>
+<div class="complement" data-tag="Pour aller plus loin" title="La méthode d’Euler, en Python">
+<p>Pour \(\dfrac{\mathrm dy}{\mathrm dt} = f(y, t)\), on part de \(y_0\) et on répète \(y_{n+1} = y_n + f(y_n, t_n)\,\Delta t\) :</p>
+<pre><code>tau, y_inf, dt = 1.0, 1.0, 0.01
+t, y = 0.0, 0.0
+while t &lt; 5*tau:
+    y = y + (y_inf - y)/tau * dt   # pente donnée par l’équation
+    t = t + dt</code></pre>
+<p>L’erreur commise est proportionnelle au pas \(\Delta t\) : diviser le pas par 10 divise l’erreur par 10.</p>
+</div>
+
+<h3 id="premier-ordre">Le premier ordre : \(\tau\,\dot y + y = y_\infty\)</h3>
+<p>C’est l’équation de tout système qui <strong>tend vers un équilibre</strong> à une vitesse proportionnelle à l’écart à cet équilibre. On l’écrit toujours sous la <strong>forme canonique</strong>, où le coefficient de \(y\) vaut 1 :</p>
+\[\tau\,\frac{\mathrm dy}{\mathrm dt} + y = y_\infty.\]
+<ul>
+<li>\(\tau\) est la <strong>constante de temps</strong> (en secondes) : elle fixe la rapidité de l’évolution.</li>
+<li>\(y_\infty\) est la <strong>valeur finale</strong> : quand \(y\) ne varie plus (\(\dot y = 0\)), l’équation donne \(y = y_\infty\).</li>
+</ul>
+<table>
+<thead><tr><th>Système</th><th>Équation obtenue</th><th>\(\tau\)</th><th>\(y_\infty\)</th></tr></thead>
+<tbody>
+<tr><td>Charge d’un condensateur (\(R\), \(C\), générateur \(E\))</td><td>\(RC\,\dot u + u = E\)</td><td>\(RC\)</td><td>\(E\)</td></tr>
+<tr><td>Établissement du courant dans une bobine (\(R\), \(L\))</td><td>\(\dfrac LR\,\dot i + i = \dfrac ER\)</td><td>\(L/R\)</td><td>\(E/R\)</td></tr>
+<tr><td>Chute avec frottement fluide \(-kv\)</td><td>\(\dfrac mk\,\dot v + v = \dfrac{mg}{k}\)</td><td>\(m/k\)</td><td>\(v_\text{lim} = mg/k\)</td></tr>
+<tr><td>Refroidissement (loi de Newton, \(h\), surface \(S\), capacité \(C_\text{th}\))</td><td>\(\dfrac{C_\text{th}}{hS}\,\dot T + T = T_\text{ext}\)</td><td>\(C_\text{th}/(hS)\)</td><td>\(T_\text{ext}\)</td></tr>
+<tr><td>Décroissance radioactive</td><td>\(\dfrac1\lambda\,\dot N + N = 0\)</td><td>\(1/\lambda\)</td><td>0</td></tr>
+<tr><td>Décharge d’un condensateur</td><td>\(RC\,\dot u + u = 0\)</td><td>\(RC\)</td><td>0</td></tr>
+</tbody></table>
+<p>La solution qui vaut \(y_0\) à \(t = 0\) est :</p>
+\[y(t) = y_\infty + (y_0 - y_\infty)\,\mathrm e^{-t/\tau}.\]
+<p>L’écart à la valeur finale, \(y - y_\infty\), décroît exponentiellement : il est divisé par \(\mathrm e \approx 2{,}7\) à chaque durée \(\tau\).</p>
+<div class="complement" data-tag="Démonstration" title="Résoudre l’équation du premier ordre (deux méthodes)">
+<p><strong>Méthode 1 : vérifier la solution.</strong></p>
+<ol class="etapes">
+<li>On dérive \(y = y_\infty + (y_0 - y_\infty)\,\mathrm e^{-t/\tau}\) : \(\dot y = -\dfrac{y_0 - y_\infty}{\tau}\,\mathrm e^{-t/\tau}\).</li>
+<li>On remplace : \(\tau\dot y + y = -(y_0 - y_\infty)\,\mathrm e^{-t/\tau} + y_\infty + (y_0 - y_\infty)\,\mathrm e^{-t/\tau} = y_\infty\) ✓.</li>
+<li>À \(t = 0\) : \(y(0) = y_\infty + (y_0 - y_\infty) = y_0\) ✓. La solution vérifie l’équation et la condition initiale ; on admet qu’elle est unique.</li>
+</ol>
+<p><strong>Méthode 2 : séparer les variables</strong> (utile aussi pour des équations moins simples).</p>
+<ol class="etapes">
+<li>Changement d’inconnue : \(Y = y - y_\infty\). Comme \(y_\infty\) est constant, \(\dot Y = \dot y\) et l’équation devient \(\tau\dot Y + Y = 0\), soit \(\dfrac{\mathrm dY}{\mathrm dt} = -\dfrac{Y}{\tau}\).</li>
+<li>On sépare : \(\dfrac{\mathrm dY}{Y} = -\dfrac{\mathrm dt}{\tau}\), puis on intègre de l’instant 0 à l’instant \(t\) : \(\ln\dfrac{Y(t)}{Y(0)} = -\dfrac{t}{\tau}\).</li>
+<li>D’où \(Y(t) = Y(0)\,\mathrm e^{-t/\tau}\), c’est-à-dire \(y - y_\infty = (y_0 - y_\infty)\,\mathrm e^{-t/\tau}\).</li>
+</ol>
+</div>
+<div class="complement" data-tag="Démonstration" title="Établir l’équation : la charge d’un condensateur">
+<ol class="etapes">
+<li>Loi des mailles : \(E = u_R + u = Ri + u\).</li>
+<li>Pour le condensateur, \(q = Cu\) et \(i = \dfrac{\mathrm dq}{\mathrm dt} = C\dfrac{\mathrm du}{\mathrm dt}\).</li>
+<li>On remplace : \(RC\dfrac{\mathrm du}{\mathrm dt} + u = E\). C’est la forme canonique, avec \(\tau = RC\) et \(u_\infty = E\).</li>
+<li>Condensateur initialement déchargé : \(u(0) = 0\), donc \(u(t) = E\,(1 - \mathrm e^{-t/RC})\).</li>
+</ol>
+</div>
+
+<h3 id="lire-tau">Lire \(\tau\) sur une courbe</h3>
+<figure>
+<svg viewBox="0 0 660 250" width="660" role="img" aria-label="Courbe de charge du premier ordre : tangente à l'origine, 63 % à t = τ, 99 % à 5τ" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
+<g font-size="11" fill="#4a5670">
+<line x1="60" y1="200" x2="630" y2="200" stroke="#8a94a6"/><line x1="60" y1="210" x2="60" y2="30" stroke="#8a94a6"/>
+<text x="635" y="204">t</text><text x="40" y="34">y</text>
+<line x1="60" y1="50" x2="630" y2="50" stroke="#1f8a4c" stroke-dasharray="6 4"/><text x="560" y="44" fill="#1f8a4c">y∞ (asymptote)</text>
+<line x1="60" y1="200" x2="170" y2="37" stroke="#b85a0c" stroke-width="1.5"/><text x="176" y="34" fill="#b85a0c">tangente à l’origine</text>
+<line x1="161.8" y1="50" x2="161.8" y2="200" stroke="#b85a0c" stroke-dasharray="3 3"/><text x="161.8" y="216" text-anchor="middle" fill="#b85a0c">τ</text>
+<line x1="60" y1="105.2" x2="161.8" y2="105.2" stroke="#2448a8" stroke-dasharray="3 3"/><text x="30" y="109" fill="#2448a8">63 %</text>
+<circle cx="161.8" cy="105.2" r="4" fill="#2448a8"/>
+<line x1="569.1" y1="51" x2="569.1" y2="200" stroke="#4a5670" stroke-dasharray="3 3"/><text x="569.1" y="216" text-anchor="middle">5τ</text><text x="575" y="70">99 %</text>
+<line x1="263.6" y1="200" x2="263.6" y2="205" stroke="#8a94a6"/><text x="263.6" y="216" text-anchor="middle">2τ</text>
+<line x1="365.5" y1="200" x2="365.5" y2="205" stroke="#8a94a6"/><text x="365.5" y="216" text-anchor="middle">3τ</text>
+<line x1="467.3" y1="200" x2="467.3" y2="205" stroke="#8a94a6"/><text x="467.3" y="216" text-anchor="middle">4τ</text>
+<text x="40" y="204">y₀</text>
+</g>
+<polyline points="60.0,200.0 65.1,192.7 70.2,185.7 75.3,179.1 80.4,172.8 85.5,166.8 90.5,161.1 95.6,155.7 100.7,150.5 105.8,145.6 110.9,141.0 116.0,136.5 121.1,132.3 126.2,128.3 131.3,124.5 136.4,120.9 141.5,117.4 146.5,114.1 151.6,111.0 156.7,108.0 161.8,105.2 166.9,102.5 172.0,99.9 177.1,97.5 182.2,95.2 187.3,93.0 192.4,90.9 197.5,88.9 202.5,87.0 207.6,85.2 212.7,83.5 217.8,81.8 222.9,80.3 228.0,78.8 233.1,77.4 238.2,76.1 243.3,74.8 248.4,73.6 253.5,72.4 258.5,71.3 263.6,70.3 268.7,69.3 273.8,68.4 278.9,67.5 284.0,66.6 289.1,65.8 294.2,65.0 299.3,64.3 304.4,63.6 309.5,62.9 314.5,62.3 319.6,61.7 324.7,61.1 329.8,60.6 334.9,60.1 340.0,59.6 345.1,59.1 350.2,58.7 355.3,58.3 360.4,57.9 365.5,57.5 370.5,57.1 375.6,56.8 380.7,56.4 385.8,56.1 390.9,55.8 396.0,55.5 401.1,55.3 406.2,55.0 411.3,54.8 416.4,54.5 421.5,54.3 426.5,54.1 431.6,53.9 436.7,53.7 441.8,53.5 446.9,53.4 452.0,53.2 457.1,53.0 462.2,52.9 467.3,52.7 472.4,52.6 477.5,52.5 482.5,52.4 487.6,52.2 492.7,52.1 497.8,52.0 502.9,51.9 508.0,51.8 513.1,51.8 518.2,51.7 523.3,51.6 528.4,51.5 533.5,51.4 538.5,51.4 543.6,51.3 548.7,51.2 553.8,51.2 558.9,51.1 564.0,51.1 569.1,51.0 574.2,51.0 579.3,50.9 584.4,50.9 589.5,50.8 594.5,50.8 599.6,50.7 604.7,50.7 609.8,50.7 614.9,50.6 620.0,50.6" fill="none" stroke="#0b5fa5" stroke-width="2.5"/>
+<text x="330" y="240" text-anchor="middle" font-size="11" fill="#15213a">Pour une décroissance, même lecture : 37 % de l’écart initial reste à t = τ.</text>
+</svg>
+<figcaption>Trois lectures de \(\tau\) : l’intersection de la tangente à l’origine avec l’asymptote ; l’instant où 63 % du chemin est parcouru ; le régime est établi à 1 % près après \(5\tau\).</figcaption>
+</figure>
+<table>
+<thead><tr><th>Instant</th><th>\(\tau\)</th><th>\(2\tau\)</th><th>\(3\tau\)</th><th>\(5\tau\)</th><th>\(\tau\ln 2 \approx 0{,}69\,\tau\)</th></tr></thead>
+<tbody>
+<tr><td>Écart restant \(\mathrm e^{-t/\tau}\)</td><td>37 %</td><td>14 %</td><td>5 %</td><td>0,7 %</td><td>50 % (demi-vie)</td></tr>
+<tr><td>Chemin parcouru</td><td>63 %</td><td>86 %</td><td>95 %</td><td>99,3 %</td><td>50 %</td></tr>
+</tbody></table>
+<div class="sim" data-name="premier-ordre"><p>Choisissez \(\tau\), la valeur initiale et la valeur finale : la courbe montre la tangente à l’origine, le point à 63 % et la zone de régime établi. Comparez une charge et une décharge, puis un système deux fois plus lent.</p></div>
+<div class="methode" data-m="equadiff"><p>Trois temps : (1) écrire l’équation et la mettre sous <strong>forme canonique</strong> pour lire \(\tau\) et \(y_\infty\) ; (2) écrire la solution \(y_\infty + (y_0 - y_\infty)\mathrm e^{-t/\tau}\) ; (3) fixer \(y_0\) avec la condition initiale (tension d’un condensateur et courant d’une bobine sont continus).</p></div>
+<div class="piege">
+<ul>
+<li>Lire \(\tau\) seulement quand le coefficient de \(y\) vaut 1 : dans \(3\dot u + 6u = 12\), \(\tau = 0{,}5\) s et non 3 s, et \(u_\infty = 2\).</li>
+<li>La condition initiale porte sur la grandeur <strong>continue</strong> : la tension d’un condensateur, le courant d’une bobine, la vitesse d’un mobile. Pas sur le courant d’un condensateur, qui peut sauter.</li>
+<li>\(\tau\) ne dépend ni de \(y_0\) ni de \(y_\infty\) : charger à 10 V ou à 100 V prend le même temps.</li>
+</ul>
+</div>
+<div class="exo" data-q="maths-ed-canonique"></div>
+<div class="exo" data-q="maths-ed-refroidissement"></div>
+<div class="exo" data-q="maths-ed-vitesse-limite"></div>
+<div class="exo" data-q="ipho-2024-T1"></div>
+
+<h3 id="harmonique">L’oscillateur harmonique : \(\ddot y + \omega_0^2 y = 0\)</h3>
+<p>C’est l’équation de tout système ramené vers son équilibre par une action <strong>proportionnelle à l’écart</strong>. Masse et ressort : \(m\ddot x = -kx\), soit</p>
+\[\ddot x + \omega_0^2 x = 0 \quad\text{avec}\quad \omega_0 = \sqrt{\frac km}.\]
+<p>L’accélération est toujours dirigée vers l’équilibre, et d’autant plus forte qu’on en est loin : le système dépasse l’équilibre, revient, le dépasse à nouveau… il oscille.</p>
+<table>
+<thead><tr><th>Système</th><th>Équation</th><th>\(\omega_0\)</th><th>Période \(T_0 = 2\pi/\omega_0\)</th></tr></thead>
+<tbody>
+<tr><td>Masse et ressort</td><td>\(m\ddot x = -kx\)</td><td>\(\sqrt{k/m}\)</td><td>\(2\pi\sqrt{m/k}\)</td></tr>
+<tr><td>Pendule simple (petits angles)</td><td>\(\ell\ddot\theta = -g\theta\)</td><td>\(\sqrt{g/\ell}\)</td><td>\(2\pi\sqrt{\ell/g}\)</td></tr>
+<tr><td>Circuit LC</td><td>\(LC\ddot q = -q\)</td><td>\(1/\sqrt{LC}\)</td><td>\(2\pi\sqrt{LC}\)</td></tr>
+<tr><td>Liquide dans un tube en U (longueur totale \(L\))</td><td>\(L\ddot z = -2gz\)</td><td>\(\sqrt{2g/L}\)</td><td>\(2\pi\sqrt{L/(2g)}\)</td></tr>
+<tr><td>Flotteur cylindrique (section \(S\), masse \(m\))</td><td>\(m\ddot z = -\rho gS\,z\)</td><td>\(\sqrt{\rho gS/m}\)</td><td>\(2\pi\sqrt{m/(\rho gS)}\)</td></tr>
+<tr><td>Tunnel à travers la Terre</td><td>\(\ddot x = -\dfrac{g}{R_T}x\)</td><td>\(\sqrt{g/R_T}\)</td><td>84 min</td></tr>
+</tbody></table>
+<p><strong>Reconnaître \(\omega_0\)</strong> : quand le coefficient de \(\ddot y\) vaut 1, celui de \(y\) est \(\omega_0^2\). Dans \(4\ddot x + 9x = 0\), on divise par 4 : \(\omega_0^2 = 9/4\), \(\omega_0 = 1{,}5\) rad·s⁻¹.</p>
+
+<h3 id="solution-oh">La solution et ses constantes</h3>
+<p>Les solutions sont les sinusoïdes de pulsation \(\omega_0\), qu’on peut écrire de deux façons équivalentes :</p>
+\[y(t) = A\cos(\omega_0 t + \varphi) = a\cos\omega_0 t + b\sin\omega_0 t.\]
+<figure>
+<svg viewBox="0 0 660 230" width="660" role="img" aria-label="Sinusoïde y = A cos(ω0 t + φ) : amplitude A, période T0, décalage dû à la phase" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
+<g font-size="11" fill="#4a5670">
+<line x1="60" y1="120" x2="630" y2="120" stroke="#8a94a6"/><line x1="60" y1="215" x2="60" y2="25" stroke="#8a94a6"/>
+<text x="635" y="124">t</text><text x="44" y="30">y</text>
+<line x1="60" y1="40" x2="630" y2="40" stroke="#1f8a4c" stroke-dasharray="4 4"/><text x="40" y="44" fill="#1f8a4c">A</text>
+<line x1="60" y1="200" x2="630" y2="200" stroke="#1f8a4c" stroke-dasharray="4 4"/><text x="36" y="204" fill="#1f8a4c">−A</text>
+<line x1="97.3" y1="30" x2="97.3" y2="210" stroke="#b85a0c" stroke-dasharray="3 3"/>
+<line x1="321.3" y1="30" x2="321.3" y2="210" stroke="#b85a0c" stroke-dasharray="3 3"/>
+<line x1="99" y1="28" x2="319" y2="28" stroke="#b85a0c" marker-start="url(#oh-a)" marker-end="url(#oh-a)"/><text x="209" y="22" text-anchor="middle" fill="#b85a0c">période T₀ = 2π/ω₀</text>
+<circle cx="60" cy="80" r="4" fill="#2448a8"/><line x1="62" y1="86" x2="78" y2="166" stroke="#2448a8" stroke-width=".8"/><text x="70" y="180" fill="#2448a8">y(0) = A cos φ</text>
+</g>
+<defs><marker id="oh-a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b85a0c"/></marker></defs>
+<polyline points="60.0,80.0 62.8,74.7 65.6,69.7 68.4,64.9 71.2,60.5 74.0,56.5 76.8,52.9 79.6,49.7 82.4,46.9 85.2,44.6 88.0,42.7 90.8,41.3 93.6,40.4 96.4,40.0 99.2,40.1 102.0,40.7 104.8,41.7 107.6,43.3 110.4,45.3 113.2,47.8 116.0,50.7 118.8,54.1 121.6,57.8 124.4,62.0 127.2,66.5 130.0,71.3 132.8,76.4 135.6,81.8 138.4,87.5 141.2,93.3 144.0,99.3 146.8,105.4 149.6,111.6 152.4,117.9 155.2,124.2 158.0,130.4 160.8,136.6 163.6,142.7 166.4,148.7 169.2,154.4 172.0,160.0 174.8,165.3 177.6,170.3 180.4,175.1 183.2,179.5 186.0,183.5 188.8,187.1 191.6,190.3 194.4,193.1 197.2,195.4 200.0,197.3 202.8,198.7 205.6,199.6 208.4,200.0 211.2,199.9 214.0,199.3 216.8,198.3 219.6,196.7 222.4,194.7 225.2,192.2 228.0,189.3 230.8,185.9 233.6,182.2 236.4,178.0 239.2,173.5 242.0,168.7 244.8,163.6 247.6,158.2 250.4,152.5 253.2,146.7 256.0,140.7 258.8,134.6 261.6,128.4 264.4,122.1 267.2,115.8 270.0,109.6 272.8,103.4 275.6,97.3 278.4,91.3 281.2,85.6 284.0,80.0 286.8,74.7 289.6,69.7 292.4,64.9 295.2,60.5 298.0,56.5 300.8,52.9 303.6,49.7 306.4,46.9 309.2,44.6 312.0,42.7 314.8,41.3 317.6,40.4 320.4,40.0 323.2,40.1 326.0,40.7 328.8,41.7 331.6,43.3 334.4,45.3 337.2,47.8 340.0,50.7 342.8,54.1 345.6,57.8 348.4,62.0 351.2,66.5 354.0,71.3 356.8,76.4 359.6,81.8 362.4,87.5 365.2,93.3 368.0,99.3 370.8,105.4 373.6,111.6 376.4,117.9 379.2,124.2 382.0,130.4 384.8,136.6 387.6,142.7 390.4,148.7 393.2,154.4 396.0,160.0 398.8,165.3 401.6,170.3 404.4,175.1 407.2,179.5 410.0,183.5 412.8,187.1 415.6,190.3 418.4,193.1 421.2,195.4 424.0,197.3 426.8,198.7 429.6,199.6 432.4,200.0 435.2,199.9 438.0,199.3 440.8,198.3 443.6,196.7 446.4,194.7 449.2,192.2 452.0,189.3 454.8,185.9 457.6,182.2 460.4,178.0 463.2,173.5 466.0,168.7 468.8,163.6 471.6,158.2 474.4,152.5 477.2,146.7 480.0,140.7 482.8,134.6 485.6,128.4 488.4,122.1 491.2,115.8 494.0,109.6 496.8,103.4 499.6,97.3 502.4,91.3 505.2,85.6 508.0,80.0 510.8,74.7 513.6,69.7 516.4,64.9 519.2,60.5 522.0,56.5 524.8,52.9 527.6,49.7 530.4,46.9 533.2,44.6 536.0,42.7 538.8,41.3 541.6,40.4 544.4,40.0 547.2,40.1 550.0,40.7 552.8,41.7 555.6,43.3 558.4,45.3 561.2,47.8 564.0,50.7 566.8,54.1 569.6,57.8 572.4,62.0 575.2,66.5 578.0,71.3 580.8,76.4 583.6,81.8 586.4,87.5 589.2,93.3 592.0,99.3 594.8,105.4 597.6,111.6 600.4,117.9 603.2,124.2 606.0,130.4 608.8,136.6 611.6,142.7 614.4,148.7 617.2,154.4 620.0,160.0" fill="none" stroke="#0b5fa5" stroke-width="2.5"/>
+</svg>
+<figcaption>\(A\) est l’amplitude, \(\omega_0\) la pulsation (en rad·s⁻¹), \(\varphi\) la phase à l’origine : elle décale la courbe dans le temps sans changer sa forme.</figcaption>
+</figure>
+<table>
+<thead><tr><th>Grandeur</th><th>Fixée par</th><th>Expression</th></tr></thead>
+<tbody>
+<tr><td>Pulsation \(\omega_0\), période \(T_0\)</td><td>l’équation seule (le système)</td><td>\(T_0 = 2\pi/\omega_0\), indépendante de l’amplitude : c’est l’<strong>isochronisme</strong></td></tr>
+<tr><td>\(a\) et \(b\)</td><td>les conditions initiales \(y_0\) et \(\dot y_0\)</td><td>\(a = y_0\), \(b = \dot y_0/\omega_0\)</td></tr>
+<tr><td>Amplitude \(A\)</td><td>les conditions initiales</td><td>\(A = \sqrt{y_0^2 + (\dot y_0/\omega_0)^2}\)</td></tr>
+<tr><td>Vitesse et accélération maximales</td><td></td><td>\(A\omega_0\) et \(A\omega_0^2\)</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="Vérifier la solution et trouver les constantes">
+<ol class="etapes">
+<li>On dérive deux fois \(y = a\cos\omega_0t + b\sin\omega_0t\) : \(\dot y = -a\omega_0\sin\omega_0t + b\omega_0\cos\omega_0t\), puis \(\ddot y = -\omega_0^2(a\cos\omega_0t + b\sin\omega_0t) = -\omega_0^2y\). L’équation est vérifiée pour tous \(a\), \(b\) : il faut deux conditions pour les fixer.</li>
+<li>À \(t = 0\) : \(y(0) = a\), donc \(a = y_0\).</li>
+<li>À \(t = 0\) : \(\dot y(0) = b\,\omega_0\), donc \(b = \dot y_0/\omega_0\).</li>
+<li>Passage à la forme \(A\cos(\omega_0t + \varphi) = A\cos\varphi\cos\omega_0t - A\sin\varphi\sin\omega_0t\) : on identifie \(a = A\cos\varphi\) et \(b = -A\sin\varphi\), d’où \(A = \sqrt{a^2 + b^2}\).</li>
+<li>Pourquoi la pulsation vaut \(\sqrt{k/m}\) et rien d’autre : si l’on essayait \(\cos\omega t\) avec \(\omega \ne \omega_0\), on trouverait \(\ddot y = -\omega^2 y \ne -\omega_0^2 y\). Seule la pulsation \(\omega_0\) convient.</li>
+</ol>
+</div>
+<div class="sim" data-name="cercle-cosinus"><p>Un point tourne à vitesse angulaire constante \(\omega_0\) sur un cercle de rayon \(A\) ; sa projection sur l’axe vertical trace \(A\cos(\omega_0t + \varphi)\). La phase \(\varphi\) est l’angle de départ ; la pulsation est la vitesse de rotation.</p></div>
+<div class="sim" data-name="harmonique"><p>Lâchez une masse accrochée à un ressort avec une position et une vitesse initiales de votre choix. L’amplitude dépend des conditions initiales, la période seulement de \(k\) et \(m\). À droite, le portrait de phase (position, vitesse) est un cercle parcouru à vitesse constante ; les barres montrent l’échange entre énergie cinétique et potentielle.</p></div>
+
+<h3 id="energie-oh">Le point de vue de l’énergie</h3>
+<p>Pour la masse et le ressort, l’énergie mécanique se conserve :</p>
+\[E = \tfrac12m\dot x^2 + \tfrac12kx^2 = \text{constante}.\]
+<p>En dérivant par rapport au temps (règle de la composée) : \(m\dot x\ddot x + kx\dot x = 0\), soit \(\dot x\,(m\ddot x + kx) = 0\). On retrouve l’équation de l’oscillateur. Conséquence pratique : <strong>dès qu’une énergie s’écrit \(\tfrac12 m_\text{eff}\dot q^2 + \tfrac12\kappa q^2\), le système oscille à \(\omega_0 = \sqrt{\kappa/m_\text{eff}}\)</strong>, sans avoir à écrire les forces.</p>
+<div class="methode" data-m="energie-parametre"><p>Avec un seul paramètre \(q\) : écrire l’énergie, l’identifier à \(\tfrac12m_\text{eff}\dot q^2 + \tfrac12\kappa q^2\) (au besoin après un développement limité), puis lire \(\omega_0 = \sqrt{\kappa/m_\text{eff}}\).</p></div>
+<div class="complement" data-tag="Démonstration" title="Un équilibre décalé : le ressort vertical">
+<p>Une masse pend à un ressort vertical de longueur à vide \(\ell_0\). Axe \(z\) vers le bas, \(z\) = allongement : \(m\ddot z = mg - kz\), soit \(\ddot z + \omega_0^2 z = g\). Le second membre n’est pas nul.</p>
+<ol class="etapes">
+<li>À l’équilibre, \(\ddot z = 0\) : \(z_\text{éq} = mg/k\).</li>
+<li>On mesure l’écart à l’équilibre : \(Z = z - z_\text{éq}\). Alors \(\ddot Z = \ddot z\) et l’équation devient \(\ddot Z + \omega_0^2 Z = 0\).</li>
+<li>La pesanteur déplace l’équilibre mais ne change pas la pulsation : \(\omega_0 = \sqrt{k/m}\), comme à l’horizontale.</li>
+</ol>
+</div>
+<div class="piege">
+<ul>
+<li>Pulsation \(\omega_0\) (rad·s⁻¹), fréquence \(f_0 = \omega_0/(2\pi)\) (Hz), période \(T_0 = 1/f_0\) : ne pas les confondre, le facteur \(2\pi\) est le piège le plus fréquent.</li>
+<li>Le signe compte : \(\ddot y + \omega_0^2y = 0\) oscille, \(\ddot y - \alpha^2y = 0\) diverge (équilibre instable).</li>
+<li>Pour un pendule, l’équation n’est harmonique qu’aux petits angles (\(\sin\theta \approx \theta\)) ; aux grands angles, la période augmente.</li>
+</ul>
+</div>
+<div class="exo" data-q="maths-oh-reconnaitre"></div>
+<div class="exo" data-q="maths-oh-conditions"></div>
+<div class="exo" data-q="maths-oh-tube"></div>
+<div class="exo" data-q="maths-oh-lc"></div>
+<div class="exo" data-q="ipho-2005-23"></div>
+
+<div class="cpge" id="amorti" title="Et avec un frottement ? L’oscillateur amorti">
+<p>Avec un frottement fluide, l’équation devient \(\ddot y + \dfrac{\omega_0}{Q}\dot y + \omega_0^2y = 0\), où \(Q\) est le facteur de qualité. Pour \(Q > \tfrac12\), le système oscille avec une amplitude qui décroît en \(\mathrm e^{-\omega_0t/(2Q)}\), soit environ \(Q\) oscillations visibles. Le chapitre <a href="#oscillateurs--amortissement">Oscillateurs</a> détaille ce cas et la résonance.</p>
+</div>
+
+<h2 id="vecteurs">5. Vecteurs et projections</h2>
+<p>Une loi vectorielle (\(m\vec a = \sum\vec F\)) donne deux ou trois équations : une par axe. L’essentiel est de bien <strong>projeter</strong>.</p>
+<figure>
+<svg viewBox="0 0 640 220" width="640" role="img" aria-label="Projection d'un vecteur sur deux axes, et du poids sur un plan incliné" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
+<defs><marker id="vp-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8a94a6"/></marker><marker id="vp-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0b5fa5"/></marker><marker id="vp-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b23a48"/></marker><marker id="vp-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d9900b"/></marker></defs>
+<g font-size="12" fill="#15213a">
+<line x1="40" y1="180" x2="280" y2="180" stroke="#8a94a6" marker-end="url(#vp-g)"/><text x="284" y="184">x</text>
+<line x1="40" y1="180" x2="40" y2="20" stroke="#8a94a6" marker-end="url(#vp-g)"/><text x="30" y="20">y</text>
+<line x1="40" y1="180" x2="200" y2="72" stroke="#0b5fa5" stroke-width="2.5" marker-end="url(#vp-b)"/><text x="206" y="68" fill="#0b5fa5" font-weight="600">F</text>
+<line x1="200" y1="76" x2="200" y2="180" stroke="#4a5670" stroke-dasharray="3 3"/><line x1="40" y1="74" x2="198" y2="74" stroke="#4a5670" stroke-dasharray="3 3"/>
+<line x1="40" y1="180" x2="198" y2="180" stroke="#d9900b" stroke-width="3"/><text x="96" y="200" fill="#b85a0c">F cos α</text>
+<line x1="40" y1="180" x2="40" y2="76" stroke="#d9900b" stroke-width="3"/><text x="46" y="128" fill="#b85a0c">F sin α</text>
+<path d="M85 180 A45 45 0 0 0 77 155" fill="none" stroke="#15213a"/><text x="90" y="166">α</text>
+<polygon points="340,190 620,190 620,60" fill="#e9eef5" stroke="#8a94a6"/>
+<path d="M395 190 A55 55 0 0 0 389.9 166.8" fill="none" stroke="#15213a"/><text x="400" y="184">α</text>
+<rect x="464" y="94" width="40" height="28" fill="#dbe8f7" stroke="#0b5fa5" transform="rotate(-24.9 484 108)"/>
+<line x1="484" y1="108" x2="484" y2="194" stroke="#b23a48" stroke-width="2.5" marker-end="url(#vp-r)"/><text x="490" y="210" fill="#b23a48" font-weight="600">P = mg</text>
+<line x1="484" y1="108" x2="451.3" y2="123.2" stroke="#d9900b" stroke-width="2.5" marker-end="url(#vp-o)"/><text x="372" y="120" fill="#b85a0c">mg sin α</text>
+<line x1="484" y1="108" x2="516.8" y2="178.7" stroke="#d9900b" stroke-width="2.5" marker-end="url(#vp-o)"/><text x="524" y="150" fill="#b85a0c">mg cos α</text>
+</g>
+</svg>
+<figcaption>À gauche, les composantes d’un vecteur qui fait l’angle \(\alpha\) avec l’axe \(x\). À droite, le poids sur un plan incliné d’angle \(\alpha\) : \(mg\sin\alpha\) le long de la pente, \(mg\cos\alpha\) perpendiculairement.</figcaption>
+</figure>
+<table>
+<thead><tr><th>Outil</th><th>Formule</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td>Projection</td><td>\(F_x = F\cos\alpha\), \(F_y = F\sin\alpha\) (\(\alpha\) mesuré depuis l’axe \(x\))</td><td>écrire Newton sur chaque axe</td></tr>
+<tr><td>Vérification rapide</td><td>si \(\alpha \to 0\), la composante le long de l’axe doit tendre vers \(F\)</td><td>éviter d’échanger sin et cos</td></tr>
+<tr><td>Norme</td><td>\(F = \sqrt{F_x^2 + F_y^2}\), \(\tan\alpha = F_y/F_x\)</td><td>reconstituer un vecteur</td></tr>
+<tr><td>Produit scalaire</td><td>\(\vec a\cdot\vec b = ab\cos\theta = a_xb_x + a_yb_y\)</td><td>travail \(W = \vec F\cdot\vec d\), puissance \(P = \vec F\cdot\vec v\)</td></tr>
+<tr><td>Mouvement circulaire</td><td>axes tangent et normal : \(a_t = \dot v\), \(a_n = v^2/R\)</td><td>virage, looping, orbite</td></tr>
+</tbody></table>
+<p><strong>Choisir les axes</strong> : le long du mouvement quand il est contraint (plan incliné), et selon la symétrie du problème. Une force ou un champ ne peut pas « choisir » une direction que le problème ne distingue pas.</p>
+<div class="cpge" id="produit-vectoriel" title="Le produit vectoriel">
+<p>\(\vec c = \vec a\wedge\vec b\) est perpendiculaire à \(\vec a\) et à \(\vec b\), de norme \(ab\sin\theta\), orienté par la règle de la main droite. En composantes :</p>
+\[\vec a\wedge\vec b = (a_yb_z - a_zb_y,\; a_zb_x - a_xb_z,\; a_xb_y - a_yb_x).\]
+<table>
+<thead><tr><th>Grandeur</th><th>Expression</th></tr></thead>
+<tbody>
+<tr><td>Moment d’une force</td><td>\(\vec{\mathcal M} = \vec r\wedge\vec F\)</td></tr>
+<tr><td>Moment cinétique</td><td>\(\vec L = \vec r\wedge m\vec v\)</td></tr>
+<tr><td>Force de Lorentz</td><td>\(\vec F = q\vec v\wedge\vec B\)</td></tr>
+<tr><td>Vitesse d’un point d’un solide en rotation</td><td>\(\vec v = \vec\omega\wedge\vec r\)</td></tr>
+</tbody></table>
+</div>
+
+<div class="cpge" id="plus-loin" title="Pour aller plus loin : polycopié P1 de K. Zhou">
+<p>Le <a href="https://knzhou.github.io/handouts/P1.pdf" target="_blank" rel="noopener">polycopié P1 de K. Zhou</a> (en anglais ; <a href="https://knzhou.github.io/handouts/P1Sol.pdf" target="_blank" rel="noopener">solutions</a>) reprend ces outils au niveau olympique : développements limités, intégrales astucieuses, équations différentielles. Le <a href="https://www.ioc.ee/~kalda/ipho/" target="_blank" rel="noopener">guide de J. Kalda</a> donne les méthodes en quatre pages.</p>
+</div>

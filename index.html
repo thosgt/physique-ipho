@@ -128,6 +128,7 @@ table.imp td.num,table.imp th.num{text-align:right;font-variant-numeric:tabular-
 table.imp td:not(:first-child){white-space:nowrap}
 table.imp .meter{display:inline-block;height:8px;border-radius:4px;background:var(--accent);vertical-align:middle;margin-right:8px;min-width:2px}
 table.imp .meter.e{background:var(--sun)}
+#importance-tab{overflow-x:auto}
 table.imp .soon{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-2);margin-left:6px}
 table.imp .vid{font-size:.82rem;margin-left:6px;white-space:nowrap}
 .mcard .imp{font-size:.85rem;color:var(--fg-2);margin:0 0 6px}
@@ -154,6 +155,24 @@ table.imp .vid{font-size:.82rem;margin-left:6px;white-space:nowrap}
 .objectifs p:first-child,.retenir p:first-child,.exemple p:first-child,.piege p:first-child,.sim p:first-child{margin-top:0}
 .objectifs p:last-child,.retenir p:last-child,.exemple p:last-child,.piege p:last-child{margin-bottom:0}
 .objectifs ul,.piege ul{padding-left:1.2em}
+/* étapes numérotées d’une méthode */
+ol.etapes{list-style:none;counter-reset:etape;padding:0;margin:1em 0;display:flex;flex-direction:column;gap:8px}
+ol.etapes>li{counter-increment:etape;position:relative;margin:0;padding:8px 12px 8px 46px;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);min-width:0;overflow-x:auto}
+ol.etapes>li::before{content:counter(etape);position:absolute;left:11px;top:8px;width:1.65em;height:1.65em;border-radius:50%;background:var(--accent);color:var(--on-accent);font-family:var(--mono);font-size:.82rem;font-weight:600;display:flex;align-items:center;justify-content:center}
+details.complement ol.etapes>li,.cpge ol.etapes>li{background:var(--bg)}
+details.demo>summary .tag{color:var(--accent)}
+details.demo{border-style:solid;border-left:4px solid var(--accent)}
+pre{background:var(--bg-3);border-radius:6px;padding:10px 12px;overflow-x:auto;font-size:.85rem}
+pre code{background:none;padding:0}
+/* étapes numérotées d’une méthode */
+ol.etapes{list-style:none;counter-reset:etape;padding:0;margin:1em 0;display:flex;flex-direction:column;gap:8px}
+ol.etapes>li{counter-increment:etape;position:relative;margin:0;padding:8px 12px 8px 46px;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);min-width:0;overflow-x:auto}
+ol.etapes>li::before{content:counter(etape);position:absolute;left:11px;top:8px;width:1.65em;height:1.65em;border-radius:50%;background:var(--accent);color:var(--on-accent);font-family:var(--mono);font-size:.82rem;font-weight:600;display:flex;align-items:center;justify-content:center}
+details.complement ol.etapes>li,.cpge ol.etapes>li{background:var(--bg)}
+details.demo>summary .tag{color:var(--accent)}
+details.complement.demo{border-style:solid;border-left:4px solid var(--accent)}
+pre{background:var(--bg-3);border-radius:6px;padding:10px 12px;overflow-x:auto;font-size:.85rem}
+pre code{background:none;padding:0}
 
 /* blocs repliables : « Pour aller plus loin » et « Niveau CPGE » */
 details.complement,details.cpge{border:1px dashed var(--line);border-radius:var(--radius);margin:1.1em 0;background:var(--bg)}
@@ -279,7 +298,7 @@ details.pb>summary .pt{font-family:var(--display);font-size:1.15rem;font-weight:
 details.pb>summary .where{grid-column:2}
 details.pb[open]>summary{border-bottom:1px solid var(--line)}
 details.pb>.inner{padding:4px 16px 12px}
-details.pb .intro{font-size:.95rem}
+details.pb .intro{font-size:.95rem;overflow-x:auto}
 details.pb .links{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem;margin:.6em 0}
 details.pb .q{background:var(--bg);margin:12px 0}
 details.pb.cde>summary .pt{font-family:var(--body);font-size:1rem}
@@ -330,7 +349,8 @@ a.card:hover{border-color:var(--accent)}
     <a href="#initiative" data-page="initiative" class="cpge-only"><span class="n">★</span>Problèmes à prise d’initiative</a>
   </div>
   <div class="navgroup"><h4>Outils</h4>
-    <a href="#outils" data-page="outils"><span class="n">0</span>Analyse dimensionnelle et outils</a>
+    <a href="#outils" data-page="outils"><span class="n">1</span>Analyse dimensionnelle et ordres de grandeur</a>
+    <a href="#maths" data-page="maths"><span class="n">2</span>Outils mathématiques</a>
   </div>
   <div class="navgroup"><h4>Mécanique</h4>
     <a href="#mecapoint" data-page="mecapoint"><span class="n">1</span>Mécanique du point</a>
@@ -382,7 +402,8 @@ window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\
 <script src="compte.js"></script>
 <script>
 const CHAPTERS = {
-  outils: {title: "Analyse dimensionnelle et outils", label: "Méthodes · 0", topic: "l’analyse dimensionnelle, les ordres de grandeur, les incertitudes et les outils de calcul", cahier: "fiches 1 et 26", n: 7},
+  outils: {title: "Analyse dimensionnelle et ordres de grandeur", label: "Outils · 1", topic: "l’analyse dimensionnelle, les ordres de grandeur et les incertitudes", cahier: "fiches 1 et 26", n: 8},
+  maths: {title: "Outils mathématiques", label: "Outils · 2", topic: "les outils mathématiques (dérivées, développements limités, intégrales, équations différentielles)", cahier: "", n: 6},
   statique: {title: "Statique des fluides", label: "Mécanique des fluides · 1", topic: "la statique des fluides", cahier: "fiche 21", n: 6},
   dynamique: {title: "Dynamique des fluides", label: "Mécanique des fluides · 2", topic: "la dynamique des fluides", cahier: "", n: 5},
   nongalileen: {title: "Référentiels non galiléens", label: "Mécanique · 5", topic: "les référentiels non galiléens et les forces d’inertie", cahier: "", n: 5},
@@ -777,7 +798,7 @@ function preparePage(root){
   const fold = (div, cls, tag, open) => { const d = document.createElement('details'); d.className = cls; if (div.id) d.id = div.id; if (open) d.open = true;
     d.innerHTML = `<summary><span class="tag">${tag}</span><span class="t">${esc(div.getAttribute('title') || '')}</span></summary>`;
     const inner = document.createElement('div'); inner.className = 'inner'; while (div.firstChild) inner.appendChild(div.firstChild); d.appendChild(inner); div.replaceWith(d); };
-  const comps = [...root.querySelectorAll('div.complement')]; comps.forEach(div => fold(div, 'complement', 'Pour aller plus loin', false));
+  const comps = [...root.querySelectorAll('div.complement')]; comps.forEach(div => fold(div, div.dataset.tag ? 'complement demo' : 'complement', div.dataset.tag || 'Pour aller plus loin', false));
   root.querySelectorAll('div.cpge').forEach(div => fold(div, 'cpge', LEVEL === 'C' ? 'Niveau CPGE' : 'Niveau CPGE · facultatif en terminale', LEVEL === 'C'));
   if (comps.length > 1){
     const bar = document.createElement('div'); bar.className = 'foldbar'; const b = document.createElement('button'); b.type = 'button'; b.textContent = 'Tout déplier';

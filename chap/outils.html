@@ -1,52 +1,144 @@
-<p class="eyebrow">Méthodes · Chapitre 0</p>
-<h1>Analyse dimensionnelle et outils</h1>
-<p class="subtitle">Dimensions et homogénéité, ordres de grandeur, chiffres significatifs et incertitudes, approximations, outils mathématiques, rédaction</p>
+<p class="eyebrow">Outils · Chapitre 1</p>
+<h1>Analyse dimensionnelle et ordres de grandeur</h1>
+<p class="subtitle">Dimensions et homogénéité, deviner une loi, ordres de grandeur, lois d’échelle, chiffres significatifs et incertitudes, rédaction</p>
 
 <div class="objectifs">
-<p><strong>Ce que demandent les épreuves.</strong> Le syllabus IPhO commence par « la capacité à faire des approximations appropriées en modélisant des problèmes de la vie quotidienne » et « reconnaître et exploiter les symétries ». Concrètement : une bonne partie des QCM se résout par analyse dimensionnelle ou par un ordre de grandeur, et les rapports du jury du Concours général reviennent chaque année sur les mêmes attentes : expressions littérales avant les applications numériques, unités, chiffres significatifs raisonnables, vérification de l’homogénéité et des cas limites.</p>
+<p><strong>Ce que demandent les épreuves.</strong> Une bonne partie des QCM se résout sans calcul, par l’analyse dimensionnelle ou par un ordre de grandeur. Les rapports du jury du Concours général reviennent chaque année sur les mêmes attentes : expression littérale avant l’application numérique, unités, chiffres significatifs raisonnables, vérification de l’homogénéité et des cas limites.</p>
 <ul>
 <li><strong>Terminale (IPhO et Concours général)</strong> : tout le chapitre sauf les encadrés « Niveau CPGE ».</li>
-<li><strong>CPGE (IPhO)</strong> : tout, y compris le théorème Π, la linéarisation et les développements limités d’ordre 2.</li>
+<li><strong>CPGE (IPhO)</strong> : tout, y compris le théorème Π et les moindres carrés.</li>
+<li>Les outils de calcul (dérivées, développements limités, intégrales, équations différentielles) sont dans le chapitre suivant, <a href="#maths">Outils mathématiques</a>.</li>
 </ul>
 </div>
 
 <div class="retenir">
 <p><strong>L’essentiel à retenir</strong></p>
 <ol>
-<li>Sept dimensions de base : longueur \(L\), masse \(M\), temps \(T\), intensité \(I\), température \(\Theta\), quantité de matière \(N\), intensité lumineuse \(J\). Toute grandeur s’écrit \([G] = L^aM^bT^c\ldots\)</li>
-<li>Une équation physique est <strong>homogène</strong> : les deux membres ont la même dimension, on n’additionne que des grandeurs de même dimension, et l’argument d’une exponentielle, d’un logarithme, d’un sinus est <strong>sans dimension</strong>.</li>
-<li>L’analyse dimensionnelle donne la forme d’une loi à une constante sans dimension près : \(T = k\sqrt{\ell/g}\) pour le pendule. Elle ne donne jamais \(k\) (ici \(2\pi\)).</li>
-<li>Un <strong>ordre de grandeur</strong> se construit en multipliant des estimations raisonnables (problème de Fermi) ; on raisonne en puissances de 10 et on ne garde qu’un chiffre.</li>
-<li><strong>Chiffres significatifs</strong> : un résultat n’en a pas plus que la donnée la moins précise ; en pratique, 2 ou 3. L’incertitude s’écrit avec 1 ou 2 chiffres et fixe la dernière décimale du résultat.</li>
-<li><strong>Propagation</strong> : les incertitudes absolues s’ajoutent (quadratiquement) pour une somme, les incertitudes relatives pour un produit ou un quotient ; \(u(x^n)/x^n = n\,u(x)/x\).</li>
-<li><strong>Approximations</strong> pour \(x \ll 1\) : \((1+x)^n \approx 1 + nx\), \(\sin x \approx x\), \(\cos x \approx 1 - x^2/2\), \(\mathrm e^x \approx 1 + x\), \(\ln(1+x) \approx x\) (angles en radians).</li>
-<li><strong>Lois d’échelle</strong> : surfaces en \(L^2\), volumes et masses en \(L^3\) ; sur un graphe log-log, une loi de puissance \(y = kx^n\) est une droite de pente \(n\).</li>
-<li>Équation \(\dot y + y/\tau = A\) : solution exponentielle de constante de temps \(\tau\) ; \(\ddot y + \omega_0^2 y = 0\) : oscillations de pulsation \(\omega_0\).</li>
-<li><strong>Rédiger</strong> : expression littérale, puis application numérique avec unités, puis commentaire (homogénéité, signe, cas limites, ordre de grandeur plausible).</li>
+<li>Cinq dimensions à connaître par cœur, de proche en proche : vitesse \(LT^{-1}\), accélération \(LT^{-2}\), force \(MLT^{-2}\), énergie \(ML^2T^{-2}\), puissance \(ML^2T^{-3}\). Toutes les autres se retrouvent avec une loi simple.</li>
+<li>Une formule <strong>non homogène est fausse</strong> ; une formule homogène n’est pas forcément juste.</li>
+<li>L’argument d’une exponentielle, d’un logarithme, d’un sinus est <strong>sans dimension</strong>.</li>
+<li>L’analyse dimensionnelle donne une loi <strong>à une constante sans dimension près</strong> : \(T = k\sqrt{\ell/g}\). Elle ne donne jamais \(k\) (ici \(2\pi\)).</li>
+<li>Un ordre de grandeur se construit en multipliant des estimations à un facteur 2 près ; on calcule en puissances de 10 et on garde un chiffre.</li>
+<li>Lois d’échelle : si les longueurs sont multipliées par \(\lambda\), les surfaces le sont par \(\lambda^2\) et les volumes (donc les masses) par \(\lambda^3\).</li>
+<li>Un résultat n’a pas plus de chiffres significatifs que la donnée la moins précise ; les incertitudes relatives s’ajoutent (en quadrature) pour un produit.</li>
+<li>Rédiger : expression littérale encadrée, application numérique avec unité, commentaire (homogénéité, cas limites, ordre de grandeur plausible).</li>
 </ol>
 </div>
 
-<h2 id="dimensions">1. Dimensions et homogénéité</h2>
+<h2 id="dimensions">1. Dimensions</h2>
 
-<h3 id="si">Unités, dimensions, préfixes</h3>
-<p>Le Système international repose sur sept unités de base (m, kg, s, A, K, mol, cd) ; toutes les autres en dérivent : le newton est un kg·m·s⁻², le joule un N·m = kg·m²·s⁻², le watt un J·s⁻¹, le pascal un N·m⁻², le volt un J·C⁻¹ = W·A⁻¹, l’ohm un V·A⁻¹. On note \([G]\) la <strong>dimension</strong> d’une grandeur : \([v] = L\,T^{-1}\), \([F] = M\,L\,T^{-2}\), \([E] = M\,L^2\,T^{-2}\), \([P] = M\,L^{-1}\,T^{-2}\). Une grandeur peut être sans dimension (angle, indice, nombre de Reynolds) tout en ayant une unité conventionnelle (radian).</p>
-<div class="tablewrap"><table>
-<thead><tr><th>Grandeur</th><th>Unité</th><th>Dimension</th><th>Grandeur</th><th>Unité</th><th>Dimension</th></tr></thead>
+<h3 id="si">Grandeur, unité, dimension</h3>
+<p>Trois mots à ne pas confondre :</p>
+<table>
+<thead><tr><th>Mot</th><th>Ce que c’est</th><th>Exemple</th></tr></thead>
 <tbody>
-<tr><td>vitesse</td><td>m·s⁻¹</td><td>\(LT^{-1}\)</td><td>pression</td><td>Pa</td><td>\(ML^{-1}T^{-2}\)</td></tr>
-<tr><td>accélération</td><td>m·s⁻²</td><td>\(LT^{-2}\)</td><td>puissance</td><td>W</td><td>\(ML^2T^{-3}\)</td></tr>
-<tr><td>force</td><td>N</td><td>\(MLT^{-2}\)</td><td>charge</td><td>C</td><td>\(IT\)</td></tr>
-<tr><td>énergie, travail</td><td>J</td><td>\(ML^2T^{-2}\)</td><td>tension</td><td>V</td><td>\(ML^2T^{-3}I^{-1}\)</td></tr>
-<tr><td>quantité de mouvement</td><td>kg·m·s⁻¹</td><td>\(MLT^{-1}\)</td><td>résistance</td><td>Ω</td><td>\(ML^2T^{-3}I^{-2}\)</td></tr>
-<tr><td>moment cinétique, \(h\)</td><td>J·s</td><td>\(ML^2T^{-1}\)</td><td>capacité</td><td>F</td><td>\(M^{-1}L^{-2}T^4I^2\)</td></tr>
-<tr><td>fréquence</td><td>Hz</td><td>\(T^{-1}\)</td><td>champ magnétique</td><td>T</td><td>\(MT^{-2}I^{-1}\)</td></tr>
-<tr><td>constante \(G\)</td><td>m³·kg⁻¹·s⁻²</td><td>\(M^{-1}L^3T^{-2}\)</td><td>viscosité</td><td>Pa·s</td><td>\(ML^{-1}T^{-1}\)</td></tr>
-<tr><td>constante \(k_B\), \(R/N_A\)</td><td>J·K⁻¹</td><td>\(ML^2T^{-2}\Theta^{-1}\)</td><td>tension superficielle</td><td>N·m⁻¹</td><td>\(MT^{-2}\)</td></tr>
-</tbody></table></div>
-<p>Préfixes : k (10³), M (10⁶), G (10⁹), T (10¹²) ; m (10⁻³), µ (10⁻⁶), n (10⁻⁹), p (10⁻¹²), f (10⁻¹⁵). Attention aux puissances dans les unités composées : \(1\ \text{cm}^2 = 10^{-4}\ \text{m}^2\), \(1\ \text{cm}^3 = 10^{-6}\ \text{m}^3\), \(1\ \text{g·cm}^{-3} = 10^3\ \text{kg·m}^{-3}\), \(1\ \text{km·h}^{-1} = 1/3{,}6\ \text{m·s}^{-1}\), 1 kWh = 3,6 MJ, 1 eV = \(1{,}6\times10^{-19}\) J, 1 L = 10⁻³ m³.</p>
+<tr><td><strong>Grandeur</strong></td><td>Ce que l’on mesure</td><td>une vitesse \(v\), une énergie \(E\), une durée \(t\)</td></tr>
+<tr><td><strong>Unité</strong></td><td>Une convention pour l’exprimer ; il y en a plusieurs</td><td>la même vitesse en m·s⁻¹, en km·h⁻¹, en nœuds</td></tr>
+<tr><td><strong>Dimension</strong></td><td>Sa nature physique, indépendante des unités ; on la note \([G]\)</td><td>\([v] = L\,T^{-1}\) : une longueur divisée par une durée</td></tr>
+</tbody></table>
+<p>Le Système international repose sur <strong>sept dimensions de base</strong>. En mécanique, les trois premières suffisent.</p>
+<table>
+<thead><tr><th>Symbole</th><th>\(L\)</th><th>\(M\)</th><th>\(T\)</th><th>\(I\)</th><th>\(\Theta\)</th><th>\(N\)</th><th>\(J\)</th></tr></thead>
+<tbody>
+<tr><td>Dimension</td><td>longueur</td><td>masse</td><td>temps</td><td>intensité électrique</td><td>température</td><td>quantité de matière</td><td>intensité lumineuse</td></tr>
+<tr><td>Unité SI</td><td>m</td><td>kg</td><td>s</td><td>A</td><td>K</td><td>mol</td><td>cd</td></tr>
+</tbody></table>
+<p>Toute grandeur a une dimension de la forme \([G] = L^a M^b T^c I^d\ldots\) Un <strong>nombre pur</strong> a pour dimension 1. Un <strong>angle</strong> est sans dimension (c’est le rapport d’un arc à un rayon, \(\theta = s/R\)), même s’il a une unité, le radian.</p>
 
-<h3 id="homogeneite">Vérifier une formule : l’homogénéité</h3>
-<p>Une relation entre grandeurs physiques est nécessairement <strong>homogène</strong> : les deux membres ont la même dimension, chaque terme d’une somme aussi, et les fonctions transcendantes (\(\exp\), \(\ln\), \(\sin\), puissances non entières) n’acceptent que des arguments sans dimension. C’est le test le plus rapide pour éliminer des réponses de QCM ou repérer une erreur de calcul : avant d’écrire un résultat, vérifiez sa dimension et ses <strong>cas limites</strong> (que devient-il si \(m \to 0\), \(\theta \to 0\), \(t \to \infty\) ?).</p>
+<h3 id="par-coeur">Cinq dimensions à connaître par cœur</h3>
+<p>Il suffit de connaître la chaîne qui va de la vitesse à la puissance : chaque maillon se déduit du précédent par une loi que tout le monde connaît.</p>
+<figure>
+<svg viewBox="0 0 660 150" width="660" role="img" aria-label="Chaîne des dimensions : vitesse, accélération, force, énergie, puissance" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
+<defs><marker id="ad-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b85a0c"/></marker></defs>
+<g font-size="13">
+<rect x="6" y="40" width="108" height="64" rx="8" fill="#e7edfb" stroke="#2448a8"/><text x="60" y="62" text-anchor="middle" fill="#15213a" font-weight="600">vitesse</text><text x="60" y="84" text-anchor="middle" fill="#2448a8">L·T⁻¹</text><text x="60" y="98" text-anchor="middle" fill="#4a5470" font-size="10">m·s⁻¹</text>
+<rect x="142" y="40" width="108" height="64" rx="8" fill="#e7edfb" stroke="#2448a8"/><text x="196" y="62" text-anchor="middle" fill="#15213a" font-weight="600">accélération</text><text x="196" y="84" text-anchor="middle" fill="#2448a8">L·T⁻²</text><text x="196" y="98" text-anchor="middle" fill="#4a5470" font-size="10">m·s⁻²</text>
+<rect x="278" y="40" width="108" height="64" rx="8" fill="#e7edfb" stroke="#2448a8"/><text x="332" y="62" text-anchor="middle" fill="#15213a" font-weight="600">force</text><text x="332" y="84" text-anchor="middle" fill="#2448a8">M·L·T⁻²</text><text x="332" y="98" text-anchor="middle" fill="#4a5470" font-size="10">newton N</text>
+<rect x="414" y="40" width="108" height="64" rx="8" fill="#e7edfb" stroke="#2448a8"/><text x="468" y="62" text-anchor="middle" fill="#15213a" font-weight="600">énergie</text><text x="468" y="84" text-anchor="middle" fill="#2448a8">M·L²·T⁻²</text><text x="468" y="98" text-anchor="middle" fill="#4a5470" font-size="10">joule J</text>
+<rect x="550" y="40" width="104" height="64" rx="8" fill="#e7edfb" stroke="#2448a8"/><text x="602" y="62" text-anchor="middle" fill="#15213a" font-weight="600">puissance</text><text x="602" y="84" text-anchor="middle" fill="#2448a8">M·L²·T⁻³</text><text x="602" y="98" text-anchor="middle" fill="#4a5470" font-size="10">watt W</text>
+</g>
+<g font-size="11" fill="#b85a0c" text-anchor="middle">
+<path d="M114 72 H140" stroke="#b85a0c" stroke-width="1.6" marker-end="url(#ad-arr)"/><text x="128" y="28">÷ durée</text><text x="128" y="128">a = Δv/Δt</text>
+<path d="M250 72 H276" stroke="#b85a0c" stroke-width="1.6" marker-end="url(#ad-arr)"/><text x="264" y="28">× masse</text><text x="264" y="128">F = ma</text>
+<path d="M386 72 H412" stroke="#b85a0c" stroke-width="1.6" marker-end="url(#ad-arr)"/><text x="400" y="28">× longueur</text><text x="400" y="128">W = F·d</text>
+<path d="M522 72 H548" stroke="#b85a0c" stroke-width="1.6" marker-end="url(#ad-arr)"/><text x="536" y="28">÷ durée</text><text x="536" y="128">P = E/Δt</text>
+</g>
+</svg>
+<figcaption>La chaîne à connaître. Le départ, \(v = d/t\), est évident ; chaque flèche est une loi du cours de seconde.</figcaption>
+</figure>
+<table>
+<thead><tr><th>Grandeur</th><th>Loi qui la définit</th><th>Unité</th><th>Dimension</th></tr></thead>
+<tbody>
+<tr><td>vitesse</td><td>\(v = d/t\)</td><td>m·s⁻¹</td><td>\(L\,T^{-1}\)</td></tr>
+<tr><td>accélération</td><td>\(a = \Delta v/\Delta t\)</td><td>m·s⁻²</td><td>\(L\,T^{-2}\)</td></tr>
+<tr><td>force</td><td>\(F = ma\)</td><td>N = kg·m·s⁻²</td><td>\(M\,L\,T^{-2}\)</td></tr>
+<tr><td>énergie, travail</td><td>\(W = F d\), \(E_c = \tfrac12mv^2\)</td><td>J = N·m</td><td>\(M\,L^2\,T^{-2}\)</td></tr>
+<tr><td>puissance</td><td>\(P = E/\Delta t\)</td><td>W = J·s⁻¹</td><td>\(M\,L^2\,T^{-3}\)</td></tr>
+</tbody></table>
+
+<h3 id="retrouver">Toutes les autres : écrire une loi simple</h3>
+<div class="methode" data-m="dimension"><p>Pour trouver la dimension d’une grandeur inconnue, on écrit <strong>la loi la plus simple qui la contient</strong> avec des grandeurs dont on connaît déjà la dimension, puis on isole la grandeur.</p></div>
+<table>
+<thead><tr><th>Grandeur</th><th>Loi simple</th><th>Calcul</th><th>Dimension</th><th>Unité</th></tr></thead>
+<tbody>
+<tr><td>pression</td><td>\(p = F/S\)</td><td>\(MLT^{-2}/L^2\)</td><td>\(ML^{-1}T^{-2}\)</td><td>Pa = N·m⁻²</td></tr>
+<tr><td>quantité de mouvement</td><td>\(p = mv\)</td><td>\(M \times LT^{-1}\)</td><td>\(MLT^{-1}\)</td><td>kg·m·s⁻¹</td></tr>
+<tr><td>fréquence</td><td>\(f = 1/T\)</td><td>\(1/T\)</td><td>\(T^{-1}\)</td><td>Hz</td></tr>
+<tr><td>charge</td><td>\(q = I\,\Delta t\)</td><td>\(I \times T\)</td><td>\(IT\)</td><td>C = A·s</td></tr>
+<tr><td>tension</td><td>\(P = UI\)</td><td>\(ML^2T^{-3}/I\)</td><td>\(ML^2T^{-3}I^{-1}\)</td><td>V = W·A⁻¹</td></tr>
+<tr><td>résistance</td><td>\(U = RI\)</td><td>\([U]/I\)</td><td>\(ML^2T^{-3}I^{-2}\)</td><td>Ω = V·A⁻¹</td></tr>
+<tr><td>capacité</td><td>\(q = CU\)</td><td>\(IT/[U]\)</td><td>\(M^{-1}L^{-2}T^4I^2\)</td><td>F = C·V⁻¹</td></tr>
+<tr><td>champ magnétique</td><td>\(F = qvB\)</td><td>\(MLT^{-2}/(IT \cdot LT^{-1})\)</td><td>\(MT^{-2}I^{-1}\)</td><td>T</td></tr>
+<tr><td>constante de Planck \(h\)</td><td>\(E = h\nu\)</td><td>\(ML^2T^{-2}/T^{-1}\)</td><td>\(ML^2T^{-1}\)</td><td>J·s</td></tr>
+<tr><td>raideur \(k\)</td><td>\(F = k\,\Delta\ell\)</td><td>\(MLT^{-2}/L\)</td><td>\(MT^{-2}\)</td><td>N·m⁻¹</td></tr>
+<tr><td>constante \(G\)</td><td>\(F = Gmm'/r^2\)</td><td>\(MLT^{-2}\cdot L^2/M^2\)</td><td>\(M^{-1}L^3T^{-2}\)</td><td>m³·kg⁻¹·s⁻²</td></tr>
+<tr><td>constante \(k_B\)</td><td>\(E \sim k_BT\)</td><td>\(ML^2T^{-2}/\Theta\)</td><td>\(ML^2T^{-2}\Theta^{-1}\)</td><td>J·K⁻¹</td></tr>
+<tr><td>viscosité \(\eta\)</td><td>\(F = 6\pi\eta Rv\)</td><td>\(MLT^{-2}/(L \cdot LT^{-1})\)</td><td>\(ML^{-1}T^{-1}\)</td><td>Pa·s</td></tr>
+<tr><td>tension superficielle \(\gamma\)</td><td>\(F = \gamma L\)</td><td>\(MLT^{-2}/L\)</td><td>\(MT^{-2}\)</td><td>N·m⁻¹ = J·m⁻²</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="La permittivité du vide ε₀ à partir de la loi de Coulomb">
+<p>La loi la plus simple qui contient \(\varepsilon_0\) est la loi de Coulomb :</p>
+\[F = \frac{q_1q_2}{4\pi\varepsilon_0 r^2} \quad\Longrightarrow\quad \varepsilon_0 = \frac{q_1q_2}{4\pi F r^2}.\]
+<ol class="etapes">
+<li>Le facteur \(4\pi\) est un nombre pur : il ne compte pas.</li>
+<li>\([q_1q_2] = (IT)^2 = I^2T^2\) ; \([F r^2] = MLT^{-2} \cdot L^2 = ML^3T^{-2}\).</li>
+<li>\([\varepsilon_0] = \dfrac{I^2T^2}{ML^3T^{-2}} = M^{-1}L^{-3}T^4I^2\), en F·m⁻¹.</li>
+</ol>
+<p>Vérification : \(\varepsilon_0 S/d\) est une capacité (condensateur plan) ; \([\varepsilon_0 S/d] = M^{-1}L^{-3}T^4I^2 \cdot L = M^{-1}L^{-2}T^4I^2\), c’est bien la dimension de \(C\) du tableau.</p>
+</div>
+
+<h3 id="prefixes">Préfixes et conversions</h3>
+<table>
+<thead><tr><th>Préfixe</th><th>f</th><th>p</th><th>n</th><th>µ</th><th>m</th><th>k</th><th>M</th><th>G</th><th>T</th></tr></thead>
+<tbody><tr><td>Facteur</td><td>10⁻¹⁵</td><td>10⁻¹²</td><td>10⁻⁹</td><td>10⁻⁶</td><td>10⁻³</td><td>10³</td><td>10⁶</td><td>10⁹</td><td>10¹²</td></tr></tbody></table>
+<p>Dans une unité composée, le préfixe est élevé à la même puissance que l’unité :</p>
+<table>
+<thead><tr><th>Conversion</th><th>Pourquoi</th><th>Le piège</th></tr></thead>
+<tbody>
+<tr><td>\(1\ \text{cm}^2 = 10^{-4}\ \text{m}^2\)</td><td>\((10^{-2}\ \text{m})^2\)</td><td>écrire \(10^{-2}\)</td></tr>
+<tr><td>\(1\ \text{cm}^3 = 1\ \text{mL} = 10^{-6}\ \text{m}^3\)</td><td>\((10^{-2}\ \text{m})^3\)</td><td>écrire \(10^{-3}\)</td></tr>
+<tr><td>\(1\ \text{L} = 1\ \text{dm}^3 = 10^{-3}\ \text{m}^3\)</td><td>\((10^{-1}\ \text{m})^3\)</td><td>confondre L et m³ (facteur 1 000)</td></tr>
+<tr><td>\(1\ \text{g·cm}^{-3} = 10^3\ \text{kg·m}^{-3}\)</td><td>\(10^{-3}\ \text{kg}/10^{-6}\ \text{m}^3\)</td><td>masse volumique de l’eau</td></tr>
+<tr><td>\(1\ \text{km·h}^{-1} = \tfrac{1}{3{,}6}\ \text{m·s}^{-1}\)</td><td>1 000 m en 3 600 s</td><td>90 km·h⁻¹ = 25 m·s⁻¹</td></tr>
+<tr><td>\(1\ \text{kWh} = 3{,}6\ \text{MJ}\)</td><td>1 000 W pendant 3 600 s</td><td>le kWh est une énergie, pas une puissance</td></tr>
+<tr><td>\(1\ \text{eV} = 1{,}6\times10^{-19}\ \text{J}\)</td><td>énergie d’un électron sous 1 V</td><td>énergies atomiques</td></tr>
+</tbody></table>
+<div class="exo" data-group="cde-o5"></div>
+
+<h2 id="homogeneite">2. Homogénéité</h2>
+
+<h3 id="regles">Trois règles</h3>
+<p>Une relation entre grandeurs physiques est nécessairement <strong>homogène</strong>. Concrètement, trois règles :</p>
+<table>
+<thead><tr><th>Règle</th><th>Homogène</th><th>Non homogène</th></tr></thead>
+<tbody>
+<tr><td>1. Les deux membres d’une égalité ont la même dimension.</td><td>\(v = \sqrt{2gh}\)</td><td>\(v = 2gh\)</td></tr>
+<tr><td>2. On n’additionne (ou ne compare) que des grandeurs de même dimension.</td><td>\(x = x_0 + v_0t\)</td><td>\(x = x_0 + v_0\)</td></tr>
+<tr><td>3. L’argument de exp, ln, sin, cos… est sans dimension.</td><td>\(\mathrm e^{-t/\tau}\), \(\cos(\omega t)\)</td><td>\(\mathrm e^{-t}\), \(\cos(t)\)</td></tr>
+</tbody></table>
+<p>Une formule non homogène est <strong>fausse</strong>. Une formule homogène n’est pas forcément juste : il faut ensuite vérifier les <strong>cas limites</strong>.</p>
+
+<h3 id="verifier">Vérifier un résultat en trois tests</h3>
 <figure>
 <svg viewBox="0 0 640 210" width="640" role="img" aria-label="Méthode de vérification d'une formule : dimension de chaque terme, argument des fonctions sans dimension, cas limites" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
 <rect x="20" y="20" width="600" height="60" rx="8" fill="#e7edfb" stroke="#2448a8"/>
@@ -61,122 +153,277 @@
 <figcaption>Trois vérifications à faire sur tout résultat : l’argument des fonctions, la dimension des deux membres, les cas limites.</figcaption>
 </figure>
 <div class="methode" data-m="cas-limites"><p>Sur la vitesse de chute \(v(t) = v_\text{lim}(1 - \mathrm e^{-t/\tau})\) : \(t = 0\) doit redonner le lâcher sans vitesse, \(t \to \infty\) l’équilibre entre poids et frottement, \(k \to 0\) la chute libre \(v \approx gt\). Si l’un de ces tests échoue, l’erreur est dans le calcul.</p></div>
-
 <div class="exo" data-q="ipho-2024-T12"></div>
 <div class="exo" data-q="ipho-2009-5"></div>
-<h3 id="trouver-loi">Trouver une loi par analyse dimensionnelle</h3>
-<p>Si l’on sait de quelles grandeurs dépend un phénomène, l’homogénéité fixe souvent la forme de la loi. Période d’un pendule simple : elle ne peut dépendre que de \(\ell\), \(g\) et \(m\). Cherchons \(T = k\,\ell^a g^b m^c\) : \(T = L^a (LT^{-2})^b M^c\), donc \(c = 0\), \(a + b = 0\), \(-2b = 1\) : \(T = k\sqrt{\ell/g}\). La masse n’intervient pas, et une expérience (ou le calcul) donne \(k = 2\pi\) aux petits angles. Autres classiques : vitesse des vagues en eau profonde \(v \sim \sqrt{g\lambda}\) ; vitesse du son \(c \sim \sqrt{P/\rho}\) ; énergie d’une explosion à partir du rayon de la boule de feu \(E \sim \rho\,r^5/t^2\) (G. I. Taylor retrouva ainsi l’énergie de la première bombe atomique à partir de photos) ; fréquence d’une goutte qui vibre \(f \sim \sqrt{\gamma/(\rho R^3)}\).</p>
-<div class="methode" data-m="dimension"><p>Pour le pendule, on écrit \(T = k\,\ell^a g^b m^c\), on égale un à un les exposants de \(L\), \(M\) et \(T\) des deux membres, et le système donne \(a = \tfrac12\), \(b = -\tfrac12\), \(c = 0\). La constante \(k = 2\pi\) doit venir d’ailleurs (calcul ou mesure).</p></div>
+
+<h3 id="briques">Des briques à reconnaître d’un coup d’œil</h3>
+<p>Dans les QCM « quelle est la dimension de… », on gagne beaucoup de temps en reconnaissant des combinaisons toutes faites :</p>
+<table>
+<thead><tr><th>Combinaison</th><th>Dimension</th><th>Pourquoi</th></tr></thead>
+<tbody>
+<tr><td>\(\dfrac{e^2}{4\pi\varepsilon_0 r}\)</td><td>énergie</td><td>force de Coulomb × distance ; donc \(\dfrac{e^2}{4\pi\varepsilon_0}\) est une énergie × longueur</td></tr>
+<tr><td>\(h\nu\), \(\dfrac{hc}{\lambda}\)</td><td>énergie</td><td>énergie d’un photon ; donc \(hc\) est une énergie × longueur</td></tr>
+<tr><td>\(k_BT\)</td><td>énergie</td><td>agitation thermique, ≈ 1/40 eV à 300 K</td></tr>
+<tr><td>\(\dfrac{h}{\lambda}\)</td><td>quantité de mouvement</td><td>relation de de Broglie</td></tr>
+<tr><td>\(mc^2\), \(\tfrac12mv^2\), \(mgh\), \(qU\)</td><td>énergie</td><td>énergies de masse, cinétique, potentielles</td></tr>
+<tr><td>\(\dfrac{GM}{r}\)</td><td>vitesse au carré</td><td>\(\dfrac{GMm}{r}\) est une énergie, divisée par une masse</td></tr>
+<tr><td>\(RC\), \(L/R\), \(\sqrt{LC}\), \(\sqrt{m/k}\), \(\sqrt{\ell/g}\)</td><td>temps</td><td>constantes de temps et inverses de pulsations</td></tr>
+</tbody></table>
+<div class="exo" data-q="ipho-2009-20"></div>
+
+<h2 id="trouver-loi">3. Deviner une loi par analyse dimensionnelle</h2>
+<p>Si l’on sait de quelles grandeurs dépend un phénomène, l’homogénéité fixe souvent la forme de la loi. La méthode tient en quatre étapes.</p>
+<ol class="etapes">
+<li><strong>Lister les paramètres</strong> dont peut dépendre la grandeur cherchée (et ceux dont elle ne dépend pas).</li>
+<li><strong>Poser une loi de puissance</strong> : grandeur \(= k \times\) produit des paramètres élevés à des exposants inconnus, \(k\) étant un nombre sans dimension.</li>
+<li><strong>Écrire les dimensions</strong> des deux membres.</li>
+<li><strong>Identifier les exposants</strong> de \(L\), \(M\), \(T\)… un à un : on obtient un système d’équations.</li>
+</ol>
+
+<h3 id="pendule">L’exemple type : la période du pendule</h3>
+<p>La période \(T_0\) des petites oscillations d’un pendule simple peut dépendre de la longueur \(\ell\), de la pesanteur \(g\) et de la masse \(m\) (aux petits angles, l’amplitude ne joue pas). On pose \(T_0 = k\,\ell^a g^b m^c\) et on compare les exposants :</p>
+<table>
+<thead><tr><th>Dimension</th><th>Membre de gauche \([T_0]\)</th><th>Membre de droite \(L^a(LT^{-2})^bM^c\)</th><th>Équation</th></tr></thead>
+<tbody>
+<tr><td>\(L\)</td><td>0</td><td>\(a + b\)</td><td>\(a + b = 0\)</td></tr>
+<tr><td>\(M\)</td><td>0</td><td>\(c\)</td><td>\(c = 0\)</td></tr>
+<tr><td>\(T\)</td><td>1</td><td>\(-2b\)</td><td>\(b = -\tfrac12\)</td></tr>
+</tbody></table>
+<p>D’où \(a = \tfrac12\), \(b = -\tfrac12\), \(c = 0\) :</p>
+\[T_0 = k\sqrt{\frac{\ell}{g}}.\]
+<ul>
+<li>La masse n’intervient pas : ce n’est pas une hypothèse, c’est une conséquence de l’homogénéité.</li>
+<li>Si \(\ell\) est multiplié par 4, \(T_0\) est multiplié par 2.</li>
+<li>La constante \(k = 2\pi\) vient du calcul ou d’une mesure, jamais de l’analyse dimensionnelle.</li>
+</ul>
 <div class="exo" data-q="ipho-2014-19"></div>
+
+<h3 id="classiques">Les grands classiques</h3>
+<table>
+<thead><tr><th>Phénomène</th><th>Paramètres</th><th>Loi</th><th>Ordre de grandeur</th></tr></thead>
+<tbody>
+<tr><td>Vagues en eau profonde</td><td>\(g\), longueur d’onde \(\lambda\)</td><td>\(v \sim \sqrt{g\lambda}\)</td><td>houle, \(\lambda = 100\) m : environ 12 m·s⁻¹ (loi exacte \(\sqrt{g\lambda/2\pi}\)) ; la houle va plus vite que les vaguelettes</td></tr>
+<tr><td>Son dans un gaz</td><td>pression \(P\), masse volumique \(\rho\)</td><td>\(c \sim \sqrt{P/\rho}\)</td><td>air : 290 m·s⁻¹ (réel 340, à un facteur \(\sqrt{\gamma}\) près)</td></tr>
+<tr><td>Goutte qui vibre</td><td>\(\gamma\), \(\rho\), rayon \(R\)</td><td>\(f \sim \sqrt{\gamma/(\rho R^3)}\)</td><td>\(R = 1\) mm : 260 Hz, une note audible</td></tr>
+<tr><td>Étoile qui vibre</td><td>\(G\), \(\rho\)</td><td>\(f \sim \sqrt{G\rho}\)</td><td>Soleil : \(3\times10^{-4}\) Hz, période de l’ordre de l’heure</td></tr>
+<tr><td>Boule de feu d’une explosion</td><td>énergie \(E\), \(\rho\) de l’air, temps \(t\)</td><td>\(R \sim (Et^2/\rho)^{1/5}\)</td><td>voir l’exercice de G. I. Taylor ci-dessous</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="Le calcul des exposants pour chaque classique">
+<ol class="etapes">
+<li><strong>Vagues.</strong> \(v = k\,g^a\lambda^b\) : \(LT^{-1} = L^{a+b}T^{-2a}\), donc \(a = \tfrac12\) et \(b = \tfrac12\).</li>
+<li><strong>Son.</strong> \(c = k\,P^a\rho^b\) avec \([P] = ML^{-1}T^{-2}\), \([\rho] = ML^{-3}\). \(M\) : \(a + b = 0\) ; \(T\) : \(-2a = -1\). Donc \(a = \tfrac12\), \(b = -\tfrac12\) ; \(L\) : \(-a - 3b = 1\) ✓.</li>
+<li><strong>Goutte.</strong> \(f = k\,\gamma^a\rho^bR^c\) avec \([\gamma] = MT^{-2}\). \(T\) : \(-2a = -1\) ; \(M\) : \(a + b = 0\) ; \(L\) : \(-3b + c = 0\). Donc \(a = \tfrac12\), \(b = -\tfrac12\), \(c = -\tfrac32\).</li>
+<li><strong>Étoile.</strong> \([G\rho] = M^{-1}L^3T^{-2} \cdot ML^{-3} = T^{-2}\) : \(\sqrt{G\rho}\) est déjà une fréquence, sans autre paramètre.</li>
+<li><strong>Explosion.</strong> \(E = k\,\rho^aR^bt^c\) : \(M\) : \(a = 1\) ; \(L\) : \(-3a + b = 2\), donc \(b = 5\) ; \(T\) : \(c = -2\). Donc \(E \sim \rho R^5/t^2\), soit \(R \sim (Et^2/\rho)^{1/5}\).</li>
+</ol>
+</div>
+<div class="exo" data-group="zhou-P1-9"></div>
 <div class="exo" data-q="ipho-2022-T11"></div>
+
+<h3 id="limites-ad">Ce que l’analyse dimensionnelle ne dit pas</h3>
+<table>
+<thead><tr><th>Limite</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr><td>Les <strong>constantes numériques</strong> (\(2\pi\), \(\tfrac12\), \(\tfrac43\)) n’en sortent jamais.</td><td>\(T_0 = k\sqrt{\ell/g}\) : \(k = 2\pi\) vient du calcul.</td></tr>
+<tr><td>Une <strong>fonction d’un nombre sans dimension</strong> (angle, rapport de longueurs) peut intervenir n’importe comment.</td><td>Pendule aux grands angles : \(T = \sqrt{\ell/g}\;f(\theta_0)\), avec \(f\) inconnue.</td></tr>
+<tr><td>Avec <strong>trop de paramètres</strong>, le système a une infinité de solutions.</td><td>Vagues avec la profondeur \(h\) en plus : \(\lambda/h\) peut apparaître à n’importe quelle puissance.</td></tr>
+</tbody></table>
 <div class="piege">
 <ul>
-<li>L’analyse dimensionnelle ne donne jamais les constantes numériques (\(2\pi\), \(\tfrac12\), \(4/3\)) ni les fonctions d’un nombre sans dimension (angle, rapport de longueurs). Elle peut aussi échouer si trop de grandeurs interviennent.</li>
-<li>Les angles sont sans dimension : \(\sin\theta\), \(\theta\) en radians dans \(\ell\theta\) ; un résultat en degrés dans une formule « \(s = R\theta\) » est faux.</li>
-<li>Cohérence des unités dans un calcul : tout en SI (m, kg, s), puis conversion à la fin. Le piège habituel : cm, g, L, km/h, minutes.</li>
+<li>Angles en radians : dans \(s = R\theta\), un angle en degrés donne un résultat faux.</li>
+<li>Tout calcul se fait en unités SI (m, kg, s), avec conversion à la fin. Les pièges : cm, g, L, km·h⁻¹, minutes.</li>
 </ul>
 </div>
 
 <div class="cpge" id="pi" title="Nombres sans dimension et théorème Π (Vaschy-Buckingham)">
-<p>Un phénomène qui dépend de \(n\) grandeurs faisant intervenir \(k\) dimensions indépendantes est décrit par \(n - k\) nombres <strong>sans dimension</strong>. Un pendule de grande amplitude : \(T\) dépend de \(\ell, g, m, \theta_0\) (\(n = 5\) avec \(T\), \(k = 3\)) : deux nombres sans dimension, \(T\sqrt{g/\ell}\) et \(\theta_0\), d’où \(T = \sqrt{\ell/g}\,f(\theta_0)\). La forme de \(f\) échappe à l’analyse dimensionnelle (\(f = 2\pi(1 + \theta_0^2/16 + \ldots)\)). Les nombres sans dimension classiques : Reynolds \(Re = \rho vL/\eta\) (inertie/viscosité), Mach \(v/c\), Froude \(v^2/(gL)\) (vagues, bateaux), Strouhal \(fL/v\), nombre de Bond \(\rho g L^2/\gamma\) (gravité/capillarité). Deux situations ayant les mêmes nombres sans dimension sont <strong>semblables</strong> : c’est le fondement des essais sur maquette.</p>
+<p><strong>Énoncé.</strong> Un phénomène qui dépend de \(n\) grandeurs, faisant intervenir \(k\) dimensions indépendantes, est décrit par \(n - k\) nombres sans dimension.</p>
+<p><strong>Exemple.</strong> Pendule de grande amplitude : \(T\), \(\ell\), \(g\), \(m\), \(\theta_0\), soit \(n = 5\) grandeurs et \(k = 3\) dimensions. Il y a deux nombres sans dimension, \(T\sqrt{g/\ell}\) et \(\theta_0\), d’où \(T = \sqrt{\ell/g}\,f(\theta_0)\). La forme de \(f\) échappe à l’analyse dimensionnelle (\(f = 2\pi(1 + \theta_0^2/16 + \ldots)\)).</p>
+<table>
+<thead><tr><th>Nombre</th><th>Expression</th><th>Ce qu’il compare</th></tr></thead>
+<tbody>
+<tr><td>Reynolds</td><td>\(Re = \rho vL/\eta\)</td><td>inertie et viscosité</td></tr>
+<tr><td>Mach</td><td>\(v/c\)</td><td>vitesse et vitesse du son</td></tr>
+<tr><td>Froude</td><td>\(v^2/(gL)\)</td><td>inertie et pesanteur (vagues, bateaux)</td></tr>
+<tr><td>Strouhal</td><td>\(fL/v\)</td><td>fréquence d’émission de tourbillons</td></tr>
+<tr><td>Bond</td><td>\(\rho gL^2/\gamma\)</td><td>pesanteur et capillarité</td></tr>
+</tbody></table>
+<p>Deux situations qui ont les mêmes nombres sans dimension sont <strong>semblables</strong> : c’est le fondement des essais sur maquette.</p>
 </div>
 
-<h2 id="ordres">2. Ordres de grandeur et estimations</h2>
-<p>Un <strong>problème de Fermi</strong> se résout en décomposant la grandeur cherchée en facteurs qu’on sait estimer à un facteur 2 ou 3 près : les erreurs se compensent en partie, et le résultat est bon à un facteur 10 près, ce qui suffit souvent. Nombre de respirations dans une vie : \(15/\text{min} \times 60 \times 24 \times 365 \times 80 \approx 6\times10^8\). Masse de l’atmosphère : \(P_0 \times 4\pi R_T^2 / g \approx 5\times10^{18}\ \text{kg}\). Puissance d’un cycliste : \(F v\) avec \(F \sim 20\ \text{N}\) (traînée à 30 km/h) : \(\sim 170\ \text{W}\). Énergie d’une pile AA : \(1{,}5\ \text{V} \times 2\ \text{A·h} \approx 10\ \text{kJ}\).</p>
-<div class="methode" data-m="ordre-grandeur"><p>Pour la masse de l’atmosphère, on décompose en facteurs connus (pression au sol, surface de la Terre, \(g \approx 10\)), on calcule en puissances de 10 et on obtient \(\sim 5\times10^{18}\ \text{kg}\), qu’on compare à la masse de la Terre (\(6\times10^{24}\ \text{kg}\)) : un millionième, c’est plausible pour une couche de quelques dizaines de kilomètres.</p></div>
-<p>Un répertoire d’ordres de grandeur à connaître : taille d’un atome \(10^{-10}\) m, d’un noyau \(10^{-15}\) m ; \(N_A = 6\times10^{23}\) ; masse volumique de l’eau \(10^3\ \text{kg·m}^{-3}\), de l’air 1,2, du fer \(8\times10^3\) ; \(c = 3\times10^8\ \text{m·s}^{-1}\), son dans l’air 340 ; \(g \approx 10\) ; \(P_0 = 10^5\) Pa ; énergie d’une liaison chimique \(\sim\) 1 eV, thermique \(k_BT \approx 1/40\) eV à 300 K ; puissance solaire reçue \(\sim 1\ \text{kW·m}^{-2}\) ; distance Terre-Lune \(4\times10^8\) m, Terre-Soleil \(1{,}5\times10^{11}\) m ; rayon de la Terre \(6{,}4\times10^6\) m ; fréquence du courant 50 Hz, des ondes radio FM \(10^8\) Hz, de la lumière visible \(5\times10^{14}\) Hz.</p>
+<h2 id="ordres">4. Ordres de grandeur et estimations</h2>
+
+<h3 id="fermi">La méthode de Fermi</h3>
+<p>Un <strong>problème de Fermi</strong> se résout en décomposant la grandeur cherchée en facteurs qu’on sait estimer à un facteur 2 ou 3 près. Exemple : combien de fois respire-t-on dans une vie ?</p>
+<table>
+<thead><tr><th>respirations par minute</th><th></th><th>minutes par heure</th><th></th><th>heures par jour</th><th></th><th>jours par an</th><th></th><th>années</th><th></th><th>total</th></tr></thead>
+<tbody><tr><td>15</td><td>×</td><td>60</td><td>×</td><td>24</td><td>×</td><td>365</td><td>×</td><td>80</td><td>=</td><td><strong>\(6\times10^8\)</strong></td></tr></tbody></table>
+<ol class="etapes">
+<li><strong>Décomposer</strong> en facteurs que l’on sait estimer.</li>
+<li><strong>Calculer en puissances de 10</strong> et ne garder qu’un chiffre significatif.</li>
+<li><strong>Faire confiance</strong> aux erreurs qui se compensent : le résultat est bon à un facteur 10 près, ce qui suffit souvent.</li>
+<li><strong>Comparer</strong> à une valeur connue pour juger la plausibilité.</li>
+</ol>
+<table>
+<thead><tr><th>Estimation</th><th>Décomposition</th><th>Résultat</th></tr></thead>
+<tbody>
+<tr><td>Masse de l’atmosphère</td><td>la pression au sol est le poids de l’air au-dessus d’un mètre carré : \(m = P_0 \times 4\pi R_T^2/g\)</td><td>\(5\times10^{18}\) kg</td></tr>
+<tr><td>Énergie d’une pile AA</td><td>2 000 mA·h sous 1,5 V : \(E = U \times I\Delta t = 1{,}5 \times 2 \times 3\,600\)</td><td>\(\approx 10\) kJ</td></tr>
+<tr><td>Puissance d’un cycliste</td><td>traînée \(F \sim 20\) N à 30 km·h⁻¹ : \(P = Fv\)</td><td>\(\sim 170\) W</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="Le calcul détaillé de la masse de l’atmosphère">
+<ol class="etapes">
+<li>La pression au sol équilibre le poids de la colonne d’air au-dessus d’une surface \(S\) : \(P_0S = m_\text{col}\,g\). Pour toute la Terre, \(S = 4\pi R_T^2\).</li>
+<li>\(4\pi R_T^2 = 4\pi \times (6{,}4\times10^6)^2 \approx 12 \times 4\times10^{13} = 5\times10^{14}\ \text{m}^2\).</li>
+<li>\(m = \dfrac{P_0 \times 4\pi R_T^2}{g} = \dfrac{10^5 \times 5\times10^{14}}{10} = 5\times10^{18}\ \text{kg}\).</li>
+<li>Comparaison : la Terre a une masse de \(6\times10^{24}\) kg ; l’atmosphère en est un millionième, ce qui est plausible pour une couche de quelques dizaines de kilomètres.</li>
+</ol>
+</div>
+<div class="methode" data-m="ordre-grandeur"><p>On décompose en facteurs connus (pression au sol, surface de la Terre, \(g \approx 10\)), on calcule en puissances de 10, puis on compare le résultat à une valeur connue.</p></div>
+
+<h3 id="log">Lire une échelle logarithmique</h3>
+<p>Pour placer sur un même axe un atome et la distance Terre-Soleil, on utilise une échelle <strong>logarithmique</strong> : un pas sur l’axe correspond à une multiplication par 10 (une <em>décade</em>). La position d’un nombre \(x\) sur l’axe est \(\log x\), l’exposant de 10 : \(\log 1 = 0\), \(\log 10 = 1\), \(\log 1\,000 = 3\), \(\log 10^{-10} = -10\).</p>
+<figure>
+<svg viewBox="0 0 680 150" width="680" role="img" aria-label="Échelle logarithmique des longueurs, du noyau à la distance Terre-Soleil" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
+<line x1="30" y1="75" x2="650" y2="75" stroke="#15213a" stroke-width="1.6"/>
+<g font-size="10" fill="#4a5470" text-anchor="middle">
+<g stroke="#15213a"><line x1="30" y1="70" x2="30" y2="80"/><line x1="133" y1="70" x2="133" y2="80"/><line x1="237" y1="70" x2="237" y2="80"/><line x1="340" y1="70" x2="340" y2="80"/><line x1="443" y1="70" x2="443" y2="80"/><line x1="547" y1="70" x2="547" y2="80"/><line x1="650" y1="70" x2="650" y2="80"/></g>
+<text x="30" y="95">10⁻¹⁵ m</text><text x="133" y="95">10⁻¹⁰ m</text><text x="237" y="95">10⁻⁵ m</text><text x="340" y="95">1 m</text><text x="443" y="95">10⁵ m</text><text x="547" y="95">10¹⁰ m</text><text x="650" y="95">10¹⁵ m</text>
+</g>
+<g font-size="11" fill="#2448a8" text-anchor="middle">
+<circle cx="30" cy="75" r="4" fill="#2448a8"/><text x="38" y="50">noyau</text>
+<circle cx="133" cy="75" r="4" fill="#2448a8"/><text x="133" y="125">atome</text>
+<circle cx="211" cy="75" r="4" fill="#2448a8"/><text x="205" y="50">lumière visible</text>
+<circle cx="257" cy="75" r="4" fill="#2448a8"/><text x="262" y="125">cheveu</text>
+<circle cx="340" cy="75" r="4" fill="#2448a8"/><text x="340" y="50">humain</text>
+<circle cx="421" cy="75" r="4" fill="#2448a8"/><text x="415" y="125">Everest</text>
+<circle cx="480" cy="75" r="4" fill="#2448a8"/><text x="474" y="50">rayon de la Terre</text>
+<circle cx="519" cy="75" r="4" fill="#2448a8"/><text x="527" y="125">Terre-Lune</text>
+<circle cx="570" cy="75" r="4" fill="#2448a8"/><text x="590" y="50">Terre-Soleil</text>
+</g>
+</svg>
+<figcaption>Une graduation = un facteur \(10^5\) ici. Du noyau à l’orbite terrestre : 26 ordres de grandeur. Sur un axe linéaire, l’atome et la Terre seraient tous deux collés à 0.</figcaption>
+</figure>
+<p>Propriété utile : \(\log(ab) = \log a + \log b\). Un produit devient une somme, et une loi de puissance \(y = kx^n\) devient une droite de pente \(n\) en coordonnées log-log (partie 6).</p>
+
+<h3 id="repertoire">Le répertoire à connaître</h3>
+<table>
+<thead><tr><th>Famille</th><th>Valeurs de référence</th></tr></thead>
+<tbody>
+<tr><td><strong>Longueurs</strong></td><td>noyau \(10^{-15}\) m ; atome \(10^{-10}\) m ; lumière visible 0,4 à 0,8 µm ; cheveu \(10^{-4}\) m ; rayon de la Terre \(6{,}4\times10^6\) m ; Terre-Lune \(4\times10^8\) m ; Terre-Soleil \(1{,}5\times10^{11}\) m</td></tr>
+<tr><td><strong>Masses</strong></td><td>électron \(9\times10^{-31}\) kg ; proton \(1{,}7\times10^{-27}\) kg ; Terre \(6\times10^{24}\) kg ; Soleil \(2\times10^{30}\) kg</td></tr>
+<tr><td><strong>Masses volumiques</strong></td><td>air 1,2 kg·m⁻³ ; eau \(10^3\) kg·m⁻³ ; fer \(8\times10^3\) kg·m⁻³</td></tr>
+<tr><td><strong>Vitesses</strong></td><td>son dans l’air 340 m·s⁻¹ ; lumière \(c = 3\times10^8\) m·s⁻¹</td></tr>
+<tr><td><strong>Énergies</strong></td><td>agitation thermique \(k_BT \approx 1/40\) eV à 300 K ; liaison chimique \(\sim 1\) eV ; \(1\ \text{eV} = 1{,}6\times10^{-19}\) J</td></tr>
+<tr><td><strong>Fréquences</strong></td><td>secteur 50 Hz ; radio FM \(10^8\) Hz ; lumière visible \(5\times10^{14}\) Hz</td></tr>
+<tr><td><strong>Divers</strong></td><td>\(g \approx 10\) m·s⁻² ; \(P_0 = 10^5\) Pa ; \(N_A = 6\times10^{23}\) mol⁻¹ ; puissance solaire reçue au sol \(\sim 1\) kW·m⁻²</td></tr>
+</tbody></table>
 <div class="exo" data-q="ipho-2014-20"></div>
 <div class="exo" data-q="ipho-2014-18"></div>
 <div class="exo" data-q="ipho-2015-T2"></div>
 <div class="piege">
 <ul>
-<li>Dans un QCM d’ordre de grandeur, les réponses sont espacées d’un facteur 10 ou 100 : inutile de calculer à 10 % près, mais il faut vérifier la puissance de 10 (un facteur \(10^3\) oublié dans un volume en litres est l’erreur la plus fréquente).</li>
-<li>Comparez toujours un résultat à une valeur connue : une vitesse de voiture de 300 m/s, une force de 2 N pour soulever une personne, une température de 5 000 K pour de l’eau sont des signaux d’erreur.</li>
+<li>Dans un QCM d’ordre de grandeur, les réponses sont espacées d’un facteur 10 ou 100 : inutile de calculer à 10 % près, mais il faut vérifier la puissance de 10. L’erreur la plus fréquente : un facteur \(10^3\) oublié (litres et m³, grammes et kilogrammes).</li>
+<li>Comparez toujours à une valeur connue : une voiture à 300 m·s⁻¹, une force de 2 N pour soulever une personne, de l’eau liquide à 5 000 K sont des signaux d’erreur.</li>
 </ul>
 </div>
 
-<h2 id="incertitudes">3. Chiffres significatifs et incertitudes</h2>
+<h2 id="echelles">5. Lois d’échelle : raisonner en rapports</h2>
+<p>Quand une formule exacte est inconnue (ou inutile), une <strong>loi de puissance</strong> suffit : si \(y \propto x^n\), multiplier \(x\) par \(\lambda\) multiplie \(y\) par \(\lambda^n\), quelle que soit la constante.</p>
+<table>
+<thead><tr><th>Si toutes les longueurs sont multipliées par \(\lambda\)</th><th>Facteur</th><th>\(\lambda = 10\)</th></tr></thead>
+<tbody>
+<tr><td>longueurs, rayons, hauteurs</td><td>\(\lambda\)</td><td>× 10</td></tr>
+<tr><td>surfaces, sections</td><td>\(\lambda^2\)</td><td>× 100</td></tr>
+<tr><td>volumes, masses, poids</td><td>\(\lambda^3\)</td><td>× 1 000</td></tr>
+<tr><td>surface / volume</td><td>\(1/\lambda\)</td><td>÷ 10</td></tr>
+</tbody></table>
+<table>
+<thead><tr><th>Question</th><th>Raisonnement</th><th>Conséquence</th></tr></thead>
+<tbody>
+<tr><td>Un éléphant peut-il avoir les pattes d’un chat agrandi 10 fois ?</td><td>poids \(\propto \lambda^3\), section des os \(\propto \lambda^2\) : contrainte \(\propto \lambda\)</td><td>contrainte × 10 : il faut des pattes plus épaisses</td></tr>
+<tr><td>Pourquoi les petits animaux mangent-ils beaucoup ?</td><td>pertes thermiques \(\propto\) surface, réserves \(\propto\) masse : pertes par kg \(\propto 1/\lambda\)</td><td>une souris perd vite sa chaleur</td></tr>
+<tr><td>Temps de cuisson d’une dinde deux fois plus grosse (en taille) ?</td><td>diffusion de la chaleur : \(t \propto L^2\)</td><td>4 fois plus long</td></tr>
+<tr><td>Fréquence d’un instrument deux fois plus grand ?</td><td>\(f \propto 1/L\)</td><td>une octave plus grave</td></tr>
+</tbody></table>
+<div class="methode" data-m="rapports"><p>On écrit la loi pour les deux situations et on fait le <strong>rapport</strong> : les constantes inconnues disparaissent. Exemple : \(P \propto R^2T^4\) pour une étoile, donc \(\dfrac{T_2}{T_1} = \left(\dfrac{P_2}{P_1}\right)^{1/4}\left(\dfrac{R_1}{R_2}\right)^{1/2}\).</p></div>
+<div class="sim" data-name="echelle"><p>Agrandissez un animal d’un facteur \(\lambda\) : comparez la croissance de son poids, de la section de ses os et de sa surface. La contrainte sur les os et les pertes thermiques par kilogramme se lisent directement.</p></div>
+<div class="exo" data-q="ipho-2024-T6"></div>
+<div class="exo" data-q="ipho-2019-T8"></div>
+
+<h2 id="incertitudes">6. Chiffres significatifs, incertitudes et courbes</h2>
 
 <h3 id="cs">Chiffres significatifs</h3>
-<p>Le nombre de chiffres significatifs d’une donnée traduit sa précision : « \(m = 2{,}0\ \text{g}\) » signifie \(2{,}0 \pm 0{,}05\) environ ; « \(2{,}000\) » annonce une précision mille fois meilleure. Les zéros de gauche ne comptent pas (\(0{,}0025\) : 2 CS), ceux de droite comptent (\(2{,}50\) : 3 CS) ; en notation scientifique, tout est clair (\(2{,}5\times10^{-3}\)). Règle pratique : le résultat d’un calcul a <strong>autant de chiffres significatifs que la donnée qui en a le moins</strong> (produits et quotients), et autant de décimales que la donnée qui en a le moins (sommes). Les constantes mathématiques (\(2\), \(\pi\), \(4/3\)) sont exactes. Gardez un chiffre de plus dans les calculs intermédiaires et n’arrondissez qu’à la fin.</p>
-
+<p>Le nombre de chiffres significatifs d’une donnée traduit sa précision : « 2,0 g » annonce une précision au dixième, « 2,000 g » une précision mille fois meilleure.</p>
+<table>
+<thead><tr><th>Règle de comptage</th><th>Exemple</th><th>Chiffres significatifs</th></tr></thead>
+<tbody>
+<tr><td>On compte à partir du premier chiffre non nul.</td><td>0,39 A</td><td>2</td></tr>
+<tr><td>Les zéros de gauche ne comptent pas.</td><td>0,002 0 m</td><td>2</td></tr>
+<tr><td>Les zéros de droite comptent.</td><td>12,250 km·h⁻¹</td><td>5</td></tr>
+<tr><td>La notation scientifique lève toute ambiguïté.</td><td>\(2{,}5\times10^{-3}\)</td><td>2</td></tr>
+</tbody></table>
+<table>
+<thead><tr><th>Opération</th><th>Règle</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr><td>Produit, quotient</td><td>autant de chiffres significatifs que la donnée qui en a le moins</td><td>6,0 min à 80 km·h⁻¹ : 8,0 km</td></tr>
+<tr><td>Somme, différence</td><td>autant de décimales que la donnée qui en a le moins</td><td>15,2 cm + 0,6 cm = 15,8 cm</td></tr>
+<tr><td>Constantes exactes</td><td>\(2\), \(\pi\), \(\tfrac43\) ne limitent rien</td><td>\(V = \tfrac43\pi R^3\) : seul \(R\) compte</td></tr>
+<tr><td>Calculs intermédiaires</td><td>garder un chiffre de plus, n’arrondir qu’à la fin</td><td>jamais les 10 chiffres de la calculatrice</td></tr>
+</tbody></table>
 <div class="exo" data-group="cde-o8"></div>
+
 <h3 id="propagation">Incertitude-type et propagation</h3>
-<p>Un résultat de mesure s’écrit \(x = x_\text{mesuré} \pm u(x)\), où \(u(x)\) est l’<strong>incertitude-type</strong> (écart-type de la distribution des valeurs plausibles). Pour une lecture sur une graduation de pas \(a\), \(u \approx a/\sqrt{12} \approx 0{,}3\,a\) ; pour une série de \(n\) mesures de moyenne \(\bar x\) et d’écart-type \(\sigma\), l’incertitude sur la moyenne est \(\sigma/\sqrt n\). L’incertitude relative \(u(x)/|x|\) se donne en % ; elle se <strong>propage</strong> :</p>
-<div class="tablewrap"><table>
+<p>Un résultat de mesure s’écrit \(x = x_\text{mesuré} \pm u(x)\), où \(u(x)\) est l’<strong>incertitude-type</strong>. L’incertitude s’écrit avec 1 ou 2 chiffres, et elle fixe la dernière décimale du résultat.</p>
+<table>
+<thead><tr><th>Situation</th><th>Incertitude-type</th></tr></thead>
+<tbody>
+<tr><td>Lecture sur une graduation de pas \(a\)</td><td>\(u \approx a/\sqrt{12} \approx 0{,}3\,a\)</td></tr>
+<tr><td>Série de \(n\) mesures d’écart-type \(\sigma\)</td><td>incertitude sur la moyenne \(\sigma/\sqrt n\)</td></tr>
+</tbody></table>
+<p>Elle se <strong>propage</strong> dans les calculs :</p>
+<table>
 <thead><tr><th>Relation</th><th>Incertitude</th><th>Exemple</th></tr></thead>
 <tbody>
 <tr><td>\(y = x_1 + x_2\) ou \(x_1 - x_2\)</td><td>\(u(y) = \sqrt{u(x_1)^2 + u(x_2)^2}\)</td><td>différence de deux longueurs proches : incertitude relative énorme</td></tr>
 <tr><td>\(y = x_1 x_2\) ou \(x_1/x_2\)</td><td>\(\dfrac{u(y)}{y} = \sqrt{\left(\dfrac{u(x_1)}{x_1}\right)^2 + \left(\dfrac{u(x_2)}{x_2}\right)^2}\)</td><td>\(\rho = m/V\) : 1 % sur \(m\), 2 % sur \(V\) → 2,2 % sur \(\rho\)</td></tr>
-<tr><td>\(y = k\,x^n\)</td><td>\(\dfrac{u(y)}{y} = |n|\,\dfrac{u(x)}{x}\)</td><td>\(V = \tfrac43\pi R^3\) : 1 % sur \(R\) → 3 % sur \(V\) ; \(g = 4\pi^2\ell/T^2\) : 0,5 % sur \(T\) → 1 % sur \(g\)</td></tr>
+<tr><td>\(y = k\,x^n\)</td><td>\(\dfrac{u(y)}{y} = |n|\,\dfrac{u(x)}{x}\)</td><td>\(V = \tfrac43\pi R^3\) : 1 % sur \(R\) → 3 % sur \(V\)</td></tr>
 <tr><td>\(y = f(x)\)</td><td>\(u(y) = |f'(x)|\,u(x)\)</td><td>\(\sin\theta\) : \(u = \cos\theta\,u(\theta)\) (\(\theta\) en rad)</td></tr>
-</tbody></table></div>
-<p>Pour comparer un résultat \(x \pm u(x)\) à une valeur de référence \(x_\text{ref}\), on calcule l’<strong>écart normalisé</strong> \(z = |x - x_\text{ref}|/u(x)\) : compatible si \(z \lesssim 2\).</p>
-<div class="methode" data-m="incertitude"><p>Pour \(\rho = m/V\) avec 1 % sur \(m\) et 2 % sur \(V\), on ajoute les incertitudes relatives en quadrature : \(\sqrt{1^2 + 2^2} \approx 2{,}2\ \%\), et non 3 %. La plus grande des deux domine : c’est elle qu’il faut réduire pour améliorer la mesure.</p></div>
-
+</tbody></table>
+<p>Pour comparer un résultat \(x \pm u(x)\) à une valeur de référence \(x_\text{ref}\), on calcule l’<strong>écart normalisé</strong> \(z = |x - x_\text{ref}|/u(x)\) : les deux sont compatibles si \(z \lesssim 2\).</p>
+<div class="methode" data-m="incertitude"><p>Pour \(\rho = m/V\) avec 1 % sur \(m\) et 2 % sur \(V\), on ajoute les incertitudes relatives en quadrature : \(\sqrt{1^2 + 2^2} \approx 2{,}2\ \%\), et non 3 %. La plus grande des deux domine : c’est elle qu’il faut réduire.</p></div>
 <div class="exo" data-group="cde-o11"></div>
-<h3 id="regression">Exploiter une courbe : régression linéaire et graphes log-log</h3>
-<p>Pour tester une loi, on la met sous forme <strong>linéaire</strong> et on trace la bonne grandeur : \(T^2\) en fonction de \(\ell\) pour le pendule (pente \(4\pi^2/g\)), \(\ln N\) en fonction de \(t\) pour une décroissance exponentielle (pente \(-\lambda\)), \(1/v\) ou \(x^2\) selon le cas. La pente et l’ordonnée à l’origine donnent les paramètres ; les points doivent se répartir de part et d’autre de la droite sans tendance (résidus). Une loi de puissance \(y = kx^n\) devient, en coordonnées logarithmiques, une droite \(\log y = \log k + n\log x\) : la <strong>pente lit l’exposant</strong>. C’est ainsi qu’on vérifie la troisième loi de Kepler (\(T^2 \propto a^3\) : pente 1,5) ou qu’on mesure l’exposant d’une loi de traînée.</p>
-<div class="methode" data-m="graphe"><p>Pour le pendule, on trace \(T^2\) en fonction de \(\ell\) : la loi \(T^2 = (4\pi^2/g)\,\ell\) devient une droite passant par l’origine, et \(g = 4\pi^2/\text{pente}\). La pente se lit entre deux points éloignés et s’exprime en \(\text{s}^2\text{·m}^{-1}\).</p></div>
+
+<h3 id="regression">Exploiter une courbe : linéariser</h3>
+<p>Pour tester une loi, on la met sous forme <strong>linéaire</strong> et on trace la bonne grandeur. La pente et l’ordonnée à l’origine donnent les paramètres.</p>
+<table>
+<thead><tr><th>Loi</th><th>On trace</th><th>On obtient</th></tr></thead>
+<tbody>
+<tr><td>Pendule : \(T^2 = \dfrac{4\pi^2}{g}\,\ell\)</td><td>\(T^2\) en fonction de \(\ell\)</td><td>droite passant par l’origine, de pente \(4\pi^2/g\)</td></tr>
+<tr><td>Décroissance : \(N = N_0\,\mathrm e^{-\lambda t}\)</td><td>\(\ln N\) en fonction de \(t\)</td><td>droite de pente \(-\lambda\)</td></tr>
+<tr><td>Loi de puissance : \(y = kx^n\)</td><td>\(\log y\) en fonction de \(\log x\)</td><td>droite de pente \(n\) : la pente lit l’exposant</td></tr>
+</tbody></table>
+<p>Les points doivent se répartir au hasard de part et d’autre de la droite (regarder les <strong>résidus</strong>) ; un coefficient de corrélation proche de 1 ne prouve pas la linéarité. C’est ainsi qu’on vérifie la troisième loi de Kepler : en log-log, les huit planètes s’alignent sur une droite de pente 1,5, donc \(T \propto a^{3/2}\).</p>
+<div class="methode" data-m="graphe"><p>Pour le pendule, on trace \(T^2\) en fonction de \(\ell\) ; on lit la pente entre deux points éloignés (en s²·m⁻¹) et \(g = 4\pi^2/\text{pente}\).</p></div>
 <div class="sim" data-name="regression"><p>Des mesures bruitées d’une loi \(y = kx^n\) : choisissez l’exposant et le bruit, puis regardez comment la représentation log-log les met en droite et comment la régression retrouve \(n\). Augmentez le nombre de points et observez l’incertitude sur la pente.</p></div>
 
-<div class="cpge" id="moindres-carres" title="Formules des moindres carrés et incertitudes sur la pente">
-<p>Pour \(n\) points \((x_i, y_i)\), la droite \(y = ax + b\) qui minimise \(\sum (y_i - ax_i - b)^2\) a pour pente \(a = \dfrac{\overline{xy} - \bar x\,\bar y}{\overline{x^2} - \bar x^2}\) et pour ordonnée à l’origine \(b = \bar y - a\bar x\). L’incertitude-type sur la pente vaut \(u(a) = \sqrt{\dfrac{\sum r_i^2}{(n-2)\sum (x_i - \bar x)^2}}\) où \(r_i = y_i - ax_i - b\) sont les résidus : elle décroît comme \(1/\sqrt n\) et avec l’étendue des \(x_i\). Le coefficient de corrélation \(r\) proche de 1 ne prouve pas la linéarité : regardez les résidus. Pour une régression sur des logarithmes, les incertitudes relatives deviennent des incertitudes absolues sur \(\ln y\) : \(u(\ln y) = u(y)/y\).</p>
+<div class="cpge" id="moindres-carres" title="Formules des moindres carrés et incertitude sur la pente">
+<p>Pour \(n\) points \((x_i, y_i)\), la droite \(y = ax + b\) qui minimise \(\sum (y_i - ax_i - b)^2\) a pour pente et ordonnée à l’origine :</p>
+\[a = \frac{\overline{xy} - \bar x\,\bar y}{\overline{x^2} - \bar x^2}, \qquad b = \bar y - a\bar x.\]
+<p>L’incertitude-type sur la pente vaut, avec les résidus \(r_i = y_i - ax_i - b\) :</p>
+\[u(a) = \sqrt{\frac{\sum r_i^2}{(n-2)\sum (x_i - \bar x)^2}}.\]
+<p>Elle décroît comme \(1/\sqrt n\) et avec l’étendue des \(x_i\). Pour une régression sur des logarithmes, une incertitude relative sur \(y\) devient une incertitude absolue sur \(\ln y\) : \(u(\ln y) = u(y)/y\).</p>
 </div>
 
-<h2 id="approximations">4. Approximations et développements limités</h2>
-<p>Presque tous les calculs de physique reposent sur une petite quantité sans dimension \(x \ll 1\) (angle, rapport de longueurs, \(v/c\), \(\Delta T/T\)). Au premier ordre :</p>
-<div class="tablewrap"><table>
-<thead><tr><th>Fonction</th><th>Ordre 1</th><th>Ordre 2</th><th>Usage typique</th></tr></thead>
-<tbody>
-<tr><td>\((1+x)^n\)</td><td>\(1 + nx\)</td><td>\(1 + nx + \tfrac{n(n-1)}{2}x^2\)</td><td>\(\sqrt{1+x} \approx 1 + x/2\), \(\dfrac{1}{1+x} \approx 1 - x\), \(\dfrac{1}{(1+x)^2} \approx 1 - 2x\) (variation de \(g\) avec l’altitude)</td></tr>
-<tr><td>\(\sin x\)</td><td>\(x\)</td><td>\(x - x^3/6\)</td><td>pendule, petites oscillations, diffraction \(\sin\theta \approx \tan\theta \approx \theta\)</td></tr>
-<tr><td>\(\cos x\)</td><td>\(1\)</td><td>\(1 - x^2/2\)</td><td>énergie potentielle \(mg\ell(1-\cos\theta) \approx \tfrac12 mg\ell\theta^2\), différence de marche</td></tr>
-<tr><td>\(\tan x\)</td><td>\(x\)</td><td>\(x + x^3/3\)</td><td>optique paraxiale</td></tr>
-<tr><td>\(\mathrm e^x\)</td><td>\(1 + x\)</td><td>\(1 + x + x^2/2\)</td><td>début d’une charge de condensateur, atmosphère sur quelques mètres</td></tr>
-<tr><td>\(\ln(1+x)\)</td><td>\(x\)</td><td>\(x - x^2/2\)</td><td>petites variations relatives : \(\ln(y/y_0) \approx \Delta y/y_0\)</td></tr>
-</tbody></table></div>
-<p>Exemple : la pesanteur à l’altitude \(h \ll R_T\) : \(g(h) = \dfrac{GM}{(R_T + h)^2} = g_0\,(1 + h/R_T)^{-2} \approx g_0\left(1 - \dfrac{2h}{R_T}\right)\) ; à 10 km, \(-0{,}3\ \%\). Exemple : la différence de marche entre deux fentes distantes de \(a\) vues depuis un point à la distance \(D\) et à la hauteur \(x\) : \(\sqrt{D^2 + (x + a/2)^2} - \sqrt{D^2 + (x - a/2)^2} \approx ax/D\). Exemple : la variation relative d’une grandeur produit \(y = x_1^{a}x_2^{b}\) : \(\dfrac{\Delta y}{y} \approx a\dfrac{\Delta x_1}{x_1} + b\dfrac{\Delta x_2}{x_2}\) (c’est aussi la propagation des incertitudes).</p>
-<div class="methode" data-m="petit-parametre"><p>Pour la pesanteur en altitude, le petit paramètre est \(\varepsilon = h/R_T\) ; on factorise \(R_T\) pour faire apparaître \((1 + \varepsilon)^{-2}\), puis on applique \((1+\varepsilon)^n \approx 1 + n\varepsilon\) avec \(n = -2\). À 10 km, \(\varepsilon \approx 1{,}6\times10^{-3}\) : le terme d’ordre 2 est mille fois plus petit.</p></div>
-<div class="sim" data-name="dl"><p>Comparez une fonction à ses développements limités d’ordre 1, 2 et 3 : jusqu’où l’approximation reste-t-elle bonne à 1 % ? Observez que \(\sin x \approx x\) tient jusqu’à 14° à 1 % près.</p></div>
-
-<div class="cpge" id="linearisation" title="Linéarisation autour d’un équilibre : petites oscillations">
-<p>Si une particule a l’énergie potentielle \(E_p(x)\) avec un minimum en \(x_0\), alors \(E_p(x) \approx E_p(x_0) + \tfrac12 E_p''(x_0)(x - x_0)^2\) : au voisinage de l’équilibre, tout ressemble à un ressort de raideur \(k = E_p''(x_0)\), et les petites oscillations ont la pulsation \(\omega_0 = \sqrt{E_p''(x_0)/m}\). De même, une équation \(\ddot x = f(x)\) avec \(f(x_0) = 0\) se linéarise en \(\ddot\varepsilon = f'(x_0)\,\varepsilon\) : oscillations si \(f'(x_0) < 0\) (équilibre stable), divergence exponentielle en \(\mathrm e^{t\sqrt{f'(x_0)}}\) si \(f'(x_0) > 0\) (instable : pendule inversé, plongeur du chapitre « Statique »). Pendule : \(\ddot\theta = -\dfrac{g}{\ell}\sin\theta \approx -\dfrac{g}{\ell}\theta\). Molécule diatomique, potentiel de Lennard-Jones, ludion : même méthode.</p>
-</div>
-
-<h2 id="maths">5. Outils mathématiques des sujets</h2>
-
-<h3 id="eqdiff">Équations différentielles à connaître</h3>
-<div class="tablewrap"><table>
-<thead><tr><th>Équation</th><th>Solution</th><th>Où on la rencontre</th></tr></thead>
-<tbody>
-<tr><td>\(\dfrac{\mathrm dy}{\mathrm dt} = -\dfrac{y}{\tau}\)</td><td>\(y = y_0\,\mathrm e^{-t/\tau}\)</td><td>décroissance radioactive, décharge d’un condensateur, atmosphère isotherme (en \(z\)), amortissement</td></tr>
-<tr><td>\(\dfrac{\mathrm dy}{\mathrm dt} + \dfrac{y}{\tau} = \dfrac{y_\infty}{\tau}\)</td><td>\(y = y_\infty + (y_0 - y_\infty)\,\mathrm e^{-t/\tau}\)</td><td>charge d’un condensateur, chute avec frottement fluide (vitesse limite), refroidissement</td></tr>
-<tr><td>\(\ddot y + \omega_0^2 y = 0\)</td><td>\(y = A\cos(\omega_0 t + \varphi)\)</td><td>ressort, pendule, LC, flotteur qui oscille, tube en U</td></tr>
-<tr><td>\(\ddot y - \alpha^2 y = 0\)</td><td>\(y = A\,\mathrm e^{\alpha t} + B\,\mathrm e^{-\alpha t}\)</td><td>équilibre instable (ludion, pendule inversé)</td></tr>
-<tr><td>\(\dfrac{\mathrm dy}{\mathrm dt} = -k\sqrt y\)</td><td>\(\sqrt y = \sqrt{y_0} - kt/2\)</td><td>vidange de Torricelli (séparation des variables)</td></tr>
-<tr><td>\(\ddot y = -g\) ; \(\dot y = -\dfrac{g}{v_\text{lim}^2}(v_\text{lim}^2 + y^2)\)…</td><td>intégrer deux fois ; séparer les variables</td><td>chute libre ; chute avec traînée quadratique</td></tr>
-</tbody></table></div>
-<p>Méthode générale : identifier \(\tau\) ou \(\omega_0\) <em>avant</em> de résoudre (en mettant l’équation sous forme canonique), fixer les constantes avec les conditions initiales, vérifier le comportement aux temps longs. Pour une équation à variables séparables, \(\dfrac{\mathrm dy}{f(y)} = g(t)\,\mathrm dt\), puis intégrer de chaque côté entre l’état initial et l’état à \(t\).</p>
-
-<h3 id="integrales">Dérivées, intégrales, vecteurs</h3>
-<p>Intégrales qui reviennent : \(\int_0^h z\,\mathrm dz = h^2/2\) (force sur un barrage), \(\int_0^R r^2\,\mathrm dr = R^3/3\), \(\int_0^R 2\pi r\,f(r)\,\mathrm dr\) (disque découpé en couronnes), \(\int_0^R 4\pi r^2\,\mathrm dr = \tfrac43\pi R^3\) (sphère en pelures), \(\int \dfrac{\mathrm dx}{x} = \ln x\), \(\int \dfrac{\mathrm dx}{1 + x^2} = \arctan x\), \(\int_0^{\pi} \sin\theta\,\mathrm d\theta = 2\), \(\langle\cos^2\rangle = \tfrac12\) sur une période. Volumes et aires : sphère \(4\pi R^2\), \(\tfrac43\pi R^3\) ; cylindre \(2\pi R h\) (latéral) ; cône \(\tfrac13 S h\). Vecteurs : projeter sur des axes bien choisis (tangent et normal pour un mouvement circulaire : \(a_t = \dot v\), \(a_n = v^2/R\)), utiliser \(\vec a\cdot\vec b = ab\cos\theta\) pour un travail, \(\|\vec a\wedge\vec b\| = ab\sin\theta\) pour un moment. Symétries : un champ ou une force ne peut pas « choisir » une direction que le problème ne distingue pas.</p>
-
-<h3 id="echelles">Lois d’échelle</h3>
-<p>Quand on multiplie toutes les longueurs d’un objet par \(\lambda\), ses aires sont multipliées par \(\lambda^2\) et ses volumes (donc sa masse) par \(\lambda^3\). Conséquences : la résistance d’un os (\(\propto\) section, \(\lambda^2\)) croît moins vite que le poids (\(\lambda^3\)) : les grands animaux ont des pattes proportionnellement plus épaisses ; les pertes thermiques (\(\propto\) surface) rapportées à la masse varient comme \(1/\lambda\) : les petits animaux mangent beaucoup et les bébés se refroidissent vite ; la chute d’une goutte (Stokes : \(v \propto R^2\)) ; le temps de cuisson (diffusion : \(t \propto L^2\)) ; la fréquence d’un instrument de musique (\(\propto 1/L\)). Une loi de puissance \(y \propto x^n\) se reconnaît à ce que doubler \(x\) multiplie \(y\) par \(2^n\), indépendamment de \(x\).</p>
-
-<div class="exo" data-q="ipho-2019-T8"></div>
-<div class="exo" data-q="ipho-2024-T6"></div>
-<h2 id="rediger">6. Rédiger : ce qu’attendent les correcteurs</h2>
+<h2 id="rediger">7. Rédiger : ce qu’attendent les correcteurs</h2>
 <p>Les rapports du jury du Concours général et les corrigés IPhO répètent les mêmes conseils :</p>
 <ol>
 <li><strong>Littéral d’abord.</strong> Établir l’expression littérale, l’encadrer, puis seulement faire l’application numérique. Un résultat numérique sans expression littérale vaut peu ; une expression fausse mais homogène et discutée vaut quelque chose.</li>
-<li><strong>Unités et chiffres significatifs.</strong> Toute valeur numérique porte une unité ; 2 ou 3 chiffres significatifs, jamais les 10 chiffres de la calculatrice.</li>
-<li><strong>Vérifier.</strong> Homogénéité, signe, cas limites, ordre de grandeur plausible : un commentaire d’une ligne (« le résultat est bien de l’ordre de la pression atmosphérique ») est valorisé.</li>
+<li><strong>Unités et chiffres significatifs.</strong> Toute valeur numérique porte une unité ; 2 ou 3 chiffres significatifs.</li>
+<li><strong>Vérifier.</strong> Homogénéité, signe, cas limites, ordre de grandeur plausible : un commentaire d’une ligne (« c’est bien de l’ordre de la pression atmosphérique ») est valorisé.</li>
 <li><strong>Schéma et notations.</strong> Un schéma avec les forces, l’axe orienté, les notations de l’énoncé ; définir toute grandeur introduite.</li>
 <li><strong>Hypothèses explicites.</strong> « Fluide incompressible », « régime stationnaire », « \(\theta \ll 1\) » : dire ce qu’on néglige et pourquoi.</li>
-<li><strong>Questions non guidées</strong> (Concours général) : poser le modèle, estimer les grandeurs manquantes avec des valeurs raisonnables, conclure par un ordre de grandeur. Le jury valorise la démarche même si la valeur finale est approximative.</li>
-<li><strong>Gestion du temps</strong> : au QCM, environ 3 minutes par question ; ne restez pas bloqué, repérez d’abord les questions d’homogénéité et d’ordre de grandeur, souvent rapides.</li>
+<li><strong>Questions non guidées</strong> (Concours général) : poser le modèle, estimer les grandeurs manquantes avec des valeurs raisonnables, conclure par un ordre de grandeur.</li>
+<li><strong>Gestion du temps</strong> : au QCM, environ 3 minutes par question ; repérez d’abord les questions d’homogénéité et d’ordre de grandeur, souvent rapides.</li>
 </ol>
 
 <div class="cpge" id="plus-loin" title="Pour aller plus loin : polycopiés olympiques">

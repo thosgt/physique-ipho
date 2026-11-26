@@ -4,14 +4,24 @@
 
 <p>Un formulaire long est un piège : on s’y perd, et on finit par appliquer une formule hors de ses hypothèses. Pour chaque chapitre, seulement les <strong>quelques relations à connaître sans hésiter</strong> ; tout le reste se retrouve à partir d’elles. Sous chaque liste, les <a href="#methodes">méthodes</a> qui servent le plus dans le chapitre.</p>
 
-<h2 id="f-outils">Analyse dimensionnelle et outils</h2>
+<h2 id="f-outils">Analyse dimensionnelle et ordres de grandeur</h2>
 <ul>
-<li>\([F] = MLT^{-2}\), \([E] = ML^2T^{-2}\), \([P] = ML^{-1}T^{-2}\) ; l’argument de exp, ln, sin est sans dimension.</li>
-<li>Pour \(x \ll 1\) : \((1+x)^n \approx 1 + nx\), \(\sin x \approx x\), \(\cos x \approx 1 - x^2/2\), \(\mathrm e^x \approx 1 + x\), \(\ln(1+x) \approx x\).</li>
+<li>À savoir par cœur : \([v] = LT^{-1}\), \([a] = LT^{-2}\), \([F] = MLT^{-2}\), \([E] = ML^2T^{-2}\), \([P] = ML^2T^{-3}\). Les autres dimensions se retrouvent avec une loi simple (\(p = F/S\), \(P = UI\), \(U = RI\)…).</li>
+<li>L’argument de exp, ln, sin est sans dimension ; l’analyse dimensionnelle donne une loi à une constante près.</li>
+<li>Lois d’échelle : longueurs × λ, surfaces × λ², volumes et masses × λ³.</li>
 <li>Incertitudes : absolues qui s’ajoutent (en quadrature) pour une somme, relatives pour un produit ; \(u(x^n)/x^n = n\,u(x)/x\).</li>
-<li>\(\dot y + y/\tau = \text{cste}\) : exponentielle de temps caractéristique \(\tau\) ; \(\ddot y + \omega_0^2 y = 0\) : sinusoïde de pulsation \(\omega_0\).</li>
 </ul>
-<p class="fmeth">Méthodes clés : <a href="#methodes--m-dimension">Vérifier l’homogénéité, deviner une loi</a> · <a href="#methodes--m-cas-limites">Tester les cas limites</a> · <a href="#methodes--m-petit-parametre">Développer au premier ordre en un petit paramètre</a> · <a href="#methodes--m-ordre-grandeur">Estimer un ordre de grandeur</a> · <a href="#methodes--m-derivee-logarithmique">Différentier le logarithme</a>.</p>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-dimension">Vérifier l’homogénéité, deviner une loi</a> · <a href="#methodes--m-cas-limites">Tester les cas limites</a> · <a href="#methodes--m-ordre-grandeur">Estimer un ordre de grandeur</a> · <a href="#methodes--m-rapports">Raisonner en rapports</a> · <a href="#methodes--m-incertitude">Évaluer et propager une incertitude</a>.</p>
+
+<h2 id="f-maths">Outils mathématiques</h2>
+<ul>
+<li>Dérivées : \((t^n)' = nt^{n-1}\), \((\mathrm e^{at})' = a\,\mathrm e^{at}\), \((\cos\omega t)' = -\omega\sin\omega t\), \((\sin\omega t)' = \omega\cos\omega t\), \((\ln t)' = 1/t\).</li>
+<li>Pour \(x \ll 1\) : \((1+x)^n \approx 1 + nx\), \(\sin x \approx x\), \(\cos x \approx 1 - x^2/2\), \(\mathrm e^x \approx 1 + x\), \(\ln(1+x) \approx x\).</li>
+<li>\(\int_a^b f = F(b) - F(a)\) avec \(F' = f\) ; éléments : tranche \(L\,\mathrm dz\), couronne \(2\pi r\,\mathrm dr\), pelure \(4\pi r^2\,\mathrm dr\) ; \(\langle\cos^2\rangle = \tfrac12\).</li>
+<li>\(\tau\dot y + y = y_\infty\) : \(y = y_\infty + (y_0 - y_\infty)\,\mathrm e^{-t/\tau}\) ; 63 % à \(\tau\), 99 % à \(5\tau\).</li>
+<li>\(\ddot y + \omega_0^2 y = 0\) : \(y = A\cos(\omega_0 t + \varphi)\), \(T_0 = 2\pi/\omega_0\), \(A = \sqrt{y_0^2 + (\dot y_0/\omega_0)^2}\).</li>
+</ul>
+<p class="fmeth">Méthodes clés : <a href="#methodes--m-petit-parametre">Développer au premier ordre en un petit paramètre</a> · <a href="#methodes--m-decouper-integrer">Découper en éléments et intégrer</a> · <a href="#methodes--m-equadiff">Écrire et reconnaître une équation différentielle</a> · <a href="#methodes--m-extremum">Chercher un extremum</a> · <a href="#methodes--m-derivee-logarithmique">Différentier le logarithme</a>.</p>
 
 <h2 id="f-mecapoint">Mécanique du point</h2>
 <ul>

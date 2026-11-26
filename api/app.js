@@ -19,7 +19,7 @@ function readPhotos(v) {
 }
 
 const DEFAULT_SETTINGS = { claude: true, quota: 15, open: true, requests: true };
-const CHAP_TITLES = { outils: "Outils", statique: "Statique des fluides", dynamique: "Dynamique des fluides", tension: "Tension superficielle",
+const CHAP_TITLES = { outils: "Analyse dimensionnelle", maths: "Outils mathématiques", statique: "Statique des fluides", dynamique: "Dynamique des fluides", tension: "Tension superficielle",
   nongalileen: "Référentiels non galiléens", geometrique: "Optique géométrique", optique: "Ondes et optique", relativite: "Relativité",
   nucleaire: "Nucléaire", quantique: "Quantique", solide: "Mécanique du solide", electrostatique: "Champ électrique",
   magnetisme: "Champ magnétique et bobine", particules: "Particules chargées", initiative: "Problèmes à prise d'initiative",

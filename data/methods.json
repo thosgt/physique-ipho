@@ -95,6 +95,7 @@
 "texte": "Faites tendre un paramètre vers 0 ou l’infini, ou rendez deux paramètres égaux : le résultat doit redonner un cas connu (\\(v \\ll c\\) redonne Newton, angle nul, densités égales…). C’est la vérification la plus rapide et elle détecte la plupart des erreurs de signe ou de facteur.",
 "chaps": [
 "outils",
+"maths",
 "statique",
 "dynamique",
 "tension",
@@ -116,7 +117,7 @@
 "quand": "Une grandeur est petite devant une autre (x ≪ 1, v ≪ c, h ≪ R).",
 "texte": "Identifiez le petit paramètre sans dimension \\(\\varepsilon\\), puis utilisez \\((1+\\varepsilon)^n \\approx 1 + n\\varepsilon\\), \\(\\sin\\varepsilon \\approx \\varepsilon\\), \\(\\ln(1+\\varepsilon) \\approx \\varepsilon\\). Ne développez qu’au premier ordre non nul et ne mélangez pas les ordres.",
 "chaps": [
-"outils",
+"maths",
 "statique",
 "tension",
 "geometrique",
@@ -135,6 +136,7 @@
 "texte": "Une équation à trois termes ou plus ne se résout presque jamais, mais dans un régime donné deux termes dominent les autres. Évaluez l’ordre de grandeur de chaque terme dans le régime demandé, ne gardez que les deux plus grands, résolvez, puis vérifiez que le terme négligé est bien petit avec la solution trouvée. Pour un exposant, cherchez la solution sous la forme \\(x = A\\,t^{\\alpha}\\) et égalez les puissances de \\(t\\). Vitesse limite : le terme d’accélération s’annule ; temps courts : les termes qui contiennent la vitesse sont encore nuls.",
 "chaps": [
 "outils",
+"maths",
 "dynamique",
 "tension",
 "relativite",
@@ -150,6 +152,7 @@
 "texte": "Si \\(a^\\alpha b^\\beta c^\\gamma = \\text{cste}\\), les petites variations vérifient \\(\\alpha\\,\\dfrac{\\Delta a}{a} + \\beta\\,\\dfrac{\\Delta b}{b} + \\gamma\\,\\dfrac{\\Delta c}{c} = 0\\). C’est la voie la plus rapide vers un gradient (atmosphère) ou une incertitude relative.",
 "chaps": [
 "outils",
+"maths",
 "statique",
 "optique",
 "relativite",
@@ -265,7 +268,7 @@
 "quand": "Une grandeur varie d’un point à l’autre (pression sur une paroi, masse volumique variable).",
 "texte": "Découpez en tranches où la grandeur est uniforme, écrivez la contribution d’une tranche (\\(\\mathrm dF = P(z)\\,L\\,\\mathrm dz\\)), puis sommez. Vérifiez que le résultat a la bonne dimension et redonne le cas uniforme.",
 "chaps": [
-"outils",
+"maths",
 "statique",
 "dynamique",
 "tension",
@@ -476,7 +479,7 @@
 "quand": "« En moyenne », « par révolution », « sur un an », « sur une période », phase aléatoire, mouvement rapide superposé à une évolution lente.",
 "texte": "Quand un mouvement rapide (rotation, oscillation, orbite) se superpose à une évolution lente, remplacez-le par sa moyenne sur une période : \\(\\langle\\cos\\rangle = \\langle\\sin\\rangle = 0\\), \\(\\langle\\cos^2\\rangle = \\langle\\sin^2\\rangle = \\tfrac12\\), \\(\\langle\\sin\\cos\\rangle = 0\\). Une masse en orbite rapide devient un anneau, un courant alternatif devient sa valeur efficace. Une force moyenne non nulle vient souvent du <em>produit</em> de deux grandeurs oscillantes : \\(\\langle a\\cos\\omega t\\cdot b\\cos(\\omega t+\\varphi)\\rangle = \\tfrac12ab\\cos\\varphi\\). Pour des ondes, demandez-vous ce qui se moyenne : les amplitudes si la phase est fixe (interférences), les intensités si elle est aléatoire.",
 "chaps": [
-"outils",
+"maths",
 "optique",
 "nongalileen",
 "magnetisme",
@@ -567,7 +570,7 @@
 "quand": "Petits mouvements, stabilité, oscillations.",
 "texte": "Écrivez la force ou l’énergie près de l’équilibre au premier ordre en l’écart \\(x\\) : on obtient \\(\\ddot x + \\omega_0^2 x = 0\\) (équilibre stable, oscillations à \\(\\omega_0\\)) ou \\(\\ddot x - \\omega_0^2 x = 0\\) (instable).",
 "chaps": [
-"outils",
+"maths",
 "statique",
 "tension",
 "quantique",
@@ -582,7 +585,7 @@
 "quand": "Période des petites oscillations ou équation du mouvement d’un système compliqué (tiges, poulies, roulement, liquide dans un tube) dont la position ne dépend que d’une seule coordonnée.",
 "texte": "Si aucune force ne dissipe, exprimez toute l’énergie avec la seule coordonnée \\(q\\) : \\(E = \\tfrac12\\mu\\,\\dot q^2 + V(q)\\), où \\(\\mu\\) regroupe toutes les inerties (masses, moments d’inertie, fluide entraîné). Dériver \\(E = \\text{cste}\\) par rapport au temps donne l’équation du mouvement sans aucune force de liaison : \\(\\mu\\ddot q = -V'(q)\\) si \\(\\mu\\) est constant. Autour d’un équilibre \\(q_0\\) (\\(V'(q_0) = 0\\)) : \\(\\omega^2 = V''(q_0)/\\mu(q_0)\\), stable si \\(V''(q_0) > 0\\).",
 "chaps": [
-"outils",
+"maths",
 "nongalileen",
 "statique",
 "tension",
@@ -598,7 +601,7 @@
 "quand": "Questions « maximal », « minimal », « optimal », « le plus stable ».",
 "texte": "Exprimez la grandeur en fonction d’une seule variable (en éliminant les autres par les contraintes), annulez la dérivée, puis vérifiez qu’il s’agit bien d’un maximum ou d’un minimum (signe de la dérivée seconde, ou comportement aux bornes). Pensez aussi aux extrema situés aux bornes du domaine.",
 "chaps": [
-"outils",
+"maths",
 "nucleaire",
 "quantique"
 ]
@@ -628,7 +631,7 @@
 "quand": "Une grandeur évolue au cours du temps à un taux qui dépend d’elle-même.",
 "texte": "Faites un bilan sur une durée \\(\\mathrm dt\\) : \\(\\mathrm dN = -\\lambda N\\,\\mathrm dt\\), \\(S\\,\\mathrm dh = -Q\\,\\mathrm dt\\)… Reconnaissez ensuite la forme : exponentielle (premier ordre), sinusoïde (oscillateur), séparation des variables sinon.",
 "chaps": [
-"outils",
+"maths",
 "statique",
 "dynamique",
 "tension",

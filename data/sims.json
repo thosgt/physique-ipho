@@ -79,10 +79,73 @@
  },
  {
   "name": "dl",
-  "page": "outils",
+  "page": "maths",
   "anchor": "approximations",
   "title": "Développements limités",
   "desc": "Une fonction et ses approximations d’ordre 1, 2, 3 ; zone où l’erreur reste inférieure à 1 % (sin x ≈ x jusqu’à 14°)."
+ },
+ {
+  "name": "echelle",
+  "page": "outils",
+  "anchor": "echelles",
+  "title": "Lois d’échelle : agrandir un animal",
+  "desc": "Facteur λ sur les longueurs : surfaces × λ², poids × λ³, contrainte sur les os × λ, pertes thermiques par kg × 1/λ ; pattes nécessaires pour garder la même contrainte."
+ },
+ {
+  "name": "tangente",
+  "page": "maths",
+  "anchor": "sens-derivee",
+  "title": "De la sécante à la tangente",
+  "desc": "Faire tendre Δt vers 0 : la pente Δx/Δt de la corde devient la vitesse instantanée ; courbe de la dérivée v(t) sous celle de x(t)."
+ },
+ {
+  "name": "riemann",
+  "page": "maths",
+  "anchor": "somme",
+  "title": "Intégrer, c’est sommer des rectangles",
+  "desc": "Somme des f(xᵢ)Δx pour 1 à 100 rectangles, à gauche, au milieu ou à droite ; convergence vers l’intégrale, aires négatives sous l’axe."
+ },
+ {
+  "name": "primitive",
+  "page": "maths",
+  "anchor": "cinematique",
+  "title": "L’aire sous v(t) trace x(t)",
+  "desc": "L’aire sous la courbe de vitesse s’accumule et trace la position ; la pente de x(t) est v ; x est extrémal quand v s’annule."
+ },
+ {
+  "name": "decoupage",
+  "page": "maths",
+  "anchor": "decouper",
+  "title": "Découper en tranches, couronnes, pelures",
+  "desc": "Force sur un barrage, aire d’un disque, volume d’une boule : somme des contributions des éléments et convergence vers la valeur exacte."
+ },
+ {
+  "name": "euler",
+  "page": "maths",
+  "anchor": "principe",
+  "title": "Méthode d’Euler et champ de pentes",
+  "desc": "L’équation différentielle impose la pente en chaque point ; construction pas à pas de la solution, influence du pas, comparaison avec la solution exacte."
+ },
+ {
+  "name": "premier-ordre",
+  "page": "maths",
+  "anchor": "lire-tau",
+  "title": "Réponse d’un système du premier ordre",
+  "desc": "Charge et décharge : y∞ + (y₀ − y∞)e^(−t/τ), tangente à l’origine, 63 % à τ, régime établi après 5τ, comparaison avec 2τ."
+ },
+ {
+  "name": "cercle-cosinus",
+  "page": "maths",
+  "anchor": "solution-oh",
+  "title": "Du mouvement circulaire à la sinusoïde",
+  "desc": "Un point qui tourne à vitesse angulaire ω : sa projection trace A cos(ωt + φ) ; rôle de l’amplitude, de la pulsation et de la phase."
+ },
+ {
+  "name": "harmonique",
+  "page": "maths",
+  "anchor": "solution-oh",
+  "title": "Oscillateur harmonique et conditions initiales",
+  "desc": "Masse et ressort lancés avec x₀ et v₀ : amplitude √(x₀² + (v₀/ω₀)²), période indépendante de l’amplitude, portrait de phase et énergies."
  },
  {
   "name": "tir",
