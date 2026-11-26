@@ -24,8 +24,22 @@
 </div>
 
 <h2 id="rayons">1. Le modèle du rayon lumineux</h2>
-<p>L’optique géométrique décrit la lumière par des <strong>rayons</strong> : des lignes le long desquelles l’énergie lumineuse se propage. Ce modèle est valable tant que les obstacles et les ouvertures sont grands devant la longueur d’onde (0,4 à 0,8 µm) ; sinon la diffraction, étudiée dans le chapitre <a href="#optique">Ondes et optique ondulatoire</a>, devient visible. Dans un milieu transparent homogène, les rayons sont des droites parcourues à la vitesse \(v = c/n\), où \(n\) est l’<strong>indice</strong> du milieu. Ils sont indépendants (deux faisceaux qui se croisent ne se gênent pas) et le trajet peut être parcouru en sens inverse.</p>
-<p>Un système optique donne d’un point objet \(A\) une <strong>image</strong> \(A'\) s’il fait converger en \(A'\) tous les rayons issus de \(A\) (stigmatisme). L’image est <strong>réelle</strong> si les rayons y passent effectivement (on peut la recueillir sur un écran), <strong>virtuelle</strong> si seuls leurs prolongements s’y coupent (on la voit en regardant à travers le système). L’œil ne perçoit que la direction des rayons qu’il reçoit : c’est ce qui rend les images virtuelles « visibles ».</p>
+<p>L’optique géométrique décrit la lumière par des <strong>rayons</strong> : des lignes le long desquelles l’énergie lumineuse se propage.</p>
+<table>
+<thead><tr><th>Propriété du modèle</th><th>Précision</th></tr></thead>
+<tbody>
+<tr><td>Domaine de validité</td><td>obstacles et ouvertures grands devant la longueur d’onde (0,4 à 0,8 µm) ; sinon la diffraction devient visible (chapitre <a href="#optique">Ondes et optique ondulatoire</a>)</td></tr>
+<tr><td>Milieu transparent homogène</td><td>rayons rectilignes, parcourus à la vitesse \(v = c/n\), où \(n\) est l’<strong>indice</strong> du milieu</td></tr>
+<tr><td>Indépendance</td><td>deux faisceaux qui se croisent ne se gênent pas</td></tr>
+<tr><td>Retour inverse</td><td>tout trajet peut être parcouru en sens inverse</td></tr>
+</tbody></table>
+<p>Un système optique donne d’un point objet \(A\) une <strong>image</strong> \(A'\) s’il fait converger en \(A'\) tous les rayons issus de \(A\) (stigmatisme).</p>
+<table>
+<thead><tr><th>Image</th><th>Les rayons…</th><th>On peut…</th></tr></thead>
+<tbody>
+<tr><td><strong>Réelle</strong></td><td>y passent effectivement</td><td>la recueillir sur un écran</td></tr>
+<tr><td><strong>Virtuelle</strong></td><td>ne s’y coupent que par leurs prolongements</td><td>la voir en regardant à travers le système (l’œil ne perçoit que la direction des rayons qu’il reçoit)</td></tr>
+</tbody></table>
 <p>La propagation rectiligne explique les ombres et la <strong>chambre noire</strong> (sténopé) : un petit trou de diamètre \(a\) à la distance \(L\) d’un écran donne une image renversée, d’autant plus nette que le trou est petit, jusqu’à ce que la diffraction l’élargisse à nouveau (meilleur compromis pour \(a \sim \sqrt{\lambda L}\)).</p>
 
 <h2 id="reflexion-refraction">2. Réflexion et réfraction</h2>
@@ -49,22 +63,67 @@
 </svg>
 <figcaption>Trois rayons issus d’une source sous l’eau. En passant dans l’air, moins réfringent, le rayon s’écarte de la normale ; à l’angle limite il sort rasant, au-delà toute la lumière est réfléchie. Une partie est toujours réfléchie (trait pâle), même quand le rayon est réfracté.</figcaption>
 </figure>
-<p>En passant dans un milieu plus réfringent, le rayon se <strong>rapproche de la normale</strong>. En sens inverse (\(n_1 > n_2\)), il s’en écarte, et il n’y a plus de rayon réfracté dès que \(\sin i_1 > n_2/n_1\) : <strong>réflexion totale</strong>, à partir de l’angle limite \(i_\ell = \arcsin(n_2/n_1)\) (eau-air : 48,8° ; verre-air : 41,8°). C’est le principe de la <strong>fibre optique</strong> (cœur d’indice \(n_1\), gaine \(n_2 < n_1\) ; ouverture numérique \(\sin\theta_{\max} = \sqrt{n_1^2 - n_2^2}\)), des prismes à réflexion totale des jumelles, du poisson qui voit tout le ciel dans un cône de 97,6°, des mirages (gradient d’indice de l’air chaud). La fréquence ne change pas au passage d’un milieu à l’autre ; la longueur d’onde devient \(\lambda_0/n\). Comme \(n\) dépend un peu de \(\lambda\) (<strong>dispersion</strong>, \(n\) plus grand pour le bleu), un prisme décompose la lumière blanche et une goutte d’eau fait l’arc-en-ciel (rouge à 42°, violet à 40°).</p>
-<p>Un <strong>miroir plan</strong> donne d’un objet une image virtuelle, symétrique de l’objet par rapport au plan du miroir : on se voit « derrière » le miroir, à la même distance. Deux miroirs à angle droit renvoient la lumière dans la direction d’où elle vient (catadioptres) ; tourner un miroir d’un angle \(\alpha\) tourne le rayon réfléchi de \(2\alpha\).</p>
-<p>En passant dans un milieu plus réfringent, le rayon se <strong>rapproche de la normale</strong>. En sens inverse (\(n_1 > n_2\)), il s’en écarte, et il n’y a plus de rayon réfracté dès que \(\sin i_1 > n_2/n_1\) : <strong>réflexion totale</strong>, à partir de l’angle limite \(i_\ell = \arcsin(n_2/n_1)\) (eau-air : 48,8° ; verre-air : 41,8°). C’est le principe de la <strong>fibre optique</strong> (cœur d’indice \(n_1\), gaine \(n_2 < n_1\) ; ouverture numérique \(\sin\theta_{\max} = \sqrt{n_1^2 - n_2^2}\)), des prismes à réflexion totale des jumelles, du poisson qui voit tout le ciel dans un cône de 97,6°, des mirages (gradient d’indice de l’air chaud). La fréquence ne change pas au passage d’un milieu à l’autre ; la longueur d’onde devient \(\lambda_0/n\). Comme \(n\) dépend un peu de \(\lambda\) (<strong>dispersion</strong>, \(n\) plus grand pour le bleu), un prisme décompose la lumière blanche et une goutte d’eau fait l’arc-en-ciel (rouge à 42°, violet à 40°).</p>
+<table>
+<thead><tr><th>Passage</th><th>Le rayon réfracté</th><th>Remarque</th></tr></thead>
+<tbody>
+<tr><td>Vers un milieu plus réfringent (\(n_2 > n_1\))</td><td>se <strong>rapproche</strong> de la normale</td><td>il existe toujours</td></tr>
+<tr><td>Vers un milieu moins réfringent (\(n_1 > n_2\))</td><td>s’<strong>écarte</strong> de la normale</td><td>il disparaît dès que \(\sin i_1 > n_2/n_1\) : <strong>réflexion totale</strong>, au-delà de l’angle limite \(i_\ell = \arcsin(n_2/n_1)\) (eau-air : 48,8° ; verre-air : 41,8°)</td></tr>
+</tbody></table>
+<table>
+<thead><tr><th>Application de la réflexion totale</th><th>Principe</th></tr></thead>
+<tbody>
+<tr><td>Fibre optique</td><td>cœur d’indice \(n_1\), gaine \(n_2 < n_1\) ; ouverture numérique \(\sin\theta_{\max} = \sqrt{n_1^2 - n_2^2}\)</td></tr>
+<tr><td>Prismes des jumelles</td><td>réflexion totale à 45° sans perte</td></tr>
+<tr><td>Poisson qui regarde vers le haut</td><td>il voit tout le ciel dans un cône de 97,6° (deux fois l’angle limite)</td></tr>
+<tr><td>Mirage</td><td>gradient d’indice de l’air chaud près du sol</td></tr>
+</tbody></table>
+<table>
+<thead><tr><th>Au passage d’un milieu à l’autre</th><th>Conséquence</th></tr></thead>
+<tbody>
+<tr><td>la fréquence ne change pas</td><td>la longueur d’onde devient \(\lambda_0/n\)</td></tr>
+<tr><td>\(n\) dépend un peu de \(\lambda\) (<strong>dispersion</strong>, \(n\) plus grand pour le bleu)</td><td>un prisme décompose la lumière blanche ; une goutte d’eau fait l’arc-en-ciel (rouge à 42°, violet à 40°)</td></tr>
+</tbody></table>
+<p>Un <strong>miroir plan</strong> donne d’un objet une image virtuelle, symétrique de l’objet par rapport au plan du miroir : on se voit « derrière » le miroir, à la même distance.</p>
+<ul>
+<li>Deux miroirs à angle droit renvoient la lumière dans la direction d’où elle vient (catadioptres).</li>
+<li>Tourner un miroir d’un angle \(\alpha\) tourne le rayon réfléchi de \(2\alpha\).</li>
+</ul>
 <div class="exo" data-q="ipho-2025-T1"></div>
 <div class="exo" data-q="ipho-2017-T16"></div>
 <div class="exo" data-group="cde-w7"></div>
 <div class="sim" data-name="refraction"><p>Faites varier l’angle d’incidence et les indices : rayon réfléchi, rayon réfracté, angle limite et réflexion totale ; essayez le passage eau → air.</p></div>
 <div class="cpge" id="fermat" title="Principe de Fermat et chemin optique">
-<p>Le <strong>chemin optique</strong> entre \(A\) et \(B\) est \(\mathcal L = \int n\,\mathrm ds\) (durée de parcours multipliée par \(c\)). Le principe de Fermat affirme que la lumière suit le trajet dont le chemin optique est <strong>stationnaire</strong> (en général minimal). Il redonne la propagation rectiligne, la loi de la réflexion (le trajet \(ASB\) le plus court via le miroir : \(i_r = i\)) et la loi de Snell-Descartes (minimiser \(n_1AI + n_2IB\) par rapport à la position de \(I\) sur le dioptre). Dans un milieu d’indice variable, les rayons se courbent vers les régions d’indice <em>élevé</em> : mirage sur route chaude (l’air chaud près du sol est moins réfringent, les rayons remontent), sons portés plus loin la nuit (inversion de température), fibre à gradient d’indice. Le stigmatisme d’un instrument se traduit par l’égalité des chemins optiques de tous les rayons entre un objet et son image.</p>
+<p>Le <strong>chemin optique</strong> entre \(A\) et \(B\) est \(\mathcal L = \int n\,\mathrm ds\) (durée de parcours multipliée par \(c\)). Le <strong>principe de Fermat</strong> affirme que la lumière suit le trajet dont le chemin optique est <strong>stationnaire</strong> (en général minimal).</p>
+<table>
+<thead><tr><th>Ce que Fermat redonne</th><th>Comment</th></tr></thead>
+<tbody>
+<tr><td>Propagation rectiligne</td><td>dans un milieu homogène, le plus court chemin est la droite</td></tr>
+<tr><td>Loi de la réflexion</td><td>le trajet \(ASB\) le plus court via le miroir donne \(i_r = i\)</td></tr>
+<tr><td>Loi de Snell-Descartes</td><td>minimiser \(n_1AI + n_2IB\) par rapport à la position de \(I\) sur le dioptre</td></tr>
+<tr><td>Rayons courbes dans un milieu d’indice variable</td><td>ils se courbent vers les régions d’indice <em>élevé</em> : mirage sur route chaude, sons portés plus loin la nuit (inversion de température), fibre à gradient d’indice</td></tr>
+<tr><td>Stigmatisme</td><td>tous les rayons entre un objet et son image ont le même chemin optique</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="Snell-Descartes à partir de Fermat">
+<ol class="etapes">
+<li>\(A\) est dans le milieu 1 à la hauteur \(a\) au-dessus du dioptre, \(B\) dans le milieu 2 à la profondeur \(b\) ; le point d’incidence \(I\) est à l’abscisse \(x\), \(B\) à l’abscisse \(L\).</li>
+<li>Chemin optique : \(\mathcal L(x) = n_1\sqrt{a^2 + x^2} + n_2\sqrt{b^2 + (L - x)^2}\).</li>
+<li>Stationnaire : \(\mathcal L'(x) = n_1\dfrac{x}{\sqrt{a^2 + x^2}} - n_2\dfrac{L - x}{\sqrt{b^2 + (L - x)^2}} = 0\).</li>
+<li>On reconnaît les sinus des angles avec la normale : \(n_1\sin i_1 = n_2\sin i_2\).</li>
+</ol>
+</div>
 </div>
 
 <h3 id="prisme">Le prisme et la dispersion</h3>
 <p>Un prisme d’angle au sommet \(A\) et d’indice \(n\) dévie la lumière vers sa base. En suivant le rayon d’une face à l’autre, on écrit Snell-Descartes à chaque face et la géométrie du triangle :</p>
 \[\sin i = n\sin r, \qquad \sin i' = n\sin r', \qquad A = r + r', \qquad D = i + i' - A.\]
 <div class="methode" data-m="chasse-angles"><p>Pour le prisme : Snell-Descartes en entrée (\(i \to r\)), la somme des angles du triangle formé par les deux normales et le rayon intérieur (\(r + r' = A\)), Snell-Descartes en sortie (\(r' \to i'\)), puis la déviation totale comme somme des deux déviations \((i - r) + (i' - r')\). Nommez chaque angle sur le schéma avant d’écrire la moindre équation.</p></div>
-<p>La déviation \(D\) passe par un <strong>minimum</strong> quand le trajet est symétrique (\(r = r' = A/2\)) : \(n = \dfrac{\sin\big((A + D_m)/2\big)}{\sin(A/2)}\), ce qui permet de mesurer l’indice. Pour un prisme mince et de petits angles, \(D \approx (n - 1)A\). Comme l’indice du verre est un peu plus grand pour le bleu que pour le rouge (\(n_\text{bleu} - n_\text{rouge} \approx 0{,}01\) à \(0{,}02\)), le prisme étale la lumière blanche en spectre.</p>
+<table>
+<thead><tr><th>Résultat</th><th>Expression</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td>Minimum de déviation</td><td>trajet symétrique, \(r = r' = A/2\) : \(n = \dfrac{\sin\big((A + D_m)/2\big)}{\sin(A/2)}\)</td><td>mesurer l’indice</td></tr>
+<tr><td>Prisme mince, petits angles</td><td>\(D \approx (n - 1)A\)</td><td>calcul rapide</td></tr>
+<tr><td>Dispersion</td><td>\(n_\text{bleu} - n_\text{rouge} \approx 0{,}01\) à \(0{,}02\) pour le verre</td><td>le prisme étale la lumière blanche en spectre</td></tr>
+</tbody></table>
 <figure>
 <svg viewBox="0 0 640 230" width="640" role="img" aria-label="Rayon traversant un prisme au minimum de déviation : à l'intérieur il est parallèle à la base ; en sortie le violet est plus dévié que le rouge" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
 <defs><marker id="gp-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker></defs>
@@ -87,9 +146,30 @@
 <p>L’<strong>arc-en-ciel</strong> vient de la même dispersion dans les gouttes de pluie : après une réfraction, une réflexion interne et une seconde réfraction, la lumière ressort concentrée autour de 42° de la direction opposée au Soleil pour le rouge, 40° pour le violet.</p>
 
 <h2 id="lentilles">3. Lentilles minces</h2>
-<p>Une lentille mince convergente (bords minces) fait converger un faisceau parallèle en son <strong>foyer image</strong> \(F'\), à la distance focale \(f' = \overline{OF'} > 0\) du centre \(O\) ; sa <strong>vergence</strong> est \(V = 1/f'\) en dioptries (δ, \(\text{m}^{-1}\)). Le foyer objet \(F\) est le symétrique de \(F'\). Une lentille divergente a \(f' < 0\) et des foyers virtuels. Dans les conditions de Gauss (rayons peu inclinés et proches de l’axe), un point objet \(A\) a un point image \(A'\) donnés par la <strong>relation de conjugaison</strong> (origine au centre, mesures algébriques, lumière de gauche à droite) :</p>
+<table>
+<thead><tr><th>Élément</th><th>Lentille convergente</th><th>Lentille divergente</th></tr></thead>
+<tbody>
+<tr><td>Forme</td><td>bords minces</td><td>bords épais</td></tr>
+<tr><td>Faisceau parallèle à l’axe</td><td>converge au <strong>foyer image</strong> \(F'\)</td><td>diverge comme s’il venait de \(F'\) (foyer virtuel)</td></tr>
+<tr><td>Distance focale \(f' = \overline{OF'}\)</td><td>\(f' > 0\)</td><td>\(f' < 0\)</td></tr>
+<tr><td>Vergence \(V = 1/f'\)</td><td colspan="2">en dioptries (δ = m⁻¹) ; le foyer objet \(F\) est le symétrique de \(F'\) par rapport à \(O\)</td></tr>
+</tbody></table>
+<p>Dans les conditions de Gauss (rayons peu inclinés et proches de l’axe), un point objet \(A\) a un point image \(A'\) donnés par la <strong>relation de conjugaison</strong> (origine au centre, mesures algébriques, lumière de gauche à droite) :</p>
 \[\frac{1}{\overline{OA'}} - \frac{1}{\overline{OA}} = \frac{1}{f'}, \qquad \gamma = \frac{\overline{A'B'}}{\overline{AB}} = \frac{\overline{OA'}}{\overline{OA}}.\]
-<p>Image <strong>réelle</strong> (\(\overline{OA'} > 0\), sur un écran) ou <strong>virtuelle</strong> (\(\overline{OA'} < 0\), vue à travers la lentille) ; \(\gamma < 0\) : image renversée. Trois rayons suffisent pour construire l’image : par le centre (non dévié), parallèle à l’axe (ressort par \(F'\)), par \(F\) (ressort parallèle à l’axe). Pour une lentille convergente : objet au-delà de \(2f\) → image réelle renversée plus petite (appareil photo, œil) ; entre \(2f\) et \(f\) → réelle renversée plus grande (projecteur) ; entre \(f\) et \(O\) → virtuelle droite agrandie (loupe) ; à l’infini → dans le plan focal, de taille \(f'\theta\) pour un objet vu sous l’angle \(\theta\).</p>
+<p>Image <strong>réelle</strong> si \(\overline{OA'} > 0\) (sur un écran), <strong>virtuelle</strong> si \(\overline{OA'} < 0\) (vue à travers la lentille) ; \(\gamma < 0\) : image renversée. Trois rayons suffisent pour construire l’image :</p>
+<ol class="etapes">
+<li>le rayon qui passe par le centre \(O\) n’est pas dévié ;</li>
+<li>le rayon parallèle à l’axe ressort en passant par \(F'\) ;</li>
+<li>le rayon qui passe par \(F\) ressort parallèle à l’axe.</li>
+</ol>
+<table>
+<thead><tr><th>Objet (lentille convergente)</th><th>Image</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td>au-delà de \(2f'\)</td><td>réelle, renversée, plus petite</td><td>appareil photo, œil</td></tr>
+<tr><td>entre \(2f'\) et \(f'\)</td><td>réelle, renversée, plus grande</td><td>projecteur</td></tr>
+<tr><td>entre \(F\) et \(O\)</td><td>virtuelle, droite, agrandie</td><td>loupe</td></tr>
+<tr><td>à l’infini, vu sous l’angle \(\theta\)</td><td>dans le plan focal image, de taille \(f'\theta\)</td><td>objectif de lunette</td></tr>
+</tbody></table>
 <div class="methode" data-m="conjugaison"><p>Pour un projecteur, l’écran fixe \(\overline{OA'} > 0\) et le format de l’image impose \(\gamma < 0\) : \(\overline{OA} = \overline{OA'}/\gamma\), puis la conjugaison donne \(f'\). Avec deux lentilles, l’image donnée par la première sert d’objet à la seconde (réel ou virtuel selon sa position) et les grandissements se multiplient.</p></div>
 <figure>
 <svg viewBox="0 0 640 260" width="640" role="img" aria-label="Construction de l'image d'un objet AB par une lentille convergente : rayon par le centre, rayon parallèle passant par F', rayon par F ressortant parallèle" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
@@ -114,8 +194,23 @@
 
 <div class="exo" data-q="ipho-2016-T3"></div>
 <h2 id="instruments">4. Œil, loupe, lunette, microscope</h2>
-<p>L’<strong>œil</strong> est une lentille de focale variable (accommodation) qui forme l’image sur la rétine, à 17 mm environ ; il voit net de l’infini (punctum remotum) jusqu’au punctum proximum \(d_m \approx 25\) cm. Sa résolution angulaire est d’environ \(3\times10^{-4}\) rad (1'), limitée par la diffraction et le grain de la rétine. Myope : trop convergent, corrigé par une lentille divergente ; hypermétrope : l’inverse.</p>
-<p>Un instrument sert à voir un objet sous un angle plus grand : <strong>grossissement</strong> \(G = \theta'/\theta\). <strong>Loupe</strong> (objet au foyer, image à l’infini vue sans accommoder) : \(\theta' = h/f'\) contre \(\theta = h/d_m\) à l’œil nu, donc \(G = d_m/f' = 0{,}25\,V\). <strong>Lunette astronomique</strong> afocale : l’objectif (focale \(f'_1\), grande) forme dans son plan focal une image intermédiaire de taille \(f'_1\theta\), que l’oculaire (focale \(f'_2\), petite) renvoie à l’infini sous l’angle \(\theta' = f'_1\theta/f'_2\) : \(G = f'_1/f'_2\) ; l’image est renversée ; le pouvoir de résolution est fixé par le diamètre de l’objectif (\(1{,}22\lambda/D\)). Le <strong>télescope</strong> remplace l’objectif par un miroir concave de focale \(R/2\). <strong>Microscope</strong> : l’objectif (focale de quelques mm) forme une image réelle très agrandie (\(\gamma_1 = -\Delta/f'_1\)) que l’oculaire sert de loupe : \(G = |\gamma_1|\,d_m/f'_2\) ; résolution limitée à \(\approx \lambda/2\), d’où le microscope électronique.</p>
+<table>
+<thead><tr><th>L’œil</th><th>Valeur</th></tr></thead>
+<tbody>
+<tr><td>Lentille de focale variable (accommodation) qui forme l’image sur la rétine</td><td>à 17 mm environ</td></tr>
+<tr><td>Vision nette</td><td>de l’infini (punctum remotum) jusqu’au punctum proximum \(d_m \approx 25\) cm</td></tr>
+<tr><td>Résolution angulaire (diffraction, grain de la rétine)</td><td>\(3\times10^{-4}\) rad, soit 1'</td></tr>
+<tr><td>Myope / hypermétrope</td><td>trop / pas assez convergent ; corrigé par une lentille divergente / convergente</td></tr>
+</tbody></table>
+<p>Un instrument sert à voir un objet sous un angle plus grand : son <strong>grossissement</strong> est \(G = \theta'/\theta\) (rapport d’angles).</p>
+<table>
+<thead><tr><th>Instrument</th><th>Principe</th><th>Grossissement</th><th>Limite</th></tr></thead>
+<tbody>
+<tr><td><strong>Loupe</strong></td><td>objet au foyer, image à l’infini vue sans accommoder : \(\theta' = h/f'\) contre \(\theta = h/d_m\) à l’œil nu</td><td>\(G = d_m/f' = 0{,}25\,V\)</td><td></td></tr>
+<tr><td><strong>Lunette astronomique</strong> (afocale)</td><td>l’objectif (focale \(f'_1\), grande) forme dans son plan focal une image de taille \(f'_1\theta\) ; l’oculaire (focale \(f'_2\), petite) la renvoie à l’infini sous l’angle \(f'_1\theta/f'_2\)</td><td>\(G = f'_1/f'_2\), image renversée</td><td>résolution \(1{,}22\lambda/D\) fixée par le diamètre de l’objectif</td></tr>
+<tr><td><strong>Télescope</strong></td><td>l’objectif est un miroir concave de focale \(R/2\)</td><td>\(G = f'_1/f'_2\)</td><td>idem</td></tr>
+<tr><td><strong>Microscope</strong></td><td>l’objectif (focale de quelques mm) forme une image réelle très agrandie, \(\gamma_1 = -\Delta/f'_1\) ; l’oculaire sert de loupe</td><td>\(G = |\gamma_1|\,d_m/f'_2\)</td><td>résolution \(\approx \lambda/2\), d’où le microscope électronique</td></tr>
+</tbody></table>
 <div class="exo" data-q="ipho-2019-T4"></div>
 <div class="exo" data-q="ipho-2018-T11"></div>
 <div class="exo" data-group="cde-w13"></div>
@@ -134,7 +229,22 @@
 <figcaption>Lunette afocale : le foyer image de l’objectif est confondu avec le foyer objet de l’oculaire. Un faisceau parallèle incliné de \(\theta\) ressort parallèle, incliné de \(\theta' = (f'_1/f'_2)\,\theta\).</figcaption>
 </figure>
 <div class="cpge" id="newton" title="Formules de Newton, grandissement et profondeur de champ">
-<p>Avec les origines aux foyers, \(\overline{FA}\cdot\overline{F'A'} = -f'^2\) (formule de Newton) et \(\gamma = -\dfrac{f'}{\overline{FA}} = -\dfrac{\overline{F'A'}}{f'}\). Elles sont souvent plus rapides que la relation de Descartes : pour un objet à la distance \(x\) avant \(F\), l’image est \(f'^2/x\) après \(F'\). Pour une lunette, la formule de Newton montre immédiatement qu’un objet à l’infini donne \(\overline{F'A'} = 0\). Pour un appareil photo (\(f' = 50\) mm) qui photographie un objet à 2 m : \(\overline{FA} = -1{,}95\) m, \(\overline{F'A'} = 1{,}3\) mm, \(\gamma = -0{,}026\). Association de deux lentilles accolées : les vergences s’ajoutent, \(V = V_1 + V_2\) ; à distance \(e\) : \(V = V_1 + V_2 - eV_1V_2\) (Gullstrand). Profondeur de champ : un point image décalé de \(\varepsilon\) hors du capteur donne une tache de diamètre \(\varepsilon D/f'\) : fermer le diaphragme (réduire \(D\)) augmente la profondeur de champ au prix de la lumière et de la diffraction.</p>
+<p><strong>Formules de Newton</strong> (origines aux foyers) :</p>
+\[\overline{FA}\cdot\overline{F'A'} = -f'^2, \qquad \gamma = -\frac{f'}{\overline{FA}} = -\frac{\overline{F'A'}}{f'}.\]
+<table>
+<thead><tr><th>Situation</th><th>Avec Newton</th></tr></thead>
+<tbody>
+<tr><td>Objet à la distance \(x\) avant \(F\)</td><td>image à \(f'^2/x\) après \(F'\)</td></tr>
+<tr><td>Objet à l’infini</td><td>\(\overline{F'A'} = 0\) immédiatement</td></tr>
+<tr><td>Appareil photo (\(f' = 50\) mm), objet à 2 m</td><td>\(\overline{FA} = -1{,}95\) m, \(\overline{F'A'} = 1{,}3\) mm, \(\gamma = -0{,}026\)</td></tr>
+</tbody></table>
+<table>
+<thead><tr><th>Association de deux lentilles</th><th>Vergence</th></tr></thead>
+<tbody>
+<tr><td>accolées</td><td>\(V = V_1 + V_2\)</td></tr>
+<tr><td>à la distance \(e\) (Gullstrand)</td><td>\(V = V_1 + V_2 - eV_1V_2\)</td></tr>
+</tbody></table>
+<p><strong>Profondeur de champ.</strong> Un point image décalé de \(\varepsilon\) hors du capteur donne une tache de diamètre \(\varepsilon D/f'\) : fermer le diaphragme (réduire \(D\)) augmente la profondeur de champ, au prix de la lumière et de la diffraction.</p>
 </div>
 
 <h2 id="n-lentilles">5. Une suite de N lentilles : relations de récurrence (hors syllabus)</h2>
