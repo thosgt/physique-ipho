@@ -148,6 +148,55 @@
   "desc": "Masse et ressort lancés avec x₀ et v₀ : amplitude √(x₀² + (v₀/ω₀)²), période indépendante de l’amplitude, portrait de phase et énergies."
  },
  {
+  "name": "projection",
+  "page": "vecteurs",
+  "anchor": "projeter",
+  "title": "Composantes dans des axes tournés",
+  "desc": "Un même vecteur projeté sur des axes que l’on fait tourner : les composantes changent, la norme non ; aligner un axe sur le vecteur annule une composante."
+ },
+ {
+  "name": "produits",
+  "page": "vecteurs",
+  "anchor": "scalaire",
+  "title": "Produit scalaire et produit vectoriel",
+  "desc": "Deux vecteurs du plan : projection et signe du produit scalaire, aire du parallélogramme et sens ⊙ ou ⊗ du produit vectoriel, antisymétrie."
+ },
+ {
+  "name": "vectoriel3d",
+  "page": "vecteurs",
+  "anchor": "definition-vectoriel",
+  "title": "Le produit vectoriel en 3D",
+  "desc": "Scène qui tourne : a ∧ b perpendiculaire au plan de a et b, norme égale à l’aire du parallélogramme, b ∧ a = −a ∧ b, produit nul pour des vecteurs colinéaires."
+ },
+ {
+  "name": "moment",
+  "page": "vecteurs",
+  "anchor": "moment",
+  "title": "Moment d’une force et bras de levier",
+  "desc": "Clé sur un écrou : point d’application, angle et intensité de la force ; bras de levier d = r sin θ, moment F × d, moment nul quand la force passe par l’axe."
+ },
+ {
+  "name": "polaire",
+  "page": "vecteurs",
+  "anchor": "frenet",
+  "title": "Vitesse et accélération : Frenet et base polaire",
+  "desc": "Cercle à vitesse constante, croissante ou décroissante, orbite de Kepler : accélération tangentielle dv/dt et normale v²/R, base polaire (u_r, u_θ)."
+ },
+ {
+  "name": "gradient",
+  "page": "vecteurs",
+  "anchor": "definition-gradient",
+  "title": "Lignes de niveau et gradient",
+  "desc": "Colline, cuvette, col, potentiel de deux charges : gradient perpendiculaire aux lignes de niveau, bille qui suit la ligne de plus grande pente ou ligne de champ."
+ },
+ {
+  "name": "flux",
+  "page": "vecteurs",
+  "anchor": "flux",
+  "title": "Flux à travers une surface inclinée",
+  "desc": "Écoulement uniforme et surface que l’on incline : débit v S cos θ, maximal face à l’écoulement, nul quand la surface est parallèle aux lignes."
+ },
+ {
   "name": "tir",
   "page": "mecapoint",
   "anchor": "cinematique",

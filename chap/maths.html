@@ -1,12 +1,13 @@
 <p class="eyebrow">Outils · Chapitre 2</p>
 <h1>Outils mathématiques</h1>
-<p class="subtitle">Dériver, approcher, intégrer, résoudre les deux équations différentielles du cours, projeter des vecteurs</p>
+<p class="subtitle">Dériver, approcher, intégrer, résoudre les deux équations différentielles du cours</p>
 
 <div class="objectifs">
 <p><strong>Pourquoi ce chapitre.</strong> Les sujets du test IPhO et du Concours général supposent des outils que la terminale n’utilise qu’en partie : dériver une fonction du temps, intégrer en découpant un objet en petits morceaux, résoudre une équation différentielle. Ce chapitre les reprend pas à pas, avec des simulations pour voir ce que font les calculs. Les démonstrations complètes sont repliées dans des encadrés « Démonstration » : lisez-les au moins une fois.</p>
 <ul>
 <li><strong>Terminale (IPhO et Concours général)</strong> : tout le chapitre sauf les encadrés « Niveau CPGE ».</li>
-<li><strong>CPGE (IPhO)</strong> : tout, y compris la linéarisation autour d’un équilibre et le produit vectoriel.</li>
+<li><strong>CPGE (IPhO)</strong> : tout, y compris la linéarisation autour d’un équilibre.</li>
+<li>Les outils vectoriels (projections, produits scalaire et vectoriel, gradient) sont dans le chapitre suivant, <a href="#vecteurs">Outils vectoriels</a>.</li>
 <li>Deux équations différentielles seulement sont à connaître : celle du <strong>premier ordre</strong> et celle de l’<strong>oscillateur harmonique</strong>.</li>
 </ul>
 </div>
@@ -503,51 +504,7 @@ while t &lt; 5*tau:
 <p>Avec un frottement fluide, l’équation devient \(\ddot y + \dfrac{\omega_0}{Q}\dot y + \omega_0^2y = 0\), où \(Q\) est le facteur de qualité. Pour \(Q > \tfrac12\), le système oscille avec une amplitude qui décroît en \(\mathrm e^{-\omega_0t/(2Q)}\), soit environ \(Q\) oscillations visibles. Le chapitre <a href="#oscillateurs--amortissement">Oscillateurs</a> détaille ce cas et la résonance.</p>
 </div>
 
-<h2 id="vecteurs">5. Vecteurs et projections</h2>
-<p>Une loi vectorielle (\(m\vec a = \sum\vec F\)) donne deux ou trois équations : une par axe. L’essentiel est de bien <strong>projeter</strong>.</p>
-<figure>
-<svg viewBox="0 0 640 220" width="640" role="img" aria-label="Projection d'un vecteur sur deux axes, et du poids sur un plan incliné" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
-<defs><marker id="vp-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8a94a6"/></marker><marker id="vp-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0b5fa5"/></marker><marker id="vp-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b23a48"/></marker><marker id="vp-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d9900b"/></marker></defs>
-<g font-size="12" fill="#15213a">
-<line x1="40" y1="180" x2="280" y2="180" stroke="#8a94a6" marker-end="url(#vp-g)"/><text x="284" y="184">x</text>
-<line x1="40" y1="180" x2="40" y2="20" stroke="#8a94a6" marker-end="url(#vp-g)"/><text x="30" y="20">y</text>
-<line x1="40" y1="180" x2="200" y2="72" stroke="#0b5fa5" stroke-width="2.5" marker-end="url(#vp-b)"/><text x="206" y="68" fill="#0b5fa5" font-weight="600">F</text>
-<line x1="200" y1="76" x2="200" y2="180" stroke="#4a5670" stroke-dasharray="3 3"/><line x1="40" y1="74" x2="198" y2="74" stroke="#4a5670" stroke-dasharray="3 3"/>
-<line x1="40" y1="180" x2="198" y2="180" stroke="#d9900b" stroke-width="3"/><text x="96" y="200" fill="#b85a0c">F cos α</text>
-<line x1="40" y1="180" x2="40" y2="76" stroke="#d9900b" stroke-width="3"/><text x="46" y="128" fill="#b85a0c">F sin α</text>
-<path d="M85 180 A45 45 0 0 0 77 155" fill="none" stroke="#15213a"/><text x="90" y="166">α</text>
-<polygon points="340,190 620,190 620,60" fill="#e9eef5" stroke="#8a94a6"/>
-<path d="M395 190 A55 55 0 0 0 389.9 166.8" fill="none" stroke="#15213a"/><text x="400" y="184">α</text>
-<rect x="464" y="94" width="40" height="28" fill="#dbe8f7" stroke="#0b5fa5" transform="rotate(-24.9 484 108)"/>
-<line x1="484" y1="108" x2="484" y2="194" stroke="#b23a48" stroke-width="2.5" marker-end="url(#vp-r)"/><text x="490" y="210" fill="#b23a48" font-weight="600">P = mg</text>
-<line x1="484" y1="108" x2="451.3" y2="123.2" stroke="#d9900b" stroke-width="2.5" marker-end="url(#vp-o)"/><text x="372" y="120" fill="#b85a0c">mg sin α</text>
-<line x1="484" y1="108" x2="516.8" y2="178.7" stroke="#d9900b" stroke-width="2.5" marker-end="url(#vp-o)"/><text x="524" y="150" fill="#b85a0c">mg cos α</text>
-</g>
-</svg>
-<figcaption>À gauche, les composantes d’un vecteur qui fait l’angle \(\alpha\) avec l’axe \(x\). À droite, le poids sur un plan incliné d’angle \(\alpha\) : \(mg\sin\alpha\) le long de la pente, \(mg\cos\alpha\) perpendiculairement.</figcaption>
-</figure>
-<table>
-<thead><tr><th>Outil</th><th>Formule</th><th>Usage</th></tr></thead>
-<tbody>
-<tr><td>Projection</td><td>\(F_x = F\cos\alpha\), \(F_y = F\sin\alpha\) (\(\alpha\) mesuré depuis l’axe \(x\))</td><td>écrire Newton sur chaque axe</td></tr>
-<tr><td>Vérification rapide</td><td>si \(\alpha \to 0\), la composante le long de l’axe doit tendre vers \(F\)</td><td>éviter d’échanger sin et cos</td></tr>
-<tr><td>Norme</td><td>\(F = \sqrt{F_x^2 + F_y^2}\), \(\tan\alpha = F_y/F_x\)</td><td>reconstituer un vecteur</td></tr>
-<tr><td>Produit scalaire</td><td>\(\vec a\cdot\vec b = ab\cos\theta = a_xb_x + a_yb_y\)</td><td>travail \(W = \vec F\cdot\vec d\), puissance \(P = \vec F\cdot\vec v\)</td></tr>
-<tr><td>Mouvement circulaire</td><td>axes tangent et normal : \(a_t = \dot v\), \(a_n = v^2/R\)</td><td>virage, looping, orbite</td></tr>
-</tbody></table>
-<p><strong>Choisir les axes</strong> : le long du mouvement quand il est contraint (plan incliné), et selon la symétrie du problème. Une force ou un champ ne peut pas « choisir » une direction que le problème ne distingue pas.</p>
-<div class="cpge" id="produit-vectoriel" title="Le produit vectoriel">
-<p>\(\vec c = \vec a\wedge\vec b\) est perpendiculaire à \(\vec a\) et à \(\vec b\), de norme \(ab\sin\theta\), orienté par la règle de la main droite. En composantes :</p>
-\[\vec a\wedge\vec b = (a_yb_z - a_zb_y,\; a_zb_x - a_xb_z,\; a_xb_y - a_yb_x).\]
-<table>
-<thead><tr><th>Grandeur</th><th>Expression</th></tr></thead>
-<tbody>
-<tr><td>Moment d’une force</td><td>\(\vec{\mathcal M} = \vec r\wedge\vec F\)</td></tr>
-<tr><td>Moment cinétique</td><td>\(\vec L = \vec r\wedge m\vec v\)</td></tr>
-<tr><td>Force de Lorentz</td><td>\(\vec F = q\vec v\wedge\vec B\)</td></tr>
-<tr><td>Vitesse d’un point d’un solide en rotation</td><td>\(\vec v = \vec\omega\wedge\vec r\)</td></tr>
-</tbody></table>
-</div>
+<p>Les vecteurs, le produit scalaire, le produit vectoriel et le gradient ont leur propre chapitre : <a href="#vecteurs">Outils vectoriels</a>.</p>
 
 <div class="cpge" id="plus-loin" title="Pour aller plus loin : polycopié P1 de K. Zhou">
 <p>Le <a href="https://knzhou.github.io/handouts/P1.pdf" target="_blank" rel="noopener">polycopié P1 de K. Zhou</a> (en anglais ; <a href="https://knzhou.github.io/handouts/P1Sol.pdf" target="_blank" rel="noopener">solutions</a>) reprend ces outils au niveau olympique : développements limités, intégrales astucieuses, équations différentielles. Le <a href="https://www.ioc.ee/~kalda/ipho/" target="_blank" rel="noopener">guide de J. Kalda</a> donne les méthodes en quatre pages.</p>

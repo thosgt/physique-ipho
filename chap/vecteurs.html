@@ -1,0 +1,450 @@
+<p class="eyebrow">Outils · Chapitre 3</p>
+<h1>Outils vectoriels</h1>
+<p class="subtitle">Composantes et projections, produit scalaire, produit vectoriel, coordonnées polaires, gradient, circulation et flux</p>
+
+<div class="objectifs">
+<p><strong>Pourquoi ce chapitre.</strong> Les lois de la physique sont vectorielles : \(m\vec a = \sum\vec F\), \(\vec F = q\vec v\wedge\vec B\), \(\vec E = -\overrightarrow{\text{grad}}\,V\). Bien projeter, trouver le sens d’un produit vectoriel ou lire une carte d’équipotentielles fait gagner beaucoup de temps aux QCM. Comme dans le chapitre précédent, les démonstrations sont repliées dans des encadrés « Démonstration ».</p>
+<ul>
+<li><strong>Terminale (IPhO et Concours général)</strong> : composantes, produit scalaire, base de Frenet, gradient et ses usages (force, champ électrique, pression). Le produit vectoriel sert au test terminale surtout pour le sens de la force magnétique.</li>
+<li><strong>CPGE (IPhO)</strong> : tout, y compris les moments, la vitesse dans un solide en rotation, l’accélération en coordonnées polaires et le gradient en coordonnées polaires.</li>
+</ul>
+</div>
+
+<div class="retenir">
+<p><strong>L’essentiel à retenir</strong></p>
+<ol>
+<li>Projeter, c’est multiplier par le cosinus de l’angle avec l’axe : \(F_x = F\cos\alpha\). Si \(\alpha \to 0\), la composante doit tendre vers \(F\).</li>
+<li><strong>Produit scalaire</strong> : \(\vec a\cdot\vec b = ab\cos\theta = a_xb_x + a_yb_y + a_zb_z\), un nombre. Nul si les vecteurs sont perpendiculaires. Travail \(W = \vec F\cdot\vec d\), puissance \(P = \vec F\cdot\vec v\).</li>
+<li><strong>Produit vectoriel</strong> : \(\vec a\wedge\vec b\) est perpendiculaire à \(\vec a\) et à \(\vec b\), de norme \(ab\sin\theta\) (l’aire du parallélogramme), orienté par la règle de la main droite. \(\vec u_x\wedge\vec u_y = \vec u_z\) et permutations circulaires ; \(\vec b\wedge\vec a = -\vec a\wedge\vec b\).</li>
+<li>Moment d’une force : \(\mathcal M = F\times d\), où \(d\) est le <strong>bras de levier</strong>, distance de l’axe à la droite d’action.</li>
+<li>Mouvement circulaire : \(\vec a = \dfrac{\mathrm dv}{\mathrm dt}\vec u_T + \dfrac{v^2}{R}\vec u_N\), la composante normale pointant vers le centre.</li>
+<li><strong>Gradient</strong> : \(\overrightarrow{\text{grad}}\,f = \left(\dfrac{\partial f}{\partial x}, \dfrac{\partial f}{\partial y}, \dfrac{\partial f}{\partial z}\right)\) pointe vers la plus forte montée, perpendiculairement aux lignes de niveau. \(\vec F = -\overrightarrow{\text{grad}}\,E_p\), \(\vec E = -\overrightarrow{\text{grad}}\,V\).</li>
+<li>Travail d’une force conservative : \(W_{A\to B} = E_p(A) - E_p(B)\), quel que soit le chemin. Flux d’une vitesse à travers une surface : le débit \(Q = vS\cos\theta\).</li>
+</ol>
+</div>
+
+<h2 id="composantes">1. Vecteurs et composantes</h2>
+
+<h3 id="representer">Représenter un vecteur</h3>
+<p>Un vecteur a une <strong>norme</strong> (une longueur, toujours positive), une <strong>direction</strong> et un <strong>sens</strong>. Dans un repère orthonormé \((\vec u_x, \vec u_y, \vec u_z)\), il s’écrit avec ses trois <strong>composantes</strong>, qui sont des nombres algébriques :</p>
+\[\vec F = F_x\,\vec u_x + F_y\,\vec u_y + F_z\,\vec u_z, \qquad F = \|\vec F\| = \sqrt{F_x^2 + F_y^2 + F_z^2}.\]
+<table>
+<thead><tr><th>Opération</th><th>Géométrie</th><th>En composantes</th></tr></thead>
+<tbody>
+<tr><td>Somme \(\vec a + \vec b\)</td><td>mettre les vecteurs bout à bout (ou diagonale du parallélogramme)</td><td>on ajoute composante par composante</td></tr>
+<tr><td>Multiplication par \(k\)</td><td>même direction, norme × \(|k|\), sens inversé si \(k < 0\)</td><td>\((ka_x, ka_y, ka_z)\)</td></tr>
+<tr><td>Vecteur unitaire \(\vec u = \vec a/a\)</td><td>même direction et même sens, norme 1</td><td>composantes divisées par \(a\)</td></tr>
+</tbody></table>
+<p>Une loi vectorielle donne <strong>une équation par axe</strong> : \(m\vec a = \sum\vec F\) se projette en \(ma_x = \sum F_x\) et \(ma_y = \sum F_y\).</p>
+
+<h3 id="projeter">Projeter sur des axes</h3>
+<figure>
+<svg viewBox="0 0 640 220" width="640" role="img" aria-label="Projection d'un vecteur sur deux axes, et du poids sur un plan incliné" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
+<defs><marker id="vp-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8a94a6"/></marker><marker id="vp-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0b5fa5"/></marker><marker id="vp-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b23a48"/></marker><marker id="vp-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d9900b"/></marker></defs>
+<g font-size="12" fill="#15213a">
+<line x1="40" y1="180" x2="280" y2="180" stroke="#8a94a6" marker-end="url(#vp-g)"/><text x="284" y="184">x</text>
+<line x1="40" y1="180" x2="40" y2="20" stroke="#8a94a6" marker-end="url(#vp-g)"/><text x="30" y="20">y</text>
+<line x1="40" y1="180" x2="200" y2="72" stroke="#0b5fa5" stroke-width="2.5" marker-end="url(#vp-b)"/><text x="206" y="68" fill="#0b5fa5" font-weight="600">F</text>
+<line x1="200" y1="76" x2="200" y2="180" stroke="#4a5670" stroke-dasharray="3 3"/><line x1="40" y1="74" x2="198" y2="74" stroke="#4a5670" stroke-dasharray="3 3"/>
+<line x1="40" y1="180" x2="198" y2="180" stroke="#d9900b" stroke-width="3"/><text x="96" y="200" fill="#b85a0c">F cos α</text>
+<line x1="40" y1="180" x2="40" y2="76" stroke="#d9900b" stroke-width="3"/><text x="46" y="128" fill="#b85a0c">F sin α</text>
+<path d="M85 180 A45 45 0 0 0 77 155" fill="none" stroke="#15213a"/><text x="90" y="166">α</text>
+<polygon points="340,190 620,190 620,60" fill="#e9eef5" stroke="#8a94a6"/>
+<path d="M395 190 A55 55 0 0 0 389.9 166.8" fill="none" stroke="#15213a"/><text x="400" y="184">α</text>
+<rect x="464" y="94" width="40" height="28" fill="#dbe8f7" stroke="#0b5fa5" transform="rotate(-24.9 484 108)"/>
+<line x1="484" y1="108" x2="484" y2="194" stroke="#b23a48" stroke-width="2.5" marker-end="url(#vp-r)"/><text x="490" y="210" fill="#b23a48" font-weight="600">P = mg</text>
+<line x1="484" y1="108" x2="451.3" y2="123.2" stroke="#d9900b" stroke-width="2.5" marker-end="url(#vp-o)"/><text x="372" y="120" fill="#b85a0c">mg sin α</text>
+<line x1="484" y1="108" x2="516.8" y2="178.7" stroke="#d9900b" stroke-width="2.5" marker-end="url(#vp-o)"/><text x="524" y="150" fill="#b85a0c">mg cos α</text>
+</g>
+</svg>
+<figcaption>À gauche, les composantes d’un vecteur qui fait l’angle \(\alpha\) avec l’axe \(x\). À droite, le poids sur un plan incliné d’angle \(\alpha\) : \(mg\sin\alpha\) le long de la pente, \(mg\cos\alpha\) perpendiculairement.</figcaption>
+</figure>
+<table>
+<thead><tr><th>Outil</th><th>Formule</th><th>Usage</th></tr></thead>
+<tbody>
+<tr><td>Projection</td><td>\(F_x = F\cos\alpha\), \(F_y = F\sin\alpha\) (\(\alpha\) mesuré depuis l’axe \(x\))</td><td>écrire Newton sur chaque axe</td></tr>
+<tr><td>Vérification rapide</td><td>si \(\alpha \to 0\), la composante le long de l’axe doit tendre vers \(F\)</td><td>éviter d’échanger sin et cos</td></tr>
+<tr><td>Signe</td><td>une composante est négative si le vecteur « recule » par rapport à l’axe</td><td>poids sur un axe \(z\) vers le haut : \(-mg\)</td></tr>
+<tr><td>Norme et angle</td><td>\(F = \sqrt{F_x^2 + F_y^2}\), \(\tan\alpha = F_y/F_x\)</td><td>reconstituer un vecteur</td></tr>
+</tbody></table>
+<div class="methode" data-m="projeter"><p>Sur un plan incliné, on prend un axe le long de la pente et un axe perpendiculaire : le mouvement n’a qu’une composante, la réaction normale n’en a qu’une, et seul le poids est à projeter (\(mg\sin\alpha\) le long de la pente, \(mg\cos\alpha\) perpendiculairement).</p></div>
+<div class="sim" data-name="projection"><p>Tournez les axes : les composantes d’un même vecteur changent, sa norme ne change pas. Alignez un axe sur le vecteur : une composante devient nulle. C’est tout l’art de choisir ses axes.</p></div>
+<div class="piege">
+<ul>
+<li>Le sinus et le cosinus dépendent de l’angle choisi : sur un plan incliné d’angle \(\alpha\), l’angle entre le poids et la normale au plan vaut aussi \(\alpha\). Vérifiez toujours avec le cas \(\alpha = 0\) (plan horizontal : composante le long de la pente nulle).</li>
+<li>Une somme de vecteurs ne se fait pas sur les normes : deux forces de 3 N et 4 N perpendiculaires donnent 5 N, pas 7 N.</li>
+</ul>
+</div>
+<div class="exo" data-q="vec-projection-plan"></div>
+<div class="exo" data-q="ipho-2026-T13"></div>
+
+<h3 id="symetries-vect">Symétries : deviner une direction sans calcul</h3>
+<p>Un champ créé par une distribution symétrique hérite de ses symétries. Si un plan est plan de symétrie des sources, le champ électrique (comme le champ de gravitation) en un point de ce plan est <strong>contenu dans le plan</strong> : les composantes perpendiculaires s’annulent deux à deux.</p>
+<table>
+<thead><tr><th>Sources</th><th>Direction du champ \(\vec E\) ou \(\vec{\mathcal G}\)</th></tr></thead>
+<tbody>
+<tr><td>Point (charge, astre sphérique)</td><td>radiale, le long de la droite qui joint le centre au point</td></tr>
+<tr><td>Fil rectiligne infini, cylindre</td><td>perpendiculaire au fil, dirigée depuis l’axe</td></tr>
+<tr><td>Plan infini</td><td>perpendiculaire au plan</td></tr>
+<tr><td>Deux charges égales</td><td>sur la médiatrice : le long de la médiatrice ; au milieu : nul</td></tr>
+</tbody></table>
+<div class="methode" data-m="symetrie"><p>Pour un arc de cercle chargé, la bissectrice de l’arc est un axe de symétrie : au centre, le champ est porté par la bissectrice. Il ne reste qu’à trouver son sens (charge positive ou négative) et, si besoin, à sommer les seules composantes le long de cet axe.</p></div>
+<div class="exo" data-q="ipho-2024-T13"></div>
+
+<h2 id="scalaire">2. Produit scalaire</h2>
+<p>Le produit scalaire de deux vecteurs est un <strong>nombre</strong>. Il a deux expressions équivalentes :</p>
+\[\vec a\cdot\vec b = ab\cos\theta = a_xb_x + a_yb_y + a_zb_z,\]
+<p>où \(\theta\) est l’angle entre les deux vecteurs. Géométriquement, c’est la norme de \(\vec a\) multipliée par la <strong>projection</strong> de \(\vec b\) sur la direction de \(\vec a\).</p>
+<table>
+<thead><tr><th>Angle \(\theta\)</th><th>\(0\)</th><th>entre \(0\) et \(90°\)</th><th>\(90°\)</th><th>entre \(90°\) et \(180°\)</th><th>\(180°\)</th></tr></thead>
+<tbody>
+<tr><td>\(\vec a\cdot\vec b\)</td><td>\(ab\), maximal</td><td>positif</td><td><strong>nul</strong></td><td>négatif</td><td>\(-ab\)</td></tr>
+<tr><td>Pour un travail</td><td>force motrice</td><td>moteur</td><td>ne travaille pas</td><td>résistant</td><td>frein direct</td></tr>
+</tbody></table>
+<div class="sim" data-name="produits"><p>Faites varier l’angle entre deux vecteurs. En mode « scalaire », la projection de \(\vec b\) sur \(\vec a\) et le signe du produit apparaissent ; en mode « vectoriel », l’aire du parallélogramme et le sens du produit (⊙ vers vous, ⊗ vers le fond).</p></div>
+<table>
+<thead><tr><th>Usage</th><th>Formule</th><th>Remarque</th></tr></thead>
+<tbody>
+<tr><td>Travail d’une force constante</td><td>\(W = \vec F\cdot\overrightarrow{AB} = F\,AB\cos\theta\)</td><td>seule la composante le long du déplacement travaille</td></tr>
+<tr><td>Puissance</td><td>\(P = \vec F\cdot\vec v\)</td><td>une force perpendiculaire à la vitesse ne travaille pas (force magnétique, tension d’un pendule, réaction sans frottement)</td></tr>
+<tr><td>Norme au carré</td><td>\(\vec a\cdot\vec a = a^2\)</td><td>\(\|\vec a + \vec b\|^2 = a^2 + b^2 + 2\vec a\cdot\vec b\)</td></tr>
+<tr><td>Composante sur un axe</td><td>\(F_x = \vec F\cdot\vec u_x\)</td><td>projeter, c’est faire un produit scalaire avec un vecteur unitaire</td></tr>
+<tr><td>Flux, débit</td><td>\(Q = \vec v\cdot\vec S\)</td><td>partie 6</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="Les deux expressions du produit scalaire coïncident">
+<ol class="etapes">
+<li>Plaçons \(\vec a\) le long de l’axe \(x\) : \(\vec a = (a, 0, 0)\). Le vecteur \(\vec b\), qui fait l’angle \(\theta\) avec \(\vec a\), s’écrit \(\vec b = (b\cos\theta, b\sin\theta, 0)\) dans un plan bien choisi.</li>
+<li>Expression en composantes : \(a_xb_x + a_yb_y + a_zb_z = a\,b\cos\theta + 0 + 0 = ab\cos\theta\).</li>
+<li>Les deux expressions ne dépendent pas du repère (la norme et l’angle sont des grandeurs géométriques) : elles sont donc égales dans tout repère orthonormé.</li>
+<li>Conséquence utile : \(\|\vec a - \vec b\|^2 = a^2 + b^2 - 2ab\cos\theta\), c’est la loi des cosinus (Al-Kashi) du triangle.</li>
+</ol>
+</div>
+<div class="exo" data-q="vec-scalaire-travail"></div>
+<div class="exo" data-q="vec-scalaire-orthogonal"></div>
+
+<h2 id="vectoriel">3. Produit vectoriel</h2>
+
+<h3 id="definition-vectoriel">Définition</h3>
+<p>Le produit vectoriel \(\vec c = \vec a\wedge\vec b\) (on lit « \(\vec a\) vectoriel \(\vec b\) » ; on trouve aussi la notation \(\vec a\times\vec b\)) est un <strong>vecteur</strong> défini par trois propriétés :</p>
+<ol class="etapes">
+<li><strong>Direction</strong> : perpendiculaire à \(\vec a\) et à \(\vec b\), donc au plan qui les contient.</li>
+<li><strong>Norme</strong> : \(\|\vec a\wedge\vec b\| = ab\sin\theta\), l’aire du parallélogramme construit sur \(\vec a\) et \(\vec b\).</li>
+<li><strong>Sens</strong> : donné par la <strong>règle de la main droite</strong> (pouce sur \(\vec a\), index sur \(\vec b\), le majeur donne \(\vec c\)) ou du tire-bouchon (tourner de \(\vec a\) vers \(\vec b\) fait avancer le tire-bouchon dans le sens de \(\vec c\)).</li>
+</ol>
+<figure>
+<svg viewBox="0 0 660 250" width="660" role="img" aria-label="Produit vectoriel : parallélogramme construit sur a et b, vecteur c perpendiculaire ; notations vers le lecteur et vers le fond" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
+<defs>
+<marker id="pv-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0b5fa5"/></marker>
+<marker id="pv-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d9900b"/></marker>
+<marker id="pv-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b23a48"/></marker>
+</defs>
+<g font-size="12" fill="#15213a">
+<polygon points="80,200 290,200 400,150 190,150" fill="#dbe8f7" stroke="#8a94a6" stroke-dasharray="4 3"/>
+<text x="235" y="186" text-anchor="middle" fill="#4a5670" font-size="11">aire = ab sin θ</text>
+<line x1="80" y1="200" x2="290" y2="200" stroke="#0b5fa5" stroke-width="3" marker-end="url(#pv-b)"/><text x="296" y="216" fill="#0b5fa5" font-weight="600">a</text>
+<line x1="80" y1="200" x2="190" y2="150" stroke="#d9900b" stroke-width="3" marker-end="url(#pv-o)"/><text x="180" y="142" fill="#b85a0c" font-weight="600">b</text>
+<line x1="80" y1="200" x2="80" y2="55" stroke="#b23a48" stroke-width="3" marker-end="url(#pv-r)"/><text x="90" y="62" fill="#b23a48" font-weight="600">c = a ∧ b</text>
+<path d="M120 200 A40 40 0 0 0 116 183" fill="none" stroke="#15213a"/><text x="126" y="192">θ</text>
+<path d="M96 130 A16 6 0 1 1 112 124" fill="none" stroke="#b23a48" stroke-width="1.4" marker-end="url(#pv-r)"/><text x="118" y="122" font-size="10" fill="#b23a48">de a vers b</text>
+<text x="80" y="238" font-size="11" fill="#4a5670">Le parallélogramme est dans le plan (a, b) ; c lui est perpendiculaire.</text>
+<line x1="470" y1="20" x2="470" y2="230" stroke="#e1e5eb"/>
+<circle cx="520" cy="75" r="16" fill="none" stroke="#15213a" stroke-width="1.6"/><circle cx="520" cy="75" r="3.5" fill="#15213a"/>
+<text x="548" y="72" font-weight="600">⊙ vers le lecteur</text><text x="548" y="88" font-size="11" fill="#4a5670">pointe de la flèche</text>
+<circle cx="520" cy="150" r="16" fill="none" stroke="#15213a" stroke-width="1.6"/><line x1="509" y1="139" x2="531" y2="161" stroke="#15213a" stroke-width="1.6"/><line x1="531" y1="139" x2="509" y2="161" stroke="#15213a" stroke-width="1.6"/>
+<text x="548" y="147" font-weight="600">⊗ vers le fond</text><text x="548" y="163" font-size="11" fill="#4a5670">queue de la flèche</text>
+<text x="490" y="215" font-size="11" fill="#4a5670">u_x ∧ u_y = u_z (x vers la droite,</text><text x="490" y="230" font-size="11" fill="#4a5670">y vers le haut : z vers le lecteur ⊙)</text>
+</g>
+</svg>
+<figcaption>À gauche, le produit vectoriel en perspective : sa norme est l’aire du parallélogramme. À droite, les notations d’un vecteur perpendiculaire à la feuille.</figcaption>
+</figure>
+<div class="sim" data-name="vectoriel3d"><p>Faites tourner la scène en trois dimensions : \(\vec a\wedge\vec b\) reste perpendiculaire au plan de \(\vec a\) et \(\vec b\). Échangez \(\vec a\) et \(\vec b\) : le produit change de sens. Rendez-les colinéaires : il s’annule.</p></div>
+
+<h3 id="proprietes-vectoriel">Propriétés et calcul</h3>
+<table>
+<thead><tr><th>Propriété</th><th>Formule</th><th>Conséquence</th></tr></thead>
+<tbody>
+<tr><td>Antisymétrie</td><td>\(\vec b\wedge\vec a = -\vec a\wedge\vec b\)</td><td>l’ordre compte : se tromper d’ordre inverse le sens</td></tr>
+<tr><td>Vecteurs colinéaires</td><td>\(\vec a\wedge\vec a = \vec 0\)</td><td>une charge qui se déplace le long de \(\vec B\) ne subit aucune force</td></tr>
+<tr><td>Distributivité</td><td>\(\vec a\wedge(\vec b + \vec c) = \vec a\wedge\vec b + \vec a\wedge\vec c\)</td><td>on peut développer en composantes</td></tr>
+<tr><td>Base directe</td><td>\(\vec u_x\wedge\vec u_y = \vec u_z\), \(\vec u_y\wedge\vec u_z = \vec u_x\), \(\vec u_z\wedge\vec u_x = \vec u_y\)</td><td>permutation circulaire \(x \to y \to z \to x\) ; dans l’autre ordre, un signe moins</td></tr>
+</tbody></table>
+<p>En composantes, on retient la formule par permutation circulaire :</p>
+\[\vec a\wedge\vec b = \begin{pmatrix} a_yb_z - a_zb_y \\ a_zb_x - a_xb_z \\ a_xb_y - a_yb_x \end{pmatrix}.\]
+<div class="complement" data-tag="Démonstration" title="La formule en composantes, à partir de la base">
+<ol class="etapes">
+<li>On développe \((a_x\vec u_x + a_y\vec u_y + a_z\vec u_z)\wedge(b_x\vec u_x + b_y\vec u_y + b_z\vec u_z)\) : neuf termes \(a_ib_j\,\vec u_i\wedge\vec u_j\).</li>
+<li>Les trois termes \(\vec u_x\wedge\vec u_x\), \(\vec u_y\wedge\vec u_y\), \(\vec u_z\wedge\vec u_z\) sont nuls.</li>
+<li>Selon \(\vec u_z\) : \(a_xb_y\,\vec u_x\wedge\vec u_y + a_yb_x\,\vec u_y\wedge\vec u_x = (a_xb_y - a_yb_x)\,\vec u_z\). Les deux autres composantes s’obtiennent par permutation circulaire.</li>
+<li>Vérification : \(\vec a\cdot(\vec a\wedge\vec b) = a_x(a_yb_z - a_zb_y) + a_y(a_zb_x - a_xb_z) + a_z(a_xb_y - a_yb_x) = 0\) : le résultat est bien perpendiculaire à \(\vec a\).</li>
+</ol>
+</div>
+<div class="methode" data-m="main-droite"><p>Pour trouver le sens de \(q\vec v\wedge\vec B\) : écrire les deux vecteurs sur les vecteurs de base (\(\vec v = v\vec u_x\), \(\vec B = B\vec u_z\)), utiliser \(\vec u_x\wedge\vec u_z = -\vec u_y\), puis ne pas oublier le signe de \(q\). Pour un électron, le sens est inversé.</p></div>
+<div class="exo" data-q="vec-vectoriel-base"></div>
+<div class="exo" data-q="vec-vectoriel-composantes"></div>
+
+<h3 id="usages-vectoriel">Où le rencontre-t-on ?</h3>
+<table>
+<thead><tr><th>Grandeur</th><th>Expression</th><th>Ce qu’elle dit</th><th>Niveau</th></tr></thead>
+<tbody>
+<tr><td>Force de Lorentz magnétique</td><td>\(\vec F = q\vec v\wedge\vec B\)</td><td>perpendiculaire à \(\vec v\) : elle courbe la trajectoire sans changer la vitesse (cercle de rayon \(mv/(|q|B)\))</td><td>T et C</td></tr>
+<tr><td>Moment d’une force par rapport à \(O\)</td><td>\(\vec{\mathcal M}_O = \overrightarrow{OM}\wedge\vec F\)</td><td>capacité de la force à faire tourner autour de \(O\)</td><td>C</td></tr>
+<tr><td>Moment cinétique</td><td>\(\vec L_O = \overrightarrow{OM}\wedge m\vec v\)</td><td>conservé pour une force centrale (loi des aires de Kepler)</td><td>C</td></tr>
+<tr><td>Vitesse d’un point d’un solide en rotation</td><td>\(\vec v = \vec\omega\wedge\overrightarrow{OM}\)</td><td>norme \(\omega r\), perpendiculaire au rayon</td><td>C</td></tr>
+<tr><td>Force de Coriolis</td><td>\(\vec F = -2m\vec\Omega\wedge\vec v\)</td><td>déviation vers la droite dans l’hémisphère Nord</td><td>C</td></tr>
+</tbody></table>
+<div class="exo" data-q="vec-lorentz-sens"></div>
+<div class="exo" data-q="ipho-2025-T6"></div>
+
+<h3 id="moment">Le moment d’une force et le bras de levier</h3>
+<p>La norme du moment s’écrit \(\mathcal M = rF\sin\theta\). Le produit \(d = r\sin\theta\) est la distance de \(O\) à la <strong>droite d’action</strong> de la force : le <strong>bras de levier</strong>. D’où la règle pratique :</p>
+\[\mathcal M = F \times d.\]
+<figure>
+<svg viewBox="0 0 640 220" width="640" role="img" aria-label="Bras de levier : distance de l'axe à la droite d'action de la force" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
+<defs><marker id="ml-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b23a48"/></marker></defs>
+<g font-size="12" fill="#15213a">
+<rect x="60" y="112" width="330" height="14" rx="7" fill="#c3cad6" stroke="#8a94a6"/>
+<circle cx="70" cy="119" r="9" fill="#15213a"/><text x="58" y="148">O (axe)</text>
+<circle cx="370" cy="119" r="4" fill="#15213a"/><text x="372" y="146">M</text>
+<text x="215" y="146" text-anchor="middle">r = OM</text>
+<line x1="404.0" y1="207.7" x2="325.0" y2="1.8" stroke="#b23a48" stroke-dasharray="5 4"/><text x="410.0" y="207.7" fill="#b23a48" font-size="11">droite d’action</text>
+<line x1="370" y1="119" x2="344.9" y2="53.6" stroke="#b23a48" stroke-width="3" marker-end="url(#ml-r)"/><text x="352.9" y="57.6" fill="#b23a48" font-weight="600">F</text>
+<path d="M402 119 A32 32 0 0 0 358.5 89.1" fill="none" stroke="#15213a"/><text x="398" y="96">θ</text>
+<line x1="70" y1="119" x2="331.5" y2="18.6" stroke="#d9900b" stroke-width="2.5"/>
+<polyline points="334.7,27.0 326.3,30.3 323.1,21.9" fill="none" stroke="#d9900b"/>
+<text x="170.7" y="58.8" fill="#b85a0c" font-weight="600">d = r sin θ</text>
+</g>
+<g font-size="12" fill="#15213a">
+<text x="460" y="70">𝓜 = F × d = F r sin θ</text>
+<text x="460" y="94" font-size="11" fill="#4a5670">Pousser près de l’axe (d petit)</text>
+<text x="460" y="110" font-size="11" fill="#4a5670">ou vers l’axe (θ = 0 ou 180°)</text>
+<text x="460" y="126" font-size="11" fill="#4a5670">ne fait pas tourner.</text>
+</g>
+</svg>
+<figcaption>Le bras de levier \(d\) est la distance de l’axe \(O\) à la droite d’action de \(\vec F\), mesurée perpendiculairement à celle-ci.</figcaption>
+</figure>
+<div class="sim" data-name="moment"><p>Une clé tourne autour d’un écrou. Changez le point d’application et l’angle de la force : le moment est maximal quand la force est perpendiculaire à la clé, nul quand elle est dirigée vers l’axe.</p></div>
+<div class="methode" data-m="point-moment"><p>Pour une barre en équilibre sur un support, on écrit les moments au point d’appui : la réaction du support, inconnue, y a un bras de levier nul et disparaît de l’équation.</p></div>
+<div class="exo" data-q="vec-moment-cle"></div>
+<div class="exo" data-q="ipho-2005-20"></div>
+
+<h2 id="polaires">4. Coordonnées polaires et base de Frenet</h2>
+
+<h3 id="base-polaire">Une base qui suit le point</h3>
+<p>Pour un mouvement circulaire ou autour d’un centre, on repère le point \(M\) par sa distance \(r\) au centre et son angle \(\theta\). La base associée, \((\vec u_r, \vec u_\theta)\), <strong>tourne avec le point</strong> : \(\vec u_r\) pointe du centre vers \(M\), \(\vec u_\theta\) lui est perpendiculaire dans le sens des \(\theta\) croissants.</p>
+<figure>
+<svg viewBox="0 0 640 240" width="640" role="img" aria-label="Base polaire u_r, u_theta en un point M ; vitesse et accélération tangentielle et normale sur un cercle" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
+<defs>
+<marker id="bp-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0b5fa5"/></marker>
+<marker id="bp-o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d9900b"/></marker>
+<marker id="bp-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b23a48"/></marker>
+<marker id="bp-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8a94a6"/></marker>
+</defs>
+<g font-size="12" fill="#15213a">
+<line x1="50" y1="200" x2="290" y2="200" stroke="#8a94a6" marker-end="url(#bp-g)"/><text x="292" y="204">x</text>
+<line x1="50" y1="200" x2="50" y2="30" stroke="#8a94a6" marker-end="url(#bp-g)"/><text x="40" y="30">y</text>
+<line x1="50" y1="200" x2="149.6" y2="116.4" stroke="#15213a" stroke-width="1.4"/><circle cx="149.6" cy="116.4" r="4" fill="#15213a"/><text x="137" y="140">M</text>
+<text x="92" y="150">r</text>
+<path d="M95 200 A45 45 0 0 0 84.5 171.1" fill="none" stroke="#15213a"/><text x="100" y="188">θ</text>
+<line x1="149.6" y1="116.4" x2="195.6" y2="77.8" stroke="#0b5fa5" stroke-width="2.5" marker-end="url(#bp-b)"/><text x="200" y="76" fill="#0b5fa5" font-weight="600">u_r</text>
+<line x1="149.6" y1="116.4" x2="111" y2="70.4" stroke="#d9900b" stroke-width="2.5" marker-end="url(#bp-o)"/><text x="86" y="64" fill="#b85a0c" font-weight="600">u_θ</text>
+<text x="60" y="228" font-size="11" fill="#4a5670">u_r et u_θ tournent avec M : leurs dérivées ne sont pas nulles.</text>
+<circle cx="500" cy="140" r="80" fill="none" stroke="#c3cad6" stroke-width="1.5"/><circle cx="500" cy="140" r="3" fill="#15213a"/><text x="506" y="156">centre</text>
+<circle cx="443.4" cy="83.4" r="4" fill="#15213a"/>
+<line x1="443.4" y1="83.4" x2="390.4" y2="136.4" stroke="#0b5fa5" stroke-width="2.5" marker-end="url(#bp-b)"/><text x="372" y="150" fill="#0b5fa5" font-weight="600">v</text>
+<line x1="443.4" y1="83.4" x2="485.8" y2="125.8" stroke="#d9900b" stroke-width="2.2" marker-end="url(#bp-o)"/><text x="492" y="118" fill="#b85a0c" font-size="11">a_N = v²/R</text>
+<line x1="443.4" y1="83.4" x2="418.7" y2="108.1" stroke="#d9900b" stroke-width="2.2" marker-end="url(#bp-o)"/><text x="410" y="100" fill="#b85a0c" font-size="11" text-anchor="end">a_T = dv/dt</text>
+<line x1="443.4" y1="83.4" x2="461.1" y2="150.5" stroke="#b23a48" stroke-width="2.5" marker-end="url(#bp-r)"/><text x="452" y="172" fill="#b23a48" font-weight="600">a</text>
+<text x="390" y="238" font-size="11" fill="#4a5670">Cercle parcouru en accélérant</text>
+</g>
+</svg>
+<figcaption>À gauche, la base polaire. À droite, sur un cercle : la vitesse est tangente ; l’accélération a une composante tangentielle \(\mathrm dv/\mathrm dt\) et une composante normale \(v^2/R\) dirigée vers le centre.</figcaption>
+</figure>
+<table>
+<thead><tr><th>Grandeur</th><th>Cas général (CPGE)</th><th>Mouvement circulaire (\(r = R\))</th></tr></thead>
+<tbody>
+<tr><td>Position</td><td>\(\overrightarrow{OM} = r\,\vec u_r\)</td><td>\(R\,\vec u_r\)</td></tr>
+<tr><td>Vitesse</td><td>\(\vec v = \dot r\,\vec u_r + r\dot\theta\,\vec u_\theta\)</td><td>\(R\dot\theta\,\vec u_\theta\), soit \(v = R\omega\)</td></tr>
+<tr><td>Accélération</td><td>\(\vec a = (\ddot r - r\dot\theta^2)\,\vec u_r + (2\dot r\dot\theta + r\ddot\theta)\,\vec u_\theta\)</td><td>\(-R\dot\theta^2\,\vec u_r + R\ddot\theta\,\vec u_\theta\)</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="Dériver une base qui tourne">
+<ol class="etapes">
+<li>Dans la base fixe : \(\vec u_r = \cos\theta\,\vec u_x + \sin\theta\,\vec u_y\) et \(\vec u_\theta = -\sin\theta\,\vec u_x + \cos\theta\,\vec u_y\).</li>
+<li>On dérive par rapport au temps, avec la règle de la composée (\(\theta\) dépend de \(t\)) : \(\dfrac{\mathrm d\vec u_r}{\mathrm dt} = \dot\theta(-\sin\theta\,\vec u_x + \cos\theta\,\vec u_y) = \dot\theta\,\vec u_\theta\), et de même \(\dfrac{\mathrm d\vec u_\theta}{\mathrm dt} = -\dot\theta\,\vec u_r\).</li>
+<li>Vitesse : \(\vec v = \dfrac{\mathrm d}{\mathrm dt}(r\,\vec u_r) = \dot r\,\vec u_r + r\dot\theta\,\vec u_\theta\) (dérivée d’un produit).</li>
+<li>Accélération : on dérive encore, \(\vec a = \ddot r\,\vec u_r + \dot r\dot\theta\,\vec u_\theta + (\dot r\dot\theta + r\ddot\theta)\,\vec u_\theta - r\dot\theta^2\,\vec u_r\), d’où la formule du tableau.</li>
+<li>Pour \(r = R\) constant, avec \(v = R\dot\theta\) : \(\vec a = -\dfrac{v^2}{R}\,\vec u_r + \dfrac{\mathrm dv}{\mathrm dt}\,\vec u_\theta\). Le terme \(-v^2/R\) existe même à vitesse constante : changer de direction, c’est accélérer.</li>
+</ol>
+</div>
+
+<h3 id="frenet">La base de Frenet : tangente et normale</h3>
+<p>Pour une trajectoire quelconque, on utilise en chaque point le vecteur unitaire \(\vec u_T\) tangent (dans le sens du mouvement) et le vecteur unitaire \(\vec u_N\) normal, dirigé vers l’intérieur de la courbe. Si \(R\) est le rayon de courbure local :</p>
+\[\vec v = v\,\vec u_T, \qquad \vec a = \frac{\mathrm dv}{\mathrm dt}\,\vec u_T + \frac{v^2}{R}\,\vec u_N.\]
+<table>
+<thead><tr><th>Mouvement</th><th>\(a_T = \mathrm dv/\mathrm dt\)</th><th>\(a_N = v^2/R\)</th></tr></thead>
+<tbody>
+<tr><td>Rectiligne uniforme</td><td>0</td><td>0 (\(R\) infini)</td></tr>
+<tr><td>Rectiligne accéléré</td><td>\(\ne 0\)</td><td>0</td></tr>
+<tr><td>Circulaire uniforme</td><td>0</td><td>\(v^2/R = R\omega^2\), vers le centre</td></tr>
+<tr><td>Virage en freinant</td><td>\(< 0\)</td><td>\(v^2/R\), vers l’intérieur du virage</td></tr>
+</tbody></table>
+<div class="sim" data-name="polaire"><p>Un point parcourt un cercle ou une ellipse, à vitesse constante ou non. Les flèches montrent la vitesse, toujours tangente, et l’accélération décomposée en partie tangentielle (qui change la norme de la vitesse) et normale (qui change sa direction).</p></div>
+<div class="piege">
+<ul>
+<li>« Vitesse constante » ne veut pas dire « accélération nulle » : dans un virage à vitesse constante, \(a = v^2/R\).</li>
+<li>La force centrifuge n’existe que dans le référentiel tournant (chapitre <a href="#nongalileen">Référentiels non galiléens</a>). Dans le référentiel galiléen, on écrit \(m v^2/R = \) somme des forces vers le centre.</li>
+</ul>
+</div>
+<div class="exo" data-q="vec-centripete"></div>
+<div class="exo" data-q="vec-roue"></div>
+
+<div class="cpge" id="elements-volume" title="Éléments de longueur, de surface et de volume">
+<p>Pour découper en éléments (chapitre <a href="#maths--decouper">Outils mathématiques</a>) dans des coordonnées adaptées à la symétrie :</p>
+<table>
+<thead><tr><th>Coordonnées</th><th>Déplacement élémentaire</th><th>Élément de surface ou de volume</th></tr></thead>
+<tbody>
+<tr><td>Polaires \((r, \theta)\)</td><td>\(\mathrm dr\,\vec u_r + r\,\mathrm d\theta\,\vec u_\theta\)</td><td>\(\mathrm dS = r\,\mathrm dr\,\mathrm d\theta\)</td></tr>
+<tr><td>Cylindriques \((r, \theta, z)\)</td><td>\(\mathrm dr\,\vec u_r + r\,\mathrm d\theta\,\vec u_\theta + \mathrm dz\,\vec u_z\)</td><td>\(\mathrm dV = r\,\mathrm dr\,\mathrm d\theta\,\mathrm dz\)</td></tr>
+<tr><td>Sphériques \((r, \theta, \varphi)\)</td><td>\(\mathrm dr\,\vec u_r + r\,\mathrm d\theta\,\vec u_\theta + r\sin\theta\,\mathrm d\varphi\,\vec u_\varphi\)</td><td>\(\mathrm dV = r^2\sin\theta\,\mathrm dr\,\mathrm d\theta\,\mathrm d\varphi\)</td></tr>
+</tbody></table>
+<p>En intégrant sur les angles, on retrouve la couronne \(2\pi r\,\mathrm dr\) et la pelure \(4\pi r^2\,\mathrm dr\).</p>
+</div>
+
+<h2 id="gradient">5. Le gradient</h2>
+
+<h3 id="champ-scalaire">Champ scalaire et dérivées partielles</h3>
+<p>Un <strong>champ scalaire</strong> associe un nombre à chaque point de l’espace : l’altitude sur une carte, la température dans une pièce, la pression dans un fluide, le potentiel électrique \(V\), l’énergie potentielle \(E_p\). Comment varie-t-il quand on se déplace ? Cela dépend de la direction dans laquelle on va.</p>
+<p>La <strong>dérivée partielle</strong> \(\dfrac{\partial f}{\partial x}\) est la dérivée de \(f\) par rapport à \(x\), les autres coordonnées étant <strong>tenues constantes</strong>. On dérive comme d’habitude, en traitant \(y\) et \(z\) comme des constantes.</p>
+<table>
+<thead><tr><th>Fonction \(f(x, y)\)</th><th>\(\partial f/\partial x\)</th><th>\(\partial f/\partial y\)</th></tr></thead>
+<tbody>
+<tr><td>\(x^2y\)</td><td>\(2xy\)</td><td>\(x^2\)</td></tr>
+<tr><td>\(3x + 5y\)</td><td>3</td><td>5</td></tr>
+<tr><td>\(x^2 + y^2 = r^2\)</td><td>\(2x\)</td><td>\(2y\)</td></tr>
+<tr><td>\(\sqrt{x^2 + y^2} = r\)</td><td>\(x/r\)</td><td>\(y/r\)</td></tr>
+<tr><td>\(mgz\) (énergie potentielle de pesanteur)</td><td>0</td><td>0 (et \(\partial/\partial z = mg\))</td></tr>
+</tbody></table>
+
+<h3 id="definition-gradient">Le vecteur gradient</h3>
+<p>On rassemble les trois dérivées partielles dans un vecteur, le <strong>gradient</strong> :</p>
+\[\overrightarrow{\text{grad}}\,f = \frac{\partial f}{\partial x}\,\vec u_x + \frac{\partial f}{\partial y}\,\vec u_y + \frac{\partial f}{\partial z}\,\vec u_z.\]
+<p>Il contient toute l’information sur les variations de \(f\) : pour un petit déplacement \(\mathrm d\vec r\), la variation de \(f\) est un produit scalaire,</p>
+\[\mathrm df = \overrightarrow{\text{grad}}\,f\cdot\mathrm d\vec r.\]
+<table>
+<thead><tr><th>Propriété du gradient</th><th>Sur une carte d’altitude</th></tr></thead>
+<tbody>
+<tr><td>Il pointe dans la direction où \(f\) <strong>augmente le plus vite</strong>.</td><td>vers le sommet, par la ligne de plus grande pente</td></tr>
+<tr><td>Sa norme est le taux de variation dans cette direction.</td><td>la pente : courbes de niveau serrées = pente raide</td></tr>
+<tr><td>Il est <strong>perpendiculaire aux lignes</strong> (ou surfaces) <strong>de niveau</strong> \(f = \text{constante}\).</td><td>la ligne de plus grande pente coupe les courbes de niveau à angle droit</td></tr>
+</tbody></table>
+<figure>
+<svg viewBox="0 0 640 250" width="640" role="img" aria-label="Lignes de niveau d'une colline et vecteurs gradient perpendiculaires, dirigés vers le sommet" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
+<defs><marker id="gr-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b85a0c"/></marker></defs>
+<ellipse cx="170" cy="125" rx="36" ry="25.5" fill="none" stroke="#8a94a6" stroke-width="1.2"/>
+<ellipse cx="170" cy="125" rx="72" ry="50.9" fill="none" stroke="#8a94a6" stroke-width="1.2"/>
+<ellipse cx="170" cy="125" rx="108" ry="76.4" fill="none" stroke="#8a94a6" stroke-width="1.2"/>
+<ellipse cx="170" cy="125" rx="144" ry="101.8" fill="none" stroke="#8a94a6" stroke-width="1.2"/>
+<line x1="273.2" y1="102.4" x2="245.4" y2="114.6" stroke="#b85a0c" stroke-width="2" marker-end="url(#gr-a)"/><circle cx="273.2" cy="102.4" r="2.5" fill="#0b5fa5"/>
+<line x1="220.4" y1="57.5" x2="207.8" y2="91.1" stroke="#b85a0c" stroke-width="2" marker-end="url(#gr-a)"/><circle cx="220.4" cy="57.5" r="2.5" fill="#0b5fa5"/>
+<line x1="138.1" y1="52.0" x2="146.0" y2="88.1" stroke="#b85a0c" stroke-width="2" marker-end="url(#gr-a)"/><circle cx="138.1" cy="52.0" r="2.5" fill="#0b5fa5"/>
+<line x1="74.5" y1="89.4" x2="99.7" y2="108.2" stroke="#b85a0c" stroke-width="2" marker-end="url(#gr-a)"/><circle cx="74.5" cy="89.4" r="2.5" fill="#0b5fa5"/>
+<line x1="66.8" y1="147.6" x2="94.6" y2="135.4" stroke="#b85a0c" stroke-width="2" marker-end="url(#gr-a)"/><circle cx="66.8" cy="147.6" r="2.5" fill="#0b5fa5"/>
+<line x1="119.6" y1="192.5" x2="132.2" y2="158.9" stroke="#b85a0c" stroke-width="2" marker-end="url(#gr-a)"/><circle cx="119.6" cy="192.5" r="2.5" fill="#0b5fa5"/>
+<line x1="201.9" y1="198.0" x2="194.0" y2="161.9" stroke="#b85a0c" stroke-width="2" marker-end="url(#gr-a)"/><circle cx="201.9" cy="198.0" r="2.5" fill="#0b5fa5"/>
+<line x1="265.5" y1="160.6" x2="240.3" y2="141.8" stroke="#b85a0c" stroke-width="2" marker-end="url(#gr-a)"/><circle cx="265.5" cy="160.6" r="2.5" fill="#0b5fa5"/>
+<circle cx="170" cy="125" r="4" fill="#15213a"/><text x="178" y="121" font-size="11" fill="#15213a">sommet</text>
+<g font-size="12" fill="#15213a">
+<line x1="360" y1="60" x2="400" y2="60" stroke="#8a94a6" stroke-width="1.2"/><text x="410" y="64">ligne de niveau (altitude constante)</text>
+<line x1="360" y1="95" x2="400" y2="95" stroke="#b85a0c" stroke-width="2" marker-end="url(#gr-a)"/><text x="410" y="99">grad h : vers le sommet,</text><text x="410" y="115">perpendiculaire aux lignes de niveau</text>
+<text x="360" y="150">Les lignes sont plus serrées selon y :</text><text x="360" y="166">la pente y est plus forte, le gradient plus long.</text>
+<text x="360" y="200">Une bille lâchée suit −grad h :</text><text x="360" y="216">la ligne de plus grande pente.</text>
+</g>
+</svg>
+<figcaption>Une colline vue de dessus : \(h(x, y) = H - x^2 - 2y^2\). Le gradient de l’altitude pointe vers le sommet, perpendiculairement aux courbes de niveau.</figcaption>
+</figure>
+<div class="complement" data-tag="Démonstration" title="Pourquoi le gradient est perpendiculaire aux lignes de niveau et pointe vers la montée">
+<ol class="etapes">
+<li>Pour un petit déplacement \(\mathrm d\vec r = (\mathrm dx, \mathrm dy)\), la variation de \(f\) est la somme des variations dues à chaque coordonnée : \(\mathrm df = \dfrac{\partial f}{\partial x}\mathrm dx + \dfrac{\partial f}{\partial y}\mathrm dy = \overrightarrow{\text{grad}}\,f\cdot\mathrm d\vec r\).</li>
+<li>Le long d’une ligne de niveau, \(f\) ne varie pas : \(\mathrm df = 0\), donc \(\overrightarrow{\text{grad}}\,f\cdot\mathrm d\vec r = 0\). Le gradient est perpendiculaire à tout déplacement le long de la ligne.</li>
+<li>Pour un déplacement de longueur fixée \(\mathrm d\ell\) faisant l’angle \(\alpha\) avec le gradient : \(\mathrm df = \|\overrightarrow{\text{grad}}\,f\|\,\mathrm d\ell\cos\alpha\). C’est maximal pour \(\alpha = 0\) : le gradient indique la plus forte montée, et sa norme est la pente dans cette direction.</li>
+</ol>
+</div>
+<div class="sim" data-name="gradient"><p>Une carte de lignes de niveau (colline, cuvette, col, potentiel de deux charges). Cliquez ou touchez un point : le gradient s’y dessine, perpendiculaire à la ligne de niveau. Lâchez une bille : elle descend en suivant \(-\overrightarrow{\text{grad}}\).</p></div>
+
+<h3 id="gradient-physique">Le gradient en physique</h3>
+<p>Partout où une grandeur dérive d’une « énergie » ou d’un « potentiel », la force ou le champ est l’opposé du gradient : il pointe vers les valeurs <strong>décroissantes</strong>.</p>
+<table>
+<thead><tr><th>Champ scalaire</th><th>Relation</th><th>Ce qu’elle dit</th></tr></thead>
+<tbody>
+<tr><td>Énergie potentielle \(E_p\)</td><td>\(\vec F = -\overrightarrow{\text{grad}}\,E_p\)</td><td>la force pousse vers les \(E_p\) basses ; à l’équilibre, \(\overrightarrow{\text{grad}}\,E_p = \vec 0\) (stable si c’est un minimum)</td></tr>
+<tr><td>Potentiel électrique \(V\)</td><td>\(\vec E = -\overrightarrow{\text{grad}}\,V\)</td><td>les lignes de champ sont perpendiculaires aux équipotentielles et vont vers les potentiels décroissants</td></tr>
+<tr><td>Pression \(p\) dans un fluide au repos</td><td>\(\overrightarrow{\text{grad}}\,p = \rho\vec g\)</td><td>la pression augmente vers le bas : \(\dfrac{\mathrm dp}{\mathrm dz} = -\rho g\) (axe \(z\) vers le haut)</td></tr>
+<tr><td>Température \(T\) (CPGE)</td><td>\(\vec j_\text{th} = -\lambda\,\overrightarrow{\text{grad}}\,T\)</td><td>la chaleur va du chaud vers le froid (loi de Fourier)</td></tr>
+</tbody></table>
+<table>
+<thead><tr><th>Exemple</th><th>Calcul</th><th>Résultat</th></tr></thead>
+<tbody>
+<tr><td>Pesanteur, \(E_p = mgz\)</td><td>\(\vec F = -\dfrac{\partial E_p}{\partial z}\vec u_z\)</td><td>\(\vec F = -mg\,\vec u_z\), le poids</td></tr>
+<tr><td>Ressort, \(E_p = \tfrac12kx^2\)</td><td>\(F_x = -\dfrac{\mathrm dE_p}{\mathrm dx}\)</td><td>\(F_x = -kx\), force de rappel</td></tr>
+<tr><td>Gravitation, \(E_p = -\dfrac{GMm}{r}\)</td><td>\(F_r = -\dfrac{\mathrm dE_p}{\mathrm dr}\)</td><td>\(F_r = -\dfrac{GMm}{r^2}\), attractive</td></tr>
+<tr><td>Condensateur plan, \(V\) passe de \(U\) à 0 sur \(d\)</td><td>\(E = -\dfrac{\mathrm dV}{\mathrm dx}\)</td><td>\(E = U/d\), de la plaque \(+\) vers la plaque \(-\)</td></tr>
+</tbody></table>
+<div class="methode" data-m="gradient"><p>À une dimension, la force est l’opposée de la pente du graphe de \(E_p(x)\) : \(F_x = -\mathrm dE_p/\mathrm dx\). On lit sur le graphe le sens de la force (vers le bas de la pente), les équilibres (tangente horizontale) et leur stabilité (minimum stable, maximum instable).</p></div>
+<div class="methode" data-m="potentiel"><p>Sur une carte d’équipotentielles : le champ est perpendiculaire aux lignes, dirigé vers les potentiels décroissants, et d’autant plus intense que les lignes sont serrées, \(E \approx \Delta V/\Delta\ell\).</p></div>
+<div class="piege">
+<ul>
+<li>Le signe moins : le champ électrique va vers les potentiels <strong>décroissants</strong>, la force vers les énergies potentielles <strong>décroissantes</strong>.</li>
+<li>Un potentiel nul n’implique pas un champ nul (au milieu de deux charges opposées, \(V = 0\) mais \(E \ne 0\)), et un champ nul n’implique pas un potentiel nul (au milieu de deux charges égales).</li>
+</ul>
+</div>
+<div class="exo" data-q="vec-gradient-calcul"></div>
+<div class="exo" data-q="vec-gradient-force"></div>
+<div class="exo" data-q="vec-gradient-plaques"></div>
+<div class="exo" data-q="ipho-2010-4"></div>
+
+<div class="cpge" id="gradient-polaire" title="Le gradient en coordonnées polaires et sphériques">
+<p>En coordonnées polaires (ou cylindriques), le déplacement \(r\,\mathrm d\theta\) le long de \(\vec u_\theta\) donne un facteur \(1/r\) :</p>
+\[\overrightarrow{\text{grad}}\,f = \frac{\partial f}{\partial r}\,\vec u_r + \frac{1}{r}\frac{\partial f}{\partial\theta}\,\vec u_\theta\;\left(+\;\frac{\partial f}{\partial z}\,\vec u_z\right).\]
+<p>Pour un champ à symétrie sphérique \(f(r)\), seul reste \(\dfrac{\mathrm df}{\mathrm dr}\,\vec u_r\). Exemple : potentiel d’un dipôle \(V = \dfrac{p\cos\theta}{4\pi\varepsilon_0r^2}\), d’où \(E_r = \dfrac{2p\cos\theta}{4\pi\varepsilon_0r^3}\) et \(E_\theta = \dfrac{p\sin\theta}{4\pi\varepsilon_0r^3}\).</p>
+</div>
+
+<h2 id="circulation-flux">6. Circulation et flux</h2>
+
+<h3 id="circulation">Circulation : le travail le long d’un chemin</h3>
+<p>Quand la force varie le long du chemin, on découpe le chemin en petits déplacements \(\mathrm d\vec\ell\) et on somme les travaux élémentaires :</p>
+\[W_{A\to B} = \int_A^B \vec F\cdot\mathrm d\vec\ell.\]
+<p>C’est la <strong>circulation</strong> de \(\vec F\) de \(A\) à \(B\). Deux cas très différents :</p>
+<table>
+<thead><tr><th>Force</th><th>Travail</th><th>Exemples</th></tr></thead>
+<tbody>
+<tr><td><strong>Conservative</strong> : \(\vec F = -\overrightarrow{\text{grad}}\,E_p\)</td><td>\(W_{A\to B} = E_p(A) - E_p(B)\) : <strong>indépendant du chemin</strong>, nul sur un trajet fermé</td><td>poids, force élastique, force électrique, gravitation</td></tr>
+<tr><td>Non conservative</td><td>dépend du chemin suivi</td><td>frottements (toujours résistants, proportionnels à la longueur parcourue)</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="Le travail d’une force conservative ne dépend pas du chemin">
+<ol class="etapes">
+<li>Travail élémentaire : \(\delta W = \vec F\cdot\mathrm d\vec\ell = -\overrightarrow{\text{grad}}\,E_p\cdot\mathrm d\vec\ell\).</li>
+<li>D’après \(\mathrm df = \overrightarrow{\text{grad}}\,f\cdot\mathrm d\vec r\), cela vaut \(\delta W = -\mathrm dE_p\).</li>
+<li>On somme le long du chemin : \(W_{A\to B} = -\displaystyle\int_A^B \mathrm dE_p = E_p(A) - E_p(B)\). Seuls les points de départ et d’arrivée comptent.</li>
+<li>Exemple : le travail du poids de \(A\) à \(B\) vaut \(mg(z_A - z_B)\), que l’on descende par l’escalier ou par le toboggan.</li>
+</ol>
+</div>
+<div class="exo" data-q="vec-circulation-chemin"></div>
+
+<h3 id="flux">Flux : le débit à travers une surface</h3>
+<p>On oriente une petite surface plane par un <strong>vecteur surface</strong> \(\vec S\), perpendiculaire à la surface, de norme égale à son aire. Le <strong>flux</strong> d’un champ uniforme \(\vec v\) à travers elle est :</p>
+\[\Phi = \vec v\cdot\vec S = vS\cos\theta,\]
+<p>où \(\theta\) est l’angle entre le champ et la normale. Pour une surface étendue, on découpe en petits éléments \(\mathrm d\vec S\) et on somme : \(\Phi = \int \vec v\cdot\mathrm d\vec S\).</p>
+<table>
+<thead><tr><th>Champ</th><th>Son flux</th><th>Chapitre</th></tr></thead>
+<tbody>
+<tr><td>Vitesse \(\vec v\) d’un fluide</td><td>débit volumique \(Q\) (m³·s⁻¹)</td><td><a href="#dynamique">Dynamique des fluides</a></td></tr>
+<tr><td>\(\rho\vec v\)</td><td>débit massique (kg·s⁻¹)</td><td>Dynamique des fluides</td></tr>
+<tr><td>Densité de courant \(\vec j\)</td><td>intensité \(I\) (A)</td><td>Circuits</td></tr>
+<tr><td>Flux lumineux, flux d’énergie</td><td>puissance reçue (W)</td><td>Ondes, panneaux solaires</td></tr>
+<tr><td>Champ magnétique \(\vec B\)</td><td>flux magnétique \(\Phi = BS\cos\theta\) (Wb)</td><td><a href="#magnetisme">Champ magnétique et bobine</a> (Faraday, encadré)</td></tr>
+</tbody></table>
+<div class="sim" data-name="flux"><p>Inclinez une surface dans un écoulement uniforme : le nombre de lignes de courant qui la traversent, c’est-à-dire le débit, varie comme \(\cos\theta\). Il est maximal face à l’écoulement et nul quand la surface est parallèle aux lignes.</p></div>
+<div class="exo" data-q="vec-flux-fenetre"></div>
+
+<div class="cpge" id="plus-loin" title="Pour aller plus loin">
+<p>Le <a href="https://knzhou.github.io/handouts/P1.pdf" target="_blank" rel="noopener">polycopié P1 de K. Zhou</a> (en anglais) traite les vecteurs, la cinématique en coordonnées polaires et les premières intégrales vectorielles au niveau olympique. Les théorèmes de Gauss et d’Ampère, qui utilisent le flux et la circulation des champs électrique et magnétique, sont au syllabus international mais pas au test de présélection.</p>
+</div>

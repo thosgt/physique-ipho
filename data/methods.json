@@ -212,6 +212,7 @@
 "quand": "Théorème du moment cinétique, chocs sur un solide, force inconnue en un point (pivot, contact).",
 "texte": "Calculez les moments au point où s’applique la force inconnue : elle disparaît de l’équation. Le théorème \\(\\mathrm d\\vec L/\\mathrm dt = \\sum\\vec{\\mathcal M}\\) ne s’écrit simplement qu’en un point <strong>fixe</strong> du référentiel galiléen ou au <strong>centre de masse</strong>. Pour un choc bref, le moment cinétique par rapport au point d’impact (ou au pivot) se conserve, car la force de choc y a un moment nul. Rappel : \\(\\vec L_O = \\overrightarrow{OG}\\wedge M\\vec v_G + I_G\\vec\\omega\\).",
 "chaps": [
+"vecteurs",
 "solide",
 "magnetisme"
 ]
@@ -369,11 +370,48 @@
 ]
 },
 {
+"id": "projeter",
+"title": "Projeter sur des axes bien choisis",
+"quand": "Plan incliné, forces obliques, mouvement contraint, somme de plusieurs forces.",
+"texte": "Choisissez un axe le long du mouvement (ou de la contrainte) et un axe perpendiculaire : le moins de forces possible à projeter, la réaction normale et l’accélération sur un seul axe. Composante = norme × cosinus de l’angle avec l’axe ; contrôlez avec l’angle nul (la composante doit valoir la norme). Une somme de vecteurs se calcule composante par composante, jamais en ajoutant les normes.",
+"chaps": [
+"vecteurs",
+"mecapoint",
+"energie",
+"statique"
+]
+},
+{
+"id": "main-droite",
+"title": "Trouver le sens d’un produit vectoriel",
+"quand": "Force magnétique \\(q\\vec v\\wedge\\vec B\\), moment d’une force, vitesse d’un point d’un solide, force de Coriolis.",
+"texte": "Écrivez chaque vecteur sur la base (\\(\\vec v = v\\vec u_x\\), \\(\\vec B = B\\vec u_z\\)) et utilisez \\(\\vec u_x\\wedge\\vec u_y = \\vec u_z\\) avec ses permutations circulaires ; l’ordre inverse donne un signe moins. Contrôlez à la main droite (pouce, index, majeur). Ne pas oublier le signe de la charge : pour un électron, la force change de sens. Le résultat est perpendiculaire aux deux vecteurs, et nul s’ils sont colinéaires.",
+"chaps": [
+"vecteurs",
+"particules",
+"magnetisme",
+"solide"
+]
+},
+{
+"id": "gradient",
+"title": "Dériver l’énergie potentielle (ou le potentiel) pour obtenir la force (ou le champ)",
+"quand": "Graphe d’énergie potentielle, carte d’équipotentielles, champ dérivant d’un potentiel, pression dans un fluide au repos.",
+"texte": "\\(\\vec F = -\\overrightarrow{\\text{grad}}\\,E_p\\) et \\(\\vec E = -\\overrightarrow{\\text{grad}}\\,V\\) : la force et le champ pointent vers les valeurs décroissantes, perpendiculairement aux lignes de niveau, et sont d’autant plus intenses que ces lignes sont serrées. À une dimension, \\(F_x = -\\mathrm dE_p/\\mathrm dx\\) : la pente du graphe donne la force, une tangente horizontale un équilibre (stable au minimum). Dans un fluide au repos, \\(\\overrightarrow{\\text{grad}}\\,p = \\rho\\vec g\\).",
+"chaps": [
+"vecteurs",
+"energie",
+"electrostatique",
+"statique"
+]
+},
+{
 "id": "symetrie",
 "title": "Exploiter les symétries",
 "quand": "Géométrie régulière, situation invariante par translation, rotation ou réflexion.",
 "texte": "Une symétrie annule des composantes (une force sur un objet symétrique n’a pas de composante horizontale), réduit le nombre d’inconnues et donne souvent la réponse sans calcul. Vérifiez qu’aucune donnée ne brise la symétrie.",
 "chaps": [
+"vecteurs",
 "statique",
 "dynamique",
 "tension",
@@ -407,6 +445,7 @@
 "quand": "Vitesse d’une charge entre deux points, énergie d’un ensemble de charges, champ d’une distribution sans symétrie simple.",
 "texte": "Le potentiel est un nombre : il s’ajoute sans projection, \\(V = \\sum q_i/(4\\pi\\varepsilon_0r_i)\\). Le champ s’en déduit par \\(\\vec E = -\\overrightarrow{\\text{grad}}\\,V\\) (il pointe vers les potentiels décroissants), et le mouvement d’une charge par la conservation de \\(\\tfrac12mv^2 + qV\\). L’énergie d’un système de charges est \\(\\tfrac12\\sum q_iV_i\\). Un conducteur à l’équilibre est un volume équipotentiel.",
 "chaps": [
+"vecteurs",
 "electrostatique",
 "particules"
 ]
