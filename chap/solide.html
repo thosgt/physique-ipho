@@ -27,21 +27,59 @@
 <h3 id="centre-de-masse">Le centre de masse</h3>
 <p>Un solide est un ensemble de points dont les distances mutuelles ne changent pas. Son <strong>centre de masse</strong> \(G\) est le barycentre des masses : \(M\,\overrightarrow{OG} = \sum m_i\overrightarrow{OM_i}\). En additionnant les lois de Newton de tous les points, les forces intérieures s’annulent deux à deux (action et réaction) et il reste</p>
 \[M\vec a_G = \sum\vec F_\text{ext}.\]
-<p>Une clé à molette lancée en l’air tourne de façon compliquée, mais son centre de masse décrit une parabole. Pour un système isolé, \(G\) a un mouvement rectiligne uniforme : c’est ce qui permet de traiter un recul, une explosion ou une personne qui marche sur une barque sans rien savoir des forces intérieures.</p>
+<table>
+<thead><tr><th>Conséquence</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr><td>\(G\) se déplace comme un point de masse \(M\) soumis à toutes les forces extérieures</td><td>une clé à molette lancée en l’air tourne de façon compliquée, mais son centre de masse décrit une parabole</td></tr>
+<tr><td>Système isolé (ou forces extérieures horizontales nulles) : \(G\) a un mouvement rectiligne uniforme (ou reste immobile)</td><td>recul d’un canon, explosion, personne qui marche sur une barque : on conclut sans rien savoir des forces intérieures</td></tr>
+</tbody></table>
 <div class="methode" data-m="systeme"><p>Pour trouver \(G\) d’un objet percé ou composé, traitez le trou comme une masse négative superposée à l’objet plein : \(M\,x_G = M_\text{plein}x_\text{plein} - m_\text{trou}x_\text{trou}\).</p></div>
 <div class="exo" data-q="sol-barque"></div>
 <div class="exo" data-q="ipho-2025-C14"></div>
 
 <h3 id="vitesses">Translation, rotation, vitesse d’un point</h3>
-<p>Le mouvement le plus général d’un solide se décompose en une translation (celle de \(G\)) et une rotation autour de \(G\), décrite par le <strong>vecteur rotation</strong> \(\vec\omega\) : sa direction est l’axe de rotation, sa norme la vitesse angulaire, son sens donné par la règle de la main droite. La vitesse d’un point \(P\) du solide est</p>
+<p>Le mouvement le plus général d’un solide se décompose en une <strong>translation</strong> (celle de \(G\)) et une <strong>rotation</strong> autour de \(G\), décrite par le vecteur rotation \(\vec\omega\) :</p>
+<ul>
+<li>sa direction est l’axe de rotation ;</li>
+<li>sa norme est la vitesse angulaire (rad·s⁻¹) ;</li>
+<li>son sens est donné par la règle de la main droite (chapitre <a href="#vecteurs--definition-vectoriel">Outils vectoriels</a>).</li>
+</ul>
+<p>La vitesse d’un point \(P\) du solide est</p>
 \[\vec v_P = \vec v_G + \vec\omega\wedge\overrightarrow{GP}.\]
-<p>Pour une roue de rayon \(R\) qui roule sans glisser sur le sol à la vitesse \(v\), le point de contact \(I\) a une vitesse nulle, le centre va à \(v\) et le sommet à \(2v\) : à chaque instant, la roue tourne autour de \(I\), appelé <strong>centre instantané de rotation</strong>.</p>
+<table>
+<thead><tr><th>Roue qui roule sans glisser à la vitesse \(v\)</th><th>Vitesse</th></tr></thead>
+<tbody>
+<tr><td>Point de contact \(I\)</td><td>0</td></tr>
+<tr><td>Centre \(G\)</td><td>\(v\)</td></tr>
+<tr><td>Sommet</td><td>\(2v\)</td></tr>
+<tr><td>Point quelconque \(P\)</td><td>\(\omega\times IP\), perpendiculaire à \(IP\)</td></tr>
+</tbody></table>
+<p>À chaque instant, la roue tourne autour de \(I\), appelé <strong>centre instantané de rotation</strong>.</p>
 <div class="sim" data-name="roue-vitesses"><p>Les vitesses des points de la roue : en roulement sans glissement, toutes sont perpendiculaires à la droite qui les joint au point de contact (centre instantané de rotation). Faites patiner ou déraper la roue.</p></div>
 
 <h2 id="inertie">2. Moment d’une force, moment d’inertie</h2>
 <h3 id="moment">Le moment d’une force</h3>
-<p>Pour faire tourner une porte, on pousse loin des gonds et perpendiculairement au battant. Le <strong>moment</strong> d’une force \(\vec F\) appliquée en \(P\), par rapport à un axe \(\Delta\), mesure cette efficacité : \(\mathcal M_\Delta = \pm F\times d\), où \(d\) est le <strong>bras de levier</strong> (distance de l’axe à la droite d’action de la force), avec le signe + si la force fait tourner dans le sens positif choisi. Vectoriellement, \(\vec{\mathcal M}_O = \overrightarrow{OP}\wedge\vec F\). Le moment du poids se calcule comme si tout le poids s’appliquait en \(G\).</p>
-<p><strong>Équilibre d’un solide.</strong> Un solide reste immobile si deux conditions sont réunies : la somme des forces est nulle (équilibre des forces) <em>et</em> la somme des moments est nulle par rapport à un axe quelconque (équilibre des couples). On choisit l’axe qui passe par le point d’application de la force qu’on ne connaît pas. Deux conséquences utiles : un solide posé sur un appui presque ponctuel tient si son centre de masse est à la verticale de l’appui ; un solide posé sur une base bascule quand la verticale de son centre de masse, ou la droite d’action de la résultante, sort de cette base.</p>
+<p>Pour faire tourner une porte, on pousse loin des gonds et perpendiculairement au battant. Le <strong>moment</strong> d’une force \(\vec F\) par rapport à un axe \(\Delta\) mesure cette efficacité (figure et simulation dans <a href="#vecteurs--moment">Outils vectoriels</a>) :</p>
+\[\mathcal M_\Delta = \pm F\times d,\]
+<table>
+<thead><tr><th>Élément</th><th>Signification</th></tr></thead>
+<tbody>
+<tr><td>\(d\), bras de levier</td><td>distance de l’axe à la droite d’action de la force</td></tr>
+<tr><td>Signe</td><td>+ si la force fait tourner dans le sens positif choisi</td></tr>
+<tr><td>Forme vectorielle</td><td>\(\vec{\mathcal M}_O = \overrightarrow{OP}\wedge\vec F\)</td></tr>
+<tr><td>Poids</td><td>son moment se calcule comme si tout le poids s’appliquait en \(G\)</td></tr>
+</tbody></table>
+<p><strong>Équilibre d’un solide.</strong> Un solide reste immobile si deux conditions sont réunies :</p>
+<ol class="etapes">
+<li><strong>Équilibre des forces</strong> : \(\sum\vec F = \vec 0\).</li>
+<li><strong>Équilibre des couples</strong> : \(\sum\mathcal M = 0\) par rapport à un axe quelconque. On choisit l’axe qui passe par le point d’application de la force qu’on ne connaît pas : elle disparaît de l’équation.</li>
+</ol>
+<table>
+<thead><tr><th>Situation</th><th>Condition d’équilibre</th></tr></thead>
+<tbody>
+<tr><td>Solide posé sur un appui presque ponctuel</td><td>centre de masse à la verticale de l’appui</td></tr>
+<tr><td>Solide posé sur une base</td><td>il bascule quand la verticale de son centre de masse, ou la droite d’action de la résultante, sort de la base</td></tr>
+</tbody></table>
 <div class="exo" data-q="ipho-2023-C15"></div>
 <h3 id="moment-inertie">Le moment d’inertie</h3>
 <p>Dans une rotation à la vitesse angulaire \(\omega\) autour d’un axe fixe, le point \(i\) va à la vitesse \(r_i\omega\) (\(r_i\) : distance à l’axe). L’énergie cinétique totale est</p>
@@ -58,7 +96,16 @@
 <tr><td>Tige mince, longueur \(L\)</td><td>perpendiculaire en une extrémité</td><td>\(\tfrac13ML^2\)</td></tr>
 </tbody>
 </table>
-<p>Le <strong>théorème des axes parallèles</strong> (Huygens) relie le moment d’inertie par rapport à un axe quelconque à celui par rapport à l’axe parallèle passant par \(G\), situé à la distance \(d\) : \(J_\Delta = J_G + Md^2\). Vérification avec la tige : \(\tfrac1{12}ML^2 + M(L/2)^2 = \tfrac13ML^2\).</p>
+<p>Le <strong>théorème des axes parallèles</strong> (Huygens) relie le moment d’inertie par rapport à un axe quelconque à celui par rapport à l’axe parallèle passant par \(G\), situé à la distance \(d\) :</p>
+\[J_\Delta = J_G + Md^2.\]
+<p>Vérification avec la tige : \(\tfrac1{12}ML^2 + M(L/2)^2 = \tfrac13ML^2\).</p>
+<div class="complement" data-tag="Démonstration" title="Le moment d’inertie d’un disque et d’une tige, par découpage">
+<ol class="etapes">
+<li><strong>Disque</strong> de masse surfacique \(\sigma = M/(\pi R^2)\) : une couronne de rayon \(r\) et de largeur \(\mathrm dr\) a la masse \(\mathrm dm = \sigma\,2\pi r\,\mathrm dr\), toute à la distance \(r\) de l’axe : \(\mathrm dJ = r^2\,\mathrm dm\).</li>
+<li>\(J = \displaystyle\int_0^R 2\pi\sigma r^3\,\mathrm dr = 2\pi\sigma\,\frac{R^4}{4} = \tfrac12MR^2\).</li>
+<li><strong>Tige</strong> de masse linéique \(\lambda = M/L\), axe en son milieu : \(J = \displaystyle\int_{-L/2}^{L/2}\lambda x^2\,\mathrm dx = \lambda\,\frac{L^3}{12} = \tfrac1{12}ML^2\).</li>
+</ol>
+</div>
 <div class="methode" data-m="decouper-integrer"><p>Pour un solide qui n’est pas dans le tableau, découpez-le en morceaux dont le moment d’inertie est connu (anneaux de rayon \(r\) pour un disque : \(\mathrm dJ = r^2\,\mathrm dm\) avec \(\mathrm dm = \sigma\,2\pi r\,\mathrm dr\)), puis sommez. Contrôle : le résultat est toujours de la forme \(k\,MR^2\) avec \(k \le 1\).</p></div>
 <div class="exo" data-q="sol-huygens"></div>
 
@@ -66,7 +113,16 @@
 <h3 id="tmc">Théorème du moment cinétique</h3>
 <p>Le <strong>moment cinétique</strong> du solide par rapport à l’axe est \(L = J\omega\). Sa dérivée est la somme des moments des forces extérieures :</p>
 \[J\ddot\theta = \sum\mathcal M_\Delta .\]
-<p>C’est l’analogue de \(m\ddot x = \sum F\). La liaison pivot idéale exerce une force sur l’axe, donc de moment nul : elle n’apparaît pas. Côté énergie, la puissance d’une force de moment \(\mathcal M\) est \(\mathcal M\omega\), et le théorème de l’énergie cinétique s’écrit \(\mathrm d(\tfrac12J\omega^2)/\mathrm dt = \sum\mathcal M\omega\).</p>
+<table>
+<thead><tr><th>Translation</th><th>Rotation autour d’un axe fixe</th></tr></thead>
+<tbody>
+<tr><td>masse \(m\)</td><td>moment d’inertie \(J\)</td></tr>
+<tr><td>vitesse \(v\), quantité de mouvement \(mv\)</td><td>vitesse angulaire \(\omega\), moment cinétique \(J\omega\)</td></tr>
+<tr><td>force \(F\)</td><td>moment \(\mathcal M\)</td></tr>
+<tr><td>\(m\ddot x = \sum F\)</td><td>\(J\ddot\theta = \sum\mathcal M\)</td></tr>
+<tr><td>énergie cinétique \(\tfrac12mv^2\), puissance \(Fv\)</td><td>énergie cinétique \(\tfrac12J\omega^2\), puissance \(\mathcal M\omega\)</td></tr>
+</tbody></table>
+<p>La liaison pivot idéale exerce une force sur l’axe, de moment nul : elle n’apparaît pas.</p>
 <div class="methode" data-m="point-moment"><p>Une poulie de moment d’inertie \(J\) et de rayon \(R\) sur laquelle passe un fil : la tension n’est plus la même des deux côtés. Écrivez \(J\dot\omega = (T_1 - T_2)R\) pour la poulie, Newton pour chaque masse, et \(a = R\dot\omega\) si le fil ne glisse pas.</p></div>
 <div class="sim" data-name="atwood"><p>Machine d’Atwood avec une poulie massive : \(J\dot\omega = (T_2 - T_1)R\), la poulie se comporte comme une masse supplémentaire \(J/R^2\).</p></div>
 <h3 id="pendule-pesant">Le pendule pesant</h3>
@@ -89,7 +145,14 @@
 
 <h2 id="roulement">4. Roulement sans glissement</h2>
 <h3 id="condition">La condition de roulement</h3>
-<p>Une roue de rayon \(R\) roule sans glisser si le point de la roue au contact du sol a une vitesse nulle : \(\vec v_G + \vec\omega\wedge\overrightarrow{GI} = \vec 0\), soit \(v_G = R\omega\), et en dérivant \(a_G = R\dot\omega\). Le frottement qui assure cette condition est <strong>statique</strong> : comme le point d’application a une vitesse nulle, il ne travaille pas.</p>
+<p>Une roue de rayon \(R\) roule sans glisser si le point de la roue au contact du sol a une vitesse nulle : \(\vec v_G + \vec\omega\wedge\overrightarrow{GI} = \vec 0\).</p>
+<table>
+<thead><tr><th>Conséquence</th><th>Expression</th></tr></thead>
+<tbody>
+<tr><td>Vitesse du centre</td><td>\(v_G = R\omega\)</td></tr>
+<tr><td>Accélération du centre (en dérivant)</td><td>\(a_G = R\dot\omega\)</td></tr>
+<tr><td>Frottement au contact</td><td><strong>statique</strong>, d’intensité inconnue (pas \(\mu N\)) ; son point d’application a une vitesse nulle : il ne travaille pas</td></tr>
+</tbody></table>
 <figure>
 <svg viewBox="0 0 640 250" width="640" role="img" aria-label="Cylindre de rayon R qui roule sans glisser sur un plan incliné d'angle alpha : poids appliqué au centre G, réaction normale N et frottement T appliqués au point de contact I, T dirigé vers le haut de la pente" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:13px">
 <defs><marker id="so-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0b5fa5"/></marker><marker id="so-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b5651d"/></marker><marker id="so-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1f8a4c"/></marker></defs>
@@ -111,21 +174,54 @@
 \[Ma = Mg\sin\alpha - T, \qquad J_G\dot\omega = TR, \qquad a = R\dot\omega .\]
 <p>En éliminant \(T\) et \(\dot\omega\) :</p>
 \[a = \frac{g\sin\alpha}{1 + k}, \qquad T = \frac{k}{1+k}\,Mg\sin\alpha .\]
-<p>L’accélération ne dépend ni de la masse ni du rayon, seulement de \(k\) : la boule (\(k = \tfrac25\), \(a = \tfrac57g\sin\alpha\)) arrive avant le cylindre plein (\(\tfrac23\)), qui arrive avant l’anneau (\(\tfrac12\)). Par l’énergie, on retrouve le résultat en une ligne : \(Mgh = \tfrac12Mv^2 + \tfrac12kMR^2(v/R)^2\), d’où \(v^2 = 2gh/(1+k)\).</p>
+<div class="complement" data-tag="Démonstration" title="Éliminer T et la vitesse angulaire">
+<ol class="etapes">
+<li>Avec \(J_G = kMR^2\) et \(\dot\omega = a/R\), la deuxième équation donne \(T = J_G\dot\omega/R = kMa\).</li>
+<li>Dans la première : \(Ma = Mg\sin\alpha - kMa\), d’où \(a = \dfrac{g\sin\alpha}{1 + k}\) et \(T = \dfrac{k}{1 + k}\,Mg\sin\alpha\).</li>
+<li>Par l’énergie, en une ligne : \(Mgh = \tfrac12Mv^2 + \tfrac12kMR^2(v/R)^2\), d’où \(v^2 = \dfrac{2gh}{1 + k}\).</li>
+</ol>
+</div>
+<table>
+<thead><tr><th>Solide (ne dépend ni de la masse ni du rayon)</th><th>\(k = J_G/MR^2\)</th><th>Accélération</th><th>Classement</th></tr></thead>
+<tbody>
+<tr><td>Boule pleine</td><td>\(\tfrac25\)</td><td>\(\tfrac57g\sin\alpha\)</td><td>1ᵉʳ</td></tr>
+<tr><td>Cylindre plein</td><td>\(\tfrac12\)</td><td>\(\tfrac23g\sin\alpha\)</td><td>2ᵉ</td></tr>
+<tr><td>Sphère creuse</td><td>\(\tfrac23\)</td><td>\(\tfrac35g\sin\alpha\)</td><td>3ᵉ</td></tr>
+<tr><td>Anneau</td><td>1</td><td>\(\tfrac12g\sin\alpha\)</td><td>4ᵉ</td></tr>
+<tr><td>Bloc qui glisse sans frottement</td><td>0</td><td>\(g\sin\alpha\)</td><td>avant tous</td></tr>
+</tbody></table>
 <div class="methode" data-m="roulement"><p>Le roulement n’est possible que si \(T \le \mu_sN\) avec \(N = Mg\cos\alpha\), soit \(\tan\alpha \le \mu_s(1+k)/k\) (\(3\mu_s\) pour un cylindre plein, \(\tfrac72\mu_s\) pour une boule). Au-delà, le solide glisse : \(T = \mu_dN\) est alors connu, mais \(a \ne R\dot\omega\).</p></div>
 <div class="sim" data-name="course-roulement"><p>Lancez la course : seul compte \(k = J_G/MR^2\). Inclinez fortement le plan ou réduisez \(\mu\) : au-delà de \(\tan\alpha = \mu(1+k)/k\), le solide glisse en roulant.</p></div>
 <div class="exo" data-q="sol-course"></div>
 <div class="exo" data-group="sol-yoyo"></div>
 
 <div class="cpge" id="bille-glisse" title="Du glissement au roulement : la bille de billard">
-<p>Une bille (\(k = \tfrac25\)) est lancée sur une table à la vitesse \(v_0\) sans rotation. Elle glisse d’abord : le frottement dynamique \(\mu Mg\) freine le centre (\(v = v_0 - \mu gt\)) et accélère la rotation (\(\tfrac25MR^2\dot\omega = \mu MgR\), soit \(R\omega = \tfrac52\mu gt\)). Le glissement cesse quand \(v = R\omega\), à \(t_1 = \dfrac{2v_0}{7\mu g}\), et la bille roule ensuite à vitesse constante \(v_1 = \tfrac57v_0\).</p>
-<p>La vitesse finale ne dépend pas de \(\mu\). On le comprend sans calculer le régime transitoire : par rapport à un point fixe \(O\) de la table situé sur la ligne de contact, le frottement a un moment nul (sa droite d’action passe par \(O\)) et les moments du poids et de la réaction normale se compensent. Le moment cinétique en \(O\) se conserve : \(Mv_0R = Mv_1R + \tfrac25MR^2\,(v_1/R)\), d’où \(v_1 = \tfrac57v_0\). L’énergie perdue par frottement vaut \(\tfrac12Mv_0^2\,(1 - \tfrac57) = \tfrac17Mv_0^2\).</p>
+<p>Une bille (\(k = \tfrac25\)) est lancée sur une table à la vitesse \(v_0\) sans rotation.</p>
+<ol class="etapes">
+<li><strong>Phase de glissement</strong> : le frottement dynamique \(\mu Mg\) freine le centre, \(v = v_0 - \mu gt\), et accélère la rotation, \(\tfrac25MR^2\dot\omega = \mu MgR\), soit \(R\omega = \tfrac52\mu gt\).</li>
+<li><strong>Fin du glissement</strong> quand \(v = R\omega\) : à \(t_1 = \dfrac{2v_0}{7\mu g}\).</li>
+<li><strong>Roulement</strong> ensuite, à vitesse constante \(v_1 = \tfrac57v_0\), indépendante de \(\mu\). L’énergie perdue vaut \(\tfrac12Mv_0^2 - \tfrac12Mv_1^2 - \tfrac12J\omega_1^2 = \tfrac17Mv_0^2\).</li>
+</ol>
+<div class="complement" data-tag="Démonstration" title="Pourquoi la vitesse finale ne dépend pas de μ : le moment cinétique">
+<ol class="etapes">
+<li>On choisit un point fixe \(O\) de la table, sur la ligne de contact. Le frottement a un moment nul en \(O\) (sa droite d’action passe par \(O\)) ; les moments du poids et de la réaction normale se compensent.</li>
+<li>Le moment cinétique en \(O\) se conserve. Il vaut \(MvR\) (translation de \(G\), à la hauteur \(R\)) plus \(J\omega\) (rotation propre).</li>
+<li>Avant : \(Mv_0R\). Après : \(Mv_1R + \tfrac25MR^2\,(v_1/R)\). D’où \(v_1 = \tfrac57v_0\), sans connaître le régime transitoire.</li>
+</ol>
+</div>
 <div class="sim" data-name="bille-billard"><p>Lancez la bille sans effet, puis avec un effet coulé ou rétro : \(v\) et \(R\omega\) convergent vers \((5v_0 + 2R\omega_0)/7\), quel que soit \(\mu\).</p></div>
 </div>
 
 <h2 id="moment-cinetique">5. Conservation du moment cinétique</h2>
 <h3 id="conservation-l">Conservation du moment cinétique</h3>
-<p>Si la somme des moments extérieurs par rapport à un axe est nulle, \(L = J\omega\) se conserve. Une patineuse qui ramène les bras diminue \(J\) : elle tourne plus vite, \(\omega_2 = \omega_1J_1/J_2\). Son énergie cinétique \(L^2/2J\) augmente : le travail est fourni par ses muscles. De même, une étoile qui s’effondre en étoile à neutrons (rayon divisé par \(10^5\)) voit sa période de rotation divisée par \(10^{10}\) : d’un mois à moins d’une milliseconde.</p>
+<p>Si la somme des moments extérieurs par rapport à un axe est nulle, le moment cinétique \(L = J\omega\) se conserve.</p>
+<table>
+<thead><tr><th>Exemple</th><th>Ce qui change</th><th>Conséquence</th></tr></thead>
+<tbody>
+<tr><td>Patineuse qui ramène les bras</td><td>\(J\) diminue</td><td>\(\omega_2 = \omega_1J_1/J_2\) : elle tourne plus vite ; son énergie \(L^2/2J\) augmente, grâce au travail de ses muscles</td></tr>
+<tr><td>Étoile qui s’effondre en étoile à neutrons</td><td>rayon divisé par \(10^5\), \(J\) par \(10^{10}\)</td><td>période de rotation divisée par \(10^{10}\) : d’un mois à moins d’une milliseconde</td></tr>
+<tr><td>Planète sur son orbite</td><td>la distance au Soleil</td><td>loi des aires (chapitre <a href="#celeste--ellipse">Mécanique céleste</a>)</td></tr>
+</tbody></table>
 <div class="methode" data-m="conservation"><p>Avant d’écrire une conservation, demandez-vous <em>par rapport à quel point</em> les moments extérieurs sont nuls. Pour un système en orbite ou sur un pivot sans frottement, c’est le centre ou le pivot. L’énergie, elle, n’est conservée que s’il n’y a ni frottement ni choc mou.</p></div>
 <div class="sim" data-name="patineur"><p>Lancez la rotation, puis ramenez et écartez les haltères : \(\omega\) varie en sens inverse de \(J\), \(L\) reste constant, et l’énergie cinétique augmente quand on ramène les bras.</p></div>
 <div class="exo" data-q="sol-patineur"></div>

@@ -26,7 +26,14 @@
 <h2 id="harmonique">1. L’oscillateur harmonique</h2>
 <p>Une masse \(m\) attachée à un ressort de raideur \(k\), repérée par son écart \(x\) à la position d’équilibre, subit la force de rappel \(-kx\) :</p>
 \[m\ddot x = -kx \quad\Longrightarrow\quad \ddot x + \omega_0^2x = 0, \qquad \omega_0 = \sqrt{\frac km}, \qquad T = 2\pi\sqrt{\frac mk}.\]
-<p>La solution \(x(t) = A\cos(\omega_0t + \varphi)\) contient deux constantes, fixées par la position et la vitesse initiales. Lâché sans vitesse d’un écart \(x_0\) : \(x = x_0\cos\omega_0t\). Lancé de l’équilibre à la vitesse \(v_0\) : \(x = \dfrac{v_0}{\omega_0}\sin\omega_0t\).</p>
+<p>La solution \(x(t) = A\cos(\omega_0t + \varphi)\) contient deux constantes, fixées par la position et la vitesse initiales (méthode détaillée et simulations dans <a href="#maths--harmonique">Outils mathématiques</a>) :</p>
+<table>
+<thead><tr><th>Conditions initiales</th><th>Solution</th><th>Amplitude</th></tr></thead>
+<tbody>
+<tr><td>Lâché sans vitesse d’un écart \(x_0\)</td><td>\(x = x_0\cos\omega_0t\)</td><td>\(x_0\)</td></tr>
+<tr><td>Lancé de l’équilibre à la vitesse \(v_0\)</td><td>\(x = \dfrac{v_0}{\omega_0}\sin\omega_0t\)</td><td>\(v_0/\omega_0\)</td></tr>
+<tr><td>Écart \(x_0\) et vitesse \(v_0\)</td><td>\(x = x_0\cos\omega_0t + \dfrac{v_0}{\omega_0}\sin\omega_0t\)</td><td>\(\sqrt{x_0^2 + (v_0/\omega_0)^2}\)</td></tr>
+</tbody></table>
 <table>
 <thead><tr><th>Système</th><th>Pulsation propre</th><th>Remarque</th></tr></thead>
 <tbody>
@@ -39,7 +46,21 @@
 </tbody>
 </table>
 <div class="sim" data-name="ressort-masse"><p>Changez l’amplitude : la période ne bouge pas. Changez la masse ou la raideur : \(T\) varie comme \(\sqrt{m/k}\). Passez en vertical : l’équilibre descend de \(mg/k\), la période reste la même. Observez \(a = -\omega_0^2x\) : accélération maximale aux extrémités, vitesse maximale au centre.</p></div>
-<p><strong>Pendule réel.</strong> Un solide de masse \(m\) qui oscille autour d’un axe horizontal, son centre de masse étant à la distance \(d\) de l’axe et son moment d’inertie par rapport à l’axe valant \(J\), a pour période \(T = 2\pi\sqrt{\dfrac{J}{mgd}}\). C’est celle d’un pendule simple de <strong>longueur équivalente</strong> \(\ell_\text{éq} = \dfrac{J}{md}\). Exemple : une tige homogène de longueur \(L\) suspendue par une extrémité (\(J = \tfrac13mL^2\), \(d = L/2\)) oscille comme un pendule simple de longueur \(\tfrac23L\). En terminale, le moment d’inertie est fourni par l’énoncé.</p>
+<h3 id="pendule-reel">Le pendule réel (pendule pesant)</h3>
+<p>Un solide de masse \(m\) oscille autour d’un axe horizontal ; son centre de masse est à la distance \(d\) de l’axe et son moment d’inertie par rapport à l’axe vaut \(J\) (fourni par l’énoncé en terminale).</p>
+<table>
+<thead><tr><th>Grandeur</th><th>Expression</th><th>Exemple : tige de longueur \(L\) suspendue par un bout</th></tr></thead>
+<tbody>
+<tr><td>Période</td><td>\(T = 2\pi\sqrt{\dfrac{J}{mgd}}\)</td><td>\(J = \tfrac13mL^2\), \(d = L/2\) : \(T = 2\pi\sqrt{\dfrac{2L}{3g}}\)</td></tr>
+<tr><td>Longueur équivalente</td><td>\(\ell_\text{éq} = \dfrac{J}{md}\) : longueur du pendule simple de même période</td><td>\(\ell_\text{éq} = \tfrac23L\)</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="La période du pendule pesant, par l’énergie">
+<ol class="etapes">
+<li>Paramètre : l’angle \(\theta\). Énergie cinétique de rotation autour de l’axe : \(\tfrac12J\dot\theta^2\), donc \(m_\text{eff} = J\).</li>
+<li>Le centre de masse monte de \(d(1 - \cos\theta) \approx d\theta^2/2\) : \(E_p \approx \tfrac12mgd\,\theta^2\), donc \(\kappa = mgd\).</li>
+<li>\(\omega_0 = \sqrt{\kappa/m_\text{eff}} = \sqrt{mgd/J}\). Pour un point matériel au bout d’un fil, \(J = m\ell^2\) et \(d = \ell\) : on retrouve \(\sqrt{g/\ell}\).</li>
+</ol>
+</div>
 <div class="exo" data-q="ipho-2014-2"></div>
 <div class="exo" data-q="osc-vertical"></div>
 <div class="piege">
@@ -56,12 +77,29 @@
 <h2 id="energie">2. Énergie et petites oscillations</h2>
 <p>Sans frottement, l’énergie mécanique se conserve :</p>
 \[E = \tfrac12m\dot x^2 + \tfrac12kx^2 = \tfrac12kA^2 = \tfrac12m(A\omega_0)^2.\]
-<p>Elle oscille entre forme cinétique (au passage par l’équilibre) et forme potentielle (aux extrémités), à la fréquence \(2f\) ; en moyenne, les deux formes sont égales.</p>
-<p><strong>Tout équilibre stable est un oscillateur.</strong> Près d’un minimum de l’énergie potentielle, en \(x_\text{éq}\), on développe au second ordre : \(E_p(x) \approx E_p(x_\text{éq}) + \tfrac12\kappa\,(x - x_\text{éq})^2\) avec \(\kappa = \dfrac{\mathrm d^2E_p}{\mathrm dx^2}\). Le système se comporte comme un ressort de raideur \(\kappa\) : \(\omega_0 = \sqrt{\kappa/m}\). Si \(\kappa < 0\), l’équilibre est instable : l’écart croît exponentiellement, \(x \propto \mathrm e^{t\sqrt{|\kappa|/m}}\) (au programme du test CPGE seulement). Deux voies mènent à \(\omega_0\) :</p>
-<ul>
-<li><strong>par les forces</strong> : écrire la deuxième loi de Newton pour un petit écart et ne garder que le terme proportionnel à l’écart ;</li>
-<li><strong>par l’énergie</strong> : écrire \(E = \tfrac12m_\text{eff}\,\dot q^2 + \tfrac12\kappa\,q^2\) pour un paramètre \(q\) quelconque (angle, hauteur, charge) ; alors \(\omega_0 = \sqrt{\kappa/m_\text{eff}}\), sans avoir à projeter aucune force.</li>
-</ul>
+<table>
+<thead><tr><th>Position</th><th>Énergie cinétique</th><th>Énergie potentielle</th></tr></thead>
+<tbody>
+<tr><td>Équilibre (\(x = 0\))</td><td>maximale, \(\tfrac12kA^2\)</td><td>nulle</td></tr>
+<tr><td>Extrémités (\(x = \pm A\))</td><td>nulle</td><td>maximale, \(\tfrac12kA^2\)</td></tr>
+<tr><td>En moyenne sur une période</td><td>\(\tfrac14kA^2\)</td><td>\(\tfrac14kA^2\)</td></tr>
+</tbody></table>
+<p>Chaque forme d’énergie oscille à la fréquence \(2f\) (deux maxima par période).</p>
+<p><strong>Tout équilibre stable est un oscillateur.</strong> Près d’un minimum de l’énergie potentielle, en \(x_\text{éq}\), le développement au second ordre donne</p>
+\[E_p(x) \approx E_p(x_\text{éq}) + \tfrac12\kappa\,(x - x_\text{éq})^2, \qquad \kappa = \frac{\mathrm d^2E_p}{\mathrm dx^2}(x_\text{éq}).\]
+<table>
+<thead><tr><th>Signe de \(\kappa\)</th><th>Équilibre</th><th>Mouvement près de l’équilibre</th></tr></thead>
+<tbody>
+<tr><td>\(\kappa > 0\)</td><td>stable</td><td>oscillations de pulsation \(\omega_0 = \sqrt{\kappa/m}\)</td></tr>
+<tr><td>\(\kappa < 0\) (test CPGE)</td><td>instable</td><td>l’écart croît exponentiellement, \(x \propto \mathrm e^{t\sqrt{|\kappa|/m}}\)</td></tr>
+</tbody></table>
+<p>Deux voies mènent à \(\omega_0\) :</p>
+<table>
+<thead><tr><th>Voie</th><th>Méthode</th><th>Quand la préférer</th></tr></thead>
+<tbody>
+<tr><td><strong>Par les forces</strong></td><td>deuxième loi de Newton pour un petit écart ; ne garder que le terme proportionnel à l’écart</td><td>un seul corps, forces simples</td></tr>
+<tr><td><strong>Par l’énergie</strong></td><td>écrire \(E = \tfrac12m_\text{eff}\,\dot q^2 + \tfrac12\kappa\,q^2\) pour un paramètre \(q\) (angle, hauteur, charge) ; alors \(\omega_0 = \sqrt{\kappa/m_\text{eff}}\)</td><td>systèmes liés (roulement, fils, plusieurs corps) : aucune force à projeter</td></tr>
+</tbody></table>
 <div class="methode" data-m="lineariser"></div>
 <div class="methode" data-m="energie-parametre"></div>
 <p>Exemples traités sur ce site : oscillation d’une charge entre deux charges fixes (chapitre <a href="#electrostatique">Champ électrique</a>), d’une particule de fluide dans un milieu stratifié (<a href="#initiative--g-init-2018-brunt">problème de 2018</a>), d’une perle sur un cerceau tournant (<a href="#nongalileen">Référentiels non galiléens</a>).</p>
@@ -81,7 +119,13 @@
 <div class="exo" data-q="ipho-2018-T12"></div>
 
 <h2 id="amorti">4. Amortissement et résonance</h2>
-<p>Un oscillateur réel perd de l’énergie par frottement. Si le frottement est faible, il continue d’osciller presque à sa période propre, mais son amplitude <strong>décroît exponentiellement</strong> : elle est multipliée par le même facteur à chaque période, \(A(t) = A_0\,\mathrm e^{-t/\tau}\). L’énergie, proportionnelle au carré de l’amplitude, décroît deux fois plus vite. Si le frottement est fort, le système revient à l’équilibre sans osciller. En terminale, seule cette description qualitative est exigible.</p>
+<p>Un oscillateur réel perd de l’énergie par frottement. En terminale, seule une description qualitative est exigible :</p>
+<table>
+<thead><tr><th>Frottement</th><th>Comportement</th></tr></thead>
+<tbody>
+<tr><td>Faible</td><td>oscillations presque à la période propre, d’amplitude <strong>décroissant exponentiellement</strong> : \(A(t) = A_0\,\mathrm e^{-t/\tau}\), multipliée par le même facteur à chaque période. L’énergie, proportionnelle à \(A^2\), décroît deux fois plus vite.</td></tr>
+<tr><td>Fort</td><td>retour à l’équilibre sans osciller</td></tr>
+</tbody></table>
 <div class="cpge" id="amortissement" title="Niveau CPGE : équation de l’oscillateur amorti, facteur de qualité, résonance">
 <p>Avec un frottement fluide \(-\alpha\dot x\), l’équation devient</p>
 \[\ddot x + \frac{\omega_0}{Q}\,\dot x + \omega_0^2x = 0, \qquad Q = \frac{m\omega_0}{\alpha}.\]
@@ -93,7 +137,12 @@
 <tr><td>Apériodique</td><td>\(Q < \tfrac12\)</td><td>Retour lent, sans oscillation</td></tr>
 </tbody>
 </table>
-<p>Pour \(Q \gg 1\) : l’amplitude est divisée par \(\mathrm e\) en \(Q/\pi\) périodes, l’énergie en \(Q/2\pi\) périodes. \(Q\) est donc, à un facteur près, <strong>le nombre d’oscillations observables</strong> ; c’est aussi \(2\pi\) fois le rapport de l’énergie stockée à l’énergie perdue par période.</p>
+<p>Pour \(Q \gg 1\), trois façons de lire \(Q\) :</p>
+<ul>
+<li>l’amplitude est divisée par \(\mathrm e\) en \(Q/\pi\) périodes, l’énergie en \(Q/2\pi\) périodes ;</li>
+<li>à un facteur près, \(Q\) est <strong>le nombre d’oscillations observables</strong> ;</li>
+<li>\(Q = 2\pi\times\dfrac{\text{énergie stockée}}{\text{énergie perdue par période}}\).</li>
+</ul>
 <div class="sim" data-name="amorti"><p>Faites varier \(Q\) : comptez les oscillations visibles (environ \(Q\)), puis passez au régime critique et au régime apériodique.</p></div>
 <div class="exo" data-q="osc-facteur-qualite"></div>
 <p><strong>Régime forcé.</strong> Soumis à une force \(F_0\cos\omega t\), l’oscillateur finit par osciller à la pulsation \(\omega\) imposée, avec une amplitude</p>
@@ -103,6 +152,26 @@
 <li>\(\omega \approx \omega_0\) : <strong>résonance</strong>, \(X \approx Q\,F_0/k\) ; la largeur du pic est \(\Delta\omega \approx \omega_0/Q\).</li>
 <li>\(\omega \gg \omega_0\) : \(X \approx F_0/m\omega^2\), la masse ne suit plus, en opposition de phase.</li>
 </ul>
+<figure>
+<svg viewBox="0 0 680 250" width="680" role="img" aria-label="Courbes de résonance en amplitude pour Q = 1, 3 et 10" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
+<g font-size="12" fill="#15213a">
+<line x1="60" y1="210" x2="670" y2="210" stroke="#8a94a6"/><line x1="60" y1="216" x2="60" y2="18" stroke="#8a94a6"/>
+<text x="600" y="232">ω/ω₀</text><text x="14" y="24">X/(F₀/k)</text>
+<line x1="280" y1="206" x2="280" y2="214" stroke="#8a94a6"/><text x="280" y="230" text-anchor="middle">1</text>
+<line x1="500" y1="206" x2="500" y2="214" stroke="#8a94a6"/><text x="500" y="230" text-anchor="middle">2</text>
+<line x1="56" y1="192.4" x2="64" y2="192.4" stroke="#8a94a6"/><text x="44" y="196.4">1</text>
+<line x1="56" y1="33.8" x2="64" y2="33.8" stroke="#8a94a6"/><text x="38" y="37.8">10</text>
+</g>
+<polyline points="60.0,192.4 61.1,192.4 62.2,192.4 63.3,192.4 64.4,192.4 65.5,192.4 66.6,192.4 67.7,192.4 68.8,192.4 69.9,192.4 71.0,192.4 72.1,192.4 73.2,192.3 74.3,192.3 75.4,192.3 76.5,192.3 77.6,192.3 78.7,192.3 79.8,192.3 80.9,192.3 82.0,192.3 83.1,192.3 84.2,192.3 85.3,192.3 86.4,192.3 87.5,192.2 88.6,192.2 89.7,192.2 90.8,192.2 91.9,192.2 93.0,192.2 94.1,192.2 95.2,192.2 96.3,192.1 97.4,192.1 98.5,192.1 99.6,192.1 100.7,192.1 101.8,192.1 102.9,192.0 104.0,192.0 105.1,192.0 106.2,192.0 107.3,192.0 108.4,192.0 109.5,191.9 110.6,191.9 111.7,191.9 112.8,191.9 113.9,191.9 115.0,191.8 116.1,191.8 117.2,191.8 118.3,191.8 119.4,191.8 120.5,191.7 121.6,191.7 122.7,191.7 123.8,191.7 124.9,191.6 126.0,191.6 127.1,191.6 128.2,191.6 129.3,191.5 130.4,191.5 131.5,191.5 132.6,191.5 133.7,191.4 134.8,191.4 135.9,191.4 137.0,191.4 138.1,191.3 139.2,191.3 140.3,191.3 141.4,191.2 142.5,191.2 143.6,191.2 144.7,191.2 145.8,191.1 146.9,191.1 148.0,191.1 149.1,191.0 150.2,191.0 151.3,191.0 152.4,190.9 153.5,190.9 154.6,190.9 155.7,190.9 156.8,190.8 157.9,190.8 159.0,190.8 160.1,190.7 161.2,190.7 162.3,190.7 163.4,190.6 164.5,190.6 165.6,190.6 166.7,190.5 167.8,190.5 168.9,190.5 170.0,190.5 171.1,190.4 172.2,190.4 173.3,190.4 174.4,190.3 175.5,190.3 176.6,190.3 177.7,190.2 178.8,190.2 179.9,190.2 181.0,190.2 182.1,190.1 183.2,190.1 184.3,190.1 185.4,190.1 186.5,190.0 187.6,190.0 188.7,190.0 189.8,190.0 190.9,189.9 192.0,189.9 193.1,189.9 194.2,189.9 195.3,189.9 196.4,189.8 197.5,189.8 198.6,189.8 199.7,189.8 200.8,189.8 201.9,189.8 203.0,189.7 204.1,189.7 205.2,189.7 206.3,189.7 207.4,189.7 208.5,189.7 209.6,189.7 210.7,189.7 211.8,189.7 212.9,189.7 214.0,189.7 215.1,189.7 216.2,189.7 217.3,189.7 218.4,189.7 219.5,189.7 220.6,189.7 221.7,189.7 222.8,189.7 223.9,189.7 225.0,189.7 226.1,189.7 227.2,189.7 228.3,189.8 229.4,189.8 230.5,189.8 231.6,189.8 232.7,189.8 233.8,189.9 234.9,189.9 236.0,189.9 237.1,189.9 238.2,190.0 239.3,190.0 240.4,190.0 241.5,190.1 242.6,190.1 243.7,190.2 244.8,190.2 245.9,190.2 247.0,190.3 248.1,190.3 249.2,190.4 250.3,190.4 251.4,190.5 252.5,190.5 253.6,190.6 254.7,190.7 255.8,190.7 256.9,190.8 258.0,190.8 259.1,190.9 260.2,191.0 261.3,191.0 262.4,191.1 263.5,191.2 264.6,191.3 265.7,191.3 266.8,191.4 267.9,191.5 269.0,191.6 270.1,191.6 271.2,191.7 272.3,191.8 273.4,191.9 274.5,192.0 275.6,192.0 276.7,192.1 277.8,192.2 278.9,192.3 280.0,192.4 281.1,192.5 282.2,192.6 283.3,192.6 284.4,192.7 285.5,192.8 286.6,192.9 287.7,193.0 288.8,193.1 289.9,193.2 291.0,193.3 292.1,193.4 293.2,193.5 294.3,193.6 295.4,193.7 296.5,193.8 297.6,193.9 298.7,194.0 299.8,194.1 300.9,194.2 302.0,194.3 303.1,194.4 304.2,194.5 305.3,194.6 306.4,194.7 307.5,194.8 308.6,194.9 309.7,195.0 310.8,195.1 311.9,195.2 313.0,195.2 314.1,195.3 315.2,195.4 316.3,195.5 317.4,195.6 318.5,195.7 319.6,195.8 320.7,195.9 321.8,196.0 322.9,196.1 324.0,196.2 325.1,196.3 326.2,196.4 327.3,196.5 328.4,196.6 329.5,196.7 330.6,196.8 331.7,196.9 332.8,197.0 333.9,197.1 335.0,197.1 336.1,197.2 337.2,197.3 338.3,197.4 339.4,197.5 340.5,197.6 341.6,197.7 342.7,197.8 343.8,197.9 344.9,197.9 346.0,198.0 347.1,198.1 348.2,198.2 349.3,198.3 350.4,198.4 351.5,198.4 352.6,198.5 353.7,198.6 354.8,198.7 355.9,198.8 357.0,198.9 358.1,198.9 359.2,199.0 360.3,199.1 361.4,199.2 362.5,199.2 363.6,199.3 364.7,199.4 365.8,199.5 366.9,199.5 368.0,199.6 369.1,199.7 370.2,199.8 371.3,199.8 372.4,199.9 373.5,200.0 374.6,200.1 375.7,200.1 376.8,200.2 377.9,200.3 379.0,200.3 380.1,200.4 381.2,200.5 382.3,200.5 383.4,200.6 384.5,200.7 385.6,200.7 386.7,200.8 387.8,200.9 388.9,200.9 390.0,201.0 391.1,201.0 392.2,201.1 393.3,201.2 394.4,201.2 395.5,201.3 396.6,201.3 397.7,201.4 398.8,201.5 399.9,201.5 401.0,201.6 402.1,201.6 403.2,201.7 404.3,201.7 405.4,201.8 406.5,201.8 407.6,201.9 408.7,202.0 409.8,202.0 410.9,202.1 412.0,202.1 413.1,202.2 414.2,202.2 415.3,202.3 416.4,202.3 417.5,202.4 418.6,202.4 419.7,202.5 420.8,202.5 421.9,202.6 423.0,202.6 424.1,202.7 425.2,202.7 426.3,202.8 427.4,202.8 428.5,202.8 429.6,202.9 430.7,202.9 431.8,203.0 432.9,203.0 434.0,203.1 435.1,203.1 436.2,203.2 437.3,203.2 438.4,203.2 439.5,203.3 440.6,203.3 441.7,203.4 442.8,203.4 443.9,203.4 445.0,203.5 446.1,203.5 447.2,203.6 448.3,203.6 449.4,203.6 450.5,203.7 451.6,203.7 452.7,203.8 453.8,203.8 454.9,203.8 456.0,203.9 457.1,203.9 458.2,203.9 459.3,204.0 460.4,204.0 461.5,204.0 462.6,204.1 463.7,204.1 464.8,204.2 465.9,204.2 467.0,204.2 468.1,204.3 469.2,204.3 470.3,204.3 471.4,204.4 472.5,204.4 473.6,204.4 474.7,204.4 475.8,204.5 476.9,204.5 478.0,204.5 479.1,204.6 480.2,204.6 481.3,204.6 482.4,204.7 483.5,204.7 484.6,204.7 485.7,204.8 486.8,204.8 487.9,204.8 489.0,204.8 490.1,204.9 491.2,204.9 492.3,204.9 493.4,205.0 494.5,205.0 495.6,205.0 496.7,205.0 497.8,205.1 498.9,205.1 500.0,205.1 501.1,205.1 502.2,205.2 503.3,205.2 504.4,205.2 505.5,205.2 506.6,205.3 507.7,205.3 508.8,205.3 509.9,205.3 511.0,205.4 512.1,205.4 513.2,205.4 514.3,205.4 515.4,205.5 516.5,205.5 517.6,205.5 518.7,205.5 519.8,205.6 520.9,205.6 522.0,205.6 523.1,205.6 524.2,205.6 525.3,205.7 526.4,205.7 527.5,205.7 528.6,205.7 529.7,205.8 530.8,205.8 531.9,205.8 533.0,205.8 534.1,205.8 535.2,205.9 536.3,205.9 537.4,205.9 538.5,205.9 539.6,205.9 540.7,206.0 541.8,206.0 542.9,206.0 544.0,206.0 545.1,206.0 546.2,206.1 547.3,206.1 548.4,206.1 549.5,206.1 550.6,206.1 551.7,206.2 552.8,206.2 553.9,206.2 555.0,206.2 556.1,206.2 557.2,206.2 558.3,206.3 559.4,206.3 560.5,206.3 561.6,206.3 562.7,206.3 563.8,206.3 564.9,206.4 566.0,206.4 567.1,206.4 568.2,206.4 569.3,206.4 570.4,206.4 571.5,206.5 572.6,206.5 573.7,206.5 574.8,206.5 575.9,206.5 577.0,206.5 578.1,206.6 579.2,206.6 580.3,206.6 581.4,206.6 582.5,206.6 583.6,206.6 584.7,206.7 585.8,206.7 586.9,206.7 588.0,206.7 589.1,206.7 590.2,206.7 591.3,206.7 592.4,206.8 593.5,206.8 594.6,206.8 595.7,206.8 596.8,206.8 597.9,206.8 599.0,206.8 600.1,206.9 601.2,206.9 602.3,206.9 603.4,206.9 604.5,206.9 605.6,206.9 606.7,206.9 607.8,206.9 608.9,207.0 610.0,207.0 611.1,207.0 612.2,207.0 613.3,207.0 614.4,207.0 615.5,207.0 616.6,207.0 617.7,207.1 618.8,207.1 619.9,207.1 621.0,207.1 622.1,207.1 623.2,207.1 624.3,207.1 625.4,207.1 626.5,207.2 627.6,207.2 628.7,207.2 629.8,207.2 630.9,207.2 632.0,207.2 633.1,207.2 634.2,207.2 635.3,207.2 636.4,207.3 637.5,207.3 638.6,207.3 639.7,207.3 640.8,207.3 641.9,207.3 643.0,207.3 644.1,207.3 645.2,207.3 646.3,207.4 647.4,207.4 648.5,207.4 649.6,207.4 650.7,207.4 651.8,207.4 652.9,207.4 654.0,207.4 655.1,207.4 656.2,207.4 657.3,207.5 658.4,207.5 659.5,207.5 660.6,207.5 661.7,207.5 662.8,207.5 663.9,207.5 665.0,207.5" fill="none" stroke="#8a94a6" stroke-width="2.2"/><polyline points="60.0,192.4 61.1,192.4 62.2,192.4 63.3,192.4 64.4,192.4 65.5,192.4 66.6,192.4 67.7,192.4 68.8,192.4 69.9,192.3 71.0,192.3 72.1,192.3 73.2,192.3 74.3,192.3 75.4,192.3 76.5,192.3 77.6,192.3 78.7,192.3 79.8,192.2 80.9,192.2 82.0,192.2 83.1,192.2 84.2,192.2 85.3,192.2 86.4,192.1 87.5,192.1 88.6,192.1 89.7,192.1 90.8,192.0 91.9,192.0 93.0,192.0 94.1,192.0 95.2,191.9 96.3,191.9 97.4,191.9 98.5,191.9 99.6,191.8 100.7,191.8 101.8,191.8 102.9,191.7 104.0,191.7 105.1,191.7 106.2,191.6 107.3,191.6 108.4,191.5 109.5,191.5 110.6,191.5 111.7,191.4 112.8,191.4 113.9,191.3 115.0,191.3 116.1,191.2 117.2,191.2 118.3,191.1 119.4,191.1 120.5,191.0 121.6,191.0 122.7,190.9 123.8,190.9 124.9,190.8 126.0,190.8 127.1,190.7 128.2,190.6 129.3,190.6 130.4,190.5 131.5,190.4 132.6,190.4 133.7,190.3 134.8,190.2 135.9,190.2 137.0,190.1 138.1,190.0 139.2,189.9 140.3,189.9 141.4,189.8 142.5,189.7 143.6,189.6 144.7,189.5 145.8,189.5 146.9,189.4 148.0,189.3 149.1,189.2 150.2,189.1 151.3,189.0 152.4,188.9 153.5,188.8 154.6,188.7 155.7,188.6 156.8,188.5 157.9,188.4 159.0,188.3 160.1,188.2 161.2,188.1 162.3,187.9 163.4,187.8 164.5,187.7 165.6,187.6 166.7,187.5 167.8,187.3 168.9,187.2 170.0,187.1 171.1,186.9 172.2,186.8 173.3,186.6 174.4,186.5 175.5,186.4 176.6,186.2 177.7,186.1 178.8,185.9 179.9,185.7 181.0,185.6 182.1,185.4 183.2,185.2 184.3,185.1 185.4,184.9 186.5,184.7 187.6,184.5 188.7,184.3 189.8,184.1 190.9,183.9 192.0,183.7 193.1,183.5 194.2,183.3 195.3,183.1 196.4,182.9 197.5,182.6 198.6,182.4 199.7,182.2 200.8,181.9 201.9,181.7 203.0,181.4 204.1,181.2 205.2,180.9 206.3,180.6 207.4,180.4 208.5,180.1 209.6,179.8 210.7,179.5 211.8,179.2 212.9,178.9 214.0,178.6 215.1,178.3 216.2,177.9 217.3,177.6 218.4,177.3 219.5,176.9 220.6,176.5 221.7,176.2 222.8,175.8 223.9,175.4 225.0,175.0 226.1,174.6 227.2,174.2 228.3,173.8 229.4,173.4 230.5,173.0 231.6,172.5 232.7,172.1 233.8,171.6 234.9,171.1 236.0,170.7 237.1,170.2 238.2,169.7 239.3,169.2 240.4,168.7 241.5,168.2 242.6,167.7 243.7,167.2 244.8,166.6 245.9,166.1 247.0,165.6 248.1,165.0 249.2,164.5 250.3,164.0 251.4,163.4 252.5,162.9 253.6,162.4 254.7,161.9 255.8,161.4 256.9,160.9 258.0,160.4 259.1,159.9 260.2,159.5 261.3,159.0 262.4,158.6 263.5,158.2 264.6,157.9 265.7,157.6 266.8,157.3 267.9,157.0 269.0,156.8 270.1,156.7 271.2,156.5 272.3,156.4 273.4,156.4 274.5,156.4 275.6,156.5 276.7,156.6 277.8,156.7 278.9,156.9 280.0,157.1 281.1,157.4 282.2,157.8 283.3,158.1 284.4,158.5 285.5,159.0 286.6,159.5 287.7,160.0 288.8,160.5 289.9,161.1 291.0,161.7 292.1,162.3 293.2,162.9 294.3,163.6 295.4,164.2 296.5,164.9 297.6,165.6 298.7,166.3 299.8,166.9 300.9,167.6 302.0,168.3 303.1,169.0 304.2,169.7 305.3,170.3 306.4,171.0 307.5,171.7 308.6,172.3 309.7,173.0 310.8,173.6 311.9,174.2 313.0,174.8 314.1,175.4 315.2,176.0 316.3,176.6 317.4,177.2 318.5,177.7 319.6,178.3 320.7,178.8 321.8,179.4 322.9,179.9 324.0,180.4 325.1,180.9 326.2,181.3 327.3,181.8 328.4,182.3 329.5,182.7 330.6,183.2 331.7,183.6 332.8,184.0 333.9,184.4 335.0,184.8 336.1,185.2 337.2,185.6 338.3,186.0 339.4,186.3 340.5,186.7 341.6,187.1 342.7,187.4 343.8,187.7 344.9,188.1 346.0,188.4 347.1,188.7 348.2,189.0 349.3,189.3 350.4,189.6 351.5,189.9 352.6,190.1 353.7,190.4 354.8,190.7 355.9,191.0 357.0,191.2 358.1,191.5 359.2,191.7 360.3,191.9 361.4,192.2 362.5,192.4 363.6,192.6 364.7,192.9 365.8,193.1 366.9,193.3 368.0,193.5 369.1,193.7 370.2,193.9 371.3,194.1 372.4,194.3 373.5,194.5 374.6,194.7 375.7,194.8 376.8,195.0 377.9,195.2 379.0,195.4 380.1,195.5 381.2,195.7 382.3,195.9 383.4,196.0 384.5,196.2 385.6,196.3 386.7,196.5 387.8,196.6 388.9,196.8 390.0,196.9 391.1,197.1 392.2,197.2 393.3,197.3 394.4,197.5 395.5,197.6 396.6,197.7 397.7,197.8 398.8,198.0 399.9,198.1 401.0,198.2 402.1,198.3 403.2,198.4 404.3,198.6 405.4,198.7 406.5,198.8 407.6,198.9 408.7,199.0 409.8,199.1 410.9,199.2 412.0,199.3 413.1,199.4 414.2,199.5 415.3,199.6 416.4,199.7 417.5,199.8 418.6,199.9 419.7,200.0 420.8,200.1 421.9,200.2 423.0,200.3 424.1,200.3 425.2,200.4 426.3,200.5 427.4,200.6 428.5,200.7 429.6,200.8 430.7,200.8 431.8,200.9 432.9,201.0 434.0,201.1 435.1,201.1 436.2,201.2 437.3,201.3 438.4,201.4 439.5,201.4 440.6,201.5 441.7,201.6 442.8,201.6 443.9,201.7 445.0,201.8 446.1,201.8 447.2,201.9 448.3,202.0 449.4,202.0 450.5,202.1 451.6,202.2 452.7,202.2 453.8,202.3 454.9,202.3 456.0,202.4 457.1,202.5 458.2,202.5 459.3,202.6 460.4,202.6 461.5,202.7 462.6,202.7 463.7,202.8 464.8,202.8 465.9,202.9 467.0,203.0 468.1,203.0 469.2,203.1 470.3,203.1 471.4,203.2 472.5,203.2 473.6,203.3 474.7,203.3 475.8,203.3 476.9,203.4 478.0,203.4 479.1,203.5 480.2,203.5 481.3,203.6 482.4,203.6 483.5,203.7 484.6,203.7 485.7,203.7 486.8,203.8 487.9,203.8 489.0,203.9 490.1,203.9 491.2,204.0 492.3,204.0 493.4,204.0 494.5,204.1 495.6,204.1 496.7,204.2 497.8,204.2 498.9,204.2 500.0,204.3 501.1,204.3 502.2,204.3 503.3,204.4 504.4,204.4 505.5,204.4 506.6,204.5 507.7,204.5 508.8,204.6 509.9,204.6 511.0,204.6 512.1,204.7 513.2,204.7 514.3,204.7 515.4,204.8 516.5,204.8 517.6,204.8 518.7,204.8 519.8,204.9 520.9,204.9 522.0,204.9 523.1,205.0 524.2,205.0 525.3,205.0 526.4,205.1 527.5,205.1 528.6,205.1 529.7,205.1 530.8,205.2 531.9,205.2 533.0,205.2 534.1,205.3 535.2,205.3 536.3,205.3 537.4,205.3 538.5,205.4 539.6,205.4 540.7,205.4 541.8,205.4 542.9,205.5 544.0,205.5 545.1,205.5 546.2,205.5 547.3,205.6 548.4,205.6 549.5,205.6 550.6,205.6 551.7,205.7 552.8,205.7 553.9,205.7 555.0,205.7 556.1,205.8 557.2,205.8 558.3,205.8 559.4,205.8 560.5,205.8 561.6,205.9 562.7,205.9 563.8,205.9 564.9,205.9 566.0,206.0 567.1,206.0 568.2,206.0 569.3,206.0 570.4,206.0 571.5,206.1 572.6,206.1 573.7,206.1 574.8,206.1 575.9,206.1 577.0,206.2 578.1,206.2 579.2,206.2 580.3,206.2 581.4,206.2 582.5,206.3 583.6,206.3 584.7,206.3 585.8,206.3 586.9,206.3 588.0,206.3 589.1,206.4 590.2,206.4 591.3,206.4 592.4,206.4 593.5,206.4 594.6,206.5 595.7,206.5 596.8,206.5 597.9,206.5 599.0,206.5 600.1,206.5 601.2,206.6 602.3,206.6 603.4,206.6 604.5,206.6 605.6,206.6 606.7,206.6 607.8,206.7 608.9,206.7 610.0,206.7 611.1,206.7 612.2,206.7 613.3,206.7 614.4,206.7 615.5,206.8 616.6,206.8 617.7,206.8 618.8,206.8 619.9,206.8 621.0,206.8 622.1,206.8 623.2,206.9 624.3,206.9 625.4,206.9 626.5,206.9 627.6,206.9 628.7,206.9 629.8,206.9 630.9,207.0 632.0,207.0 633.1,207.0 634.2,207.0 635.3,207.0 636.4,207.0 637.5,207.0 638.6,207.1 639.7,207.1 640.8,207.1 641.9,207.1 643.0,207.1 644.1,207.1 645.2,207.1 646.3,207.1 647.4,207.2 648.5,207.2 649.6,207.2 650.7,207.2 651.8,207.2 652.9,207.2 654.0,207.2 655.1,207.2 656.2,207.3 657.3,207.3 658.4,207.3 659.5,207.3 660.6,207.3 661.7,207.3 662.8,207.3 663.9,207.3 665.0,207.3" fill="none" stroke="#d9900b" stroke-width="2.2"/><polyline points="60.0,192.4 61.1,192.4 62.2,192.4 63.3,192.4 64.4,192.4 65.5,192.4 66.6,192.4 67.7,192.4 68.8,192.4 69.9,192.3 71.0,192.3 72.1,192.3 73.2,192.3 74.3,192.3 75.4,192.3 76.5,192.3 77.6,192.3 78.7,192.3 79.8,192.2 80.9,192.2 82.0,192.2 83.1,192.2 84.2,192.2 85.3,192.1 86.4,192.1 87.5,192.1 88.6,192.1 89.7,192.1 90.8,192.0 91.9,192.0 93.0,192.0 94.1,191.9 95.2,191.9 96.3,191.9 97.4,191.9 98.5,191.8 99.6,191.8 100.7,191.8 101.8,191.7 102.9,191.7 104.0,191.7 105.1,191.6 106.2,191.6 107.3,191.5 108.4,191.5 109.5,191.4 110.6,191.4 111.7,191.4 112.8,191.3 113.9,191.3 115.0,191.2 116.1,191.2 117.2,191.1 118.3,191.1 119.4,191.0 120.5,190.9 121.6,190.9 122.7,190.8 123.8,190.8 124.9,190.7 126.0,190.6 127.1,190.6 128.2,190.5 129.3,190.5 130.4,190.4 131.5,190.3 132.6,190.2 133.7,190.2 134.8,190.1 135.9,190.0 137.0,189.9 138.1,189.9 139.2,189.8 140.3,189.7 141.4,189.6 142.5,189.5 143.6,189.4 144.7,189.3 145.8,189.2 146.9,189.1 148.0,189.0 149.1,188.9 150.2,188.8 151.3,188.7 152.4,188.6 153.5,188.5 154.6,188.4 155.7,188.3 156.8,188.2 157.9,188.1 159.0,187.9 160.1,187.8 161.2,187.7 162.3,187.6 163.4,187.4 164.5,187.3 165.6,187.2 166.7,187.0 167.8,186.9 168.9,186.7 170.0,186.6 171.1,186.4 172.2,186.2 173.3,186.1 174.4,185.9 175.5,185.7 176.6,185.6 177.7,185.4 178.8,185.2 179.9,185.0 181.0,184.8 182.1,184.6 183.2,184.4 184.3,184.2 185.4,184.0 186.5,183.8 187.6,183.6 188.7,183.3 189.8,183.1 190.9,182.8 192.0,182.6 193.1,182.3 194.2,182.1 195.3,181.8 196.4,181.5 197.5,181.2 198.6,180.9 199.7,180.6 200.8,180.3 201.9,180.0 203.0,179.7 204.1,179.3 205.2,179.0 206.3,178.6 207.4,178.3 208.5,177.9 209.6,177.5 210.7,177.1 211.8,176.7 212.9,176.2 214.0,175.8 215.1,175.3 216.2,174.8 217.3,174.3 218.4,173.8 219.5,173.3 220.6,172.7 221.7,172.2 222.8,171.6 223.9,170.9 225.0,170.3 226.1,169.6 227.2,168.9 228.3,168.2 229.4,167.5 230.5,166.7 231.6,165.9 232.7,165.0 233.8,164.1 234.9,163.2 236.0,162.2 237.1,161.2 238.2,160.1 239.3,159.0 240.4,157.8 241.5,156.6 242.6,155.3 243.7,153.9 244.8,152.4 245.9,150.9 247.0,149.3 248.1,147.6 249.2,145.8 250.3,143.8 251.4,141.8 252.5,139.6 253.6,137.2 254.7,134.8 255.8,132.1 256.9,129.2 258.0,126.2 259.1,122.9 260.2,119.4 261.3,115.6 262.4,111.6 263.5,107.2 264.6,102.6 265.7,97.6 266.8,92.2 267.9,86.6 269.0,80.6 270.1,74.3 271.2,67.8 272.3,61.3 273.4,54.9 274.5,48.8 275.6,43.3 276.7,38.8 277.8,35.5 278.9,33.8 280.0,33.8 281.1,35.6 282.2,38.9 283.3,43.6 284.4,49.4 285.5,55.9 286.6,62.8 287.7,69.8 288.8,76.7 289.9,83.5 291.0,89.9 292.1,96.0 293.2,101.8 294.3,107.2 295.4,112.2 296.5,116.8 297.6,121.2 298.7,125.2 299.8,129.0 300.9,132.4 302.0,135.7 303.1,138.7 304.2,141.5 305.3,144.2 306.4,146.6 307.5,148.9 308.6,151.1 309.7,153.1 310.8,155.0 311.9,156.8 313.0,158.5 314.1,160.1 315.2,161.7 316.3,163.1 317.4,164.5 318.5,165.8 319.6,167.0 320.7,168.2 321.8,169.3 322.9,170.4 324.0,171.4 325.1,172.3 326.2,173.3 327.3,174.2 328.4,175.0 329.5,175.8 330.6,176.6 331.7,177.3 332.8,178.1 333.9,178.8 335.0,179.4 336.1,180.1 337.2,180.7 338.3,181.3 339.4,181.9 340.5,182.4 341.6,182.9 342.7,183.5 343.8,184.0 344.9,184.4 346.0,184.9 347.1,185.4 348.2,185.8 349.3,186.2 350.4,186.6 351.5,187.0 352.6,187.4 353.7,187.8 354.8,188.2 355.9,188.5 357.0,188.9 358.1,189.2 359.2,189.5 360.3,189.8 361.4,190.1 362.5,190.4 363.6,190.7 364.7,191.0 365.8,191.3 366.9,191.6 368.0,191.8 369.1,192.1 370.2,192.3 371.3,192.6 372.4,192.8 373.5,193.1 374.6,193.3 375.7,193.5 376.8,193.7 377.9,193.9 379.0,194.2 380.1,194.4 381.2,194.6 382.3,194.8 383.4,194.9 384.5,195.1 385.6,195.3 386.7,195.5 387.8,195.7 388.9,195.8 390.0,196.0 391.1,196.2 392.2,196.3 393.3,196.5 394.4,196.6 395.5,196.8 396.6,196.9 397.7,197.1 398.8,197.2 399.9,197.4 401.0,197.5 402.1,197.6 403.2,197.8 404.3,197.9 405.4,198.0 406.5,198.2 407.6,198.3 408.7,198.4 409.8,198.5 410.9,198.6 412.0,198.8 413.1,198.9 414.2,199.0 415.3,199.1 416.4,199.2 417.5,199.3 418.6,199.4 419.7,199.5 420.8,199.6 421.9,199.7 423.0,199.8 424.1,199.9 425.2,200.0 426.3,200.1 427.4,200.2 428.5,200.3 429.6,200.4 430.7,200.5 431.8,200.5 432.9,200.6 434.0,200.7 435.1,200.8 436.2,200.9 437.3,201.0 438.4,201.0 439.5,201.1 440.6,201.2 441.7,201.3 442.8,201.3 443.9,201.4 445.0,201.5 446.1,201.6 447.2,201.6 448.3,201.7 449.4,201.8 450.5,201.8 451.6,201.9 452.7,202.0 453.8,202.0 454.9,202.1 456.0,202.2 457.1,202.2 458.2,202.3 459.3,202.3 460.4,202.4 461.5,202.5 462.6,202.5 463.7,202.6 464.8,202.6 465.9,202.7 467.0,202.7 468.1,202.8 469.2,202.9 470.3,202.9 471.4,203.0 472.5,203.0 473.6,203.1 474.7,203.1 475.8,203.2 476.9,203.2 478.0,203.3 479.1,203.3 480.2,203.4 481.3,203.4 482.4,203.5 483.5,203.5 484.6,203.6 485.7,203.6 486.8,203.6 487.9,203.7 489.0,203.7 490.1,203.8 491.2,203.8 492.3,203.9 493.4,203.9 494.5,203.9 495.6,204.0 496.7,204.0 497.8,204.1 498.9,204.1 500.0,204.1 501.1,204.2 502.2,204.2 503.3,204.3 504.4,204.3 505.5,204.3 506.6,204.4 507.7,204.4 508.8,204.4 509.9,204.5 511.0,204.5 512.1,204.5 513.2,204.6 514.3,204.6 515.4,204.6 516.5,204.7 517.6,204.7 518.7,204.7 519.8,204.8 520.9,204.8 522.0,204.8 523.1,204.9 524.2,204.9 525.3,204.9 526.4,205.0 527.5,205.0 528.6,205.0 529.7,205.1 530.8,205.1 531.9,205.1 533.0,205.1 534.1,205.2 535.2,205.2 536.3,205.2 537.4,205.3 538.5,205.3 539.6,205.3 540.7,205.3 541.8,205.4 542.9,205.4 544.0,205.4 545.1,205.4 546.2,205.5 547.3,205.5 548.4,205.5 549.5,205.5 550.6,205.6 551.7,205.6 552.8,205.6 553.9,205.6 555.0,205.7 556.1,205.7 557.2,205.7 558.3,205.7 559.4,205.8 560.5,205.8 561.6,205.8 562.7,205.8 563.8,205.9 564.9,205.9 566.0,205.9 567.1,205.9 568.2,205.9 569.3,206.0 570.4,206.0 571.5,206.0 572.6,206.0 573.7,206.0 574.8,206.1 575.9,206.1 577.0,206.1 578.1,206.1 579.2,206.1 580.3,206.2 581.4,206.2 582.5,206.2 583.6,206.2 584.7,206.2 585.8,206.3 586.9,206.3 588.0,206.3 589.1,206.3 590.2,206.3 591.3,206.4 592.4,206.4 593.5,206.4 594.6,206.4 595.7,206.4 596.8,206.4 597.9,206.5 599.0,206.5 600.1,206.5 601.2,206.5 602.3,206.5 603.4,206.5 604.5,206.6 605.6,206.6 606.7,206.6 607.8,206.6 608.9,206.6 610.0,206.6 611.1,206.7 612.2,206.7 613.3,206.7 614.4,206.7 615.5,206.7 616.6,206.7 617.7,206.8 618.8,206.8 619.9,206.8 621.0,206.8 622.1,206.8 623.2,206.8 624.3,206.8 625.4,206.9 626.5,206.9 627.6,206.9 628.7,206.9 629.8,206.9 630.9,206.9 632.0,206.9 633.1,207.0 634.2,207.0 635.3,207.0 636.4,207.0 637.5,207.0 638.6,207.0 639.7,207.0 640.8,207.1 641.9,207.1 643.0,207.1 644.1,207.1 645.2,207.1 646.3,207.1 647.4,207.1 648.5,207.1 649.6,207.2 650.7,207.2 651.8,207.2 652.9,207.2 654.0,207.2 655.1,207.2 656.2,207.2 657.3,207.2 658.4,207.2 659.5,207.3 660.6,207.3 661.7,207.3 662.8,207.3 663.9,207.3 665.0,207.3" fill="none" stroke="#0b5fa5" stroke-width="2.2"/>
+<g font-size="12" font-weight="600">
+<text x="294" y="39.8" fill="#0b5fa5">Q = 10</text>
+<text x="304" y="155.4" fill="#d9900b">Q = 3</text>
+<text x="159" y="181.8" fill="#4a5670">Q = 1</text>
+</g>
+<g font-size="11" fill="#4a5670"><text x="70" y="200">réponse statique : X ≈ F₀/k</text><text x="470" y="196">X ≈ F₀/(mω²) : la masse ne suit plus</text></g>
+</svg>
+<figcaption>Amplitude en régime forcé pour trois facteurs de qualité : le pic, de hauteur environ \(Q\) et de largeur environ \(\omega_0/Q\), devient haut et étroit quand l’amortissement diminue.</figcaption>
+</figure>
 <div class="sim" data-name="resonance"><p>Balayez la pulsation imposée : loin sous \(\omega_0\) la masse suit la force, près de \(\omega_0\) l’amplitude est multipliée par \(Q\) et le retard vaut 90°, au-delà la masse est en opposition de phase. Observez le régime transitoire, d’autant plus long que \(Q\) est grand.</p></div>
 <div class="methode" data-m="terme-dominant"></div>
 </div>
@@ -110,28 +179,54 @@
 <h2 id="couples">5. Oscillateurs couplés (hors syllabus, posés au test CPGE)</h2>
 <div class="cpge" id="modes" title="Niveau CPGE, hors syllabus : modes propres de deux oscillateurs couplés">
 <p>Deux oscillateurs reliés échangent de l’énergie. Le mouvement général est compliqué, mais il existe des mouvements simples, les <strong>modes propres</strong>, où toutes les parties oscillent à la <strong>même pulsation</strong>, en phase ou en opposition de phase. Pour un système symétrique, on les devine sans calcul :</p>
-<ul>
-<li><strong>mode symétrique</strong> : les deux masses se déplacent ensemble, le ressort de couplage garde sa longueur et ne joue aucun rôle ;</li>
-<li><strong>mode antisymétrique</strong> : déplacements opposés ; le milieu du ressort de couplage reste fixe, chaque moitié (de raideur double) agit comme un ressort supplémentaire.</li>
-</ul>
+<table>
+<thead><tr><th>Mode</th><th>Mouvement</th><th>Rôle du ressort de couplage</th></tr></thead>
+<tbody>
+<tr><td><strong>Symétrique</strong></td><td>les deux masses se déplacent ensemble</td><td>il garde sa longueur : aucun rôle</td></tr>
+<tr><td><strong>Antisymétrique</strong></td><td>déplacements opposés</td><td>son milieu reste fixe ; chaque moitié (de raideur double) agit comme un ressort supplémentaire</td></tr>
+</tbody></table>
 <h3 id="calcul-pulsations">Calculer les pulsations propres, pas à pas</h3>
 <p>Prenons deux masses \(m\), chacune reliée à une paroi par un ressort \(k_1\), et reliées entre elles par un ressort \(k_2\). On repère chaque masse par son écart \(x_1\), \(x_2\) à l’équilibre (vers la droite).</p>
-<p><strong>1. Les équations du mouvement.</strong> Quand \(x_2 > x_1\), le ressort du milieu est allongé de \(x_2 - x_1\) : il tire la masse 1 vers la droite et la masse 2 vers la gauche.</p>
+<ol class="etapes">
+<li><strong>Les équations du mouvement.</strong> Quand \(x_2 > x_1\), le ressort du milieu est allongé de \(x_2 - x_1\) : il tire la masse 1 vers la droite et la masse 2 vers la gauche.
 \[m\ddot x_1 = -k_1x_1 + k_2(x_2 - x_1), \qquad m\ddot x_2 = -k_1x_2 - k_2(x_2 - x_1).\]
-<p>Chaque équation contient l’autre inconnue : c’est le <strong>couplage</strong>.</p>
-<p><strong>2. Première méthode : découpler par la somme et la différence.</strong> En ajoutant puis en retranchant les deux équations, le terme de couplage disparaît de l’une et double dans l’autre :</p>
-\[s = x_1 + x_2 : \quad m\ddot s = -k_1s, \qquad\qquad d = x_1 - x_2 : \quad m\ddot d = -(k_1 + 2k_2)\,d.\]
-<p>Ce sont deux oscillateurs harmoniques indépendants : \(\omega_s = \sqrt{k_1/m}\) et \(\omega_a = \sqrt{(k_1 + 2k_2)/m}\). On revient aux masses par \(x_1 = (s + d)/2\), \(x_2 = (s - d)/2\).</p>
-<p><strong>3. Deuxième méthode, qui marche toujours : chercher les modes.</strong> Quand le système n’est pas symétrique (masses ou ressorts différents), on ne devine pas les bonnes combinaisons. On cherche alors directement une solution où tout oscille à la même pulsation : \(x_1 = A_1\cos\omega t\), \(x_2 = A_2\cos\omega t\). Comme \(\ddot x_j = -\omega^2x_j\), les équations deviennent un système linéaire pour les amplitudes :</p>
-\[\left(k_1 + k_2 - m\omega^2\right)A_1 - k_2A_2 = 0, \qquad -k_2A_1 + \left(k_1 + k_2 - m\omega^2\right)A_2 = 0.\]
-<p>\(A_1 = A_2 = 0\) est toujours solution (rien ne bouge). Il existe une autre solution seulement si le <strong>déterminant</strong> du système est nul :</p>
-\[\left(k_1 + k_2 - m\omega^2\right)^2 - k_2^2 = 0 \quad\Longleftrightarrow\quad k_1 + k_2 - m\omega^2 = \pm k_2 .\]
-<p>Signe \(+\) : \(\omega^2 = k_1/m\) et, en reportant, \(A_2 = A_1\) (mode symétrique). Signe \(-\) : \(\omega^2 = (k_1 + 2k_2)/m\) et \(A_2 = -A_1\) (mode antisymétrique). On retrouve les deux pulsations, et la forme de chaque mode.</p>
-<p><strong>Exemple sans symétrie.</strong> Masses \(m\) et \(2m\), trois ressorts identiques \(k\) (paroi, milieu, paroi). Le système s’écrit \((2k - m\omega^2)A_1 - kA_2 = 0\) et \(-kA_1 + (2k - 2m\omega^2)A_2 = 0\). Déterminant nul : \((2k - m\omega^2)(2k - 2m\omega^2) = k^2\), soit, avec \(u = m\omega^2/k\), \(2u^2 - 6u + 3 = 0\) et \(u = \dfrac{3 \pm \sqrt3}{2}\). Les pulsations valent \(\omega = \sqrt{\dfrac{3 \mp \sqrt3}{2}}\,\sqrt{\dfrac km}\), soit \(0{,}80\) et \(1{,}54\,\sqrt{k/m}\) ; dans le mode lent les deux masses vont dans le même sens, la plus lourde avec la plus grande amplitude.</p>
-<p><strong>Vérifications</strong> à faire à chaque fois : sans couplage (\(k_2 = 0\)) on doit retrouver \(\sqrt{k_1/m}\) deux fois ; une pulsation nulle signale une translation d’ensemble possible (rien ne rappelle le système, comme deux masses libres reliées par un ressort) ; la somme des \(\omega^2\) est la somme des \(k_{jj}/m_j\) (trace du système), un contrôle rapide.</p>
+Chaque équation contient l’autre inconnue : c’est le <strong>couplage</strong>.</li>
+<li><strong>Découpler par la somme et la différence.</strong> En ajoutant puis en retranchant les deux équations, le terme de couplage disparaît de l’une et double dans l’autre :
+\[s = x_1 + x_2 : \ m\ddot s = -k_1s, \qquad d = x_1 - x_2 : \ m\ddot d = -(k_1 + 2k_2)\,d.\]</li>
+<li><strong>Lire les pulsations.</strong> Deux oscillateurs harmoniques indépendants : \(\omega_s = \sqrt{k_1/m}\) et \(\omega_a = \sqrt{(k_1 + 2k_2)/m}\). On revient aux masses par \(x_1 = (s + d)/2\), \(x_2 = (s - d)/2\).</li>
+</ol>
+<div class="complement" data-tag="Démonstration" title="La méthode qui marche toujours : chercher les modes (déterminant)">
+<p>Quand le système n’est pas symétrique (masses ou ressorts différents), on ne devine pas les bonnes combinaisons.</p>
+<ol class="etapes">
+<li>On cherche une solution où tout oscille à la même pulsation : \(x_1 = A_1\cos\omega t\), \(x_2 = A_2\cos\omega t\). Comme \(\ddot x_j = -\omega^2x_j\), les équations deviennent un système linéaire :
+\[\left(k_1 + k_2 - m\omega^2\right)A_1 - k_2A_2 = 0, \qquad -k_2A_1 + \left(k_1 + k_2 - m\omega^2\right)A_2 = 0.\]</li>
+<li>\(A_1 = A_2 = 0\) est toujours solution (rien ne bouge). Il en existe une autre seulement si le <strong>déterminant</strong> est nul : \(\left(k_1 + k_2 - m\omega^2\right)^2 - k_2^2 = 0\), soit \(k_1 + k_2 - m\omega^2 = \pm k_2\).</li>
+<li>Signe \(+\) : \(\omega^2 = k_1/m\) et \(A_2 = A_1\) (mode symétrique). Signe \(-\) : \(\omega^2 = (k_1 + 2k_2)/m\) et \(A_2 = -A_1\) (mode antisymétrique).</li>
+</ol>
+<p><strong>Exemple sans symétrie</strong> : masses \(m\) et \(2m\), trois ressorts identiques \(k\) (paroi, milieu, paroi).</p>
+<ol class="etapes">
+<li>Système : \((2k - m\omega^2)A_1 - kA_2 = 0\) et \(-kA_1 + (2k - 2m\omega^2)A_2 = 0\).</li>
+<li>Déterminant nul : \((2k - m\omega^2)(2k - 2m\omega^2) = k^2\) ; avec \(u = m\omega^2/k\), \(2u^2 - 6u + 3 = 0\), donc \(u = \dfrac{3 \pm \sqrt3}{2}\).</li>
+<li>\(\omega = 0{,}80\,\sqrt{k/m}\) et \(1{,}54\,\sqrt{k/m}\). Dans le mode lent, les deux masses vont dans le même sens, la plus lourde avec la plus grande amplitude.</li>
+</ol>
+</div>
+<table>
+<thead><tr><th>Vérification</th><th>Ce qu’on doit trouver</th></tr></thead>
+<tbody>
+<tr><td>Sans couplage (\(k_2 = 0\))</td><td>\(\sqrt{k_1/m}\) deux fois</td></tr>
+<tr><td>Rien ne retient le système (deux masses libres reliées par un ressort)</td><td>une pulsation nulle : translation d’ensemble</td></tr>
+<tr><td>Somme des \(\omega^2\)</td><td>somme des \(k_{jj}/m_j\) (trace du système) : contrôle rapide</td></tr>
+</tbody></table>
 <p><strong>4. Le mouvement général et les battements.</strong> Toute solution est une superposition des deux modes. Si l’on écarte la seule masse 1 de \(A\) et qu’on la lâche, \(s(0) = d(0) = A\) et</p>
 \[x_1 = \frac A2\left(\cos\omega_st + \cos\omega_at\right) = A\cos\frac{(\omega_a - \omega_s)t}{2}\cos\frac{(\omega_a + \omega_s)t}{2}, \qquad x_2 = A\sin\frac{(\omega_a - \omega_s)t}{2}\sin\frac{(\omega_a + \omega_s)t}{2}.\]
-<p>Si le couplage est faible, chaque masse oscille à la pulsation moyenne avec une amplitude lentement modulée : ce sont des <strong>battements</strong>. L’énergie passe entièrement de la masse 1 à la masse 2 en \(\tau = \dfrac{\pi}{\omega_a - \omega_s}\), puis revient. Pour \(k_2 \ll k_1\), \(\omega_a - \omega_s \approx \dfrac{k_2}{m\omega_s}\) : le transfert est d’autant plus lent que le couplage est faible.</p>
+<table>
+<thead><tr><th>Couplage faible : battements</th><th>Expression</th></tr></thead>
+<tbody>
+<tr><td>Oscillation rapide</td><td>à la pulsation moyenne \((\omega_a + \omega_s)/2\)</td></tr>
+<tr><td>Amplitude lentement modulée</td><td>à la pulsation \((\omega_a - \omega_s)/2\)</td></tr>
+<tr><td>Transfert complet d’énergie de la masse 1 à la masse 2</td><td>en \(\tau = \dfrac{\pi}{\omega_a - \omega_s}\), puis retour</td></tr>
+<tr><td>Pour \(k_2 \ll k_1\)</td><td>\(\omega_a - \omega_s \approx \dfrac{k_2}{m\omega_s}\) : plus le couplage est faible, plus le transfert est lent</td></tr>
+</tbody></table>
 <div class="methode" data-m="symetrie"></div>
 <div class="sim" data-name="pendules-couples"><p>Deux pendules couplés : lâchez-les dans un mode propre, puis écartez-en un seul pour voir les battements et le transfert d’énergie.</p></div>
 <div class="exo" data-q="osc-masses-differentes"></div>
@@ -142,17 +237,36 @@
 <p>Un système de \(N\) masses a \(N\) modes propres. Pour une <strong>chaîne</strong> régulière, on les obtient tous d’un coup grâce à une relation de récurrence. C’est le modèle d’un cristal (les atomes reliés par des « ressorts »), et sa limite continue est la corde vibrante du chapitre <a href="#optique--stationnaires">Ondes</a>.</p>
 <p><strong>Le modèle.</strong> \(N\) masses \(m\) identiques, alignées entre deux parois et reliées par \(N + 1\) ressorts identiques \(k\). On note \(x_n\) l’écart de la masse \(n\) (\(1 \le n \le N\)) et l’on pose \(x_0 = x_{N+1} = 0\) pour les parois. La masse \(n\) est tirée par ses deux voisines :</p>
 \[m\ddot x_n = k(x_{n+1} - x_n) - k(x_n - x_{n-1}) = k\left(x_{n+1} - 2x_n + x_{n-1}\right).\]
-<p><strong>1. Mode propre : une récurrence sur les amplitudes.</strong> Avec \(x_n = A_n\cos\omega t\) et \(\omega_0 = \sqrt{k/m}\) :</p>
-\[A_{n+1} = \left(2 - \frac{\omega^2}{\omega_0^2}\right)A_n - A_{n-1}, \qquad A_0 = A_{N+1} = 0.\]
-<p>C’est une suite récurrente linéaire d’ordre 2 : on cherche \(A_n = r^n\), d’où l’<strong>équation caractéristique</strong> \(r^2 - \left(2 - \omega^2/\omega_0^2\right)r + 1 = 0\). Le produit de ses racines vaut 1.</p>
-<ul>
-<li>Si \(\left|2 - \omega^2/\omega_0^2\right| < 2\), c’est-à-dire \(0 < \omega < 2\omega_0\), les racines sont complexes conjuguées de module 1 : \(r = \mathrm e^{\pm\mathrm i\theta}\) avec \(\cos\theta = 1 - \dfrac{\omega^2}{2\omega_0^2}\), soit \(\omega = 2\omega_0\sin\dfrac\theta2\). Alors \(A_n = \alpha\cos n\theta + \beta\sin n\theta\) : une sinusoïde « échantillonnée » sur les masses.</li>
-<li>Si \(\omega > 2\omega_0\), les racines sont réelles, négatives, l’une de module supérieur à 1 : \(A_n\) ne peut pas s’annuler aux deux bouts, il n’y a pas de mode. La chaîne ne transmet aucune pulsation au-delà de \(\omega_\text{max} = 2\omega_0\) (fréquence de coupure).</li>
-</ul>
-<p><strong>2. Les conditions aux limites quantifient \(\theta\).</strong> \(A_0 = 0\) impose \(\alpha = 0\) ; \(A_{N+1} = 0\) impose \(\sin\big((N+1)\theta\big) = 0\). D’où les \(N\) modes, \(p = 1, 2, \ldots, N\) :</p>
-\[\theta_p = \frac{p\pi}{N+1}, \qquad A_n^{(p)} = \sin\frac{np\pi}{N+1}, \qquad \boxed{\omega_p = 2\omega_0\sin\frac{p\pi}{2(N+1)}}.\]
+<ol class="etapes">
+<li><strong>Mode propre : une récurrence sur les amplitudes.</strong> Avec \(x_n = A_n\cos\omega t\) et \(\omega_0 = \sqrt{k/m}\) :
+\[A_{n+1} = \left(2 - \frac{\omega^2}{\omega_0^2}\right)A_n - A_{n-1}, \qquad A_0 = A_{N+1} = 0.\]</li>
+<li><strong>Résoudre la récurrence.</strong> C’est une suite récurrente linéaire d’ordre 2 : on cherche \(A_n = r^n\), d’où l’équation caractéristique \(r^2 - \left(2 - \omega^2/\omega_0^2\right)r + 1 = 0\), dont le produit des racines vaut 1.</li>
+<li><strong>Les conditions aux limites quantifient le mode.</strong> \(A_0 = 0\) et \(A_{N+1} = 0\) ne laissent que \(N\) modes, \(p = 1, 2, \ldots, N\) :
+\[\theta_p = \frac{p\pi}{N+1}, \qquad A_n^{(p)} = \sin\frac{np\pi}{N+1}, \qquad \boxed{\omega_p = 2\omega_0\sin\frac{p\pi}{2(N+1)}}.\]</li>
+</ol>
+<div class="complement" data-tag="Démonstration" title="Le détail : racines de l’équation caractéristique et fréquence de coupure">
+<table>
+<thead><tr><th>Pulsation</th><th>Racines</th><th>Amplitudes</th></tr></thead>
+<tbody>
+<tr><td>\(0 < \omega < 2\omega_0\), soit \(\left|2 - \omega^2/\omega_0^2\right| < 2\)</td><td>complexes conjuguées de module 1 : \(r = \mathrm e^{\pm\mathrm i\theta}\), \(\cos\theta = 1 - \dfrac{\omega^2}{2\omega_0^2}\), soit \(\omega = 2\omega_0\sin\dfrac\theta2\)</td><td>\(A_n = \alpha\cos n\theta + \beta\sin n\theta\) : une sinusoïde « échantillonnée » sur les masses</td></tr>
+<tr><td>\(\omega > 2\omega_0\)</td><td>réelles, négatives, l’une de module supérieur à 1</td><td>\(A_n\) ne peut pas s’annuler aux deux bouts : pas de mode. La chaîne ne transmet rien au-delà de \(\omega_\text{max} = 2\omega_0\) (fréquence de coupure).</td></tr>
+</tbody></table>
+<ol class="etapes">
+<li>\(A_0 = 0\) impose \(\alpha = 0\).</li>
+<li>\(A_{N+1} = 0\) impose \(\sin\big((N+1)\theta\big) = 0\), donc \(\theta = p\pi/(N+1)\).</li>
+<li>\(p = N + 1\) donnerait \(A_n = 0\) partout : il reste \(N\) modes distincts.</li>
+</ol>
+</div>
 <p>Vérifications : \(N = 1\) (une masse entre deux ressorts) donne \(\omega = 2\omega_0\sin\frac\pi4 = \sqrt{2k/m}\) ; \(N = 2\) donne \(2\omega_0\sin\frac\pi6 = \omega_0\) et \(2\omega_0\sin\frac\pi3 = \sqrt3\,\omega_0\), les modes symétrique et antisymétrique de la partie 5 avec \(k_1 = k_2 = k\). Le mode \(p\) a \(p - 1\) nœuds (masses immobiles ou points fixes entre deux masses) : c’est une onde stationnaire.</p>
-<p><strong>3. Relation de dispersion et limite continue.</strong> Si les masses sont espacées de \(a\), le déphasage \(\theta\) entre voisines correspond au vecteur d’onde \(q = \theta/a\) : \(\omega = 2\omega_0\left|\sin\dfrac{qa}{2}\right|\). Pour les grandes longueurs d’onde (\(qa \ll 1\)), \(\omega \approx \omega_0a\,q\) : l’onde se propage sans dispersion à la célérité \(c = a\sqrt{k/m}\). En écrivant \(k = ES/a\) et \(m = \rho Sa\) pour une barre, on retrouve la célérité du son dans un solide, \(c = \sqrt{E/\rho}\) ; pour un cristal, c’est l’origine des <strong>phonons</strong>.</p>
+<p><strong>Relation de dispersion et limite continue.</strong> Si les masses sont espacées de \(a\), le déphasage \(\theta\) entre voisines correspond au vecteur d’onde \(q = \theta/a\) :</p>
+\[\omega = 2\omega_0\left|\sin\frac{qa}{2}\right|.\]
+<table>
+<thead><tr><th>Limite</th><th>Résultat</th></tr></thead>
+<tbody>
+<tr><td>Grandes longueurs d’onde (\(qa \ll 1\))</td><td>\(\omega \approx \omega_0a\,q\) : propagation sans dispersion à la célérité \(c = a\sqrt{k/m}\)</td></tr>
+<tr><td>Barre solide (\(k = ES/a\), \(m = \rho Sa\))</td><td>célérité du son \(c = \sqrt{E/\rho}\)</td></tr>
+<tr><td>Cristal</td><td>origine des <strong>phonons</strong></td></tr>
+</tbody></table>
 <table>
 <thead><tr><th>Variante</th><th>Récurrence ou bord</th><th>Pulsations</th></tr></thead>
 <tbody>

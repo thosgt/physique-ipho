@@ -24,27 +24,62 @@
 
 <h2 id="changer">1. Changer de référentiel</h2>
 <h3 id="relativite">Le mouvement dépend du référentiel</h3>
-<p>Un <strong>référentiel</strong> est un solide de référence (le sol, un train, la Terre, le centre du Soleil et trois étoiles lointaines) muni d’une horloge. La trajectoire, la vitesse et l’accélération d’un point dépendent du référentiel : la valve d’une roue de vélo décrit un cercle dans le référentiel du vélo, une cycloïde dans celui de la route. En mécanique classique, le temps et les longueurs sont les mêmes dans tous les référentiels (ce n’est plus vrai en <a href="#relativite">relativité</a>).</p>
+<p>Un <strong>référentiel</strong> est un solide de référence (le sol, un train, la Terre, le centre du Soleil et trois étoiles lointaines) muni d’une horloge.</p>
+<table>
+<thead><tr><th>Ce qui dépend du référentiel</th><th>Ce qui n’en dépend pas (mécanique classique)</th></tr></thead>
+<tbody>
+<tr><td>trajectoire, vitesse, accélération : la valve d’une roue de vélo décrit un cercle dans le référentiel du vélo, une cycloïde dans celui de la route</td><td>les durées et les longueurs (ce n’est plus vrai en <a href="#relativite">relativité</a>), les forces réelles, la masse</td></tr>
+</tbody></table>
 <h3 id="translation">Référentiel en translation</h3>
-<p>Soit \(R'\) en <strong>translation</strong> par rapport à \(R\) : ses axes gardent la même direction, et tous ses points ont, à chaque instant, la même vitesse \(\vec v_{O'}\) et la même accélération \(\vec a_{O'}\) par rapport à \(R\) (une voiture sur une route droite, une cabine d’ascenseur, une nacelle de grande roue). Pour un point \(M\), \(\overrightarrow{OM} = \overrightarrow{OO'} + \overrightarrow{O'M}\), et en dérivant :</p>
+<p>\(R'\) est en <strong>translation</strong> par rapport à \(R\) si ses axes gardent la même direction : tous ses points ont, à chaque instant, la même vitesse \(\vec v_{O'}\) et la même accélération \(\vec a_{O'}\) par rapport à \(R\) (voiture sur une route droite, cabine d’ascenseur, nacelle de grande roue). En dérivant \(\overrightarrow{OM} = \overrightarrow{OO'} + \overrightarrow{O'M}\) :</p>
 \[\vec v_{/R} = \vec v_{/R'} + \vec v_{O'} \qquad\text{et}\qquad \vec a_{/R} = \vec a_{/R'} + \vec a_{O'}.\]
-<p>Les vitesses s’ajoutent (le passager qui marche à 1 m·s⁻¹ dans un train à 30 m·s⁻¹ va à 31 m·s⁻¹ par rapport au sol), et si \(R'\) est en translation <strong>rectiligne uniforme</strong> (\(\vec a_{O'} = \vec 0\)), les accélérations sont les mêmes dans les deux référentiels : la mécanique y est la même (relativité galiléenne).</p>
+<table>
+<thead><tr><th>Conséquence</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr><td>Les vitesses s’ajoutent</td><td>un passager qui marche à 1 m·s⁻¹ dans un train à 30 m·s⁻¹ va à 31 m·s⁻¹ par rapport au sol</td></tr>
+<tr><td>Si \(R'\) est en translation <strong>rectiligne uniforme</strong> (\(\vec a_{O'} = \vec 0\)), les accélérations sont les mêmes</td><td>la mécanique est la même dans les deux référentiels : c’est la relativité galiléenne</td></tr>
+</tbody></table>
 <div class="methode" data-m="referentiel"><p>Une rencontre de deux mobiles, un nageur dans un courant, un objet lâché d’un train : placez-vous dans le référentiel de l’un des deux (ou du fluide) ; le problème y devient souvent statique ou rectiligne. Revenez ensuite au référentiel du sol par \(\vec v = \vec v\,' + \vec v_{O'}\).</p></div>
 <div class="exo" data-q="ipho-2008-1"></div>
 
 <div class="cpge" id="rotation-cinematique" title="Référentiel en rotation : composition des vitesses et des accélérations">
-<p>Soit \(R'\) en rotation uniforme à la vitesse angulaire \(\vec\omega\) (constante) autour d’un axe fixe de \(R\) passant par \(O = O'\). Un vecteur \(\vec u\) fixe dans \(R'\) tourne dans \(R\) : \(\left(\dfrac{\mathrm d\vec u}{\mathrm dt}\right)_R = \vec\omega\wedge\vec u\). Pour un vecteur quelconque \(\vec A\), on obtient la formule de dérivation \(\left(\dfrac{\mathrm d\vec A}{\mathrm dt}\right)_R = \left(\dfrac{\mathrm d\vec A}{\mathrm dt}\right)_{R'} + \vec\omega\wedge\vec A\). Appliquée à \(\vec r = \overrightarrow{OM}\) puis à la vitesse :</p>
+<p>Soit \(R'\) en rotation uniforme à la vitesse angulaire \(\vec\omega\) (constante) autour d’un axe fixe de \(R\) passant par \(O = O'\).</p>
+<ol class="etapes">
+<li>Un vecteur \(\vec u\) fixe dans \(R'\) tourne dans \(R\) : \(\left(\dfrac{\mathrm d\vec u}{\mathrm dt}\right)_R = \vec\omega\wedge\vec u\) (vitesse d’un point d’un solide en rotation, chapitre <a href="#vecteurs--usages-vectoriel">Outils vectoriels</a>).</li>
+<li>Pour un vecteur quelconque \(\vec A\) : \(\left(\dfrac{\mathrm d\vec A}{\mathrm dt}\right)_R = \left(\dfrac{\mathrm d\vec A}{\mathrm dt}\right)_{R'} + \vec\omega\wedge\vec A\).</li>
+<li>On l’applique à \(\vec r = \overrightarrow{OM}\), puis à la vitesse :</li>
+</ol>
 \[\vec v = \vec v\,' + \vec\omega\wedge\vec r, \qquad \vec a = \vec a\,' + \underbrace{\vec\omega\wedge(\vec\omega\wedge\vec r)}_{\vec a_e\, =\, -\omega^2\,\overrightarrow{HM}} + \underbrace{2\,\vec\omega\wedge\vec v\,'}_{\vec a_c}.\]
 <p>L’accélération d’entraînement \(\vec a_e\) est celle d’un point fixe du manège : centripète, de norme \(\omega^2 r\) (\(r = HM\), distance à l’axe). L’accélération de Coriolis \(\vec a_c\) n’existe que si le point bouge dans \(R'\).</p>
 </div>
 
 <h2 id="forces-inertie">2. Forces d’inertie</h2>
 <h3 id="galileen">Référentiels galiléens</h3>
-<p>Les lois de Newton ne valent que dans les référentiels <strong>galiléens</strong>, où un corps isolé est immobile ou en mouvement rectiligne uniforme. Dans un bus qui freine, une balle posée au sol roule vers l’avant sans qu’aucune force horizontale ne la pousse : le référentiel du bus n’est pas galiléen. Pour continuer à raisonner avec \(m\vec a = \sum\vec F\) dans un tel référentiel, on ajoute des forces fictives, les <strong>forces d’inertie</strong>. Puisque \(\vec a = \vec a\,' + \vec a_e + \vec a_c\) et que \(m\vec a = \sum\vec F\) dans le référentiel galiléen :</p>
+<p>Les lois de Newton ne valent que dans les référentiels <strong>galiléens</strong>, où un corps isolé est immobile ou en mouvement rectiligne uniforme. Dans un bus qui freine, une balle posée au sol roule vers l’avant sans qu’aucune force horizontale ne la pousse : le référentiel du bus n’est pas galiléen.</p>
+<p>Pour continuer à écrire \(m\vec a = \sum\vec F\) dans un tel référentiel, on ajoute des forces fictives, les <strong>forces d’inertie</strong>. Puisque \(\vec a = \vec a\,' + \vec a_e + \vec a_c\) et que \(m\vec a = \sum\vec F\) dans le référentiel galiléen :</p>
 \[m\vec a\,' = \sum\vec F + \vec f_{ie} + \vec f_{ic}, \qquad \vec f_{ie} = -m\vec a_e, \qquad \vec f_{ic} = -m\vec a_c.\]
-<p>Les forces d’inertie sont proportionnelles à la masse, comme le poids : c’est pour cela qu’on ne peut pas, de l’intérieur d’une cabine fermée, distinguer une accélération d’un champ de pesanteur (principe d’équivalence, point de départ de la relativité générale).</p>
+<table>
+<thead><tr><th>Force d’inertie</th><th>Expression</th><th>Existe quand</th></tr></thead>
+<tbody>
+<tr><td>d’entraînement</td><td>\(\vec f_{ie} = -m\vec a_e\)</td><td>le référentiel accélère ou tourne, même pour un objet immobile dans \(R'\)</td></tr>
+<tr><td>de Coriolis</td><td>\(\vec f_{ic} = -m\vec a_c = -2m\,\vec\omega\wedge\vec v\,'\)</td><td>le référentiel tourne <strong>et</strong> l’objet bouge dans \(R'\)</td></tr>
+</tbody></table>
+<p>Les forces d’inertie sont proportionnelles à la masse, comme le poids : de l’intérieur d’une cabine fermée, on ne peut pas distinguer une accélération d’un champ de pesanteur. C’est le principe d’équivalence, point de départ de la relativité générale.</p>
 <h3 id="ascenseur">Translation : ascenseur, wagon, apesanteur</h3>
-<p>Dans un référentiel en translation d’accélération \(\vec a_e\), la seule force d’inertie est \(-m\vec a_e\). Une personne de masse \(m\) sur une balance dans un ascenseur qui accélère vers le haut (\(a > 0\)) est immobile dans la cabine : \(\vec 0 = m\vec g + \vec N - m\vec a_e\), donc la balance indique \(N = m(g + a)\) : on se sent plus lourd au démarrage vers le haut, plus léger au freinage. Si le câble casse, \(\vec a_e = \vec g\) et \(N = 0\) : c’est l’<strong>apesanteur</strong>, celle que l’on ressent dans un avion en vol parabolique ou dans la Station spatiale, qui est en chute libre permanente autour de la Terre (à 400 km d’altitude, \(g\) vaut encore 8,7 m·s⁻²).</p>
+<p>Dans un référentiel en translation d’accélération \(\vec a_e\), la seule force d’inertie est \(-m\vec a_e\).</p>
+<ol class="etapes">
+<li><strong>Système et référentiel</strong> : une personne de masse \(m\) sur une balance, immobile dans un ascenseur qui accélère vers le haut (accélération \(a > 0\)).</li>
+<li><strong>Bilan dans la cabine</strong> : poids, réaction \(\vec N\) de la balance, force d’inertie \(-m\vec a_e\) (vers le bas). Équilibre : \(\vec 0 = m\vec g + \vec N - m\vec a_e\).</li>
+<li><strong>Résultat</strong> : la balance indique \(N = m(g + a)\).</li>
+</ol>
+<table>
+<thead><tr><th>Mouvement de l’ascenseur</th><th>Accélération</th><th>Poids apparent</th></tr></thead>
+<tbody>
+<tr><td>démarre vers le haut, ou freine en descendant</td><td>vers le haut</td><td>\(m(g + a)\) : plus lourd</td></tr>
+<tr><td>démarre vers le bas, ou freine en montant</td><td>vers le bas</td><td>\(m(g - a)\) : plus léger</td></tr>
+<tr><td>câble cassé (chute libre, \(\vec a_e = \vec g\))</td><td>\(g\) vers le bas</td><td>\(N = 0\) : <strong>apesanteur</strong></td></tr>
+</tbody></table>
+<p>C’est l’apesanteur d’un avion en vol parabolique ou de la Station spatiale, en chute libre permanente autour de la Terre (à 400 km d’altitude, \(g\) vaut encore 8,7 m·s⁻²).</p>
 <div class="exo" data-q="ipho-2006-18"></div>
 <div class="exo" data-group="cde-n1"></div>
 <div class="exo" data-q="ipho-2010-2"></div>
@@ -82,17 +117,33 @@
 
 <h2 id="rotation">3. Référentiel en rotation : centrifuge et Coriolis</h2>
 <h3 id="centrifuge">La force centrifuge</h3>
-<p>Dans un référentiel tournant à vitesse angulaire constante \(\omega\) autour d’un axe fixe (un manège, une essoreuse, une voiture dans un virage de rayon constant), un objet immobile dans \(R'\) subit, en plus des forces réelles, la force d’inertie d’entraînement</p>
-\[\vec f_{ie} = m\omega^2\,\overrightarrow{HM}\quad\text{(centrifuge, de norme } m\omega^2 r = mv_e^2/r\text{)},\]
-<p>dirigée en s’éloignant de l’axe (\(H\) est le projeté de \(M\) sur l’axe). Dans le référentiel du sol, galiléen, il n’y a pas de force centrifuge : c’est la force réelle centripète (tension, frottement, réaction de la paroi) qui courbe la trajectoire. Les deux descriptions donnent les mêmes équations. La force centrifuge dérive de l’énergie potentielle \(E_{p} = -\tfrac12 m\omega^2 r^2\), ce qui permet de chercher les équilibres dans \(R'\) par un minimum d’énergie.</p>
-<p>Exemples : dans l’essoreuse (\(r = 25\) cm, 1 200 tours/min, soit \(\omega = 126\) rad·s⁻¹), \(\omega^2 r \approx 4\,000\) m·s⁻², 400 fois \(g\) ; un cycliste dans un virage s’incline de \(\theta\) avec \(\tan\theta = v^2/(rg)\) pour que la résultante du poids et de la force centrifuge passe par le point de contact ; la surface de l’eau dans un seau qui tourne est un <strong>paraboloïde</strong> \(z = \dfrac{\omega^2r^2}{2g}\), perpendiculaire en chaque point à \(\vec g + \omega^2\,\overrightarrow{HM}\) (voir aussi la <a href="#statique">statique des fluides</a>).</p>
+<p>Dans un référentiel tournant à vitesse angulaire constante \(\omega\) autour d’un axe fixe (manège, essoreuse, voiture dans un virage de rayon constant), un objet immobile dans \(R'\) subit, en plus des forces réelles, la force d’inertie d’entraînement :</p>
+\[\vec f_{ie} = m\omega^2\,\overrightarrow{HM}\quad\text{(centrifuge, de norme } m\omega^2 r = mv_e^2/r\text{)}.\]
+<table>
+<thead><tr><th>Propriété</th><th>Conséquence</th></tr></thead>
+<tbody>
+<tr><td>Dirigée en s’éloignant de l’axe (\(H\) : projeté de \(M\) sur l’axe ; \(r = HM\))</td><td>c’est la distance à l’<strong>axe</strong> qui compte, pas au centre</td></tr>
+<tr><td>N’existe que dans \(R'\)</td><td>dans le référentiel du sol, c’est la force réelle centripète (tension, frottement, réaction de la paroi) qui courbe la trajectoire ; les deux descriptions donnent les mêmes équations</td></tr>
+<tr><td>Dérive de \(E_p = -\tfrac12m\omega^2r^2\)</td><td>on cherche les équilibres dans \(R'\) par un minimum d’énergie potentielle totale</td></tr>
+</tbody></table>
+<table>
+<thead><tr><th>Exemple</th><th>Calcul</th><th>Résultat</th></tr></thead>
+<tbody>
+<tr><td>Essoreuse (\(r = 25\) cm, 1 200 tours/min)</td><td>\(\omega = 126\) rad·s⁻¹, \(\omega^2r\)</td><td>\(\approx 4\,000\) m·s⁻², 400 fois \(g\)</td></tr>
+<tr><td>Cycliste dans un virage</td><td>la résultante du poids et de la force centrifuge passe par le point de contact</td><td>inclinaison \(\tan\theta = v^2/(rg)\)</td></tr>
+<tr><td>Eau dans un seau qui tourne</td><td>surface perpendiculaire en chaque point à \(\vec g + \omega^2\,\overrightarrow{HM}\)</td><td>paraboloïde \(z = \dfrac{\omega^2r^2}{2g}\) (voir la <a href="#statique">statique des fluides</a>)</td></tr>
+</tbody></table>
 <div class="exo" data-q="ipho-2013-12"></div>
 <div class="exo" data-q="ipho-2015-C18"></div>
 <div class="exo" data-q="ipho-2008-4"></div>
 <h3 id="coriolis">La force de Coriolis</h3>
 <p>Un objet qui se <strong>déplace</strong> dans le référentiel tournant subit en plus la force de Coriolis</p>
 \[\vec f_{ic} = -2m\,\vec\omega\wedge\vec v\,'.\]
-<p>Elle est perpendiculaire à la vitesse relative \(\vec v\,'\), donc ne travaille pas ; elle dévie les trajectoires vers la <strong>droite</strong> quand le référentiel tourne dans le sens direct (sens trigonométrique vu d’en haut, comme la Terre vue du pôle Nord), vers la gauche sinon. Lancez une balle depuis le centre d’un manège : vue du sol, elle part tout droit ; vue du manège, elle s’incurve, car le manège tourne sous elle.</p>
+<ul>
+<li>Elle est perpendiculaire à la vitesse relative \(\vec v\,'\) : elle <strong>ne travaille pas</strong> et ne change pas la norme de la vitesse.</li>
+<li>Elle dévie les trajectoires vers la <strong>droite</strong> quand le référentiel tourne dans le sens direct (sens trigonométrique vu d’en haut, comme la Terre vue du pôle Nord), vers la gauche sinon.</li>
+<li>Une balle lancée depuis le centre d’un manège part tout droit vue du sol ; vue du manège, elle s’incurve, car le manège tourne sous elle.</li>
+</ul>
 <figure>
 <svg viewBox="0 0 640 240" width="640" role="img" aria-label="Manège vu de dessus tournant dans le sens direct : un point fixe subit la force centrifuge vers l'extérieur ; un point qui se déplace subit en plus la force de Coriolis perpendiculaire à sa vitesse, vers la droite" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
 <defs><marker id="nr-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b5651d"/></marker><marker id="nr-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23a48"/></marker><marker id="nr-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker><marker id="nr-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8a94a6"/></marker></defs>
@@ -113,14 +164,33 @@
 <div class="sim" data-name="manege"><p>Lancez un palet sur le manège : sa trajectoire est droite vue du sol, courbée vers la droite vue du manège. Augmentez \(\omega\) : la courbure augmente ; à \(\omega = 0\), les deux vues coïncident.</p></div>
 <div class="exo" data-q="ipho-2024-C14"></div>
 <div class="cpge" id="perle" title="Équilibre dans un référentiel tournant : la perle sur un cerceau">
-<p>Une perle glisse sans frottement sur un cerceau vertical de rayon \(R\) qui tourne autour de son diamètre vertical à la vitesse \(\omega\). Dans le référentiel du cerceau, repérons la perle par l’angle \(\theta\) depuis le bas : \(E_p = -mgR\cos\theta - \tfrac12m\omega^2R^2\sin^2\theta\) (la force de Coriolis, perpendiculaire au cerceau, ne travaille pas). \(\dfrac{\mathrm dE_p}{\mathrm d\theta} = mR\sin\theta\,(g - \omega^2R\cos\theta) = 0\) : le bas \(\theta = 0\) est le seul équilibre stable tant que \(\omega^2 < g/R\) ; au-delà, il devient instable et deux équilibres apparaissent en \(\cos\theta = g/(\omega^2R)\). C’est un exemple de bifurcation, et un bon usage de l’énergie potentielle centrifuge.</p>
+<p>Une perle glisse sans frottement sur un cerceau vertical de rayon \(R\) qui tourne autour de son diamètre vertical à la vitesse \(\omega\). On la repère par l’angle \(\theta\) depuis le bas.</p>
+<ol class="etapes">
+<li><strong>Énergie potentielle dans le référentiel du cerceau</strong> (la force de Coriolis, perpendiculaire au cerceau, ne travaille pas) : \(E_p = -mgR\cos\theta - \tfrac12m\omega^2R^2\sin^2\theta\).</li>
+<li><strong>Équilibres</strong> : \(\dfrac{\mathrm dE_p}{\mathrm d\theta} = mR\sin\theta\,(g - \omega^2R\cos\theta) = 0\).</li>
+<li><strong>Stabilité</strong> : tant que \(\omega^2 < g/R\), le bas \(\theta = 0\) est le seul équilibre stable ; au-delà, il devient instable et deux équilibres stables apparaissent en \(\cos\theta = g/(\omega^2R)\).</li>
+</ol>
+<p>C’est un exemple de <strong>bifurcation</strong>, et un bon usage de l’énergie potentielle centrifuge.</p>
 </div>
 
 <h2 id="terre">4. La Terre comme référentiel</h2>
 <h3 id="referentiels-usuels">Héliocentrique, géocentrique, terrestre</h3>
-<p>Le référentiel <strong>héliocentrique</strong> (centre du Soleil, axes vers des étoiles lointaines) est galiléen avec une excellente précision. Le référentiel <strong>géocentrique</strong> (centre de la Terre, mêmes axes) est en translation quasi circulaire autour du Soleil en un an : on peut le considérer comme galiléen pour une expérience qui dure beaucoup moins qu’un an, sauf pour les marées. Le référentiel <strong>terrestre</strong> tourne en plus sur lui-même en un jour sidéral (23 h 56 min), à \(\Omega = 7{,}29\times10^{-5}\) rad·s⁻¹ : il est galiléen pour une expérience de quelques minutes, mais pas pour un pendule de Foucault ou un cyclone.</p>
+<table>
+<thead><tr><th>Référentiel</th><th>Définition</th><th>Galiléen ?</th></tr></thead>
+<tbody>
+<tr><td><strong>Héliocentrique</strong></td><td>centre du Soleil, axes vers des étoiles lointaines</td><td>oui, avec une excellente précision</td></tr>
+<tr><td><strong>Géocentrique</strong></td><td>centre de la Terre, mêmes axes ; translation quasi circulaire autour du Soleil en un an</td><td>pour une expérience beaucoup plus courte qu’un an, sauf pour les marées</td></tr>
+<tr><td><strong>Terrestre</strong></td><td>lié au sol ; tourne en un jour sidéral (23 h 56 min), \(\Omega = 7{,}29\times10^{-5}\) rad·s⁻¹</td><td>pour une expérience de quelques minutes ; pas pour un pendule de Foucault ou un cyclone</td></tr>
+</tbody></table>
 <h3 id="pesanteur">Le poids et la rotation de la Terre</h3>
-<p>Le poids que mesure un fil à plomb est la somme de l’attraction gravitationnelle et de la force centrifuge due à la rotation de la Terre, \(m\Omega^2R_T\cos\lambda\) à la latitude \(\lambda\). À l’équateur, \(\Omega^2R_T = 0{,}034\) m·s⁻², soit 0,3 % de \(g\) : avec l’aplatissement de la Terre, qu’elle a elle-même causé, cela explique que \(g\) varie de 9,78 m·s⁻² à l’équateur à 9,83 m·s⁻² aux pôles. La verticale ne passe pas exactement par le centre de la Terre (écart au plus 0,1°, à 45° de latitude).</p>
+<p>Le poids que mesure un fil à plomb est la somme de l’attraction gravitationnelle et de la force centrifuge due à la rotation de la Terre, \(m\Omega^2R_T\cos\lambda\) à la latitude \(\lambda\).</p>
+<table>
+<thead><tr><th>Effet</th><th>Valeur</th></tr></thead>
+<tbody>
+<tr><td>Accélération centrifuge à l’équateur</td><td>\(\Omega^2R_T = 0{,}034\) m·s⁻², soit 0,3 % de \(g\)</td></tr>
+<tr><td>\(g\) à l’équateur et aux pôles (avec l’aplatissement de la Terre, que la rotation a causé)</td><td>9,78 et 9,83 m·s⁻²</td></tr>
+<tr><td>Écart de la verticale à la direction du centre</td><td>au plus 0,1°, à 45° de latitude</td></tr>
+</tbody></table>
 <figure>
 <svg viewBox="0 0 640 260" width="640" role="img" aria-label="La Terre tourne autour de l'axe des pôles ; en un point de latitude lambda, l'attraction pointe vers le centre et la force centrifuge s'éloigne de l'axe ; leur somme donne le poids, légèrement décalé" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
 <defs><marker id="nt-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0b5fa5"/></marker><marker id="nt-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b5651d"/></marker><marker id="nt-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker></defs>
@@ -142,14 +212,48 @@
 <figcaption>Le poids est la somme de l’attraction de la Terre et de la force centrifuge due à sa rotation (très exagérée ici). Il est plus faible à l’équateur et sa direction ne passe pas tout à fait par le centre.</figcaption>
 </figure>
 <h3 id="coriolis-terre">Coriolis à la surface de la Terre</h3>
-<p>Pour un objet de vitesse \(v\), l’accélération de Coriolis vaut au plus \(2\Omega v \approx 1{,}5\times10^{-4}\,v\) : \(4\times10^{-3}\) m·s⁻² pour une voiture à 25 m·s⁻¹, imperceptible devant les forces en jeu, et les lavabos tournent dans un sens ou dans l’autre selon la façon dont on les remplit. Elle devient dominante pour les mouvements lents et étendus de l’atmosphère et des océans : dans l’hémisphère Nord, l’air qui converge vers une dépression est dévié vers la droite et tourne autour d’elle dans le sens <strong>inverse</strong> des aiguilles d’une montre (cyclones, dépressions) ; c’est l’inverse dans l’hémisphère Sud. La déviation des projectiles à longue portée en tient compte.</p>
+<p>Pour un objet de vitesse \(v\), l’accélération de Coriolis vaut au plus \(2\Omega v \approx 1{,}5\times10^{-4}\,v\).</p>
+<table>
+<thead><tr><th>Situation</th><th>\(2\Omega v\)</th><th>Effet</th></tr></thead>
+<tbody>
+<tr><td>Voiture à 25 m·s⁻¹</td><td>\(4\times10^{-3}\) m·s⁻²</td><td>imperceptible</td></tr>
+<tr><td>Vidange d’un lavabo</td><td>\(\sim10^{-5}\) m·s⁻²</td><td>le sens dépend du remplissage, pas de l’hémisphère</td></tr>
+<tr><td>Vents et courants océaniques (mouvements lents et étendus)</td><td>dominant</td><td>dans l’hémisphère Nord, l’air qui converge vers une dépression est dévié vers la droite et tourne autour d’elle dans le sens <strong>inverse</strong> des aiguilles d’une montre ; l’inverse au Sud</td></tr>
+<tr><td>Projectiles à longue portée</td><td>quelques mètres de déviation</td><td>pris en compte dans les tables de tir</td></tr>
+</tbody></table>
 <div class="methode" data-m="ordre-grandeur"><p>Avant d’invoquer Coriolis, comparez \(2\Omega v\) aux autres accélérations du problème : pour un lavabo (\(v \sim 0{,}1\) m·s⁻¹), \(10^{-5}\) m·s⁻², négligeable devant tout ; pour un vent de 10 m·s⁻¹ sur 1 000 km, l’accélération \(v^2/L = 10^{-4}\) m·s⁻² est dix fois plus petite que \(2\Omega v \approx 1{,}5\times10^{-3}\) m·s⁻² : Coriolis domine, et c’est pourquoi le vent tourne autour des dépressions au lieu d’y entrer directement.</p></div>
 <div class="cpge" id="foucault" title="Pendule de Foucault et déviation vers l’est">
-<p><strong>Pendule de Foucault.</strong> À la latitude \(\lambda\), seule la composante verticale \(\Omega\sin\lambda\) de la rotation agit sur les oscillations horizontales : le plan d’oscillation tourne, vu du sol, à la vitesse angulaire \(\Omega\sin\lambda\), dans le sens des aiguilles d’une montre dans l’hémisphère Nord. Il fait un tour en \(T = \dfrac{23\ \text{h}\ 56\ \text{min}}{\sin\lambda}\), soit environ 32 h à Paris (\(\lambda = 48{,}9°\)), 24 h au pôle, jamais à l’équateur. Foucault l’a montré au Panthéon en 1851 : la première preuve de la rotation de la Terre sans observer le ciel.</p>
-<p><strong>Déviation vers l’est.</strong> Un objet lâché sans vitesse d’une hauteur \(h\) tombe avec \(\vec v\,' \approx -gt\,\vec u_z\) ; la force de Coriolis \(-2m\vec\Omega\wedge\vec v\,'\) est horizontale, vers l’est, de norme \(2m\Omega gt\cos\lambda\). En intégrant deux fois : \(d = \tfrac13\Omega g t^3\cos\lambda\) avec \(t = \sqrt{2h/g}\), soit \(d = \dfrac{\Omega\cos\lambda}{3}\sqrt{\dfrac{8h^3}{g}}\) ; pour \(h = 100\) m à Paris, environ 1,5 cm. Interprétation dans le référentiel géocentrique : le sommet de la tour va plus vite vers l’est que son pied.</p>
+<p><strong>Pendule de Foucault.</strong> À la latitude \(\lambda\), seule la composante verticale \(\Omega\sin\lambda\) de la rotation agit sur les oscillations horizontales : le plan d’oscillation tourne, vu du sol, à la vitesse angulaire \(\Omega\sin\lambda\), dans le sens des aiguilles d’une montre dans l’hémisphère Nord.</p>
+<table>
+<thead><tr><th>Lieu</th><th>Durée d’un tour du plan d’oscillation, \(T = \dfrac{23\ \text{h}\ 56\ \text{min}}{\sin\lambda}\)</th></tr></thead>
+<tbody>
+<tr><td>Pôle</td><td>24 h (un jour sidéral)</td></tr>
+<tr><td>Paris (\(\lambda = 48{,}9°\))</td><td>environ 32 h ; expérience de Foucault au Panthéon, 1851 : première preuve de la rotation de la Terre sans observer le ciel</td></tr>
+<tr><td>Équateur</td><td>jamais</td></tr>
+</tbody></table>
+<p><strong>Déviation vers l’est.</strong> Un objet lâché d’une hauteur \(h\) tombe un peu à l’est de la verticale : environ 1,4 cm pour \(h = 100\) m à Paris. Dans le référentiel géocentrique, c’est simple : le sommet de la tour va plus vite vers l’est que son pied.</p>
+<div class="complement" data-tag="Démonstration" title="Le calcul de la déviation vers l’est">
+<ol class="etapes">
+<li>Vitesse relative de chute (à l’ordre 0) : \(\vec v\,' \approx -gt\,\vec u_z\).</li>
+<li>Force de Coriolis \(-2m\vec\Omega\wedge\vec v\,'\) : horizontale, vers l’est, de norme \(2m\Omega gt\cos\lambda\).</li>
+<li>On intègre deux fois l’accélération \(2\Omega g t\cos\lambda\) : \(d = \tfrac13\Omega g t^3\cos\lambda\), avec la durée de chute \(t = \sqrt{2h/g}\).</li>
+<li>\(d = \dfrac{\Omega\cos\lambda}{3}\sqrt{\dfrac{8h^3}{g}}\) ; pour \(h = 100\) m et \(\lambda = 49°\) : \(d \approx 1{,}4\) cm.</li>
+</ol>
+</div>
 </div>
 <div class="cpge" id="marees" title="Les marées : un effet de non-galiléanité du référentiel géocentrique">
-<p>Le référentiel géocentrique est en translation, avec l’accélération du centre \(T\) de la Terre due à la Lune : \(\vec a_T = GM_L/d^2\) vers la Lune. En un point \(M\) de la Terre, l’attraction de la Lune et la force d’inertie \(-m\vec a_T\) ne se compensent pas exactement : il reste le terme de marée, différence de l’attraction en \(M\) et en \(T\). Du côté de la Lune (distance \(d - R\)), il vaut \(\dfrac{GM_L}{(d - R)^2} - \dfrac{GM_L}{d^2} \approx \dfrac{2GM_LR}{d^3}\) vers la Lune ; du côté opposé, autant vers l’extérieur. D’où <strong>deux</strong> bourrelets d’eau et deux marées hautes par jour (en 24 h 50 min, la Lune avançant sur son orbite). Ce terme en \(M/d^3\) donne au Soleil une influence 2,2 fois plus faible que celle de la Lune, malgré sa masse : marées de vives eaux quand les deux s’ajoutent (pleine et nouvelle Lune), de mortes eaux en quadrature.</p>
+<p>Le référentiel géocentrique est en translation, avec l’accélération du centre \(T\) de la Terre due à la Lune : \(a_T = GM_L/d^2\), vers la Lune. En un point \(M\) de la Terre, l’attraction de la Lune et la force d’inertie \(-m\vec a_T\) ne se compensent pas exactement : il reste le <strong>terme de marée</strong>, différence de l’attraction en \(M\) et en \(T\).</p>
+<table>
+<thead><tr><th>Point</th><th>Terme de marée</th></tr></thead>
+<tbody>
+<tr><td>Face à la Lune (distance \(d - R\))</td><td>\(\dfrac{GM_L}{(d - R)^2} - \dfrac{GM_L}{d^2} \approx \dfrac{2GM_LR}{d^3}\), vers la Lune</td></tr>
+<tr><td>Face opposée</td><td>autant, vers l’extérieur</td></tr>
+</tbody></table>
+<ul>
+<li><strong>Deux</strong> bourrelets d’eau, donc deux marées hautes par jour (en 24 h 50 min, la Lune avançant sur son orbite).</li>
+<li>Le terme en \(M/d^3\) donne au Soleil une influence 2,2 fois plus faible que celle de la Lune, malgré sa masse.</li>
+<li>Vives eaux quand les deux effets s’ajoutent (pleine et nouvelle Lune), mortes eaux en quadrature.</li>
+</ul>
 </div>
 
 <div class="piege">

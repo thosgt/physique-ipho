@@ -24,17 +24,68 @@
 </div>
 
 <h2 id="gravitation">1. Gravitation et pesanteur</h2>
-<p>Deux masses ponctuelles \(M\) et \(m\) distantes de \(r\) s’attirent avec la force \(F = \dfrac{GMm}{r^2}\), où \(G = 6{,}67\times10^{-11}\ \text{m}^3\text{·kg}^{-1}\text{·s}^{-2}\). Le résultat tient pour des astres sphériques, \(r\) étant la distance entre les centres. La force par unité de masse est le <strong>champ de gravitation</strong> \(\mathcal G = GM/r^2\) ; à la surface d’un astre de rayon \(R\), c’est la pesanteur \(g\).</p>
-<p>Écrire \(g\) avec la masse volumique, \(g = \tfrac43\pi G\rho R\), montre que deux astres de même composition ont une pesanteur proportionnelle à leur rayon. À l’altitude \(h\) : \(g(h) = g_0\left(\dfrac{R}{R + h}\right)^2 \approx g_0\left(1 - \dfrac{2h}{R}\right)\) pour \(h \ll R\).</p>
+
+<h3 id="loi-gravitation">La loi de la gravitation</h3>
+<p>Deux masses ponctuelles \(M\) et \(m\), distantes de \(r\), s’attirent avec une force dirigée de l’une vers l’autre :</p>
+\[F = \frac{GMm}{r^2}, \qquad G = 6{,}67\times10^{-11}\ \text{m}^3\text{·kg}^{-1}\text{·s}^{-2}.\]
+<table>
+<thead><tr><th>Notion</th><th>Expression</th><th>À retenir</th></tr></thead>
+<tbody>
+<tr><td>Astre à symétrie sphérique</td><td>même force qu’un point de masse \(M\) placé au centre</td><td>\(r\) est la distance <strong>entre les centres</strong> (rayon + altitude)</td></tr>
+<tr><td>Champ de gravitation</td><td>\(\mathcal G = \dfrac{F}{m} = \dfrac{GM}{r^2}\), dirigé vers le centre</td><td>c’est une accélération, en m·s⁻²</td></tr>
+<tr><td>Pesanteur à la surface</td><td>\(g = \dfrac{GM}{R^2}\)</td><td>Terre : 9,8 m·s⁻² ; Lune : 1,6 m·s⁻²</td></tr>
+<tr><td>Avec la masse volumique</td><td>\(g = \tfrac43\pi G\rho R\)</td><td>même composition ⇒ \(g\) proportionnel au rayon</td></tr>
+<tr><td>À l’altitude \(h \ll R\)</td><td>\(g(h) = g_0\left(\dfrac{R}{R + h}\right)^2 \approx g_0\left(1 - \dfrac{2h}{R}\right)\)</td><td>−0,3 % à 10 km d’altitude</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="Écrire g avec la masse volumique, et la variation avec l’altitude">
+<ol class="etapes">
+<li>Masse d’un astre homogène : \(M = \rho\times\tfrac43\pi R^3\).</li>
+<li>On remplace dans \(g = GM/R^2\) : \(g = \dfrac{G\rho\,\tfrac43\pi R^3}{R^2} = \tfrac43\pi G\rho R\).</li>
+<li>Altitude \(h\) : \(g(h) = \dfrac{GM}{(R + h)^2} = g_0\,(1 + h/R)^{-2}\). Pour \(h \ll R\), le développement \((1 + x)^{-2} \approx 1 - 2x\) donne \(g_0(1 - 2h/R)\) (chapitre <a href="#maths--approximations">Outils mathématiques</a>).</li>
+</ol>
+</div>
 <div class="methode" data-m="rapports"></div>
 <div class="exo" data-q="ipho-2014-4"></div>
-<p>À l’intérieur d’un astre homogène, seule la masse située plus près du centre que le point considéré attire : \(\mathcal G(r) = \dfrac{GM}{R^3}\,r\), proportionnel à \(r\). C’est la clé des problèmes de tunnel à travers la Terre (mouvement harmonique de période 84 min, égale à celle d’un satellite rasant).</p>
+
+<h3 id="interieur">À l’intérieur d’un astre</h3>
+<p>À l’intérieur d’un astre homogène, seule la masse située <strong>plus près du centre</strong> que le point considéré attire (l’effet de la coquille extérieure s’annule). Le champ croît alors linéairement avec \(r\) :</p>
+\[\mathcal G(r) = \frac{GM}{R^3}\,r \quad (r \le R), \qquad \mathcal G(r) = \frac{GM}{r^2} \quad (r \ge R).\]
+<figure>
+<svg viewBox="0 0 660 240" width="660" role="img" aria-label="Champ de gravitation d'un astre homogène en fonction de r : linéaire à l'intérieur, en 1/r² à l'extérieur" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
+<g font-size="12" fill="#15213a">
+<rect x="60" y="20" width="140" height="180" fill="#f3e9da"/><text x="130" y="40" text-anchor="middle" fill="#8a6a3a" font-size="11">intérieur</text>
+<line x1="60" y1="200" x2="640" y2="200" stroke="#8a94a6"/><line x1="60" y1="210" x2="60" y2="20" stroke="#8a94a6"/>
+<text x="632" y="218">r</text><text x="30" y="30">𝒢</text>
+<line x1="200" y1="196" x2="200" y2="204" stroke="#8a94a6"/><text x="200" y="218" text-anchor="middle">R</text>
+<line x1="340" y1="196" x2="340" y2="204" stroke="#8a94a6"/><text x="340" y="218" text-anchor="middle">2R</text>
+<line x1="480" y1="196" x2="480" y2="204" stroke="#8a94a6"/><text x="480" y="218" text-anchor="middle">3R</text>
+<line x1="56" y1="60" x2="200" y2="60" stroke="#8a94a6" stroke-dasharray="3 3"/><text x="28" y="64">g₀</text>
+<line x1="56" y1="165" x2="340" y2="165" stroke="#8a94a6" stroke-dasharray="3 3"/><text x="22" y="169">g₀/4</text>
+<polyline points="60.0,200.0 62.8,197.2 65.6,194.4 68.4,191.6 71.2,188.8 74.0,186.0 76.8,183.2 79.6,180.4 82.4,177.6 85.2,174.8 88.0,172.0 90.8,169.2 93.6,166.4 96.4,163.6 99.2,160.8 102.0,158.0 104.8,155.2 107.6,152.4 110.4,149.6 113.2,146.8 116.0,144.0 118.8,141.2 121.6,138.4 124.4,135.6 127.2,132.8 130.0,130.0 132.8,127.2 135.6,124.4 138.4,121.6 141.2,118.8 144.0,116.0 146.8,113.2 149.6,110.4 152.4,107.6 155.2,104.8 158.0,102.0 160.8,99.2 163.6,96.4 166.4,93.6 169.2,90.8 172.0,88.0 174.8,85.2 177.6,82.4 180.4,79.6 183.2,76.8 186.0,74.0 188.8,71.2 191.6,68.4 194.4,65.6 197.2,62.8 200.0,60.0 200.0,60.0 204.2,68.0 208.4,75.4 212.6,82.2 216.8,88.4 221.0,94.1 225.2,99.5 229.4,104.4 233.6,108.9 237.8,113.2 242.0,117.2 246.2,120.9 250.4,124.3 254.6,127.5 258.8,130.6 263.0,133.4 267.2,136.1 271.4,138.6 275.6,141.0 279.8,143.2 284.0,145.3 288.2,147.3 292.4,149.2 296.6,151.0 300.8,152.7 305.0,154.3 309.2,155.8 313.4,157.3 317.6,158.6 321.8,160.0 326.0,161.2 330.2,162.4 334.4,163.6 338.6,164.6 342.8,165.7 347.0,166.7 351.2,167.6 355.4,168.6 359.6,169.4 363.8,170.3 368.0,171.1 372.2,171.8 376.4,172.6 380.6,173.3 384.8,174.0 389.0,174.6 393.2,175.3 397.4,175.9 401.6,176.5 405.8,177.1 410.0,177.6 414.2,178.1 418.4,178.6 422.6,179.1 426.8,179.6 431.0,180.1 435.2,180.5 439.4,180.9 443.6,181.4 447.8,181.8 452.0,182.1 456.2,182.5 460.4,182.9 464.6,183.2 468.8,183.6 473.0,183.9 477.2,184.2 481.4,184.5 485.6,184.9 489.8,185.1 494.0,185.4 498.2,185.7 502.4,186.0 506.6,186.2 510.8,186.5 515.0,186.7 519.2,187.0 523.4,187.2 527.6,187.5 531.8,187.7 536.0,187.9 540.2,188.1 544.4,188.3 548.6,188.5 552.8,188.7 557.0,188.9 561.2,189.1 565.4,189.3 569.6,189.4 573.8,189.6 578.0,189.8 582.2,189.9 586.4,190.1 590.6,190.3 594.8,190.4 599.0,190.6 603.2,190.7 607.4,190.8 611.6,191.0 615.8,191.1 620.0,191.2" fill="none" stroke="#0b5fa5" stroke-width="2.5"/>
+<text x="95" y="120" fill="#0b5fa5" font-size="11">𝒢 ∝ r</text><text x="300" y="130" fill="#0b5fa5" font-size="11">𝒢 ∝ 1/r²</text>
+</g>
+</svg>
+<figcaption>Champ de gravitation d’un astre homogène : maximal à la surface, linéaire à l’intérieur, divisé par 4 quand la distance au centre double.</figcaption>
+</figure>
+<div class="complement" data-tag="Démonstration" title="Le champ à l’intérieur, et le tunnel à travers la Terre">
+<ol class="etapes">
+<li>À la distance \(r < R\) du centre, la masse intérieure vaut \(M(r) = M\,\dfrac{r^3}{R^3}\) (volumes dans le rapport \(r^3/R^3\)).</li>
+<li>Elle agit comme un point au centre : \(\mathcal G(r) = \dfrac{GM(r)}{r^2} = \dfrac{GM}{R^3}\,r = g_0\,\dfrac{r}{R}\).</li>
+<li>Dans un tunnel droit, la composante du champ le long du tunnel est proportionnelle à l’écart \(x\) au milieu du tunnel : \(\ddot x = -\dfrac{g_0}{R}\,x\). C’est un oscillateur harmonique de période \(T = 2\pi\sqrt{R/g_0} = 84\ \text{min}\), quel que soit le tunnel.</li>
+<li>C’est aussi la période d’un satellite en orbite rasante : l’objet dans un tunnel diamétral reste à l’aplomb du satellite.</li>
+</ol>
+</div>
 <div class="sim" data-name="tunnel"><p>Choisissez le tunnel : la traversée dure toujours 42 minutes, et l’objet reste à l’aplomb d’un satellite en orbite rasante dans le cas d’un diamètre.</p></div>
 
 <h2 id="circulaire">2. Orbites circulaires</h2>
-<p>Dans le référentiel de l’astre attracteur (supposé galiléen et beaucoup plus massif que le satellite), la gravitation fournit l’accélération centripète :</p>
+
+<h3 id="vitesse-periode">Vitesse et période</h3>
+<p>Dans le référentiel de l’astre attracteur (supposé galiléen et beaucoup plus massif que le satellite), la gravitation fournit l’accélération centripète \(v^2/r\) :</p>
 \[\frac{mv^2}{r} = \frac{GMm}{r^2} \quad\Longrightarrow\quad v = \sqrt{\frac{GM}{r}}, \qquad T = \frac{2\pi r}{v} = 2\pi\sqrt{\frac{r^3}{GM}}.\]
-<p>La masse du satellite n’intervient pas. Plus l’orbite est haute, plus le satellite est lent.</p>
+<ul>
+<li>La masse du satellite n’intervient pas.</li>
+<li>Plus l’orbite est haute, plus le satellite est <strong>lent</strong> (\(v \propto r^{-1/2}\)) et plus sa période est longue (\(T \propto r^{3/2}\)).</li>
+</ul>
 <table>
 <thead><tr><th>Cas</th><th>Résultat</th><th>Valeur pour la Terre</th></tr></thead>
 <tbody>
@@ -47,11 +98,22 @@
 <p>La période d’une orbite basse ne dépend que de la <strong>masse volumique</strong> de l’astre : elle est du même ordre, une à trois heures, pour tous les corps rocheux, de l’astéroïde à la planète.</p>
 <div class="sim" data-name="canon-newton"><p>Le canon de Newton : augmentez la vitesse de tir jusqu’à mettre le boulet en orbite circulaire, puis en ellipse, puis à le libérer. Comparez les seuils \(v_c = \sqrt{GM/r}\) et \(v_\ell = \sqrt2\,v_c\).</p></div>
 <div class="exo" data-q="cel-geostationnaire"></div>
-<p><strong>Reconnaître une orbite.</strong> Des corps en orbite autour d’une masse centrale ont une vitesse qui décroît avec la distance, \(v \propto r^{-1/2}\) (rotation « képlérienne ») ; un solide en rotation a au contraire \(v \propto r\). Mesurer \(v(r)\) permet de distinguer les deux, et de peser l’astre central : \(M = \dfrac{v^2r}{G}\). C’est ainsi qu’on mesure la masse des planètes, des étoiles doubles, des trous noirs et des galaxies.</p>
+
+<h3 id="peser">Reconnaître une orbite et peser un astre</h3>
+<table>
+<thead><tr><th>Mouvement</th><th>Vitesse en fonction de la distance au centre</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr><td>Corps en orbite autour d’une masse centrale (rotation « képlérienne »)</td><td>\(v \propto r^{-1/2}\) : décroît avec \(r\)</td><td>planètes, anneaux de Saturne</td></tr>
+<tr><td>Solide en rotation</td><td>\(v = \omega r\) : croît avec \(r\)</td><td>disque, manège</td></tr>
+</tbody></table>
+<p>Mesurer \(v\) et \(r\) pour un corps en orbite circulaire permet de <strong>peser l’astre central</strong> : \(M = \dfrac{v^2r}{G}\). C’est ainsi qu’on mesure la masse des planètes, des étoiles doubles, des trous noirs et des galaxies.</p>
 <div class="exo" data-q="ipho-2017-T15"></div>
-<p><strong>Kepler en rapports.</strong> Pour deux satellites d’un même astre, \(\left(\dfrac{T_2}{T_1}\right)^2 = \left(\dfrac{a_2}{a_1}\right)^3\) : la masse de l’astre et la constante \(G\) disparaissent. Autour du Soleil, en années et en unités astronomiques, \(T^2 = a^3\).</p>
+
+<h3 id="kepler-rapports">La troisième loi de Kepler en rapports</h3>
+<p>Pour deux satellites d’un <strong>même</strong> astre, la masse de l’astre et la constante \(G\) disparaissent :</p>
+\[\left(\frac{T_2}{T_1}\right)^2 = \left(\frac{a_2}{a_1}\right)^3.\]
+<p>Autour du Soleil, en années et en unités astronomiques : \(T^2 = a^3\). Mars, à 1,52 UA, tourne en \(1{,}52^{3/2} = 1{,}88\) an.</p>
 <div class="piege">
-<p><strong>Pièges.</strong></p>
 <ul>
 <li>\(r\) est la distance au <strong>centre</strong> de l’astre : altitude plus rayon.</li>
 <li>Unités mélangées (kilomètres et mètres, heures et jours) dans les rapports de Kepler.</li>
@@ -61,34 +123,116 @@
 </div>
 
 <h2 id="energie">3. Énergie et vitesse de libération</h2>
-<p>La force de gravitation dérive de l’énergie potentielle \(E_p = -\dfrac{GMm}{r}\), nulle à l’infini et négative partout ailleurs. Près du sol, \(E_p(R + h) - E_p(R) \approx mgh\) : on retrouve l’expression habituelle.</p>
-<p>Sur une orbite circulaire, \(E_c = \dfrac{GMm}{2r} = -\dfrac12E_p\), donc</p>
-\[E = E_c + E_p = -\frac{GMm}{2r}.\]
-<p>L’énergie est négative : le satellite est lié. Conséquence contre-intuitive : un satellite freiné par l’atmosphère perd de l’énergie, descend… et <strong>accélère</strong>.</p>
-<p>Un corps lancé du sol échappe à l’astre si son énergie est positive ou nulle :</p>
-\[\tfrac12mv_\ell^2 - \frac{GMm}{R} = 0 \quad\Longrightarrow\quad v_\ell = \sqrt{\frac{2GM}{R}} = \sqrt{2gR},\]
-<p>soit \(\sqrt2\) fois la vitesse en orbite basse : 11,2 km/s pour la Terre, 2,4 km/s pour la Lune, 618 km/s pour le Soleil. En posant \(v_\ell = c\) on obtient le rayon de Schwarzschild \(R_S = \dfrac{2GM}{c^2}\) d’un trou noir (3 km pour une masse solaire) ; le raisonnement est newtonien, le résultat exact.</p>
+
+<h3 id="energie-orbite">Énergie potentielle et énergie d’une orbite</h3>
+<p>La force de gravitation dérive de l’énergie potentielle</p>
+\[E_p = -\frac{GMm}{r},\]
+<p>nulle à l’infini et négative partout ailleurs. Près du sol, \(E_p(R + h) - E_p(R) \approx mgh\) : on retrouve l’expression habituelle.</p>
+<table>
+<thead><tr><th>Orbite circulaire de rayon \(r\)</th><th>Expression</th><th>Signe</th></tr></thead>
+<tbody>
+<tr><td>Énergie cinétique</td><td>\(E_c = \dfrac{GMm}{2r}\)</td><td>positive</td></tr>
+<tr><td>Énergie potentielle</td><td>\(E_p = -\dfrac{GMm}{r} = -2E_c\)</td><td>négative</td></tr>
+<tr><td>Énergie mécanique</td><td>\(E = -\dfrac{GMm}{2r} = -E_c\)</td><td>négative : le satellite est lié</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="Les énergies d’une orbite circulaire">
+<ol class="etapes">
+<li>De \(\dfrac{mv^2}{r} = \dfrac{GMm}{r^2}\), on tire \(mv^2 = \dfrac{GMm}{r}\), donc \(E_c = \tfrac12mv^2 = \dfrac{GMm}{2r}\).</li>
+<li>\(E = E_c + E_p = \dfrac{GMm}{2r} - \dfrac{GMm}{r} = -\dfrac{GMm}{2r}\).</li>
+<li>Près du sol : \(E_p(R + h) - E_p(R) = GMm\left(\dfrac1R - \dfrac{1}{R + h}\right) = \dfrac{GMm\,h}{R(R + h)} \approx \dfrac{GMm}{R^2}\,h = mgh\).</li>
+</ol>
+</div>
+<p><strong>Conséquence contre-intuitive</strong> : un satellite freiné par l’atmosphère perd de l’énergie, \(E = -E_c\) diminue, donc \(E_c\) <strong>augmente</strong> : il descend et accélère.</p>
+
+<h3 id="liberation">Vitesse de libération</h3>
+<p>Un corps lancé du sol échappe à l’astre si son énergie mécanique est positive ou nulle (il arrive à l’infini avec une vitesse positive ou nulle) :</p>
+\[\tfrac12mv_\ell^2 - \frac{GMm}{R} = 0 \quad\Longrightarrow\quad v_\ell = \sqrt{\frac{2GM}{R}} = \sqrt{2gR}.\]
+<table>
+<thead><tr><th>Astre</th><th>Vitesse en orbite basse</th><th>Vitesse de libération</th></tr></thead>
+<tbody>
+<tr><td>Terre</td><td>7,9 km/s</td><td>11,2 km/s</td></tr>
+<tr><td>Lune</td><td>1,7 km/s</td><td>2,4 km/s</td></tr>
+<tr><td>Soleil</td><td>437 km/s</td><td>618 km/s</td></tr>
+</tbody></table>
+<p>La vitesse de libération vaut \(\sqrt2\) fois la vitesse en orbite basse.</p>
 <div class="methode" data-m="seuil"></div>
 <div class="exo" data-q="cel-liberation"></div>
-<p>Un astre retient une atmosphère si la vitesse d’agitation thermique des molécules, \(\sqrt{3k_BT/m}\), est très inférieure à \(v_\ell\) : c’est pourquoi la Lune n’en a pas et pourquoi la Terre a perdu son hydrogène.</p>
+<table>
+<thead><tr><th>Application</th><th>Raisonnement</th><th>Résultat</th></tr></thead>
+<tbody>
+<tr><td>Trou noir</td><td>on pose \(v_\ell = c\)</td><td>rayon de Schwarzschild \(R_S = \dfrac{2GM}{c^2}\), 3 km pour une masse solaire (raisonnement newtonien, résultat exact)</td></tr>
+<tr><td>Atmosphère</td><td>un astre retient un gaz si la vitesse d’agitation \(\sqrt{3k_BT/m}\) est très inférieure à \(v_\ell\)</td><td>la Lune n’a pas d’atmosphère ; la Terre a perdu son hydrogène</td></tr>
+</tbody></table>
 
 <h2 id="ellipse">4. Orbites elliptiques et lois de Kepler</h2>
-<p><strong>Les trois lois de Kepler</strong> (leur démonstration n’est pas exigible). (1) L’orbite est une ellipse dont l’astre attracteur occupe un foyer. (2) Le rayon balaie des aires égales en des durées égales. (3) \(T^2/a^3 = 4\pi^2/GM\), avec \(a\) le demi-grand axe.</p>
-<p>Le point le plus proche de l’astre est le périhélie (distance \(r_p\)), le plus lointain l’aphélie (\(r_a\)) ; le grand axe vaut \(r_p + r_a = 2a\). En ces deux points la vitesse est perpendiculaire au rayon, et la loi des aires s’écrit simplement :</p>
-\[r_pv_p = r_av_a.\]
-<p>Le corps est donc d’autant plus rapide qu’il est proche de l’astre.</p>
+
+<h3 id="trois-lois">Les trois lois de Kepler</h3>
+<p>Leur démonstration n’est pas exigible.</p>
+<ol class="etapes">
+<li><strong>Loi des orbites</strong> : l’orbite est une ellipse dont l’astre attracteur occupe un foyer.</li>
+<li><strong>Loi des aires</strong> : le rayon qui joint l’astre au corps balaie des aires égales en des durées égales.</li>
+<li><strong>Loi des périodes</strong> : \(\dfrac{T^2}{a^3} = \dfrac{4\pi^2}{GM}\), où \(a\) est le demi-grand axe.</li>
+</ol>
+<figure>
+<svg viewBox="0 0 660 285" width="660" role="img" aria-label="Ellipse avec le Soleil au foyer, périhélie, aphélie, grand axe et deux aires égales balayées en des durées égales" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
+<path d="M240,125 L212.9,200.0 L209.4,196.4 L206.0,192.5 L202.7,188.5 L199.5,184.2 L196.5,179.7 L193.7,175.1 L191.0,170.2 L188.6,165.0 L186.4,159.7 L184.5,154.3 L182.9,148.6 L181.7,142.8 L180.7,137.0 L180.2,131.0 L180.0,125.0 L180.2,119.0 L180.7,113.0 L181.7,107.2 L182.9,101.4 L184.5,95.7 L186.4,90.3 L188.6,85.0 L191.0,79.8 L193.7,74.9 L196.5,70.3 L199.5,65.8 L202.7,61.5 L206.0,57.5 L209.4,53.6 L212.9,50.0 Z" fill="#d9900b" opacity=".35"/>
+<path d="M240,125 L477.4,102.6 L477.7,104.1 L478.0,105.6 L478.3,107.0 L478.6,108.5 L478.8,110.0 L479.1,111.5 L479.2,113.0 L479.4,114.5 L479.6,116.0 L479.7,117.5 L479.8,119.0 L479.9,120.5 L480.0,122.0 L480.0,123.5 L480.0,125.0 L480.0,126.5 L480.0,128.0 L479.9,129.5 L479.8,131.0 L479.7,132.5 L479.6,134.0 L479.4,135.5 L479.2,137.0 L479.1,138.5 L478.8,140.0 L478.6,141.5 L478.3,143.0 L478.0,144.4 L477.7,145.9 L477.4,147.4 Z" fill="#d9900b" opacity=".35"/>
+<ellipse cx="330" cy="125" rx="150" ry="120" fill="none" stroke="#0b5fa5" stroke-width="2"/>
+<g font-size="12" fill="#15213a">
+<line x1="180" y1="125" x2="480" y2="125" stroke="#8a94a6" stroke-dasharray="4 3"/>
+<circle cx="240" cy="125" r="9" fill="#e6a417"/><text x="232" y="148" font-size="11">Soleil (foyer)</text>
+<circle cx="420" cy="125" r="2.5" fill="#8a94a6"/><text x="410" y="142" font-size="10" fill="#4a5670">2ᵉ foyer</text>
+<circle cx="180" cy="125" r="4" fill="#15213a"/><text x="96" y="129">périhélie</text>
+<circle cx="480" cy="125" r="4" fill="#15213a"/><text x="488" y="129">aphélie</text>
+<line x1="180" y1="260" x2="480" y2="260" stroke="#15213a"/><line x1="180" y1="254" x2="180" y2="266" stroke="#15213a"/><line x1="480" y1="254" x2="480" y2="266" stroke="#15213a"/><text x="330" y="280" text-anchor="middle">2a = r_p + r_a</text>
+<text x="206" y="118" font-size="11" fill="#b85a0c">r_p</text><text x="356" y="118" font-size="11" fill="#b85a0c">r_a</text>
+<text x="20" y="70" font-size="11" fill="#b85a0c">rapide : aire courte</text><text x="20" y="84" font-size="11" fill="#b85a0c">et large</text>
+<text x="496" y="88" font-size="11" fill="#b85a0c">lent, aire longue</text><text x="496" y="102" font-size="11" fill="#b85a0c">et étroite</text>
+</g>
+</svg>
+<figcaption>Les deux secteurs orange sont balayés en des durées égales : ils ont la même aire. Le corps va plus vite près du Soleil.</figcaption>
+</figure>
+<table>
+<thead><tr><th>Grandeur</th><th>Définition</th><th>Relation</th></tr></thead>
+<tbody>
+<tr><td>Périhélie, aphélie</td><td>points le plus proche (\(r_p\)) et le plus lointain (\(r_a\)) de l’astre</td><td>\(r_p + r_a = 2a\)</td></tr>
+<tr><td>Vitesses aux deux extrémités</td><td>perpendiculaires au rayon</td><td>loi des aires : \(r_pv_p = r_av_a\)</td></tr>
+<tr><td>Excentricité</td><td>\(e = \dfrac{r_a - r_p}{r_a + r_p}\)</td><td>\(e = 0\) : cercle ; Terre 0,017 ; comète de Halley 0,97</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="La loi des aires aux deux extrémités de l’orbite">
+<ol class="etapes">
+<li>Pendant une petite durée \(\mathrm dt\), le corps parcourt \(v\,\mathrm dt\) et le rayon balaie un triangle fin d’aire \(\mathrm dA = \tfrac12\,r\,v_\perp\,\mathrm dt\), où \(v_\perp\) est la composante de la vitesse perpendiculaire au rayon.</li>
+<li>Loi des aires : \(\mathrm dA/\mathrm dt\) est constant, donc \(r\,v_\perp\) aussi.</li>
+<li>Au périhélie et à l’aphélie, la vitesse est entièrement perpendiculaire au rayon : \(r_pv_p = r_av_a\). Le corps est d’autant plus rapide qu’il est proche de l’astre.</li>
+</ol>
+</div>
 <div class="sim" data-name="orbites"><p>Lancez une planète à 1 UA avec la vitesse et la direction de votre choix : l’ellipse a le Soleil pour foyer, les aires balayées en des durées égales sont égales, et \(T^2/a^3\) vaut toujours 1 en années et en UA. Au-delà de \(\sqrt2\) fois la vitesse circulaire, la planète s’échappe.</p></div>
 <div class="exo" data-q="cel-comete-periode"></div>
+
 <div class="cpge" id="kepler" title="Niveau CPGE : moment cinétique, énergie sur une orbite elliptique, transfert d’orbite">
-<p>La loi des aires traduit la <strong>conservation du moment cinétique</strong> : la force est centrale, son moment par rapport à l’astre est nul, \(L = m\,r\,v_\perp\) est constant tout au long de l’orbite.</p>
+<p><strong>Moment cinétique.</strong> La loi des aires traduit la conservation du moment cinétique : la force est centrale, son moment par rapport à l’astre est nul, \(L = m\,r\,v_\perp\) est constant tout au long de l’orbite.</p>
 <p><strong>Énergie.</strong> Sur une orbite elliptique de demi-grand axe \(a\), l’énergie mécanique vaut \(E = -\dfrac{GMm}{2a}\) : elle ne dépend que du grand axe. Avec la conservation de l’énergie, on en tire la vitesse en tout point :</p>
 \[\tfrac12v^2 - \frac{GM}{r} = -\frac{GM}{2a} \quad\Longrightarrow\quad v^2 = GM\left(\frac2r - \frac1a\right).\]
-<p>Moment cinétique et énergie donnent deux équations pour tout problème d’orbite.</p>
+<div class="complement" data-tag="Démonstration" title="L’énergie d’une orbite elliptique vaut −GMm/2a">
+<ol class="etapes">
+<li>Aux deux extrémités : \(\tfrac12v_p^2 - \dfrac{GM}{r_p} = \tfrac12v_a^2 - \dfrac{GM}{r_a}\) (énergie par unité de masse) et \(r_pv_p = r_av_a\).</li>
+<li>On remplace \(v_a = v_pr_p/r_a\) : \(\tfrac12v_p^2\left(1 - \dfrac{r_p^2}{r_a^2}\right) = GM\,\dfrac{r_a - r_p}{r_pr_a}\), d’où \(v_p^2 = \dfrac{2GM\,r_a}{r_p(r_a + r_p)}\).</li>
+<li>Alors \(\dfrac{E}{m} = \tfrac12v_p^2 - \dfrac{GM}{r_p} = \dfrac{GM}{r_p}\left(\dfrac{r_a}{r_a + r_p} - 1\right) = -\dfrac{GM}{r_a + r_p} = -\dfrac{GM}{2a}\).</li>
+</ol>
+</div>
 <div class="methode" data-m="conservation"></div>
-<p><strong>Nature de la trajectoire.</strong> Elle ne dépend que du signe de l’énergie : ellipse (ou cercle) si \(E < 0\), parabole si \(E = 0\), hyperbole si \(E > 0\).</p>
+<table>
+<thead><tr><th>Énergie mécanique</th><th>Trajectoire</th></tr></thead>
+<tbody>
+<tr><td>\(E < 0\)</td><td>ellipse (ou cercle) : corps lié</td></tr>
+<tr><td>\(E = 0\)</td><td>parabole : libéré tout juste</td></tr>
+<tr><td>\(E > 0\)</td><td>hyperbole : arrive à l’infini avec une vitesse non nulle</td></tr>
+</tbody></table>
 <p><strong>Transfert de Hohmann.</strong> Pour passer d’une orbite circulaire de rayon \(r_1\) à une orbite circulaire de rayon \(r_2\), on emprunte une demi-ellipse de grand axe \(r_1 + r_2\), avec une impulsion au départ et une à l’arrivée. Durée du transfert : la moitié de la période de l’ellipse, \(\pi\sqrt{\dfrac{(r_1 + r_2)^3}{8GM}}\) (environ 8,5 mois de la Terre à Mars).</p>
 <div class="sim" data-name="hohmann"><p>Le transfert vers Mars dure 259 jours et ne réussit que si Mars est en avance d’environ 44° au départ : c’est la fenêtre de tir.</p></div>
-<p><strong>Problème à deux corps.</strong> Si les deux masses sont comparables, elles tournent autour de leur centre de masse et la troisième loi s’écrit avec la masse totale : \(T^2 = \dfrac{4\pi^2d^3}{G(m_1 + m_2)}\), où \(d\) est la distance qui les sépare. C’est le principe de la détection des exoplanètes par vitesse radiale : l’étoile décrit un petit cercle autour du centre de masse, à la vitesse \(v_\star = v_\text{planète}\,m_p/M_\star\).</p>
+<p><strong>Problème à deux corps.</strong> Si les deux masses sont comparables, elles tournent autour de leur centre de masse, et la troisième loi s’écrit avec la masse totale et la distance \(d\) qui les sépare :</p>
+\[T^2 = \frac{4\pi^2d^3}{G(m_1 + m_2)}.\]
+<p>C’est le principe de la détection des exoplanètes par vitesse radiale : l’étoile décrit un petit cercle autour du centre de masse, à la vitesse \(v_\star = v_\text{planète}\,m_p/M_\star\).</p>
 </div>
 
 <div class="cpge" id="plus-loin" title="Pour aller plus loin : au-delà du test">

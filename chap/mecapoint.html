@@ -86,7 +86,26 @@
 </table>
 <p>Énergies potentielles : pesanteur \(mgz\) (axe vers le haut), ressort \(\tfrac12k(\ell - \ell_0)^2\), gravitation \(-GMm/r\). Puissance d’une force : \(\vec F\cdot\vec v\).</p>
 <div class="methode" data-m="conservation"></div>
-<p><strong>Chocs.</strong> La quantité de mouvement totale se conserve toujours. Si le choc est <strong>élastique</strong>, l’énergie cinétique aussi ; à une dimension la vitesse relative change alors simplement de signe. Si les corps restent accrochés (choc <strong>mou</strong>), la perte d’énergie cinétique est maximale. Deux résultats à connaître : une balle qui frappe une balle identique immobile s’arrête et lui cède sa vitesse ; une balle légère qui rebondit sur un objet très lourd avançant à la vitesse \(V\) repart avec sa vitesse augmentée de \(2V\) (c’est le principe du <a href="#initiative--g-init-2019-canon">canon de Galilée</a>).</p>
+<p><strong>Chocs.</strong> La quantité de mouvement totale se conserve toujours ; l’énergie cinétique, seulement dans un cas.</p>
+<table>
+<thead><tr><th>Type de choc</th><th>Ce qui se conserve</th><th>À une dimension</th></tr></thead>
+<tbody>
+<tr><td><strong>Élastique</strong></td><td>quantité de mouvement et énergie cinétique</td><td>la vitesse relative change de signe : \(v_2' - v_1' = -(v_2 - v_1)\)</td></tr>
+<tr><td><strong>Mou</strong> (les corps restent accrochés)</td><td>quantité de mouvement seulement ; perte d’énergie cinétique maximale</td><td>vitesse commune \(v' = \dfrac{m_1v_1 + m_2v_2}{m_1 + m_2}\)</td></tr>
+</tbody></table>
+<table>
+<thead><tr><th>Résultat à connaître (choc élastique)</th><th>Conséquence</th></tr></thead>
+<tbody>
+<tr><td>Une balle frappe une balle identique immobile</td><td>elle s’arrête et lui cède toute sa vitesse (billard, pendule de Newton)</td></tr>
+<tr><td>Une balle légère rebondit sur un objet très lourd qui avance à la vitesse \(V\)</td><td>elle repart avec sa vitesse augmentée de \(2V\) : principe du <a href="#initiative--g-init-2019-canon">canon de Galilée</a> et de l’assistance gravitationnelle</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="La vitesse relative change de signe lors d’un choc élastique">
+<ol class="etapes">
+<li>Conservation : \(m_1(v_1 - v_1') = m_2(v_2' - v_2)\) et \(m_1(v_1^2 - v_1'^2) = m_2(v_2'^2 - v_2^2)\).</li>
+<li>On divise la seconde par la première (\(a^2 - b^2 = (a - b)(a + b)\)) : \(v_1 + v_1' = v_2 + v_2'\), soit \(v_2' - v_1' = -(v_2 - v_1)\).</li>
+<li>Masses égales, \(v_2 = 0\) : les deux équations donnent \(v_1' = 0\) et \(v_2' = v_1\). Balle légère sur mur qui avance à \(V\) : dans le référentiel du mur, elle rebondit en gardant sa vitesse relative ; revenu au sol, elle a gagné \(2V\).</li>
+</ol>
+</div>
 <div class="sim" data-name="chocs"><p>Réglez les masses, les vitesses et le coefficient de restitution \(e\) (1 : élastique, 0 : mou) : la quantité de mouvement est toujours conservée, l’énergie cinétique seulement si \(e = 1\). Passez dans le référentiel du centre de masse : le choc ne fait que retourner les vitesses.</p></div>
 <div class="piege">
 <p><strong>Pièges.</strong></p>

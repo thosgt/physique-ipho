@@ -39,8 +39,17 @@
 <div class="exo" data-q="en-pendule-tension"></div>
 
 <h2 id="travail">2. Travail, puissance, énergie potentielle</h2>
-<p>Le travail d’une force sur un petit déplacement est \(\delta W = \vec F\cdot\mathrm d\vec\ell\) ; pour une force qui dépend de la position, le travail total est l’<strong>aire sous la courbe</strong> \(F(x)\). La puissance \(P = \vec F\cdot\vec v\) est le travail par unité de temps. De même, l’aire sous \(F(t)\) donne la variation de quantité de mouvement : ne confondez pas les deux graphiques.</p>
-<p>Une force est <strong>conservative</strong> si son travail ne dépend pas du chemin suivi ; on lui associe une énergie potentielle telle que \(W = -\Delta E_p\), soit \(F_x = -\dfrac{\mathrm dE_p}{\mathrm dx}\).</p>
+<table>
+<thead><tr><th>Grandeur</th><th>Définition</th><th>Lecture graphique</th></tr></thead>
+<tbody>
+<tr><td>Travail d’une force constante</td><td>\(W = \vec F\cdot\vec d = Fd\cos\theta\)</td><td></td></tr>
+<tr><td>Travail d’une force variable</td><td>\(\delta W = \vec F\cdot\mathrm d\vec\ell\), puis on somme : \(W = \displaystyle\int F_x\,\mathrm dx\)</td><td><strong>aire sous la courbe \(F(x)\)</strong></td></tr>
+<tr><td>Puissance</td><td>\(P = \dfrac{\delta W}{\mathrm dt} = \vec F\cdot\vec v\)</td><td>pente de la courbe \(W(t)\)</td></tr>
+<tr><td>Variation de quantité de mouvement</td><td>\(\Delta p = \displaystyle\int F\,\mathrm dt\)</td><td>aire sous la courbe \(F(t)\) : à ne pas confondre avec la précédente</td></tr>
+</tbody></table>
+<p>Une force est <strong>conservative</strong> si son travail ne dépend pas du chemin suivi. On lui associe une <strong>énergie potentielle</strong> :</p>
+\[W_{A\to B} = -\Delta E_p = E_p(A) - E_p(B), \qquad F_x = -\frac{\mathrm dE_p}{\mathrm dx}.\]
+<p>Le lien avec le gradient, à trois dimensions, est dans le chapitre <a href="#vecteurs--gradient">Outils vectoriels</a>.</p>
 <table>
 <thead><tr><th>Force</th><th>Énergie potentielle</th><th>Référence</th></tr></thead>
 <tbody>
@@ -51,14 +60,21 @@
 <tr><td>Force centrifuge (référentiel tournant, CPGE)</td><td>\(-\tfrac12m\omega^2r^2\)</td><td>Nulle sur l’axe.</td></tr>
 </tbody>
 </table>
-<p>Pour un système de plusieurs corps reliés par des fils inextensibles ou des tiges, les forces de liaison ont un travail total nul : l’énergie du <strong>système entier</strong> se conserve, et les tensions disparaissent du calcul.</p>
+<p><strong>Plusieurs corps reliés</strong> par des fils inextensibles ou des tiges : les forces de liaison ont un travail total nul. L’énergie du <strong>système entier</strong> se conserve, et les tensions disparaissent du calcul.</p>
 <div class="methode" data-m="systeme"></div>
 <div class="exo" data-q="en-atwood"></div>
 <div class="exo" data-q="en-chaine"></div>
 
 <h2 id="frottement">3. Bilans avec frottement, puissance</h2>
-<p>Quand une force non conservative travaille, l’énergie mécanique varie de son travail : \(\Delta E_m = W_\text{nc}\). Pour un frottement solide de norme constante \(f\) sur une distance \(d\), \(W = -fd\) : l’énergie « perdue » est convertie en énergie interne (échauffement). Le bilan reste un bilan d’énergie : on compare l’état initial et l’état final.</p>
-<p>En régime permanent (vitesse constante), la puissance motrice compense exactement la puissance des forces résistantes : \(P = F_\text{résistante}\,v\). Pour une traînée en \(v^2\), la puissance nécessaire croît comme \(v^3\).</p>
+<p>Quand une force non conservative travaille, l’énergie mécanique varie de son travail :</p>
+\[\Delta E_m = W_\text{nc}.\]
+<table>
+<thead><tr><th>Situation</th><th>Bilan</th><th>Remarque</th></tr></thead>
+<tbody>
+<tr><td>Frottement solide de norme constante \(f\) sur une distance \(d\)</td><td>\(W = -fd\), donc \(E_m\) diminue de \(fd\)</td><td>l’énergie « perdue » devient énergie interne (échauffement)</td></tr>
+<tr><td>Régime permanent (vitesse constante)</td><td>puissance motrice = puissance des forces résistantes : \(P = F_\text{rés}\,v\)</td><td>pour une traînée en \(v^2\), \(P \propto v^3\) : rouler 10 % plus vite coûte 33 % de puissance en plus</td></tr>
+<tr><td>Moteur, muscle</td><td>\(\Delta E_m = W_\text{moteur} + W_\text{frottements}\)</td><td>le travail du moteur peut être positif même à vitesse constante</td></tr>
+</tbody></table>
 <div class="exo" data-q="en-toboggan"></div>
 <div class="piege">
 <p><strong>Pièges.</strong></p>
@@ -79,20 +95,55 @@
 <li>entre deux points de rebroussement, la particule oscille : c’est un <strong>état lié</strong> ; si \(E_m\) dépasse la barrière, elle s’échappe (c’est ainsi qu’on trouve une vitesse de libération) ;</li>
 <li>la force est l’opposé de la pente : \(F = -\mathrm dE_p/\mathrm dx\), dirigée vers les énergies potentielles décroissantes.</li>
 </ul>
+<figure>
+<svg viewBox="0 0 660 250" width="660" role="img" aria-label="Diagramme d'énergie potentielle : zones interdites, points de rebroussement, équilibres stable et instable" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif">
+<defs><marker id="dg-a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f8a4c"/></marker></defs>
+<rect x="60.0" y="20" width="80.3" height="190" fill="#e9eef5"/><rect x="310.8" y="20" width="177.1" height="190" fill="#e9eef5"/>
+<text x="100.2" y="203" text-anchor="middle" font-size="11" fill="#4a5670">interdit</text><text x="401.0" y="203" text-anchor="middle" font-size="11" fill="#4a5670">interdit (E_p &gt; E_m)</text>
+<line x1="60" y1="210" x2="640" y2="210" stroke="#8a94a6"/><line x1="60" y1="220" x2="60" y2="16" stroke="#8a94a6"/>
+<text x="632" y="228" font-size="12">x</text><text x="30" y="24" font-size="12">E</text>
+<line x1="60" y1="111.0" x2="640" y2="111.0" stroke="#b23a48" stroke-width="1.6" stroke-dasharray="6 4"/><text x="600" y="105.0" font-size="12" fill="#b23a48" font-weight="600">E_m</text>
+<polyline points="60.0,76.8 61.1,76.9 62.2,77.0 63.3,77.1 64.4,77.2 65.5,77.4 66.6,77.5 67.7,77.6 68.8,77.8 69.9,77.9 71.0,78.1 72.1,78.2 73.2,78.4 74.3,78.6 75.4,78.7 76.5,78.9 77.6,79.1 78.7,79.3 79.8,79.5 80.9,79.8 82.0,80.0 83.1,80.2 84.2,80.5 85.3,80.8 86.4,81.0 87.5,81.3 88.6,81.6 89.7,81.9 90.8,82.2 91.9,82.5 93.0,82.9 94.1,83.2 95.2,83.6 96.3,84.0 97.4,84.4 98.5,84.8 99.6,85.2 100.7,85.6 101.8,86.0 102.9,86.5 104.0,87.0 105.1,87.5 106.2,88.0 107.3,88.5 108.4,89.0 109.5,89.6 110.6,90.1 111.7,90.7 112.8,91.3 113.9,91.9 115.0,92.5 116.1,93.2 117.2,93.8 118.3,94.5 119.4,95.2 120.5,95.9 121.6,96.7 122.7,97.4 123.8,98.2 124.9,99.0 126.0,99.8 127.1,100.6 128.2,101.4 129.3,102.3 130.4,103.1 131.5,104.0 132.6,104.9 133.7,105.9 134.8,106.8 135.9,107.8 137.0,108.7 138.1,109.7 139.2,110.7 140.3,111.8 141.4,112.8 142.5,113.8 143.6,114.9 144.7,116.0 145.8,117.1 146.9,118.2 148.0,119.3 149.1,120.4 150.2,121.6 151.3,122.7 152.4,123.9 153.5,125.1 154.6,126.3 155.7,127.5 156.8,128.7 157.9,129.9 159.0,131.1 160.1,132.4 161.2,133.6 162.3,134.8 163.4,136.1 164.5,137.3 165.6,138.6 166.7,139.8 167.8,141.1 168.9,142.3 170.0,143.6 171.1,144.8 172.2,146.0 173.3,147.3 174.4,148.5 175.5,149.7 176.6,151.0 177.7,152.2 178.8,153.4 179.9,154.6 181.0,155.7 182.1,156.9 183.2,158.1 184.3,159.2 185.4,160.3 186.5,161.4 187.6,162.5 188.7,163.6 189.8,164.7 190.9,165.7 192.0,166.7 193.1,167.7 194.2,168.7 195.3,169.6 196.4,170.5 197.5,171.4 198.6,172.3 199.7,173.1 200.8,173.9 201.9,174.7 203.0,175.4 204.1,176.1 205.2,176.8 206.3,177.5 207.4,178.1 208.5,178.7 209.6,179.2 210.7,179.7 211.8,180.2 212.9,180.7 214.0,181.1 215.1,181.4 216.2,181.8 217.3,182.0 218.4,182.3 219.5,182.5 220.6,182.7 221.7,182.8 222.8,182.9 223.9,183.0 225.0,183.0 226.1,183.0 227.2,182.9 228.3,182.8 229.4,182.7 230.5,182.5 231.6,182.3 232.7,182.1 233.8,181.8 234.9,181.4 236.0,181.1 237.1,180.7 238.2,180.2 239.3,179.7 240.4,179.2 241.5,178.7 242.6,178.1 243.7,177.5 244.8,176.8 245.9,176.2 247.0,175.4 248.1,174.7 249.2,173.9 250.3,173.1 251.4,172.3 252.5,171.4 253.6,170.5 254.7,169.6 255.8,168.7 256.9,167.7 258.0,166.7 259.1,165.7 260.2,164.7 261.3,163.6 262.4,162.6 263.5,161.5 264.6,160.4 265.7,159.2 266.8,158.1 267.9,156.9 269.0,155.8 270.1,154.6 271.2,153.4 272.3,152.2 273.4,151.0 274.5,149.8 275.6,148.5 276.7,147.3 277.8,146.1 278.9,144.8 280.0,143.6 281.1,142.3 282.2,141.1 283.3,139.8 284.4,138.6 285.5,137.3 286.6,136.1 287.7,134.9 288.8,133.6 289.9,132.4 291.0,131.1 292.1,129.9 293.2,128.7 294.3,127.5 295.4,126.3 296.5,125.1 297.6,123.9 298.7,122.7 299.8,121.6 300.9,120.4 302.0,119.2 303.1,118.1 304.2,117.0 305.3,115.9 306.4,114.8 307.5,113.7 308.6,112.6 309.7,111.5 310.8,110.5 311.9,109.4 313.0,108.4 314.1,107.4 315.2,106.4 316.3,105.4 317.4,104.4 318.5,103.5 319.6,102.5 320.7,101.6 321.8,100.7 322.9,99.8 324.0,98.9 325.1,98.0 326.2,97.1 327.3,96.2 328.4,95.4 329.5,94.5 330.6,93.7 331.7,92.8 332.8,92.0 333.9,91.2 335.0,90.4 336.1,89.6 337.2,88.8 338.3,88.0 339.4,87.2 340.5,86.4 341.6,85.7 342.7,84.9 343.8,84.1 344.9,83.4 346.0,82.6 347.1,81.8 348.2,81.1 349.3,80.3 350.4,79.5 351.5,78.7 352.6,78.0 353.7,77.2 354.8,76.4 355.9,75.6 357.0,74.9 358.1,74.1 359.2,73.3 360.3,72.5 361.4,71.7 362.5,70.9 363.6,70.1 364.7,69.2 365.8,68.4 366.9,67.6 368.0,66.8 369.1,65.9 370.2,65.1 371.3,64.2 372.4,63.4 373.5,62.5 374.6,61.7 375.7,60.8 376.8,60.0 377.9,59.1 379.0,58.3 380.1,57.4 381.2,56.6 382.3,55.7 383.4,54.9 384.5,54.1 385.6,53.2 386.7,52.4 387.8,51.6 388.9,50.8 390.0,50.1 391.1,49.3 392.2,48.5 393.3,47.8 394.4,47.1 395.5,46.4 396.6,45.7 397.7,45.1 398.8,44.5 399.9,43.9 401.0,43.3 402.1,42.8 403.2,42.3 404.3,41.8 405.4,41.4 406.5,41.0 407.6,40.7 408.7,40.4 409.8,40.1 410.9,39.9 412.0,39.7 413.1,39.6 414.2,39.5 415.3,39.4 416.4,39.4 417.5,39.5 418.6,39.6 419.7,39.7 420.8,40.0 421.9,40.2 423.0,40.5 424.1,40.9 425.2,41.3 426.3,41.7 427.4,42.2 428.5,42.8 429.6,43.4 430.7,44.1 431.8,44.8 432.9,45.5 434.0,46.4 435.1,47.2 436.2,48.1 437.3,49.0 438.4,50.0 439.5,51.1 440.6,52.1 441.7,53.2 442.8,54.4 443.9,55.6 445.0,56.8 446.1,58.0 447.2,59.3 448.3,60.6 449.4,61.9 450.5,63.3 451.6,64.7 452.7,66.1 453.8,67.5 454.9,68.9 456.0,70.4 457.1,71.9 458.2,73.3 459.3,74.8 460.4,76.3 461.5,77.8 462.6,79.3 463.7,80.8 464.8,82.3 465.9,83.8 467.0,85.3 468.1,86.8 469.2,88.3 470.3,89.8 471.4,91.3 472.5,92.7 473.6,94.2 474.7,95.6 475.8,97.0 476.9,98.4 478.0,99.8 479.1,101.1 480.2,102.5 481.3,103.8 482.4,105.1 483.5,106.4 484.6,107.6 485.7,108.9 486.8,110.1 487.9,111.2 489.0,112.4 490.1,113.5 491.2,114.6 492.3,115.7 493.4,116.8 494.5,117.8 495.6,118.8 496.7,119.8 497.8,120.7 498.9,121.6 500.0,122.5 501.1,123.4 502.2,124.3 503.3,125.1 504.4,125.9 505.5,126.6 506.6,127.4 507.7,128.1 508.8,128.8 509.9,129.5 511.0,130.1 512.1,130.8 513.2,131.4 514.3,132.0 515.4,132.5 516.5,133.1 517.6,133.6 518.7,134.1 519.8,134.6 520.9,135.1 522.0,135.6 523.1,136.0 524.2,136.4 525.3,136.8 526.4,137.2 527.5,137.6 528.6,138.0 529.7,138.3 530.8,138.7 531.9,139.0 533.0,139.3 534.1,139.6 535.2,139.9 536.3,140.2 537.4,140.4 538.5,140.7 539.6,140.9 540.7,141.2 541.8,141.4 542.9,141.6 544.0,141.8 545.1,142.0 546.2,142.2 547.3,142.4 548.4,142.6 549.5,142.7 550.6,142.9 551.7,143.1 552.8,143.2 553.9,143.4 555.0,143.5 556.1,143.6 557.2,143.8 558.3,143.9 559.4,144.0 560.5,144.1 561.6,144.2 562.7,144.4 563.8,144.5 564.9,144.6 566.0,144.7 567.1,144.7 568.2,144.8 569.3,144.9 570.4,145.0 571.5,145.1 572.6,145.1 573.7,145.2 574.8,145.3 575.9,145.4 577.0,145.4 578.1,145.5 579.2,145.5 580.3,145.6 581.4,145.6 582.5,145.7 583.6,145.8 584.7,145.8 585.8,145.8 586.9,145.9 588.0,145.9 589.1,146.0 590.2,146.0 591.3,146.1 592.4,146.1 593.5,146.1 594.6,146.2 595.7,146.2 596.8,146.2 597.9,146.3 599.0,146.3 600.1,146.3 601.2,146.3 602.3,146.4 603.4,146.4 604.5,146.4 605.6,146.4 606.7,146.5 607.8,146.5 608.9,146.5 610.0,146.5" fill="none" stroke="#0b5fa5" stroke-width="2.5"/>
+<text x="538.5" y="158.7" font-size="12" fill="#0b5fa5" font-weight="600">E_p(x)</text>
+<circle cx="140.3" cy="111.0" r="4.5" fill="#b23a48"/><circle cx="310.8" cy="111.0" r="4.5" fill="#b23a48"/>
+<text x="134.3" y="131.0" font-size="11" fill="#b23a48" text-anchor="end">rebroussement</text><text x="316.8" y="131.0" font-size="11" fill="#b23a48">rebroussement</text>
+<line x1="181.0" y1="152.7" x2="181.0" y2="114.0" stroke="#1f8a4c" stroke-width="1.6" marker-start="url(#dg-a)" marker-end="url(#dg-a)"/><text x="187.0" y="137.4" font-size="11" fill="#1f8a4c">E_c = E_m − E_p</text>
+<circle cx="225.0" cy="183.0" r="4" fill="#15213a"/><text x="225.0" y="201.0" font-size="11" text-anchor="middle">équilibre stable</text>
+<circle cx="415.3" cy="39.4" r="4" fill="#15213a"/><text x="423.3" y="43.4" font-size="11">équilibre instable (barrière)</text>
+<text x="225.0" y="244" font-size="11" text-anchor="middle" fill="#4a5670">état lié : oscillation entre les deux points de rebroussement</text>
+</svg>
+<figcaption>Avec l’énergie mécanique \(E_m\) (pointillés rouges), la particule partie dans la cuvette y reste : elle oscille entre les deux points de rebroussement. Il lui faudrait \(E_m\) supérieure à la barrière pour s’échapper vers la droite.</figcaption>
+</figure>
 <div class="sim" data-name="diagramme-ep"><p>Choisissez un profil d’énergie potentielle, une position et une énergie cinétique de départ : la particule ne quitte jamais la zone où \(E_p \le E_m\), rebrousse chemin là où \(E_p = E_m\) et accélère dans le sens où \(E_p\) diminue. Comparez la période mesurée à celle des petites oscillations.</p></div>
 <div class="methode" data-m="graphe"></div>
 <div class="exo" data-q="en-rebroussement"></div>
-<p><strong>Équilibre.</strong> La force est nulle là où \(E_p\) est extrémale. Un <strong>minimum</strong> est un équilibre stable (écartée, la particule est ramenée) ; un <strong>maximum</strong> est instable. En terminale, seule cette lecture qualitative est exigible ; en CPGE on la traduit par le signe de \(\dfrac{\mathrm d^2E_p}{\mathrm dx^2}\).</p>
+<p><strong>Équilibre.</strong> La force \(F = -\mathrm dE_p/\mathrm dx\) est nulle là où \(E_p\) est extrémale.</p>
+<table>
+<thead><tr><th>Extremum de \(E_p\)</th><th>Équilibre</th><th>Écartée un peu</th><th>Critère (CPGE)</th></tr></thead>
+<tbody>
+<tr><td>Minimum (fond de cuvette)</td><td><strong>stable</strong></td><td>la force la ramène : elle oscille</td><td>\(\dfrac{\mathrm d^2E_p}{\mathrm dx^2} > 0\)</td></tr>
+<tr><td>Maximum (sommet de barrière)</td><td><strong>instable</strong></td><td>la force l’éloigne</td><td>\(\dfrac{\mathrm d^2E_p}{\mathrm dx^2} < 0\)</td></tr>
+</tbody></table>
+<p>En terminale, seule cette lecture qualitative est exigible.</p>
 <div class="methode" data-m="minimum-energie"></div>
 <div class="exo" data-q="en-stabilite"></div>
 
 <h2 id="oscillations">5. Petites oscillations par l’énergie</h2>
-<p>Près d’un équilibre stable \(x_0\), toute énergie potentielle ressemble à une parabole : \(E_p \approx E_p(x_0) + \tfrac12\kappa\,(x - x_0)^2\) avec \(\kappa = \dfrac{\mathrm d^2E_p}{\mathrm dx^2}(x_0) > 0\). Le système est un oscillateur harmonique de pulsation \(\sqrt{\kappa/m}\).</p>
+<p>Près d’un équilibre stable \(x_0\), toute énergie potentielle ressemble à une parabole :</p>
+\[E_p(x) \approx E_p(x_0) + \tfrac12\kappa\,(x - x_0)^2, \qquad \kappa = \frac{\mathrm d^2E_p}{\mathrm dx^2}(x_0) > 0.\]
+<p>Le système se comporte comme une masse \(m\) accrochée à un ressort de raideur \(\kappa\) : c’est un oscillateur harmonique de pulsation \(\sqrt{\kappa/m}\).</p>
+<div class="complement" data-tag="Démonstration" title="Pourquoi toute cuvette ressemble à une parabole">
+<ol class="etapes">
+<li>Développement de \(E_p\) au voisinage de \(x_0\) (chapitre <a href="#maths--approximations">Outils mathématiques</a>) : \(E_p(x) \approx E_p(x_0) + E_p'(x_0)\,(x - x_0) + \tfrac12E_p''(x_0)\,(x - x_0)^2\).</li>
+<li>À l’équilibre, la force est nulle : \(E_p'(x_0) = 0\). Le terme du premier ordre disparaît.</li>
+<li>Il reste une parabole de « raideur » \(\kappa = E_p''(x_0)\). La force \(F = -\kappa(x - x_0)\) est une force de rappel si \(\kappa > 0\) : \(m\ddot x = -\kappa(x - x_0)\), oscillateur de pulsation \(\sqrt{\kappa/m}\).</li>
+</ol>
+</div>
 <p>La méthode devient vraiment puissante quand le système est compliqué mais ne dépend que d’<strong>un seul paramètre</strong> \(q\) (un angle, une hauteur, une charge) :</p>
-<ol>
-<li>écrire l’énergie cinétique sous la forme \(\tfrac12m_\text{eff}\,\dot q^2\), en exprimant toutes les vitesses avec \(\dot q\) ;</li>
-<li>écrire l’énergie potentielle et la développer au second ordre autour de l’équilibre : \(\tfrac12\kappa\,q^2\) ;</li>
-<li>conclure : \(\omega_0 = \sqrt{\kappa/m_\text{eff}}\). (Dériver \(E = \text{cste}\) par rapport au temps redonne \(m_\text{eff}\ddot q + \kappa q = 0\).)</li>
+<ol class="etapes">
+<li><strong>Énergie cinétique</strong> : l’écrire sous la forme \(\tfrac12m_\text{eff}\,\dot q^2\), en exprimant toutes les vitesses avec \(\dot q\).</li>
+<li><strong>Énergie potentielle</strong> : la développer au second ordre autour de l’équilibre, \(\tfrac12\kappa\,q^2\).</li>
+<li><strong>Conclure</strong> : \(\omega_0 = \sqrt{\kappa/m_\text{eff}}\). (Dériver \(E = \text{cste}\) par rapport au temps redonne \(m_\text{eff}\ddot q + \kappa q = 0\).)</li>
 </ol>
 <div class="methode" data-m="energie-parametre"></div>
 <table>
@@ -106,7 +157,14 @@
 <tr><td>Cylindre qui roule sans glisser, attaché à un ressort (CPGE)</td><td>\(\tfrac32m\)</td><td>\(k\)</td><td>\(\sqrt{2k/3m}\)</td></tr>
 </tbody>
 </table>
-<p>Le dernier exemple montre l’intérêt de la méthode : la force de frottement qui assure le roulement est inconnue, mais elle ne travaille pas ; il suffit d’ajouter l’énergie cinétique de rotation, \(\tfrac12J\omega^2 = \tfrac14m\dot x^2\).</p>
+<div class="complement" data-tag="Démonstration" title="Le cylindre qui roule, attaché à un ressort">
+<ol class="etapes">
+<li>Paramètre : la position \(x\) de l’axe. Roulement sans glissement : \(\omega = \dot x/R\).</li>
+<li>Énergie cinétique : translation \(\tfrac12m\dot x^2\) plus rotation \(\tfrac12J\omega^2 = \tfrac12\cdot\tfrac12mR^2\cdot\dfrac{\dot x^2}{R^2} = \tfrac14m\dot x^2\). Total : \(\tfrac12\cdot\tfrac32m\,\dot x^2\), donc \(m_\text{eff} = \tfrac32m\).</li>
+<li>Énergie potentielle : \(\tfrac12kx^2\), donc \(\kappa = k\). La force de frottement qui assure le roulement est inconnue, mais elle ne travaille pas : elle n’apparaît pas.</li>
+<li>\(\omega_0 = \sqrt{\dfrac{k}{3m/2}} = \sqrt{\dfrac{2k}{3m}}\).</li>
+</ol>
+</div>
 <div class="sim" data-name="roulement-ressort"><p>Le dernier exemple du tableau, en vrai : même ressort, même masse, mais le cylindre et l’anneau roulent. Leur énergie de rotation s’ajoute à celle de translation : la masse effective augmente et la période s’allonge de \(\sqrt{3/2}\) et \(\sqrt2\).</p></div>
 <div class="exo" data-q="en-tube-u"></div>
 <div class="cpge" id="osc-cpge" title="Niveau CPGE : pulsation au fond d’un puits de potentiel, équilibre instable">
@@ -129,16 +187,30 @@
 <tr><td>Deux circuits LC couplés par un condensateur \(C'\) commun</td><td colspan="2">Même démarche avec les charges : \(L\) joue le rôle de \(m\), \(1/C\) celui de \(k\).</td></tr>
 </tbody>
 </table>
-<p>Dans le mode symétrique le ressort de couplage ne se déforme pas : son énergie est absente du premier crochet, et la pulsation est celle d’un oscillateur seul. Si les masses sont différentes, le mode « libre » se traite dans le référentiel du centre de masse : deux masses \(m_1\) et \(m_2\) reliées par un ressort oscillent à \(\sqrt{k/\mu}\) avec la masse réduite \(\mu = \dfrac{m_1m_2}{m_1 + m_2}\).</p>
-<p><strong>Le calcul en détail, sur les deux pendules couplés.</strong> Deux pendules de masse \(m\) et de longueur \(\ell\), d’écarts horizontaux \(x_1\) et \(x_2\), reliés par un ressort \(k\) détendu à l’équilibre. Pour de petits écarts, l’énergie de pesanteur d’un pendule vaut \(mg\ell(1 - \cos\theta) \approx \tfrac12\dfrac{mg}{\ell}x^2\) :</p>
+<table>
+<thead><tr><th>Remarque</th><th>Conséquence</th></tr></thead>
+<tbody>
+<tr><td>Dans le mode symétrique, le ressort de couplage ne se déforme pas</td><td>son énergie est absente du premier crochet : la pulsation est celle d’un oscillateur seul</td></tr>
+<tr><td>Masses différentes, système libre</td><td>on se place dans le référentiel du centre de masse : deux masses reliées par un ressort oscillent à \(\sqrt{k/\mu}\), avec la masse réduite \(\mu = \dfrac{m_1m_2}{m_1 + m_2}\)</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="Le calcul en détail, sur les deux pendules couplés">
+<p>Deux pendules de masse \(m\) et de longueur \(\ell\), d’écarts horizontaux \(x_1\) et \(x_2\), reliés par un ressort \(k\) détendu à l’équilibre. Pour de petits écarts, l’énergie de pesanteur d’un pendule vaut \(mg\ell(1 - \cos\theta) \approx \tfrac12\dfrac{mg}{\ell}x^2\) :</p>
 \[E = \tfrac12m\left(\dot x_1^2 + \dot x_2^2\right) + \tfrac12\frac{mg}{\ell}\left(x_1^2 + x_2^2\right) + \tfrac12k\left(x_1 - x_2\right)^2 .\]
-<ol>
+<ol class="etapes">
 <li>On pose \(s = x_1 + x_2\) et \(d = x_1 - x_2\), donc \(x_1 = \tfrac12(s + d)\), \(x_2 = \tfrac12(s - d)\) et \(x_1^2 + x_2^2 = \tfrac12(s^2 + d^2)\) (les doubles produits se compensent) ; de même \(\dot x_1^2 + \dot x_2^2 = \tfrac12(\dot s^2 + \dot d^2)\).</li>
 <li>On remplace : \(E = \left[\tfrac14m\dot s^2 + \tfrac14\dfrac{mg}{\ell}s^2\right] + \left[\tfrac14m\dot d^2 + \left(\tfrac14\dfrac{mg}{\ell} + \tfrac12k\right)d^2\right]\). Plus aucun terme croisé : chaque crochet est un oscillateur.</li>
 <li>On lit chaque crochet sous la forme \(\tfrac12m_\text{eff}\dot q^2 + \tfrac12\kappa q^2\) : pour \(s\), \(m_s = m/2\) et \(\kappa_s = mg/2\ell\) ; pour \(d\), \(m_d = m/2\) et \(\kappa_d = mg/2\ell + k\).</li>
 <li>\(\omega_s = \sqrt{\kappa_s/m_s} = \sqrt{g/\ell}\) et \(\omega_d = \sqrt{\kappa_d/m_d} = \sqrt{g/\ell + 2k/m}\).</li>
 </ol>
-<p><strong>Sans symétrie</strong>, on écrit l’énergie sous forme générale, \(E = \tfrac12\sum M_{ij}\dot q_i\dot q_j + \tfrac12\sum K_{ij}q_iq_j\), et l’on cherche \(q_j = A_j\cos\omega t\) : les équations du mouvement, \(\sum_jM_{ij}\ddot q_j = -\sum_jK_{ij}q_j\), donnent \(\sum_j\left(K_{ij} - \omega^2M_{ij}\right)A_j = 0\), et les pulsations propres annulent le déterminant \(\det\left(K - \omega^2M\right)\). Pour deux degrés de liberté, c’est une équation du second degré en \(\omega^2\) : voir l’exemple des masses \(m\) et \(2m\) dans <a href="#oscillateurs--calcul-pulsations">Oscillateurs, partie 5</a>, et la chaîne de \(N\) masses, traitée par une relation de récurrence, dans la <a href="#oscillateurs--chaine">partie 6</a>.</p>
+</div>
+<div class="complement" title="Sans symétrie : la méthode générale (déterminant)">
+<ol class="etapes">
+<li>On écrit l’énergie sous forme générale : \(E = \tfrac12\sum M_{ij}\dot q_i\dot q_j + \tfrac12\sum K_{ij}q_iq_j\).</li>
+<li>Équations du mouvement : \(\sum_jM_{ij}\ddot q_j = -\sum_jK_{ij}q_j\). On cherche \(q_j = A_j\cos\omega t\) : \(\sum_j\left(K_{ij} - \omega^2M_{ij}\right)A_j = 0\).</li>
+<li>Il existe une solution non nulle si \(\det\left(K - \omega^2M\right) = 0\) : pour deux degrés de liberté, une équation du second degré en \(\omega^2\).</li>
+</ol>
+<p>Exemples : les masses \(m\) et \(2m\) dans <a href="#oscillateurs--calcul-pulsations">Oscillateurs, partie 5</a>, et la chaîne de \(N\) masses, traitée par une relation de récurrence, dans la <a href="#oscillateurs--chaine">partie 6</a>.</p>
+</div>
 <div class="methode" data-m="symetrie"></div>
 <div class="exo" data-q="en-couples"></div>
 <p><strong>Battements.</strong> Si l’on écarte une seule masse, les deux modes sont excités à parts égales ; l’énergie passe intégralement d’un oscillateur à l’autre et revient, en un temps \(\dfrac{2\pi}{\omega_d - \omega_s}\) pour l’aller-retour. Plus le couplage est faible, plus l’échange est lent.</p>
