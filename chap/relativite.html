@@ -29,11 +29,25 @@
 <h2 id="postulats">1. Les postulats et leurs premières conséquences</h2>
 
 <h3 id="invariance">L’invariance de la vitesse de la lumière</h3>
-<p>En mécanique classique, les vitesses s’ajoutent : une balle lancée à 10 m/s depuis un train roulant à 30 m/s va à 40 m/s pour le quai. Les équations de Maxwell, elles, donnent à la lumière une vitesse \(c = 1/\sqrt{\varepsilon_0\mu_0} = 299\,792\,458\ \text{m·s}^{-1}\) sans référence à un référentiel, et l’expérience de Michelson et Morley (1887) n’a trouvé aucune variation de \(c\) avec le mouvement de la Terre. Einstein (1905) en fait un principe : <strong>la lumière va à \(c\) dans tous les référentiels galiléens</strong>, qu’on coure vers elle ou qu’on la fuie. Toute la relativité restreinte en découle, au prix d’une révision des notions de temps et de longueur : ce qui est absolu, ce n’est plus la durée ni la distance, c’est \(c\).</p>
+<p>En mécanique classique, les vitesses s’ajoutent : une balle lancée à 10 m/s depuis un train roulant à 30 m/s va à 40 m/s pour le quai. La lumière, elle, ne se comporte pas ainsi :</p>
+<table>
+<thead><tr><th>Étape</th><th>Ce qu’elle apporte</th></tr></thead>
+<tbody>
+<tr><td>Équations de Maxwell (1865)</td><td>la lumière va à \(c = 1/\sqrt{\varepsilon_0\mu_0} = 299\,792\,458\ \text{m·s}^{-1}\), sans référence à un référentiel</td></tr>
+<tr><td>Expérience de Michelson et Morley (1887)</td><td>aucune variation de \(c\) avec le mouvement de la Terre</td></tr>
+<tr><td>Einstein (1905)</td><td>en fait un principe : <strong>la lumière va à \(c\) dans tous les référentiels galiléens</strong>, qu’on coure vers elle ou qu’on la fuie</td></tr>
+</tbody></table>
+<p>Toute la relativité restreinte en découle, au prix d’une révision des notions de temps et de longueur : ce qui est absolu, ce n’est plus la durée ni la distance, c’est \(c\).</p>
 <p>Le premier postulat, le <strong>principe de relativité</strong>, dit qu’aucune expérience ne distingue un référentiel galiléen d’un autre : dans un train à vitesse constante, tout se passe comme à quai. Il était déjà chez Galilée ; la nouveauté est de l’appliquer à l’électromagnétisme.</p>
 
 <h3 id="simultaneite">La simultanéité est relative</h3>
-<p>Dans un wagon, un flash part du milieu et atteint les deux parois en même temps pour le passager (même distance, même vitesse \(c\)). Pour l’observateur du quai, la paroi arrière vient à la rencontre de la lumière et la paroi avant la fuit : la lumière atteint l’arrière <em>avant</em> l’avant. Deux événements simultanés dans le wagon ne le sont pas sur le quai. Il n’y a pas de « vrai » ordre : la simultanéité dépend du référentiel, dès que les événements ont lieu en des points différents. Chaque fois qu’un raisonnement relativiste semble contradictoire, c’est presque toujours parce qu’on a supposé simultanés dans un référentiel des événements qui ne le sont que dans l’autre.</p>
+<p>Dans un wagon, un flash part du milieu.</p>
+<table>
+<thead><tr><th>Pour le passager</th><th>Pour l’observateur du quai</th></tr></thead>
+<tbody>
+<tr><td>même distance, même vitesse \(c\) : la lumière atteint les deux parois <strong>en même temps</strong></td><td>la paroi arrière vient à la rencontre de la lumière, la paroi avant la fuit : la lumière atteint l’arrière <strong>avant</strong> l’avant</td></tr>
+</tbody></table>
+<p>Deux événements simultanés dans le wagon ne le sont pas sur le quai. Il n’y a pas de « vrai » ordre : <strong>la simultanéité dépend du référentiel</strong>, dès que les événements ont lieu en des points différents. Chaque fois qu’un raisonnement relativiste semble contradictoire, c’est presque toujours parce qu’on a supposé simultanés dans un référentiel des événements qui ne le sont que dans l’autre.</p>
 <figure>
 <svg viewBox="0 0 640 250" width="640" role="img" aria-label="Wagon avec un flash au milieu : pour le passager la lumière atteint les deux parois en même temps ; pour le quai, la paroi arrière est atteinte d'abord" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
 <defs><marker id="rs-k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#15213a"/></marker><marker id="rs-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23a48"/></marker></defs>
@@ -59,9 +73,21 @@
 <h2 id="temps">2. Dilatation des durées</h2>
 
 <h3 id="horloge">L’horloge de lumière</h3>
-<p>Une « horloge » est faite de deux miroirs parallèles distants de \(L\) entre lesquels rebondit un éclair de lumière ; un tic dure \(\Delta t_0 = 2L/c\) pour qui voyage avec elle. Vue d’un référentiel où elle se déplace à \(v\) perpendiculairement à \(L\), la lumière suit un zigzag plus long : pendant le tic \(\Delta t\), elle parcourt \(2\sqrt{L^2 + (v\Delta t/2)^2} = c\,\Delta t\). D’où</p>
+<p>Une « horloge » est faite de deux miroirs parallèles distants de \(L\) entre lesquels rebondit un éclair de lumière.</p>
+<ol class="etapes">
+<li><strong>Pour qui voyage avec elle</strong>, un tic (aller-retour) dure \(\Delta t_0 = 2L/c\).</li>
+<li><strong>Dans un référentiel où elle se déplace</strong> à \(v\) perpendiculairement à \(L\), la lumière suit un zigzag plus long : pendant le tic \(\Delta t\), l’horloge avance de \(v\Delta t\), et chaque demi-trajet est l’hypoténuse \(\sqrt{L^2 + (v\Delta t/2)^2}\).</li>
+<li><strong>La lumière va à \(c\) dans ce référentiel aussi</strong> : \(2\sqrt{L^2 + (v\Delta t/2)^2} = c\,\Delta t\).</li>
+<li><strong>Résoudre</strong> : \(4L^2 = (c^2 - v^2)\Delta t^2\), d’où</li>
+</ol>
 \[\Delta t = \frac{2L/c}{\sqrt{1 - v^2/c^2}} = \gamma\,\Delta t_0, \qquad \gamma = \frac{1}{\sqrt{1 - v^2/c^2}}.\]
-<p>Le tic de l’horloge en mouvement dure plus longtemps : <strong>elle retarde</strong>, et avec elle tous les phénomènes qui l’accompagnent (le principe de relativité interdit qu’une horloge à lumière et une horloge biologique se désaccordent dans le train). La durée mesurée par une horloge unique présente aux deux événements est la <strong>durée propre</strong> \(\Delta t_0\) ; c’est la plus courte de toutes. Toute autre durée \(\Delta t = \gamma\Delta t_0\) entre les mêmes événements, mesurée avec deux horloges synchronisées en deux lieux, est plus longue.</p>
+<p>Le tic de l’horloge en mouvement dure plus longtemps : <strong>elle retarde</strong>, et avec elle tous les phénomènes qui l’accompagnent (le principe de relativité interdit qu’une horloge à lumière et une horloge biologique se désaccordent dans le train).</p>
+<table>
+<thead><tr><th>Durée</th><th>Mesurée par…</th><th>Valeur</th></tr></thead>
+<tbody>
+<tr><td><strong>Durée propre</strong> \(\Delta t_0\)</td><td>une horloge unique, présente aux deux événements</td><td>la plus courte de toutes</td></tr>
+<tr><td>Toute autre durée entre les mêmes événements</td><td>deux horloges synchronisées en deux lieux</td><td>\(\Delta t = \gamma\Delta t_0\), plus longue</td></tr>
+</tbody></table>
 <div class="methode" data-m="temps-propre"><p>Pour le pendule observé par un astronaute à \(0{,}8c\) (QCM 2007 ci-dessous), l’horloge présente aux deux événements est celle du référentiel du pendule : la période propre est donc la plus courte, et l’astronaute mesure \(\gamma\) fois plus. Pour le jumeau voyageur, le muon ou des cellules embarquées, c’est l’objet qui voyage qui porte l’horloge propre.</p></div>
 <figure>
 <svg viewBox="0 0 640 260" width="640" role="img" aria-label="Horloge de lumière au repos : aller-retour vertical 2L ; en mouvement : trajet en zigzag plus long, parcouru à la même vitesse c" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
@@ -93,24 +119,54 @@
 <tr><td>Électron de 1 MeV d’énergie cinétique</td><td>0,94</td><td>2,96</td><td>\(E_c/mc^2 = 1/0{,}511\)</td></tr>
 <tr><td>Proton du LHC (6,5 TeV)</td><td>\(1 - 10^{-8}\)</td><td>6 900</td><td>\(E_c/mc^2\)</td></tr>
 </tbody></table></div>
-<p>Pour \(\beta \ll 1\), \(\gamma \approx 1 + \beta^2/2\) : les effets relativistes sont du second ordre en \(v/c\), ce qui explique qu’on ne les voie jamais au quotidien, et que la mécanique classique soit une excellente approximation. Pour \(\gamma \gg 1\), \(\beta \approx 1 - 1/(2\gamma^2)\) : il est plus commode de raisonner avec \(\gamma\) (ou l’énergie) qu’avec \(v\), qui ne diffère de \(c\) que par une quantité infime.</p>
+<table>
+<thead><tr><th>Régime</th><th>Approximation</th><th>Conséquence</th></tr></thead>
+<tbody>
+<tr><td>\(\beta \ll 1\)</td><td>\(\gamma \approx 1 + \beta^2/2\)</td><td>effets du second ordre en \(v/c\) : invisibles au quotidien, la mécanique classique est une excellente approximation</td></tr>
+<tr><td>\(\gamma \gg 1\)</td><td>\(\beta \approx 1 - 1/(2\gamma^2)\)</td><td>\(v\) ne diffère de \(c\) que d’une quantité infime : raisonnez avec \(\gamma\) (ou l’énergie) plutôt qu’avec \(v\)</td></tr>
+</tbody></table>
 <div class="methode" data-m="petit-parametre"><p>Ici le petit paramètre est \(\beta^2\) : pour un cosmonaute en orbite basse (\(\beta \approx 2{,}6\times10^{-5}\)), \(\Delta t - \Delta\tau \approx \tfrac12\beta^2\Delta t\), soit quelques \(10^{-10}\) en valeur relative. Dans l’autre limite, \(1/\gamma^2\) est le petit paramètre et \(1 - \beta \approx 1/(2\gamma^2)\).</p></div>
 
 <div class="exo" data-q="ipho-2016-T17"></div>
 <h3 id="muons">Les muons cosmiques : la relativité mesurée</h3>
-<p>Les rayons cosmiques créent des muons vers 15 km d’altitude ; leur durée de vie propre est \(\tau_0 = 2{,}2\) µs. Même à \(c\), ils parcourraient en moyenne \(c\tau_0 = 660\) m : presque aucun ne devrait atteindre le sol. Or on en détecte des centaines par mètre carré et par seconde. Pour un muon à \(\beta = 0{,}995\) (\(\gamma = 10\)), vu du sol, la durée de vie est dilatée : \(\gamma\tau_0 = 22\) µs, soit \(6{,}6\) km de parcours moyen, et une fraction \(\mathrm e^{-15/6{,}6} \approx 10\ \%\) arrive, contre \(\mathrm e^{-15/0{,}66} \approx 10^{-10}\) sans relativité. Vu du muon, c’est l’atmosphère qui se contracte : 15 km deviennent \(15/\gamma = 1{,}5\) km, parcourus en 5 µs de temps propre. Les deux descriptions concordent : c’est le même fait physique (le muon atteint le sol), décrit dans deux référentiels.</p>
+<p>Les rayons cosmiques créent des muons vers 15 km d’altitude ; leur durée de vie propre est \(\tau_0 = 2{,}2\) µs. Même à \(c\), ils parcourraient en moyenne \(c\tau_0 = 660\) m : presque aucun ne devrait atteindre le sol. Or on en détecte des centaines par mètre carré et par seconde. Pour un muon à \(\beta = 0{,}995\) (\(\gamma = 10\)) :</p>
+<table>
+<thead><tr><th></th><th>Vu du sol</th><th>Vu du muon</th></tr></thead>
+<tbody>
+<tr><td>Ce qui change</td><td>la durée de vie est dilatée : \(\gamma\tau_0 = 22\) µs</td><td>l’atmosphère est contractée : 15 km deviennent \(15/\gamma = 1{,}5\) km</td></tr>
+<tr><td>Parcours</td><td>6,6 km en moyenne</td><td>1,5 km parcourus en 5 µs de temps propre</td></tr>
+<tr><td>Fraction qui arrive au sol</td><td colspan="2">\(\mathrm e^{-15/6{,}6} \approx 10\ \%\), contre \(\mathrm e^{-15/0{,}66} \approx 10^{-10}\) sans relativité</td></tr>
+</tbody></table>
+<p>Les deux descriptions concordent : c’est le même fait physique (le muon atteint le sol), décrit dans deux référentiels.</p>
 <div class="methode" data-m="referentiel"><p>Dans le référentiel du sol, on dilate la durée de vie du muon ; dans celui du muon, on contracte l’atmosphère. Choisissez le référentiel où la grandeur donnée est propre : le calcul y est le plus direct, et les deux descriptions doivent donner le même nombre de muons au sol.</p></div>
 <div class="sim" data-name="muons"><p>Lâchez une bouffée de muons à 15 km avec ou sans relativité : fraction qui survit jusqu’au sol selon \(\beta\), dans la description du sol (durée de vie dilatée) et dans celle du muon (atmosphère contractée).</p></div>
 
 <div class="exo" data-q="ipho-2011-4"></div>
 <div class="exo" data-q="ipho-2017-T10"></div>
 <h3 id="jumeaux">Le « paradoxe » des jumeaux</h3>
-<p>Un jumeau part vers une étoile à \(\beta = 0{,}8\) (\(\gamma = 5/3\)) et revient ; pour le jumeau resté sur Terre, le voyage dure 10 ans. Pour le voyageur, chaque trajet est une durée propre : il vieillit de \(10/\gamma = 6\) ans. Le paradoxe apparent (« pour le voyageur, c’est la Terre qui bouge et devrait vieillir moins ») se dissout parce que la situation n’est <strong>pas symétrique</strong> : le voyageur change de référentiel galiléen au demi-tour (il accélère), le sédentaire non. Dans l’espace-temps, le trajet du sédentaire est « droit » et le plus long en temps propre ; le trajet brisé du voyageur est plus court. L’expérience de Hafele et Keating (1971, horloges atomiques en avion) et les muons des accélérateurs confirment le décompte.</p>
+<p>Un jumeau part vers une étoile à \(\beta = 0{,}8\) (\(\gamma = 5/3\)) et revient ; pour le jumeau resté sur Terre, le voyage dure 10 ans. Pour le voyageur, chaque trajet est une durée propre : il vieillit de \(10/\gamma = 6\) ans.</p>
+<table>
+<thead><tr><th>Objection</th><th>Réponse</th></tr></thead>
+<tbody>
+<tr><td>« Pour le voyageur, c’est la Terre qui bouge : c’est elle qui devrait vieillir moins. »</td><td>La situation n’est <strong>pas symétrique</strong> : le voyageur change de référentiel galiléen au demi-tour (il accélère), le sédentaire non.</td></tr>
+<tr><td>Quel trajet est le plus long ?</td><td>Dans l’espace-temps, le trajet du sédentaire est « droit » et le plus long en temps propre ; le trajet brisé du voyageur est plus court.</td></tr>
+<tr><td>Est-ce vérifié ?</td><td>Oui : horloges atomiques en avion (Hafele et Keating, 1971), muons des accélérateurs.</td></tr>
+</tbody></table>
 
 <h2 id="longueurs">3. Contraction des longueurs</h2>
-<p>Pour mesurer la longueur d’une règle en mouvement, il faut repérer ses deux extrémités <em>au même instant</em> dans notre référentiel. Soit une règle de longueur propre \(L_0\) (au repos dans le train) qui passe devant un observateur du quai ; celui-ci chronomètre le passage : \(\Delta t = L/v\) où \(L\) est la longueur qu’il attribue à la règle. Ce passage est une durée propre pour lui (une seule horloge, au même lieu). Dans le train, la même scène dure \(L_0/v = \gamma\Delta t\) (l’observateur du quai est l’horloge mobile). Donc</p>
+<p>Pour mesurer la longueur d’une règle en mouvement, il faut repérer ses deux extrémités <em>au même instant</em> dans notre référentiel. Soit une règle de longueur propre \(L_0\) (au repos dans le train) qui passe devant un observateur du quai :</p>
+<ol class="etapes">
+<li>l’observateur du quai chronomètre le passage : \(\Delta t = L/v\), où \(L\) est la longueur qu’il attribue à la règle ; c’est une <strong>durée propre</strong> pour lui (une seule horloge, au même lieu) ;</li>
+<li>dans le train, la même scène dure \(L_0/v\), et c’est l’observateur du quai qui est l’horloge mobile : \(L_0/v = \gamma\Delta t\) ;</li>
+<li>donc :</li>
+</ol>
 \[L = \frac{L_0}{\gamma} = L_0\sqrt{1 - v^2/c^2} < L_0.\]
-<p>Les longueurs sont contractées <strong>dans la direction du mouvement seulement</strong> ; les dimensions transversales sont inchangées (sinon deux observateurs en mouvement relatif tireraient des conclusions contradictoires sur lequel des deux passe à travers l’autre). Un cube devient un pavé ; le muon voit une atmosphère aplatie ; dans un accélérateur, les paquets de protons longs de quelques centimètres apparaissent, pour une particule qu’ils croisent, aplatis comme des crêpes. Le « paradoxe de la grange » (une perche de 10 m dans une grange de 8 m) se résout par la simultanéité : « les deux portes sont fermées en même temps » n’a pas le même sens dans les deux référentiels.</p>
+<p>Les longueurs sont contractées <strong>dans la direction du mouvement seulement</strong> ; les dimensions transversales sont inchangées (sinon deux observateurs en mouvement relatif tireraient des conclusions contradictoires sur lequel des deux passe à travers l’autre).</p>
+<ul>
+<li>Un cube devient un pavé ; le muon voit une atmosphère aplatie.</li>
+<li>Dans un accélérateur, les paquets de protons longs de quelques centimètres apparaissent, pour une particule qu’ils croisent, aplatis comme des crêpes.</li>
+<li>Le « paradoxe de la grange » (une perche de 10 m dans une grange de 8 m) se résout par la simultanéité : « les deux portes sont fermées en même temps » n’a pas le même sens dans les deux référentiels.</li>
+</ul>
 <div class="exo" data-q="ipho-2011-6"></div>
 <div class="exo" data-q="ipho-2026-C7"></div>
 <figure>
@@ -138,17 +194,56 @@
 <div class="cpge" id="lorentz" title="Transformation de Lorentz, invariant d’intervalle et composition des vitesses">
 <p>Deux référentiels \(\mathcal R\) et \(\mathcal R'\) en translation à la vitesse \(v\) le long de \(x\), origines confondues à \(t = t' = 0\). La transformation de Lorentz, seule transformation linéaire compatible avec l’invariance de \(c\), s’écrit</p>
 \[x' = \gamma\,(x - vt), \qquad t' = \gamma\left(t - \frac{vx}{c^2}\right), \qquad y' = y, \quad z' = z,\]
-<p>et la transformation inverse s’obtient en changeant \(v\) en \(-v\). Elle redonne la contraction des longueurs (deux extrémités à \(t\) fixé), la dilatation des durées (horloge fixe en \(x'\)) et la relativité de la simultanéité (\(\Delta t' = -\gamma v\Delta x/c^2\) pour \(\Delta t = 0\)). La quantité \(s^2 = c^2\Delta t^2 - \Delta x^2 - \Delta y^2 - \Delta z^2\), l’<strong>intervalle</strong>, est la même dans tous les référentiels : c’est l’équivalent relativiste de la distance. Si \(s^2 > 0\) (intervalle du genre temps), il existe un référentiel où les deux événements ont lieu au même endroit et \(s/c\) est la durée propre qui les sépare ; si \(s^2 < 0\) (genre espace), il existe un référentiel où ils sont simultanés, et aucun signal ne peut relier l’un à l’autre : leur ordre temporel dépend du référentiel, ce qui ne menace pas la causalité. <strong>Composition des vitesses</strong> : pour un mobile de vitesse \(u\) selon \(x\) dans \(\mathcal R\),</p>
+<p>et la transformation inverse s’obtient en changeant \(v\) en \(-v\). Elle redonne les trois effets :</p>
+<table>
+<thead><tr><th>Effet</th><th>Comment le lire dans Lorentz</th></tr></thead>
+<tbody>
+<tr><td>Contraction des longueurs</td><td>repérer les deux extrémités à \(t\) fixé</td></tr>
+<tr><td>Dilatation des durées</td><td>horloge fixe en \(x'\)</td></tr>
+<tr><td>Relativité de la simultanéité</td><td>\(\Delta t' = -\gamma v\Delta x/c^2\) pour \(\Delta t = 0\)</td></tr>
+</tbody></table>
+<p>La quantité \(s^2 = c^2\Delta t^2 - \Delta x^2 - \Delta y^2 - \Delta z^2\), l’<strong>intervalle</strong>, est la même dans tous les référentiels : c’est l’équivalent relativiste de la distance.</p>
+<table>
+<thead><tr><th>Intervalle</th><th>Il existe un référentiel où…</th><th>Conséquence</th></tr></thead>
+<tbody>
+<tr><td>\(s^2 > 0\) (genre temps)</td><td>les deux événements ont lieu au même endroit</td><td>\(s/c\) est la durée propre qui les sépare ; l’un peut causer l’autre</td></tr>
+<tr><td>\(s^2 < 0\) (genre espace)</td><td>les deux événements sont simultanés</td><td>aucun signal ne peut les relier ; leur ordre dépend du référentiel, sans menacer la causalité</td></tr>
+<tr><td>\(s^2 = 0\) (genre lumière)</td><td>—</td><td>seule la lumière relie les deux événements</td></tr>
+</tbody></table>
+<p><strong>Composition des vitesses</strong> : pour un mobile de vitesse \(u\) selon \(x\) dans \(\mathcal R\),</p>
 \[u' = \frac{u - v}{1 - uv/c^2}, \qquad u = \frac{u' + v}{1 + u'v/c^2}.\]
-<p>Si \(u = c\), alors \(u' = c\) : la lumière va à \(c\) pour tous. Deux vitesses \(0{,}8c\) composées donnent \(0{,}976c\), jamais plus de \(c\). Pour une vitesse transversale, \(u'_y = u_y/[\gamma(1 - u_xv/c^2)]\) : d’où l’aberration de la lumière (les étoiles paraissent déplacées vers l’avant du mouvement de la Terre, 20'' au maximum).</p>
+<ul>
+<li>Si \(u = c\), alors \(u' = c\) : la lumière va à \(c\) pour tous.</li>
+<li>Deux vitesses \(0{,}8c\) composées donnent \(1{,}6c/1{,}64 = 0{,}976c\), jamais plus de \(c\).</li>
+<li>Pour une vitesse transversale, \(u'_y = u_y/[\gamma(1 - u_xv/c^2)]\) : d’où l’aberration de la lumière (les étoiles paraissent déplacées vers l’avant du mouvement de la Terre, 20'' au maximum).</li>
+</ul>
+<div class="complement" data-tag="Démonstration" title="La composition des vitesses à partir de Lorentz">
+<ol class="etapes">
+<li>Le mobile se déplace de \(\mathrm dx = u\,\mathrm dt\) dans \(\mathcal R\).</li>
+<li>Lorentz : \(\mathrm dx' = \gamma(\mathrm dx - v\,\mathrm dt) = \gamma(u - v)\,\mathrm dt\) et \(\mathrm dt' = \gamma(\mathrm dt - v\,\mathrm dx/c^2) = \gamma(1 - uv/c^2)\,\mathrm dt\).</li>
+<li>Quotient : \(u' = \dfrac{\mathrm dx'}{\mathrm dt'} = \dfrac{u - v}{1 - uv/c^2}\). Pour \(u, v \ll c\), on retrouve Galilée, \(u' = u - v\).</li>
+</ol>
+</div>
 </div>
 <div class="sim" data-name="minkowski"><p>Diagramme d’espace-temps : placez deux événements, lisez leurs coordonnées dans un référentiel en mouvement (axes inclinés), vérifiez l’invariance de l’intervalle et la relativité de la simultanéité.</p></div>
 
 <div class="exo" data-q="ipho-2015-T15"></div>
 <h2 id="doppler">4. L’effet Doppler relativiste</h2>
-<p>Une source lumineuse de période propre \(T_0\) s’éloigne d’un observateur à la vitesse \(v\). Dans le référentiel de l’observateur, sa période est dilatée (\(\gamma T_0\)) et, entre deux crêtes, la source s’est éloignée de \(v\gamma T_0\) : la seconde crête arrive avec un retard supplémentaire \(v\gamma T_0/c\). D’où \(T = \gamma T_0(1 + \beta)\) et</p>
+<p>Une source lumineuse de période propre \(T_0\) s’éloigne d’un observateur à la vitesse \(v\). Deux effets se cumulent dans le référentiel de l’observateur :</p>
+<ol class="etapes">
+<li><strong>Dilatation du temps</strong> : la période d’émission devient \(\gamma T_0\).</li>
+<li><strong>Éloignement</strong> : entre deux crêtes, la source s’est éloignée de \(v\gamma T_0\) ; la seconde crête arrive avec le retard supplémentaire \(v\gamma T_0/c\).</li>
+<li><strong>Total</strong> : \(T = \gamma T_0(1 + \beta)\), et</li>
+</ol>
 \[f = f_0\,\frac{1}{\gamma(1 + \beta)} = f_0\sqrt{\frac{1 - \beta}{1 + \beta}}\quad\text{(éloignement)}, \qquad f = f_0\sqrt{\frac{1 + \beta}{1 - \beta}}\quad\text{(rapprochement)}.\]
-<p>Contrairement au son, il n’y a pas de milieu : seule la vitesse relative compte, et la formule est la même que ce soit la source ou l’observateur qui « bouge ». Aux faibles vitesses, \(\dfrac{\Delta f}{f_0} \approx -\beta\), soit \(\dfrac{\Delta\lambda}{\lambda_0} \approx \beta\) : c’est le <strong>décalage vers le rouge</strong> \(z = \Delta\lambda/\lambda_0\) des galaxies (loi de Hubble \(v = H_0 d\)), la vitesse radiale des étoiles, la détection des exoplanètes (quelques m/s, \(z \sim 10^{-8}\)), le radar Doppler. Pour \(z\) grand, \(1 + z = \sqrt{(1 + \beta)/(1 - \beta)}\). Une source qui passe <em>transversalement</em> paraît aussi décalée vers le rouge, d’un facteur \(\gamma\) : c’est la dilatation du temps, directement.</p>
+<p>Contrairement au son, il n’y a pas de milieu : seule la vitesse relative compte, et la formule est la même que ce soit la source ou l’observateur qui « bouge ».</p>
+<table>
+<thead><tr><th>Régime</th><th>Formule</th><th>Applications</th></tr></thead>
+<tbody>
+<tr><td>Faibles vitesses</td><td>\(\dfrac{\Delta f}{f_0} \approx -\beta\), soit \(\dfrac{\Delta\lambda}{\lambda_0} \approx \beta\)</td><td><strong>décalage vers le rouge</strong> \(z = \Delta\lambda/\lambda_0\) des galaxies (loi de Hubble \(v = H_0 d\)), vitesse radiale des étoiles, exoplanètes (quelques m/s, \(z \sim 10^{-8}\)), radar</td></tr>
+<tr><td>\(z\) grand</td><td>\(1 + z = \sqrt{(1 + \beta)/(1 - \beta)}\)</td><td>quasars, galaxies lointaines</td></tr>
+<tr><td>Source qui passe <em>transversalement</em></td><td>\(f = f_0/\gamma\)</td><td>décalage vers le rouge dû à la seule dilatation du temps (Ives et Stilwell)</td></tr>
+</tbody></table>
 <figure>
 <svg viewBox="0 0 640 200" width="640" role="img" aria-label="Source lumineuse qui s'éloigne : les crêtes successives partent de positions de plus en plus lointaines et sont émises à une période dilatée gamma T0" style="max-width:100%;height:auto;font-family:IBM Plex Sans,sans-serif;font-size:12px">
 <defs><marker id="rd-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23a48"/></marker></defs>
@@ -171,9 +266,27 @@
 <h3 id="p-E">Les nouvelles expressions</h3>
 <p>Pour que la conservation de la quantité de mouvement reste vraie dans tous les référentiels galiléens (reliés par Lorentz et non plus par Galilée), il faut redéfinir</p>
 \[\vec p = \gamma m\vec v, \qquad E = \gamma mc^2, \qquad E_c = E - mc^2 = (\gamma - 1)mc^2,\]
-<p>où \(m\) est la masse (invariante, celle qu’on mesure au repos). Pour \(v \ll c\), \(E_c \approx \tfrac12 mv^2 + \tfrac38 mv^4/c^2 + \ldots\) : on retrouve la mécanique classique. Quand \(v \to c\), \(\gamma \to \infty\) : il faudrait une énergie infinie pour atteindre \(c\). Un corps massif ne peut pas atteindre la vitesse de la lumière ; un photon, de masse nulle, ne peut aller qu’à \(c\). Les deux relations très utiles, qui évitent de passer par \(v\) :</p>
+<p>où \(m\) est la masse (invariante, celle qu’on mesure au repos).</p>
+<ul>
+<li>Pour \(v \ll c\), \(E_c \approx \tfrac12 mv^2 + \tfrac38 mv^4/c^2 + \ldots\) : on retrouve la mécanique classique.</li>
+<li>Quand \(v \to c\), \(\gamma \to \infty\) : il faudrait une énergie infinie pour atteindre \(c\). Un corps massif ne peut pas atteindre la vitesse de la lumière ; un photon, de masse nulle, ne peut aller qu’à \(c\).</li>
+</ul>
+<p>Les deux relations très utiles, qui évitent de passer par \(v\) :</p>
 \[E^2 = p^2c^2 + m^2c^4, \qquad \vec v = \frac{\vec p\,c^2}{E}\quad(\beta = pc/E).\]
-<p>Pour un photon, \(m = 0\) : \(E = pc = h\nu = hc/\lambda\) ; la lumière pousse (pression de radiation, voile solaire). Pour une particule ultra-relativiste (\(E \gg mc^2\)), \(E \approx pc\) aussi. En physique des particules, on exprime masses et énergies en MeV ou GeV : \(m_e = 0{,}511\ \text{MeV}/c^2\), \(m_p = 938\ \text{MeV}/c^2\), et \(p\) en MeV/\(c\).</p>
+<table>
+<thead><tr><th>Particule</th><th>Relation</th></tr></thead>
+<tbody>
+<tr><td>Photon (\(m = 0\))</td><td>\(E = pc = h\nu = hc/\lambda\) : la lumière pousse (pression de radiation, voile solaire)</td></tr>
+<tr><td>Ultra-relativiste (\(E \gg mc^2\))</td><td>\(E \approx pc\)</td></tr>
+<tr><td>Unités de la physique des particules</td><td>\(m_e = 0{,}511\ \text{MeV}/c^2\), \(m_p = 938\ \text{MeV}/c^2\), \(p\) en MeV/\(c\)</td></tr>
+</tbody></table>
+<div class="complement" data-tag="Démonstration" title="La relation E² = p²c² + m²c⁴">
+<ol class="etapes">
+<li>\(E^2 - p^2c^2 = \gamma^2m^2c^4 - \gamma^2m^2v^2c^2 = \gamma^2m^2c^4\,(1 - \beta^2)\).</li>
+<li>Or \(\gamma^2(1 - \beta^2) = 1\) : il reste \(m^2c^4\), quelle que soit la vitesse.</li>
+<li>De même, \(\dfrac{pc^2}{E} = \dfrac{\gamma mvc^2}{\gamma mc^2} = v\).</li>
+</ol>
+</div>
 <div class="methode" data-m="unites-adaptees"><p>Avec \(m_pc^2 = 938\) MeV, un proton accéléré à \(0{,}95c\) (\(\gamma = 3{,}2\)) a \(E_c = 2{,}2\times938 \approx 2\,060\) MeV : il faut une tension de 2 060 MV, sans aucune conversion en joules. De même, \(\beta = pc/E\) se calcule directement en MeV.</p></div>
 <div class="sim" data-name="energie"><p>Énergie cinétique, quantité de mouvement et facteur \(\gamma\) en fonction de la vitesse : comparez les formules relativistes aux formules classiques et voyez \(E_c\) diverger à l’approche de \(c\).</p></div>
 
@@ -181,7 +294,20 @@
 <div class="exo" data-q="ipho-2019-T14"></div>
 <div class="exo" data-q="ipho-2018-T16"></div>
 <h3 id="masse-energie">L’équivalence masse-énergie</h3>
-<p>Au repos, un corps possède l’énergie \(E_0 = mc^2\) : 1 kg équivaut à \(9\times10^{16}\ \text{J}\), la consommation électrique de la France pendant deux mois. Cette énergie n’est pas « cachée » : la masse d’un système composé est son énergie interne divisée par \(c^2\). Un noyau pèse <em>moins</em> que ses nucléons séparés : le <strong>défaut de masse</strong> \(\Delta m = Zm_p + Nm_n - m_\text{noyau}\) correspond à l’énergie de liaison \(E_\ell = \Delta m\,c^2\), de 8 MeV par nucléon environ pour les noyaux moyens (1 u = \(1{,}6605\times10^{-27}\) kg = 931,5 MeV/\(c^2\)). Une réaction (nucléaire ou chimique) libère l’énergie \(Q = (m_\text{initiale} - m_\text{finale})c^2\) : fission de l’uranium 235, 200 MeV par noyau, soit 0,1 % de la masse ; fusion deutérium-tritium, 17,6 MeV ; annihilation électron-positon, 1,022 MeV en deux photons de 511 keV (imagerie TEP) ; le Soleil perd \(4{,}3\times10^9\) kg par seconde (\(L = 3{,}8\times10^{26}\ \text{W}\)). Une réaction chimique (\(\sim\) 1 eV par molécule) modifie la masse de \(10^{-10}\) en valeur relative : imperceptible, mais réel.</p>
+<p>Au repos, un corps possède l’énergie \(E_0 = mc^2\) : 1 kg équivaut à \(9\times10^{16}\ \text{J}\), la consommation électrique de la France pendant deux mois. Cette énergie n’est pas « cachée » : la masse d’un système composé est son énergie interne divisée par \(c^2\).</p>
+<ul>
+<li>Un noyau pèse <em>moins</em> que ses nucléons séparés : le <strong>défaut de masse</strong> \(\Delta m = Zm_p + Nm_n - m_\text{noyau}\) correspond à l’énergie de liaison \(E_\ell = \Delta m\,c^2\), de 8 MeV par nucléon environ pour les noyaux moyens (1 u = \(1{,}6605\times10^{-27}\) kg = 931,5 MeV/\(c^2\)).</li>
+<li>Une réaction (nucléaire ou chimique) libère l’énergie \(Q = (m_\text{initiale} - m_\text{finale})c^2\).</li>
+</ul>
+<table>
+<thead><tr><th>Réaction</th><th>Énergie libérée</th><th>Fraction de la masse</th></tr></thead>
+<tbody>
+<tr><td>Réaction chimique</td><td>\(\sim 1\) eV par molécule</td><td>\(10^{-10}\) : imperceptible, mais réel</td></tr>
+<tr><td>Fission de l’uranium 235</td><td>200 MeV par noyau</td><td>0,1 %</td></tr>
+<tr><td>Fusion deutérium-tritium</td><td>17,6 MeV</td><td>0,4 %</td></tr>
+<tr><td>Annihilation électron-positon</td><td>1,022 MeV en deux photons de 511 keV (imagerie TEP)</td><td>100 %</td></tr>
+<tr><td>Soleil</td><td>\(L = 3{,}8\times10^{26}\) W</td><td>perd \(4{,}3\times10^9\) kg par seconde</td></tr>
+</tbody></table>
 <div class="methode" data-m="masse-energie"><p>Pour la désintégration \(\alpha\) du plutonium 238, \(m(^{238}\text{Pu}) - m(^{234}\text{U}) - m(\alpha) = 6{,}0\times10^{-3}\ u\), soit \(6{,}0\times10^{-3}\times931{,}5 = 5{,}6\) MeV par noyau. Gardez toutes les décimales des masses : le défaut de masse est une petite différence entre de grands nombres.</p></div>
 <p>Dans toute réaction, l’<strong>énergie totale</strong> (masse incluse) et la <strong>quantité de mouvement</strong> sont conservées. La masse (au repos) ne l’est pas : deux photons peuvent créer une paire électron-positon ; une collision inélastique chauffe le système et augmente sa masse de \(E_c/c^2\).</p>
 <div class="piege">
@@ -197,13 +323,30 @@
 <div class="exo" data-q="ipho-2010-7"></div>
 <div class="exo" data-group="cde-r1"></div>
 <div class="cpge" id="quadrivecteurs" title="Quadrivecteur énergie-impulsion et collisions relativistes">
-<p>On regroupe \((E/c, \vec p)\) en un <strong>quadrivecteur</strong> qui se transforme comme \((ct, \vec r)\) sous Lorentz : \(p'_x = \gamma(p_x - vE/c^2)\), \(E' = \gamma(E - vp_x)\). Sa « norme » \(E^2 - p^2c^2 = m^2c^4\) est invariante : c’est la masse. Pour un <strong>système</strong> de particules, la somme des quadrivecteurs est conservée dans une collision et son invariant \(M^2c^4 = E_\text{tot}^2 - p_\text{tot}^2c^2\) est la masse invariante : l’énergie disponible dans le référentiel du centre de masse (où \(\vec p_\text{tot} = \vec 0\)). Deux applications classiques :</p>
+<p>On regroupe \((E/c, \vec p)\) en un <strong>quadrivecteur</strong> qui se transforme comme \((ct, \vec r)\) sous Lorentz : \(p'_x = \gamma(p_x - vE/c^2)\), \(E' = \gamma(E - vp_x)\).</p>
+<table>
+<thead><tr><th>Invariant</th><th>Expression</th><th>Sens physique</th></tr></thead>
+<tbody>
+<tr><td>Pour une particule</td><td>\(E^2 - p^2c^2 = m^2c^4\)</td><td>sa masse</td></tr>
+<tr><td>Pour un système (somme des quadrivecteurs, conservée dans une collision)</td><td>\(M^2c^4 = E_\text{tot}^2 - p_\text{tot}^2c^2\)</td><td>masse invariante : l’énergie disponible dans le référentiel du centre de masse (où \(\vec p_\text{tot} = \vec 0\))</td></tr>
+</tbody></table>
+<p>Deux applications classiques :</p>
 <ul>
 <li><strong>Énergie de seuil</strong> pour créer des particules de masse totale \(M\) en envoyant un projectile d’énergie \(E\) sur une cible fixe de masse \(m\) : il faut \(E_\text{tot}^2 - p^2c^2 \ge M^2c^4\), soit \(E \ge \dfrac{M^2 - m_\text{proj}^2 - m^2}{2m}c^2\). Créer un antiproton par \(p + p \to 3p + \bar p\) demande \(E_c = 6m_pc^2 = 5{,}6\) GeV sur cible fixe, mais seulement \(2m_pc^2\) de part et d’autre dans un collisionneur : d’où les collisionneurs.</li>
 <li><strong>Désintégration</strong> d’une particule de masse \(M\) au repos en deux particules : énergies fixées, \(E_1 = \dfrac{(M^2 + m_1^2 - m_2^2)c^2}{2M}\) ; pion \(\pi^0 \to 2\gamma\) : deux photons de \(67{,}5\) MeV dos à dos.</li>
 </ul>
 <div class="methode" data-m="invariant"><p>Pour le seuil, calculez \(E_\text{tot}^2 - p_\text{tot}^2c^2\) dans le laboratoire (projectile + cible au repos) et égalez-le à sa valeur dans le centre de masse au seuil, où les produits sont créés au repos : \((Mc^2)^2\). Aucune transformation de Lorentz n’est nécessaire.</p></div>
-<p><strong>Effet Compton</strong> : un photon diffusé par un électron libre au repos perd de l’énergie, \(\lambda' - \lambda = \dfrac{h}{m_ec}(1 - \cos\theta)\), avec \(h/m_ec = 2{,}43\) pm (longueur d’onde Compton) : conservation de \(E\) et \(\vec p\) avec \(E = pc\) pour le photon. L’existence de cet effet est la preuve que la lumière transporte une quantité de mouvement \(h/\lambda\).</p>
+<p><strong>Effet Compton</strong> : un photon diffusé d’un angle \(\theta\) par un électron libre au repos perd de l’énergie,</p>
+\[\lambda' - \lambda = \frac{h}{m_ec}(1 - \cos\theta), \qquad \frac{h}{m_ec} = 2{,}43\ \text{pm (longueur d’onde Compton)}.\]
+<div class="complement" data-tag="Démonstration" title="Le décalage Compton par les invariants">
+<ol class="etapes">
+<li>Conservation : \(P_\gamma + P_e = P'_\gamma + P'_e\) (quadrivecteurs). On isole l’électron final : \(P'_e = P_\gamma + P_e - P'_\gamma\).</li>
+<li>On prend la « norme » des deux membres : \(m_e^2c^4 = 0 + m_e^2c^4 + 0 + 2(P_\gamma\cdot P_e - P_\gamma\cdot P'_\gamma - P_e\cdot P'_\gamma)\), avec \(P\cdot Q = E_PE_Q - \vec p_P\cdot\vec p_Q\,c^2\).</li>
+<li>Électron initial au repos : \(P_\gamma\cdot P_e = Em_ec^2\), \(P_e\cdot P'_\gamma = E'm_ec^2\) ; photons : \(P_\gamma\cdot P'_\gamma = EE'(1 - \cos\theta)\).</li>
+<li>D’où \(m_ec^2(E - E') = EE'(1 - \cos\theta)\), soit \(\dfrac1{E'} - \dfrac1E = \dfrac{1 - \cos\theta}{m_ec^2}\) ; avec \(E = hc/\lambda\), c’est la formule.</li>
+</ol>
+</div>
+<p>L’existence de cet effet est la preuve que la lumière transporte une quantité de mouvement \(h/\lambda\).</p>
 </div>
 
 <div class="exo" data-q="ipho-2016-C17"></div>
